@@ -1,0 +1,80 @@
+.header_image{
+    background-image: url('../images/black_texture.png');
+    margin-top: 20px;
+    height:67px;
+}
+
+.header_image_1{
+    background-image: url('../images/orange.png');
+    height:67px;
+    margin-left: 100px;
+}
+
+#logo{
+	text-decoration: none;
+}
+
+.text_logo{
+	margin-top: 21px;
+	text-align:center;
+	color: #FFFFFF;
+}
+
+.header_2{
+	margin-top: 20px;
+}
+
+.footer{
+	height: 32px;
+}
+
+#footer_text{
+    color: #FFFFFF;
+    float: right;
+}
+
+#title{
+    font-family: -moz-fixed;
+}
+
+.indexButton {
+    background-color: #F0C413;
+    border: 1px solid #E65F44;
+    border-radius: 42px 0;
+    box-shadow: 0 1px 0 0 #F9ECA0 inset;
+    color: #C92200;
+    display: inline-block;
+    font-family: Trebuchet MS;
+    font-size: 21px;
+    font-style: normal;
+    font-weight: bold;
+    height: 49px;
+    line-height: 49px;
+    text-align: center;
+    text-decoration: none;
+    text-indent: 0;
+    text-shadow: 1px 1px 0 #DED17C;
+    width: 105px;
+}
+
+.searchBox{
+    color: #ABABAB;
+    font-family: 'TW Cen MT Condensed';
+    font-size: 30px;
+    height: 45px;
+    padding-left: 10px;
+    width: 300px;
+    margin-right: 20px;
+}
+
+.ad{
+	margin-top: 30px;
+}
+
+.menu{
+   margin-top: 30px;
+}
+
+.menu_bar{
+   margin-left: 150px;
+}
