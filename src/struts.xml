@@ -6,7 +6,7 @@
 <struts>
     <constant name="struts.enable.DynamicMethodInvocation"
         value="false" />
-    <constant name="struts.devMode" value="false" />
+    <constant name="struts.devMode" value="true" />
     <constant name="struts.custom.i18n.resources"
         value="ApplicationResources" />
  
@@ -15,18 +15,11 @@
             <result-type name="tiles"
                 class="org.apache.struts2.views.tiles.TilesResult" />
         </result-types>
-        <action name="login"
-            class="com.virat.login.LoginAction">
-            <result name="success" type="tiles">/welcome.tiles</result>
-            
+        <action name="">
+            <result type="tiles">/home.tiles</result>
+       </action>
+        <action name="home" class="com.virat.login.HomeAction">
+            <result name="success" type="tiles">/home.tiles</result>      
         </action>
-        <!-- <action name="customer"
-            class="net.viralpatel.struts2.CustomerAction">
-            <result name="success" type="tiles">/customer.success.tiles</result>
-            <result name="input" type="tiles">/customer.tiles</result>
-        </action>
-        <action name="customer-form">
-            <result name="success" type="tiles">/customer.tiles</result>
-        </action> -->
     </package>
 </struts>

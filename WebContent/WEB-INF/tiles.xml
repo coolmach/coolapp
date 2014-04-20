@@ -10,9 +10,9 @@
         <put-attribute name="body" value="" />
         <put-attribute name="footer" value="/Footer.jsp" />
     </definition>
-    <definition name="/welcome.tiles" extends="baseLayout">
-        <put-attribute name="title" value="Welcome" />
-        <put-attribute name="body" value="/Login.jsp" />
+    <definition name="/home.tiles" extends="baseLayout">
+        <put-attribute name="title" value="Home" />
+        <put-attribute name="body" value="/Home.jsp" />
     </definition>
     
 </tiles-definitions>
