@@ -1,6 +1,6 @@
 package com.virat.login;
 
-public class LoginAction {
+public class UserAction {
 	
 	public String execute(){
 		System.out.println("LoginAction.success()");
