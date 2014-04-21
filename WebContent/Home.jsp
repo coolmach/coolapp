@@ -15,7 +15,24 @@
 </div>
 <div class="span8 header_2">
 <input class="searchBox" type="text" placeholder="Enter your area here">
-<a class="indexButton" href="#">Go</a>
+<a data-toggle="modal" href="#stores" class="indexButton" >Go</a>
 </div>
 <div class="span8 ad"><img src="images/advertisement_1.png"></div>
 </div>
+<div id="stores" class="modal hide fade in" style="display: none; ">  
+<div class="modal-header">  
+<input class="searchBox" type="text" placeholder="HSR Layout">
+<a class="close" data-dismiss="modal">×</a>  
+
+</div>  
+<div class="modal-body">  
+<h2>Select your favorite store</h2> 
+<div class="span3 dept"><img src="images/nilgris.png"></div>   
+<div class="span3 dept"><img src="images/bigbazar.png"></div>
+<div class="span3 dept"><img src="images/more.png"></div>           
+</div>  
+<div class="modal-footer">   
+</div>  
+</div>  
+
+ 

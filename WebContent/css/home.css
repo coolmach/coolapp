@@ -78,3 +78,15 @@
 .menu_bar{
    margin-left: 150px;
 }
+
+#stores{
+	width : 385px;
+	height : 450px;
+	text-align: center;
+	left:55%;
+}
+
+.dept{
+    border: 1px solid #CCCCCC;
+    margin-left: 52px;
+}
