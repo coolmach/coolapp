@@ -1,3 +1,4 @@
+<%@ taglib prefix="s" uri="/struts-tags"%>
 <div class="span4"><img width="300" height="418" src="images/Banner3.jpg"></div>
 <div class="span8">
 <div class="span8"></div>
@@ -27,9 +28,9 @@
 </div>  
 <div class="modal-body">  
 <h2>Select your favorite store</h2> 
-<div class="span3 dept"><img src="images/nilgris.png"></div>   
-<div class="span3 dept"><img src="images/bigbazar.png"></div>
-<div class="span3 dept"><img src="images/more.png"></div>           
+<div class="span3 dept"><a href="<s:url action="order"/>"><img src="images/nilgris.png"></a> </div>   
+<div class="span3 dept"><a href="<s:url action="order"/>"><img src="images/bigbazar.png"></a></div>
+<div class="span3 dept"><a href="<s:url action="order"/>"><img src="images/more.png"></a></div>         
 </div>  
 <div class="modal-footer">   
 </div>  

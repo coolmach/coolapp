@@ -21,5 +21,8 @@
         <action name="home" class="com.virat.login.HomeAction">
             <result name="success" type="tiles">/home.tiles</result>      
         </action>
+        <action name="order" class="com.virat.login.OrderAction">
+            <result name="success" type="tiles">/order.tiles</result>      
+        </action>
     </package>
 </struts>

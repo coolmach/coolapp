@@ -90,3 +90,41 @@
     border: 1px solid #CCCCCC;
     margin-left: 52px;
 }
+
+.sidebar{
+    border: 1px solid #AAAAAA;
+    color: #00A2E8;
+    font-size: 18px;
+    height: 40px;
+    margin-top: 10px;
+    padding-left: 10px;
+    padding-top: 15px;
+}
+
+.main{
+    height : 485px;
+}
+
+.productSearchBar input {
+    border: 1px solid #FF7D27;
+    color: #ABABAB;
+    font-family: 'Tw Cen MT Condensed';
+    font-size: 20px;
+    height: 36px;
+    padding-left: 10px;
+
+}
+
+.storePromo_Product{
+   padding : 15px;
+}
+
+.storePromo_Product img {
+    height: 110.4px;
+    width: 183px;
+}
+
+#continue{
+    background-image: -moz-linear-gradient(center top , #FBB450, #FF3932);
+    float:right;
+}
