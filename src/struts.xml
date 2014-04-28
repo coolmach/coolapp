@@ -24,5 +24,8 @@
         <action name="order" class="com.virat.login.OrderAction">
             <result name="success" type="tiles">/order.tiles</result>      
         </action>
+         <action name="checkout" class="com.virat.login.CheckoutAction">
+            <result name="success" type="tiles">/checkout.tiles</result>      
+        </action>
     </package>
 </struts>

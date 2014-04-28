@@ -22,6 +22,7 @@
   <div class="row-fluid header_2"></div>
   <div class="row-fluid main">
   <tiles:insertAttribute name="body" />
+  <tiles:insertAttribute name="menu" />
   </div>
   <div class="row-fluid">
   <tiles:insertAttribute name="footer" />

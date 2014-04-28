@@ -128,3 +128,19 @@
     background-image: -moz-linear-gradient(center top , #FBB450, #FF3932);
     float:right;
 }
+
+.sidebar_ads{
+    float: right;
+}
+
+.checkout_div{
+    margin-top: 15px;
+}
+
+#time{
+    float: right;
+}
+
+#discount_desc{
+    margin-top: 30px;
+}

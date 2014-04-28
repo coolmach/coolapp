@@ -42,19 +42,8 @@
     <td>Rs. 540</td>
   </tr>
     </table>
-     <button class="btn btn-large btn-warning span2" id="continue" type="button">Continue</button>
+     <button class="btn btn-large btn-warning span2" id="continue" type="button" onclick = "javascript:location.href='checkout.action';">Continue</button>
 </div>
 <div class="span3">
   <h2>Hot Offers At Nilgiris</h2>
-</div>
-<div class="span3">
- <div class="storePromo_Product">
-<img src="images/advertisement_a.png">
-</div>
-<div class="storePromo_Product">
-<img src="images/advertisement_b.png">
-</div>
-<div class="storePromo_Product">
-<img src="images/advertisement_c.png">
-</div>
 </div>
