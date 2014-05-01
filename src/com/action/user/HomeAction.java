@@ -1,4 +1,4 @@
-package com.virat.login;
+package com.action.user;
 
 import com.opensymphony.xwork2.ActionSupport;
 

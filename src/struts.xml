@@ -18,14 +18,17 @@
         <action name="">
             <result type="tiles">/home.tiles</result>
        </action>
-        <action name="home" class="com.virat.login.HomeAction">
+        <action name="home" class="com.action.user.HomeAction">
             <result name="success" type="tiles">/home.tiles</result>      
         </action>
-        <action name="order" class="com.virat.login.OrderAction">
+        <action name="order" class="com.action.order.OrderAction">
             <result name="success" type="tiles">/order.tiles</result>      
         </action>
-         <action name="checkout" class="com.virat.login.CheckoutAction">
+         <action name="checkout" class="com.action.order.CheckoutAction">
             <result name="success" type="tiles">/checkout.tiles</result>      
+        </action>
+        <action name="user" class="com.action.user.UserAction">
+            <result name="success" type="tiles">/userdetails.tiles</result>      
         </action>
     </package>
 </struts>

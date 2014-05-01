@@ -21,7 +21,7 @@
                      <input class="input-mini" type="text" ></div>
   </div>
   <div class="span7 checkout_div">
-   <button class="btn btn-large btn-warning span2" id="continue" type="button">Continue</button>
+   <button class="btn btn-large btn-warning span2" id="continue" type="button" onclick = "javascript:location.href='user.action';">Continue</button>
   </div>
 
 <div class="span9 checkout_div" id="discount_desc">
