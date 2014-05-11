@@ -21,16 +21,22 @@
 }
 
 .header_2{
-	margin-top: 20px;
+	margin-top: 50px;
+}
+
+.footer_2{
+	margin-top: 15px;
 }
 
 .footer{
 	height: 32px;
+	background-color: #0099cc
 }
 
 #footer_text{
     color: #FFFFFF;
     float: right;
+    font-size: small;
 }
 
 #title{
@@ -102,7 +108,7 @@
 }
 
 .main{
-    height : 485px;
+    height : 380px;
 }
 
 .productSearchBar input {
@@ -149,4 +155,90 @@
     font-family: 'Calibri';
     font-size: 14px;
     padding: 5px;
+}
+
+.login{
+    float:left;
+    margin-top:10px;	
+}
+
+#nav_user:hover{
+    	text-decoration: underline;
+}
+
+#nav_user{
+	  text-transform: capitalize;
+}
+
+.mygrid{
+	width:125px;
+	height:125px;
+	display:inline-table;
+	margin:4px;
+	text-align: center;
+	box-shadow: 1px 2px 5px 1px #E9E9E9;
+}
+
+.mygrid_post{
+	box-shadow: 1px 2px 5px 1px #E9E9E9;
+    display: inline-table;
+    height: 35px;
+    margin: 4px 4px 4px 107px;
+    text-align: center;
+    text-decoration: underline;
+    width: 188px;
+}
+
+.images_ad{
+    width:inherit;
+    height:inherit;
+}
+
+#login_top{
+    background-color: #0099cc;	
+    margin-top:6px;
+}
+
+#login_form{
+    margin-top:20px;
+}
+
+.forgot_pwd{
+    color: #FFFFFF;
+    font-size: smaller;
+    text-decoration: underline;
+}
+
+a {
+    color: #ffffff;
+    -webkit-transition: all .2s ease-in-out;
+    -moz-transition: all .2s ease-in-out;
+    transition: all .2s ease-in-out;
+}
+
+.cbuddy_intro{
+    margin-top:10px;
+
+}
+
+.sticky_footer 
+{
+ 
+    position: inherit;
+    bottom: 0;
+}
+
+#post_ad{
+	text-decoration:underline;
+   color:#0000ff;
+  
+}
+
+.navbar-logo {
+    float: left;
+    font-size: 18px;
+    height: 50px;
+    line-height: 20px;
+    padding: 24px;
+    font-family: 'Comic Sans MS';
 }

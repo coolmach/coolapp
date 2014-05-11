@@ -15,7 +15,7 @@
         <put-attribute name="title" value="Home" />
         <put-attribute name="body" value="/Home.jsp" />
     </definition>
-    <definition name="/order.tiles" extends="baseLayout">
+    <!-- <definition name="/order.tiles" extends="baseLayout">
         <put-attribute name="title" value="CheckOut" />
         <put-attribute name="body" value="/Nonsubscription.jsp" />
         <put-attribute name="menu" value="/SideBar.jsp" />
@@ -29,6 +29,6 @@
         <put-attribute name="title" value="Register" />
         <put-attribute name="body" value="/UserDetails.jsp" />
         <put-attribute name="menu" value="/SideBar.jsp" />
-    </definition>
+    </definition> -->
     
 </tiles-definitions>

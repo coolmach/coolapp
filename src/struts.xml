@@ -10,15 +10,27 @@
     <constant name="struts.custom.i18n.resources"
         value="ApplicationResources" />
  
-    <package name="default" extends="struts-default" namespace="/">
+    <package name="default" extends="struts-default,json-default" namespace="/">
         <result-types>
             <result-type name="tiles"
                 class="org.apache.struts2.views.tiles.TilesResult" />
         </result-types>
-        <action name="">
+    <interceptors>
+      <interceptor name="loginInterceptor" class="com.login.interceptors.LoginInterceptor"></interceptor>
+      <interceptor-stack name="secureStack">
+      <interceptor-ref name="loginInterceptor"></interceptor-ref>
+      <interceptor-ref name="defaultStack"></interceptor-ref>
+      </interceptor-stack>
+    </interceptors> 
+        <action name="" >
             <result type="tiles">/home.tiles</result>
        </action>
-        <action name="home" class="com.action.user.HomeAction">
+       <action name="login" class="com.action.user.LoginAction" >
+            <result name="success" type="tiles">/home.tiles
+            </result> 
+              <result name="input" type="tiles">/home.tiles</result> 
+        </action>
+        <!-- <action name="home" class="com.action.user.HomeAction">
             <result name="success" type="tiles">/home.tiles</result>      
         </action>
         <action name="order" class="com.action.order.OrderAction">
@@ -29,6 +41,19 @@
         </action>
         <action name="user" class="com.action.user.UserAction">
             <result name="success" type="tiles">/userdetails.tiles</result>      
+        </action> -->
+        <action name="login" class="com.action.user.LoginAction" >
+            <result name="success" type="tiles">/home.tiles
+            </result> 
+              <result name="input" type="tiles">/home.tiles</result> 
         </action>
+       <!--  <action name="logout" class="com.action.user.LogOutAction" method="logout">
+            <result name="success" type="tiles">/home.tiles</result> 
+            <result name="input" type="tiles">/home.tiles</result> 
+        </action>
+        <action name="task">
+        <interceptor-ref name="secureStack"></interceptor-ref>
+        <result name="login" type="tiles">/home.tiles</result> 
+        </action> -->
     </package>
 </struts>

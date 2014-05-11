@@ -8,5 +8,10 @@ public class HomeAction extends ActionSupport{
 		return "success";
 	}
 	
-
+    public String getAdDescription(){
+    	
+    	System.out.println("HomeAction.getAdDescription()");
+    	
+    	return "success";
+    }
 }

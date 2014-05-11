@@ -1,14 +1,40 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
-<div class="span12 header_image" >
-  <div class="span4 header_image_1"><a id="logo" href="#"><h3 class="text_logo">COOL MACHAN</h3></a></div>
-  <div class="span6 menu_bar">
-              <ul class="nav nav-tabs menu">
-    <li class="active"><a href="#">TRACK MY ORDER</a></li>
-    <li><a href="#">OFFERS</a></li>
-    <li><a href="#">WHAT'S NEW</a></li>
-    <li><a href="#">CONTACT US</a></li>
-    </ul>
-  </div>
-  <div class="span2"></div>
-  </div>
+
+            <div class="col-md-3">
+                <a class="navbar-logo" href="">
+                    <b><i style="color:#ffff00;">CBuddy.</i>in</b>
+                </a>
+            </div>
+            <div class="col-md-3">
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="col-md-6" id="login_div">
+              <s:actionerror />
+           <s:form action="login.action" id="login_form" cssClass="form-inline" method="post" theme="simple">
+             <div class="form-group">
+             <!-- <label class="sr-only" for="exampleInputEmail2">Email address</label> -->
+             <s:textfield cssClass="form-control" id="exampleInputEmail2" placeholder="Email" name="userName" />
+             </div>
+			  <div class="form-group">
+			    <!-- <label class="sr-only" for="exampleInputPassword2">Password</label> -->
+			    <s:password cssClass="form-control" id="exampleInputPassword2" placeholder="Password" name="password" />
+			  </div>
+			  <!-- <div class="checkbox">
+			    <label>
+			      <input type="checkbox"> Remember me
+			    </label>
+			  </div> -->
+			 <s:submit cssClass="btn btn-info" value="Log In"/>
+            </s:form>
+            <div class="col-md-4 forgot_pwd"> <a class="" href="">New User?Sign Up</a></div>
+            <div class="col-md-4 forgot_pwd"> <a class="" href="">Forgot Password</a></div>   
+                
+            </div>
+            <!-- <div class="pull-right"> <b id="myuser"> </b><br/><a id="nav_user" href="/Cool/logout.action">logout</a> </div> -->
+            <!-- /.navbar-collapse -->
+            
+<!--         </div>
+        /.container
+    </nav> -->

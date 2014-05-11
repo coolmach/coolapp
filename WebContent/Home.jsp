@@ -1,39 +1,39 @@
-<%@ taglib prefix="s" uri="/struts-tags"%>
-<div class="span4"><img width="300" height="418" src="images/Banner3.jpg"></div>
-<div class="span8">
-<div class="span8"></div>
-<div class="span8"><h1 id="title">Grocery Shopping is now fun!</h1></div>
-<div class="span8 header_2">Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
-                   Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, 
-                   when an unknown printer took a galley of type<br/> and scrambled it to make a type specimen book.<br/>
+<div class="col-md-6">
+   <div class="col-md-3">
+       <img src="images/cbuddy_boy.png">
+   </div>
+   <div class="col-md-9">
+        <div class="col-md-12 cbuddy_intro"><h4>An exclusive Classifieds portal for Techies</h4></div>
+        <div class="col-md-12 cbuddy_intro"><i style="margin:10px;">"Say no to brokers, yes to fellow IT companies"</i></div>
+        <div class="col-md-12 cbuddy_intro" >
+             <div style="margin:15px;"><img src="images/star.jpg"><b>Verified Posts</b></div>
+             <div style="margin:15px;"><img src="images/star.jpg"><b>Authenticate Users</b></div>
+        </div>
+        <div class="col-md-12" >
+             <img src="images/arrow.png"> <input type="text" class="input-lg" id="category" name="category" placeholder="I am looking for...">
+        </div>
+   </div>
 </div>
-<div class="span8 header_2">   
-   <ul>
-    <li>It has survived not only five centuries</li>
-    <li>but also the leap into electronic typesetting</li>
-    <li>remaining essentially unchanged</li>
-   </ul>
-</div>
-<div class="span8 header_2">
-<input class="searchBox" type="text" placeholder="Enter your area here">
-<a data-toggle="modal" href="#stores" class="indexButton" >Go</a>
-</div>
-<div class="span8 ad"><img src="images/advertisement_1.png"></div>
-</div>
-<div id="stores" class="modal hide fade in" style="display: none; ">  
-<div class="modal-header">  
-<input class="searchBox" type="text" placeholder="HSR Layout">
-<a class="close" data-dismiss="modal">×</a>  
+<div class="col-md-6">
+    <div class="table mygrid">
+          <img  class="images_ad" src="images/real_estate.png">
+    </div>
+	<div class="table mygrid">
+	      <img  class="images_ad" src="images/cars.png">
+	</div>
+	<div class="table mygrid">
+	      <img  class="images_ad" src="images/household.png">
+	</div>
+	<div class="table mygrid">
+	      <img  class="images_ad" src="images/laptops.png">
+	</div>
+	<div class="table mygrid">
+	      <img  class="images_ad" src="images/mobiles.png">
+	</div>
+	<div class="table mygrid">
+	      <img  class="images_ad" src="images/dvd.png">
+	</div><br/>
+	
+<div class=" mygrid_post">  <a id="post_ad" href="#stores" class="" >Post Ad</a></div>
 
-</div>  
-<div class="modal-body">  
-<h2>Select your favorite store</h2> 
-<div class="span3 dept"><a href="<s:url action="order"/>"><img src="images/nilgris.png"></a> </div>   
-<div class="span3 dept"><a href="<s:url action="order"/>"><img src="images/bigbazar.png"></a></div>
-<div class="span3 dept"><a href="<s:url action="order"/>"><img src="images/more.png"></a></div>         
-</div>  
-<div class="modal-footer">   
-</div>  
-</div>  
-
- 
+</div>
