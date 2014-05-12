@@ -2,7 +2,7 @@
 <%@ taglib prefix="s" uri="/struts-tags"%>
 
             <div class="col-md-3">
-                <a class="navbar-logo" href="">
+                <a class="navbar-logo" href="<s:url action=""/>">
                     <b><i style="color:#ffff00;">CBuddy.</i>in</b>
                 </a>
             </div>

@@ -9,7 +9,7 @@
 <s:head/>
 <%-- <sx:head cache="false" compressed="false"/> --%>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Home</title>
+<title></title>
 
 <script type="text/javascript" src="js/jquery.min.js"></script> 
 <script type="text/javascript" src="js/jquery-ui.js"></script> 

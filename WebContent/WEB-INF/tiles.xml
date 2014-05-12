@@ -17,7 +17,7 @@
     </definition>
     <definition name="/addetails.tiles" extends="baseLayout">
         <put-attribute name="title" value="Ad Details" />
-        <put-attribute name="body" value="/Nonsubscription.jsp" />
+        <put-attribute name="body" value="/AdDetails.jsp" />
     </definition>
     <!-- <definition name="/checkout.tiles" extends="baseLayout">
         <put-attribute name="title" value="CheckOut" />

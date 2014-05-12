@@ -1,7 +1,7 @@
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <div class="row header_2">
   <div class="col-md-4"></div>
-  <div class="col-md-7">Home > </div>
+  <div class="col-md-7"><a class="grey_link" href="<s:url action=""  />" >HOME</a> > <s:property value="category" /></div>
 </div>
 <div class="col-md-4">
 <!-- <div class="sidebar_head span3"><h2>Readymade Packs</h2></div>
@@ -37,7 +37,12 @@
     <small><b><s:property value="cityCode" />,<s:property value="locCode" /></b></small><br/>
     <small>Contact <s:property value="contactPerson" />,<s:property value="contactNo" /></small>
     </td>	
-     <td><s:property value="price" /></td>
+     <td>
+      <s:url action="" var="urlTag">
+            <s:param name="price"><s:property value="price" /></s:param>
+          </s:url>
+          <a class="blue_link" href="<s:property value="#urlTag" />" ><s:property value="price" /></a>
+     </td>
       <td><s:date name="rCreTime" format="dd/MM/yyyy"/></td>
        <td><s:property value="firstName" />(<s:property value="corpName" />)</td>
     </tr>

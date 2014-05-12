@@ -21,7 +21,7 @@
 }
 
 .header_2{
-	margin-top: 25px;
+	margin-top: 35px;
 }
 
 .footer_2{
@@ -108,7 +108,7 @@
 }
 
 .main{
-    height : 380px;
+    height : 430px;
 }
 
 .productSearchBar input {
@@ -190,8 +190,8 @@
 }
 
 .images_ad{
-    width:inherit;
-    height:inherit;
+    width:auto;
+    height:auto;
 }
 
 #login_top{
@@ -255,5 +255,15 @@ a {
 
 table 
 {
-       box-shadow: 16px 3px 10px -7px #888, -10px 0px 20px -7px #888;
+    box-shadow: 16px 3px 10px -7px #888, -10px 0px 20px -7px #888;
+}
+
+.grey_link{
+    color: #9a9a9a;
+    text-decoration: underline;
+}
+
+.blue_link{
+    color: #2a7fff;
+    text-decoration: underline;
 }
