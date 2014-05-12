@@ -21,7 +21,7 @@
 }
 
 .header_2{
-	margin-top: 50px;
+	margin-top: 25px;
 }
 
 .footer_2{
@@ -241,4 +241,19 @@ a {
     line-height: 20px;
     padding: 24px;
     font-family: 'Comic Sans MS';
+}
+
+.rating_stars{
+    height:20px;
+    width:20px;
+}
+
+.rating_half_stars{
+    height:20px;
+    width:13px;
+}
+
+table 
+{
+       box-shadow: 16px 3px 10px -7px #888, -10px 0px 20px -7px #888;
 }

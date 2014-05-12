@@ -15,12 +15,11 @@
         <put-attribute name="title" value="Home" />
         <put-attribute name="body" value="/Home.jsp" />
     </definition>
-    <!-- <definition name="/order.tiles" extends="baseLayout">
-        <put-attribute name="title" value="CheckOut" />
+    <definition name="/addetails.tiles" extends="baseLayout">
+        <put-attribute name="title" value="Ad Details" />
         <put-attribute name="body" value="/Nonsubscription.jsp" />
-        <put-attribute name="menu" value="/SideBar.jsp" />
     </definition>
-    <definition name="/checkout.tiles" extends="baseLayout">
+    <!-- <definition name="/checkout.tiles" extends="baseLayout">
         <put-attribute name="title" value="CheckOut" />
         <put-attribute name="body" value="/CheckOut.jsp" />
         <put-attribute name="menu" value="/SideBar.jsp" />

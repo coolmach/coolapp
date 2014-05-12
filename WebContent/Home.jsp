@@ -1,3 +1,4 @@
+<div class="row header_2"></div>
 <div class="col-md-6">
    <div class="col-md-3">
        <img src="images/cbuddy_boy.png">

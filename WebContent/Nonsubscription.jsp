@@ -1,49 +1,47 @@
-<div class="span3">
-<div class="sidebar_head span3"><h2>Readymade Packs</h2></div>
+<%@ taglib prefix="s" uri="/struts-tags" %>
+<div class="row header_2">
+  <div class="col-md-4"></div>
+  <div class="col-md-7">Home > </div>
+</div>
+<div class="col-md-4">
+<!-- <div class="sidebar_head span3"><h2>Readymade Packs</h2></div>
   <div class="sidebar span3">Family Pack - Nuclear</div>
    <div class="sidebar span3">Family Pack - Joint</div>
     <div class="sidebar span3">Babies Pack</div>
-     <div class="sidebar span3">Weekend Pack</div>
+     <div class="sidebar span3">Weekend Pack</div> -->
 </div>
-<div class="productSearchBar span6">
-<input class="span5" type="text" value="Enter product name here">
-<img width="110.5" height="44.2" src="images/nilgris.png">
-    <table class="table table-striped">
+<div class="col-md-7">
+<s:if test="adList.size() > 0">
+    <table class="table table-bordered">
     <tr>
+    <th>Description</th>
     <th></th>
-    <th>Product Name</th>
-     <th>Quantity</th>
-      <th>Unit Price</th>
-       <th>Total Price</th>
+     <th>Price</th>
+      <th>Date</th>
+       <th>Posted By</th>
     </tr>
+    <s:iterator value="adList" status="userStatus">
     <tr>
-    <td></td>
-    <td>Aashirwad Atta Premium 500g</td>
-     <td>- 2 +</td>
-      <td>90.00</td>
-       <td>180.00</td>
+    <td>
+    <img class="" src=" <s:property value="imageFileName" />">
+    </td>
+    <td>
+    <p><s:property value="title" /></p>
+    <s:iterator begin="1" end="rating">
+     <img class="rating_stars" src="images/star.jpg">
+    </s:iterator> 
+	<%-- <s:if test="rating % 1 == 0">
+	<img class="rating_half_stars" src="images/halfstar.jpg">
+	</s:if> --%>
+    <br/>
+    <small><b><s:property value="cityCode" />,<s:property value="locCode" /></b></small><br/>
+    <small>Contact <s:property value="contactPerson" />,<s:property value="contactNo" /></small>
+    </td>	
+     <td><s:property value="price" /></td>
+      <td><s:date name="rCreTime" format="dd/MM/yyyy"/></td>
+       <td><s:property value="firstName" />(<s:property value="corpName" />)</td>
     </tr>
-    <tr>
-    <td></td>
-    <td>Aashirwad Atta Premium 500g</td>
-     <td>- 2 +</td>
-      <td>90.00</td>
-       <td>180.00</td>
-    </tr>
-    <tr>
-    <td></td>
-    <td>Aashirwad Atta Premium 500g</td>
-     <td>- 2 +</td>
-      <td>90.00</td>
-       <td>180.00</td>
-    </tr>
-    <tr>
-    <td colspan="4" style="text-align:right"><h4>Approximate Total Amount</h4> </td>
-    <td>Rs. 540</td>
-  </tr>
+    </s:iterator>
     </table>
-     <button class="btn btn-large btn-warning span2" id="continue" type="button" onclick = "javascript:location.href='checkout.action';">Continue</button>
-</div>
-<div class="span3">
-  <h2>Hot Offers At Nilgiris</h2>
+   </s:if>
 </div>

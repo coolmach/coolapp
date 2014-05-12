@@ -3,32 +3,39 @@
   <display-name>Struts2 Application</display-name>
   <filter>
     <filter-name>struts2</filter-name>
-    <filter-class>org.apache.struts2.dispatcher.ng.filter.StrutsPrepareAndExecuteFilter</filter-class>
+    <filter-class>org.apache.struts2.dispatcher.FilterDispatcher</filter-class>
   </filter>
   <filter-mapping>
     <filter-name>struts2</filter-name>
     <url-pattern>/*</url-pattern>
   </filter-mapping>
-  <session-config>
+  <!-- <session-config>
  <session-timeout>1</session-timeout>
- </session-config>
+ </session-config> -->
  <!--  <welcome-file-list>
     <welcome-file>HomeAction.action</welcome-file>
   </welcome-file-list> -->
   <listener>
     <listener-class>
+	  com.cbuddy.listners.TablesCreatorListner
+    </listener-class>
+   </listener>
+   
+  <listener>
+    <listener-class>
 		        org.apache.struts2.tiles.StrutsTilesListener
 		    </listener-class>
   </listener>
+  
   <context-param>
     <param-name>tilesDefinitions</param-name>
     <param-value>/WEB-INF/tiles.xml</param-value>
   </context-param>
-  <security-constraint>
+  <!-- <security-constraint>
    <web-resource-collection>
    <web-resource-name>block_jsp_access</web-resource-name>
    <url-pattern>*.jsp</url-pattern>
    </web-resource-collection>
    <auth-constraint/>
-  </security-constraint>
+  </security-constraint> -->
 </web-app>

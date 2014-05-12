@@ -32,7 +32,6 @@
   <div class="row" id="login_top">
   <tiles:insertAttribute name="header" />
   </div>
-  <div class="row header_2"></div>
     <div class="row main"> 
   <tiles:insertAttribute name="body" />
   <tiles:insertAttribute name="menu" />

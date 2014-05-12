@@ -30,10 +30,10 @@
             </result> 
               <result name="input" type="tiles">/home.tiles</result> 
         </action>
-        <!-- <action name="home" class="com.action.user.HomeAction">
-            <result name="success" type="tiles">/home.tiles</result>      
+       <action name="addetails" class="com.action.user.HomeAction" method="getAdDescription">
+            <result name="success" type="tiles">/addetails.tiles</result>      
         </action>
-        <action name="order" class="com.action.order.OrderAction">
+          <!-- <action name="order" class="com.action.order.OrderAction">
             <result name="success" type="tiles">/order.tiles</result>      
         </action>
          <action name="checkout" class="com.action.order.CheckoutAction">
