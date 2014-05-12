@@ -6,7 +6,7 @@
    </div>
    <div class="col-md-9">
         <div class="col-md-12 cbuddy_intro"><h4>An exclusive Classifieds portal for Techies</h4></div>
-        <div class="col-md-12 cbuddy_intro"><i style="margin:10px;">"Say no to brokers, yes to fellow IT companies"</i></div>
+        <div class="col-md-12 cbuddy_intro"><i style="margin:10px;">"Say no to brokers, yes to folks/your colleagues"</i></div>
         <div class="col-md-12 cbuddy_intro" >
              <div style="margin:15px;"><img src="images/star.jpg"><b>Verified Posts</b></div>
              <div style="margin:15px;"><img src="images/star.jpg"><b>Authenticate Users</b></div>
