@@ -2,58 +2,50 @@
 <!DOCTYPE struts PUBLIC
     "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
     "http://struts.apache.org/dtds/struts-2.0.dtd">
- 
+
 <struts>
-    <constant name="struts.enable.DynamicMethodInvocation"
-        value="false" />
-    <constant name="struts.devMode" value="true" />
-    <constant name="struts.custom.i18n.resources"
-        value="ApplicationResources" />
- 
-    <package name="default" extends="struts-default,json-default" namespace="/">
-        <result-types>
-            <result-type name="tiles"
-                class="org.apache.struts2.views.tiles.TilesResult" />
-        </result-types>
-    <interceptors>
-      <interceptor name="loginInterceptor" class="com.login.interceptors.LoginInterceptor"></interceptor>
-      <interceptor-stack name="secureStack">
-      <interceptor-ref name="loginInterceptor"></interceptor-ref>
-      <interceptor-ref name="defaultStack"></interceptor-ref>
-      </interceptor-stack>
-    </interceptors> 
-        <action name="" >
-            <result type="tiles">/home.tiles</result>
-       </action>
-       <action name="login" class="com.action.user.LoginAction" >
-            <result name="success" type="tiles">/home.tiles
-            </result> 
-              <result name="input" type="tiles">/home.tiles</result> 
-        </action>
-       <action name="addetails" class="com.action.user.HomeAction" method="getAdDescription">
-            <result name="success" type="tiles">/addetails.tiles</result>      
-        </action>
-          <!-- <action name="order" class="com.action.order.OrderAction">
-            <result name="success" type="tiles">/order.tiles</result>      
-        </action>
-         <action name="checkout" class="com.action.order.CheckoutAction">
-            <result name="success" type="tiles">/checkout.tiles</result>      
-        </action>
-        <action name="user" class="com.action.user.UserAction">
-            <result name="success" type="tiles">/userdetails.tiles</result>      
-        </action> -->
-        <action name="login" class="com.action.user.LoginAction" >
-            <result name="success" type="tiles">/home.tiles
-            </result> 
-              <result name="input" type="tiles">/home.tiles</result> 
-        </action>
-       <!--  <action name="logout" class="com.action.user.LogOutAction" method="logout">
-            <result name="success" type="tiles">/home.tiles</result> 
-            <result name="input" type="tiles">/home.tiles</result> 
-        </action>
-        <action name="task">
-        <interceptor-ref name="secureStack"></interceptor-ref>
-        <result name="login" type="tiles">/home.tiles</result> 
-        </action> -->
-    </package>
+	<constant name="struts.enable.DynamicMethodInvocation" value="false" />
+	<constant name="struts.devMode" value="true" />
+	<constant name="struts.custom.i18n.resources" value="ApplicationResources" />
+
+	<package name="default" extends="struts-default,json-default"
+		namespace="/">
+		<result-types>
+			<result-type name="tiles"
+				class="org.apache.struts2.views.tiles.TilesResult" />
+		</result-types>
+		<interceptors>
+			<interceptor name="loginInterceptor"
+				class="com.login.interceptors.LoginInterceptor"></interceptor>
+			<interceptor-stack name="secureStack">
+				<interceptor-ref name="loginInterceptor"></interceptor-ref>
+				<interceptor-ref name="defaultStack"></interceptor-ref>
+			</interceptor-stack>
+		</interceptors>
+		<action name="">
+			<result type="tiles">/home.tiles</result>
+		</action>
+		<action name="login" class="com.action.user.LoginAction">
+			<result name="success" type="tiles">/home.tiles</result>
+			<result name="input" type="tiles">/home.tiles</result>
+		</action>
+		<action name="adlist" class="com.action.user.HomeAction"
+			method="getAdListByCategory">
+			<result name="success" type="tiles">/adlist.tiles</result>
+		</action>
+		<action name="addetails" class="com.action.user.HomeAction"
+			method="getAdDetails">
+			<result name="success" type="tiles">/addetails.tiles</result>
+		</action>
+		<!-- <action name="checkout" class="com.action.order.CheckoutAction"> <result 
+			name="success" type="tiles">/checkout.tiles</result> </action> <action name="user" 
+			class="com.action.user.UserAction"> <result name="success" type="tiles">/userdetails.tiles</result> 
+			</action> -->
+
+		<!-- <action name="logout" class="com.action.user.LogOutAction" method="logout"> 
+			<result name="success" type="tiles">/home.tiles</result> <result name="input" 
+			type="tiles">/home.tiles</result> </action> <action name="task"> <interceptor-ref 
+			name="secureStack"></interceptor-ref> <result name="login" type="tiles">/home.tiles</result> 
+			</action> -->
+	</package>
 </struts>

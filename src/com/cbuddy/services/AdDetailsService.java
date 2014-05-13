@@ -11,7 +11,7 @@ import com.cbuddy.beans.Poit;
 public class AdDetailsService {
 	
 	@SuppressWarnings("unchecked")
-	public List<Poit> getAdDetails(){
+	public List<Poit> getAdListByCategory(){
 		
 		SessionFactory sessionFactory = (SessionFactory) ServletActionContext.getServletContext()
         .getAttribute("sessionFactory");

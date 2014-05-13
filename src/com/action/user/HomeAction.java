@@ -38,14 +38,24 @@ public class HomeAction extends ActionSupport implements ServletRequestAware{
 		return "success";
 	}
 	
-	public String getAdDescription(){
-    	System.out.println(category+ ": "+request.getParameter("category"));
+	public String getAdListByCategory(){
+
 		setCategory(category);
     	AdDetailsService adDetailService =  new AdDetailsService();
-    	adList = adDetailService.getAdDetails();
+    	adList = adDetailService.getAdListByCategory();
     	
     	return "success";
     }
+	
+	public String getAdDetails(){
+		
+		setCategory(category);
+    	AdDetailsService adDetailService =  new AdDetailsService();
+    	adList = adDetailService.getAdListByCategory();
+    	
+		return "success";
+		
+	}
 
 	@Override
 	public void setServletRequest(HttpServletRequest request) {

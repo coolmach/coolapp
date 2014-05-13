@@ -29,17 +29,17 @@
 </head>
 <body>
 <div class="container-fluid" >
-  <div class="row" id="login_top">
+  <!-- <div class="row" id="login_top"> -->
   <tiles:insertAttribute name="header" />
-  </div>
-    <div class="row main"> 
+ <!--  </div> -->
+    <div class=" main"> 
   <tiles:insertAttribute name="body" />
   <tiles:insertAttribute name="menu" />
   </div>
   <!-- <div class="row footer_2"></div> -->
-  <div class="row ">
+  <!-- <div class="row "> -->
   <tiles:insertAttribute name="footer" />
-  </div>
+  <!-- </div> -->
   
 </div>
 </body>
