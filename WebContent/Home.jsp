@@ -1,5 +1,5 @@
 <%@ taglib prefix="s" uri="/struts-tags"%>
-<div class=" header_2"></div>
+ <div class=" header_2"></div> 
 <div class="col-md-6">
    <div class="col-md-3">
        <img src="images/cbuddy_boy.png">
@@ -54,6 +54,6 @@
           <a href="<s:property value="#urlTag5" />" ><img  class="images_ad" src="images/dvd.png"></a>
 	</div><br/>
 	
-<div class=" mygrid_post">  <a id="post_ad" href="#stores" class="" >Post Ad</a></div>
+<div class=" mygrid_post"> <a class="" id="post_ad" href="<s:url action="postad"/>">Post Ad</a></div>
 
 </div>

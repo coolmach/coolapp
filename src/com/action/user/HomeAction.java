@@ -16,9 +16,18 @@ public class HomeAction extends ActionSupport implements ServletRequestAware{
 
 	private List<Poit> adList = new ArrayList<Poit>();
 	private String category ;
+	private int price;
 	private HttpServletRequest request = null;
-	
-    public String getCategory() {
+
+	public int getPrice() {
+		return price;
+	}
+
+	public void setPrice(int price) {
+		this.price = price;
+	}
+
+	public String getCategory() {
 		return category;
 	}
 
@@ -37,29 +46,35 @@ public class HomeAction extends ActionSupport implements ServletRequestAware{
 	public String execute(){
 		return "success";
 	}
-	
+
 	public String getAdListByCategory(){
 
 		setCategory(category);
-    	AdDetailsService adDetailService =  new AdDetailsService();
-    	adList = adDetailService.getAdListByCategory();
-    	
-    	return "success";
-    }
-	
-	public String getAdDetails(){
-		
-		setCategory(category);
-    	AdDetailsService adDetailService =  new AdDetailsService();
-    	adList = adDetailService.getAdListByCategory();
-    	
+		AdDetailsService adDetailService =  new AdDetailsService();
+		adList = adDetailService.getAdListByCategory();
+
 		return "success";
-		
+	}
+
+	public String getAdDetails(){
+
+		setCategory(category);
+		AdDetailsService adDetailService =  new AdDetailsService();
+		adList = adDetailService.getAdListByCategoryAndPrice(price);
+
+		return "success";
+
+	}
+
+	public String postAd(){
+
+		return "success";
+
 	}
 
 	@Override
 	public void setServletRequest(HttpServletRequest request) {
 		this.request = request;
-		
+
 	}
 }

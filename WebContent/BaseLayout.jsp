@@ -9,6 +9,10 @@
 <s:head/>
 <%-- <sx:head cache="false" compressed="false"/> --%>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+ <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
 <title></title>
 
 <script type="text/javascript" src="js/jquery.min.js"></script> 
@@ -28,19 +32,26 @@
     <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
 </head>
 <body>
-<div class="container-fluid" >
+<%-- <div class="container-fluid" >
   <!-- <div class="row" id="login_top"> -->
   <tiles:insertAttribute name="header" />
  <!--  </div> -->
-    <div class=" main"> 
+    <div class="wrapper"> 
   <tiles:insertAttribute name="body" />
   <tiles:insertAttribute name="menu" />
+  <div class="push"></div>
   </div>
   <!-- <div class="row footer_2"></div> -->
   <!-- <div class="row "> -->
   <tiles:insertAttribute name="footer" />
   <!-- </div> -->
   
-</div>
+</div> --%>
+<div id="wrap">
+<tiles:insertAttribute name="header" />
+ <tiles:insertAttribute name="body" />
+ </div>
+  <tiles:insertAttribute name="footer" />
+
 </body>
 </html>

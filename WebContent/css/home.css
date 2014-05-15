@@ -1,268 +1,323 @@
-.header_image{
-    background-image: url('../images/black_texture.png');
-    margin-top: 20px;
-    height:67px;
+.header_image {
+	background-image: url('../images/black_texture.png');
+	margin-top: 20px;
+	height: 67px;
 }
 
-.header_image_1{
-    background-image: url('../images/orange.png');
-    height:67px;
-    margin-left: 100px;
+.header_image_1 {
+	background-image: url('../images/orange.png');
+	height: 67px;
+	margin-left: 100px;
 }
 
-#logo{
+#logo {
 	text-decoration: none;
 }
 
-.text_logo{
+.text_logo {
 	margin-top: 21px;
-	text-align:center;
+	text-align: center;
 	color: #FFFFFF;
 }
 
-.header_2{
+.header_2 {
 	margin-top: 35px;
 }
 
-.footer_2{
+.footer_2 {
 	margin-top: 15px;
 }
 
-.footer{
-	height: 32px;
-	background-color: #0099cc
+.footer {
+	background-color: #0099CC;
+	/* bottom: 0; */
+	height: 48px;
 }
 
-#footer_text{
-    color: #FFFFFF;
-    font-size: small;
+#footer_text {
+	color: #FFFFFF;
+	font-size: small;
 }
 
-#title{
-    font-family: -moz-fixed;
+#title {
+	font-family: -moz-fixed;
 }
 
 .indexButton {
-    background-color: #F0C413;
-    border: 1px solid #E65F44;
-    border-radius: 42px 0;
-    box-shadow: 0 1px 0 0 #F9ECA0 inset;
-    color: #C92200;
-    display: inline-block;
-    font-family: Trebuchet MS;
-    font-size: 21px;
-    font-style: normal;
-    font-weight: bold;
-    height: 49px;
-    line-height: 49px;
-    text-align: center;
-    text-decoration: none;
-    text-indent: 0;
-    text-shadow: 1px 1px 0 #DED17C;
-    width: 105px;
+	background-color: #F0C413;
+	border: 1px solid #E65F44;
+	border-radius: 42px 0;
+	box-shadow: 0 1px 0 0 #F9ECA0 inset;
+	color: #C92200;
+	display: inline-block;
+	font-family: Trebuchet MS;
+	font-size: 21px;
+	font-style: normal;
+	font-weight: bold;
+	height: 49px;
+	line-height: 49px;
+	text-align: center;
+	text-decoration: none;
+	text-indent: 0;
+	text-shadow: 1px 1px 0 #DED17C;
+	width: 105px;
 }
 
-.searchBox{
-    color: #ABABAB;
-    font-family: 'TW Cen MT Condensed';
-    font-size: 30px;
-    height: 45px;
-    padding-left: 10px;
-    width: 300px;
-    margin-right: 20px;
+.searchBox {
+	color: #ABABAB;
+	font-family: 'TW Cen MT Condensed';
+	font-size: 30px;
+	height: 45px;
+	padding-left: 10px;
+	width: 300px;
+	margin-right: 20px;
 }
 
-.ad{
+.ad {
 	margin-top: 30px;
 }
 
-.menu{
-   margin-top: 30px;
+.menu {
+	margin-top: 30px;
 }
 
-.menu_bar{
-   margin-left: 150px;
+.menu_bar {
+	margin-left: 150px;
 }
 
-#stores{
-	width : 385px;
-	height : 450px;
+#stores {
+	width: 385px;
+	height: 450px;
 	text-align: center;
-	left:55%;
+	left: 55%;
 }
 
-.dept{
-    border: 1px solid #CCCCCC;
-    margin-left: 52px;
+.dept {
+	border: 1px solid #CCCCCC;
+	margin-left: 52px;
 }
 
-.sidebar{
-    border: 1px solid #AAAAAA;
-    color: #00A2E8;
-    font-size: 18px;
-    height: 40px;
-    margin-top: 10px;
-    padding-left: 10px;
-    padding-top: 15px;
+.sidebar {
+	border: 1px solid #AAAAAA;
+	color: #00A2E8;
+	font-size: 18px;
+	height: 40px;
+	margin-top: 10px;
+	padding-left: 10px;
+	padding-top: 15px;
 }
 
-.main{
-    height : 430px;
+.main { /*  height : 430px; */
+	min-height: 100%;
 }
 
 .productSearchBar input {
-    border: 1px solid #FF7D27;
-    color: #ABABAB;
-    font-family: 'Tw Cen MT Condensed';
-    font-size: 20px;
-    height: 36px;
-    padding-left: 10px;
-
+	border: 1px solid #FF7D27;
+	color: #ABABAB;
+	font-family: 'Tw Cen MT Condensed';
+	font-size: 20px;
+	height: 36px;
+	padding-left: 10px;
 }
 
-.storePromo_Product{
-   padding : 15px;
+.storePromo_Product {
+	padding: 15px;
 }
 
 .storePromo_Product img {
-    height: 110.4px;
-    width: 183px;
+	height: 110.4px;
+	width: 183px;
 }
 
-#continue{
-    background-image: -moz-linear-gradient(center top , #FBB450, #FF3932);
-    float:right;
+#continue {
+	background-image: -moz-linear-gradient(center top, #FBB450, #FF3932);
+	float: right;
 }
 
-.sidebar_ads{
-    float: right;
+.sidebar_ads {
+	float: right;
 }
 
-.checkout_div{
-    margin-top: 15px;
+.checkout_div {
+	margin-top: 15px;
 }
 
-#time{
-    float: right;
+#time {
+	float: right;
 }
 
-#discount_desc{
-    margin-top: 30px;
+#discount_desc {
+	margin-top: 30px;
 }
 
 #optionRow {
-    font-family: 'Calibri';
-    font-size: 14px;
-    padding: 5px;
+	font-family: 'Calibri';
+	font-size: 14px;
+	padding: 5px;
 }
 
-.login{
-    float:left;
-    margin-top:10px;	
+.login {
+	float: left;
+	margin-top: 10px;
 }
 
-#nav_user:hover{
-    	text-decoration: underline;
+#nav_user:hover {
+	text-decoration: underline;
 }
 
-#nav_user{
-	  text-transform: capitalize;
+#nav_user {
+	text-transform: capitalize;
 }
 
-.mygrid{
-	width:125px;
-	height:125px;
-	display:inline-table;
-	margin:4px;
+.mygrid {
+	width: 125px;
+	height: 125px;
+	display: inline-table;
+	margin: 4px;
 	text-align: center;
 	box-shadow: 1px 2px 5px 1px #E9E9E9;
 }
 
-.mygrid_post{
+.mygrid_post {
 	box-shadow: 1px 2px 5px 1px #E9E9E9;
-    display: inline-table;
-    height: 35px;
-    margin: 4px 4px 4px 107px;
-    text-align: center;
-    text-decoration: underline;
-    width: 188px;
+	display: inline-table;
+	height: 35px;
+	margin: 4px 4px 4px 107px;
+	text-align: center;
+	text-decoration: underline;
+	width: 188px;
 }
 
-.images_ad{
-    width:auto;
-    height:auto;
+.images_ad {
+	width: auto;
+	height: auto;
 }
 
-#login_top{
-    background-color: #0099cc;	
-    margin-top:6px;
+#login_top {
+	background-color: #0099cc;
+	margin-top: 6px;
 }
 
-#login_form{
-    margin-top:20px;
+#login_form {
+	margin-top: 20px;
 }
 
-.forgot_pwd{
-    color: #FFFFFF;
-    font-size: smaller;
-    text-decoration: underline;
+.forgot_pwd {
+	color: #FFFFFF;
+	font-size: smaller;
+	text-decoration: underline;
 }
 
 a {
-    color: #ffffff;
-    -webkit-transition: all .2s ease-in-out;
-    -moz-transition: all .2s ease-in-out;
-    transition: all .2s ease-in-out;
+	color: #ffffff;
+	-webkit-transition: all .2s ease-in-out;
+	-moz-transition: all .2s ease-in-out;
+	transition: all .2s ease-in-out;
 }
 
-.cbuddy_intro{
-    margin-top:10px;
-
+.cbuddy_intro {
+	margin-top: 10px;
 }
 
-.sticky_footer 
-{
- 
-    position: inherit;
-    bottom: 0;
+.sticky_footer {
+	position: inherit;
+	bottom: 0;
 }
 
-#post_ad{
-	text-decoration:underline;
-   color:#0000ff;
-  
+#post_ad {
+	text-decoration: underline;
+	color: #0000ff;
 }
 
 .navbar-logo {
-    float: left;
-    font-size: 18px;
-    height: 50px;
-    line-height: 20px;
-    padding: 24px;
-    font-family: 'Comic Sans MS';
+	float: left;
+	font-size: 18px;
+	height: 50px;
+	line-height: 20px;
+	padding: 24px;
+	font-family: 'Comic Sans MS';
 }
 
-.rating_stars{
-    height:20px;
-    width:20px;
+.rating_stars {
+	height: 20px;
+	width: 20px;
 }
 
-.rating_half_stars{
-    height:20px;
-    width:13px;
+.rating_half_stars {
+	height: 20px;
+	width: 13px;
 }
 
-table 
-{
-    box-shadow: 16px 3px 10px -7px #888, -10px 0px 20px -7px #888;
+table {
+	box-shadow: 16px 3px 10px -7px #888, -10px 0px 20px -7px #888;
 }
 
-.grey_link{
-    color: #9a9a9a;
-    text-decoration: underline;
+.grey_link {
+	color: #9a9a9a;
+	text-decoration: underline;
 }
 
-.blue_link{
-    color: #2a7fff;
-    text-decoration: underline;
+.blue_link {
+	color: #2a7fff;
+	text-decoration: underline;
 }
+
+#my {
+	box-shadow: 16px 3px 10px -7px #888888, -10px 0 20px -7px #888888;
+}
+
+.imgspace {
+	border: 1px solid #CCCCCC;
+	float: right;
+	height: 326px;
+	margin: 20px 10px 10px;
+	position: relative;
+	text-align: center;
+	/*   width: 432px; */
+	width: 62%;
+}
+
+.newvapadspeci {
+	float: left;
+	height: 326px;
+	margin: 20px 10px 10px;
+	position: relative;
+	/*  width: 190px; */
+	width: 28%;
+}
+
+html,body {
+	height: 100%;
+	/* The html and body elements cannot have any padding or margin. */
+}
+
+/* Wrapper for page content to push down footer */
+#wrap {
+	min-height: 100%;
+	height: auto;
+	/* Negative indent footer by its height */
+	margin: 0 auto -60px;
+	/* Pad bottom by footer height */
+	padding: 0 0 60px;
+}
+
+.post_head {
+	height: 40px;
+	margin-bottom: 10px;
+	border-bottom: 1px solid #CCCCCC;
+}
+
+.post .form-group{
+	width:470px !important;
+	}
+/* Custom page CSS
+-------------------------------------------------- */
+/* Not required for template or sticky footer method. */
+
+/* .container {
+  width: auto;
+  max-width: 680px;
+  padding: 0 15px;
+}
+.container .credit {
+  margin: 20px 0; */

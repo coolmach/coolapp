@@ -1,12 +1,12 @@
 <%@ taglib prefix="s" uri="/struts-tags"%>
 <div class=" header_2">
-	<div class="col-md-4"></div>
-	<div class="col-md-7">
+	<div class=""></div>
+	<div class="col-md-11">
 		<a class="grey_link" href="<s:url action=""  />">HOME</a> >
 		<s:property value="category" />
 	</div>
 </div>
-<div class="col-md-4"></div>
+<!-- <div class="col-md-4"></div> -->
 <div class="col-md-7">
 	<s:if test="adList.size() > 0">
 		<table class="table table-bordered">
@@ -43,5 +43,6 @@
 				</tr>
 			</s:iterator>
 		</table>
+		
 	</s:if>
 </div>

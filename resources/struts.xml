@@ -37,10 +37,10 @@
 			method="getAdDetails">
 			<result name="success" type="tiles">/addetails.tiles</result>
 		</action>
-		<!-- <action name="checkout" class="com.action.order.CheckoutAction"> <result 
-			name="success" type="tiles">/checkout.tiles</result> </action> <action name="user" 
-			class="com.action.user.UserAction"> <result name="success" type="tiles">/userdetails.tiles</result> 
-			</action> -->
+		<action name="postad" class="com.action.user.HomeAction"
+			method="postAd">
+			<result name="success" type="tiles">/postad.tiles</result>
+		</action>
 
 		<!-- <action name="logout" class="com.action.user.LogOutAction" method="logout"> 
 			<result name="success" type="tiles">/home.tiles</result> <result name="input" 

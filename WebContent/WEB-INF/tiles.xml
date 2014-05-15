@@ -23,10 +23,9 @@
         <put-attribute name="title" value="Ad Details" />
         <put-attribute name="body" value="/AdDetails.jsp" />
     </definition>
-     <!-- <definition name="/userdetails.tiles" extends="baseLayout">
-        <put-attribute name="title" value="Register" />
-        <put-attribute name="body" value="/UserDetails.jsp" />
-        <put-attribute name="menu" value="/SideBar.jsp" />
-    </definition> -->
+    <definition name="/postad.tiles" extends="baseLayout">
+        <put-attribute name="title" value="Post Ad" />
+        <put-attribute name="body" value="/PostAd.jsp" />
+    </definition> 
     
 </tiles-definitions>

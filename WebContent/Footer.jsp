@@ -3,7 +3,7 @@
 <div class="col-md-12 footer" >
   <h4 id="footer_text">Copyright reserved IdeaMint Software Labs, 2014 </h4>
 </div> --%>
-<footer class="footer">
+<!-- <div class="footer">
     <div class="container">
       <div class="row">
         <div class="col-lg-12">
@@ -11,4 +11,7 @@
     
         </div></div>
     </div>
-  </footer>
+  </div> -->
+  <div class="col-md-12 footer" >
+  <p class="pull-right" id="footer_text">Copyright reserved IdeaMint Software Labs, 2014</p>
+  </div>

@@ -1,14 +1,73 @@
 <%@ taglib prefix="s" uri="/struts-tags"%>
 <div class=" header_2">
-    <div class=""></div> 
+	<div class=""></div>
 	<div class="col-md-11">
 		<a class="grey_link" href="<s:url action=""  />">HOME</a> >
 		<s:property value="category" />
 	</div>
 </div>
 
-<div class="col-md-7">
+<div class="col-md-8 " id="my">
 	<s:if test="adList.size() > 0">
+		<s:iterator value="adList" status="userStatus">
+			<div class="col-md-12" style="border-bottom: 1px solid #CCCCCC;">
+				<h3>
+					<s:property value="title" />
+				</h3>
+			</div>
+			<div class="adspeci newvapadspeci">
+				<div style="border-bottom: 1px solid #CCCCCC;">
+					City <br />
+					<h5>
+						<strong><s:property value="cityCode" />
+						</strong>
+					</h5>
+				</div>
+				<div style="border-bottom: 1px solid #CCCCCC;">
+					Location <br />
+					<h5>
+						<strong><s:property value="locCode" />
+						</strong>
+					</h5>
+				</div>
+				<div style="border-bottom: 1px solid #CCCCCC;">
+					Rent <br />
+					<h5>
+						<strong>Rs.<s:property value="price" />
+						</strong>
+					</h5>
+				</div>
+				<div style="border-bottom: 1px solid #CCCCCC;">
+					Contact Person <br />
+					<h5>
+						<strong><s:property value="contactPerson" />
+						</strong>
+					</h5>
+				</div>
+				<div style="border-bottom: 1px solid #CCCCCC;">
+					Contact Name <br />
+					<h5>
+						<strong><s:property value="contactNo" />
+						</strong>
+					</h5>
+				</div>
+
+			</div>
+			<div class="imgspace">
+				<div id="bigImg" class="imgbigcont newimgbigcont"
+					style="display: block;">
+					<div class="bigImg_wapp" style="cursor: zoom-in;">
+						<img class="" src=" <s:property value="imageFileName" />">
+					</div>
+				</div>
+			</div>
+
+        <div class="col-md-12" style="border-top: 1px solid #CCCCCC;">
+        
+        </div>
+		</s:iterator>
+	</s:if>
+	<%-- <s:if test="adList.size() > 0">
 		<table class="table table-bordered">
 			<tr>
 				<th>Description</th>
@@ -43,6 +102,6 @@
 				</tr>
 			</s:iterator>
 		</table>
-	</s:if>
+	</s:if> --%>
 </div>
-<div class="col-md-7"></div>
+<div class="col-md-5"></div>
