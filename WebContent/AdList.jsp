@@ -10,13 +10,13 @@
 			<div id="subCategory_hidden_sub" class="subCategory_hidden_bck"
 				style="display: none;">
 				<ul class="list-unstyled">
-					<li><span class="content">Apartment/House For Rent</span></li>
+					<li><!-- <input type="checkbox" id="first_checkbox_btn" name="choice" value="Apartment/House For Rent" /> --><span class="content">Apartment/House For Rent</span></li>
 					<li><span class="content">Apartment/House For Sale</span></li>
 					<li><span class="content">Plot For Sale</span></li>
 					<li><span class="content">PG Accommodation</span></li>
 					<li><span class="content">Roommate Required</span></li>
-
 				</ul>
+				<a href="#" class="clear blue_link">clear filters</a>
 			</div>
 		</div>
 		
@@ -43,6 +43,7 @@
 							class="glyphicon glyphicon glyphicon-chevron-down form-control-feedback"></span>
 						</li>
 					</ul>
+					<a href="#" class="clear blue_link">clear filters</a>
 				</div>
 			</div>
 			<div class=" pull-left hidden-subcat" id="area-main">
@@ -63,6 +64,7 @@
 							class="glyphicon glyphicon glyphicon-chevron-down form-control-feedback"></span>
 						</li>
 					</ul>
+					<a href="#" class="clear blue_link">clear filters</a>
 				</div>
 			</div>
 			<div class=" pull-left hidden-subcat" id="bhk-main">
@@ -86,6 +88,7 @@
 							class="glyphicon glyphicon glyphicon-chevron-down form-control-feedback"></span>
 						</li>
 					</ul>
+					<a href="#" class="clear blue_link">clear filters</a>
 				</div>
 			</div>
 			<div class=" pull-left hidden-subcat" id="rent-main">
@@ -109,6 +112,7 @@
 							class="glyphicon glyphicon glyphicon-chevron-down form-control-feedback"></span>
 						</li>
 					</ul>
+					<a href="#" class="clear blue_link">clear filters</a>
 				</div>
 			</div>
 			<div class=" pull-left hidden-subcat" id="dir-main">
@@ -132,6 +136,7 @@
 							class="glyphicon glyphicon glyphicon-chevron-down form-control-feedback"></span>
 						</li>
 					</ul>
+					<a href="#" class="clear blue_link">clear filters</a>
 				</div>
 
 			</div>
@@ -150,6 +155,7 @@
 							class="glyphicon glyphicon glyphicon-chevron-down form-control-feedback"></span>
 						</li>
 					</ul>
+					<a href="#" class="clear blue_link">clear filters</a>
 				</div>
 			</div>
 			<div class=" pull-left hidden-subcat" id="park-main">
@@ -167,6 +173,7 @@
 							class="glyphicon glyphicon glyphicon-chevron-down form-control-feedback"></span>
 						</li>
 					</ul>
+					<a href="#" class="clear blue_link">clear filters</a>
 				</div>
 
 			</div>
@@ -191,6 +198,7 @@
 							class="glyphicon glyphicon glyphicon-chevron-down form-control-feedback"></span>
 						</li>
 					</ul>
+					<a href="#" class="clear blue_link">clear filters</a>
 				</div>
 			</div>
 			<div class=" pull-left hidden-subcat" id="approval-main">
@@ -214,6 +222,7 @@
 							class="glyphicon glyphicon glyphicon-chevron-down form-control-feedback"></span>
 						</li>
 					</ul>
+					<a href="#" class="clear blue_link">clear filters</a>
 				</div>
 
 			</div>
@@ -232,6 +241,7 @@
 							class="glyphicon glyphicon glyphicon-chevron-down form-control-feedback"></span>
 						</li>
 					</ul>
+					<a href="#" class="clear blue_link">clear filters</a>
 				</div>
 			</div>
 			<div class=" pull-left hidden-subcat" id="amenities-main">
@@ -258,6 +268,7 @@
 							class="glyphicon glyphicon glyphicon-chevron-down form-control-feedback"></span>
 						</li>
 					</ul>
+					<a href="#" class="clear blue_link">clear filters</a>
 				</div>
 
 			</div>
@@ -276,6 +287,7 @@
 							class="glyphicon glyphicon glyphicon-chevron-down form-control-feedback"></span>
 						</li>
 					</ul>
+					<a href="#" class="clear blue_link">clear filters</a>
 				</div>
 
 			</div>
@@ -294,6 +306,7 @@
 							class="glyphicon glyphicon glyphicon-chevron-down form-control-feedback"></span>
 						</li>
 					</ul>
+					<a href="#" class="clear blue_link">clear filters</a>
 				</div>
 
 			</div>
@@ -312,6 +325,7 @@
 							class="glyphicon glyphicon glyphicon-chevron-down form-control-feedback"></span>
 						</li>
 					</ul>
+					<a href="#" class="clear blue_link">clear filters</a>
 				</div>
 
 			</div>
@@ -330,6 +344,7 @@
 							class="glyphicon glyphicon glyphicon-chevron-down form-control-feedback"></span>
 						</li>
 					</ul>
+					<a href="#" class="clear blue_link">clear filters</a>
 				</div>
 
 			</div>
@@ -348,6 +363,7 @@
 							class="glyphicon glyphicon glyphicon-chevron-down form-control-feedback"></span>
 						</li>
 					</ul>
+					<a href="#" class="clear blue_link">clear filters</a>
 				</div>
 
 			</div>
@@ -378,6 +394,7 @@
 							class="glyphicon glyphicon glyphicon-chevron-down form-control-feedback"></span>
 						</li>
 					</ul>
+					<a href="#" class="clear blue_link">clear filters</a>
 				</div>
 
 			</div>
@@ -391,7 +408,7 @@
 	</div>
 </div>
 <!-- <div class="col-md-4"></div> -->
-<div class="col-md-7">
+<div class="col-md-6">
 	<s:if test="adList.size() > 0">
 		<table class="table table-bordered">
 			<tr>
@@ -403,14 +420,14 @@
 			</tr>
 			<s:iterator value="adList" status="userStatus">
 				<tr>
-					<td><img class="" src=" <s:property value="imageFileName" />">
+					<td><img class="images_ad" src=" <s:property value="imageFileName" />">
 					</td>
 					<td>
 						<p>
 							<s:property value="title" />
-						</p> <s:iterator begin="1" end="rating">
+						</p><%--  <s:iterator begin="1" end="rating">
 							<img class="rating_stars" src="images/star.jpg">
-						</s:iterator> <br /> <small><b><s:property value="cityCode" />,<s:property
+						</s:iterator>  --%> <br /><small><b><s:property value="cityCode" />,<s:property
 									value="locCode" /> </b> </small><br /> <small>Contact <s:property
 								value="contactPerson" />,<s:property value="contactNo" /> </small>
 					</td>
