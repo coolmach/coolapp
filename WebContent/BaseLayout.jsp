@@ -23,6 +23,8 @@
 <%-- <script type="text/javascript" src="js/grayscale.js"></script>  --%>
 <script type="text/javascript" src="js/jquery.validate.js"></script>  
 <!-- <link rel="stylesheet" href="css/bootstrapValidator.css" type="text/css"> -->
+<link rel="stylesheet" href="css/Cbuddy.css" type="text/css">
+<script type="text/javascript" src="js/Cbuddy.js"></script> 
 <link rel="stylesheet" href="css/bootstrap.css" type="text/css">
 <link rel="stylesheet" href="css/bootstrap-theme.css" type="text/css">
 <!-- <link rel="stylesheet" href="css/grayscale.css" type="text/css"> -->

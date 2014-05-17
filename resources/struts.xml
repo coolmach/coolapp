@@ -41,6 +41,10 @@
 			method="postAd">
 			<result name="success" type="tiles">/postad.tiles</result>
 		</action>
+		<action name="ad" class="com.action.user.HomeAction"
+			method="getAdListByCategory">
+			<result name="success" >/RealEstate.jsp</result>
+		</action>
 
 		<!-- <action name="logout" class="com.action.user.LogOutAction" method="logout"> 
 			<result name="success" type="tiles">/home.tiles</result> <result name="input" 

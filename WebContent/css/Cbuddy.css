@@ -1,0 +1,28 @@
+.subCategory_hidden_bck{
+	background-color: #efefef;
+	position: absolute;
+	z-index: 100;
+	border:1px solid;
+	}
+
+.form-control-feedback {
+	display: none !important;
+	}
+	
+	.hidden-subcat{
+	display : none ;
+	}
+
+.filter_cat{
+	  background-color: #eeeeee;
+    border: 1px solid;
+    padding-top: 15px;
+}
+
+.subCategory_hidden_bck ul>li{
+	padding :12px;
+	}
+
+.highlight_subcat{
+	background-color: #a1a1a1;
+	}

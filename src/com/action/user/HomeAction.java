@@ -15,7 +15,16 @@ import com.opensymphony.xwork2.ActionSupport;
 public class HomeAction extends ActionSupport implements ServletRequestAware{
 
 	private List<Poit> adList = new ArrayList<Poit>();
-	private String category ;
+	private String category="" ;
+	private String subCategory="" ;
+	public String getSubCategory() {
+		return subCategory;
+	}
+
+	public void setSubCategory(String subCategory) {
+		this.subCategory = subCategory;
+	}
+
 	private int price;
 	private HttpServletRequest request = null;
 
@@ -49,7 +58,11 @@ public class HomeAction extends ActionSupport implements ServletRequestAware{
 
 	public String getAdListByCategory(){
 
-		setCategory(category);
+	System.out.println("HomeAction.getAdListByCategory()"+subCategory);
+	if( category.equals("REAL ESTATE") && subCategory=="" ){
+		System.out.println("----");
+		setSubCategory("Apartment/House For Rent");
+	}
 		AdDetailsService adDetailService =  new AdDetailsService();
 		adList = adDetailService.getAdListByCategory();
 

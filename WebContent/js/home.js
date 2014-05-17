@@ -1,5 +1,15 @@
 $(document).ready(function() {
-	
+	$("#cat").click(function(){
+		alert("---");
+		$.ajax({
+			type: 'GET',
+			url: "/cbuddy/ad", 
+			success: function(data, status) {
+				
+			alert(data);
+			}
+		});
+	});
 	
 	/*$("#login").validate({
 		rules: {
@@ -42,7 +52,7 @@ $(document).ready(function() {
 	});
 	
 	
-	
+
 	/*jQuery(function($) {
 		$('form').live('submit', function(event) {
 		var $form = $(this);

@@ -50,7 +50,7 @@
             </div>
             <div class="col-md-3">
             </div>
-      <div class="col-md-6" id="login_div">
+      <div class="col-md-6 pull-right" id="login_div">
               <s:actionerror />
            <s:form action="login.action" id="login_form" cssClass="form-inline" method="post" theme="simple">
              <div class="form-group">
