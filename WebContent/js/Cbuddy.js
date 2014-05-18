@@ -1,6 +1,29 @@
 $(document).ready(function() {
+	var subCat = "Apartment/House For Rent";
 
-	$("li").click(function(){
+	$('input[class^=check_]').click(function() {
+		var check = $(".check_sub:checked").val();
+		var data="";
+		data = data + '&subCategory='+subCat;
+		$("input[class^=check_]:checked").each(function()
+				{		 
+			var sub = $(this).attr('name');
+			data = data + '&'+sub+'='+$(this).val();
+				});
+
+		alert(data);
+		$.ajax({
+			type: 'POST',
+			url: "/cbuddy/adlist", 
+			data: data,
+			success: function(data, status) {
+
+				//alert(data);
+			}
+		});
+	});
+
+	/*$("li").click(function(){
 		if($(this).parent().parent().parent().attr("id")=="subCategory-main"){
 			var subCat=$(this).text();
 			$('#sub').text(subCat);
@@ -15,7 +38,7 @@ $(document).ready(function() {
 				//alert(data);
 			}
 		});
-	});
+	});*/
 	$("#loc-main").show();
 	$("#bhk-main").show();
 	$("#area-main").show();
@@ -24,9 +47,28 @@ $(document).ready(function() {
 	$("#pref-main").show();
 	$("#park-main").show();
 
-	$("#subCategory-main").click(function(){
-		if($('#subCategory span.content').text()== 'Apartment/House For Rent'){
-			//alert("jm");
+	$("#subCategory-main li").click(function(){
+
+		$("input[class^=check_]:checked").each(function()
+				{	
+			$(this).attr("checked",false);
+				});
+		$(this).parent().hide();
+		subCat = $(this).text();
+		var data = "";
+		var data = data + '&subCategory='+subCat;
+		$.ajax({
+			type: 'POST',
+			url: "/cbuddy/adlist", 
+			data: data,
+			success: function(data, status) {
+
+				//alert(data);
+			}
+		});
+
+		//$(this).parent().parent().parent().first().children().first().html('<span class="content">'+$(this).text()+'</span>'+'<span class="glyphicon glyphicon glyphicon-chevron-down form-control-show"></span>');
+		if($(this).text()== 'Apartment/House For Rent'){
 			$("#loc-main").show();
 			$("#bhk-main").show();
 			$("#area-main").show();
@@ -44,7 +86,7 @@ $(document).ready(function() {
 			$("#region-main").hide();
 
 		}
-		if($('#subCategory span.content').text()== 'Apartment/House For Sale'){
+		if($(this).text()== 'Apartment/House For Sale'){
 			$("#rent-main").hide();
 			$("#dir-main").hide();
 			$("#pref-main").hide();
@@ -60,7 +102,7 @@ $(document).ready(function() {
 			$("#ownership-main").show();
 			$("#amenities-main").show();
 		}
-		if($('#subCategory span.content').text()== 'Plot For Sale'){
+		if($(this).text()== 'Plot For Sale'){
 			$('#ownership-main').hide();
 			$('#bhk-main').hide();
 			$('#park-main').hide();
@@ -79,7 +121,7 @@ $(document).ready(function() {
 			$("#loc-main").show();
 			$("#area-main").show();
 		}
-		if($('#subCategory span.content').text()== 'PG Accommodation'){
+		if($(this).text()== 'PG Accommodation'){
 			$('#ownership-main').hide();
 			$('#bhk-main').hide();
 			$('#park-main').hide();
@@ -98,7 +140,7 @@ $(document).ready(function() {
 			$("#amenities-pg-main").show();
 			$("#food-main").show();
 		}
-		if($('#subCategory span.content').text()== 'Roommate Required'){
+		if($(this).text()== 'Roommate Required'){
 			$('#ownership-main').hide();
 			$('#bhk-main').hide();
 			$('#park-main').hide();
@@ -119,7 +161,7 @@ $(document).ready(function() {
 		}
 	});
 
-	$("#subCategory-main").hover(function(){
+	$("#subCategory-main").click(function(){
 
 		if($("#subCategory_hidden_sub").is(':visible')){
 			$("#subCategory_hidden_sub").css("display","none");
@@ -284,9 +326,11 @@ $(document).ready(function() {
 	});
 
 
-	$("li").click(function(){
-		$(this).parent().hide();
-		$(this).parent().parent().parent().first().children().first().html('<span class="content">'+$(this).text()+'</span>'+'<span class="glyphicon glyphicon glyphicon-chevron-down form-control-show"></span>');
+	$("subCategory-main li").click(function(){
+		//alert("000");
+		//$(this).parent().hide();
+		//alert($(this).parent().parent().parent().first().children().first().html());
+		//$(this).parent().parent().parent().first().children().first().html('<span class="content">'+$(this).text()+'</span>'+'<span class="glyphicon glyphicon glyphicon-chevron-down form-control-show"></span>');
 
 	});
 
