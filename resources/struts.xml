@@ -29,10 +29,30 @@
 			<result name="success" type="tiles">/home.tiles</result>
 			<result name="input" type="tiles">/home.tiles</result>
 		</action>
-		<action name="adlist" class="com.action.user.HomeAction"
-			method="getAdListByCategory">
-			<result name="success" type="tiles">/adlist.tiles</result>
+		<action name="realestate" class="com.action.user.HomeAction"
+			method="getAdListForRealEstate">
+			<result name="success" type="tiles">/realestate.tiles</result>
 		</action>
+		<action name="cars" class="com.action.user.HomeAction"
+			method="getAdListForCars">
+			<result name="success" type="tiles">/cars.tiles</result>
+		</action>
+		<action name="household" class="com.action.user.HomeAction"
+			method="getAdListForHouseHoldItems">
+			<result name="success" type="tiles">/household.tiles</result>
+		</action>
+		<action name="laptops" class="com.action.user.HomeAction"
+			method="getAdListForLaptops">
+			<result name="success" type="tiles">/laptops.tiles</result>
+		</action>
+		<action name="mobiles" class="com.action.user.HomeAction"
+			method="getAdListForMobiles">
+			<result name="success" type="tiles">/mobiles.tiles</result>
+		</action>
+		<action name="books" class="com.action.user.HomeAction"
+			method="getAdListForBooksAndDvds">
+			<result name="success" type="tiles">/books.tiles</result>
+		</action>	
 		<action name="addetails" class="com.action.user.HomeAction"
 			method="getAdDetails">
 			<result name="success" type="tiles">/addetails.tiles</result>

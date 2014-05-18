@@ -15,9 +15,29 @@
         <put-attribute name="title" value="Home" />
         <put-attribute name="body" value="/Home.jsp" />
     </definition>
-    <definition name="/adlist.tiles" extends="baseLayout">
-        <put-attribute name="title" value="Ad List" />
-        <put-attribute name="body" value="/AdList.jsp" />
+    <definition name="/realestate.tiles" extends="baseLayout">
+        <put-attribute name="title" value="Real Estate" />
+        <put-attribute name="body" value="/RealEstate.jsp" />
+    </definition>
+     <definition name="/cars.tiles" extends="baseLayout">
+        <put-attribute name="title" value="Cars/Bikes" />
+        <put-attribute name="body" value="/Cars.jsp" />
+    </definition>
+     <definition name="/household.tiles" extends="baseLayout">
+        <put-attribute name="title" value="Household Items" />
+        <put-attribute name="body" value="/HouseHoldItems.jsp" />
+    </definition>
+     <definition name="/laptops.tiles" extends="baseLayout">
+        <put-attribute name="title" value="Laptops/Computers" />
+        <put-attribute name="body" value="/Laptops.jsp" />
+    </definition>
+     <definition name="/mobiles.tiles" extends="baseLayout">
+        <put-attribute name="title" value="Mobile Phones" />
+        <put-attribute name="body" value="/Mobiles.jsp" />
+    </definition>
+     <definition name="/books.tiles" extends="baseLayout">
+        <put-attribute name="title" value="DVDs/Books" />
+        <put-attribute name="body" value="/Books.jsp" />
     </definition>
    <definition name="/addetails.tiles" extends="baseLayout">
         <put-attribute name="title" value="Ad Details" />

@@ -1,24 +1,59 @@
 $(document).ready(function() {
 	var subCat = "Apartment/House For Rent";
+	var path="";
+	var cat = $('#cat').text();
+	if(cat == 'REAL ESTATE'){
+		path="realestate";
+	}else if(cat == 'CARS'){
+		path="cars";
+	}else if(cat == 'HOUSEHOLD'){
+		path="household";
+	}else if(cat == 'LAPTOPS'){
+		path="laptops";
+	}else if(cat == 'MOBILES'){
+		path="mobiles";
+	}else if(cat == 'DVD'){
+		path="books";
+	}
+
+	$('.selected_filters').bind('click', function(event) {
+		var child = event.target;
+		var id = child.id;
+		var text = $(this).find('#'+id);
+		$("input[class^=check_]:checked").each(function(){
+			if(text.text() == $(this).val()){
+				$(this).attr("checked",false);
+				return false;
+			}
+		});
+		$(this).find('#'+id).remove();
+	});
 
 	$('input[class^=check_]').click(function() {
-		var check = $(".check_sub:checked").val();
+
+
 		var data="";
 		data = data + '&subCategory='+subCat;
+		var str="";
 		$("input[class^=check_]:checked").each(function()
 				{		 
 			var sub = $(this).attr('name');
 			data = data + '&'+sub+'='+$(this).val();
+			var check = $(this).val();
+			var div_Id = check.replace(/\s+/g, '').replace(/[^a-z0-9\s]/gi, '').replace(/[_\s]/g, '-');
+			str = str+'<div style="margin-left:12px;" class="pull-left filters" id="'+div_Id+'">'+check+'<span class="glyphicon glyphicon-remove form-control-show"id="'+div_Id+'">'+'</span>'+'</div >';
 				});
 
-		alert(data);
+		$('.selected_filters').html(str);
+		//alert(check);
 		$.ajax({
 			type: 'POST',
-			url: "/cbuddy/adlist", 
+			url: "/cbuddy/"+path, 
 			data: data,
 			success: function(data, status) {
+				$('.data').html('');
+				$('.data').html($(data).find('.data').html());
 
-				//alert(data);
 			}
 		});
 	});
@@ -64,6 +99,7 @@ $(document).ready(function() {
 			success: function(data, status) {
 
 				//alert(data);
+				$('#sub').text(subCat);
 			}
 		});
 
@@ -161,7 +197,7 @@ $(document).ready(function() {
 		}
 	});
 
-	$("#subCategory-main").click(function(){
+	$("#subCategory-main").hover(function(){
 
 		if($("#subCategory_hidden_sub").is(':visible')){
 			$("#subCategory_hidden_sub").css("display","none");
