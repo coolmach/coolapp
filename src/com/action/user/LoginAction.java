@@ -4,6 +4,9 @@ import java.util.Map;
 
 import org.apache.struts2.interceptor.SessionAware;
 
+import com.cbuddy.exception.CBuddyException;
+import com.cbuddy.services.AuthenticateUserService;
+import com.cbuddy.util.CBuddyConstants;
 import com.model.user.User;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
@@ -46,18 +49,51 @@ public class LoginAction extends ActionSupport implements SessionAware{
 		System.out.println("LoginAction.validate()");
 	      if (userName == null || userName.trim().equals(""))
 	      {
+	    	  System.out.println("LoginAction.validate()");
 	    	addFieldError("userName","Username is required");
-	    	setValid("false");
+	    	//setValid("false");
 	      }
 	      if (password == null || password.trim().equals(""))
 	      {
 	    	addFieldError("password","Password is required");
-	    	setValid("false");
+	    	//setValid("false");
 	      }
 	      
 	   }
 	
 	public String execute(){
+		System.out.println("--------execute(): "+userName + ": "+password);
+		clearErrors();
+		User user =  (User) session.get("userInfo");
+		if(user != null){
+			return "success";
+		}else{
+			User u = null;
+			try{
+				u = new AuthenticateUserService().authenticateUser(userName, password);
+				session.put("userInfo", u);
+				System.out.println(u.getFirstName());
+				return "success";
+			}catch(CBuddyException e){
+				switch(e.getErrorCode()){
+				case CBuddyConstants.NON_EXISTENT_USER_ID:
+					//Email Id / Mobile number does not exist
+					addFieldError("userName", "Invalid user credentials");
+					break;
+				case CBuddyConstants.INVALID_USER_NAME:
+					//Neither a valid email id nor valid mobile number
+					addFieldError("userName", "Invalid user id");
+					break;
+				case CBuddyConstants.INVALID_PASSWORD:
+					//Invalid password
+					addFieldError("password", "Invalid Password");
+					break;
+				}
+				return "input";
+			}
+		}
+	}
+	/*public String execute(){
 		System.out.println("--------"+userName);
 		clearErrors();
 		User user =  (User) session.get("user");
@@ -76,7 +112,7 @@ public class LoginAction extends ActionSupport implements SessionAware{
 			}
 			return "input";
 		}
-	}
+	}*/
 	
 	private Map<String,Object> session;
 
@@ -86,7 +122,7 @@ public class LoginAction extends ActionSupport implements SessionAware{
 		
 	}
 	
-	private boolean isValidUser(User user){
+	/*private boolean isValidUser(User user){
 		
 		if (user.getUserName().equals("admin") && user.getPassword().equals("admin"))
 	      {
@@ -94,6 +130,6 @@ public class LoginAction extends ActionSupport implements SessionAware{
 	      }else{
 	    	 return false;
 	      }
-	}
+	}*/
 	
 }

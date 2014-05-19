@@ -26,7 +26,7 @@
 			<result type="tiles">/home.tiles</result>
 		</action>
 		<action name="login" class="com.action.user.LoginAction">
-			<result name="success" type="tiles">/home.tiles</result>
+			<result name="success" type="tiles">/addetails.tiles</result>
 			<result name="input" type="tiles">/home.tiles</result>
 		</action>
 		<action name="realestate" class="com.action.user.HomeAction"
@@ -57,13 +57,10 @@
 			method="getAdDetails">
 			<result name="success" type="tiles">/addetails.tiles</result>
 		</action>
-		<action name="postad" class="com.action.user.HomeAction"
-			method="postAd">
+		<action name="postad" class="com.action.user.HomeAction" method="postAd">
+			<interceptor-ref name="secureStack"></interceptor-ref>
 			<result name="success" type="tiles">/postad.tiles</result>
-		</action>
-		<action name="ad" class="com.action.user.HomeAction"
-			method="getAdListByCategory">
-			<result name="success" >/RealEstate.jsp</result>
+			<result name="login" type="tiles">/home.tiles</result>
 		</action>
 
 		<!-- <action name="logout" class="com.action.user.LogOutAction" method="logout"> 

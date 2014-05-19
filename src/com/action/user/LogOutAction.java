@@ -19,7 +19,7 @@ public class LogOutAction extends ActionSupport implements SessionAware{
 	public String logout()  {
 	      System.out.println("LogOutAction.logout()");
 	      clearFieldErrors();
-	      session.remove("user");
+	      session.remove("userInfo");
 	   
 	      return "success";
 		}
