@@ -81,13 +81,21 @@ $(document).ready(function() {
 	$("#dir-main").show();
 	$("#pref-main").show();
 	$("#park-main").show();
-
+	var lastVal="";
 	$("#subCategory-main li").click(function(){
-
+		var defaultSubCat = $(this).parent().children().first('.content').text();
+		if(lastVal!=$(this).text() ){
+			if($(this).text()!=defaultSubCat){
+				$('.filters').remove();
+			}
+			lastVal = $(this).text();
+		}
+	
 		$("input[class^=check_]:checked").each(function()
 				{	
 			$(this).attr("checked",false);
 				});
+		
 		$(this).parent().hide();
 		subCat = $(this).text();
 		var data = "";
