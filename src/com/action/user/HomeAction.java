@@ -67,7 +67,7 @@ public class HomeAction extends ActionSupport implements ServletRequestAware{
 		}
 		AdDetailsService adDetailService =  new AdDetailsService();
 		adList = adDetailService.getAdListByCategory();
-
+		System.out.println("HomeAction.getAdListForRealEstate()"+adList.size());
 		return "success";
 	}
 
@@ -75,22 +75,32 @@ public class HomeAction extends ActionSupport implements ServletRequestAware{
 
 		return "success";
 	}
-	
+
 	public String getAdListForHouseHoldItems(){
 
 		return "success";
 	}
-	
+
 	public String getAdListForMobiles(){
 
+		System.out.println("getAdListForRealEstate(dd)"+subCategory);
+		if(category==""){
+			setCategory("MOBILES");
+		}
+		if( category.equals("MOBILES") && subCategory=="" ){
+			setSubCategory("Mobile Phones");
+		}
+		AdDetailsService adDetailService =  new AdDetailsService();
+		adList = adDetailService.getAdListByCategory();
+		System.out.println("HomeAction.getAdListForMobiles()"+adList.size());
 		return "success";
 	}
-	
+
 	public String getAdListForLaptops(){
 
 		return "success";
 	}
-	
+
 	public String getAdListForBooksAndDvds(){
 
 		return "success";

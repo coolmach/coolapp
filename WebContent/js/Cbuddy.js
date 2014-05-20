@@ -1,9 +1,17 @@
 $(document).ready(function() {
-	var subCat = "Apartment/House For Rent";
+	var subCat = "";
 	var path="";
 	var cat = $('#cat').text();
 	if(cat == 'REAL ESTATE'){
 		path="realestate";
+		subCat="Apartment/House For Rent";
+		$("#loc-main").show();
+		$("#bhk-main").show();
+		$("#area-main").show();
+		$("#rent-main").show();
+		$("#dir-main").show();
+		$("#pref-main").show();
+		$("#park-main").show();
 	}else if(cat == 'CARS'){
 		path="cars";
 	}else if(cat == 'HOUSEHOLD'){
@@ -12,25 +20,50 @@ $(document).ready(function() {
 		path="laptops";
 	}else if(cat == 'MOBILES'){
 		path="mobiles";
+		subCat="Mobile Phones";
+		$("#brand-main").show();
+		$("#used-main").show();
+		$("#amt-main").show();
+		$("#loc-main").show();
+		$("#os-main").show();
+		$("#sims-main").show();
 	}else if(cat == 'DVD'){
 		path="books";
 	}
 
 	$('.selected_filters').bind('click', function(event) {
+		var data="";
 		var child = event.target;
 		var id = child.id;
 		var text = $(this).find('#'+id);
+		//alert(text.text());
 		$("input[class^=check_]:checked").each(function(){
+			var sub = $(this).attr('name');
+			
 			if(text.text() == $(this).val()){
 				$(this).attr("checked",false);
-				return false;
+				//return false;
+			}else{
+				data = data + '&'+sub+'='+$(this).val();
 			}
 		});
+		//alert(data);
+		$.ajax({
+			type: 'POST',
+			url: "/cbuddy/"+path, 
+			data: data,
+			success: function(data, status) {
+				//alert(data);
+				$('.data').html('');
+				$('.data').html($(data).find('.data').html());
+
+			}
+		});
+		
 		$(this).find('#'+id).remove();
 	});
 
 	$('input[class^=check_]').click(function() {
-
 
 		var data="";
 		data = data + '&subCategory='+subCat;
@@ -45,12 +78,13 @@ $(document).ready(function() {
 				});
 
 		$('.selected_filters').html(str);
-		//alert(check);
+		
 		$.ajax({
 			type: 'POST',
 			url: "/cbuddy/"+path, 
 			data: data,
 			success: function(data, status) {
+				//alert(data);
 				$('.data').html('');
 				$('.data').html($(data).find('.data').html());
 
@@ -58,29 +92,17 @@ $(document).ready(function() {
 		});
 	});
 
-	/*$("li").click(function(){
-		if($(this).parent().parent().parent().attr("id")=="subCategory-main"){
-			var subCat=$(this).text();
-			$('#sub').text(subCat);
-			var data = 'subCategory='+ subCat;
-		}
-		$.ajax({
-			type: 'POST',
-			url: "/cbuddy/adlist", 
-			data: data,
-			success: function(data, status) {
+	$("#subCategory-main").hover(function(){
 
-				//alert(data);
-			}
-		});
-	});*/
-	$("#loc-main").show();
-	$("#bhk-main").show();
-	$("#area-main").show();
-	$("#rent-main").show();
-	$("#dir-main").show();
-	$("#pref-main").show();
-	$("#park-main").show();
+		if($("#subCategory_hidden_sub").is(':visible')){
+			$("#subCategory_hidden_sub").css("display","none");
+		}else{
+			$("#subCategory_hidden_sub").css("display","block");
+		}
+		$("#subCategory_hidden_sub ul").css("display","block");
+	});
+	
+	//if user clicks on subcaregory
 	var lastVal="";
 	$("#subCategory-main li").click(function(){
 		var defaultSubCat = $(this).parent().children().first('.content').text();
@@ -102,7 +124,7 @@ $(document).ready(function() {
 		var data = data + '&subCategory='+subCat;
 		$.ajax({
 			type: 'POST',
-			url: "/cbuddy/adlist", 
+			url: "/cbuddy/"+path, 
 			data: data,
 			success: function(data, status) {
 
@@ -120,7 +142,7 @@ $(document).ready(function() {
 			$("#dir-main").show();
 			$("#pref-main").show();
 			$("#park-main").show();
-			$("#price-main").hide();
+			$("#amt-main").hide();
 			$("#approval-main").hide();
 			$("#ownership-main").hide();
 			$("#amenities-main").hide();
@@ -141,7 +163,7 @@ $(document).ready(function() {
 			$("#furnished-main").hide();
 			$("#gender-main").hide();
 			$("#region-main").hide();
-			$("#price-main").show();
+			$("#amt-main").show();
 			$("#approval-main").show();
 			$("#ownership-main").show();
 			$("#amenities-main").show();
@@ -160,7 +182,7 @@ $(document).ready(function() {
 			$("#furnished-main").hide();
 			$("#gender-main").hide();
 			$("#region-main").hide();
-			$("#price-main").show();
+			$("#amt-main").show();
 			$("#approval-main").show();
 			$("#loc-main").show();
 			$("#area-main").show();
@@ -180,7 +202,7 @@ $(document).ready(function() {
 			$("#gender-main").hide();
 			$("#region-main").hide();
 			$("#loc-main").show();
-			$("#price-main").show();
+			$("#amt-main").show();
 			$("#amenities-pg-main").show();
 			$("#food-main").show();
 		}
@@ -193,7 +215,7 @@ $(document).ready(function() {
 			$("#pref-main").hide();
 			$("#amenities-main").hide();
 			$("#approval-main").hide();
-			$("#price-main").hide();
+			$("#amt-main").hide();
 			$("#amenities-pg-main").hide();
 			$("#food-main").hide();
 			$("#area-main").show();
@@ -203,17 +225,31 @@ $(document).ready(function() {
 			$("#gender-main").show();
 			$("#region-main").show();
 		}
-	});
-
-	$("#subCategory-main").hover(function(){
-
-		if($("#subCategory_hidden_sub").is(':visible')){
-			$("#subCategory_hidden_sub").css("display","none");
-		}else{
-			$("#subCategory_hidden_sub").css("display","block");
+		
+		if($(this).text()== 'Mobile Phones'){
+			$("#brand-main").show();
+			$("#used-main").show();
+			$("#amt-main").show();
+			$("#loc-main").show();
+			$("#os-main").show();
+			$("#sims-main").show();
+			$("#type-main").hide();
 		}
-		$("#subCategory_hidden_sub ul").css("display","block");
+		
+		if($(this).text()== 'Mobile Accessories'){
+			$("#type-main").show();
+			$("#brand-main").show();
+			$("#used-main").show();
+			$("#amt-main").show();
+			$("#loc-main").show();
+			$("#os-main").hide();
+			$("#sims-main").hide();
+
+		}
+		
 	});
+
+//**********************************REAL ESTATE(START)*********************************************************
 	$("#loc-main").hover(function(){
 
 		if($("#subCategory_hidden_loc").is(':visible')){
@@ -278,15 +314,16 @@ $(document).ready(function() {
 		}
 		$("#subCategory_hidden_park ul").css("display","block");
 	});
-	$("#price-main").hover(function(){
+	$("#amt-main").hover(function(){
 
-		if($("#subCategory_hidden_price").is(':visible')){
-			$("#subCategory_hidden_price").css("display","none");
+		if($("#subCategory_hidden_amt").is(':visible')){
+			$("#subCategory_hidden_amt").css("display","none");
 		}else{
-			$("#subCategory_hidden_price").css("display","block");
+			$("#subCategory_hidden_amt").css("display","block");
 		}
-		$("#subCategory_hidden_price ul").css("display","block");
+		$("#subCategory_hidden_amt ul").css("display","block");
 	});
+	
 	$("#approval-main").hover(function(){
 
 		if($("#subCategory_hidden_approval").is(':visible')){
@@ -368,15 +405,64 @@ $(document).ready(function() {
 		}
 		$("#subCategory_hidden_region ul").css("display","block");
 	});
+	//**********************************REAL ESTATE(END)*********************************************************
 
-
-	$("subCategory-main li").click(function(){
+	//**********************************Mobile Phones/Mobile Accessories(START)**********************************
+	
+	$("#brand-main").hover(function(){
+		if($("#subCategory_hidden_brand").is(':visible')){
+			$("#subCategory_hidden_brand").css("display","none");
+		}else{
+			$("#subCategory_hidden_brand").css("display","block");
+		}
+		$("#subCategory_hidden_brand ul").css("display","block");
+	});
+	
+	$("#used-main").hover(function(){
+		if($("#subCategory_hidden_used").is(':visible')){
+			$("#subCategory_hidden_used").css("display","none");
+		}else{
+			$("#subCategory_hidden_used").css("display","block");
+		}
+		$("#subCategory_hidden_used ul").css("display","block");
+	});
+	
+	$("#os-main").hover(function(){
+		if($("#subCategory_hidden_os").is(':visible')){
+			$("#subCategory_hidden_os").css("display","none");
+		}else{
+			$("#subCategory_hidden_os").css("display","block");
+		}
+		$("#subCategory_hidden_os ul").css("display","block");
+	});
+	
+	$("#sims-main").hover(function(){
+		if($("#subCategory_hidden_sims").is(':visible')){
+			$("#subCategory_hidden_sims").css("display","none");
+		}else{
+			$("#subCategory_hidden_sims").css("display","block");
+		}
+		$("#subCategory_hidden_sims ul").css("display","block");
+	});
+	
+	$("#type-main").hover(function(){
+		if($("#subCategory_hidden_type").is(':visible')){
+			$("#subCategory_hidden_type").css("display","none");
+		}else{
+			$("#subCategory_hidden_type").css("display","block");
+		}
+		$("#subCategory_hidden_type ul").css("display","block");
+	});
+	
+	
+	//**********************************Mobile Phones/Mobile Accessories(END)********************************************
+	/*$("subCategory-main li").click(function(){
 		//alert("000");
 		//$(this).parent().hide();
 		//alert($(this).parent().parent().parent().first().children().first().html());
 		//$(this).parent().parent().parent().first().children().first().html('<span class="content">'+$(this).text()+'</span>'+'<span class="glyphicon glyphicon glyphicon-chevron-down form-control-show"></span>');
 
-	});
+	});*/
 
 	$("li").mouseenter(function(){
 		$(this).addClass("highlight_subcat");

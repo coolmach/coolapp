@@ -153,21 +153,23 @@
 				</div>
 
 			</div>
-			<div class=" pull-left hidden-subcat" id="price-main">
-				<div id="price" class="inputstyle pointer form-control">
-					Price <span
+			<div class=" pull-left hidden-subcat" id="amt-main">
+				<div id="amt" class="inputstyle pointer form-control">
+					<span class="content">Price</span> <span
 						class="glyphicon glyphicon glyphicon-chevron-down form-control-show"></span>
 				</div>
-				<div id="subCategory_hidden_price" class="subCategory_hidden_bck"
+				<div id="subCategory_hidden_amt" class="subCategory_hidden_bck"
 					style="display: none;">
 					<ul class="list-unstyled">
-						<li><input type="checkbox" class="check_price" name="price" value="<10,000" /><span class="content"><10,000</span>
+					    <li><input type="checkbox" class="check_amt" name="amt" value="<5,000" /><span class="content"><5,000</span>
 						</li>
-						<li><input type="checkbox" class="check_price" name="price" value="10,000-14,000" /><span class="content">10,000-14,000</span>
+						<li><input type="checkbox" class="check_amt" name="amt" value="5,000-10,000" /><span class="content"><10,000</span>
 						</li>
-						<li><input type="checkbox" class="check_price" name="price" value="14,000-18,000" /><span class="content">14,000-18,000</span>
+						<li><input type="checkbox" class="check_amt" name="amt" value="10,000-14,000" /><span class="content">10,000-14,000</span>
 						</li>
-						<li><input type="checkbox" class="check_price" name="price" value=">18,000" /><span class="content">>18,000</span>
+						<li><input type="checkbox" class="check_amt" name="amt" value="14,000-18,000" /><span class="content">14,000-18,000</span>
+						</li>
+						<li><input type="checkbox" class="check_amt" name="amt" value=">18,000" /><span class="content">>18,000</span>
 						</li>
 					</ul>
 					<a href="#" class="clear blue_link">clear filters</a>
