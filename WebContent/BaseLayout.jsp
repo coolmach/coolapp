@@ -29,6 +29,8 @@
 <link rel="stylesheet" href="css/bootstrap-theme.css" type="text/css">
 <!-- <link rel="stylesheet" href="css/grayscale.css" type="text/css"> -->
 <link rel="stylesheet" href="css/home.css" type="text/css"> 
+<link rel="stylesheet" type="text/css" href="css/jquery.simplemodal.css"/>
+<script src="js/jquery.simplemodal.js"></script>
 <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>

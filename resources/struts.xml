@@ -25,48 +25,50 @@
 		<action name="">
 			<result type="tiles">/home.tiles</result>
 		</action>
-		<action name="login" class="com.action.user.LoginAction">
-			<result name="success" type="tiles">/addetails.tiles</result>
+		<action name="login" class="com.cbuddy.action.user.LoginAction">
+			<result name="success" type="tiles">/postad.tiles</result>
 			<result name="input" type="tiles">/home.tiles</result>
-		</action>
-		<action name="realestate" class="com.action.user.HomeAction"
+		</action>	
+		<action name="realestate" class="com.cbuddy.action.user.HomeAction"
 			method="getAdListForRealEstate">
 			<result name="success" type="tiles">/realestate.tiles</result>
 		</action>
-		<action name="cars" class="com.action.user.HomeAction"
+		<action name="cars" class="com.cbuddy.action.user.HomeAction"
 			method="getAdListForCars">
 			<result name="success" type="tiles">/cars.tiles</result>
 		</action>
-		<action name="household" class="com.action.user.HomeAction"
+		<action name="household" class="com.cbuddy.action.user.HomeAction"
 			method="getAdListForHouseHoldItems">
 			<result name="success" type="tiles">/household.tiles</result>
 		</action>
-		<action name="laptops" class="com.action.user.HomeAction"
+		<action name="laptops" class="com.cbuddy.action.user.HomeAction"
 			method="getAdListForLaptops">
 			<result name="success" type="tiles">/laptops.tiles</result>
 		</action>
-		<action name="mobiles" class="com.action.user.HomeAction"
+		<action name="mobiles" class="com.cbuddy.action.user.HomeAction"
 			method="getAdListForMobiles">
 			<result name="success" type="tiles">/mobiles.tiles</result>
 		</action>
-		<action name="books" class="com.action.user.HomeAction"
+		<action name="books" class="com.cbuddy.action.user.HomeAction"
 			method="getAdListForBooksAndDvds">
 			<result name="success" type="tiles">/books.tiles</result>
 		</action>	
-		<action name="addetails" class="com.action.user.HomeAction"
+		<action name="addetails" class="com.cbuddy.action.user.HomeAction"
 			method="getAdDetails">
 			<result name="success" type="tiles">/addetails.tiles</result>
 		</action>
-		<action name="postad" class="com.action.user.HomeAction" method="postAd">
+		<action name="postad" class="com.cbuddy.action.user.HomeAction" method="postAd">
 			<interceptor-ref name="secureStack"></interceptor-ref>
 			<result name="success" type="tiles">/postad.tiles</result>
 			<result name="login" type="tiles">/home.tiles</result>
 		</action>
-
-		<!-- <action name="logout" class="com.action.user.LogOutAction" method="logout"> 
-			<result name="success" type="tiles">/home.tiles</result> <result name="input" 
-			type="tiles">/home.tiles</result> </action> <action name="task"> <interceptor-ref 
-			name="secureStack"></interceptor-ref> <result name="login" type="tiles">/home.tiles</result> 
-			</action> -->
+		<action name="modalLogin" class="com.cbuddy.action.user.LoginAction">
+			<result name="input">/login_Retry_Modal_Window.jsp</result>
+			<result name="success">/postAdCategories_Section.jsp</result>
+		</action>
+		<action name="logout" class="com.cbuddy.action.user.LogOutAction" method="logout"> 
+			<result name="success" type="tiles">/home.tiles</result> 
+			<result name="input" type="tiles">/home.tiles</result> 
+		</action> 
 	</package>
 </struts>

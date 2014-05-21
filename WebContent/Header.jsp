@@ -51,8 +51,9 @@
             <div class="col-md-3">
             </div>
       <div class="col-md-6 pull-right" id="login_div">
-              <s:actionerror />
+                <s:fielderror /> 
            <s:form action="login" id="login_form" cssClass="form-inline" method="post" theme="simple">
+          
              <div class="form-group">
              <!-- <label class="sr-only" for="exampleInputEmail2">Email address</label> -->
              <s:textfield cssClass="form-control" id="exampleInputEmail2" placeholder="Email" name="userName" />

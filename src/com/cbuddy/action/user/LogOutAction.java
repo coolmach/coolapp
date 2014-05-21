@@ -1,4 +1,4 @@
-package com.action.user;
+package com.cbuddy.action.user;
 
 import java.util.Map;
 

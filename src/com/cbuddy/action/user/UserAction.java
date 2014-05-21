@@ -1,4 +1,4 @@
-package com.action.user;
+package com.cbuddy.action.user;
 
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;

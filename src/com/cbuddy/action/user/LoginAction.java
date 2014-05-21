@@ -1,4 +1,4 @@
-package com.action.user;
+package com.cbuddy.action.user;
 
 import java.util.Map;
 
@@ -8,16 +8,15 @@ import com.cbuddy.exception.CBuddyException;
 import com.cbuddy.services.AuthenticateUserService;
 import com.cbuddy.util.CBuddyConstants;
 import com.model.user.User;
-import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
-import com.opensymphony.xwork2.ModelDriven;
 
 public class LoginAction extends ActionSupport implements SessionAware{
-	
+
 	private String userName;
 	private String password;
 	private String valid="true";
 	private boolean isValidUser = false;
+	private String firstName;
 	
 	public boolean isValidUser() {
 		return isValidUser;
@@ -43,26 +42,20 @@ public class LoginAction extends ActionSupport implements SessionAware{
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	 
-	public void validate()
-	   {
+
+	public void validate(){
 		System.out.println("LoginAction.validate()");
-	      if (userName == null || userName.trim().equals(""))
-	      {
-	    	  System.out.println("LoginAction.validate()");
-	    	addFieldError("userName","Username is required");
-	    	//setValid("false");
-	      }
-	      if (password == null || password.trim().equals(""))
-	      {
-	    	addFieldError("password","Password is required");
-	    	//setValid("false");
-	      }
-	      
-	   }
-	
+		if (userName == null || userName.trim().equals("")){
+			addFieldError("userName","Username is required");
+			setValid("false");
+		}else if (password == null || password.trim().equals("")){
+			addFieldError("password","Password is required");
+			setValid("false");
+		}
+	}
+
 	public String execute(){
-		System.out.println("--------execute(): "+userName + ": "+password);
+		System.out.println("--------execute(): "+userName);
 		clearErrors();
 		User user =  (User) session.get("userInfo");
 		if(user != null){
@@ -72,7 +65,9 @@ public class LoginAction extends ActionSupport implements SessionAware{
 			try{
 				u = new AuthenticateUserService().authenticateUser(userName, password);
 				session.put("userInfo", u);
+				session.put("userLoggedIn", "Y");
 				System.out.println(u.getFirstName());
+				this.firstName = u.getFirstName();
 				return "success";
 			}catch(CBuddyException e){
 				switch(e.getErrorCode()){
@@ -93,43 +88,17 @@ public class LoginAction extends ActionSupport implements SessionAware{
 			}
 		}
 	}
-	/*public String execute(){
-		System.out.println("--------"+userName);
-		clearErrors();
-		User user =  (User) session.get("user");
-		if(user!=null){
-			return "success";
-		}else{
-			User u = new User(userName,password);
-			System.out.println(u.getUserName());
-			if(isValidUser(u)){
-				session.put("user", u);
-				setValid("true");
-				return "success";
-			}else{
-				setValid("false");
-				addFieldError("userName","Username or password does not match");
-			}
-			return "input";
-		}
-	}*/
 	
 	private Map<String,Object> session;
 
 	@Override
 	public void setSession(Map<String, Object> session) {
-	this.session=session;
-		
+		this.session=session;
 	}
-	
-	/*private boolean isValidUser(User user){
-		
-		if (user.getUserName().equals("admin") && user.getPassword().equals("admin"))
-	      {
-			 return true;
-	      }else{
-	    	 return false;
-	      }
-	}*/
-	
+	public String getFirstName() {
+		return firstName;
+	}
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
 }
