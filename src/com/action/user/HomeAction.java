@@ -98,7 +98,18 @@ public class HomeAction extends ActionSupport implements ServletRequestAware{
 
 	public String getAdListForLaptops(){
 
+		System.out.println("getAdListForLaptops(dd)"+subCategory);
+		if(category==""){
+			setCategory("LAPTOPS");
+		}
+		if( category.equals("LAPTOPS") && subCategory=="" ){
+			setSubCategory("Laptop");
+		}
+		AdDetailsService adDetailService =  new AdDetailsService();
+		adList = adDetailService.getAdListByCategory();
+		System.out.println("HomeAction.getAdListForLaptops()"+adList.size());
 		return "success";
+		
 	}
 
 	public String getAdListForBooksAndDvds(){

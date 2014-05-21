@@ -2,7 +2,7 @@
 <div class=" header_2">
 
 	<div class="col-md-12 filter_cat">
-		<div class="form-group pull-left" id="subCategory-main">
+		<div class="form-group pull-left" id="sub-main">
 			<div id="subCategory" class="inputstyle pointer form-control">
 				<span class="content">Type</span><span
 					class="glyphicon glyphicon glyphicon-chevron-down form-control-show"></span>
@@ -10,11 +10,11 @@
 			<div id="subCategory_hidden_sub" class="subCategory_hidden_bck"
 				style="display: none;">
 				<ul class="list-unstyled">
-					<li><!-- <input type="checkbox" class="check_sub" name="subCategory" value="Apartment/House For Rent" /> --><span data-labelfor="name" class="content">Apartment/House For Rent</span></li>
-					<li><!-- <input type="checkbox" class="check_sub" name="subCategory" value="Apartment/House For Sale"/> --><span class="content">Apartment/House For Sale</span></li>
-					<li><!-- <input type="checkbox" class="check_sub" name="subCategory" value="Plot For Sale"> --><span class="content">Plot For Sale</span></li>
-					<li><!-- <input type="checkbox" class="check_sub" name="subCategory" value="PG Accommodation"> --><span class="content">PG Accommodation</span></li>
-					<li><!-- <input type="checkbox" class="check_sub" name="subCategory" value="Roommate Required"> --><span class="content">Roommate Required</span></li>
+					<li><span class="content">Apartment/House For Rent</span></li>
+					<li><span class="content">Apartment/House For Sale</span></li>
+					<li><span class="content">Plot For Sale</span></li>
+					<li><span class="content">PG Accommodation</span></li>
+					<li><span class="content">Roommate Required</span></li>
 				</ul>
 				<!-- <a href="#" class="clear blue_link">clear filters</a> -->
 			</div>

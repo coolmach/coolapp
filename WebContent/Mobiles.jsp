@@ -2,7 +2,7 @@
 <div class=" header_2">
 
 	<div class="col-md-12 filter_cat">
-		<div class="form-group pull-left" id="subCategory-main">
+		<div class="form-group pull-left" id="sub-main">
 			<div id="subCategory" class="inputstyle pointer form-control">
 				<span class="content">Categories</span><span
 					class="glyphicon glyphicon glyphicon-chevron-down form-control-show"></span>

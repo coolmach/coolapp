@@ -2,6 +2,7 @@ $(document).ready(function() {
 	var subCat = "";
 	var path="";
 	var cat = $('#cat').text();
+
 	if(cat == 'REAL ESTATE'){
 		path="realestate";
 		subCat="Apartment/House For Rent";
@@ -18,6 +19,12 @@ $(document).ready(function() {
 		path="household";
 	}else if(cat == 'LAPTOPS'){
 		path="laptops";
+		$("#brand-main").show();
+		$("#used-main").show();
+		$("#amt-main").show();
+		$("#loc-main").show();
+		$("#screen-main").show();
+		$("#ram-main").show();
 	}else if(cat == 'MOBILES'){
 		path="mobiles";
 		subCat="Mobile Phones";
@@ -31,6 +38,7 @@ $(document).ready(function() {
 		path="books";
 	}
 
+	//if user click to cancel a selected filter
 	$('.selected_filters').bind('click', function(event) {
 		var data="";
 		var child = event.target;
@@ -39,7 +47,7 @@ $(document).ready(function() {
 		//alert(text.text());
 		$("input[class^=check_]:checked").each(function(){
 			var sub = $(this).attr('name');
-			
+
 			if(text.text() == $(this).val()){
 				$(this).attr("checked",false);
 				//return false;
@@ -59,10 +67,11 @@ $(document).ready(function() {
 
 			}
 		});
-		
+
 		$(this).find('#'+id).remove();
 	});
 
+	//if user clicks on checkboxes
 	$('input[class^=check_]').click(function() {
 
 		var data="";
@@ -78,7 +87,7 @@ $(document).ready(function() {
 				});
 
 		$('.selected_filters').html(str);
-		
+
 		$.ajax({
 			type: 'POST',
 			url: "/cbuddy/"+path, 
@@ -92,19 +101,9 @@ $(document).ready(function() {
 		});
 	});
 
-	$("#subCategory-main").hover(function(){
-
-		if($("#subCategory_hidden_sub").is(':visible')){
-			$("#subCategory_hidden_sub").css("display","none");
-		}else{
-			$("#subCategory_hidden_sub").css("display","block");
-		}
-		$("#subCategory_hidden_sub ul").css("display","block");
-	});
-	
 	//if user clicks on subcaregory
 	var lastVal="";
-	$("#subCategory-main li").click(function(){
+	$("#sub-main li").click(function(){
 		var defaultSubCat = $(this).parent().children().first('.content').text();
 		if(lastVal!=$(this).text() ){
 			if($(this).text()!=defaultSubCat){
@@ -112,12 +111,12 @@ $(document).ready(function() {
 			}
 			lastVal = $(this).text();
 		}
-	
+
 		$("input[class^=check_]:checked").each(function()
 				{	
 			$(this).attr("checked",false);
 				});
-		
+
 		$(this).parent().hide();
 		subCat = $(this).text();
 		var data = "";
@@ -225,7 +224,7 @@ $(document).ready(function() {
 			$("#gender-main").show();
 			$("#region-main").show();
 		}
-		
+
 		if($(this).text()== 'Mobile Phones'){
 			$("#brand-main").show();
 			$("#used-main").show();
@@ -235,7 +234,7 @@ $(document).ready(function() {
 			$("#sims-main").show();
 			$("#type-main").hide();
 		}
-		
+
 		if($(this).text()== 'Mobile Accessories'){
 			$("#type-main").show();
 			$("#brand-main").show();
@@ -246,223 +245,19 @@ $(document).ready(function() {
 			$("#sims-main").hide();
 
 		}
-		
-	});
-
-//**********************************REAL ESTATE(START)*********************************************************
-	$("#loc-main").hover(function(){
-
-		if($("#subCategory_hidden_loc").is(':visible')){
-			$("#subCategory_hidden_loc").css("display","none");
-		}else{
-			$("#subCategory_hidden_loc").css("display","block");
-		}
-		$("#subCategory_hidden_loc ul").css("display","block");
 
 	});
-	$("#bhk-main").hover(function(){
 
-		if($("#subCategory_hidden_bhk").is(':visible')){
-			$("#subCategory_hidden_bhk").css("display","none");
+	//if hover on any filters category shown([id*=-main] pattern where it ends with -main)
+	$("div[id*=-main]").hover(function(){
+		var divId = $(this).attr('id').split('-')[0];
+		if($("#subCategory_hidden_"+divId).is(':visible')){
+			$("#subCategory_hidden_"+divId).css("display","none");
 		}else{
-			$("#subCategory_hidden_bhk").css("display","block");
+			$("#subCategory_hidden_"+divId).css("display","block");
 		}
-		$("#subCategory_hidden_bhk ul").css("display","block");
+		$("#subCategory_hidden_"+divId+ " ul").css("display","block");
 	});
-	$("#area-main").hover(function(){
-
-		if($("#subCategory_hidden_area").is(':visible')){
-			$("#subCategory_hidden_area").css("display","none");
-		}else{
-			$("#subCategory_hidden_area").css("display","block");
-		}
-		$("#subCategory_hidden_area ul").css("display","block");
-	});
-	$("#rent-main").hover(function(){
-
-		if($("#subCategory_hidden_rent").is(':visible')){
-			$("#subCategory_hidden_rent").css("display","none");
-		}else{
-			$("#subCategory_hidden_rent").css("display","block");
-		}
-		$("#subCategory_hidden_rent ul").css("display","block");
-	});
-	$("#dir-main").hover(function(){
-
-		if($("#subCategory_hidden_dir").is(':visible')){
-			$("#subCategory_hidden_dir").css("display","none");
-		}else{
-			$("#subCategory_hidden_dir").css("display","block");
-		}
-		$("#subCategory_hidden_dir ul").css("display","block");
-	});
-	$("#pref-main").hover(function(){
-
-		if($("#subCategory_hidden_pref").is(':visible')){
-			$("#subCategory_hidden_pref").css("display","none");
-		}else{
-			$("#subCategory_hidden_pref").css("display","block");
-		}
-		$("#subCategory_hidden_pref ul").css("display","block");
-	});
-	$("#park-main").hover(function(){
-
-		if($("#subCategory_hidden_park").is(':visible')){
-			$("#subCategory_hidden_park").css("display","none");
-		}else{
-			$("#subCategory_hidden_park").css("display","block");
-		}
-		$("#subCategory_hidden_park ul").css("display","block");
-	});
-	$("#amt-main").hover(function(){
-
-		if($("#subCategory_hidden_amt").is(':visible')){
-			$("#subCategory_hidden_amt").css("display","none");
-		}else{
-			$("#subCategory_hidden_amt").css("display","block");
-		}
-		$("#subCategory_hidden_amt ul").css("display","block");
-	});
-	
-	$("#approval-main").hover(function(){
-
-		if($("#subCategory_hidden_approval").is(':visible')){
-			$("#subCategory_hidden_approval").css("display","none");
-		}else{
-			$("#subCategory_hidden_approval").css("display","block");
-		}
-		$("#subCategory_hidden_approval ul").css("display","block");
-	});
-	$("#ownership-main").hover(function(){
-
-		if($("#subCategory_hidden_ownership").is(':visible')){
-			$("#subCategory_hidden_ownership").css("display","none");
-		}else{
-			$("#subCategory_hidden_ownership").css("display","block");
-		}
-		$("#subCategory_hidden_ownership ul").css("display","block");
-	});
-	$("#amenities-main").hover(function(){
-
-		if($("#subCategory_hidden_amenities").is(':visible')){
-			$("#subCategory_hidden_amenities").css("display","none");
-		}else{
-			$("#subCategory_hidden_amenities").css("display","block");
-		}
-		$("#subCategory_hidden_amenities ul").css("display","block");
-	});
-	$("#amenities-pg-main").hover(function(){
-
-		if($("#subCategory_hidden_amenities_pg").is(':visible')){
-			$("#subCategory_hidden_amenities_pg").css("display","none");
-		}else{
-			$("#subCategory_hidden_amenities_pg").css("display","block");
-		}
-		$("#subCategory_hidden_amenities_pg ul").css("display","block");
-	});
-	$("#food-main").hover(function(){
-
-		if($("#subCategory_hidden_amenities_food").is(':visible')){
-			$("#subCategory_hidden_amenities_food").css("display","none");
-		}else{
-			$("#subCategory_hidden_amenities_food").css("display","block");
-		}
-		$("#subCategory_hidden_food ul").css("display","block");
-	});
-	$("#share-main").hover(function(){
-
-		if($("#subCategory_hidden_share").is(':visible')){
-			$("#subCategory_hidden_share").css("display","none");
-		}else{
-			$("#subCategory_hidden_share").css("display","block");
-		}
-		$("#subCategory_hidden_share ul").css("display","block");
-	});
-	$("#furnished-main").hover(function(){
-
-		if($("#subCategory_hidden_furnished").is(':visible')){
-			$("#subCategory_hidden_furnished").css("display","none");
-		}else{
-			$("#subCategory_hidden_furnished").css("display","block");
-		}
-		$("#subCategory_hidden_furnished ul").css("display","block");
-	});
-	$("#gender-main").hover(function(){
-
-		if($("#subCategory_hidden_gender").is(':visible')){
-			$("#subCategory_hidden_gender").css("display","none");
-		}else{
-			$("#subCategory_hidden_gender").css("display","block");
-		}
-		$("#subCategory_hidden_gender ul").css("display","block");
-	});
-	$("#region-main").hover(function(){
-
-		if($("#subCategory_hidden_region").is(':visible')){
-			$("#subCategory_hidden_region").css("display","none");
-		}else{
-			$("#subCategory_hidden_region").css("display","block");
-		}
-		$("#subCategory_hidden_region ul").css("display","block");
-	});
-	//**********************************REAL ESTATE(END)*********************************************************
-
-	//**********************************Mobile Phones/Mobile Accessories(START)**********************************
-	
-	$("#brand-main").hover(function(){
-		if($("#subCategory_hidden_brand").is(':visible')){
-			$("#subCategory_hidden_brand").css("display","none");
-		}else{
-			$("#subCategory_hidden_brand").css("display","block");
-		}
-		$("#subCategory_hidden_brand ul").css("display","block");
-	});
-	
-	$("#used-main").hover(function(){
-		if($("#subCategory_hidden_used").is(':visible')){
-			$("#subCategory_hidden_used").css("display","none");
-		}else{
-			$("#subCategory_hidden_used").css("display","block");
-		}
-		$("#subCategory_hidden_used ul").css("display","block");
-	});
-	
-	$("#os-main").hover(function(){
-		if($("#subCategory_hidden_os").is(':visible')){
-			$("#subCategory_hidden_os").css("display","none");
-		}else{
-			$("#subCategory_hidden_os").css("display","block");
-		}
-		$("#subCategory_hidden_os ul").css("display","block");
-	});
-	
-	$("#sims-main").hover(function(){
-		if($("#subCategory_hidden_sims").is(':visible')){
-			$("#subCategory_hidden_sims").css("display","none");
-		}else{
-			$("#subCategory_hidden_sims").css("display","block");
-		}
-		$("#subCategory_hidden_sims ul").css("display","block");
-	});
-	
-	$("#type-main").hover(function(){
-		if($("#subCategory_hidden_type").is(':visible')){
-			$("#subCategory_hidden_type").css("display","none");
-		}else{
-			$("#subCategory_hidden_type").css("display","block");
-		}
-		$("#subCategory_hidden_type ul").css("display","block");
-	});
-	
-	
-	//**********************************Mobile Phones/Mobile Accessories(END)********************************************
-	/*$("subCategory-main li").click(function(){
-		//alert("000");
-		//$(this).parent().hide();
-		//alert($(this).parent().parent().parent().first().children().first().html());
-		//$(this).parent().parent().parent().first().children().first().html('<span class="content">'+$(this).text()+'</span>'+'<span class="glyphicon glyphicon glyphicon-chevron-down form-control-show"></span>');
-
-	});*/
 
 	$("li").mouseenter(function(){
 		$(this).addClass("highlight_subcat");
@@ -472,5 +267,14 @@ $(document).ready(function() {
 	$("li").mouseleave(function(){
 		$(this).removeClass("highlight_subcat");
 	});
+
+
+	/*$("subCategory-main li").click(function(){
+		//alert("000");
+		//$(this).parent().hide();
+		//alert($(this).parent().parent().parent().first().children().first().html());
+		//$(this).parent().parent().parent().first().children().first().html('<span class="content">'+$(this).text()+'</span>'+'<span class="glyphicon glyphicon glyphicon-chevron-down form-control-show"></span>');
+
+	});*/
 
 });
