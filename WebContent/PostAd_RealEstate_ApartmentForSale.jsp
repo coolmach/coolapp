@@ -1,6 +1,5 @@
-
+	<form class="form-horizontal post">
    <div class="col-md-8">   
-	<form class="form-horizontal post" role="form">
 		<div class="form-group">
 			<label for="apartment" class="col-sm-4 control-label">Apartment Name</label>
 			<div class="col-sm-6">
@@ -88,7 +87,7 @@
 			</div>
 		</div>
 		
-	</form>
+	
 	</div>
 	<div class="col-md-4">
 		<div class="fileupload fileupload-new" data-provides="fileupload">
@@ -99,3 +98,4 @@
 			</div>
 		</div>
 	</div>
+</form>
