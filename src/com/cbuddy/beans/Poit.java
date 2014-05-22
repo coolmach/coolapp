@@ -1,234 +1,215 @@
-package com.cbuddy.beans;
+package com.cbuddy.beans; 
 
-import java.util.Date;
 
+import java.sql.Timestamp;
 import javax.persistence.*;
 
 @Entity
 @Table(name = "Poit")
+
 public class Poit {
-	
-	private int postId;    
-	private String category;  
-	private String subCategory;
-	private int price;                      
-	private String title;                         
-	private String description;                 
-	private int contactNo;                      
-	private String contactPerson;           
-	private String cityCode;                        
-	private String locCode;                 
-	private String imageFileName;          
-	private String imageType;       
-	private String thumbnailName;          
-	private String thumbnailType;   
-	private String firstName;                     
-	private String corpName;     
-	private String delFlg;                        
-	private String rCreId;                    
-	private Date rCreTime = new Date();                     
-	private String rModId;               
-	private Date rModTime;
-	private float rating;
-	
+
+	private int PostId;
+	private String Category;
+	private String SubCategory;
+	private double Price;
+	private String Negotiable;
+	private String Title;
+	private String ContactNo;
+	private String ContactPersonName;
+	private String Description;
+	private String Location;
+	private String City;
+	private String ImageFileName;
+	private String ImageType;
+	private String ThumbnailName;
+	private String ThumbnailType;
+	private String UserFirstName;
+	private int CorpId;
+	private int Rating;
+	private Timestamp CreatedOn;
+	private String CreatedBy;
+	private Timestamp ModifiedOn;
+	private String ModifiedBy;
+
+
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.IDENTITY)	
 	@Column(name="POST_ID")
-	public int getPostId() {
-		return postId;
+	public int getPostId(){
+		return this.PostId;
 	}
-	
-	@Column(name = "CATEGORY")
-	public String getCategory() {
-		return category;
-	}
-	
-	@Column(name = "SUB_CATEGORY")
-	public String getSubCategory() {
-		return subCategory;
-	}
-	
-	@Column(name = "PRICE")
-	public int getPrice() {
-		return price;
-	}
-	
-	@Column(name = "TITLE")
-	public String getTitle() {
-		return title;
-	}
-	
-	@Column(name = "DESCRIPTION")
-	public String getDescription() {
-		return description;
-	}
-	
-	@Column(name = "CONTACT_NO")
-	public int getContactNo() {
-		return contactNo;
-	}
-	
-	@Column(name = "CONTACT_PERSON")
-	public String getContactPerson() {
-		return contactPerson;
-	}
-	
-	@Column(name = "CITY_CODE")
-	public String getCityCode() {
-		return cityCode;
-	}
-	
-	@Column(name = "LOC_CODE")
-	public String getLocCode() {
-		return locCode;
-	}
-	
-	@Column(name = "PRIMARY_IMAGE_FILE_NAME")
-	public String getImageFileName() {
-		return imageFileName;
-	}
-	
-	@Column(name = "PRIMARY_IMAGE_TYPE")
-	public String getImageType() {
-		return imageType;
-	}
-	
-	@Column(name = "PRIMARY_THUMBNAIL_NAME")
-	public String getThumbnailName() {
-		return thumbnailName;
-	}
-	
-	@Column(name = "PRIMARY_THUMBNAIL_TYPE")
-	public String getThumbnailType() {
-		return thumbnailType;
-	}
-	
-	@Column(name = "USER_F_NAME")
-	public String getFirstName() {
-		return firstName;
-	}
-	
-	@Column(name = "USER_CORP_SHORT_NAME")
-	public String getCorpName() {
-		return corpName;
-	}
-	
-	@Column(name = "DEL_FLG")
-	public String getDelFlg() {
-		return delFlg;
-	}
-	
-	@Column(name = "R_CRE_ID")
-	public String getrCreId() {
-		return rCreId;
-	}
-	
-	@Column(name = "R_CRE_TIME")
-	public Date getrCreTime() {
-		return rCreTime;
-	}
-	
-	@Column(name = "R_MOD_ID")
-	public String getrModId() {
-		return rModId;
-	}
-	
-	@Column(name = "R_MOD_TIME")
-	public Date getrModTime() {
-		return rModTime;
+	public void setPostId(int PostId){
+		this.PostId = PostId;
 	}
 
-	@Column(name = "RATING")
-	public float getRating() {
-		return rating;
+	@Column(name="CATEGORY")
+	public String getCategory(){
+		return this.Category;
+	}
+	public void setCategory(String Category){
+		this.Category = Category;
 	}
 
-	public void setPostId(int postId) {
-		this.postId = postId;
+	@Column(name="SUB_CATEGORY")
+	public String getSubCategory(){
+		return this.SubCategory;
+	}
+	public void setSubCategory(String SubCategory){
+		this.SubCategory = SubCategory;
 	}
 
-	public void setCategory(String category) {
-		this.category = category;
+	@Column(name="PRICE")
+	public double getPrice(){
+		return this.Price;
+	}
+	public void setPrice(double Price){
+		this.Price = Price;
 	}
 
-	public void setSubCategory(String subCategory) {
-		this.subCategory = subCategory;
+	@Column(name="NEGOTIABLE")
+	public String getNegotiable(){
+		return this.Negotiable;
+	}
+	public void setNegotiable(String Negotiable){
+		this.Negotiable = Negotiable;
 	}
 
-	public void setPrice(int price) {
-		this.price = price;
+	@Column(name="TITLE")
+	public String getTitle(){
+		return this.Title;
+	}
+	public void setTitle(String Title){
+		this.Title = Title;
 	}
 
-	public void setTitle(String title) {
-		this.title = title;
+	@Column(name="CONTACT_NO")
+	public String getContactNo(){
+		return this.ContactNo;
+	}
+	public void setContactNo(String ContactNo){
+		this.ContactNo = ContactNo;
 	}
 
-	public void setDescription(String description) {
-		this.description = description;
+	@Column(name="CONTACT_PERSON_NAME")
+	public String getContactPersonName(){
+		return this.ContactPersonName;
+	}
+	public void setContactPersonName(String ContactPersonName){
+		this.ContactPersonName = ContactPersonName;
 	}
 
-	public void setContactNo(int contactNo) {
-		this.contactNo = contactNo;
+	@Column(name="DESCRIPTION")
+	public String getDescription(){
+		return this.Description;
+	}
+	public void setDescription(String Description){
+		this.Description = Description;
 	}
 
-	public void setContactPerson(String contactPerson) {
-		this.contactPerson = contactPerson;
+	@Column(name="LOCATION")
+	public String getLocation(){
+		return this.Location;
+	}
+	public void setLocation(String Location){
+		this.Location = Location;
 	}
 
-	public void setCityCode(String cityCode) {
-		this.cityCode = cityCode;
+	@Column(name="CITY")
+	public String getCity(){
+		return this.City;
+	}
+	public void setCity(String City){
+		this.City = City;
 	}
 
-	public void setLocCode(String locCode) {
-		this.locCode = locCode;
+	@Column(name="IMAGE_FILE_NAME")
+	public String getImageFileName(){
+		return this.ImageFileName;
+	}
+	public void setImageFileName(String ImageFileName){
+		this.ImageFileName = ImageFileName;
 	}
 
-	public void setImageFileName(String imageFileName) {
-		this.imageFileName = imageFileName;
+	@Column(name="IMAGE_TYPE")
+	public String getImageType(){
+		return this.ImageType;
+	}
+	public void setImageType(String ImageType){
+		this.ImageType = ImageType;
 	}
 
-	public void setImageType(String imageType) {
-		this.imageType = imageType;
+	@Column(name="THUMBNAIL_NAME")
+	public String getThumbnailName(){
+		return this.ThumbnailName;
+	}
+	public void setThumbnailName(String ThumbnailName){
+		this.ThumbnailName = ThumbnailName;
 	}
 
-	public void setThumbnailName(String thumbnailName) {
-		this.thumbnailName = thumbnailName;
+	@Column(name="THUMBNAIL_TYPE")
+	public String getThumbnailType(){
+		return this.ThumbnailType;
+	}
+	public void setThumbnailType(String ThumbnailType){
+		this.ThumbnailType = ThumbnailType;
 	}
 
-	public void setThumbnailType(String thumbnailType) {
-		this.thumbnailType = thumbnailType;
+	@Column(name="USER_FIRST_NAME")
+	public String getUserFirstName(){
+		return this.UserFirstName;
+	}
+	public void setUserFirstName(String UserFirstName){
+		this.UserFirstName = UserFirstName;
 	}
 
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
+	@Column(name="CORP_ID")
+	public int getCorpId(){
+		return this.CorpId;
+	}
+	public void setCorpId(int CorpId){
+		this.CorpId = CorpId;
 	}
 
-	public void setCorpName(String corpName) {
-		this.corpName = corpName;
+	@Column(name="RATING")
+	public int getRating(){
+		return this.Rating;
+	}
+	public void setRating(int Rating){
+		this.Rating = Rating;
 	}
 
-	public void setDelFlg(String delFlg) {
-		this.delFlg = delFlg;
+	@Column(name="CREATED_ON")
+	public Timestamp getCreatedOn(){
+		return this.CreatedOn ;
+	}
+	public void setCreatedOn(Timestamp CreatedOn){
+		this.CreatedOn = CreatedOn;
 	}
 
-	public void setrCreId(String rCreId) {
-		this.rCreId = rCreId;
+	@Column(name="CREATED_BY")
+	public String getCreatedBy(){
+		return this.CreatedBy;
+	}
+	public void setCreatedBy(String CreatedBy){
+		this.CreatedBy = CreatedBy;
 	}
 
-	public void setrCreTime(Date rCreTime) {
-		this.rCreTime = rCreTime;
+	@Column(name="MODIFIED_ON")
+	public Timestamp getModifiedOn(){
+		return this.ModifiedOn ;
+	}
+	public void setModifiedOn(Timestamp ModifiedOn){
+		this.ModifiedOn = ModifiedOn;
 	}
 
-	public void setrModId(String rModId) {
-		this.rModId = rModId;
+	@Column(name="MODIFIED_BY")
+	public String getModifiedBy(){
+		return this.ModifiedBy;
+	}
+	public void setModifiedBy(String ModifiedBy){
+		this.ModifiedBy = ModifiedBy;
 	}
 
-	public void setrModTime(Date rModTime) {
-		this.rModTime = rModTime;
-	}
-	
-	public void setRating(float rating) {
-		this.rating = rating;
-	}
-	
+
 }

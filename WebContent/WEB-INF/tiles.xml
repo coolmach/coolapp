@@ -43,9 +43,32 @@
         <put-attribute name="title" value="Ad Details" />
         <put-attribute name="body" value="/AdDetails.jsp" />
     </definition>
-    <definition name="/postad.tiles" extends="baseLayout">
+    <definition name="/postad_real_1.tiles" extends="baseLayout">
         <put-attribute name="title" value="Post Ad" />
-        <put-attribute name="body" value="/PostAd.jsp" />
-    </definition> 
-    
+        <put-attribute name="body" value="/PostAd_RealEstate_Apartment_For_Sale.jsp" />
+    </definition>
+    <definition name="/postad_real_2.tiles" extends="baseLayout">
+        <put-attribute name="title" value="Post Ad" />
+        <put-attribute name="body" value="/PostAd_RealEstate_Apartment_For_Rent.jsp" />
+    </definition>
+    <definition name="/postad_real_3.tiles" extends="baseLayout">
+        <put-attribute name="title" value="Post Ad" />
+        <put-attribute name="body" value="/PostAd_RealEstate_Ind_House_For_Sale.jsp" />
+    </definition>
+    <definition name="/postad_real_4.tiles" extends="baseLayout">
+        <put-attribute name="title" value="Post Ad" />
+        <put-attribute name="body" value="/PostAd_RealEstate_Ind_House_For_Rent.jsp" />
+    </definition>
+    <definition name="/postad_real_5.tiles" extends="baseLayout">
+        <put-attribute name="title" value="Post Ad" />
+        <put-attribute name="body" value="/PostAd_RealEstate_PG_Accommodation.jsp" />
+    </definition>
+    <definition name="/postad_real_6.tiles" extends="baseLayout">
+        <put-attribute name="title" value="Post Ad" />
+        <put-attribute name="body" value="/PostAd_RealEstate_Land_For_Sale.jsp" />
+    </definition>
+    <definition name="/postad_real_7.tiles" extends="baseLayout">
+        <put-attribute name="title" value="Post Ad" />
+        <put-attribute name="body" value="/PostAd_RealEstate_Roommate_Required.jsp" />
+    </definition>    
 </tiles-definitions>

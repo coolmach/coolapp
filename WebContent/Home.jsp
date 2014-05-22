@@ -38,8 +38,8 @@
 
 <script>
 	function getSubCategory() {
-		var category = $("#cat").val();
-		$("#scat").html("");
+		var category = $("#category").val();
+		$("#subcategory").html("");
 		if (category == "REAL") {
 			var numbers = [ 1, 2, 3, 4 ];
 			var val = [ 'APSL', 'APRNT', 'INSL', 'INRNT' ];
@@ -60,7 +60,7 @@
 		}
 		var index = 0;
 		$.each(numbers, function(val, text) {
-			$('#scat').append(
+			$('#subcategory').append(
 					$('<option class="optionListItem"></option>').val(
 							val[index]).html(options[index]));
 			index = index + 1;

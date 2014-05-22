@@ -57,11 +57,23 @@
 			method="getAdDetails">
 			<result name="success" type="tiles">/addetails.tiles</result>
 		</action>
-		<action name="postad" class="com.cbuddy.action.user.HomeAction" method="postAd">
+		<action name="postad" class="com.cbuddy.action.posts.PostAdAction">
 			<interceptor-ref name="secureStack"></interceptor-ref>
-			<result name="success" type="tiles">/postad.tiles</result>
 			<result name="login" type="tiles">/home.tiles</result>
+			<result name="success" type="tiles">/postad_real_1.tiles</result>
+			<result name="real_1" type="tiles">/postad_real_1.tiles</result>
+			<result name="real_2" type="tiles">/postad_real_2.tiles</result>
+			<result name="real_3" type="tiles">/postad_real_3.tiles</result>
+			<result name="real_4" type="tiles">/postad_real_4.tiles</result>
+			<result name="real_5" type="tiles">/postad_real_5.tiles</result>
+			<result name="real_6" type="tiles">/postad_real_6.tiles</result>
+			<result name="real_7" type="tiles">/postad_real_7.tiles</result>
 		</action>
+		<action name="real_estate_postAd" class="com.cbuddy.action.posts.RealEstatePostAction" method="postAd">
+			<interceptor-ref name="secureStack"></interceptor-ref>
+			<result name="login" type="tiles">/home.tiles</result>
+			<result name="success" type="tiles">/home.tiles</result>
+		</action>		
 		<action name="modalLogin" class="com.cbuddy.action.user.LoginAction">
 			<result name="input">/login_Retry_Modal_Window.jsp</result>
 			<result name="success">/postAdCategories_Section.jsp</result>

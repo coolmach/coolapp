@@ -16,9 +16,7 @@
     <welcome-file>HomeAction.action</welcome-file>
   </welcome-file-list> -->
   <listener>
-    <listener-class>
-	  com.cbuddy.listners.TablesCreatorListner
-    </listener-class>
+    <listener-class>com.cbuddy.listeners.TablesCreatorListener</listener-class>
    </listener>
    
   <listener>

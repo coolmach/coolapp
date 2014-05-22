@@ -15,7 +15,8 @@
     <meta name="author" content="">
 <title></title>
 
-<script type="text/javascript" src="js/jquery.min.js"></script> 
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/jasny-bootstrap.min.js"></script>  
 <script type="text/javascript" src="js/jquery-ui.js"></script> 
 <%-- <script type="text/javascript" src="js/jquery-migrate-1.2.1.js"></script>  --%>
 <script type="text/javascript" src="js/bootstrap.js"></script> 
@@ -27,8 +28,10 @@
 <script type="text/javascript" src="js/Cbuddy.js"></script> 
 <link rel="stylesheet" href="css/bootstrap.css" type="text/css">
 <link rel="stylesheet" href="css/bootstrap-theme.css" type="text/css">
+<link rel="stylesheet" href="css/jasny-bootstrap.min.css" type="text/css">
 <!-- <link rel="stylesheet" href="css/grayscale.css" type="text/css"> -->
 <link rel="stylesheet" href="css/home.css" type="text/css"> 
+<link rel="stylesheet" type="text/css" href="css/postAd.css"/>
 <link rel="stylesheet" type="text/css" href="css/jquery.simplemodal.css"/>
 <script src="js/jquery.simplemodal.js"></script>
 <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">

@@ -1,117 +1,119 @@
-package com.cbuddy.beans;
+package com.cbuddy.beans; 
 
-import java.util.Date;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import java.sql.Timestamp;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "Ucred")
+
 public class Ucred {
-	private String userId;
-	private String corpEmailId;
-	private String pwd;
-	private String mobileNo;
-	private int noOfAtmpts;
-	private Date lastLoginTime;
-	private Date pwdExpiryDate;
-	private Date createdOn;
-	private String createdBy;
-	private Date modifiedOn;
-	private String modifiedBy;
-	
+
+
+
+
+	private int UserId;
+	private String CorpEmailId;
+	private String Pwd;
+	private String MobileNo;
+	private int NoOfAtmpts;
+	private Timestamp LastLoginTime;
+	private Timestamp PwdExpiryDate;
+	private Timestamp CreatedOn;
+	private String CreatedBy;
+	private Timestamp ModifiedOn;
+	private String ModifiedBy;
+
+
 	@Id
-	@GeneratedValue
+	@GeneratedValue	
 	@Column(name="USER_ID")
-	public String getUserId() {
-		return userId;
+	public int getUserId(){
+		return this.UserId;
 	}
-	
+	public void setUserId(int UserId){
+		this.UserId = UserId;
+	}
+
 	@Column(name="CORP_EMAIL_ID")
-	public String getCorpEmailId() {
-		return corpEmailId;
+	public String getCorpEmailId(){
+		return this.CorpEmailId;
 	}
-	
+	public void setCorpEmailId(String CorpEmailId){
+		this.CorpEmailId = CorpEmailId;
+	}
+
 	@Column(name="PWD")
-	public String getPwd() {
-		return pwd;
+	public String getPwd(){
+		return this.Pwd;
 	}
-	
+	public void setPwd(String Pwd){
+		this.Pwd = Pwd;
+	}
+
 	@Column(name="MOBILE_NO")
-	public String getMobileNo() {
-		return mobileNo;
+	public String getMobileNo(){
+		return this.MobileNo;
 	}
-	
+	public void setMobileNo(String MobileNo){
+		this.MobileNo = MobileNo;
+	}
+
 	@Column(name="NO_OF_ATMPTS")
-	public int getNoOfAtmpts() {
-		return noOfAtmpts;
+	public int getNoOfAtmpts(){
+		return this.NoOfAtmpts;
 	}
-	
+	public void setNoOfAtmpts(int NoOfAtmpts){
+		this.NoOfAtmpts = NoOfAtmpts;
+	}
+
 	@Column(name="LAST_LOGIN_TIME")
-	public Date getLastLoginTime() {
-		return lastLoginTime;
+	public Timestamp getLastLoginTime(){
+		return this.LastLoginTime ;
 	}
-	
+	public void setLastLoginTime(Timestamp LastLoginTime){
+		this.LastLoginTime = LastLoginTime;
+	}
+
 	@Column(name="PWD_EXPIRY_DATE")
-	public Date getPwdExpiryDate() {
-		return pwdExpiryDate;
+	public Timestamp getPwdExpiryDate(){
+		return this.PwdExpiryDate ;
 	}
-	
+	public void setPwdExpiryDate(Timestamp PwdExpiryDate){
+		this.PwdExpiryDate = PwdExpiryDate;
+	}
+
 	@Column(name="CREATED_ON")
-	public Date getCreatedOn() {
-		return createdOn;
+	public Timestamp getCreatedOn(){
+		return this.CreatedOn ;
 	}
-	
+	public void setCreatedOn(Timestamp CreatedOn){
+		this.CreatedOn = CreatedOn;
+	}
+
 	@Column(name="CREATED_BY")
-	public String getCreatedBy() {
-		return createdBy;
+	public String getCreatedBy(){
+		return this.CreatedBy;
 	}
-	
+	public void setCreatedBy(String CreatedBy){
+		this.CreatedBy = CreatedBy;
+	}
+
 	@Column(name="MODIFIED_ON")
-	public Date getModifiedOn() {
-		return modifiedOn;
+	public Timestamp getModifiedOn(){
+		return this.ModifiedOn ;
 	}
-	
+	public void setModifiedOn(Timestamp ModifiedOn){
+		this.ModifiedOn = ModifiedOn;
+	}
+
 	@Column(name="MODIFIED_BY")
-	public String getModifiedBy() {
-		return modifiedBy;
+	public String getModifiedBy(){
+		return this.ModifiedBy;
 	}
-	
-	
-	public void setUserId(String userId) {
-		this.userId = userId;
+	public void setModifiedBy(String ModifiedBy){
+		this.ModifiedBy = ModifiedBy;
 	}
-	public void setCorpEmailId(String corpEmailId) {
-		this.corpEmailId = corpEmailId;
-	}
-	public void setPwd(String pwd) {
-		this.pwd = pwd;
-	}
-	public void setMobileNo(String mobileNo) {
-		this.mobileNo = mobileNo;
-	}
-	public void setNoOfAtmpts(int noOfAtmpts) {
-		this.noOfAtmpts = noOfAtmpts;
-	}
-	public void setLastLoginTime(Date lastLoginTime) {
-		this.lastLoginTime = lastLoginTime;
-	}
-	public void setPwdExpiryDate(Date pwdExpiryDate) {
-		this.pwdExpiryDate = pwdExpiryDate;
-	}
-	public void setCreatedOn(Date createdOn) {
-		this.createdOn = createdOn;
-	}
-	public void setCreatedBy(String createdBy) {
-		this.createdBy = createdBy;
-	}
-	public void setModifiedOn(Date modifiedOn) {
-		this.modifiedOn = modifiedOn;
-	}
-	public void setModifiedBy(String modifiedBy) {
-		this.modifiedBy = modifiedBy;
-	}
+
+
 }

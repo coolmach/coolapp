@@ -40,6 +40,7 @@
 		<property name="hbm2ddl.auto">update</property>
 
 		<mapping class="com.cbuddy.beans.Poit" />
+		<mapping class="com.cbuddy.beans.Pdre" />
 		<mapping class="com.cbuddy.beans.Ucred" />
 		<mapping class="com.cbuddy.beans.Uprof" />
 

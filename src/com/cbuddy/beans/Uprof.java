@@ -1,208 +1,213 @@
-package com.cbuddy.beans;
+package com.cbuddy.beans; 
 
-import java.util.Date;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import java.sql.Timestamp;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "Uprof")
+
 public class Uprof {
-	private int userId;
-	private String corpId;
-	private String firstName;
-	private String lastName;
-	private String gender;
-	private String dob;
-	private String address;
-	private String pincode;
-	private String city;
-	private String personalEmailId;
-	private String mobileNo;
-	private String alternateNo;
-	private String userCategory;
-	private String userStatus;
-	private String userRating;
-	private String emailVerificationStatus;
-	private String mobileVerificationStatus;
-	private Date createdOn;
-	private String createdBy;
-	private Date modifiedOn;
-	private String modifiedBy;
-	
+	private int UserId;
+	private int CorpId;
+	private String FirstName;
+	private String LastName;
+	private String Gender;
+	private String Dob;
+	private String Address;
+	private String Pincode;
+	private String Location;
+	private String City;
+	private String PersonalEmailId;
+	private String MobileNo;
+	private String AlternateNo;
+	private String UserCategory;
+	private String UserStatus;
+	private String UserRating;
+	private String EmailVerificationStatus;
+	private String MobileVerificationStatus;
+	private Timestamp CreatedOn;
+	private String CreatedBy;
+	private Timestamp ModifiedOn;
+	private String ModifiedBy;
+
 	@Id
-	@GeneratedValue
+	@GeneratedValue	
 	@Column(name="USER_ID")
-	public int getUserId() {
-		return userId;
+	public int getUserId(){
+		return this.UserId;
 	}
-	
+	public void setUserId(int UserId){
+		this.UserId = UserId;
+	}
+
 	@Column(name="CORP_ID")
-	public String getCorpId() {
-		return corpId;
+	public int getCorpId(){
+		return this.CorpId;
 	}
-	
+	public void setCorpId(int CorpId){
+		this.CorpId = CorpId;
+	}
+
 	@Column(name="FIRST_NAME")
-	public String getFirstName() {
-		return firstName;
+	public String getFirstName(){
+		return this.FirstName;
 	}
-	
+	public void setFirstName(String FirstName){
+		this.FirstName = FirstName;
+	}
+
 	@Column(name="LAST_NAME")
-	public String getLastName() {
-		return lastName;
+	public String getLastName(){
+		return this.LastName;
 	}
-	
+	public void setLastName(String LastName){
+		this.LastName = LastName;
+	}
+
 	@Column(name="GENDER")
-	public String getGender() {
-		return gender;
+	public String getGender(){
+		return this.Gender;
 	}
-	
+	public void setGender(String Gender){
+		this.Gender = Gender;
+	}
+
 	@Column(name="DOB")
-	public String getDob() {
-		return dob;
+	public String getDob(){
+		return this.Dob;
 	}
-	
+	public void setDob(String Dob){
+		this.Dob = Dob;
+	}
+
 	@Column(name="ADDRESS")
-	public String getAddress() {
-		return address;
+	public String getAddress(){
+		return this.Address;
 	}
-	
+	public void setAddress(String Address){
+		this.Address = Address;
+	}
+
 	@Column(name="PINCODE")
-	public String getPincode() {
-		return pincode;
+	public String getPincode(){
+		return this.Pincode;
 	}
-	
+	public void setPincode(String Pincode){
+		this.Pincode = Pincode;
+	}
+
+	@Column(name="LOCATION")
+	public String getLocation(){
+		return this.Location;
+	}
+	public void setLocation(String Location){
+		this.Location = Location;
+	}
+
 	@Column(name="CITY")
-	public String getCity() {
-		return city;
+	public String getCity(){
+		return this.City;
 	}
-	
+	public void setCity(String City){
+		this.City = City;
+	}
+
 	@Column(name="PERSONAL_EMAIL_ID")
-	public String getPersonalEmailId() {
-		return personalEmailId;
+	public String getPersonalEmailId(){
+		return this.PersonalEmailId;
 	}
-	
+	public void setPersonalEmailId(String PersonalEmailId){
+		this.PersonalEmailId = PersonalEmailId;
+	}
+
 	@Column(name="MOBILE_NO")
-	public String getMobileNo() {
-		return mobileNo;
+	public String getMobileNo(){
+		return this.MobileNo;
 	}
-	
+	public void setMobileNo(String MobileNo){
+		this.MobileNo = MobileNo;
+	}
+
 	@Column(name="ALTERNATE_NO")
-	public String getAlternateNo() {
-		return alternateNo;
+	public String getAlternateNo(){
+		return this.AlternateNo;
 	}
-	
+	public void setAlternateNo(String AlternateNo){
+		this.AlternateNo = AlternateNo;
+	}
+
 	@Column(name="USER_CATEGORY")
-	public String getUserCategory() {
-		return userCategory;
+	public String getUserCategory(){
+		return this.UserCategory;
 	}
-	
+	public void setUserCategory(String UserCategory){
+		this.UserCategory = UserCategory;
+	}
+
 	@Column(name="USER_STATUS")
-	public String getUserStatus() {
-		return userStatus;
+	public String getUserStatus(){
+		return this.UserStatus;
 	}
-	
+	public void setUserStatus(String UserStatus){
+		this.UserStatus = UserStatus;
+	}
+
 	@Column(name="USER_RATING")
-	public String getUserRating() {
-		return userRating;
+	public String getUserRating(){
+		return this.UserRating;
 	}
-	
+	public void setUserRating(String UserRating){
+		this.UserRating = UserRating;
+	}
+
 	@Column(name="EMAIL_VERIFICATION_STATUS")
-	public String getEmailVerificationStatus() {
-		return emailVerificationStatus;
+	public String getEmailVerificationStatus(){
+		return this.EmailVerificationStatus;
 	}
-	
+	public void setEmailVerificationStatus(String EmailVerificationStatus){
+		this.EmailVerificationStatus = EmailVerificationStatus;
+	}
+
 	@Column(name="MOBILE_VERIFICATION_STATUS")
-	public String getMobileVerificationStatus() {
-		return mobileVerificationStatus;
+	public String getMobileVerificationStatus(){
+		return this.MobileVerificationStatus;
 	}
-	
+	public void setMobileVerificationStatus(String MobileVerificationStatus){
+		this.MobileVerificationStatus = MobileVerificationStatus;
+	}
+
 	@Column(name="CREATED_ON")
-	public Date getCreatedOn() {
-		return createdOn;
+	public Timestamp getCreatedOn(){
+		return this.CreatedOn ;
 	}
-	
+	public void setCreatedOn(Timestamp CreatedOn){
+		this.CreatedOn = CreatedOn;
+	}
+
 	@Column(name="CREATED_BY")
-	public String getCreatedBy() {
-		return createdBy;
+	public String getCreatedBy(){
+		return this.CreatedBy;
 	}
-	
+	public void setCreatedBy(String CreatedBy){
+		this.CreatedBy = CreatedBy;
+	}
+
 	@Column(name="MODIFIED_ON")
-	public Date getModifiedOn() {
-		return modifiedOn;
+	public Timestamp getModifiedOn(){
+		return this.ModifiedOn ;
 	}
-	
+	public void setModifiedOn(Timestamp ModifiedOn){
+		this.ModifiedOn = ModifiedOn;
+	}
+
 	@Column(name="MODIFIED_BY")
-	public String getModifiedBy() {
-		return modifiedBy;
+	public String getModifiedBy(){
+		return this.ModifiedBy;
 	}
-	
-	public void setUserId(int userId) {
-		this.userId = userId;
+	public void setModifiedBy(String ModifiedBy){
+		this.ModifiedBy = ModifiedBy;
 	}
-	public void setCorpId(String corpId) {
-		this.corpId = corpId;
-	}
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
-	}
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
-	}
-	public void setGender(String gender) {
-		this.gender = gender;
-	}
-	public void setDob(String dob) {
-		this.dob = dob;
-	}
-	public void setAddress(String address) {
-		this.address = address;
-	}
-	public void setPincode(String pincode) {
-		this.pincode = pincode;
-	}
-	public void setCity(String city) {
-		this.city = city;
-	}
-	public void setPersonalEmailId(String personalEmailId) {
-		this.personalEmailId = personalEmailId;
-	}
-	public void setMobileNo(String mobileNo) {
-		this.mobileNo = mobileNo;
-	}
-	public void setAlternateNo(String alternateNo) {
-		this.alternateNo = alternateNo;
-	}
-	public void setUserCategory(String userCategory) {
-		this.userCategory = userCategory;
-	}
-	public void setUserStatus(String userStatus) {
-		this.userStatus = userStatus;
-	}
-	public void setUserRating(String userRating) {
-		this.userRating = userRating;
-	}
-	public void setEmailVerificationStatus(String emailVerificationStatus) {
-		this.emailVerificationStatus = emailVerificationStatus;
-	}
-	public void setMobileVerificationStatus(String mobileVerificationStatus) {
-		this.mobileVerificationStatus = mobileVerificationStatus;
-	}
-	public void setCreatedOn(Date createdOn) {
-		this.createdOn = createdOn;
-	}
-	public void setCreatedBy(String createdBy) {
-		this.createdBy = createdBy;
-	}
-	public void setModifiedOn(Date modifiedOn) {
-		this.modifiedOn = modifiedOn;
-	}
-	public void setModifiedBy(String modifiedBy) {
-		this.modifiedBy = modifiedBy;
-	}
-	
-	
+
+
 }

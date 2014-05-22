@@ -1,5 +1,6 @@
 package com.cbuddy.services;
 
+import java.sql.Timestamp;
 import java.util.Date;
 import java.util.List;
 
@@ -56,7 +57,7 @@ public class AuthenticateUserService {
 		user.setFirstName(uprof.getFirstName());
 		user.setMobileNo(ucred.getMobileNo());
 		user.setEmailId(ucred.getCorpEmailId());
-		user.setCorpId(uprof.getCreatedBy());
+		user.setCorpId(uprof.getCorpId());
 		session.close();
 		
 		return user;
@@ -84,26 +85,28 @@ public class AuthenticateUserService {
 		return ucred;
 	}
 	
-	private void logUnsuccessfulAttempt(String userId, Ucred ucred, Session session){
+	private void logUnsuccessfulAttempt(int userId, Ucred ucred, Session session){
+		String userIdStr = String.valueOf(userId);
 		ucred.setNoOfAtmpts(ucred.getNoOfAtmpts() + 1);
-		ucred.setModifiedBy(ucred.getUserId());
-		ucred.setModifiedOn(new Date(System.currentTimeMillis()));
+		ucred.setModifiedBy(userIdStr);
+		ucred.setModifiedOn(new Timestamp(System.currentTimeMillis()));
 		session.save(ucred);
 		session.getTransaction().commit();
 	}
 	
-	private void logSuccessfulAttempt(String userId, Ucred ucred, Session session){
+	private void logSuccessfulAttempt(int userId, Ucred ucred, Session session){
+		String userIdStr = String.valueOf(userId);
 		ucred.setNoOfAtmpts(0);
-		ucred.setLastLoginTime(new Date(System.currentTimeMillis()));
-		ucred.setModifiedBy(ucred.getUserId());
-		ucred.setModifiedOn(new Date(System.currentTimeMillis()));
+		ucred.setLastLoginTime(new Timestamp(System.currentTimeMillis()));
+		ucred.setModifiedBy(userIdStr);
+		ucred.setModifiedOn(new Timestamp(System.currentTimeMillis()));
 		session.save(ucred);
 		session.getTransaction().commit();
 	}
 	
-	private Uprof getUserProfile(String userId, Session session){
+	private Uprof getUserProfile(int userId, Session session){
 		Query query = session.createQuery("from Uprof where user_id = :userId");
-		query.setParameter("userId", userId);
+		query.setParameter("userId", String.valueOf(userId));
 		List<Uprof> uprofList = (List<Uprof>)query.list();
 		return uprofList.get(0);
 	}

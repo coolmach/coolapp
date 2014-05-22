@@ -1,11 +1,11 @@
-package com.cbuddy.listners;
+package com.cbuddy.listeners;
 
 import javax.servlet.*;
 
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.AnnotationConfiguration;
 
-public class TablesCreatorListner implements ServletContextListener{
+public class TablesCreatorListener implements ServletContextListener{
 	
     private SessionFactory factory;
 
