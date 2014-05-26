@@ -8,314 +8,315 @@ import javax.persistence.*;
 @Table(name = "Pdre")
 
 public class Pdre {
-	private int PostId;
-	private String SubCategory;
-	private String RentOrSale;
-	private String NewOrResale;
-	private String Area;
-	private String Location;
-	private String City;
-	private double PriceValue;
-	private String PriceUnit;
-	private String FacingDirection;
-	private String MaritalPreference;
-	private String FoodPreference;
-	private String RegionalPreference;
-	private int Bedrooms;
-	private int AgeValue;
-	private String AgeUnit;
-	private String Furnished;
-	private String FloorNumber;
-	private double Maintenance;
-	private String ApprovalAuthority;
-	private String BuilderName;
-	private String Sharing;
-	private String Gender;
-	private int NoOfRoommates;
-	private String CarParking;
-	private String Food;
-	private String Wifi;
-	private String Gym;
-	private String ChildrenPlayArea;
-	private String SwimmingPool;
-	private Timestamp CreatedOn;
-	private String CreatedBy;
-	private Timestamp ModifiedOn;
-	private String ModifiedBy;
+	private int postId;
+	private String subCategory;
+	private String rentOrSale;
+	private String newOrResale;
+	private String area;
+	private String location;
+	private String city;
+	private double priceValue;
+	private String PpriceUnit;
+	private String facingDirection;
+	private String maritalPreference;
+	private String foodPreference;
+	private String regionalPreference;
+	private int bedrooms;
+	private int ageValue;
+	private String ageUnit;
+	private String furnished;
+	private String floorNumber;
+	private double maintenance;
+	private String approvalAuthority;
+	private String builderName;
+	private String sharing;
+	private String gender;
+	private int noOfRoommates;
+	private String carParking;
+	private String food;
+	private String wifi;
+	private String gym;
+	private String childrenPlayArea;
+	private String swimmingPool;
+	private Timestamp createdOn;
+	private String createdBy;
+	private Timestamp modifiedOn;
+	private String modifiedBy;
+	
 
 
 	@Id
 	@GeneratedValue	
 	@Column(name="POST_ID")
 	public int getPostId(){
-		return this.PostId;
+		return this.postId;
 	}
 	public void setPostId(int PostId){
-		this.PostId = PostId;
+		this.postId = PostId;
 	}
 
 	@Column(name="SUB_CATEGORY")
 	public String getSubCategory(){
-		return this.SubCategory;
+		return this.subCategory;
 	}
 	public void setSubCategory(String SubCategory){
-		this.SubCategory = SubCategory;
+		this.subCategory = SubCategory;
 	}
 
 	@Column(name="RENT_OR_SALE")
 	public String getRentOrSale(){
-		return this.RentOrSale;
+		return this.rentOrSale;
 	}
 	public void setRentOrSale(String RentOrSale){
-		this.RentOrSale = RentOrSale;
+		this.rentOrSale = RentOrSale;
 	}
 
 	@Column(name="NEW_OR_RESALE")
 	public String getNewOrResale(){
-		return this.NewOrResale;
+		return this.newOrResale;
 	}
 	public void setNewOrResale(String NewOrResale){
-		this.NewOrResale = NewOrResale;
+		this.newOrResale = NewOrResale;
 	}
 
 	@Column(name="AREA")
 	public String getArea(){
-		return this.Area;
+		return this.area;
 	}
 	public void setArea(String Area){
-		this.Area = Area;
+		this.area = Area;
 	}
 
 	@Column(name="LOCATION")
 	public String getLocation(){
-		return this.Location;
+		return this.location;
 	}
 	public void setLocation(String Location){
-		this.Location = Location;
+		this.location = Location;
 	}
 
 	@Column(name="CITY")
 	public String getCity(){
-		return this.City;
+		return this.city;
 	}
 	public void setCity(String City){
-		this.City = City;
+		this.city = City;
 	}
 
 	@Column(name="PRICE_VALUE")
 	public double getPriceValue(){
-		return this.PriceValue;
+		return this.priceValue;
 	}
 	public void setPriceValue(double PriceValue){
-		this.PriceValue = PriceValue;
+		this.priceValue = PriceValue;
 	}
 
 	@Column(name="PRICE_UNIT")
 	public String getPriceUnit(){
-		return this.PriceUnit;
+		return this.PpriceUnit;
 	}
 	public void setPriceUnit(String PriceUnit){
-		this.PriceUnit = PriceUnit;
+		this.PpriceUnit = PriceUnit;
 	}
 
 	@Column(name="FACING_DIRECTION")
 	public String getFacingDirection(){
-		return this.FacingDirection;
+		return this.facingDirection;
 	}
 	public void setFacingDirection(String FacingDirection){
-		this.FacingDirection = FacingDirection;
+		this.facingDirection = FacingDirection;
 	}
 
 	@Column(name="MARITAL_PREFERENCE")
 	public String getMaritalPreference(){
-		return this.MaritalPreference;
+		return this.maritalPreference;
 	}
 	public void setMaritalPreference(String MaritalPreference){
-		this.MaritalPreference = MaritalPreference;
+		this.maritalPreference = MaritalPreference;
 	}
 
 	@Column(name="FOOD_PREFERENCE")
 	public String getFoodPreference(){
-		return this.FoodPreference;
+		return this.foodPreference;
 	}
 	public void setFoodPreference(String FoodPreference){
-		this.FoodPreference = FoodPreference;
+		this.foodPreference = FoodPreference;
 	}
 
 	@Column(name="REGIONAL_PREFERENCE")
 	public String getRegionalPreference(){
-		return this.RegionalPreference;
+		return this.regionalPreference;
 	}
 	public void setRegionalPreference(String RegionalPreference){
-		this.RegionalPreference = RegionalPreference;
+		this.regionalPreference = RegionalPreference;
 	}
 
 	@Column(name="BEDROOMS")
 	public int getBedrooms(){
-		return this.Bedrooms;
+		return this.bedrooms;
 	}
 	public void setBedrooms(int Bedrooms){
-		this.Bedrooms = Bedrooms;
+		this.bedrooms = Bedrooms;
 	}
 
 	@Column(name="AGE_VALUE")
 	public int getAgeValue(){
-		return this.AgeValue;
+		return this.ageValue;
 	}
 	public void setAgeValue(int AgeValue){
-		this.AgeValue = AgeValue;
+		this.ageValue = AgeValue;
 	}
 
 	@Column(name="AGE_UNIT")
 	public String getAgeUnit(){
-		return this.AgeUnit;
+		return this.ageUnit;
 	}
 	public void setAgeUnit(String AgeUnit){
-		this.AgeUnit = AgeUnit;
+		this.ageUnit = AgeUnit;
 	}
 
 	@Column(name="FURNISHED")
 	public String getFurnished(){
-		return this.Furnished;
+		return this.furnished;
 	}
 	public void setFurnished(String Furnished){
-		this.Furnished = Furnished;
+		this.furnished = Furnished;
 	}
 
 	@Column(name="FLOOR_NUMBER")
 	public String getFloorNumber(){
-		return this.FloorNumber;
+		return this.floorNumber;
 	}
 	public void setFloorNumber(String FloorNumber){
-		this.FloorNumber = FloorNumber;
+		this.floorNumber = FloorNumber;
 	}
 
 	@Column(name="MAINTENANCE")
 	public double getMaintenance(){
-		return this.Maintenance;
+		return this.maintenance;
 	}
 	public void setMaintenance(double Maintenance){
-		this.Maintenance = Maintenance;
+		this.maintenance = Maintenance;
 	}
 
 	@Column(name="APPROVAL_AUTHORITY")
 	public String getApprovalAuthority(){
-		return this.ApprovalAuthority;
+		return this.approvalAuthority;
 	}
 	public void setApprovalAuthority(String ApprovalAuthority){
-		this.ApprovalAuthority = ApprovalAuthority;
+		this.approvalAuthority = ApprovalAuthority;
 	}
 
 	@Column(name="BUILDER_NAME")
 	public String getBuilderName(){
-		return this.BuilderName;
+		return this.builderName;
 	}
 	public void setBuilderName(String BuilderName){
-		this.BuilderName = BuilderName;
+		this.builderName = BuilderName;
 	}
 
 	@Column(name="SHARING")
 	public String getSharing(){
-		return this.Sharing;
+		return this.sharing;
 	}
 	public void setSharing(String Sharing){
-		this.Sharing = Sharing;
+		this.sharing = Sharing;
 	}
 
 	@Column(name="GENDER")
 	public String getGender(){
-		return this.Gender;
+		return this.gender;
 	}
 	public void setGender(String Gender){
-		this.Gender = Gender;
+		this.gender = Gender;
 	}
 
 	@Column(name="NO_OF_ROOMMATES")
 	public int getNoOfRoommates(){
-		return this.NoOfRoommates;
+		return this.noOfRoommates;
 	}
 	public void setNoOfRoommates(int NoOfRoommates){
-		this.NoOfRoommates = NoOfRoommates;
+		this.noOfRoommates = NoOfRoommates;
 	}
 
 	@Column(name="CAR_PARKING")
 	public String getCarParking(){
-		return this.CarParking;
+		return this.carParking;
 	}
 	public void setCarParking(String CarParking){
-		this.CarParking = CarParking;
+		this.carParking = CarParking;
 	}
 
 	@Column(name="FOOD")
 	public String getFood(){
-		return this.Food;
+		return this.food;
 	}
 	public void setFood(String Food){
-		this.Food = Food;
+		this.food = Food;
 	}
 
 	@Column(name="WIFI")
 	public String getWifi(){
-		return this.Wifi;
+		return this.wifi;
 	}
 	public void setWifi(String Wifi){
-		this.Wifi = Wifi;
+		this.wifi = Wifi;
 	}
 
 	@Column(name="GYM")
 	public String getGym(){
-		return this.Gym;
+		return this.gym;
 	}
 	public void setGym(String Gym){
-		this.Gym = Gym;
+		this.gym = Gym;
 	}
 
 	@Column(name="CHILDREN_PLAY_AREA")
 	public String getChildrenPlayArea(){
-		return this.ChildrenPlayArea;
+		return this.childrenPlayArea;
 	}
 	public void setChildrenPlayArea(String ChildrenPlayArea){
-		this.ChildrenPlayArea = ChildrenPlayArea;
+		this.childrenPlayArea = ChildrenPlayArea;
 	}
 
 	@Column(name="SWIMMING_POOL")
 	public String getSwimmingPool(){
-		return this.SwimmingPool;
+		return this.swimmingPool;
 	}
 	public void setSwimmingPool(String SwimmingPool){
-		this.SwimmingPool = SwimmingPool;
+		this.swimmingPool = SwimmingPool;
 	}
 
 	@Column(name="CREATED_ON")
 	public Timestamp getCreatedOn(){
-		return this.CreatedOn ;
+		return this.createdOn ;
 	}
 	public void setCreatedOn(Timestamp CreatedOn){
-		this.CreatedOn = CreatedOn;
+		this.createdOn = CreatedOn;
 	}
 
 	@Column(name="CREATED_BY")
 	public String getCreatedBy(){
-		return this.CreatedBy;
+		return this.createdBy;
 	}
 	public void setCreatedBy(String CreatedBy){
-		this.CreatedBy = CreatedBy;
+		this.createdBy = CreatedBy;
 	}
 
 	@Column(name="MODIFIED_ON")
 	public Timestamp getModifiedOn(){
-		return this.ModifiedOn ;
+		return this.modifiedOn ;
 	}
 	public void setModifiedOn(Timestamp ModifiedOn){
-		this.ModifiedOn = ModifiedOn;
+		this.modifiedOn = ModifiedOn;
 	}
 
 	@Column(name="MODIFIED_BY")
 	public String getModifiedBy(){
-		return this.ModifiedBy;
+		return this.modifiedBy;
 	}
 	public void setModifiedBy(String ModifiedBy){
-		this.ModifiedBy = ModifiedBy;
+		this.modifiedBy = ModifiedBy;
 	}
 
 

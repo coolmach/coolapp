@@ -176,7 +176,7 @@
 	<div class="col-md-12 selected_filters"></div>
 	<div class="col-md-12">
 		<a class="grey_link" href="<s:url action=""  />">HOME</a> >
-		<span id="cat"><s:property value="category" /></span> > <span id="sub"><s:property value="subCategory" /></span>
+		<span id="cat"><s:property value="category" /></span> > <span id="sub"><s:property value="subCat" /></span>
 	</div>
 </div>
 <!-- <div class="col-md-4"></div> -->

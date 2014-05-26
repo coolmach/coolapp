@@ -9,206 +9,205 @@ import javax.persistence.*;
 
 public class Poit {
 
-	private int PostId;
-	private String Category;
-	private String SubCategory;
-	private double Price;
-	private String Negotiable;
-	private String Title;
-	private String ContactNo;
-	private String ContactPersonName;
-	private String Description;
-	private String Location;
-	private String City;
-	private String ImageFileName;
-	private String ImageType;
-	private String ThumbnailName;
-	private String ThumbnailType;
-	private String UserFirstName;
-	private int CorpId;
-	private int Rating;
-	private Timestamp CreatedOn;
-	private String CreatedBy;
-	private Timestamp ModifiedOn;
-	private String ModifiedBy;
-
-
+	private int postId;
+	private String category;
+	private String subCategory;
+	private double price;
+	private String negotiable;
+	private String title;
+	private String contactNo;
+	private String contactPersonName;
+	private String description;
+	private String location;
+	private String city;
+	private String imageFileName;
+	private String imageType;
+	private String thumbnailName;
+	private String thumbnailType;
+	private String userFirstName;
+	private int corpId;
+	private int rating;
+	private Timestamp createdOn;
+	private String createdBy;
+	private Timestamp modifiedOn;
+	private String modifiedBy;
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)	
 	@Column(name="POST_ID")
 	public int getPostId(){
-		return this.PostId;
+		return this.postId;
 	}
 	public void setPostId(int PostId){
-		this.PostId = PostId;
+		this.postId = PostId;
 	}
 
 	@Column(name="CATEGORY")
 	public String getCategory(){
-		return this.Category;
+		return this.category;
 	}
 	public void setCategory(String Category){
-		this.Category = Category;
+		this.category = Category;
 	}
 
 	@Column(name="SUB_CATEGORY")
 	public String getSubCategory(){
-		return this.SubCategory;
+		return this.subCategory;
 	}
 	public void setSubCategory(String SubCategory){
-		this.SubCategory = SubCategory;
+		this.subCategory = SubCategory;
 	}
 
 	@Column(name="PRICE")
 	public double getPrice(){
-		return this.Price;
+		return this.price;
 	}
 	public void setPrice(double Price){
-		this.Price = Price;
+		this.price = Price;
 	}
 
 	@Column(name="NEGOTIABLE")
 	public String getNegotiable(){
-		return this.Negotiable;
+		return this.negotiable;
 	}
 	public void setNegotiable(String Negotiable){
-		this.Negotiable = Negotiable;
+		this.negotiable = Negotiable;
 	}
 
 	@Column(name="TITLE")
 	public String getTitle(){
-		return this.Title;
+		return this.title;
 	}
 	public void setTitle(String Title){
-		this.Title = Title;
+		this.title = Title;
 	}
 
 	@Column(name="CONTACT_NO")
 	public String getContactNo(){
-		return this.ContactNo;
+		return this.contactNo;
 	}
 	public void setContactNo(String ContactNo){
-		this.ContactNo = ContactNo;
+		this.contactNo = ContactNo;
 	}
 
 	@Column(name="CONTACT_PERSON_NAME")
 	public String getContactPersonName(){
-		return this.ContactPersonName;
+		return this.contactPersonName;
 	}
 	public void setContactPersonName(String ContactPersonName){
-		this.ContactPersonName = ContactPersonName;
+		this.contactPersonName = ContactPersonName;
 	}
 
 	@Column(name="DESCRIPTION")
 	public String getDescription(){
-		return this.Description;
+		return this.description;
 	}
 	public void setDescription(String Description){
-		this.Description = Description;
+		this.description = Description;
 	}
 
 	@Column(name="LOCATION")
 	public String getLocation(){
-		return this.Location;
+		return this.location;
 	}
 	public void setLocation(String Location){
-		this.Location = Location;
+		this.location = Location;
 	}
 
 	@Column(name="CITY")
 	public String getCity(){
-		return this.City;
+		return this.city;
 	}
 	public void setCity(String City){
-		this.City = City;
+		this.city = City;
 	}
 
 	@Column(name="IMAGE_FILE_NAME")
 	public String getImageFileName(){
-		return this.ImageFileName;
+		return this.imageFileName;
 	}
 	public void setImageFileName(String ImageFileName){
-		this.ImageFileName = ImageFileName;
+		this.imageFileName = ImageFileName;
 	}
 
 	@Column(name="IMAGE_TYPE")
 	public String getImageType(){
-		return this.ImageType;
+		return this.imageType;
 	}
 	public void setImageType(String ImageType){
-		this.ImageType = ImageType;
+		this.imageType = ImageType;
 	}
 
 	@Column(name="THUMBNAIL_NAME")
 	public String getThumbnailName(){
-		return this.ThumbnailName;
+		return this.thumbnailName;
 	}
 	public void setThumbnailName(String ThumbnailName){
-		this.ThumbnailName = ThumbnailName;
+		this.thumbnailName = ThumbnailName;
 	}
 
 	@Column(name="THUMBNAIL_TYPE")
 	public String getThumbnailType(){
-		return this.ThumbnailType;
+		return this.thumbnailType;
 	}
 	public void setThumbnailType(String ThumbnailType){
-		this.ThumbnailType = ThumbnailType;
+		this.thumbnailType = ThumbnailType;
 	}
 
 	@Column(name="USER_FIRST_NAME")
 	public String getUserFirstName(){
-		return this.UserFirstName;
+		return this.userFirstName;
 	}
 	public void setUserFirstName(String UserFirstName){
-		this.UserFirstName = UserFirstName;
+		this.userFirstName = UserFirstName;
 	}
 
 	@Column(name="CORP_ID")
 	public int getCorpId(){
-		return this.CorpId;
+		return this.corpId;
 	}
 	public void setCorpId(int CorpId){
-		this.CorpId = CorpId;
+		this.corpId = CorpId;
 	}
 
 	@Column(name="RATING")
 	public int getRating(){
-		return this.Rating;
+		return this.rating;
 	}
 	public void setRating(int Rating){
-		this.Rating = Rating;
+		this.rating = Rating;
 	}
 
 	@Column(name="CREATED_ON")
 	public Timestamp getCreatedOn(){
-		return this.CreatedOn ;
+		return this.createdOn ;
 	}
 	public void setCreatedOn(Timestamp CreatedOn){
-		this.CreatedOn = CreatedOn;
+		this.createdOn = CreatedOn;
 	}
 
 	@Column(name="CREATED_BY")
 	public String getCreatedBy(){
-		return this.CreatedBy;
+		return this.createdBy;
 	}
 	public void setCreatedBy(String CreatedBy){
-		this.CreatedBy = CreatedBy;
+		this.createdBy = CreatedBy;
 	}
 
 	@Column(name="MODIFIED_ON")
 	public Timestamp getModifiedOn(){
-		return this.ModifiedOn ;
+		return this.modifiedOn ;
 	}
 	public void setModifiedOn(Timestamp ModifiedOn){
-		this.ModifiedOn = ModifiedOn;
+		this.modifiedOn = ModifiedOn;
 	}
 
 	@Column(name="MODIFIED_BY")
 	public String getModifiedBy(){
-		return this.ModifiedBy;
+		return this.modifiedBy;
 	}
 	public void setModifiedBy(String ModifiedBy){
-		this.ModifiedBy = ModifiedBy;
+		this.modifiedBy = ModifiedBy;
 	}
 
 

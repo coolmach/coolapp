@@ -1,10 +1,11 @@
 $(document).ready(function() {
+	
 	var subCat = "";
 	var path="";
 	var cat = $('#cat').text();
 
 	if(cat == 'REAL ESTATE'){
-		path="realestate";
+		path="adListForRealEstate";
 		subCat="Apartment/House For Rent";
 		$("#loc-main").show();
 		$("#bhk-main").show();
@@ -53,7 +54,6 @@ $(document).ready(function() {
 		//alert(text.text());
 		$("input[class^=check_]:checked").each(function(){
 			var sub = $(this).attr('name');
-
 			if(text.text() == $(this).val()){
 				$(this).attr("checked",false);
 				//return false;
@@ -69,7 +69,7 @@ $(document).ready(function() {
 			success: function(data, status) {
 				//alert(data);
 				$('.data').html('');
-				$('.data').html($(data).find('.data').html());
+				$('.data').html(data);
 
 			}
 		});
@@ -78,7 +78,7 @@ $(document).ready(function() {
 	});
 
 	//if user clicks on checkboxes
-	$('input[class^=check_]').click(function() {
+	$('input[class^=check_]').click(function(event) {
 
 		var data="";
 		data = data + '&subCategory='+subCat;
@@ -99,12 +99,13 @@ $(document).ready(function() {
 			url: "/cbuddy/"+path, 
 			data: data,
 			success: function(data, status) {
-				//alert(data);
+				//alert(data.trim());
 				$('.data').html('');
-				$('.data').html($(data).find('.data').html());
+				$('.data').html(data);
 
 			}
 		});
+	
 	});
 
 	//if user clicks on subcaregory
@@ -130,15 +131,18 @@ $(document).ready(function() {
 
 		$(this).parent().hide();
 		subCat = $(this).text();
+		
 		var data = "";
-		var data = data + '&subCategory='+subCat;
+		var data = data + '&subCat='+subCat;
+		//alert(data);
 		$.ajax({
 			type: 'POST',
 			url: "/cbuddy/"+path, 
 			data: data,
 			success: function(data, status) {
 
-				//alert(data);
+				$('.data').html('');
+				$('.data').html(data);
 				$('#sub').text(subCat);
 			}
 		});

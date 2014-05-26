@@ -20,7 +20,7 @@
 			</div>
 		</div>
 		
-		<form class="form-inline" role="form" id="apartment-rent">
+	 <form class="form-inline" id="apartment-rent"> 
 
 			<div class=" pull-left hidden-subcat" id="loc-main">
 				<div id="location" class="inputstyle pointer form-control">
@@ -345,51 +345,19 @@
 				</div>
 
 			</div>
-		</form>
+		 </form> 
 	</div>
 	<div class="col-md-12 selected_filters"></div>
 	<div class="col-md-12">
 		<a class="grey_link" href="<s:url action=""  />">HOME</a> >
-		<span id="cat"><s:property value="category" /></span> > <span id="sub"><s:property value="subCategory" /></span>
+		<span id="cat"><s:property value="category" /></span> > <span id="sub"><s:property value="subCat" /></span>
 	</div>
 </div>
+
 <!-- <div class="col-md-4"></div> -->
 <div class="col-md-6 data">
-	<s:if test="adList.size() > 0">
-		<table class="table table-bordered">
-			<tr>
-				<th>Description</th>
-				<th></th>
-				<th>Price</th>
-				<th>Date</th>
-				<th>Posted By</th>
-			</tr>
-			<s:iterator value="adList" status="userStatus">
-				<tr>
-					<td><img class="images_ad" src=" <s:property value="imageFileName" />">
-					</td>
-					<td>
-						<p>
-							<s:property value="title" />
-						</p><%--  <s:iterator begin="1" end="rating">
-							<img class="rating_stars" src="images/star.jpg">
-						</s:iterator>  --%> <br /><small><b><s:property value="cityCode" />,<s:property
-									value="locCode" /> </b> </small><br /> <small>Contact <s:property
-								value="contactPerson" />,<s:property value="contactNo" /> </small>
-					</td>
-					<td><s:url action="addetails" var="urlTag">
-							<s:param name="price">
-								<s:property value="price" />
-							</s:param>
-						</s:url> <a class="blue_link" href="<s:property value="#urlTag" />"><s:property
-								value="price" /> </a>
-					</td>
-					<td><s:date name="rCreTime" format="dd/MM/yyyy" /></td>
-					<td><s:property value="firstName" />(<s:property
-							value="corpName" />)</td>
-				</tr>
-			</s:iterator>
-		</table>
 
-	</s:if>
+<s:if test='subCat.equals("Apartment/House For Rent")'>
+		<%@include file="./AdList_RealEstate_Apartment_For_Rent.jsp"%>
+</s:if>
 </div>

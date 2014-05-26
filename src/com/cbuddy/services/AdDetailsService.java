@@ -7,13 +7,15 @@ import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+
+import com.cbuddy.beans.Pdre;
 import com.cbuddy.beans.Poit;
 
 public class AdDetailsService {
 	
 	@SuppressWarnings("unchecked")
-	public List<Poit> getAdListByCategory(){
-		
+	public List<Poit> getAdListByCategory(Pdre pdre){
+		System.out.println("AdDetailsService.getAdListByCategory()"+pdre.getArea());
 		SessionFactory sessionFactory = (SessionFactory) ServletActionContext.getServletContext()
         .getAttribute("sessionFactory");
 		Session session = sessionFactory.openSession();

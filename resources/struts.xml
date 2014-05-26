@@ -30,10 +30,13 @@
 			<result name="success" type="tiles">/postad.tiles</result>
 			<result name="input" type="tiles">/home.tiles</result>
 		</action>	
-		<action name="realestate" class="com.cbuddy.action.user.HomeAction"
-			method="getAdListForRealEstate">
+		<action name="realestate" class="com.cbuddy.action.user.HomeAction" method="getAdListForRealEstate">
 			<result name="success" type="tiles">/realestate.tiles</result>
 		</action>
+		<action name="adListForRealEstate" class="com.cbuddy.action.user.HomeAction"
+			method="getAdListForRealEstate">
+			<result name="success">/AdList_RealEstate_Apartment_For_Rent.jsp</result>
+		</action> 
 		<action name="cars" class="com.cbuddy.action.user.HomeAction"
 			method="getAdListForCars">
 			<result name="success" type="tiles">/cars.tiles</result>
