@@ -235,12 +235,12 @@
 				</div>
 
 			</div>
-			<div class=" pull-left hidden-subcat" id="amenities-pg-main">
-				<div id="amenties-pg" class="inputstyle pointer form-control">
+			<div class=" pull-left hidden-subcat" id="amenitiesPg-main">
+				<div id="amenitiesPg" class="inputstyle pointer form-control">
 					Amenities <span
 						class="glyphicon glyphicon glyphicon-chevron-down form-control-show"></span>
 				</div>
-				<div id="subCategory_hidden_amenities_pg" class="subCategory_hidden_bck"
+				<div id="subCategory_hidden_amenitiesPg" class="subCategory_hidden_bck"
 					style="display: none;">
 					<ul class="list-unstyled">
 						<li><input type="checkbox" class="check_amenities_pg" name="amenities_pg" value="WiFi" /><span class="content">WiFi</span>

@@ -72,6 +72,17 @@ public class HomeAction extends ActionSupport implements ServletRequestAware{
 	}
 
 	public String getAdListForCars(){
+		
+		System.out.println("getAdListForCars(dd)"+subCategory);
+		if(category==""){
+			setCategory("REAL ESTATE");
+		}
+		if( category.equals("REAL ESTATE") && subCategory=="" ){
+			setSubCategory("Apartment/House For Rent");
+		}
+		AdDetailsService adDetailService =  new AdDetailsService();
+		adList = adDetailService.getAdListByCategory();
+		System.out.println("HomeAction.getAdListForCars()"+adList.size());
 
 		return "success";
 	}

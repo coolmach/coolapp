@@ -15,6 +15,11 @@ $(document).ready(function() {
 		$("#park-main").show();
 	}else if(cat == 'CARS'){
 		path="cars";
+		subCat="Cars";
+		$("#brand-main").show();
+		$("#loc-main").show();
+		$("#amt-main").show();
+		$("#used-main").show();
 	}else if(cat == 'HOUSEHOLD'){
 		path="household";
 	}else if(cat == 'LAPTOPS'){
@@ -105,17 +110,22 @@ $(document).ready(function() {
 	var lastVal="";
 	$("#sub-main li").click(function(){
 		var defaultSubCat = $(this).parent().children().first('.content').text();
+		//alert(lastVal);
+		//alert($(this).text()); 
+		//alert(defaultSubCat);
 		if(lastVal!=$(this).text() ){
-			if($(this).text()!=defaultSubCat){
+
+			//if($(this).text()!=defaultSubCat){
+			if(lastVal!=""){
 				$('.filters').remove();
+				//}
+				$("input[class^=check_]:checked").each(function()
+						{	
+					$(this).attr("checked",false);
+						});
 			}
 			lastVal = $(this).text();
 		}
-
-		$("input[class^=check_]:checked").each(function()
-				{	
-			$(this).attr("checked",false);
-				});
 
 		$(this).parent().hide();
 		subCat = $(this).text();
@@ -156,7 +166,7 @@ $(document).ready(function() {
 			$("#dir-main").hide();
 			$("#pref-main").hide();
 			$("#park-main").hide();
-			$("#amenities-pg-main").hide();
+			$("#amenitiesPg-main").hide();
 			$("#food-main").hide();
 			$("#share-main").hide();
 			$("#furnished-main").hide();
@@ -175,7 +185,7 @@ $(document).ready(function() {
 			$("#dir-main").hide();
 			$("#pref-main").hide();
 			$("#amenities-main").hide();
-			$("#amenities-pg-main").hide();
+			$("#amenitiesPg-main").hide();
 			$("#food-main").hide();
 			$("#share-main").hide();
 			$("#furnished-main").hide();
@@ -202,7 +212,7 @@ $(document).ready(function() {
 			$("#region-main").hide();
 			$("#loc-main").show();
 			$("#amt-main").show();
-			$("#amenities-pg-main").show();
+			$("#amenitiesPg-main").show();
 			$("#food-main").show();
 		}
 		if($(this).text()== 'Roommate Required'){
@@ -215,7 +225,7 @@ $(document).ready(function() {
 			$("#amenities-main").hide();
 			$("#approval-main").hide();
 			$("#amt-main").hide();
-			$("#amenities-pg-main").hide();
+			$("#amenitiesPg-main").hide();
 			$("#food-main").hide();
 			$("#area-main").show();
 			$("#loc-main").show();
@@ -245,6 +255,21 @@ $(document).ready(function() {
 			$("#sims-main").hide();
 
 		}
+
+		if($(this).text()!= 'Cars'){
+			if($(this).text()== 'Motorcycles' || $(this).text()== 'Scooters'){
+				$("#brandBikes-main").show();
+				$("#brand-main").hide();
+			}else{
+				$("#brand-main").hide();
+				$("#brandBikes-main").hide();
+			}
+
+		}else{
+			$("#brand-main").show();
+			$("#brandBikes-main").hide();
+		}
+
 
 	});
 
