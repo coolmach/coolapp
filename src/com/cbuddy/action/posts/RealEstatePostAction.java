@@ -1,5 +1,6 @@
 package com.cbuddy.action.posts;
 
+import java.io.File;
 import java.sql.Timestamp;
 import java.util.Map;
 
@@ -20,7 +21,9 @@ public class RealEstatePostAction extends ActionSupport implements SessionAware,
 	private static final long serialVersionUID = 1L;
 	
 	RealEstatePostDetails postDetails = new RealEstatePostDetails();
-
+	private File upload;
+    private String uploadFileName;
+    private String uploadContentType;
 	private Map<String,Object> session;
 
 	@Override
@@ -32,9 +35,8 @@ public class RealEstatePostAction extends ActionSupport implements SessionAware,
 		
 	}
 
-	
 	public void postAd(){
-		
+		System.out.println("RealEstatePostAction.postAd()"+uploadContentType+" : "+uploadFileName+" : "+upload);
 		User user = (User)session.get("userInfo");
 		Timestamp current = new Timestamp(System.currentTimeMillis());
 		String userId = String.valueOf(user.getUserId());
@@ -77,4 +79,30 @@ public class RealEstatePostAction extends ActionSupport implements SessionAware,
 	public RealEstatePostDetails getModel() {
 		return postDetails;
 	}
+	
+
+	public File getUpload() {
+		return upload;
+	}
+
+	public void setUpload(File upload) {
+		this.upload = upload;
+	}
+
+	public String getUploadFileName() {
+		return uploadFileName;
+	}
+
+	public void setUploadFileName(String uploadFileName) {
+		this.uploadFileName = uploadFileName;
+	}
+
+	public String getUploadContentType() {
+		return uploadContentType;
+	}
+
+	public void setUploadContentType(String uploadContentType) {
+		this.uploadContentType = uploadContentType;
+	}
+
 }

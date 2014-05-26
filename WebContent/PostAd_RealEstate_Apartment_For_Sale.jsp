@@ -30,7 +30,7 @@
 	</div>
 </div>
 <div class="col-md-8" id="my">
-	<form class="form-horizontal post" action="real_estate_postAd.action">
+	<s:form cssClass="form-horizontal post" action="real_estate_postAd.action" enctype="multipart/form-data">
 		<input type="hidden" name="category" value="REAL"/>
 		<input type="hidden" name="subCategory" value="1"/>
 		<div class="col-md-12 post_title">Apartment for Sale</div>
@@ -137,12 +137,12 @@
 			  <div class="fileinput-preview thumbnail" data-trigger="fileinput" style="width: 200px; height: 150px;"></div>
 			  <div>
 			    <span class="btn btn-default btn-file"><span class="fileinput-new">Select image</span><span class="fileinput-exists">Change</span>
-			    <input type="file" name="ImageFileName" id="ImageFileName"></span>
+			    <input type="file" name="upload" id="upload"></span>
 			    <a href="#" class="btn btn-default fileinput-exists" data-dismiss="fileinput">Remove</a>
 			  </div>
 			</div>		
 		</div>
-	</form>
+	</s:form>
 
 </div>
 <div class="col-md-5"></div>
