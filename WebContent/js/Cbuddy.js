@@ -24,6 +24,7 @@ $(document).ready(function() {
 		path="household";
 	}else if(cat == 'LAPTOPS'){
 		path="laptops";
+		subCat="LAPTOPS";
 		$("#brand-main").show();
 		$("#used-main").show();
 		$("#amt-main").show();
@@ -256,7 +257,7 @@ $(document).ready(function() {
 
 		}
 
-		if($(this).text()!= 'Cars'){
+		if($(this).text()!= 'Cars' && subCat=="Cars"){
 			if($(this).text()== 'Motorcycles' || $(this).text()== 'Scooters'){
 				$("#brandBikes-main").show();
 				$("#brand-main").hide();
@@ -265,7 +266,7 @@ $(document).ready(function() {
 				$("#brandBikes-main").hide();
 			}
 
-		}else{
+		}else if($(this).text()== 'Cars' && subCat=="Cars"){
 			$("#brand-main").show();
 			$("#brandBikes-main").hide();
 		}
