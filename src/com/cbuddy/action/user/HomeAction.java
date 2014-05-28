@@ -17,7 +17,7 @@ import com.opensymphony.xwork2.ModelDriven;
 public class HomeAction extends ActionSupport implements ServletRequestAware ,ModelDriven<Pdre>{
 
     Pdre pdre = new Pdre();
-	private List<Poit> adList = new ArrayList<Poit>();
+	private List<Pdre> adList = new ArrayList<Pdre>();
 	private String category="" ;
 	private String subCat="" ;
 	public String getSubCat() {
@@ -28,17 +28,17 @@ public class HomeAction extends ActionSupport implements ServletRequestAware ,Mo
 		this.subCat = subCat;
 	}
 
-	private int price;
+	//private int price;
 	private HttpServletRequest request = null;
 
-	public int getPrice() {
+	/*public int getPrice() {
 		return price;
 	}
 
 	public void setPrice(int price) {
 		this.price = price;
 	}
-
+*/
 	public String getCategory() {
 		return category;
 	}
@@ -47,11 +47,11 @@ public class HomeAction extends ActionSupport implements ServletRequestAware ,Mo
 		this.category = category;
 	}
 
-	public List<Poit> getAdList() {
+	public List<Pdre> getAdList() {
 		return adList;
 	}
 
-	public void setAdList(List<Poit> adList) {
+	public void setAdList(List<Pdre> adList) {
 		this.adList = adList;
 	}
 
@@ -74,7 +74,7 @@ public class HomeAction extends ActionSupport implements ServletRequestAware ,Mo
 	
 	public String getAdListForRealEstate(){
 
-		System.out.println("getAdListForRhbhbhbhealEstate(dd) pdre.getArea()"+getModel().getArea());
+		System.out.println("getAdListForRealEstate() ENTER");
 		if(category==""){
 			setCategory("REAL ESTATE");
 		}
@@ -83,7 +83,6 @@ public class HomeAction extends ActionSupport implements ServletRequestAware ,Mo
 		}
 		AdDetailsService adDetailService =  new AdDetailsService();
 		adList = adDetailService.getAdListByCategory(getModel());
-		System.out.println("HomeAction.getAdListForRealEstate() subCa"+subCat);
 		System.out.println("HomeAction.getAdListForRealEstate()"+adList.size());
 		return "success";
 	}
@@ -149,7 +148,7 @@ public class HomeAction extends ActionSupport implements ServletRequestAware ,Mo
 
 		setCategory(category);
 		AdDetailsService adDetailService =  new AdDetailsService();
-		adList = adDetailService.getAdListByCategoryAndPrice(price);
+		//adList = adDetailService.getAdListByCategoryAndPrice(price);
 
 		return "success";
 

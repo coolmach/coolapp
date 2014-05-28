@@ -50,9 +50,9 @@
 				<div id="subCategory_hidden_area" class="subCategory_hidden_bck"
 					style="display: none;">
 					<ul class="list-unstyled">
-						<li><input type="checkbox" class="check_area" name="area" value="1000 sq.ft" /><span class="content"><1000 sq.ft</span>
+						<li><input type="checkbox" class="check_area" name="area" value="<1000 sq.ft" /><span class="content"><1000 sq.ft</span>
 						</li>
-						<li><input type="checkbox" class="check_area" name="area" value="1000-1200 sq.ft" /><span class="content">1000-1200 sq.ft</span>
+						<li><input type="checkbox" class="check_area" name="area" value="1000 sq.ft-1200 sq.ft" /><span class="content">1000 sq.ft-1200 sq.ft</span>
 						</li>
 						<li><input type="checkbox" class="check_area" name="area" value=">1200 sq.ft" /><span class="content">>1200 sq.ft</span> 
 						</li>
@@ -74,7 +74,7 @@
 						</li>
 						<li><input type="checkbox" class="check_bhk" name="bhk" value="3 BHK" /><span class="content">3 BHK</span>
 						</li>
-						<li><input type="checkbox" class="check_bhk" name="bhk" value="Others" /><span class="content">Others</span>
+						<li><input type="checkbox" class="check_bhk" name="bhk" value="4 BHK" /><span class="content">4 BHK</span>
 					</ul>
 					<a href="#" class="clear blue_link">clear filters</a>
 				</div>
@@ -91,9 +91,7 @@
 						</li>
 						<li><input type="checkbox" class="check_rent" name="rent" value="10,000-14,000" /><span class="content">10,000-14,000</span>
 						</li>
-						<li><input type="checkbox" class="check_rent" name="rent" value="14,000-18,000" /><span class="content">14,000-18,000</span>
-						</li>
-						<li><input type="checkbox" class="check_rent" name="rent" value=">18,000" /><span class="content">>18,000</span>
+						<li><input type="checkbox" class="check_rent" name="rent" value=">14,000" /><span class="content">>14,000</span>
 						</li>
 					</ul>
 					<a href="#" class="clear blue_link">clear filters</a>
@@ -107,13 +105,13 @@
 				<div id="subCategory_hidden_dir" class="subCategory_hidden_bck"
 					style="display: none;">
 					<ul class="list-unstyled">
-						<li><input type="checkbox" class="check_dir" name="direction" value="East" /><span class="content">East</span>
+						<li><input type="checkbox" class="check_dir" name="facingDirection" value="East" /><span class="content">East</span>
 						</li>
-						<li><input type="checkbox" class="check_dir" name="direction" value="West" /><span class="content">West</span>
+						<li><input type="checkbox" class="check_dir" name="facingDirection" value="West" /><span class="content">West</span>
 						</li>
-						<li><input type="checkbox" class="check_dir" name="direction" value="North" /><span class="content">North</span>
+						<li><input type="checkbox" class="check_dir" name="facingDirection" value="North" /><span class="content">North</span>
 						</li>
-						<li><input type="checkbox" class="check_dir" name="direction" value="South" /><span class="content">South</span>
+						<li><input type="checkbox" class="check_dir" name="facingDirection" value="South" /><span class="content">South</span>
 						</li>
 					</ul>
 					<a href="#" class="clear blue_link">clear filters</a>
@@ -128,9 +126,9 @@
 				<div id="subCategory_hidden_pref" class="subCategory_hidden_bck"
 					style="display: none;">
 					<ul class="list-unstyled">
-						<li><input type="checkbox" class="check_pref" name="preference" value="Bachelors" /><span class="content">Bachelors</span>
+						<li><input type="checkbox" class="check_pref" name="maritalPreference" value="Bachelors" /><span class="content">Bachelors</span>
 						</li>
-						<li><input type="checkbox" class="check_pref" name="preference" value="Family" /><span class="content">Family</span>
+						<li><input type="checkbox" class="check_pref" name="maritalPreference" value="Family" /><span class="content">Family</span>
 						</li>
 					</ul>
 					<a href="#" class="clear blue_link">clear filters</a>
@@ -144,9 +142,9 @@
 				<div id="subCategory_hidden_park" class="subCategory_hidden_bck"
 					style="display: none;">
 					<ul class="list-unstyled">
-						<li><input type="checkbox" class="check_park" name="parking" value="Yes" /><span class="content">Yes</span>
+						<li><input type="checkbox" class="check_park" name="carParking" value="Yes" /><span class="content">Yes</span>
 						</li>
-						<li><input type="checkbox" class="check_park" name="parking" value="No" /><span class="content">No</span>
+						<li><input type="checkbox" class="check_park" name="carParking" value="No" /><span class="content">No</span>
 						</li>
 					</ul>
 					<a href="#" class="clear blue_link">clear filters</a>

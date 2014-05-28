@@ -13,6 +13,7 @@ public class Pdre {
 	private String rentOrSale;
 	private String newOrResale;
 	private String area;
+	private int areaSq;
 	private String location;
 	private String city;
 	private double priceValue;
@@ -42,9 +43,17 @@ public class Pdre {
 	private String createdBy;
 	private Timestamp modifiedOn;
 	private String modifiedBy;
-	
+	private String imageFileName;
+	private String bhk;
+	private String rent;
 
-
+	@Column(name="IMAGE_FILENAME")
+	public String getImageFileName() {
+		return imageFileName;
+	}
+	public void setImageFileName(String imageFileName) {
+		this.imageFileName = imageFileName;
+	}
 	@Id
 	@GeneratedValue	
 	@Column(name="POST_ID")
@@ -79,7 +88,6 @@ public class Pdre {
 		this.newOrResale = NewOrResale;
 	}
 
-	@Column(name="AREA")
 	public String getArea(){
 		return this.area;
 	}
@@ -319,5 +327,28 @@ public class Pdre {
 		this.modifiedBy = ModifiedBy;
 	}
 
+	@Column(name="AREA_SQ")
+	public int getAreaSq() {
+		return areaSq;
+	}
+	public void setAreaSq(int areaSq) {
+		this.areaSq = areaSq;
+	}
 
+	@Transient
+	public String getBhk() {
+		return bhk;
+	}
+	public void setBhk(String bhk) {
+		this.bhk = bhk;
+	}
+	
+	@Transient
+	public String getRent() {
+		return rent;
+	}
+	public void setRent(String rent) {
+		this.rent = rent;
+	}
+	
 }
