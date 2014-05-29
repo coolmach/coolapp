@@ -142,9 +142,9 @@
 				<div id="subCategory_hidden_park" class="subCategory_hidden_bck"
 					style="display: none;">
 					<ul class="list-unstyled">
-						<li><input type="checkbox" class="check_park" name="carParking" value="Yes" /><span class="content">Yes</span>
+						<li><input type="checkbox" class="check_park" name="carParking" value="Y" /><span class="content">Yes</span>
 						</li>
-						<li><input type="checkbox" class="check_park" name="carParking" value="No" /><span class="content">No</span>
+						<li><input type="checkbox" class="check_park" name="carParking" value="N" /><span class="content">No</span>
 						</li>
 					</ul>
 					<a href="#" class="clear blue_link">clear filters</a>
@@ -159,15 +159,11 @@
 				<div id="subCategory_hidden_amt" class="subCategory_hidden_bck"
 					style="display: none;">
 					<ul class="list-unstyled">
-					    <li><input type="checkbox" class="check_amt" name="amt" value="<5,000" /><span class="content"><5,000</span>
+					    <li><input type="checkbox" class="check_amt" name="amt" value="<10,000" /><span class="content"><10,000</span>
 						</li>
-						<li><input type="checkbox" class="check_amt" name="amt" value="5,000-10,000" /><span class="content"><10,000</span>
+						<li><input type="checkbox" class="check_amt" name="amt" value="10,000-15,000" /><span class="content"><10,000-15000</span>
 						</li>
-						<li><input type="checkbox" class="check_amt" name="amt" value="10,000-14,000" /><span class="content">10,000-14,000</span>
-						</li>
-						<li><input type="checkbox" class="check_amt" name="amt" value="14,000-18,000" /><span class="content">14,000-18,000</span>
-						</li>
-						<li><input type="checkbox" class="check_amt" name="amt" value=">18,000" /><span class="content">>18,000</span>
+						<li><input type="checkbox" class="check_amt" name="amt" value=">15,000" /><span class="content">>15,000</span>
 						</li>
 					</ul>
 					<a href="#" class="clear blue_link">clear filters</a>
@@ -181,13 +177,13 @@
 				<div id="subCategory_hidden_approval" class="subCategory_hidden_bck"
 					style="display: none;">
 					<ul class="list-unstyled">
-						<li><input type="checkbox" class="check_approval" name="approval" value="BDA" /><span class="content">BDA</span>
+						<li><input type="checkbox" class="check_approval" name="approvalAuthority" value="BDA" /><span class="content">BDA</span>
 						</li>
-						<li><input type="checkbox" class="check_approval" name="approval" value="BMRDA" /><span class="content">BMRDA</span>
+						<li><input type="checkbox" class="check_approval" name="approvalAuthority" value="BMRDA" /><span class="content">BMRDA</span>
 						</li>
-						<li><input type="checkbox" class="check_approval" name="approval" value="BBMP" /><span class="content">BBMP</span>
+						<li><input type="checkbox" class="check_approval" name="approvalAuthority" value="BBMP" /><span class="content">BBMP</span>
 						</li>
-						<li><input type="checkbox" class="check_approval" name="approval" value="Others" /><span class="content">Others</span>
+						<li><input type="checkbox" class="check_approval" name="approvalAuthority" value="Others" /><span class="content">Others</span>
 						</li>
 					</ul>
 					<a href="#" class="clear blue_link">clear filters</a>
@@ -202,9 +198,9 @@
 				<div id="subCategory_hidden_ownership" class="subCategory_hidden_bck"
 					style="display: none;">
 					<ul class="list-unstyled">
-						<li><input type="checkbox" class="check_ownership" name="ownership" value="New" /><span class="content">New</span>
+						<li><input type="checkbox" class="check_ownership" name="newOrResale" value="New" /><span class="content">New</span>
 						</li>
-						<li><input type="checkbox" class="check_ownership" name="ownership" value="ReSale" /><span class="content">ReSale</span>
+						<li><input type="checkbox" class="check_ownership" name="newOrResale" value="ReSale" /><span class="content">ReSale</span>
 						</li>
 					</ul>
 					<a href="#" class="clear blue_link">clear filters</a>
@@ -218,15 +214,15 @@
 				<div id="subCategory_hidden_amenities" class="subCategory_hidden_bck"
 					style="display: none;">
 					<ul class="list-unstyled">
-						<li><input type="checkbox" class="check_amenities" name="amenities" value="Gym" /><span class="content">Gym</span>
+						<li><input type="checkbox" class="check_amenities" name="gym" value="Y" /><span class="content">Gym</span>
 						</li>
-						<li><input type="checkbox" class="check_amenities" name="amenities" value="Car Parking" /><span class="content">Car Parking</span>
+						<li><input type="checkbox" class="check_amenities" name="carParking" value="Y" /><span class="content">Car Parking</span>
 						</li>
-						<li><input type="checkbox" class="check_amenities" name="amenities" value="Children Park" /><span class="content">Children Park</span>
+						<li><input type="checkbox" class="check_amenities" name="childrenPlayArea" value="Y" /><span class="content">Children Park</span>
 						</li>
-						<li><input type="checkbox" class="check_amenities" name="amenities" value="Club House" /><span class="content">Club House</span>
+						<li><input type="checkbox" class="check_amenities" name="clubHouse" value="Y" /><span class="content">Club House</span>
 						</li>
-						<li><input type="checkbox" class="check_amenities" name="amenities" value="Swimming Pool" /><span class="content">Swimming Pool</span>
+						<li><input type="checkbox" class="check_amenities" name="swimmingPool" value="Y" /><span class="content">Swimming Pool</span>
 						</li>
 					</ul>
 					<a href="#" class="clear blue_link">clear filters</a>
@@ -241,9 +237,9 @@
 				<div id="subCategory_hidden_amenitiesPg" class="subCategory_hidden_bck"
 					style="display: none;">
 					<ul class="list-unstyled">
-						<li><input type="checkbox" class="check_amenities_pg" name="amenities_pg" value="WiFi" /><span class="content">WiFi</span>
+						<li><input type="checkbox" class="check_amenities_pg" name="wifi" value="Y" /><span class="content">WiFi</span>
 						</li>
-						<li><input type="checkbox" class="check_amenities_pg" name="amenities_pg" value="TV/DTH" /><span class="content">TV/DTH</span>
+						<li><input type="checkbox" class="check_amenities_pg" name="tv" value="Y" /><span class="content">TV/DTH</span>
 						</li>
 					</ul>
 					<a href="#" class="clear blue_link">clear filters</a>
@@ -258,7 +254,7 @@
 				<div id="subCategory_hidden_food" class="subCategory_hidden_bck"
 					style="display: none;">
 					<ul class="list-unstyled">
-						<li><input type="checkbox" class="check_food" name="food" value="veg" /><span class="content">Veg</span>
+						<li><input type="checkbox" class="check_food" name="food" value="Veg" /><span class="content">Veg</span>
 						</li>
 						<li><input type="checkbox" class="check_food" name="food" value="Non Veg" /><span class="content">Non Veg</span>
 						</li>
@@ -275,9 +271,11 @@
 				<div id="subCategory_hidden_share" class="subCategory_hidden_bck"
 					style="display: none;">
 					<ul class="list-unstyled">
-						<li><input type="checkbox" class="check_share" name="share" value="0-3000" /><span class="content">0-3000</span>
+						<li><input type="checkbox" class="check_share" name="share" value="<3000" /><span class="content"><3000</span>
 						</li>
-						<li><input type="checkbox" class="check_share" name="share" value=">3000" /><span class="content">>3000</span>
+						<li><input type="checkbox" class="check_share" name="share"" value="3000-6000" /><span class="content">3000-6000</span>
+						</li>
+						<li><input type="checkbox" class="check_share" name="share" value=">6000" /><span class="content">>6000</span>
 						</li>
 					</ul>
 					<a href="#" class="clear blue_link">clear filters</a>
@@ -292,9 +290,9 @@
 				<div id="subCategory_hidden_furnished" class="subCategory_hidden_bck"
 					style="display: none;">
 					<ul class="list-unstyled">
-						<li><input type="checkbox" class="check_furnished" name="furnished" value="Yes" /><span class="content">Yes</span>
+						<li><input type="checkbox" class="check_furnished" name="furnished" value="Y" /><span class="content">Yes</span>
 						</li>
-						<li><input type="checkbox" class="check_furnished" name="furnished" value="No" /><span class="content">No</span>
+						<li><input type="checkbox" class="check_furnished" name="furnished" value="N" /><span class="content">No</span>
 						</li>
 					</ul>
 					<a href="#" class="clear blue_link">clear filters</a>
@@ -326,17 +324,17 @@
 				<div id="subCategory_hidden_region" class="subCategory_hidden_bck"
 					style="display: none;">
 					<ul class="list-unstyled">
-						<li><input type="checkbox" class="check_region" name="region" value="Hindi" /><span class="content">Hindi</span>
+						<li><input type="checkbox" class="check_region" name="regionalPreference" value="Hindi" /><span class="content">Hindi</span>
 						</li>
-						<li><input type="checkbox" class="check_region" name="region" value="Kannada" /><span class="content">Kannada</span>
+						<li><input type="checkbox" class="check_region" name="regionalPreference" value="Kannada" /><span class="content">Kannada</span>
 						</li>
-						<li><input type="checkbox" class="check_region" name="region" value="Tamil" /><span class="content">Tamil</span>
+						<li><input type="checkbox" class="check_region" name="regionalPreference" value="Tamil" /><span class="content">Tamil</span>
 						</li>
-						<li><input type="checkbox" class="check_region" name="region" value="Telugu" /><span class="content">Telugu</span>
+						<li><input type="checkbox" class="check_region" name="regionalPreference" value="Telugu" /><span class="content">Telugu</span>
 						</li>
-						<li><input type="checkbox" class="check_region" name="region" value="Punjabi" /><span class="content">Punjabi</span>
+						<li><input type="checkbox" class="check_region" name="regionalPreference" value="Punjabi" /><span class="content">Punjabi</span>
 						</li>
-						<li><input type="checkbox" class="check_region" name="region" value="Other" /><span class="content">Other</span>
+						<li><input type="checkbox" class="check_region" name="regionalPreference" value="Other" /><span class="content">Other</span>
 						</li>
 					</ul>
 					<a href="#" class="clear blue_link">clear filters</a>

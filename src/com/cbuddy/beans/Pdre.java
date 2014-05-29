@@ -36,9 +36,11 @@ public class Pdre {
 	private String carParking;
 	private String food;
 	private String wifi;
+	private String tv;
 	private String gym;
 	private String childrenPlayArea;
 	private String swimmingPool;
+	private String clubHouse;
 	private Timestamp createdOn;
 	private String createdBy;
 	private Timestamp modifiedOn;
@@ -46,6 +48,9 @@ public class Pdre {
 	private String imageFileName;
 	private String bhk;
 	private String rent;
+	private String amt;
+	private String share;
+	
 
 	@Column(name="IMAGE_FILENAME")
 	public String getImageFileName() {
@@ -334,7 +339,23 @@ public class Pdre {
 	public void setAreaSq(int areaSq) {
 		this.areaSq = areaSq;
 	}
-
+	
+	@Column(name="CLUB_HOUSE")
+	public String getClubHouse() {
+		return clubHouse;
+	}
+	public void setClubHouse(String clubHouse) {
+		this.clubHouse = clubHouse;
+	}
+	
+	@Column(name="TV")
+	public String getTv() {
+		return tv;
+	}
+	public void setTv(String tv) {
+		this.tv = tv;
+	}
+	
 	@Transient
 	public String getBhk() {
 		return bhk;
@@ -349,6 +370,22 @@ public class Pdre {
 	}
 	public void setRent(String rent) {
 		this.rent = rent;
+	}
+	
+	@Transient
+	public String getAmt() {
+		return amt;
+	}
+	public void setAmt(String amt) {
+		this.amt = amt;
+	}
+	
+	@Transient
+	public String getShare() {
+		return share;
+	}
+	public void setShare(String share) {
+		this.share = share;
 	}
 	
 }

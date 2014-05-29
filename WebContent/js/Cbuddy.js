@@ -54,7 +54,8 @@ $(document).ready(function() {
 		//alert(text.text());
 		$("input[class^=check_]:checked").each(function(){
 			var sub = $(this).attr('name');
-			if(text.text() == $(this).val()){
+			//if(text.text() == $(this).val()){
+				if(text.text() == $(this).parent().children('span.content').text()){
 				$(this).attr("checked",false);
 				//return false;
 			}else{
@@ -87,7 +88,8 @@ $(document).ready(function() {
 				{		 
 			var sub = $(this).attr('name');
 			data = data + '&'+sub+'='+$(this).val();
-			var check = $(this).val();
+			//var check = $(this).val();
+			var check = $(this).parent().children('span.content').text();
 			var div_Id = check.replace(/\s+/g, '').replace(/[^a-z0-9\s]/gi, '').replace(/[_\s]/g, '-');
 			str = str+'<div style="margin-left:12px;" class="pull-left filters" id="'+div_Id+'">'+check+'<span class="glyphicon glyphicon-remove form-control-show"id="'+div_Id+'">'+'</span>'+'</div >';
 				});

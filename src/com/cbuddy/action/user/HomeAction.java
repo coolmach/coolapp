@@ -28,17 +28,8 @@ public class HomeAction extends ActionSupport implements ServletRequestAware ,Mo
 		this.subCat = subCat;
 	}
 
-	//private int price;
 	private HttpServletRequest request = null;
 
-	/*public int getPrice() {
-		return price;
-	}
-
-	public void setPrice(int price) {
-		this.price = price;
-	}
-*/
 	public String getCategory() {
 		return category;
 	}
@@ -66,7 +57,7 @@ public class HomeAction extends ActionSupport implements ServletRequestAware ,Mo
 			setSubCat("Apartment/House For Rent");
 		}
 		AdDetailsService adDetailService =  new AdDetailsService();
-		adList = adDetailService.getAdListByCategory(getModel());
+		adList = adDetailService.getAdListByCategory(getModel(),subCat);
 		System.out.println("HomeAction.getAdListForRealEstate() subCa"+subCat);
 		System.out.println("HomeAction.getAdListForRealEstate()"+adList.size());
 		return "success";
@@ -82,7 +73,7 @@ public class HomeAction extends ActionSupport implements ServletRequestAware ,Mo
 			setSubCat("Apartment/House For Rent");
 		}
 		AdDetailsService adDetailService =  new AdDetailsService();
-		adList = adDetailService.getAdListByCategory(getModel());
+		adList = adDetailService.getAdListByCategory(getModel(),subCat);
 		System.out.println("HomeAction.getAdListForRealEstate()"+adList.size());
 		return "success";
 	}
@@ -97,7 +88,7 @@ public class HomeAction extends ActionSupport implements ServletRequestAware ,Mo
 			setSubCat("Apartment/House For Rent");
 		}
 		AdDetailsService adDetailService =  new AdDetailsService();
-		adList = adDetailService.getAdListByCategory(getModel());
+		adList = adDetailService.getAdListByCategory(getModel(),subCat);
 		System.out.println("HomeAction.getAdListForCars()"+adList.size());
 
 		return "success";
@@ -118,7 +109,7 @@ public class HomeAction extends ActionSupport implements ServletRequestAware ,Mo
 			setSubCat("Mobile Phones");
 		}
 		AdDetailsService adDetailService =  new AdDetailsService();
-		adList = adDetailService.getAdListByCategory(getModel());
+		adList = adDetailService.getAdListByCategory(getModel(),subCat);
 		System.out.println("HomeAction.getAdListForMobiles()"+adList.size());
 		return "success";
 	}
@@ -133,7 +124,7 @@ public class HomeAction extends ActionSupport implements ServletRequestAware ,Mo
 			setSubCat("Laptop");
 		}
 		AdDetailsService adDetailService =  new AdDetailsService();
-		adList = adDetailService.getAdListByCategory(getModel());
+		adList = adDetailService.getAdListByCategory(getModel(),subCat);
 		System.out.println("HomeAction.getAdListForLaptops()"+adList.size());
 		return "success";
 		
