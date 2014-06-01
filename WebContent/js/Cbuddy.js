@@ -22,7 +22,11 @@ $(document).ready(function() {
 		$("#amt-main").show();
 		$("#used-main").show();
 	}else if(cat == 'HOUSEHOLD'){
-		path="household";
+		path="adListForHouseHoldItems";
+		subCat="Air Conditioners & Coolers";
+		$("#loc-main").show();
+		$("#amt-main").show();
+		$("#used-main").show();
 	}else if(cat == 'LAPTOPS'){
 		path="laptops";
 		subCat="LAPTOPS";
@@ -68,7 +72,7 @@ $(document).ready(function() {
 			url: "/cbuddy/"+path, 
 			data: data,
 			success: function(data, status) {
-				//alert(data);
+
 				$('.data').html('');
 				$('.data').html(data);
 
@@ -277,7 +281,13 @@ $(document).ready(function() {
 			$("#brandBikes-main").hide();
 		}
 
-
+		if( cat == 'HOUSEHOLD'){
+			if($(this).text()=='Air Conditioners & Coolers'){
+				$("#brand-main").show();
+			}else{
+				$("#brand-main").hide();
+			}
+		}
 	});
 
 	//if hover on any filters category shown([id*=-main] pattern where it ends with -main)

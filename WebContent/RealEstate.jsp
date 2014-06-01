@@ -354,6 +354,7 @@
 <div class="col-md-6 data">
 
 <s:if test='subCat.equals("Apartment/House For Rent")'>
+
 		<%@include file="./AdList_RealEstate_Apartment_For_Rent.jsp"%>
 </s:if>
 </div>

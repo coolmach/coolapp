@@ -37,13 +37,17 @@
 			method="getAdListForRealEstate">
 			<result name="success">/AdList_RealEstate_Apartment_For_Rent.jsp</result>
 		</action> 
+		<action name="household" class="com.cbuddy.action.posts.HouseHoldItemsAction"
+			method="getAdListForHouseHoldItems">
+			<result name="success" type="tiles">/household.tiles</result>
+		</action>
+		<action name="adListForHouseHoldItems" class="com.cbuddy.action.posts.HouseHoldItemsAction"
+			method="getAdListForHouseHoldItems">
+			<result name="success">/AdList_For_HouseHoldItems.jsp</result>
+		</action> 
 		<action name="cars" class="com.cbuddy.action.user.HomeAction"
 			method="getAdListForCars">
 			<result name="success" type="tiles">/cars.tiles</result>
-		</action>
-		<action name="household" class="com.cbuddy.action.user.HomeAction"
-			method="getAdListForHouseHoldItems">
-			<result name="success" type="tiles">/household.tiles</result>
 		</action>
 		<action name="laptops" class="com.cbuddy.action.user.HomeAction"
 			method="getAdListForLaptops">
