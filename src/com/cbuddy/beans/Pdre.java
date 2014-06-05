@@ -2,18 +2,25 @@ package com.cbuddy.beans;
 
 
 import java.sql.Timestamp;
-import javax.persistence.*;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Entity
 @Table(name = "Pdre")
-
+@Inheritance(strategy = InheritanceType.JOINED)
 public class Pdre {
 	private int postId;
 	private String subCategory;
 	private String rentOrSale;
 	private String newOrResale;
 	private String area;
-	private int areaSq;
+	//private int areaSq;
 	private String location;
 	private String city;
 	private double priceValue;
@@ -45,22 +52,22 @@ public class Pdre {
 	private String createdBy;
 	private Timestamp modifiedOn;
 	private String modifiedBy;
-	private String imageFileName;
+	//private String imageFileName;
 	private String bhk;
 	private String rent;
 	private String amt;
 	private String share;
 	
 
-	@Column(name="IMAGE_FILENAME")
-	public String getImageFileName() {
-		return imageFileName;
-	}
-	public void setImageFileName(String imageFileName) {
-		this.imageFileName = imageFileName;
-	}
+//	@Column(name="IMAGE_FILENAME")
+//	public String getImageFileName() {
+//		return imageFileName;
+//	}
+//	public void setImageFileName(String imageFileName) {
+//		this.imageFileName = imageFileName;
+//	}
+	
 	@Id
-	@GeneratedValue	
 	@Column(name="POST_ID")
 	public int getPostId(){
 		return this.postId;
@@ -332,13 +339,13 @@ public class Pdre {
 		this.modifiedBy = ModifiedBy;
 	}
 
-	@Column(name="AREA_SQ")
-	public int getAreaSq() {
-		return areaSq;
-	}
-	public void setAreaSq(int areaSq) {
-		this.areaSq = areaSq;
-	}
+//	@Column(name="AREA_SQ")
+//	public int getAreaSq() {
+//		return areaSq;
+//	}
+//	public void setAreaSq(int areaSq) {
+//		this.areaSq = areaSq;
+//	}
 	
 	@Column(name="CLUB_HOUSE")
 	public String getClubHouse() {

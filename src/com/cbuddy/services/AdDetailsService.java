@@ -1,7 +1,6 @@
 package com.cbuddy.services;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -9,30 +8,50 @@ import java.util.regex.Pattern;
 import org.apache.struts2.ServletActionContext;
 import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
-import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Criterion;
 import org.hibernate.criterion.LogicalExpression;
+import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 
 import com.cbuddy.beans.Pdre;
-import com.cbuddy.beans.Poit;
+import com.cbuddy.util.CBuddyConstants;
+import com.model.user.RealEstatePostDetails;
 
 public class AdDetailsService {
 
 	@SuppressWarnings("unchecked")
-	public List<Pdre> getAdListByCategory(Pdre pdre,String subCategory){
+	public List<RealEstatePostDetails> getAdListByCategory(Pdre pdre,String subCategory){
 
 		SessionFactory sessionFactory = (SessionFactory) ServletActionContext.getServletContext().getAttribute("sessionFactory");
 		Session session = sessionFactory.openSession();
-		session.beginTransaction();
+		
+		List<RealEstatePostDetails> list = null;
+		try {
+			Criteria criteria = session.createCriteria(RealEstatePostDetails.class);
+			criteria.addOrder(Order.desc("postId"));
+			criteria.setMaxResults(20);
+			list = criteria.list();
+		} catch (HibernateException e) {
+			e.printStackTrace();
+		}
+		session.close();
 
+		return list;
+	}
+	
+	public List<Pdre> getAdListByCategory_(Pdre pdre,String subCategory){
+		//getNewAdListByCategory();
+		SessionFactory sessionFactory = (SessionFactory) ServletActionContext.getServletContext().getAttribute("sessionFactory");
+		Session session = sessionFactory.openSession();
+		session.beginTransaction();
+		
 		List<Pdre> res = null;
 		try {	
 			//poit = (List<Poit>)session.createQuery("from Poit").list();
 			Criteria criteria = session.createCriteria(Pdre.class);
-			criteria = generateFilters(pdre,criteria,subCategory);
+			criteria = generateFilters(pdre, criteria, subCategory);
 			res = (List<Pdre>) criteria.list();
 
 		} catch (HibernateException e) {
@@ -46,8 +65,8 @@ public class AdDetailsService {
 	}
 
 	private Criteria generateFilters(Pdre pdre,Criteria criteria,String subCategory) {
-		
-		if(subCategory.equals("Apartment/House For Rent")){
+
+		if(subCategory.equals(CBuddyConstants.SUBCATEGORY_REAL_ESTATE_APARTMENT_FOR_RENT)){
 			if(pdre.getLocation()!=null){
 				criteria = getCriteriaForLocation(criteria, pdre);	
 			}
@@ -69,7 +88,7 @@ public class AdDetailsService {
 			if(pdre.getCarParking()!=null){
 				criteria = getCriteriaForCarParking(criteria, pdre);
 			}
-		}else if(subCategory.equals("Apartment/House For Sale")){	
+		}else if(subCategory.equals(CBuddyConstants.SUBCATEGORY_REAL_ESTATE_APARTMENT_FOR_SALE)){	
 			if(pdre.getLocation()!=null){
 				criteria = getCriteriaForLocation(criteria, pdre);	
 			}
@@ -103,7 +122,7 @@ public class AdDetailsService {
 			if(pdre.getCarParking()!=null){
 				criteria = getCriteriaForCarParking(criteria, pdre);
 			}	
-		}else if(subCategory.equals("Plot For Sale")){
+		}else if(subCategory.equals(CBuddyConstants.SUBCATEGORY_REAL_ESTATE_LAND_SALE)){
 			if(pdre.getLocation()!=null){
 				criteria = getCriteriaForLocation(criteria, pdre);	
 			}
@@ -116,7 +135,7 @@ public class AdDetailsService {
 			if(pdre.getApprovalAuthority()!=null){
 				criteria = getCriteriaForApprovalAuthority(criteria, pdre);
 			}	
-		}else if(subCategory.equals("PG Accommodation")){
+		}else if(subCategory.equals(CBuddyConstants.SUBCATEGORY_REAL_ESTATE_PG_ACCOMODATION)){
 			if(pdre.getLocation()!=null){
 				criteria = getCriteriaForLocation(criteria, pdre);	
 			}
@@ -132,7 +151,7 @@ public class AdDetailsService {
 			if(pdre.getFood()!=null){
 				criteria = getCriteriaForFood(criteria, pdre);
 			}
-		}else if(subCategory.equals("Roommate Required")){
+		}else if(subCategory.equals(CBuddyConstants.SUBCATEGORY_REAL_ESTATE_ROOMMATE_REQUIRED)){
 			if(pdre.getShare()!=null){
 				criteria = getCriteriaForShare(criteria, pdre);
 			}	
@@ -146,7 +165,7 @@ public class AdDetailsService {
 				criteria = getCriteriaForRegionalPreference(criteria, pdre);
 			}
 		}
-		
+
 		return criteria;	
 	}
 
@@ -325,12 +344,12 @@ public class AdDetailsService {
 			ownership.add(str.trim());
 		}
 		criteria.add(Restrictions.in("newOrResale", ownership));
-		
+
 		return criteria;
 	}
-	
+
 	private Criteria getCriteriaForApprovalAuthority(Criteria criteria,Pdre pdre){
-		
+
 		List approval = new ArrayList();
 		String obj[] = pdre.getApprovalAuthority().split(",");
 		for(String str :obj){
@@ -342,27 +361,27 @@ public class AdDetailsService {
 	}
 
 	private Criteria getCriteriaForGym(Criteria criteria,Pdre pdre){
-			criteria.add(Restrictions.eq("gym", pdre.getGym()));
-			return criteria;	
+		criteria.add(Restrictions.eq("gym", pdre.getGym()));
+		return criteria;	
 	}
-	
+
 	private Criteria getCriteriaForSwimmingPool(Criteria criteria,Pdre pdre){	
 		criteria.add(Restrictions.eq("swimmingPool", pdre.getSwimmingPool()));
 		return criteria;	
 	}
-	
+
 	private Criteria getCriteriaForClubHouse(Criteria criteria,Pdre pdre){
 		criteria.add(Restrictions.eq("clubHouse", pdre.getClubHouse()));
 		return criteria;	
 	}
-	
+
 	private Criteria getCriteriaForChildrenPlayArea(Criteria criteria,Pdre pdre){
 		criteria.add(Restrictions.eq("childrenPlayArea", pdre.getChildrenPlayArea()));
 		return criteria;	
 	}
-	
+
 	private Criteria getCriteriaForAmt(Criteria criteria, Pdre pdre){
-		
+
 		String obj[] = pdre.getAmt().split(",");
 		Criterion  c1 = null;
 		Criterion  c2 = null;
@@ -414,9 +433,9 @@ public class AdDetailsService {
 
 		return criteria;
 	}
-	
+
 	private Criteria getCriteriaForShare(Criteria criteria, Pdre pdre){
-		
+
 		String obj[] = pdre.getShare().split(",");
 		Criterion  c1 = null;
 		Criterion  c2 = null;
@@ -467,19 +486,19 @@ public class AdDetailsService {
 		}
 
 		return criteria;
-		
+
 	}
-	
+
 	private Criteria getCriteriaForWifi(Criteria criteria, Pdre pdre){
 		criteria.add(Restrictions.eq("wifi", pdre.getChildrenPlayArea()));
 		return criteria;
 	}
-	
+
 	private Criteria getCriteriaForTv(Criteria criteria, Pdre pdre){
 		criteria.add(Restrictions.eq("tv", pdre.getChildrenPlayArea()));
 		return criteria;
 	}
-	
+
 	private Criteria getCriteriaForFood(Criteria criteria, Pdre pdre){
 		List food = new ArrayList();
 		String obj[] = pdre.getFood().split(",");
@@ -490,7 +509,7 @@ public class AdDetailsService {
 
 		return criteria;	
 	}
-	
+
 	private Criteria getCriteriaForFurnished(Criteria criteria, Pdre pdre){
 		List furnished = new ArrayList();
 		String obj[] = pdre.getFurnished().split(",");
@@ -501,7 +520,7 @@ public class AdDetailsService {
 
 		return criteria;
 	}
-	
+
 	private Criteria getCriteriaForGender(Criteria criteria, Pdre pdre){
 		List gender = new ArrayList();
 		String obj[] = pdre.getGender().split(",");
@@ -512,7 +531,7 @@ public class AdDetailsService {
 
 		return criteria;
 	}
-	
+
 	private Criteria getCriteriaForRegionalPreference(Criteria criteria, Pdre pdre){
 		List pref = new ArrayList();
 		String obj[] = pdre.getRegionalPreference().split(",");
@@ -523,7 +542,7 @@ public class AdDetailsService {
 
 		return criteria;
 	}
-	
+
 	private String getNumericValue(String str){
 
 		Pattern pattern = Pattern.compile("(\\d+\\.\\d+)|(\\d+)");

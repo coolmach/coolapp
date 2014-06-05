@@ -11,7 +11,7 @@
 			</tr>
 			<s:iterator value="adList" status="userStatus">
 				<tr>
-					 <td><img class="images_ad" src=" <s:property value="imageFileName" />">
+					 <td><img class="images_ad" src=" <s:url action='ImageAction?imageId=<s:property value="imageFileName" />' />" >
 					</td> 
 					 <td>
 						<p>

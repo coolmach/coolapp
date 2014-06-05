@@ -105,13 +105,13 @@
 				<div id="subCategory_hidden_dir" class="subCategory_hidden_bck"
 					style="display: none;">
 					<ul class="list-unstyled">
-						<li><input type="checkbox" class="check_dir" name="facingDirection" value="East" /><span class="content">East</span>
+						<li><input type="checkbox" class="check_dir" name="facingDirection" value="E" /><span class="content">East</span>
 						</li>
-						<li><input type="checkbox" class="check_dir" name="facingDirection" value="West" /><span class="content">West</span>
+						<li><input type="checkbox" class="check_dir" name="facingDirection" value="W" /><span class="content">West</span>
 						</li>
-						<li><input type="checkbox" class="check_dir" name="facingDirection" value="North" /><span class="content">North</span>
+						<li><input type="checkbox" class="check_dir" name="facingDirection" value="N" /><span class="content">North</span>
 						</li>
-						<li><input type="checkbox" class="check_dir" name="facingDirection" value="South" /><span class="content">South</span>
+						<li><input type="checkbox" class="check_dir" name="facingDirection" value="S" /><span class="content">South</span>
 						</li>
 					</ul>
 					<a href="#" class="clear blue_link">clear filters</a>
@@ -353,7 +353,7 @@
 <!-- <div class="col-md-4"></div> -->
 <div class="col-md-6 data">
 
-<s:if test='subCat.equals("Apartment/House For Rent")'>
+<s:if test='subCat.equals("2")'>
 
 		<%@include file="./AdList_RealEstate_Apartment_For_Rent.jsp"%>
 </s:if>

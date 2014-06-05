@@ -38,13 +38,13 @@
 			<div class="form-group">
 				<label for="title" class="col-sm-4 control-label">Title</label>
 				<div class="col-sm-8">
-					<input type="text" class="form-control" id="Title" name="Title">
+					<input type="text" class="form-control" id="Title" name="Title" value="2BHK For Sale">
 				</div>
 			</div>
 			<div class="form-group">
 				<label for="location" class="col-sm-4 control-label">Location</label>
 				<div class="col-sm-6">
-					<input type="text" class="form-control" name="Location" id="Location">
+					<input type="text" class="form-control" name="Location" id="Location" value="HSR">
 				</div>
 			</div>
 			<div class="form-group">
@@ -76,25 +76,25 @@
 			<div class="form-group">
 				<label for="area" class="col-sm-4 control-label">Total Area (sq. ft)</label>
 				<div class="col-sm-6">
-					<input type="text" class="form-control" name="Area" id="Area"> 
+					<input type="text" class="form-control" name="Area" id="Area" value="1200"> 
 				</div>
 			</div>
 			<div class="form-group">
 				<label for="bedrooms" class="col-sm-4 control-label">Bedrooms</label>
 				<div class="col-sm-6">
-					<input type="text" class="form-control" name="Bedrooms" id="Bedrooms">
+					<input type="text" class="form-control" name="Bedrooms" id="Bedrooms" value="2">
 				</div>
 			</div>
 			<div class="form-group">
 				<label for="floorNumber" class="col-sm-4 control-label">Floor No</label>
 				<div class="col-sm-6">
-					<input type="text" class="form-control" name="FloorNumber" id="FloorNumber">
+					<input type="text" class="form-control" name="FloorNumber" id="FloorNumber" value="G">
 				</div>
 			</div>
 			<div class="form-group">
 				<label for="priceValue" class="col-sm-4 control-label">Price</label>
 				<div class="col-sm-6">
-					<input type="text" class="form-control" name="PriceValue" id="PriceValue">
+					<input type="text" class="form-control" name="PriceValue" id="PriceValue" value="3000000">
 				</div>
 			</div>
 			<div class="form-group">
@@ -111,19 +111,19 @@
 			<div class="form-group">
 				<label for="approvalAuthority" class="col-sm-4 control-label">Approval Authority</label>
 				<div class="col-sm-6">
-					<input type="text" class="form-control" name="ApprovalAuthority" id="ApprovalAuthority">
+					<input type="text" class="form-control" name="ApprovalAuthority" id="ApprovalAuthority" value="BDA">
 				</div>
 			</div>
 			<div class="form-group">
 				<label for="builderName" class="col-sm-4 control-label">Builder Name</label>
 				<div class="col-sm-6">
-					<input type="text" class="form-control" name="BuilderName" id="BuilderName">
+					<input type="text" class="form-control" name="BuilderName" id="BuilderName" value="MGR">
 				</div>
 			</div>
 			<div class="form-group">
 				<label for="description" class="col-sm-4 control-label">Remarks</label>
 				<div class="col-sm-8">
-					<textarea class="form-control" rows="3" name="Description" id="Description"></textarea>
+					<textarea class="form-control" rows="3" name="Description" id="Description">Hello tHis is description</textarea>
 				</div>
 			</div>
 			<div class="form-group">

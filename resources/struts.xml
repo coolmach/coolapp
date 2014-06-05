@@ -12,8 +12,8 @@
 	<package name="default" extends="struts-default,json-default"
 		namespace="/">
 		<result-types>
-			<result-type name="tiles"
-				class="org.apache.struts2.views.tiles.TilesResult" />
+			<result-type name="tiles" class="org.apache.struts2.views.tiles.TilesResult" />
+			<result-type name="imageResult" class="com.cbuddy.result.ImageResult" />
 		</result-types>
 		<interceptors>
 			<interceptor name="loginInterceptor"
@@ -80,11 +80,12 @@
 		<action name="real_estate_postAd" class="com.cbuddy.action.posts.RealEstatePostAction" method="postAd">
 			 <interceptor-ref name="secureStack"></interceptor-ref> 
 			 <interceptor-ref name="fileUpload">
-                     <param name="allowedTypes">image/jpeg,image/gif</param>
+                     <param name="allowedTypes">image/jpeg,image/gif,image/png</param>
              </interceptor-ref>
              <interceptor-ref name="defaultStack"></interceptor-ref>
 			<result name="login" type="tiles">/home.tiles</result>
 			<result name="success" type="tiles">/home.tiles</result>
+			<result name="input" type="tiles">/home.tiles</result>
 		</action>		
 		<action name="modalLogin" class="com.cbuddy.action.user.LoginAction">
 			<result name="input">/login_Retry_Modal_Window.jsp</result>
@@ -94,5 +95,8 @@
 			<result name="success" type="tiles">/home.tiles</result> 
 			<result name="input" type="tiles">/home.tiles</result> 
 		</action> 
+		<action name="ImageAction" class="com.cbuddy.action.posts.ImageAction">
+			<result name="success" type="imageResult"></result>
+		</action>	
 	</package>
 </struts>

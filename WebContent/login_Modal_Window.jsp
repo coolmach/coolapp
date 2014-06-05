@@ -9,11 +9,11 @@
 			<h3>Login</h3>
 			<form class="form-horizontal post" id="loginForm" action="modalLogin.action">
 				<div class="form-group-modal">
-					<input type="text" class="form-control" id="userName" name="userName" placeholder="Email Id / Mobile No.">
+					<input type="text" class="form-control" id="userName" name="userName" placeholder="Email Id / Mobile No." value="shivaksk1@gmail.com">
 					<s:fielderror fieldName="username"/>
 				</div>
 				<div class="form-group-modal">
-					<input type="password" class="form-control" id="password" name="password" placeholder="Password">
+					<input type="password" class="form-control" id="password" name="password" placeholder="Password" value="test123">
 					<s:fielderror fieldName="password"/>
 				</div>
 				<div class="form-group-modal">New User? <a href="#">Register</a></div>

@@ -4,7 +4,7 @@ $(document).ready(function() {
 	var path="";
 	var cat = $('#cat').text();
 
-	if(cat == 'REAL ESTATE'){
+	if(cat == 'REAL'){
 		path="adListForRealEstate";
 		subCat="Apartment/House For Rent";
 		$("#loc-main").show();
@@ -69,7 +69,7 @@ $(document).ready(function() {
 		//alert(data);
 		$.ajax({
 			type: 'POST',
-			url: "/cbuddy/"+path, 
+			url: "/Virat/"+path, 
 			data: data,
 			success: function(data, status) {
 
@@ -102,7 +102,7 @@ $(document).ready(function() {
 
 		$.ajax({
 			type: 'POST',
-			url: "/cbuddy/"+path, 
+			url: "/Virat/"+path, 
 			data: data,
 			success: function(data, status) {
 				//alert(data.trim());
@@ -143,7 +143,7 @@ $(document).ready(function() {
 		//alert(data);
 		$.ajax({
 			type: 'POST',
-			url: "/cbuddy/"+path, 
+			url: "/Virat/"+path, 
 			data: data,
 			success: function(data, status) {
 

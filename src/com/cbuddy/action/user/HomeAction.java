@@ -5,21 +5,32 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.interceptor.ServletRequestAware;
 
 import com.cbuddy.beans.Pdre;
-import com.cbuddy.beans.Poit;
 import com.cbuddy.services.AdDetailsService;
+import com.cbuddy.util.CBuddyConstants;
+import com.model.user.RealEstatePostDetails;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
 
 public class HomeAction extends ActionSupport implements ServletRequestAware ,ModelDriven<Pdre>{
 
     Pdre pdre = new Pdre();
-	private List<Pdre> adList = new ArrayList<Pdre>();
+	private List<RealEstatePostDetails> adList = new ArrayList<RealEstatePostDetails>();
 	private String category="" ;
 	private String subCat="" ;
+	private String basePath = "";
+	
+	
+	public String getBasePath() {
+		return basePath;
+	}
+
+	public void setBasePath(String basePath) {
+		this.basePath = basePath;
+	}
+
 	public String getSubCat() {
 		return subCat;
 	}
@@ -38,26 +49,29 @@ public class HomeAction extends ActionSupport implements ServletRequestAware ,Mo
 		this.category = category;
 	}
 
-	public List<Pdre> getAdList() {
+	public List<RealEstatePostDetails> getAdList() {
 		return adList;
 	}
 
-	public void setAdList(List<Pdre> adList) {
+	public void setAdList(List<RealEstatePostDetails> adList) {
 		this.adList = adList;
 	}
 
 
 	public String execute(){
-
-		System.out.println("getAdListForRealEstate(dd) pdre.getArea()"+getModel().getArea());
-		if(category==""){
-			setCategory("REAL ESTATE");
+		System.out.println("getAdListForRealEstate(dd) pdre.getArea(): " + getModel().getArea());
+		basePath = request.getSession().getServletContext().getRealPath("");
+		if(category.equals("")){
+			setCategory(CBuddyConstants.CATEGORY_REAL_ESTATE);
 		}
-		if( category.equals("REAL ESTATE") && subCat=="" ){
-			setSubCat("Apartment/House For Rent");
+		if(category.equals(CBuddyConstants.CATEGORY_REAL_ESTATE) && subCat.equals("")){
+			setSubCat(CBuddyConstants.SUBCATEGORY_REAL_ESTATE_APARTMENT_FOR_RENT);
 		}
 		AdDetailsService adDetailService =  new AdDetailsService();
-		adList = adDetailService.getAdListByCategory(getModel(),subCat);
+		
+		
+		
+		adList = adDetailService.getAdListByCategory(getModel(), subCat);
 		System.out.println("HomeAction.getAdListForRealEstate() subCa"+subCat);
 		System.out.println("HomeAction.getAdListForRealEstate()"+adList.size());
 		return "success";
@@ -66,14 +80,19 @@ public class HomeAction extends ActionSupport implements ServletRequestAware ,Mo
 	public String getAdListForRealEstate(){
 
 		System.out.println("getAdListForRealEstate() ENTER");
-		if(category==""){
-			setCategory("REAL ESTATE");
+		
+		basePath = request.getSession().getServletContext().getRealPath("");
+		
+		if(category.equals("")){
+			setCategory(CBuddyConstants.CATEGORY_REAL_ESTATE);
 		}
-		if( category.equals("REAL ESTATE") && subCat=="" ){
-			setSubCat("Apartment/House For Rent");
+		if(category.equals(CBuddyConstants.CATEGORY_REAL_ESTATE) && subCat.equals("")){
+			setSubCat(CBuddyConstants.SUBCATEGORY_REAL_ESTATE_APARTMENT_FOR_RENT);
 		}
+		
 		AdDetailsService adDetailService =  new AdDetailsService();
 		adList = adDetailService.getAdListByCategory(getModel(),subCat);
+		
 		System.out.println("HomeAction.getAdListForRealEstate()"+adList.size()+" : "+subCat);
 		return "success";
 	}
@@ -81,6 +100,8 @@ public class HomeAction extends ActionSupport implements ServletRequestAware ,Mo
 	public String getAdListForCars(){
 		
 		System.out.println("getAdListForCars(dd)"+subCat);
+		basePath = request.getSession().getServletContext().getRealPath("");
+		
 		if(category==""){
 			setCategory("REAL ESTATE");
 		}

@@ -108,7 +108,7 @@
 	<table class="table mygrid">
 		<tr>
 			<td><s:url action="realestate" var="urlTag">
-					<s:param name="category">REAL ESTATE</s:param>
+					<s:param name="category">REAL</s:param>
 				</s:url> <a href="<s:property value="#urlTag" />"><img class="images_ad"
 					src="images/real_estate.png"> </a>
 			<%-- <strong>REAL ESTATE</strong> --%>
