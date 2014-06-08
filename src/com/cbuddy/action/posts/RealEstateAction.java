@@ -1,8 +1,9 @@
 package com.cbuddy.action.posts;
 
 import java.io.File;
-import java.io.IOException;
 import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -16,13 +17,16 @@ import org.hibernate.SessionFactory;
 
 import com.cbuddy.beans.Pdre;
 import com.cbuddy.beans.Poit;
+import com.cbuddy.services.AdDetailsService;
 import com.cbuddy.util.CBuddyConstants;
+import com.cbuddy.util.LocationUtil;
+import com.cbuddy.util.NumberFormatterUtil;
 import com.model.user.RealEstatePostDetails;
 import com.model.user.User;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
 
-public class RealEstatePostAction extends ActionSupport implements SessionAware, ServletRequestAware, ModelDriven<RealEstatePostDetails>{
+public class RealEstateAction extends ActionSupport implements SessionAware, ServletRequestAware, ModelDriven<RealEstatePostDetails>{
 
 	private static final long serialVersionUID = 1L;
 
@@ -30,6 +34,11 @@ public class RealEstatePostAction extends ActionSupport implements SessionAware,
 	private File upload;
 	private String uploadFileName;
 	private String uploadContentType;
+	
+	private List<RealEstatePostDetails> adList = new ArrayList<RealEstatePostDetails>();
+	private String category = "" ;
+	private String subCat = "" ;
+	//private String basePath = "";
 
 	private HttpServletRequest request = null;
 	@Override
@@ -161,6 +170,61 @@ public class RealEstatePostAction extends ActionSupport implements SessionAware,
 			e.printStackTrace();
 		}
 	}
+	
+	private void populateAdditionalDetails(){
+		SessionFactory sessionFactory = (SessionFactory) ServletActionContext.getServletContext().getAttribute("sessionFactory");
+		Session dbSession = sessionFactory.openSession();
+		for(RealEstatePostDetails postDetails:adList){
+			String cityName = LocationUtil.getCityName(dbSession, postDetails.getCity());
+			String locName = LocationUtil.getLocationName(dbSession, postDetails.getCity(), postDetails.getLocation());
+			postDetails.setCity(cityName);
+			postDetails.setLocation(locName);
+			postDetails.setPriceValueStr(NumberFormatterUtil.formatAmount(postDetails.getPriceValue()));
+			String temp = "";
+			if(postDetails.getNewOrResale().equals("N")){
+				//New
+				if(postDetails.getReadyToOccupy().equals("Y")){
+					temp = "New - Ready to Move";
+				}else{
+					if(postDetails.getExpectedCompletionDate()!=null){
+						temp = "New - Expected Completion: " + postDetails.getExpectedCompletionDate();
+					}else{
+						temp = "New - Under Construction";
+					}
+				}
+			}else{
+				//Resale
+				if(postDetails.getAgeValue()>0){
+					temp = "Resale - " + postDetails.getAgeValue() + " years old";
+				}else{
+					temp = "Resale";
+				}
+			}
+			postDetails.setNewOrResaleStr(temp);
+		}
+	}
+	
+	public String getAdListForRealEstate(){
+
+		System.out.println("getAdListForRealEstate() ENTER");
+		
+		//basePath = request.getSession().getServletContext().getRealPath("");
+		
+		if(category.equals("")){
+			setCategory(CBuddyConstants.CATEGORY_REAL_ESTATE);
+		}
+		if(category.equals(CBuddyConstants.CATEGORY_REAL_ESTATE) && subCat.equals("")){
+			setSubCat(CBuddyConstants.SUBCATEGORY_REAL_ESTATE_APARTMENT_FOR_RENT);
+		}
+		
+		AdDetailsService adDetailService =  new AdDetailsService();
+		adList = adDetailService.getAdListByCategory(getModel(),subCat);
+		
+		populateAdditionalDetails();
+		
+		System.out.println("HomeAction.getAdListForRealEstate()"+adList.size()+" : "+subCat);
+		return "success";
+	}
 
 	@Override
 	public RealEstatePostDetails getModel() {
@@ -191,5 +255,37 @@ public class RealEstatePostAction extends ActionSupport implements SessionAware,
 	public void setUploadContentType(String uploadContentType) {
 		this.uploadContentType = uploadContentType;
 	}
+
+	public List<RealEstatePostDetails> getAdList() {
+		return adList;
+	}
+
+	public void setAdList(List<RealEstatePostDetails> adList) {
+		this.adList = adList;
+	}
+
+	public String getCategory() {
+		return category;
+	}
+
+	public void setCategory(String category) {
+		this.category = category;
+	}
+
+	public String getSubCat() {
+		return subCat;
+	}
+
+	public void setSubCat(String subCat) {
+		this.subCat = subCat;
+	}
+
+//	public String getBasePath() {
+//		return basePath;
+//	}
+//
+//	public void setBasePath(String basePath) {
+//		this.basePath = basePath;
+//	}
 
 }

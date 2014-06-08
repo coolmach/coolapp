@@ -24,7 +24,7 @@ import com.opensymphony.xwork2.ModelDriven;
 public class HomeAction extends ActionSupport implements SessionAware, ServletRequestAware ,ModelDriven<Pdre>{
 
     Pdre pdre = new Pdre();
-	private List<RealEstatePostDetails> adList = new ArrayList<RealEstatePostDetails>();
+//	private List<RealEstatePostDetails> adList = new ArrayList<RealEstatePostDetails>();
 	private String category="" ;
 	private String subCat="" ;
 	private String basePath = "";
@@ -61,16 +61,16 @@ public class HomeAction extends ActionSupport implements SessionAware, ServletRe
 		this.category = category;
 	}
 
-	public List<RealEstatePostDetails> getAdList() {
-		return adList;
-	}
+//	public List<RealEstatePostDetails> getAdList() {
+//		return adList;
+//	}
+//
+//	public void setAdList(List<RealEstatePostDetails> adList) {
+//		this.adList = adList;
+//	}
 
-	public void setAdList(List<RealEstatePostDetails> adList) {
-		this.adList = adList;
-	}
 
-
-	public String execute(){
+	/*public String execute(){
 		System.out.println("getAdListForRealEstate(dd) pdre.getArea(): " + getModel().getArea());
 		basePath = request.getSession().getServletContext().getRealPath("");
 		if(category.equals("")){
@@ -102,22 +102,23 @@ public class HomeAction extends ActionSupport implements SessionAware, ServletRe
 			if(postDetails.getNewOrResale().equals("N")){
 				//New
 				if(postDetails.getReadyToOccupy().equals("Y")){
-					temp = "New, Ready to Move";
+					temp = "New - Ready to Move";
 				}else{
 					if(postDetails.getExpectedCompletionDate()!=null){
-						temp = "New, Expected Completion: " + postDetails.getExpectedCompletionDate();
+						temp = "New - Expected Completion: " + postDetails.getExpectedCompletionDate();
 					}else{
-						temp = "New, Under Construction";
+						temp = "New - Under Construction";
 					}
 				}
 			}else{
 				//Resale
 				if(postDetails.getAgeValue()>0){
-					temp = "Resale, " + postDetails.getAgeValue() + " years old";
+					temp = "Resale - " + postDetails.getAgeValue() + " years old";
 				}else{
 					temp = "Resale";
 				}
 			}
+			postDetails.setNewOrResaleStr(temp);
 		}
 	}
 	
@@ -143,7 +144,7 @@ public class HomeAction extends ActionSupport implements SessionAware, ServletRe
 		return "success";
 	}
 
-	public String getAdListForCars(){
+*/	public String getAdListForCars(){
 		
 		System.out.println("getAdListForCars(dd)"+subCat);
 		basePath = request.getSession().getServletContext().getRealPath("");
@@ -155,8 +156,8 @@ public class HomeAction extends ActionSupport implements SessionAware, ServletRe
 			setSubCat("Apartment/House For Rent");
 		}
 		AdDetailsService adDetailService =  new AdDetailsService();
-		adList = adDetailService.getAdListByCategory(getModel(),subCat);
-		System.out.println("HomeAction.getAdListForCars()"+adList.size());
+		//adList = adDetailService.getAdListByCategory(getModel(),subCat);
+		//System.out.println("HomeAction.getAdListForCars()"+adList.size());
 
 		return "success";
 	}
@@ -171,8 +172,8 @@ public class HomeAction extends ActionSupport implements SessionAware, ServletRe
 			setSubCat("Mobile Phones");
 		}
 		AdDetailsService adDetailService =  new AdDetailsService();
-		adList = adDetailService.getAdListByCategory(getModel(),subCat);
-		System.out.println("HomeAction.getAdListForMobiles()"+adList.size());
+		//adList = adDetailService.getAdListByCategory(getModel(),subCat);
+		//System.out.println("HomeAction.getAdListForMobiles()"+adList.size());
 		return "success";
 	}
 
@@ -186,8 +187,8 @@ public class HomeAction extends ActionSupport implements SessionAware, ServletRe
 			setSubCat("Laptop");
 		}
 		AdDetailsService adDetailService =  new AdDetailsService();
-		adList = adDetailService.getAdListByCategory(getModel(),subCat);
-		System.out.println("HomeAction.getAdListForLaptops()"+adList.size());
+		//adList = adDetailService.getAdListByCategory(getModel(),subCat);
+		//System.out.println("HomeAction.getAdListForLaptops()"+adList.size());
 		return "success";
 		
 	}

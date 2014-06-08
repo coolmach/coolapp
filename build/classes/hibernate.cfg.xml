@@ -43,6 +43,8 @@
 		<mapping class="com.cbuddy.beans.Pdre" />
 		<mapping class="com.cbuddy.beans.Ucred" />
 		<mapping class="com.cbuddy.beans.Uprof" />
+		<mapping class="com.cbuddy.beans.City" />
+		<mapping class="com.cbuddy.beans.Location" />
 		<mapping class="com.model.user.RealEstatePostDetails" />
 	</session-factory>
 

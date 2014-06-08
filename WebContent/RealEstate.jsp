@@ -7,21 +7,19 @@
 				<span class="content">Type</span><span
 					class="glyphicon glyphicon glyphicon-chevron-down form-control-show"></span>
 			</div>
-			<div id="subCategory_hidden_sub" class="subCategory_hidden_bck"
-				style="display: none;">
+			<div id="subCategory_hidden_sub" class="subCategory_hidden_bck" style="display: none;">
 				<ul class="list-unstyled">
-					<li><span class="content">Apartment/House For Rent</span></li>
-					<li><span class="content">Apartment/House For Sale</span></li>
-					<li><span class="content">Plot For Sale</span></li>
-					<li><span class="content">PG Accommodation</span></li>
-					<li><span class="content">Roommate Required</span></li>
+					<li value="2"><span class="content">Apartment/House For Rent</span></li>
+					<li value="1"><span class="content">Apartment/House For Sale</span></li>
+					<li value="6"><span class="content">Plot For Sale</span></li>
+					<li value="5"><span class="content">PG Accommodation</span></li>
+					<li value="7"><span class="content">Roommate Required</span></li>
 				</ul>
 				<!-- <a href="#" class="clear blue_link">clear filters</a> -->
 			</div>
 		</div>
 		
-	 <form class="form-inline" id="apartment-rent"> 
-
+	 	<form class="form-inline" id="apartment-rent"> 
 			<div class=" pull-left hidden-subcat" id="loc-main">
 				<div id="location" class="inputstyle pointer form-control">
 					<span class="content">Location</span> <span
@@ -68,13 +66,13 @@
 				<div id="subCategory_hidden_bhk" class="subCategory_hidden_bck"
 					style="display: none;">
 					<ul class="list-unstyled">
-						<li><input type="checkbox" class="check_bhk" name="bhk" value="1 BHK" /><span class="content">1 BHK</span>
+						<li><input type="checkbox" class="check_bhk" name="bhk" value="1" /><span class="content">1 BHK</span>
 						</li>
-						<li><input type="checkbox" class="check_bhk" name="bhk" value="2 BHK" /><span class="content">2 BHK</span>
+						<li><input type="checkbox" class="check_bhk" name="bhk" value="2" /><span class="content">2 BHK</span>
 						</li>
-						<li><input type="checkbox" class="check_bhk" name="bhk" value="3 BHK" /><span class="content">3 BHK</span>
+						<li><input type="checkbox" class="check_bhk" name="bhk" value="3" /><span class="content">3 BHK</span>
 						</li>
-						<li><input type="checkbox" class="check_bhk" name="bhk" value="4 BHK" /><span class="content">4 BHK</span>
+						<li><input type="checkbox" class="check_bhk" name="bhk" value="4" /><span class="content">4 BHK</span>
 					</ul>
 					<a href="#" class="clear blue_link">clear filters</a>
 				</div>
