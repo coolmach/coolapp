@@ -30,11 +30,10 @@
 			<result name="success" type="tiles">/postad.tiles</result>
 			<result name="input" type="tiles">/home.tiles</result>
 		</action>	
-		<action name="realestate" class="com.cbuddy.action.user.HomeAction" method="getAdListForRealEstate">
+		<action name="realestate" class="com.cbuddy.action.posts.RealEstateAction" method="getAdListForRealEstate">
 			<result name="success" type="tiles">/realestate.tiles</result>
 		</action>
-		<action name="adListForRealEstate" class="com.cbuddy.action.user.HomeAction"
-			method="getAdListForRealEstate">
+		<action name="realestateFilter" class="com.cbuddy.action.posts.RealEstateAction" method="getAdListForRealEstate">
 			<result name="success">/AdList_RealEstate_Apartment_For_Rent.jsp</result>
 		</action> 
 		<action name="household" class="com.cbuddy.action.posts.HouseHoldItemsAction"
@@ -77,7 +76,7 @@
 			<result name="real_6" type="tiles">/postad_real_6.tiles</result>
 			<result name="real_7" type="tiles">/postad_real_7.tiles</result>
 		</action>
-		<action name="real_estate_postAd" class="com.cbuddy.action.posts.RealEstatePostAction" method="postAd">
+		<action name="real_estate_postAd" class="com.cbuddy.action.posts.RealEstateAction" method="postAd">
 			 <interceptor-ref name="secureStack"></interceptor-ref> 
 			 <interceptor-ref name="fileUpload">
                      <param name="allowedTypes">image/jpeg,image/gif,image/png</param>

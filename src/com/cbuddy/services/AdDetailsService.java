@@ -22,7 +22,7 @@ import com.model.user.RealEstatePostDetails;
 public class AdDetailsService {
 
 	@SuppressWarnings("unchecked")
-	public List<RealEstatePostDetails> getAdListByCategory(Pdre pdre,String subCategory){
+	public List<RealEstatePostDetails> getAdListByCategory(Pdre pdre, String subCategory){
 
 		SessionFactory sessionFactory = (SessionFactory) ServletActionContext.getServletContext().getAttribute("sessionFactory");
 		Session session = sessionFactory.openSession();
@@ -32,6 +32,9 @@ public class AdDetailsService {
 			Criteria criteria = session.createCriteria(RealEstatePostDetails.class);
 			criteria.addOrder(Order.desc("postId"));
 			criteria.setMaxResults(20);
+			criteria.add(Restrictions.eq("subCategory", subCategory));
+			criteria = generateFilters(pdre, criteria, subCategory);
+			
 			list = criteria.list();
 		} catch (HibernateException e) {
 			e.printStackTrace();

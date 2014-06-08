@@ -5,8 +5,9 @@ $(document).ready(function() {
 	var cat = $('#cat').text();
 
 	if(cat == 'REAL'){
-		path="adListForRealEstate";
-		subCat="Apartment/House For Rent";
+		path="realestateFilter";
+		//subCat="Apartment/House For Rent";
+		subCat = "2"; //SUBCATEGORY_REAL_ESTATE_APARTMENT_FOR_RENT
 		$("#loc-main").show();
 		$("#bhk-main").show();
 		$("#area-main").show();
@@ -136,7 +137,8 @@ $(document).ready(function() {
 		}
 
 		$(this).parent().hide();
-		subCat = $(this).text();
+		//subCat = $(this).text();
+		subCat = $(this).val();
 		
 		var data = "";
 		var data = data + '&subCat='+subCat;
