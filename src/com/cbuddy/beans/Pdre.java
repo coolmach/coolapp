@@ -19,6 +19,8 @@ public class Pdre {
 	private String subCategory;
 	private String rentOrSale;
 	private String newOrResale;
+	private String readyToOccupy;
+	private String expectedCompletionDate;
 	private String area;
 	//private int areaSq;
 	private String location;
@@ -393,6 +395,22 @@ public class Pdre {
 	}
 	public void setShare(String share) {
 		this.share = share;
+	}
+	
+	@Column(name="READY_TO_OCCUPY")
+	public String getReadyToOccupy() {
+		return readyToOccupy;
+	}
+	public void setReadyToOccupy(String readyToOccupy) {
+		this.readyToOccupy = readyToOccupy;
+	}
+	
+	@Column(name="EXPECTED_COMPLETION_DATE")
+	public String getExpectedCompletionDate() {
+		return expectedCompletionDate;
+	}
+	public void setExpectedCompletionDate(String expectedCompletionDate) {
+		this.expectedCompletionDate = expectedCompletionDate;
 	}
 	
 }

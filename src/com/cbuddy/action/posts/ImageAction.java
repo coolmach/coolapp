@@ -40,14 +40,18 @@ public class ImageAction extends ActionSupport implements ServletRequestAware {
  
 		BufferedImage originalImage;
 		try {
-			originalImage = ImageIO.read(getImageFile(this.imageId));
+			try{
+				originalImage = ImageIO.read(getImageFile(this.imageId));
+			}catch(Exception e){
+				originalImage = ImageIO.read(getImageFile("no_image_placeholder.jpg"));
+			}
 			// convert BufferedImage to byte array
 			ByteArrayOutputStream baos = new ByteArrayOutputStream();
 			ImageIO.write(originalImage, "jpg", baos);
 			baos.flush();
 			imageInByte = baos.toByteArray();
 			baos.close();
-		} catch (IOException e) {
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
@@ -56,7 +60,8 @@ public class ImageAction extends ActionSupport implements ServletRequestAware {
 	}
  
 	private File getImageFile(String imageId) {
-		String filePath = servletRequest.getSession().getServletContext().getRealPath("");
+		String filePath = "C:\\Shiva\\";
+		//String filePath = servletRequest.getSession().getServletContext().getRealPath("");
 		File file = new File(filePath + "/images/posts", imageId);
 		System.out.println(file.toString());
 		return file;

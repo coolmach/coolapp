@@ -25,45 +25,47 @@ import com.opensymphony.xwork2.ModelDriven;
 public class RealEstatePostAction extends ActionSupport implements SessionAware, ServletRequestAware, ModelDriven<RealEstatePostDetails>{
 
 	private static final long serialVersionUID = 1L;
-	
+
 	RealEstatePostDetails postDetails = new RealEstatePostDetails();
 	private File upload;
-    private String uploadFileName;
-    private String uploadContentType;
-	private Map<String,Object> session;
+	private String uploadFileName;
+	private String uploadContentType;
+
 	private HttpServletRequest request = null;
-	
 	@Override
 	public void setServletRequest(HttpServletRequest request) {
 		this.request = request;
 
 	}
-	
+
+	private Map<String,Object> session;
 	@Override
 	public void setSession(Map<String, Object> session) {
 		this.session=session;
 	}
 
 	public void validate(){
-		
+
 	}
 
 	private String getExtension(String contentType){
 		String extension = contentType;
-		int indexSlash = contentType.indexOf("/");
-		if(indexSlash>=0){
-			extension = contentType.substring(indexSlash + 1);
+		if(contentType != null){
+			int indexSlash = contentType.indexOf("/");
+			if(indexSlash>=0){
+				extension = contentType.substring(indexSlash + 1);
+			}
 		}
 		return extension;
 	}
-	
+
 	public void postAd(){
 		System.out.println("RealEstatePostAction.postAd()"+uploadContentType+" : "+uploadFileName+" : "+upload);
 		User user = (User)session.get("userInfo");
 		Timestamp current = new Timestamp(System.currentTimeMillis());
 		String userId = String.valueOf(user.getUserId());
 		String imgFileName = String.valueOf(System.currentTimeMillis()) + "." + getExtension(uploadContentType) + "";
-		
+
 		//Make an entry in POIT
 		Poit poit = new Poit();
 		poit.setCategory(CBuddyConstants.CATEGORY_REAL_ESTATE);
@@ -87,22 +89,24 @@ public class RealEstatePostAction extends ActionSupport implements SessionAware,
 		poit.setThumbnailName(null);
 		poit.setThumbnailType(null);
 		poit.setUserFirstName(user.getFirstName());
-		
+
 		SessionFactory sessionFactory = (SessionFactory) ServletActionContext.getServletContext().getAttribute("sessionFactory");
 		Session dbSession = sessionFactory.openSession();
-		
+
 		dbSession.beginTransaction();
 		dbSession.save(poit);
 		//dbSession.getTransaction().commit();
-		
+
 		dbSession.flush(); //Flushing to retrieve the auto generated post id
-		
+
 		//Make an entry in PDRE
 		Pdre pdre = new Pdre();
 		pdre.setAgeUnit("YEARS");
 		pdre.setAgeValue(postDetails.getAgeValue());
 		pdre.setAmt(postDetails.getAmt());
 		pdre.setApprovalAuthority(postDetails.getApprovalAuthority());
+		pdre.setExpectedCompletionDate(postDetails.getExpectedCompletionDate());
+		pdre.setReadyToOccupy(postDetails.getReadyToOccupy());
 		pdre.setArea(postDetails.getArea());
 		pdre.setBedrooms(postDetails.getBedrooms());
 		pdre.setBuilderName(postDetails.getBuilderName());
@@ -135,20 +139,25 @@ public class RealEstatePostAction extends ActionSupport implements SessionAware,
 		pdre.setSwimmingPool(postDetails.getSwimmingPool());
 		pdre.setTv(postDetails.getTv());
 		pdre.setWifi(postDetails.getWifi());
-		
+
 		dbSession.save(pdre);
 		
-		writeImage(upload, imgFileName);
-		
+		if(upload != null){
+			writeImage(upload, imgFileName);
+		}
+
 		dbSession.getTransaction().commit();
 	}
-	
+
 	private void writeImage(File inputFile, String outputFileName){
-		File outputFile = new File(request.getSession().getServletContext().getRealPath("") + "/images/posts/" + outputFileName);
+		String filePath = "C:\\Shiva\\";
+		//String filePath = request.getSession().getServletContext().getRealPath("");
+		File outputFile = new File(filePath + "/images/posts", outputFileName);
+
 		try {
 			System.out.println(outputFile.getAbsolutePath());
 			FileUtils.copyFile(inputFile, outputFile);
-		} catch (IOException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
@@ -157,7 +166,7 @@ public class RealEstatePostAction extends ActionSupport implements SessionAware,
 	public RealEstatePostDetails getModel() {
 		return postDetails;
 	}
-	
+
 
 	public File getUpload() {
 		return upload;

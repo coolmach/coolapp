@@ -2,19 +2,26 @@ package com.cbuddy.action.user;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.interceptor.ServletRequestAware;
+import org.apache.struts2.interceptor.SessionAware;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 
 import com.cbuddy.beans.Pdre;
 import com.cbuddy.services.AdDetailsService;
 import com.cbuddy.util.CBuddyConstants;
+import com.cbuddy.util.LocationUtil;
+import com.cbuddy.util.NumberFormatterUtil;
 import com.model.user.RealEstatePostDetails;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
 
-public class HomeAction extends ActionSupport implements ServletRequestAware ,ModelDriven<Pdre>{
+public class HomeAction extends ActionSupport implements SessionAware, ServletRequestAware ,ModelDriven<Pdre>{
 
     Pdre pdre = new Pdre();
 	private List<RealEstatePostDetails> adList = new ArrayList<RealEstatePostDetails>();
@@ -22,6 +29,11 @@ public class HomeAction extends ActionSupport implements ServletRequestAware ,Mo
 	private String subCat="" ;
 	private String basePath = "";
 	
+	private Map<String,Object> session;
+	@Override
+	public void setSession(Map<String, Object> session) {
+		this.session=session;
+	}
 	
 	public String getBasePath() {
 		return basePath;
@@ -77,6 +89,38 @@ public class HomeAction extends ActionSupport implements ServletRequestAware ,Mo
 		return "success";
 	}
 	
+	private void populateAdditionalDetails(){
+		SessionFactory sessionFactory = (SessionFactory) ServletActionContext.getServletContext().getAttribute("sessionFactory");
+		Session dbSession = sessionFactory.openSession();
+		for(RealEstatePostDetails postDetails:adList){
+			String cityName = LocationUtil.getCityName(dbSession, postDetails.getCity());
+			String locName = LocationUtil.getLocationName(dbSession, postDetails.getCity(), postDetails.getLocation());
+			postDetails.setCity(cityName);
+			postDetails.setLocation(locName);
+			postDetails.setPriceValueStr(NumberFormatterUtil.formatAmount(postDetails.getPriceValue()));
+			String temp = "";
+			if(postDetails.getNewOrResale().equals("N")){
+				//New
+				if(postDetails.getReadyToOccupy().equals("Y")){
+					temp = "New, Ready to Move";
+				}else{
+					if(postDetails.getExpectedCompletionDate()!=null){
+						temp = "New, Expected Completion: " + postDetails.getExpectedCompletionDate();
+					}else{
+						temp = "New, Under Construction";
+					}
+				}
+			}else{
+				//Resale
+				if(postDetails.getAgeValue()>0){
+					temp = "Resale, " + postDetails.getAgeValue() + " years old";
+				}else{
+					temp = "Resale";
+				}
+			}
+		}
+	}
+	
 	public String getAdListForRealEstate(){
 
 		System.out.println("getAdListForRealEstate() ENTER");
@@ -92,6 +136,8 @@ public class HomeAction extends ActionSupport implements ServletRequestAware ,Mo
 		
 		AdDetailsService adDetailService =  new AdDetailsService();
 		adList = adDetailService.getAdListByCategory(getModel(),subCat);
+		
+		populateAdditionalDetails();
 		
 		System.out.println("HomeAction.getAdListForRealEstate()"+adList.size()+" : "+subCat);
 		return "success";

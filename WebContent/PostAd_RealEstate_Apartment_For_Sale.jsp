@@ -42,9 +42,15 @@
 				</div>
 			</div>
 			<div class="form-group">
+				<label for="location" class="col-sm-4 control-label">City</label>
+				<div class="col-sm-6">
+					<input type="text" class="form-control" name="City" id="City" value="BLR">
+				</div>
+			</div>			
+			<div class="form-group">
 				<label for="location" class="col-sm-4 control-label">Location</label>
 				<div class="col-sm-6">
-					<input type="text" class="form-control" name="Location" id="Location" value="HSR">
+					<input type="text" class="form-control" name="Location" id="Location" value="46">
 				</div>
 			</div>
 			<div class="form-group">
@@ -140,7 +146,17 @@
 			    <input type="file" name="upload" id="upload"></span>
 			    <a href="#" class="btn btn-default fileinput-exists" data-dismiss="fileinput">Remove</a>
 			  </div>
-			</div>		
+			</div>
+			<div class="form-group">
+				<div class="col-sm-6">
+					<input type="text" class="form-control" name="ContactPersonName" placeholder="Contact Person Name" value="MGR">
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="col-sm-6">
+					<input type="text" class="form-control" name="ContactNo" placeholder="Contact Number" value="77777766666">
+				</div>
+			</div>			
 		</div>
 	</s:form>
 

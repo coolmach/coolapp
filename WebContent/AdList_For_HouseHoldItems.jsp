@@ -23,8 +23,8 @@
 								value="contactPerson" />,<s:property value="contactNo" /> </small>
 					</td>
 					<td><s:url action="addetails" var="urlTag">
-							<s:param name="price">
-								<s:property value="price" />
+							<s:param name="priceValueStr">
+								<s:property value="priceValueStr" />
 							</s:param>
 						</s:url> <a class="blue_link" href="<s:property value="#urlTag" />"><s:property
 								value="price" /> </a>

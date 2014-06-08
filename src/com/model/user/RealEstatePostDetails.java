@@ -25,7 +25,8 @@ public class RealEstatePostDetails extends Pdre implements Serializable{
 	private String ImageFileName;
 	private String category;
 	//private String subcategory;
-	private double priceValue;
+	private String priceValueStr;
+	private String newOrResaleStr;
 
 	@Transient
 	public String getCategory() {
@@ -91,10 +92,18 @@ public class RealEstatePostDetails extends Pdre implements Serializable{
 	}
 	
 	@Transient
-	public double getPriceValue() {
-		return priceValue;
+	public String getPriceValueStr() {
+		return priceValueStr;
 	}
-	public void setPriceValue(double priceValue) {
-		this.priceValue = priceValue;
+	public void setPriceValueStr(String priceValue) {
+		this.priceValueStr = priceValue;
+	}
+	
+	@Transient
+	public String getNewOrResaleStr() {
+		return newOrResaleStr;
+	}
+	public void setNewOrResaleStr(String newOrResaleStr) {
+		this.newOrResaleStr = newOrResaleStr;
 	}
 }
