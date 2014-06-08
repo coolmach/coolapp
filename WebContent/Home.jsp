@@ -103,7 +103,7 @@
 	</div> -->
 	<div class="col-md-10" style="float:right;">
 			<img src="images/arrow.png" id="arr_img"> <input
-				type="text" class="form-control" id="category" name="category" 
+				type="text" class="form-control" id="category_search" name="category" 
 				placeholder="I am looking for...">
 		</div>
 </div>
