@@ -7,7 +7,8 @@
 	<s:if test="adList.size() > 0">
 		<table class="table table-bordered">
 			<tr>
-				<th colspan="3">Post Details</th>
+				<th>Post Details</th>
+				<td colspan="2" style="text-align:right;width:100%;">Showing Records (? - ? of ?))</td>
 			</tr>
 			<s:iterator value="adList" status="userStatus">
 				<tr style="font-size:12px;">
@@ -36,5 +37,11 @@
 				</tr>  
 			</s:iterator>
 		</table>
-
 	</s:if>
+	<s:else>
+		<table class="table table-bordered">
+			<tr>
+				<td colspan="3" style="padding-left:15px;font-size:13px;">No posts found! Try refining search criteria</th>
+			</tr>
+		</table>	
+	</s:else>

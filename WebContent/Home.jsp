@@ -75,26 +75,23 @@
 	});
 </script>
 <div class=" header_2"></div>
-<div class="col-md-6 pull-left">
+<div class="col-md-6 pull-left" style="margin-top:5%;">
 	<div class="col-md-3">
 		<img id="guy-img" src="images/Guy.png">
 	</div>
 	<div class="col-md-9">
 		<div class="col-md-12 cbuddy_intro">
-			<h4 style="font-family: serif;font-size: large;">An exclusive Classifieds portal for Techies</h4>
+			<div style="font-family:Tw Cen MT Condensed;font-size:30px;float:left;">An exclusive Classifieds portal for Techies</div>
 		</div>
 		<div class="col-md-12 cbuddy_intro">
-			<h5 style="margin: 10px; color:#808080;font-family: serif;">"Say no to brokers, yes to folks/your
-				colleagues"</h5>
+			<h5 style="margin: 10px; color:#808080;font-family:Tw Cen MT Condensed;font-size:26px;">"Say no to brokers, yes to your colleagues"</h5>
 		</div>
 		<div class="col-md-12 cbuddy_intro">
 			<div style="margin: 15px;">
-				<img class="star-img" src="images/star.png"><b>Verified
-					Posts</b>
+				<img class="star-img" src="images/star.png"><b>Verified Posts</b>
 			</div>
 			<div style="margin: 15px;">
-				<img class="star-img" src="images/star.png"><b>Authenticate
-					Users</b>
+				<img class="star-img" src="images/star.png"><b>Authenticated Users</b>
 			</div>
 		</div>
 		
@@ -107,13 +104,15 @@
 				placeholder="I am looking for...">
 		</div>
 </div>
-<div class="col-md-4">
+<div class="col-md-4" style="margin-top:5%;">
 	<table class="table mygrid">
 		<tr>
-			<td><s:url action="realestate" var="urlTag">
+			<td>
+				<s:url action="realestate" var="urlTag" escapeAmp="false">
 					<s:param name="category">REAL</s:param>
-				</s:url> <a href="<s:property value="#urlTag" />"><img class="images_ad"
-					src="images/real_estate.png"> </a>
+					<s:param name="subCategory">1</s:param>
+				</s:url> 
+				<a href="<s:property value="#urlTag" />"><img class="images_ad" src="images/real_estate.png"> </a>
 			</td>
 			<td><s:url action="cars" var="urlTag1">
 					<s:param name="category">CARS</s:param>
@@ -146,10 +145,7 @@
 
 	</table>
 
-	<div class="col-md-12 mygrid_post">
-		<span id="post"> <a class="" id="post_ad"
-			href="<s:url action="postad"/>">Post Ad</a> </span>
-	</div>
+
 	<s:if test="%{#session.userLoggedIn} != null">
 		<%@include file="./postAd_Modal_Window.jsp"%>
 	</s:if>

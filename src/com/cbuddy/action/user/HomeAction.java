@@ -1,23 +1,14 @@
 package com.cbuddy.action.user;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.interceptor.ServletRequestAware;
 import org.apache.struts2.interceptor.SessionAware;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 
 import com.cbuddy.beans.Pdre;
 import com.cbuddy.services.AdDetailsService;
-import com.cbuddy.util.CBuddyConstants;
-import com.cbuddy.util.LocationUtil;
-import com.cbuddy.util.NumberFormatterUtil;
-import com.model.user.RealEstatePostDetails;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
 

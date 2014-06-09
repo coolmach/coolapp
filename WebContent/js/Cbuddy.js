@@ -81,11 +81,17 @@ $(document).ready(function() {
 		});
 
 		$(this).find('#'+id).remove();
+		
+		if($("#filterValueBar").text() == ""){
+			$("#filterValueBar").hide();
+		}
+		
 	});
 
 	//if user clicks on checkboxes
 	$('input[class^=check_]').click(function(event) {
-
+		$("#filterValueBar").show();
+		
 		var data="";
 		data = data + '&subCategory='+subCat;
 		var str="";
@@ -96,11 +102,15 @@ $(document).ready(function() {
 			//var check = $(this).val();
 			var check = $(this).parent().children('span.content').text();
 			var div_Id = check.replace(/\s+/g, '').replace(/[^a-z0-9\s]/gi, '').replace(/[_\s]/g, '-');
-			str = str+'<div style="margin-left:12px;" class="pull-left filters" id="'+div_Id+'">'+check+'<span class="glyphicon glyphicon-remove form-control-show"id="'+div_Id+'">'+'</span>'+'</div >';
+			str = str+'<div style="margin-left:12px;" class="pull-left filters" id="'+div_Id+'"><span class="content">'+check+'</span><span class="glyphicon glyphicon-remove form-control-show"id="'+div_Id+'">'+'</span>'+'</div >';
 				});
 
 		$('.selected_filters').html(str);
 
+		if($("#filterValueBar").text() == ""){
+			$("#filterValueBar").hide();
+		}
+		
 		$.ajax({
 			type: 'POST',
 			url: "/Virat/"+path, 
@@ -139,9 +149,8 @@ $(document).ready(function() {
 		$(this).parent().hide();
 		//subCat = $(this).text();
 		subCat = $(this).val();
-		
 		var data = "";
-		var data = data + '&subCat='+subCat;
+		var data = data + '&subCategory='+subCat;
 		//alert(data);
 		$.ajax({
 			type: 'POST',

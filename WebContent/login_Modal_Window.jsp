@@ -1,7 +1,7 @@
 <%@ taglib prefix="s" uri="/struts-tags"%>
 	<div id='content'>
 		<div id='basic-modal' class="mygrid_post">
-			<input type='button' name='basic' value='Post Ad' class='basic'/>
+			<input type='button' name='basic' value='Post Ad' class='basic'  style="height:35px;width:100px;"/>
 		</div>
 		
 		<!-- modal content -->

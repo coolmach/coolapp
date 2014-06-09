@@ -1,8 +1,13 @@
 <%@ taglib prefix="s" uri="/struts-tags"%>
 	<div id='content'>
-		<div id='basic-modal' class="mygrid_post">
+		<!-- div id='basic-modal' class="mygrid_post">
 			<input type='button' name='basic' value='Post Advertisement' class='basic'/>
-		</div>	
+		</div-->	
+		<div class="col-md-12 mygrid_post">
+			<span id="post"> 
+				<a class="" id="post_ad" href="<s:url action="postad"/>">Post Ad</a> 
+			</span>
+		</div>		
 		<!-- modal content -->
 		<div id="basic-modal-content">
 			<h3>Post Category</h3>

@@ -1,4 +1,5 @@
 <%@ taglib prefix="s" uri="/struts-tags"%>
+<link rel="stylesheet" type="text/css" href="css/Cbuddy.css"/>
 <script>
 	function toggle(newOrResale){
 		if(newOrResale == "New"){
@@ -148,6 +149,11 @@
 			  </div>
 			</div>
 			<div class="form-group">
+				<div class="col-sm-8">
+					<label for="" class="col-sm-6 control-label" style="text-align:left;">Contact Details</label>
+				</div>
+			</div>
+			<div class="form-group">
 				<div class="col-sm-6">
 					<input type="text" class="form-control" name="ContactPersonName" placeholder="Contact Person Name" value="MGR">
 				</div>
@@ -156,7 +162,21 @@
 				<div class="col-sm-6">
 					<input type="text" class="form-control" name="ContactNo" placeholder="Contact Number" value="77777766666">
 				</div>
-			</div>			
+			</div>
+			<div class="form-group">
+				<div class="col-sm-8">
+					<label for="" class="col-sm-6 control-label" style="text-align:left;">Amenities</label>
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="col-sm-6">
+					<input type="checkbox" name="gym" value="Y"><span class="checkBoxText">Gym </span><BR>
+					<input type="checkbox" name="carParking" value="Y"><span class="checkBoxText">Car Parking</span><BR>
+					<input type="checkbox" name="childrenPlayArea" value="Y"><span class="checkBoxText">Children Park</span><BR>
+					<input type="checkbox" name="clubHouse" value="Y"><span class="checkBoxText">Club House</span><BR>
+					<input type="checkbox" name="swimmingPool" value="Y"><span class="checkBoxText">Swimming Pool </span><BR>
+				</div>
+			</div>	
 		</div>
 	</s:form>
 

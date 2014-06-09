@@ -36,32 +36,25 @@
 		<action name="realestateFilter" class="com.cbuddy.action.posts.RealEstateAction" method="getAdListForRealEstate">
 			<result name="success">/AdList_RealEstate_Apartment_For_Rent.jsp</result>
 		</action> 
-		<action name="household" class="com.cbuddy.action.posts.HouseHoldItemsAction"
-			method="getAdListForHouseHoldItems">
+		<action name="household" class="com.cbuddy.action.posts.HouseHoldItemsAction" method="getAdListForHouseHoldItems">
 			<result name="success" type="tiles">/household.tiles</result>
 		</action>
-		<action name="adListForHouseHoldItems" class="com.cbuddy.action.posts.HouseHoldItemsAction"
-			method="getAdListForHouseHoldItems">
+		<action name="adListForHouseHoldItems" class="com.cbuddy.action.posts.HouseHoldItemsAction" method="getAdListForHouseHoldItems">
 			<result name="success">/AdList_For_HouseHoldItems.jsp</result>
 		</action> 
-		<action name="cars" class="com.cbuddy.action.user.HomeAction"
-			method="getAdListForCars">
+		<action name="cars" class="com.cbuddy.action.user.HomeAction" method="getAdListForCars">
 			<result name="success" type="tiles">/cars.tiles</result>
 		</action>
-		<action name="laptops" class="com.cbuddy.action.user.HomeAction"
-			method="getAdListForLaptops">
+		<action name="laptops" class="com.cbuddy.action.user.HomeAction" method="getAdListForLaptops">
 			<result name="success" type="tiles">/laptops.tiles</result>
 		</action>
-		<action name="mobiles" class="com.cbuddy.action.user.HomeAction"
-			method="getAdListForMobiles">
+		<action name="mobiles" class="com.cbuddy.action.user.HomeAction" method="getAdListForMobiles">
 			<result name="success" type="tiles">/mobiles.tiles</result>
 		</action>
-		<action name="books" class="com.cbuddy.action.user.HomeAction"
-			method="getAdListForBooksAndDvds">
+		<action name="books" class="com.cbuddy.action.user.HomeAction" method="getAdListForBooksAndDvds">
 			<result name="success" type="tiles">/books.tiles</result>
 		</action>	
-		<action name="addetails" class="com.cbuddy.action.user.HomeAction"
-			method="getAdDetails">
+		<action name="addetails" class="com.cbuddy.action.user.HomeAction" method="getAdDetails">
 			<result name="success" type="tiles">/addetails.tiles</result>
 		</action>
 		<action name="postad" class="com.cbuddy.action.posts.PostAdAction">

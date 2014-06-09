@@ -70,10 +70,12 @@
 			    </label>
 			  </div> -->
 			  <s:submit cssClass="btn btn-info" value="Log In"/> 
+			  <a class="" href="#"><span style="margin-left:15px;margin-top:10px;">Sign Up</span></a>
+			  					  <span style="margin-left:5px;margin-top:10px;color:#FFFFFF;">|</span>
+			  <a class="" href="#"><span style="margin-left:5px;margin-top:10px;">Forgot Password</span></a> 
             </s:form>
-            <div class="col-md-4 forgot_pwd"> <a class="" href="">New User?Sign Up</a></div>
-            <div class="col-md-4 forgot_pwd"> <a class="" href="">Forgot Password</a></div>   
-                
+            <div class="col-md-4 forgot_pwd" style="color:#0099cc;"> &nbsp;</div>
+            <div class="col-md-4 forgot_pwd" style="color:#0099cc;"> &nbsp;</div>
             </div>
       </div>
     </div>

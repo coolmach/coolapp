@@ -21,7 +21,7 @@
 }
 
 .header_2 {
-	margin-top: 35px;
+	margin-top: 0px;
 }
 
 .footer_2 {
@@ -182,13 +182,12 @@
 }
 
 .mygrid_post {
-	box-shadow: 1px 2px 5px 1px #E9E9E9;
-	display: inline-table;
+	/*box-shadow: 1px 2px 5px 1px #E9E9E9;*/
+	/*display: inline-table;*/
 	/* margin: 4px 4px 4px 80px;  */
 	text-align: center;
 	text-decoration: underline;
-	/*  width: 188px;  */
-	height: 35px;
+	/* width: 188px; */
 }
 
 .images_ad {
@@ -394,8 +393,10 @@ html,body {
 }
 
 #arr_img{
-	float: left;
-	width:20%;
+	float:left;
+	width:10%;
+	margin-right:10px;
+	margin-left:10px;
 }
 /* Custom page CSS
 -------------------------------------------------- */

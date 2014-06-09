@@ -21,8 +21,8 @@ public class Pdre {
 	private String newOrResale;
 	private String readyToOccupy;
 	private String expectedCompletionDate;
-	private String area;
-	//private int areaSq;
+	private int area;
+	private String areaStr;
 	private String location;
 	private String city;
 	private double priceValue;
@@ -102,10 +102,10 @@ public class Pdre {
 		this.newOrResale = NewOrResale;
 	}
 
-	public String getArea(){
+	public int getArea(){
 		return this.area;
 	}
-	public void setArea(String Area){
+	public void setArea(int Area){
 		this.area = Area;
 	}
 
@@ -341,13 +341,13 @@ public class Pdre {
 		this.modifiedBy = ModifiedBy;
 	}
 
-//	@Column(name="AREA_SQ")
-//	public int getAreaSq() {
-//		return areaSq;
-//	}
-//	public void setAreaSq(int areaSq) {
-//		this.areaSq = areaSq;
-//	}
+	@Transient
+	public String getAreaStr() {
+		return areaStr;
+	}
+	public void setAreaStr(String areaStr) {
+		this.areaStr = areaStr;
+	}
 	
 	@Column(name="CLUB_HOUSE")
 	public String getClubHouse() {

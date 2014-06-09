@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import javax.persistence.Transient;
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.io.FileUtils;
@@ -21,6 +22,7 @@ import com.cbuddy.services.AdDetailsService;
 import com.cbuddy.util.CBuddyConstants;
 import com.cbuddy.util.LocationUtil;
 import com.cbuddy.util.NumberFormatterUtil;
+import com.cbuddy.util.Utils;
 import com.model.user.RealEstatePostDetails;
 import com.model.user.User;
 import com.opensymphony.xwork2.ActionSupport;
@@ -35,9 +37,12 @@ public class RealEstateAction extends ActionSupport implements SessionAware, Ser
 	private String uploadFileName;
 	private String uploadContentType;
 	
+	private String categoryStr;
+	private String subCategoryStr;
+	
 	private List<RealEstatePostDetails> adList = new ArrayList<RealEstatePostDetails>();
 	private String category = "" ;
-	private String subCat = "" ;
+	private String subCategory = "" ;
 	//private String basePath = "";
 
 	private HttpServletRequest request = null;
@@ -210,19 +215,25 @@ public class RealEstateAction extends ActionSupport implements SessionAware, Ser
 		
 		//basePath = request.getSession().getServletContext().getRealPath("");
 		
-		if(category.equals("")){
+		category = postDetails.getCategory();
+		subCategory = postDetails.getSubCategory();
+		
+		categoryStr = Utils.getInstance().getCategoryDesc(category);
+		subCategoryStr = Utils.getInstance().getSubCategoryDesc(category, subCategory);
+		
+		if(category==null || category.equals("")){
 			setCategory(CBuddyConstants.CATEGORY_REAL_ESTATE);
 		}
-		if(category.equals(CBuddyConstants.CATEGORY_REAL_ESTATE) && subCat.equals("")){
-			setSubCat(CBuddyConstants.SUBCATEGORY_REAL_ESTATE_APARTMENT_FOR_RENT);
+		if(category.equals(CBuddyConstants.CATEGORY_REAL_ESTATE) && (subCategory==null || subCategory.equals(""))){
+			setSubCategory(CBuddyConstants.SUBCATEGORY_REAL_ESTATE_APARTMENT_FOR_RENT);
 		}
 		
 		AdDetailsService adDetailService =  new AdDetailsService();
-		adList = adDetailService.getAdListByCategory(getModel(),subCat);
+		adList = adDetailService.getAdListByCategory(getModel(), subCategory);
 		
 		populateAdditionalDetails();
 		
-		System.out.println("HomeAction.getAdListForRealEstate()"+adList.size()+" : "+subCat);
+		System.out.println("HomeAction.getAdListForRealEstate()"+adList.size()+" : "+subCategory);
 		return "success";
 	}
 
@@ -272,12 +283,12 @@ public class RealEstateAction extends ActionSupport implements SessionAware, Ser
 		this.category = category;
 	}
 
-	public String getSubCat() {
-		return subCat;
+	public String getSubCategory() {
+		return subCategory;
 	}
 
-	public void setSubCat(String subCat) {
-		this.subCat = subCat;
+	public void setSubCategory(String subCategory) {
+		this.subCategory = subCategory;
 	}
 
 //	public String getBasePath() {
@@ -288,4 +299,21 @@ public class RealEstateAction extends ActionSupport implements SessionAware, Ser
 //		this.basePath = basePath;
 //	}
 
+	@Transient
+	public String getCategoryStr() {
+		return categoryStr;
+	}
+
+	public void setCategoryStr(String categoryStr) {
+		this.categoryStr = categoryStr;
+	}
+
+	@Transient
+	public String getSubCategoryStr() {
+		return subCategoryStr;
+	}
+
+	public void setSubCategoryStr(String subCategoryStr) {
+		this.subCategoryStr = subCategoryStr;
+	}
 }

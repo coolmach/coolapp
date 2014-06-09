@@ -22,7 +22,7 @@ import com.model.user.RealEstatePostDetails;
 public class AdDetailsService {
 
 	@SuppressWarnings("unchecked")
-	public List<RealEstatePostDetails> getAdListByCategory(Pdre pdre, String subCategory){
+	public List<RealEstatePostDetails> getAdListByCategory(RealEstatePostDetails postDetails, String subCategory){
 
 		SessionFactory sessionFactory = (SessionFactory) ServletActionContext.getServletContext().getAttribute("sessionFactory");
 		Session session = sessionFactory.openSession();
@@ -33,7 +33,7 @@ public class AdDetailsService {
 			criteria.addOrder(Order.desc("postId"));
 			criteria.setMaxResults(20);
 			criteria.add(Restrictions.eq("subCategory", subCategory));
-			criteria = generateFilters(pdre, criteria, subCategory);
+			criteria = generateFilters(postDetails, criteria, subCategory);
 			
 			list = criteria.list();
 		} catch (HibernateException e) {
@@ -44,138 +44,115 @@ public class AdDetailsService {
 		return list;
 	}
 	
-	public List<Pdre> getAdListByCategory_(Pdre pdre,String subCategory){
-		//getNewAdListByCategory();
-		SessionFactory sessionFactory = (SessionFactory) ServletActionContext.getServletContext().getAttribute("sessionFactory");
-		Session session = sessionFactory.openSession();
-		session.beginTransaction();
-		
-		List<Pdre> res = null;
-		try {	
-			//poit = (List<Poit>)session.createQuery("from Poit").list();
-			Criteria criteria = session.createCriteria(Pdre.class);
-			criteria = generateFilters(pdre, criteria, subCategory);
-			res = (List<Pdre>) criteria.list();
-
-		} catch (HibernateException e) {
-			e.printStackTrace();
-			session.getTransaction().rollback();
-		}
-		session.getTransaction().commit();
-		session.close();
-
-		return res;
-	}
-
-	private Criteria generateFilters(Pdre pdre,Criteria criteria,String subCategory) {
+	private Criteria generateFilters(RealEstatePostDetails postDetails, Criteria criteria, String subCategory) {
 
 		if(subCategory.equals(CBuddyConstants.SUBCATEGORY_REAL_ESTATE_APARTMENT_FOR_RENT)){
-			if(pdre.getLocation()!=null){
-				criteria = getCriteriaForLocation(criteria, pdre);	
+			if(postDetails.getLocation()!=null){
+				criteria = getCriteriaForLocation(criteria, postDetails);	
 			}
-			if(pdre.getArea()!=null){
-				criteria = getCriteriaForArea(criteria,pdre);
+			if(postDetails.getAreaStr()!=null && !postDetails.getAreaStr().equals("")){
+				criteria = getCriteriaForArea(criteria, postDetails);
 			}
-			if(pdre.getBhk()!=null){
-				criteria = getCriteriaForBhk(criteria,pdre);		
+			if(postDetails.getBhk()!=null){
+				criteria = getCriteriaForBhk(criteria, postDetails);		
 			}
-			if(pdre.getRent()!=null){
-				criteria = getCriteriaForRent(criteria, pdre);
+			if(postDetails.getRent()!=null){
+				criteria = getCriteriaForRent(criteria, postDetails);
 			}
-			if(pdre.getFacingDirection()!=null){
-				criteria = getCriteriaForDirection(criteria, pdre);
+			if(postDetails.getFacingDirection()!=null){
+				criteria = getCriteriaForDirection(criteria, postDetails);
 			}
-			if(pdre.getMaritalPreference()!=null){
-				criteria = getCriteriaForMaritalPreference(criteria, pdre);
+			if(postDetails.getMaritalPreference()!=null){
+				criteria = getCriteriaForMaritalPreference(criteria, postDetails);
 			}
-			if(pdre.getCarParking()!=null){
-				criteria = getCriteriaForCarParking(criteria, pdre);
+			if(postDetails.getCarParking()!=null){
+				criteria = getCriteriaForCarParking(criteria, postDetails);
 			}
 		}else if(subCategory.equals(CBuddyConstants.SUBCATEGORY_REAL_ESTATE_APARTMENT_FOR_SALE)){	
-			if(pdre.getLocation()!=null){
-				criteria = getCriteriaForLocation(criteria, pdre);	
+			if(postDetails.getLocation()!=null){
+				criteria = getCriteriaForLocation(criteria, postDetails);	
 			}
-			if(pdre.getArea()!=null){
-				criteria = getCriteriaForArea(criteria,pdre);
+			if(postDetails.getAreaStr()!=null && !postDetails.getAreaStr().equals("")){
+				criteria = getCriteriaForArea(criteria, postDetails);
 			}
-			if(pdre.getBhk()!=null){
-				criteria = getCriteriaForBhk(criteria,pdre);		
+			if(postDetails.getBhk()!=null){
+				criteria = getCriteriaForBhk(criteria, postDetails);		
 			}
-			if(pdre.getAmt()!=null){
-				criteria = getCriteriaForAmt(criteria, pdre);
+			if(postDetails.getAmt()!=null){
+				criteria = getCriteriaForAmt(criteria, postDetails);
 			}
-			if(pdre.getNewOrResale()!=null){
-				criteria = getCriteriaForgetNewOrResale(criteria, pdre);
+			if(postDetails.getNewOrResale()!=null){
+				criteria = getCriteriaForgetNewOrResale(criteria, postDetails);
 			}
-			if(pdre.getApprovalAuthority()!=null){
-				criteria = getCriteriaForApprovalAuthority(criteria, pdre);
+			if(postDetails.getApprovalAuthority()!=null){
+				criteria = getCriteriaForApprovalAuthority(criteria, postDetails);
 			}
-			if(pdre.getGym()!=null){
-				criteria = getCriteriaForGym(criteria, pdre);
+			if(postDetails.getGym()!=null){
+				criteria = getCriteriaForGym(criteria, postDetails);
 			}
-			if(pdre.getSwimmingPool()!=null){
-				criteria = getCriteriaForSwimmingPool(criteria, pdre);
+			if(postDetails.getSwimmingPool()!=null){
+				criteria = getCriteriaForSwimmingPool(criteria, postDetails);
 			}
-			if(pdre.getClubHouse()!=null){
-				criteria = getCriteriaForClubHouse(criteria, pdre);
+			if(postDetails.getClubHouse()!=null){
+				criteria = getCriteriaForClubHouse(criteria, postDetails);
 			}
-			if(pdre.getChildrenPlayArea()!=null){
-				criteria = getCriteriaForChildrenPlayArea(criteria, pdre);
+			if(postDetails.getChildrenPlayArea()!=null){
+				criteria = getCriteriaForChildrenPlayArea(criteria, postDetails);
 			}
-			if(pdre.getCarParking()!=null){
-				criteria = getCriteriaForCarParking(criteria, pdre);
+			if(postDetails.getCarParking()!=null){
+				criteria = getCriteriaForCarParking(criteria, postDetails);
 			}	
 		}else if(subCategory.equals(CBuddyConstants.SUBCATEGORY_REAL_ESTATE_LAND_SALE)){
-			if(pdre.getLocation()!=null){
-				criteria = getCriteriaForLocation(criteria, pdre);	
+			if(postDetails.getLocation()!=null){
+				criteria = getCriteriaForLocation(criteria, postDetails);	
 			}
-			if(pdre.getArea()!=null){
-				criteria = getCriteriaForArea(criteria,pdre);
+			if(postDetails.getAreaStr()!=null && !postDetails.getAreaStr().equals("")){
+				criteria = getCriteriaForArea(criteria, postDetails);
 			}
-			if(pdre.getAmt()!=null){
-				criteria = getCriteriaForAmt(criteria, pdre);
+			if(postDetails.getAmt()!=null){
+				criteria = getCriteriaForAmt(criteria, postDetails);
 			}
-			if(pdre.getApprovalAuthority()!=null){
-				criteria = getCriteriaForApprovalAuthority(criteria, pdre);
+			if(postDetails.getApprovalAuthority()!=null){
+				criteria = getCriteriaForApprovalAuthority(criteria, postDetails);
 			}	
 		}else if(subCategory.equals(CBuddyConstants.SUBCATEGORY_REAL_ESTATE_PG_ACCOMODATION)){
-			if(pdre.getLocation()!=null){
-				criteria = getCriteriaForLocation(criteria, pdre);	
+			if(postDetails.getLocation()!=null){
+				criteria = getCriteriaForLocation(criteria, postDetails);	
 			}
-			if(pdre.getAmt()!=null){
-				criteria = getCriteriaForAmt(criteria, pdre);
+			if(postDetails.getAmt()!=null){
+				criteria = getCriteriaForAmt(criteria, postDetails);
 			}
-			if(pdre.getWifi()!=null){
-				criteria = getCriteriaForWifi(criteria, pdre);
+			if(postDetails.getWifi()!=null){
+				criteria = getCriteriaForWifi(criteria, postDetails);
 			}
-			if(pdre.getTv()!=null){
-				criteria = getCriteriaForTv(criteria, pdre);
+			if(postDetails.getTv()!=null){
+				criteria = getCriteriaForTv(criteria, postDetails);
 			}
-			if(pdre.getFood()!=null){
-				criteria = getCriteriaForFood(criteria, pdre);
+			if(postDetails.getFood()!=null){
+				criteria = getCriteriaForFood(criteria, postDetails);
 			}
 		}else if(subCategory.equals(CBuddyConstants.SUBCATEGORY_REAL_ESTATE_ROOMMATE_REQUIRED)){
-			if(pdre.getShare()!=null){
-				criteria = getCriteriaForShare(criteria, pdre);
+			if(postDetails.getShare()!=null){
+				criteria = getCriteriaForShare(criteria, postDetails);
 			}	
-			if(pdre.getFurnished()!=null){
-				criteria = getCriteriaForFurnished(criteria, pdre);
+			if(postDetails.getFurnished()!=null){
+				criteria = getCriteriaForFurnished(criteria, postDetails);
 			}
-			if(pdre.getGender()!=null){
-				criteria = getCriteriaForGender(criteria, pdre);
+			if(postDetails.getGender()!=null){
+				criteria = getCriteriaForGender(criteria, postDetails);
 			}
-			if(pdre.getRegionalPreference()!=null){
-				criteria = getCriteriaForRegionalPreference(criteria, pdre);
+			if(postDetails.getRegionalPreference()!=null){
+				criteria = getCriteriaForRegionalPreference(criteria, postDetails);
 			}
 		}
 
 		return criteria;	
 	}
 
-	private Criteria getCriteriaForLocation(Criteria criteria ,Pdre pdre){
+	private Criteria getCriteriaForLocation(Criteria criteria, RealEstatePostDetails postDetails){
 
 		List loc = new ArrayList();
-		String obj[] = pdre.getLocation().split(",");
+		String obj[] = postDetails.getLocation().split(",");
 		for(String str :obj){
 			loc.add(str.trim());
 		}
@@ -184,8 +161,8 @@ public class AdDetailsService {
 		return criteria;
 	}
 
-	private Criteria getCriteriaForArea(Criteria criteria,Pdre pdre){
-		String obj[] = pdre.getArea().split(",");
+	private Criteria getCriteriaForArea(Criteria criteria, RealEstatePostDetails postDetails){
+		String obj[] = postDetails.getAreaStr().split(",");
 		Criterion  c1 = null;
 		Criterion  c2 = null;
 		Criterion  c3 = null;
@@ -194,11 +171,11 @@ public class AdDetailsService {
 			if(str.contains("<") ){
 				str = getNumericValue(str);
 				//Pattern pattern = Pattern.compile("\\w+([0-9]+)\\w+([0-9]+)");				
-				c1 =  Restrictions.le("areaSq", Integer.parseInt(str));
+				c1 =  Restrictions.le("area", Integer.parseInt(str));
 			}
 			if(str.contains(">")){
 				str = getNumericValue(str);				
-				c2 =  Restrictions.ge("areaSq", Integer.parseInt(str));
+				c2 =  Restrictions.gt("area", Integer.parseInt(str));
 			}
 			if(str.contains("-")){
 				String res[] = str.split("-");
@@ -206,7 +183,7 @@ public class AdDetailsService {
 				for(int i=0;i<res.length;i++){
 					newRes[i] = getNumericValue(res[i]);
 				}	
-				c3 =  Restrictions.between("areaSq", Integer.parseInt(newRes[0]),Integer.parseInt(newRes[1]));
+				c3 =  Restrictions.between("area", Integer.parseInt(newRes[0]),Integer.parseInt(newRes[1]));
 			}
 		}
 
