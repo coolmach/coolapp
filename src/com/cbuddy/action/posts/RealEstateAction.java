@@ -22,7 +22,7 @@ import com.cbuddy.services.AdDetailsService;
 import com.cbuddy.util.CBuddyConstants;
 import com.cbuddy.util.LocationUtil;
 import com.cbuddy.util.NumberFormatterUtil;
-import com.cbuddy.util.Utils;
+
 import com.model.user.RealEstatePostDetails;
 import com.model.user.User;
 import com.opensymphony.xwork2.ActionSupport;
@@ -211,15 +211,15 @@ public class RealEstateAction extends ActionSupport implements SessionAware, Ser
 	
 	public String getAdListForRealEstate(){
 
-		System.out.println("getAdListForRealEstate() ENTER");
+		System.out.println("getAdListForRealEstate() ENTER"+getModel().getLocation() + " : "+getModel().getAreaStr());
 		
 		//basePath = request.getSession().getServletContext().getRealPath("");
 		
 		category = postDetails.getCategory();
 		subCategory = postDetails.getSubCategory();
 		
-		categoryStr = Utils.getInstance().getCategoryDesc(category);
-		subCategoryStr = Utils.getInstance().getSubCategoryDesc(category, subCategory);
+		//categoryStr = Utils.getInstance().getCategoryDesc(category);
+		//subCategoryStr = Utils.getInstance().getSubCategoryDesc(category, subCategory);
 		
 		if(category==null || category.equals("")){
 			setCategory(CBuddyConstants.CATEGORY_REAL_ESTATE);
@@ -227,7 +227,7 @@ public class RealEstateAction extends ActionSupport implements SessionAware, Ser
 		if(category.equals(CBuddyConstants.CATEGORY_REAL_ESTATE) && (subCategory==null || subCategory.equals(""))){
 			setSubCategory(CBuddyConstants.SUBCATEGORY_REAL_ESTATE_APARTMENT_FOR_RENT);
 		}
-		
+
 		AdDetailsService adDetailService =  new AdDetailsService();
 		adList = adDetailService.getAdListByCategory(getModel(), subCategory);
 		

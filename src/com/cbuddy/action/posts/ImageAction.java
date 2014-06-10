@@ -27,7 +27,7 @@ public class ImageAction extends ActionSupport implements ServletRequestAware {
 	}
  
 	public ImageAction() {
-		System.out.println("ImageAction");
+		//System.out.println("ImageAction");
 	}
  
 	public String execute() {
@@ -36,7 +36,7 @@ public class ImageAction extends ActionSupport implements ServletRequestAware {
  
 	public byte[] getCustomImageInBytes() {
  
-		System.out.println("imageId" + imageId);
+		//System.out.println("imageId" + imageId);
  
 		BufferedImage originalImage;
 		try {
@@ -63,7 +63,7 @@ public class ImageAction extends ActionSupport implements ServletRequestAware {
 		String filePath = "C:\\Shiva\\";
 		//String filePath = servletRequest.getSession().getServletContext().getRealPath("");
 		File file = new File(filePath + "/images/posts", imageId);
-		System.out.println(file.toString());
+		//System.out.println(file.toString());
 		return file;
 	}
  

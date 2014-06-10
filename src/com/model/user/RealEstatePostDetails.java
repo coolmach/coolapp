@@ -27,6 +27,7 @@ public class RealEstatePostDetails extends Pdre implements Serializable{
 	//private String subcategory;
 	private String priceValueStr;
 	private String newOrResaleStr;
+	private String areaSq;
 
 	@Transient
 	public String getCategory() {

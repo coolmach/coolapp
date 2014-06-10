@@ -19,7 +19,8 @@
 			</div>
 		</div>
 		
-	 	<form class="form-inline" id="apartment-rent"> 
+	 <form class="form-inline" id="apartment-rent"> 
+
 			<div class=" pull-left hidden-subcat searchFilter" id="loc-main">
 				<div id="location" class="inputstyle pointer form-control">
 					<span class="content">Location</span> 
@@ -42,8 +43,8 @@
 			</div>
 			<div class=" pull-left hidden-subcat searchFilter" id="area-main">
 				<div id="area" class="inputstyle pointer form-control">
-					<span class="content">Area</span> 
-					<span class="glyphicon glyphicon glyphicon-chevron-down form-control-show"></span>
+					Area <span
+						class="glyphicon glyphicon glyphicon-chevron-down form-control-show"></span>
 				</div>
 				<div id="subCategory_hidden_area" class="subCategory_hidden_bck"
 					style="display: none;">
@@ -60,27 +61,27 @@
 			</div>
 			<div class=" pull-left hidden-subcat searchFilter" id="bhk-main">
 				<div id="bhk" class="inputstyle pointer form-control">
-					<span class="content">BHK</span> 
-					<span class="glyphicon glyphicon glyphicon-chevron-down form-control-show"></span>
+					BHK <span
+						class="glyphicon glyphicon glyphicon-chevron-down form-control-show"></span>
 				</div>
 				<div id="subCategory_hidden_bhk" class="subCategory_hidden_bck"
 					style="display: none;">
 					<ul class="list-unstyled">
-						<li><input type="checkbox" class="check_bhk" name="bhk" value="1" /><span class="content">1 BHK</span>
+						<li><input type="checkbox" class="check_bhk" name="bhk" value="1 BHK" /><span class="content">1 BHK</span>
 						</li>
-						<li><input type="checkbox" class="check_bhk" name="bhk" value="2" /><span class="content">2 BHK</span>
+						<li><input type="checkbox" class="check_bhk" name="bhk" value="2 BHK" /><span class="content">2 BHK</span>
 						</li>
-						<li><input type="checkbox" class="check_bhk" name="bhk" value="3" /><span class="content">3 BHK</span>
+						<li><input type="checkbox" class="check_bhk" name="bhk" value="3 BHK" /><span class="content">3 BHK</span>
 						</li>
-						<li><input type="checkbox" class="check_bhk" name="bhk" value="4" /><span class="content">4 BHK</span>
+						<li><input type="checkbox" class="check_bhk" name="bhk" value="4 BHK" /><span class="content">4 BHK</span>
 					</ul>
 					<a href="#" class="clear blue_link">clear filters</a>
 				</div>
 			</div>
 			<div class=" pull-left hidden-subcat searchFilter" id="rent-main">
 				<div id="rent" class="inputstyle pointer form-control">
-					<span class="content">Rent</span> 
-					<span class="glyphicon glyphicon glyphicon-chevron-down form-control-show"></span>
+					Rent <span
+						class="glyphicon glyphicon glyphicon-chevron-down form-control-show"></span>
 				</div>
 				<div id="subCategory_hidden_rent" class="subCategory_hidden_bck"
 					style="display: none;">
@@ -97,19 +98,19 @@
 			</div>
 			<div class=" pull-left hidden-subcat searchFilter" id="dir-main">
 				<div id="direction" class="inputstyle pointer form-control">
-					<span class="content">Direction</span> 
-					<span class="glyphicon glyphicon glyphicon-chevron-down form-control-show"></span>
+					Direction <span
+						class="glyphicon glyphicon glyphicon-chevron-down form-control-show"></span>
 				</div>
 				<div id="subCategory_hidden_dir" class="subCategory_hidden_bck"
 					style="display: none;">
 					<ul class="list-unstyled">
-						<li><input type="checkbox" class="check_dir" name="facingDirection" value="E" /><span class="content">East</span>
+						<li><input type="checkbox" class="check_dir" name="facingDirection" value="East" /><span class="content">East</span>
 						</li>
-						<li><input type="checkbox" class="check_dir" name="facingDirection" value="W" /><span class="content">West</span>
+						<li><input type="checkbox" class="check_dir" name="facingDirection" value="West" /><span class="content">West</span>
 						</li>
-						<li><input type="checkbox" class="check_dir" name="facingDirection" value="N" /><span class="content">North</span>
+						<li><input type="checkbox" class="check_dir" name="facingDirection" value="North" /><span class="content">North</span>
 						</li>
-						<li><input type="checkbox" class="check_dir" name="facingDirection" value="S" /><span class="content">South</span>
+						<li><input type="checkbox" class="check_dir" name="facingDirection" value="South" /><span class="content">South</span>
 						</li>
 					</ul>
 					<a href="#" class="clear blue_link">clear filters</a>
@@ -118,8 +119,8 @@
 			</div>
 			<div class=" pull-left hidden-subcat searchFilter" id="pref-main">
 				<div id="preference" class="inputstyle pointer form-control">
-					<span class="content">Preference</span> 
-					<span class="glyphicon glyphicon glyphicon-chevron-down form-control-show"></span>
+					Preference <span
+						class="glyphicon glyphicon glyphicon-chevron-down form-control-show"></span>
 				</div>
 				<div id="subCategory_hidden_pref" class="subCategory_hidden_bck"
 					style="display: none;">
@@ -134,8 +135,8 @@
 			</div>
 			<div class=" pull-left hidden-subcat searchFilter" id="park-main">
 				<div id="park" class="inputstyle pointer form-control">
-					<span class="content">Car Parking</span> 
-					<span class="glyphicon glyphicon glyphicon-chevron-down form-control-show"></span>
+					Car Parking <span
+						class="glyphicon glyphicon glyphicon-chevron-down form-control-show"></span>
 				</div>
 				<div id="subCategory_hidden_park" class="subCategory_hidden_bck"
 					style="display: none;">
@@ -151,8 +152,8 @@
 			</div>
 			<div class=" pull-left hidden-subcat searchFilter" id="amt-main">
 				<div id="amt" class="inputstyle pointer form-control">
-					<span class="content">Price</span> 
-					<span class="glyphicon glyphicon glyphicon-chevron-down form-control-show"></span>
+					<span class="content">Price</span> <span
+						class="glyphicon glyphicon glyphicon-chevron-down form-control-show"></span>
 				</div>
 				<div id="subCategory_hidden_amt" class="subCategory_hidden_bck"
 					style="display: none;">
@@ -169,8 +170,8 @@
 			</div>
 			<div class=" pull-left hidden-subcat searchFilter" id="approval-main">
 				<div id="approval" class="inputstyle pointer form-control">
-					<span class="content">Approval</span> 
-					<span class="glyphicon glyphicon glyphicon-chevron-down form-control-show"></span>
+					Approval <span
+						class="glyphicon glyphicon glyphicon-chevron-down form-control-show"></span>
 				</div>
 				<div id="subCategory_hidden_approval" class="subCategory_hidden_bck"
 					style="display: none;">
@@ -190,8 +191,8 @@
 			</div>
 			<div class=" pull-left hidden-subcat searchFilter" id="ownership-main">
 				<div id="ownership" class="inputstyle pointer form-control">
-					<span class="content">Ownership</span> 
-					<span class="glyphicon glyphicon glyphicon-chevron-down form-control-show"></span>
+					Ownership <span
+						class="glyphicon glyphicon glyphicon-chevron-down form-control-show"></span>
 				</div>
 				<div id="subCategory_hidden_ownership" class="subCategory_hidden_bck"
 					style="display: none;">
@@ -206,8 +207,8 @@
 			</div>
 			<div class=" pull-left hidden-subcat searchFilter" id="amenities-main">
 				<div id="amenities" class="inputstyle pointer form-control">
-					<span class="content">Amenities</span> 
-					<span class="glyphicon glyphicon glyphicon-chevron-down form-control-show"></span>
+					Amenities <span
+						class="glyphicon glyphicon glyphicon-chevron-down form-control-show"></span>
 				</div>
 				<div id="subCategory_hidden_amenities" class="subCategory_hidden_bck"
 					style="display: none;">
@@ -229,8 +230,8 @@
 			</div>
 			<div class=" pull-left hidden-subcat searchFilter" id="amenitiesPg-main">
 				<div id="amenitiesPg" class="inputstyle pointer form-control">
-					<span class="content">Amenities</span> 
-					<span class="glyphicon glyphicon glyphicon-chevron-down form-control-show"></span>
+					Amenities <span
+						class="glyphicon glyphicon glyphicon-chevron-down form-control-show"></span>
 				</div>
 				<div id="subCategory_hidden_amenitiesPg" class="subCategory_hidden_bck"
 					style="display: none;">
@@ -246,8 +247,8 @@
 			</div>
 			<div class=" pull-left hidden-subcat searchFilter" id="food-main">
 				<div id="food" class="inputstyle pointer form-control">
-					<span class="content">Food</span> 
-					<span class="glyphicon glyphicon glyphicon-chevron-down form-control-show"></span>
+					Food <span
+						class="glyphicon glyphicon glyphicon-chevron-down form-control-show"></span>
 				</div>
 				<div id="subCategory_hidden_food" class="subCategory_hidden_bck"
 					style="display: none;">
@@ -263,8 +264,8 @@
 			</div>
 			<div class=" pull-left hidden-subcat searchFilter" id="share-main">
 				<div id="share" class="inputstyle pointer form-control">
-					<span class="content">Share Amount</span> 
-					<span class="glyphicon glyphicon glyphicon-chevron-down form-control-show"></span>
+					Share Amount <span
+						class="glyphicon glyphicon glyphicon-chevron-down form-control-show"></span>
 				</div>
 				<div id="subCategory_hidden_share" class="subCategory_hidden_bck"
 					style="display: none;">
@@ -282,8 +283,8 @@
 			</div>
 			<div class=" pull-left hidden-subcat searchFilter" id="furnished-main">
 				<div id="furnished" class="inputstyle pointer form-control">
-					<span class="content">Furnished</span> 
-					<span class="glyphicon glyphicon glyphicon-chevron-down form-control-show"></span>
+					Furnished <span
+						class="glyphicon glyphicon glyphicon-chevron-down form-control-show"></span>
 				</div>
 				<div id="subCategory_hidden_furnished" class="subCategory_hidden_bck"
 					style="display: none;">
@@ -299,8 +300,8 @@
 			</div>
 			<div class=" pull-left hidden-subcat searchFilter" id="gender-main">
 				<div id="food" class="inputstyle pointer form-control">
-					<span class="content">Gender</span> 
-					<span class="glyphicon glyphicon glyphicon-chevron-down form-control-show"></span>
+					Gender <span
+						class="glyphicon glyphicon glyphicon-chevron-down form-control-show"></span>
 				</div>
 				<div id="subCategory_hidden_gender" class="subCategory_hidden_bck"
 					style="display: none;">
@@ -316,8 +317,8 @@
 			</div>
 			<div class=" pull-left hidden-subcat searchFilter" id="region-main">
 				<div id="region" class="inputstyle pointer form-control">
-					<span class="content">Area</span> 
-					<span class="glyphicon glyphicon glyphicon-chevron-down form-control-show"></span>
+					Regional Preference <span
+						class="glyphicon glyphicon glyphicon-chevron-down form-control-show"></span>
 				</div>
 				<div id="subCategory_hidden_region" class="subCategory_hidden_bck"
 					style="display: none;">
@@ -343,20 +344,17 @@
 	</div>
 	<div class="col-md-12 selected_filters" style="display:none;" id="filterValueBar"></div>
 	<div class="col-md-12" id="breadCrumb">
-		<a class="grey_link" href="<s:url action=""  />">Home</a> >
-		<span id="cat" style="display:none"><s:property value="category" /></span>
+		<a class="grey_link" href="<s:url action=""  />">HOME</a> >
+	<span id="cat" style="display:none"><s:property value="category" /></span>
 		<span id="sub" style="display:none"><s:property value="subCat" /></span>
 		<span><s:property value="categoryStr" /></span> > <span><s:property value="subCategoryStr" /></span>
+
 	</div>
 </div>
 
 <!-- <div class="col-md-4"></div> -->
 <div class="col-md-6 data" id="postListSection">
 
-<s:if test='subCat.equals("2")'>
-	<%@include file="./AdList_RealEstate_Apartment_For_Rent.jsp"%>
-</s:if>
-<s:else>
-	<%@include file="./AdList_RealEstate_Apartment_For_Rent.jsp"%>
-</s:else>
+		<%@include file="./AdList_RealEstate_Apartment_For_Rent.jsp"%>
+
 </div>
