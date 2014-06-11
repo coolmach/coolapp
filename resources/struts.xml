@@ -34,7 +34,7 @@
 			<result name="success" type="tiles">/realestate.tiles</result>
 		</action>
 		<action name="realestateFilter" class="com.cbuddy.action.posts.RealEstateAction" method="getAdListForRealEstate">
-			<result name="success">/AdList_RealEstate_Apartment_For_Rent.jsp</result>
+			<result name="success">/AdList_RealEstate.jsp</result>
 		</action> 
 		<action name="household" class="com.cbuddy.action.posts.HouseHoldItemsAction" method="getAdListForHouseHoldItems">
 			<result name="success" type="tiles">/household.tiles</result>

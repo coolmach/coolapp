@@ -11,11 +11,12 @@
 						value="2" />
 				</div>
 				<div class="form-group-modal">
-					<s:select class="form-control" id="subcategory"
+					<s:select class="form-control" id="subCategory"
 						headerKey="-1" headerValue="Select Subcategory"
 						list="#{'REAL':'Real Estate', 'AUTO':'Cars/Bikes', 'LAP':'Laptops', 'ELEC':'Electronics', 'HOUSE':'Household Items', 'BOOK':'Books/DVDs'}" 
-						name="subcategory" 
-						value="2" />				</div>
+						name="subCategory" 
+						value="2" />
+				</div>
 				<div class="col-sm-offset-2 col-sm-10 modalFormBtn">
 					<s:submit cssClass="btn btn-primary pull-right" value="Continue"/>
 				</div>

@@ -27,6 +27,10 @@ public class RealEstatePostDetails extends Pdre implements Serializable{
 	//private String subcategory;
 	private String priceValueStr;
 	private String newOrResaleStr;
+	private String facingDirectionStr;
+	private String floorNumberStr;
+	private String furnishedStr;
+	
 	private String areaSq;
 
 	@Transient
@@ -106,5 +110,32 @@ public class RealEstatePostDetails extends Pdre implements Serializable{
 	}
 	public void setNewOrResaleStr(String newOrResaleStr) {
 		this.newOrResaleStr = newOrResaleStr;
+	}
+
+	@Transient
+	public String getFacingDirectionStr() {
+		return facingDirectionStr;
+	}
+
+	public void setFacingDirectionStr(String facingDirectionStr) {
+		this.facingDirectionStr = facingDirectionStr;
+	}
+
+	@Transient
+	public String getFloorNumberStr() {
+		return floorNumberStr;
+	}
+
+	public void setFloorNumberStr(String floorNumberStr) {
+		this.floorNumberStr = floorNumberStr;
+	}
+	
+	@Transient
+	public String getFurnishedStr() {
+		return furnishedStr;
+	}
+
+	public void setFurnishedStr(String furnishedStr) {
+		this.furnishedStr = furnishedStr;
 	}
 }

@@ -9,8 +9,10 @@
 			</div>
 			<div id="subCategory_hidden_sub" class="subCategory_hidden_bck" style="display: none;">
 				<ul class="list-unstyled">
-					<li value="2"><span class="content">Apartment/House For Rent</span></li>
-					<li value="1"><span class="content">Apartment/House For Sale</span></li>
+					<li value="2"><span class="content">Apartment For Rent</span></li>
+					<li value="1"><span class="content">Apartment For Sale</span></li>
+					<li value="4"><span class="content">Independent House For Rent</span></li>
+					<li value="3"><span class="content">Independent House For Sale</span></li>
 					<li value="6"><span class="content">Plot For Sale</span></li>
 					<li value="5"><span class="content">PG Accommodation</span></li>
 					<li value="7"><span class="content">Roommate Required</span></li>
@@ -104,13 +106,13 @@
 				<div id="subCategory_hidden_dir" class="subCategory_hidden_bck"
 					style="display: none;">
 					<ul class="list-unstyled">
-						<li><input type="checkbox" class="check_dir" name="facingDirection" value="East" /><span class="content">East</span>
+						<li><input type="checkbox" class="check_dir" name="facingDirection" value="E" /><span class="content">East</span>
 						</li>
-						<li><input type="checkbox" class="check_dir" name="facingDirection" value="West" /><span class="content">West</span>
+						<li><input type="checkbox" class="check_dir" name="facingDirection" value="W" /><span class="content">West</span>
 						</li>
-						<li><input type="checkbox" class="check_dir" name="facingDirection" value="North" /><span class="content">North</span>
+						<li><input type="checkbox" class="check_dir" name="facingDirection" value="N" /><span class="content">North</span>
 						</li>
-						<li><input type="checkbox" class="check_dir" name="facingDirection" value="South" /><span class="content">South</span>
+						<li><input type="checkbox" class="check_dir" name="facingDirection" value="S" /><span class="content">South</span>
 						</li>
 					</ul>
 					<a href="#" class="clear blue_link">clear filters</a>
@@ -125,9 +127,9 @@
 				<div id="subCategory_hidden_pref" class="subCategory_hidden_bck"
 					style="display: none;">
 					<ul class="list-unstyled">
-						<li><input type="checkbox" class="check_pref" name="maritalPreference" value="Bachelors" /><span class="content">Bachelors</span>
+						<li><input type="checkbox" class="check_pref" name="maritalPreference" value="B" /><span class="content">Bachelors</span>
 						</li>
-						<li><input type="checkbox" class="check_pref" name="maritalPreference" value="Family" /><span class="content">Family</span>
+						<li><input type="checkbox" class="check_pref" name="maritalPreference" value="F" /><span class="content">Family</span>
 						</li>
 					</ul>
 					<a href="#" class="clear blue_link">clear filters</a>
@@ -343,18 +345,16 @@
 		 </form> 
 	</div>
 	<div class="col-md-12 selected_filters" style="display:none;" id="filterValueBar"></div>
+	
 	<div class="col-md-12" id="breadCrumb">
-		<a class="grey_link" href="<s:url action=""  />">HOME</a> >
-	<span id="cat" style="display:none"><s:property value="category" /></span>
-		<span id="sub" style="display:none"><s:property value="subCat" /></span>
-		<span><s:property value="categoryStr" /></span> > <span><s:property value="subCategoryStr" /></span>
-
+		<a class="grey_link" href="<s:url action=""  />">Home</a> >
+		<span id="cat" style="display:none"><s:property value="category" /></span>
+		<span id="sub" style="display:none"><s:property value="subCategory" /></span>
+		<span id="breadCrumb_Category"'><s:property value="categoryStr" /></span> > <span id="breadCrumb_SubCategory"><s:property value="subCategoryStr" /></span>
 	</div>
 </div>
 
 <!-- <div class="col-md-4"></div> -->
 <div class="col-md-6 data" id="postListSection">
-
-		<%@include file="./AdList_RealEstate_Apartment_For_Rent.jsp"%>
-
+	<%@include file="./AdList_RealEstate.jsp"%>
 </div>

@@ -39,30 +39,29 @@
 <script>
 	function getSubCategory() {
 		var category = $("#category").val();
-		$("#subcategory").html("");
+		$("#subCategory").html("");
 		if (category == "REAL") {
-			var numbers = [ 1, 2, 3, 4 ];
-			var val = [ 'APSL', 'APRNT', 'INSL', 'INRNT' ];
+			var numbers = [ 1, 2, 3, 4, 5, 6, 7];
+			var values = [ '1', '2', '3', '4' ,'5', '6', '7'];
 			var options = [ 'Apartment for Sale', 'Apartment for Rent',
-					'Individual House for Sale', 'Individual House for Rent' ];
+					'Individual House for Sale', 'Individual House for Rent', 'PG Accommodation', 'Land For Sale', 'Roommate Required'];
 		} else if (category == "AUTO") {
 			var numbers = [ 1, 2, 3 ];
-			var val = [ 'CAR', 'BIKE', 'CYCLE' ];
+			var values = [ 'CAR', 'BIKE', 'CYCLE' ];
 			var options = [ 'Cars', 'Bikes', 'Cycles' ];
 		} else if (category == "LAP") {
 			var numbers = [ 1, 2 ];
-			var val = [ 'LAPTOP', 'DESKTOP', 'ACC', 'OTH' ];
+			var values = [ 'LAPTOP', 'DESKTOP', 'ACC', 'OTH' ];
 			var options = [ 'Laptops', 'Desktops', 'Accessories', 'Others' ];
 		} else if (category == "ELEC") {
 			var numbers = [ 1, 2, 3 ];
-			var val = [ 'TV', 'DVD', 'MUSIC', 'OTH' ];
+			var values = [ 'TV', 'DVD', 'MUSIC', 'OTH' ];
 			var options = [ 'TVs', 'Music Players', 'Others' ];
 		}
 		var index = 0;
 		$.each(numbers, function(val, text) {
-			$('#subcategory').append(
-					$('<option class="optionListItem"></option>').val(
-							val[index]).html(options[index]));
+			$('#subCategory').append(
+					$('<option class="optionListItem"></option>').val(values[index]).html(options[index]));
 			index = index + 1;
 		});
 	}
@@ -74,7 +73,8 @@
 		return false;
 	});
 </script>
-<div class=" header_2"></div>
+<div class="header_2"></div>
+<div class="header_responseMessage"><s:property value="responseMsg"/></div>
 <div class="col-md-6 pull-left" style="margin-top:5%;">
 	<div class="col-md-3">
 		<img id="guy-img" src="images/Guy.png">
@@ -84,7 +84,7 @@
 			<div style="font-family:Tw Cen MT Condensed;font-size:30px;float:left;">An exclusive Classifieds portal for Techies</div>
 		</div>
 		<div class="col-md-12 cbuddy_intro">
-			<h5 style="margin: 10px; color:#808080;font-family:Tw Cen MT Condensed;font-size:26px;">"Say no to brokers, yes to your colleagues"</h5>
+			<h5 style="margin: 10px; color:#808080;font-family:Tw Cen MT Condensed;font-size:26px;">"Say no to brokers, yes to fellow IT Community"</h5>
 		</div>
 		<div class="col-md-12 cbuddy_intro">
 			<div style="margin: 15px;">

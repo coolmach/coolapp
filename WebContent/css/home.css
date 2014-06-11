@@ -281,6 +281,8 @@ table {
 #my {
 	box-shadow: 16px 3px 10px -7px #888888, -10px 0 20px -7px #888888;
 	margin-left: 15%;
+	margin-top:2%;
+	margin-bottom:2%;
 }
 
 .imgspace {

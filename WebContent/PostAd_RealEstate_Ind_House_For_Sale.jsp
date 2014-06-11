@@ -33,8 +33,8 @@
 <div class="col-md-8" id="my">
 	<s:form cssClass="form-horizontal post" action="real_estate_postAd.action" enctype="multipart/form-data">
 		<input type="hidden" name="category" value="REAL"/>
-		<input type="hidden" name="subCategory" value="1"/>
-		<div class="col-md-12 post_title">Apartment for Sale</div>
+		<input type="hidden" name="subCategory" value="3"/>
+		<div class="col-md-12 post_title">Individual House for Sale</div>
 	   <div class="col-md-8">
 			<div class="form-group">
 				<label for="title" class="col-sm-4 control-label">Title</label>
@@ -122,12 +122,6 @@
 				</div>
 			</div>
 			<div class="form-group">
-				<label for="builderName" class="col-sm-4 control-label">Builder Name</label>
-				<div class="col-sm-6">
-					<input type="text" class="form-control" name="BuilderName" id="BuilderName" value="MGR">
-				</div>
-			</div>
-			<div class="form-group">
 				<label for="description" class="col-sm-4 control-label">Remarks</label>
 				<div class="col-sm-8">
 					<textarea class="form-control" rows="3" name="Description" id="Description">Hello tHis is description</textarea>
@@ -163,21 +157,6 @@
 					<input type="text" class="form-control" name="ContactNo" placeholder="Contact Number" value="77777766666">
 				</div>
 			</div>
-			<div class="form-group">
-				<div class="col-sm-8">
-					<label for="" class="col-sm-6 control-label" style="text-align:left;">Amenities</label>
-				</div>
-			</div>
-			<div class="form-group">
-				<div class="col-sm-6">
-					<input type="checkbox" name="powerBackup" value="Y"><span class="checkBoxText">Power Backup</span><BR>
-					<input type="checkbox" name="gym" value="Y"><span class="checkBoxText">Gym </span><BR>
-					<input type="checkbox" name="carParking" value="Y"><span class="checkBoxText">Car Parking</span><BR>
-					<input type="checkbox" name="childrenPlayArea" value="Y"><span class="checkBoxText">Children Park</span><BR>
-					<input type="checkbox" name="clubHouse" value="Y"><span class="checkBoxText">Club House</span><BR>
-					<input type="checkbox" name="swimmingPool" value="Y"><span class="checkBoxText">Swimming Pool </span><BR>
-				</div>
-			</div>	
 		</div>
 	</s:form>
 

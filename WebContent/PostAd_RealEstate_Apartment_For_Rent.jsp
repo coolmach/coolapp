@@ -1,28 +1,5 @@
 <%@ taglib prefix="s" uri="/struts-tags"%>
 <link rel="stylesheet" type="text/css" href="css/Cbuddy.css"/>
-<script>
-	function toggle(newOrResale){
-		if(newOrResale == "New"){
-			$("#ageBlock").hide();
-			$("#completionBlock").hide();
-			$("#readyToOccupyParametersBlock").show();
-			$("#readyToOccupy_Y").attr("checked", true);
-			$("#readyToOccupy_N").attr("checked", false);
-			
-		}else{
-			$("#readyToOccupyParametersBlock").hide();
-			$("#completionDateBlock").hide();
-			$("#ageBlock").show();
-		}
-	}
-	function toggleNew(isReadyToOccupy){
-		if(isReadyToOccupy == "No"){
-			$("#completionDateBlock").show();
-		}else{
-			$("#completionDateBlock").hide();
-		}
-	}
-</script>
 <div class=" header_2">
 	<div class=""></div>
 	<!--div class="col-md-11">
@@ -33,8 +10,8 @@
 <div class="col-md-8" id="my">
 	<s:form cssClass="form-horizontal post" action="real_estate_postAd.action" enctype="multipart/form-data">
 		<input type="hidden" name="category" value="REAL"/>
-		<input type="hidden" name="subCategory" value="1"/>
-		<div class="col-md-12 post_title">Apartment for Sale</div>
+		<input type="hidden" name="subCategory" value="2"/>
+		<div class="col-md-12 post_title">Apartment for Rent</div>
 	   <div class="col-md-8">
 			<div class="form-group">
 				<label for="title" class="col-sm-4 control-label">Title</label>
@@ -55,32 +32,6 @@
 				</div>
 			</div>
 			<div class="form-group">
-				<label for="rent" class="col-sm-4 control-label">New/Re-sale</label>
-				<div class="col-sm-6 radioStrip">
-					<input type="radio" id="newOrResale_N" name="NewOrResale" value="N" checked onClick="toggle('New')"><span class="radioText">New</span>
-					<input type="radio" id="newOrResale_R" name="NewOrResale" value="R" onClick="toggle('Resale')"><span class="radioText">Re-sale</span>
-				</div>
-			</div>	
-			<div class="form-group" id="readyToOccupyParametersBlock">
-				<label for="rent" class="col-sm-4 control-label">Ready To Occupy</label>
-				<div class="col-sm-6 radioStrip">
-					<input type="radio" id="readyToOccupy_Y" name="ReadyToOccupy" value="Y" checked onClick="toggleNew('Yes')"><span class="radioText">Yes</span>
-					<input type="radio" id="readyToOccupy_N" name="ReadyToOccupy" value="N" onClick="toggleNew('No')"><span class="radioText">No</span>
-				</div>
-			</div>				
-			<div class="form-group" id="ageBlock" style="display:none;">
-				<label for="ageValue" class="col-sm-4 control-label">&nbsp;</label>
-				<div class="col-sm-6">
-					<input type="text" class="form-control" name="AgeValue" id="AgeValue" placeholder="Age (in years)">
-				</div>
-			</div>
-			<div class="form-group" id="completionDateBlock" style="display:none;">
-				<label for="expectedCompletionDate" class="col-sm-4 control-label">&nbsp;</label>
-				<div class="col-sm-6"> 
-					<input type="text" class="form-control" name="ExpectedCompletionDate" id="ExpectedCompletionDate" placeholder="Expected Completion Date">
-				</div>
-			</div>
-			<div class="form-group">
 				<label for="area" class="col-sm-4 control-label">Total Area (sq. ft)</label>
 				<div class="col-sm-6">
 					<input type="text" class="form-control" name="Area" id="Area" value="1200"> 
@@ -93,15 +44,30 @@
 				</div>
 			</div>
 			<div class="form-group">
-				<label for="floorNumber" class="col-sm-4 control-label">Floor No</label>
+				<label for="carParking" class="col-sm-4 control-label">Preference</label>
 				<div class="col-sm-6">
-					<input type="text" class="form-control" name="FloorNumber" id="FloorNumber" value="G">
+					<input type="radio" class="form-control-radio" name="maritalPreference" id="maritalPreference" value="B"> <span class="form-control-radio-label">Bachelors</span>
+					<input type="radio" class="form-control-radio" name="maritalPreference" id="maritalPreference" value="F"> <span class="form-control-radio-label">Family</span>
 				</div>
 			</div>
 			<div class="form-group">
-				<label for="priceValue" class="col-sm-4 control-label">Price</label>
+				<label for="furnished" class="col-sm-4 control-label">Furnished</label>
+				<div class="col-sm-6">
+					<input type="radio" class="form-control-radio" name="furnished" id="furnished" value="N"> <span class="form-control-radio-label">No </span>
+					<input type="radio" class="form-control-radio" name="furnished" id="furnished" value="S"> <span class="form-control-radio-label">Semi</span>
+					<input type="radio" class="form-control-radio" name="furnished" id="furnished" value="F"> <span class="form-control-radio-label">Full</span>
+				</div>
+			</div>			
+			<div class="form-group">
+				<label for="priceValue" class="col-sm-4 control-label">Rent</label>
 				<div class="col-sm-6">
 					<input type="text" class="form-control" name="PriceValue" id="PriceValue" value="3000000">
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="priceValue" class="col-sm-4 control-label">Maintenance</label>
+				<div class="col-sm-6">
+					<input type="text" class="form-control" name="Maintenance" id="Maintenance" value="1500">
 				</div>
 			</div>
 			<div class="form-group">
@@ -114,17 +80,11 @@
 						<option value="W">West</option>
 					</select>
 				</div>
-			</div>		
+			</div>	
 			<div class="form-group">
-				<label for="approvalAuthority" class="col-sm-4 control-label">Approval Authority</label>
+				<label for="floorNumber" class="col-sm-4 control-label">Floor No</label>
 				<div class="col-sm-6">
-					<input type="text" class="form-control" name="ApprovalAuthority" id="ApprovalAuthority" value="BDA">
-				</div>
-			</div>
-			<div class="form-group">
-				<label for="builderName" class="col-sm-4 control-label">Builder Name</label>
-				<div class="col-sm-6">
-					<input type="text" class="form-control" name="BuilderName" id="BuilderName" value="MGR">
+					<input type="text" class="form-control" name="FloorNumber" id="FloorNumber" value="G">
 				</div>
 			</div>
 			<div class="form-group">

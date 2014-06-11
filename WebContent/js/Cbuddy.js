@@ -168,7 +168,7 @@ $(document).ready(function() {
 		});
 
 		//$(this).parent().parent().parent().first().children().first().html('<span class="content">'+$(this).text()+'</span>'+'<span class="glyphicon glyphicon glyphicon-chevron-down form-control-show"></span>');
-		if($(this).text()== 'Apartment/House For Rent'){
+		if($(this).text()== 'Apartment For Rent' || $(this).text() == 'Independent House For Rent'){
 			$("#loc-main").show();
 			$("#bhk-main").show();
 			$("#area-main").show();
@@ -185,8 +185,11 @@ $(document).ready(function() {
 			$("#gender-main").hide();
 			$("#region-main").hide();
 
+			$("#breadCrumb_Category").html("Real Estate");
+			$("#breadCrumb_SubCategory").html($(this).text());
 		}
-		if($(this).text()== 'Apartment/House For Sale'){
+		
+		if($(this).text()== 'Apartment For Sale' || $(this).text()== 'Independent House For Sale'){
 			$("#rent-main").hide();
 			$("#dir-main").hide();
 			$("#pref-main").hide();
@@ -201,7 +204,11 @@ $(document).ready(function() {
 			$("#approval-main").show();
 			$("#ownership-main").show();
 			$("#amenities-main").show();
+			
+			$("#breadCrumb_Category").html("Real Estate");
+			$("#breadCrumb_SubCategory").html($(this).text());
 		}
+		
 		if($(this).text()== 'Plot For Sale'){
 			$('#ownership-main').hide();
 			$('#bhk-main').hide();
@@ -220,7 +227,11 @@ $(document).ready(function() {
 			$("#approval-main").show();
 			$("#loc-main").show();
 			$("#area-main").show();
+			
+			$("#breadCrumb_Category").html("Real Estate");
+			$("#breadCrumb_SubCategory").html($(this).text());
 		}
+		
 		if($(this).text()== 'PG Accommodation'){
 			$('#ownership-main').hide();
 			$('#bhk-main').hide();
@@ -239,7 +250,11 @@ $(document).ready(function() {
 			$("#amt-main").show();
 			$("#amenitiesPg-main").show();
 			$("#food-main").show();
+			
+			$("#breadCrumb_Category").html("Real Estate");
+			$("#breadCrumb_SubCategory").html($(this).text());
 		}
+		
 		if($(this).text()== 'Roommate Required'){
 			$('#ownership-main').hide();
 			$('#bhk-main').hide();
@@ -258,8 +273,11 @@ $(document).ready(function() {
 			$("#furnished-main").show();
 			$("#gender-main").show();
 			$("#region-main").show();
+			
+			$("#breadCrumb_Category").html("Real Estate");
+			$("#breadCrumb_SubCategory").html($(this).text());
 		}
-
+		
 		if($(this).text()== 'Mobile Phones'){
 			$("#brand-main").show();
 			$("#used-main").show();
@@ -269,7 +287,7 @@ $(document).ready(function() {
 			$("#sims-main").show();
 			$("#type-main").hide();
 		}
-
+		
 		if($(this).text()== 'Mobile Accessories'){
 			$("#type-main").show();
 			$("#brand-main").show();

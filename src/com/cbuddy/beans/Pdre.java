@@ -60,7 +60,7 @@ public class Pdre {
 	private String rent;
 	private String amt;
 	private String share;
-	
+	private String powerBackup;
 
 //	@Column(name="IMAGE_FILENAME")
 //	public String getImageFileName() {
@@ -420,6 +420,14 @@ public class Pdre {
 	}
 	public void setMaintenanceStr(String maintenanceStr) {
 		this.maintenanceStr = maintenanceStr;
+	}
+	
+	@Column(name="POWER_BACKUP")
+	public String getPowerBackup() {
+		return powerBackup;
+	}
+	public void setPowerBackup(String powerBackup) {
+		this.powerBackup = powerBackup;
 	}
 	
 }
