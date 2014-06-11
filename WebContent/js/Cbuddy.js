@@ -1,5 +1,6 @@
 $(document).ready(function() {
 	
+	var ctxPath = $('#context_path').text();
 	var subCat = "";
 	var path="";
 	var cat = $('#cat').text();
@@ -54,7 +55,9 @@ $(document).ready(function() {
 	$('.selected_filters').bind('click', function(event) {
 		var data="";
 		var child = event.target;
+		//alert(child);
 		var id = child.id;
+		//alert(id);
 		var text = $(this).find('#'+id);
 		//alert(text.text());
 		$("input[class^=check_]:checked").each(function(){
@@ -70,7 +73,7 @@ $(document).ready(function() {
 		//alert(data);
 		$.ajax({
 			type: 'POST',
-			url: "/Virat/"+path, 
+			url: ctxPath+path, 
 			data: data,
 			success: function(data, status) {
 
@@ -102,7 +105,7 @@ $(document).ready(function() {
 			//var check = $(this).val();
 			var check = $(this).parent().children('span.content').text();
 			var div_Id = check.replace(/\s+/g, '').replace(/[^a-z0-9\s]/gi, '').replace(/[_\s]/g, '-');
-			str = str+'<div style="margin-left:12px;" class="pull-left filters" id="'+div_Id+'"><span class="content">'+check+'</span><span class="glyphicon glyphicon-remove form-control-show"id="'+div_Id+'">'+'</span>'+'</div >';
+			str = str+'<div style="margin-left:12px;" class="pull-left filters" id="'+div_Id+'">'+check+'<span class="glyphicon glyphicon-remove form-control-show"id="'+div_Id+'">'+'</span>'+'</div >';
 				});
 
 		$('.selected_filters').html(str);
@@ -113,7 +116,7 @@ $(document).ready(function() {
 		
 		$.ajax({
 			type: 'POST',
-			url: "/Virat/"+path, 
+			url: ctxPath+path, 
 			data: data,
 			success: function(data, status) {
 				//alert(data.trim());
@@ -154,7 +157,7 @@ $(document).ready(function() {
 		//alert(data);
 		$.ajax({
 			type: 'POST',
-			url: "/Virat/"+path, 
+			url: ctxPath+path, 
 			data: data,
 			success: function(data, status) {
 

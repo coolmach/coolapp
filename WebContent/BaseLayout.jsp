@@ -54,7 +54,9 @@
   <!-- </div> -->
   
 </div> --%>
+<input type="hidden" id="context_path" value='<%= request.getContextPath() %>  '/> 
 <div id="wrap">
+
 <tiles:insertAttribute name="header" />
  <tiles:insertAttribute name="body" />
  </div>

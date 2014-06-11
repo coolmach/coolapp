@@ -57,7 +57,7 @@ public class HouseHoldItemsAction extends ActionSupport implements ServletReques
 			setSubCat("Air Conditioners & Coolers");
 		}
 		AdDetailsService adDetailService =  new AdDetailsService();
-		adList = adDetailService.getAdListByCategory(getModel(),subCat);
+		//adList = adDetailService.getAdListByCategory(getModel(),subCat);
 		System.out.println("HomeAction.getAdListForHouseHoldItems"+adList.size()+" : "+subCat);
 		return "success";
 
