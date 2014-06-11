@@ -37,6 +37,7 @@ public class Pdre {
 	private String furnished;
 	private String floorNumber;
 	private double maintenance;
+	private String maintenanceStr;
 	private String approvalAuthority;
 	private String builderName;
 	private String sharing;
@@ -411,6 +412,14 @@ public class Pdre {
 	}
 	public void setExpectedCompletionDate(String expectedCompletionDate) {
 		this.expectedCompletionDate = expectedCompletionDate;
+	}
+	
+	@Transient
+	public String getMaintenanceStr() {
+		return maintenanceStr;
+	}
+	public void setMaintenanceStr(String maintenanceStr) {
+		this.maintenanceStr = maintenanceStr;
 	}
 	
 }
