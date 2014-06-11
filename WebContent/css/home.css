@@ -21,7 +21,15 @@
 }
 
 .header_2 {
-	margin-top: 0px;
+	margin-top:0px;
+}
+
+.header_responseMessage {
+	color:#FF0000;
+	margin-top:10px;
+	padding:10px;
+	text-align:center;
+	font-size:20px;
 }
 
 .footer_2 {
@@ -409,3 +417,4 @@ html,body {
 }
 .container .credit {
   margin: 20px 0; */
+  
