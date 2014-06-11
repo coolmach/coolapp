@@ -40,6 +40,8 @@ public class RealEstateAction extends ActionSupport implements SessionAware, Ser
 	private String categoryStr;
 	private String subCategoryStr;
 	
+	private String responseMsg;
+	
 	private List<RealEstatePostDetails> adList = new ArrayList<RealEstatePostDetails>();
 	private String category = "" ;
 	private String subCategory = "" ;
@@ -73,7 +75,7 @@ public class RealEstateAction extends ActionSupport implements SessionAware, Ser
 		return extension;
 	}
 
-	public void postAd(){
+	public String postAd(){
 		System.out.println("RealEstatePostAction.postAd()"+uploadContentType+" : "+uploadFileName+" : "+upload);
 		User user = (User)session.get("userInfo");
 		Timestamp current = new Timestamp(System.currentTimeMillis());
@@ -161,6 +163,10 @@ public class RealEstateAction extends ActionSupport implements SessionAware, Ser
 		}
 
 		dbSession.getTransaction().commit();
+		
+		responseMsg = "Your post has been placed successfully! Post Id is " + poit.getPostId();
+		
+		return "success";
 	}
 
 	private void writeImage(File inputFile, String outputFileName){
@@ -185,6 +191,7 @@ public class RealEstateAction extends ActionSupport implements SessionAware, Ser
 			postDetails.setCity(cityName);
 			postDetails.setLocation(locName);
 			postDetails.setPriceValueStr(NumberFormatterUtil.formatAmount(postDetails.getPriceValue()));
+			postDetails.setMaintenanceStr(NumberFormatterUtil.formatAmount(postDetails.getMaintenance()));
 			String temp = "";
 			if(postDetails.getNewOrResale().equals("N")){
 				//New
@@ -315,5 +322,13 @@ public class RealEstateAction extends ActionSupport implements SessionAware, Ser
 
 	public void setSubCategoryStr(String subCategoryStr) {
 		this.subCategoryStr = subCategoryStr;
+	}
+
+	public String getResponseMsg() {
+		return responseMsg;
+	}
+
+	public void setResponseMsg(String responseMsg) {
+		this.responseMsg = responseMsg;
 	}
 }
