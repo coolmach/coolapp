@@ -145,7 +145,6 @@
 
 	</table>
 
-
 	<s:if test="%{#session.userLoggedIn} != null">
 		<%@include file="./postAd_Modal_Window.jsp"%>
 	</s:if>
