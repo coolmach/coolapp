@@ -224,10 +224,6 @@ public class RealEstateAction extends ActionSupport implements SessionAware, Ser
 
 	public String getAdListForRealEstate(){
 
-		System.out.println("getAdListForRealEstate() ENTER"+getModel().getLocation() + " : "+getModel().getAreaStr());
-
-		//basePath = request.getSession().getServletContext().getRealPath("");
-
 		category = postDetails.getCategory();
 		subCategory = postDetails.getSubCategory();
 
@@ -246,7 +242,6 @@ public class RealEstateAction extends ActionSupport implements SessionAware, Ser
 
 		populateAdditionalDetails();
 
-		System.out.println("HomeAction.getAdListForRealEstate()"+adList.size()+" : "+subCategory);
 		return "success";
 	}
 

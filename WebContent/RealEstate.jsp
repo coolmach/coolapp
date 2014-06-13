@@ -347,10 +347,12 @@
 	<div class="col-md-12 selected_filters" style="display:none;" id="filterValueBar"></div>
 	
 	<div class="col-md-12" id="breadCrumb">
-		<a class="grey_link" href="<s:url action=""  />">Home</a> >
-		<span id="cat" style="display:none"><s:property value="category" /></span>
-		<span id="sub" style="display:none"><s:property value="subCategory" /></span>
-		<span id="breadCrumb_Category"'><s:property value="categoryStr" /></span> > <span id="breadCrumb_SubCategory"><s:property value="subCategoryStr" /></span>
+	   <span id="cat" style="display:none"><s:property value="category" /></span>
+	   <span id="sub" style="display:none"><s:property value="subCategory" /></span>
+	
+	<a class="grey_link" href="<s:url action=""  />">Home</a> >
+		<span id="breadCrumb_Category"><s:property value="categoryStr" /></span> > 
+		<span id="breadCrumb_SubCategory"><s:property value="subCategoryStr" /></span>
 	</div>
 </div>
 

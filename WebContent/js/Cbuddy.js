@@ -7,15 +7,15 @@ $(document).ready(function() {
 
 	if(cat == 'REAL'){
 		path="realestateFilter";
-		//subCat="Apartment/House For Rent";
-		subCat = "2"; //SUBCATEGORY_REAL_ESTATE_APARTMENT_FOR_RENT
+		// shows default filters for SUBCATEGORY_REAL_ESTATE_APARTMENT_FOR_SALE
 		$("#loc-main").show();
 		$("#bhk-main").show();
 		$("#area-main").show();
-		$("#rent-main").show();
-		$("#dir-main").show();
-		$("#pref-main").show();
-		$("#park-main").show();
+		$("#amt-main").show();
+		$("#approval-main").show();
+		$("#ownership-main").show();
+		$("#amenities-main").show();
+		
 	}else if(cat == 'CARS'){
 		path="cars";
 		subCat="Cars";
@@ -53,24 +53,23 @@ $(document).ready(function() {
 
 	//if user click to cancel a selected filter
 	$('.selected_filters').bind('click', function(event) {
+		subCat = $('#sub').text();
+	    cat = $('#cat').text();
 		var data="";
 		var child = event.target;
-		//alert(child);
 		var id = child.id;
-		//alert(id);
 		var text = $(this).find('#'+id);
-		//alert(text.text());
+		data = data + '&subCategory='+subCat+'&category='+cat;
+		
 		$("input[class^=check_]:checked").each(function(){
 			var sub = $(this).attr('name');
-			//if(text.text() == $(this).val()){
 				if(text.text() == $(this).parent().children('span.content').text()){
 				$(this).attr("checked",false);
-				//return false;
 			}else{
 				data = data + '&'+sub+'='+$(this).val();
 			}
 		});
-		//alert(data);
+	
 		$.ajax({
 			type: 'POST',
 			url: ctxPath+path, 
@@ -93,19 +92,20 @@ $(document).ready(function() {
 
 	//if user clicks on checkboxes
 	$('input[class^=check_]').click(function(event) {
+		subCat = $('#sub').text();
+		cat = $('#cat').text();
 		$("#filterValueBar").show();
 		
 		var data="";
-		data = data + '&subCategory='+subCat;
+		data = data + '&subCategory='+subCat+'&category='+cat;
 		var str="";
 		$("input[class^=check_]:checked").each(function()
 				{		 
 			var sub = $(this).attr('name');
 			data = data + '&'+sub+'='+$(this).val();
-			//var check = $(this).val();
 			var check = $(this).parent().children('span.content').text();
 			var div_Id = check.replace(/\s+/g, '').replace(/[^a-z0-9\s]/gi, '').replace(/[_\s]/g, '-');
-			str = str+'<div style="margin-left:12px;" class="pull-left filters" id="'+div_Id+'">'+check+'<span class="glyphicon glyphicon-remove form-control-show"id="'+div_Id+'">'+'</span>'+'</div >';
+			str = str+'<div style="margin-left:12px;" class="pull-left filters" id="'+div_Id+'">'+check+'<span style="margin-left:4px;" class="glyphicon glyphicon-remove form-control-show"id="'+div_Id+'">'+'</span>'+'</div >';
 				});
 
 		$('.selected_filters').html(str);
@@ -119,7 +119,7 @@ $(document).ready(function() {
 			url: ctxPath+path, 
 			data: data,
 			success: function(data, status) {
-				//alert(data.trim());
+		
 				$('.data').html('');
 				$('.data').html(data);
 
@@ -131,13 +131,12 @@ $(document).ready(function() {
 	//if user clicks on subcaregory
 	var lastVal="";
 	$("#sub-main li").click(function(){
+		subCat = $('#sub').text();
+		cat = $('#cat').text();
 		var defaultSubCat = $(this).parent().children().first('.content').text();
-		//alert(lastVal);
-		//alert($(this).text()); 
-		//alert(defaultSubCat);
+
 		if(lastVal!=$(this).text() ){
 
-			//if($(this).text()!=defaultSubCat){
 			if(lastVal!=""){
 				$('.filters').remove();
 				//}
@@ -150,11 +149,9 @@ $(document).ready(function() {
 		}
 
 		$(this).parent().hide();
-		//subCat = $(this).text();
 		subCat = $(this).val();
 		var data = "";
-		var data = data + '&subCategory='+subCat;
-		//alert(data);
+		var data = data + '&subCategory='+subCat+'&category='+cat;
 		$.ajax({
 			type: 'POST',
 			url: ctxPath+path, 
@@ -167,7 +164,7 @@ $(document).ready(function() {
 			}
 		});
 
-		//$(this).parent().parent().parent().first().children().first().html('<span class="content">'+$(this).text()+'</span>'+'<span class="glyphicon glyphicon glyphicon-chevron-down form-control-show"></span>');
+		
 		if($(this).text()== 'Apartment For Rent' || $(this).text() == 'Independent House For Rent'){
 			$("#loc-main").show();
 			$("#bhk-main").show();

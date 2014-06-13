@@ -281,7 +281,7 @@ public class AdDetailsService {
 	}
 
 	private Criteria getCriteriaForDirection(Criteria criteria ,Pdre pdre){
-
+System.out.println(pdre.getFacingDirection());
 		List dir = new ArrayList();
 		String obj[] = pdre.getFacingDirection().split(",");
 		for(String str :obj){
