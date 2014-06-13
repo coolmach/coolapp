@@ -105,7 +105,7 @@
 		</div>
 </div>
 <div class="col-md-4" style="margin-top:5%;">
-	<table class="table mygrid">
+	<table class="table1 mygrid1 imageTable">
 		<tr>
 			<td>
 				<s:url action="realestate" var="urlTag" escapeAmp="false">

@@ -265,7 +265,7 @@ a {
 }
 
 table {
-	box-shadow: 16px 3px 10px -7px #888, -10px 0px 20px -7px #888;
+	/*box-shadow: 16px 3px 10px -7px #888, -10px 0px 20px -7px #888;*/
 }
 
 .grey_link {
@@ -420,3 +420,10 @@ html,body {
 .container .credit {
   margin: 20px 0; */
   
+
+  
+.imageTable{max-width:120%;width:120%;border-collapse:separate;border-spacing:10px;}
+// .imageTable td{padding:25px;box-shadow: 10px 10px 10px 10px #E9E9E9; text-align:center;margin-bottom:15%;}
+.imageTable td{margin:10px;padding:15px; box-shadow: 1px 2px 5px 1px #AAAAAA;text-align:center;}
+.imageTable td p{font-size:20px;font-family:"Calibri"}
+.imageTable td:hover {box-shadow: 10px 2px 50px 1px #777777;}
