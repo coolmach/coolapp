@@ -26,7 +26,10 @@ public class AutoSuggestLocationService{
 	public List<Location> process(Session session, String city, String term) throws IOException{
 		LocationIndexCreator.getInstance().indexAllLocations(session);
 		StandardAnalyzer analyzer = new StandardAnalyzer(Version.LUCENE_44);
-		Directory index = FSDirectory.open(new File(city + "-location-index"));
+		
+		String fileName = city + "-location-index";
+		
+		Directory index = FSDirectory.open(new File(CBuddyConstants.BASE_FOLDER_NAME_INDEX, fileName));
 		String querystr = term;
 		querystr = querystr + "*"; //Begins-with search
 		int hitsPerPage = 10;

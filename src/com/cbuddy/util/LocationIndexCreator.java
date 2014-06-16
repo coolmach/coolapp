@@ -86,7 +86,9 @@ public class LocationIndexCreator{
 			
 			List<City> cityList = getAllCities(session);
 			for(City tempCity:cityList){
-				index = FSDirectory.open(new File(tempCity.getCityCode() + "-location-index"));
+				String fileName = tempCity.getCityCode() + "-location-index";
+				File outputFile = new File(CBuddyConstants.BASE_FOLDER_NAME_INDEX, fileName);
+				index = FSDirectory.open(outputFile);
 				config = new IndexWriterConfig(Version.LUCENE_44, analyzer);
 				w = new IndexWriter(index, config);
 				w.deleteAll();

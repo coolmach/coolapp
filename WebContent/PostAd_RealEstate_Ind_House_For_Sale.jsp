@@ -42,6 +42,7 @@
 					<input type="text" class="form-control" id="Title" name="Title" value="2BHK For Sale">
 				</div>
 			</div>
+			<%--
 			<div class="form-group">
 				<label for="location" class="col-sm-4 control-label">City</label>
 				<div class="col-sm-6">
@@ -54,6 +55,8 @@
 					<input type="text" class="form-control" name="Location" id="Location" value="46">
 				</div>
 			</div>
+			--%>
+			<%@include file="locationStrip.jsp" %>
 			<div class="form-group">
 				<label for="rent" class="col-sm-4 control-label">New/Re-sale</label>
 				<div class="col-sm-6 radioStrip">

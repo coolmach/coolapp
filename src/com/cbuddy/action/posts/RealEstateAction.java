@@ -26,6 +26,7 @@ import com.cbuddy.util.NumberFormatterUtil;
 import com.cbuddy.util.Utils;
 import com.model.user.RealEstatePostDetails;
 import com.model.user.User;
+import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
 
@@ -90,6 +91,13 @@ public class RealEstateAction extends ActionSupport implements SessionAware, Ser
 		String userId = String.valueOf(user.getUserId());
 		String imgFileName = String.valueOf(System.currentTimeMillis()) + "." + getExtension(uploadContentType) + "";
 
+		//Checking if user has manually tampered location after selecting from auto suggest list
+		if(postDetails.getUserEnteredLocationStr() != null && postDetails.getSelectedLocationStr()!=null){
+			if(!postDetails.getUserEnteredLocationStr().equals(postDetails.getSelectedLocationStr())){
+				return Action.INPUT;
+			}
+		}
+		
 		//Make an entry in POIT
 		Poit poit = new Poit();
 		poit.setCategory(CBuddyConstants.CATEGORY_REAL_ESTATE);
@@ -103,7 +111,7 @@ public class RealEstateAction extends ActionSupport implements SessionAware, Ser
 		poit.setDescription(postDetails.getDescription());
 		poit.setImageFileName(imgFileName);
 		poit.setImageType(getExtension(uploadContentType));
-		poit.setLocation(postDetails.getLocation());
+		poit.setLocation(postDetails.getSelectedLocationCode());
 		poit.setModifiedBy(userId);
 		poit.setModifiedOn(current);
 		poit.setNegotiable(null);
@@ -147,7 +155,7 @@ public class RealEstateAction extends ActionSupport implements SessionAware, Ser
 		pdre.setGender(postDetails.getGender());
 		pdre.setGym(postDetails.getGym());
 		//pdre.setImageFileName(this.uploadFileName);
-		pdre.setLocation(postDetails.getLocation());
+		pdre.setLocation(postDetails.getSelectedLocationCode());
 		pdre.setMaintenance(postDetails.getMaintenance());
 		pdre.setMaritalPreference(postDetails.getMaritalPreference());
 		pdre.setModifiedBy(userId);

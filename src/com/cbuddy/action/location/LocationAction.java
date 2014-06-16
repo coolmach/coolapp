@@ -38,7 +38,7 @@ public class LocationAction extends ActionSupport implements SessionAware, Servl
 	private Map<String,Object> session;
 
 	public String getLocations(){
-		
+		System.out.println("LocationAction.getLocations() - ENTER");
 		String city = request.getParameter("city");
 		String locationStr = request.getParameter("location");
 		
@@ -62,6 +62,7 @@ public class LocationAction extends ActionSupport implements SessionAware, Servl
 			jsonArray.put(obj);
 		}
 		
+		System.out.println("LocationAction.getLocations() - EXIT");
 		return Action.SUCCESS;
 	}
 	

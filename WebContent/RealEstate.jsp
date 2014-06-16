@@ -2,11 +2,12 @@
 
 <div class=" header_2">
 	<div class="col-md-12 filter_cat">
-		<div class="form-group pull-left searchFilter" id="sub-main">
+		<div class="form-group pull-left searchFilter" id="sub-main" style="margin-left:4.5%;">
 			<div id="subCategory" class="inputstyle pointer form-control">
 				<span class="content">Type</span><span
 					class="glyphicon glyphicon glyphicon-chevron-down form-control-show"></span>
 			</div>
+			<input type="hidden" id="contextPath" name="contextPath" value='<%=request.getContextPath()%>' />
 			<div id="subCategory_hidden_sub" class="subCategory_hidden_bck" style="display: none;">
 				<ul class="list-unstyled">
 					<li value="2"><span class="content">Apartment For Rent</span></li>
@@ -23,7 +24,7 @@
 		
 	 <form class="form-inline" id="apartment-rent"> 
 
-			<div class=" pull-left hidden-subcat searchFilter" id="loc-main">
+			<%--<div class=" pull-left hidden-subcat searchFilter" id="loc-main">
 				<div id="location" class="inputstyle pointer form-control">
 					<span class="content">Location</span> 
 					<span class="glyphicon glyphicon glyphicon-chevron-down form-control-show"></span>
@@ -42,7 +43,7 @@
 					</ul>
 					<a href="#" class="clear blue_link">clear filters</a>
 				</div>
-			</div>
+			</div>--%>
 			<div class=" pull-left hidden-subcat searchFilter" id="area-main">
 				<div id="area" class="inputstyle pointer form-control">
 					Area <span
@@ -512,7 +513,8 @@
 	<div id="companySearchBar">
 		<input type="text" class="locationTextBox" placeholder="Enter Company (e.g. Infosys)" name="companySearch" id="companySearch">
 		<img class="searchIcon" src="images/search_orange_resized.png">	
-	</div>		
+	</div>
+			
 </div>
 
 <script>
@@ -531,10 +533,12 @@
 		$("#locSearch").autocomplete({
 		    source: function(request, response) {
 			    $.ajax({
-				    url: "http://localhost:8080/Virat/getLocation?city=BLR",
+				    //url: "http://localhost:8080/Virat/getLocation?city=BLR",
+				    url:$('#contextPath').text() + "/getLocation",
 				    type: "POST",
 				    dataType: "json",
-				    data: {location:$("#locSearch").val()},
+				    //data: {location:$("#locSearch").val()},
+				    data: {city:$('input[name=city]:checked').val(),location:$("#locSearch").val()},
 				    success: function(data) {
 				        response( $.map(data, function(item) {
 					        return {
@@ -551,8 +555,10 @@
 			select:function(event, ui){
 				event.preventDefault();
 				$.ajax({
-					url:"http://localhost:8080/Virat/getNeighbor?city=BLR&location=" + ui.item.value,
+					//url:"http://localhost:8080/Virat/getNeighbor?city=BLR&location=" + ui.item.value,
+					url:$('#contextPath').text() + "/getNeighbor",
 					type:"POST",
+					data: {city:$('input[name=city]:checked').val(),location:ui.item.value},
 					success:function(data){
 						$("#locationDetails").html(data);
 						$("#locationDetails").show();
@@ -567,3 +573,48 @@
 	});
 </script>
 
+<script>
+//if user clicks on Clear Filter in Location bar in Ad List page
+function resetLocationFilter(event) {
+	var ctxPath = $('#context_path').text();
+	var path = "realestateFilter";
+	$('input[class^=check_location]').attr("checked", false);
+	
+	subCat = $('#sub').text();
+	cat = $('#cat').text();
+	$("#filterValueBar").show();
+	
+	var data="";
+	data = data + '&subCategory='+subCat+'&category='+cat;
+	var str="";
+	$("input[class^=check_]:checked").each(function()
+	  {		 
+		var sub = $(this).attr('name');
+		data = data + '&'+sub+'='+$(this).val();
+		var check = $(this).parent().children('span.content').text();
+		var div_Id = check.replace(/\s+/g, '').replace(/[^a-z0-9\s]/gi, '').replace(/[_\s]/g, '-');
+		str = str+'<div style="margin-left:12px;" class="pull-left filters" id="'+div_Id+'">'+check+'<span style="margin-left:4px;" class="glyphicon glyphicon-remove form-control-show"id="'+div_Id+'">'+'</span>'+'</div >';
+	  });
+
+	$('.selected_filters').html(str);
+
+	if($("#filterValueBar").text() == ""){
+		$("#filterValueBar").hide();
+	}
+	
+	$.ajax({
+		type: 'POST',
+		url: ctxPath+path, 
+		data: data,
+		success: function(data, status) {
+			$('.data').html('');
+			$('.data').html(data);
+
+		}
+	});
+
+	$("#locationListBar").html("")
+	$("#horizontalSeparator").html("")
+	$("#neighborhoodLocationBar").html("")
+}
+</script>

@@ -25,7 +25,7 @@ public class PostAdAction extends ActionSupport implements ServletRequestAware{
 	public String execute(){
 		String output = "success";
 		if(category.equals(CBuddyConstants.CATEGORY_REAL_ESTATE)){
-			if(subCategory.equals(CBuddyConstants.SUBCATEGORY_REAL_ESTATE_APARTMENT_FOR_SALE)){
+			/*if(subCategory.equals(CBuddyConstants.SUBCATEGORY_REAL_ESTATE_APARTMENT_FOR_SALE)){
 				output = "real_1";
 			}else if(subCategory.equals(CBuddyConstants.SUBCATEGORY_REAL_ESTATE_APARTMENT_FOR_RENT)){
 				output = "real_2";
@@ -39,7 +39,8 @@ public class PostAdAction extends ActionSupport implements ServletRequestAware{
 				output = "real_6";
 			}else if(subCategory.equals(CBuddyConstants.SUBCATEGORY_REAL_ESTATE_ROOMMATE_REQUIRED)){
 				output = "real_7";
-			}
+			}*/
+			
 		}
 		return output;
 	}

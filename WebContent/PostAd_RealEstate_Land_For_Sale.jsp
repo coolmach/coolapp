@@ -19,6 +19,7 @@
 					<input type="text" class="form-control" id="Title" name="Title" value="2BHK For Sale">
 				</div>
 			</div>
+			<%--
 			<div class="form-group">
 				<label for="location" class="col-sm-4 control-label">City</label>
 				<div class="col-sm-6">
@@ -31,6 +32,8 @@
 					<input type="text" class="form-control" name="Location" id="Location" value="46">
 				</div>
 			</div>
+			--%>
+			<%@include file="locationStrip.jsp" %>
 			<div class="form-group">
 				<label for="area" class="col-sm-4 control-label">Total Area (sq. ft)</label>
 				<div class="col-sm-6">

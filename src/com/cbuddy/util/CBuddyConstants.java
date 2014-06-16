@@ -19,4 +19,6 @@ public class CBuddyConstants {
 	public static final String SUBCATEGORY_REAL_ESTATE_PG_ACCOMODATION = "5";
 	public static final String SUBCATEGORY_REAL_ESTATE_LAND_SALE = "6";
 	public static final String SUBCATEGORY_REAL_ESTATE_ROOMMATE_REQUIRED = "7";
+	
+	public static final String BASE_FOLDER_NAME_INDEX = "C:\\Shiva\\indexes\\";
 }
