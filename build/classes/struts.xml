@@ -35,7 +35,7 @@
 		</action>
 		<action name="realestateFilter" class="com.cbuddy.action.posts.RealEstateAction" method="getAdListForRealEstate">
 			<result name="success">/AdList_RealEstate.jsp</result>
-		</action> 
+		</action>
 		<action name="household" class="com.cbuddy.action.posts.HouseHoldItemsAction" method="getAdListForHouseHoldItems">
 			<result name="success" type="tiles">/household.tiles</result>
 		</action>
@@ -89,6 +89,12 @@
 		</action> 
 		<action name="ImageAction" class="com.cbuddy.action.posts.ImageAction">
 			<result name="success" type="imageResult"></result>
-		</action>	
+		</action>
+		<action name="getLocation" class="com.cbuddy.action.location.LocationAction" method="getLocations">
+			<result name="success">/ajax_Autosuggest_Locations.jsp</result>
+		</action>
+		<action name="getNeighbor" class="com.cbuddy.action.location.LocationAction" method="getNeighborhood">
+			<result name="success">/neighborhood_Locations.jsp</result>
+		</action>							
 	</package>
 </struts>

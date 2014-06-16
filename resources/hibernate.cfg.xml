@@ -45,6 +45,7 @@
 		<mapping class="com.cbuddy.beans.Uprof" />
 		<mapping class="com.cbuddy.beans.City" />
 		<mapping class="com.cbuddy.beans.Location" />
+		<mapping class="com.cbuddy.beans.Neighborhood" />
 		<mapping class="com.model.user.RealEstatePostDetails" />
 	</session-factory>
 

@@ -47,6 +47,40 @@
 .content{padding-right:10px;}
 
 #breadCrumb{margin-top:20px; margin-bottom:15px;color:#428bca;font-size:16px;margin-left:5%;}
-#postListSection{margin-left:5%;}
+
 
 .form-control-radio-label{padding-right:10px;}
+
+#left_TableList{float:left;}
+#right_LocationFilterSection{float:left;margin-left:25px;color:#999999;font-size:12px;width:20%;}
+#cityBar{padding-left:2px;}
+	.radioButton{margin-bottom:5px;background-color:#FFFFFF;}
+	.radioCaption{padding-left:5px;padding-right:20px;margin-bottom:2px;}
+	.radioCaption_RightAlign{padding-left:5px;margin-bottom:2px;}
+#locationSearchBar{margin-top:15px;padding-left:3px;padding-top:2px;padding-bottom:2px;}
+	.noBorder{border:1px solid #FFFFFF;}
+	.locationTextBox{border:1px solid rgb(239,228,176);height:30px;padding-left:5px;width:80%;}
+	.searchIcon{width:29px;height:30px;vertical-align:top;}
+#locationListBar{margin-top:10px;padding-left:8px;width:90%;overflow:hidden;}
+	.checkBox{background-color:#FFFFFF;border:1px solid rgb(239,228,176)}
+	#locationResultSection{float:left;width:70%}
+	#clearSection{float:left; text-align:right;margin-top:4px;width:30%;}
+	.smallLink{color:rgb(0,162,230);background-color:#FFFFFF;border:1px solid #FFFFFF;}
+#horizontalSeparator{width:85%;margin-left:2%;}
+	#horizontalSeparator hr{color:rgb(239,228,176); margin-top:5%;margin-bottom:5%;}
+
+	.postField{padding-right:5px;padding-left:5px;}
+	.postField_Highlight{font-weight:bold;padding-right:5px;padding-left:5px;float;right;}
+	.separator{color:#428bca;}
+
+#companySearchBar{margin-top:15px;padding-left:3px;padding-top:2px;padding-bottom:2px;}
+
+#neighborhoodLocationBar{margin-left:3%;}
+	#heading{margin-bottom:2%;}
+	#neighborAreaList{margin-left:2%;}
+	#neighborAreaList td{padding:2px;}
+
+.checkboxColumn{float:left;width:10%;}
+.checkboxCaptionColumn{float:left;width:90%;padding-left:10px;}
+.radioCaptionWithoutSpace{padding-right:20px;margin-bottom:2px;}
+.listSection{min-width:50%;margin-left:5%;}

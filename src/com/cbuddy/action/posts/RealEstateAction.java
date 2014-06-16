@@ -16,6 +16,7 @@ import org.apache.struts2.interceptor.SessionAware;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
+import com.cbuddy.beans.NameValuePair;
 import com.cbuddy.beans.Pdre;
 import com.cbuddy.beans.Poit;
 import com.cbuddy.services.AdDetailsService;
@@ -46,6 +47,13 @@ public class RealEstateAction extends ActionSupport implements SessionAware, Ser
 	private String category = "" ;
 	private String subCategory = "" ;
 	//private String basePath = "";
+	
+	/* TODO: The two attributes selectedLocation and neighborhoodLocations are added only to retain the values populated by LocationAction (that is,
+	 * when the user refreshes the list page after filtering based on a location and when the page is reloaded, the location selected by the user should be
+	 * shown and be selected by default. 
+	 */
+	private NameValuePair selectedLocation;
+	private List<NameValuePair> neighborhoodLocations;
 
 	private HttpServletRequest request = null;
 	@Override

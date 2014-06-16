@@ -7,7 +7,6 @@ import org.hibernate.Session;
 
 import com.cbuddy.beans.City;
 import com.cbuddy.beans.Location;
-import com.cbuddy.exception.CBuddyException;
 
 public class LocationUtil {
 

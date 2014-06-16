@@ -1,16 +1,7 @@
 <%@ taglib prefix="s" uri="/struts-tags"%>
-<style>
-	.postField{padding-right:5px;padding-left:5px;}
-	.postField_Highlight{font-weight:bold;padding-right:5px;padding-left:5px;float;right;}
-	.separator{color:#428bca;}
-</style>
-<script>
-	$("#breadCrumb_Category").html("Real Estate");
-	if($("#breadCrumb_SubCategory").html() == ""){
-		$("#breadCrumb_SubCategory").html("Apartment for Rent");
-	}
-</script>
+<div class="data">
 	<s:if test="adList.size() > 0">
+		<div class="col-md-6 listSection" id="postListSection">
 		<table class="table table-bordered">
 			<tr>
 				<th>Post Details</th>
@@ -111,9 +102,13 @@
 		</table>
 	</s:if>
 	<s:else>
-		<table class="table table-bordered">
-			<tr>
-				<td colspan="3" style="padding-left:15px;font-size:13px;">No posts found! Try refining search criteria</th>
-			</tr>
-		</table>	
+		<div class="col-md-6 listSection">
+			<table class="table table-bordered">
+				<tr>
+					<td colspan="3" style="padding-left:15px;font-size:13px;">No posts found! Try refining search criteria</th>
+				</tr>
+			</table>
+		</div>	
 	</s:else>
+	</div>
+</div>

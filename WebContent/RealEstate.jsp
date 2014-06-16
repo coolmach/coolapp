@@ -1,6 +1,6 @@
 <%@ taglib prefix="s" uri="/struts-tags"%>
-<div class=" header_2">
 
+<div class=" header_2">
 	<div class="col-md-12 filter_cat">
 		<div class="form-group pull-left searchFilter" id="sub-main">
 			<div id="subCategory" class="inputstyle pointer form-control">
@@ -357,6 +357,213 @@
 </div>
 
 <!-- <div class="col-md-4"></div> -->
-<div class="col-md-6 data" id="postListSection">
-	<%@include file="./AdList_RealEstate.jsp"%>
+
+<div class="data">
+	<s:if test="adList.size() > 0">
+		<div class="col-md-6 listSection" id="postListSection">
+		<table class="table table-bordered">
+			<tr>
+				<th>Post Details</th>
+				<td colspan="3" style="text-align:right;width:100%;">Showing Records (? - ? of ?))</td>
+			</tr>
+			<s:iterator value="adList" status="userStatus">
+				<tr style="font-size:12px;">
+					 <td style="width:25%;"><img class="images_ad" src="<s:url value='ImageAction?imageId=%{imageFileName}' />" style="width:100px;height:100px;"></td> 
+					 <td>
+						<p style="color:#428bca;font-size:14px;">
+							<s:property value="title" />
+						</p> <%-- <s:iterator begin="1" end="rating">
+							<img class="rating_stars" src="images/star.jpg">
+						</s:iterator>  <br /> --%>
+						<span class="postField"><s:property value="city" /></span> <span class="separator">|</span>
+						<span class="postField"><s:property value="location" /></span>
+						<br>
+						
+						<s:if test="%{subCategory == 1}">
+							<!-- Apartment for Sale -->
+							<span class="postField"><s:property value="bedrooms" /> BHK</span> <span class="separator">|</span>
+							<span class="postField"><s:property value="area" /> sq ft</span> <span class="separator">|</span>
+							<span class="postField"><s:property value="newOrResaleStr" /></span>
+							<br>
+							<span class="postField"><s:property value="facingDirectionStr" /> facing</span> <span class="separator">|</span>
+							<span class="postField"><s:property value="floorNumberStr" /> Floor</span>
+						</s:if>
+						<s:elseif test="%{subCategory == 2}">
+							<!-- Apartment for Rent -->
+							<span class="postField"><s:property value="bedrooms" /> BHK</span> <span class="separator">|</span>
+							<span class="postField"><s:property value="area" /> sq ft</span>
+							<s:if test="%{furnished == F || furnished == S}">
+								<span class="separator">|</span>
+								<span class="postField"><s:property value="furnishedStr" /></span>
+							</s:if>
+							<s:if test="%{maintenance != 0}">
+								<span class="separator">|</span>
+								<span class="postField">Maintenance:&nbsp;<s:property value="maintenanceStr" /></span>
+							</s:if>
+							<s:if test="%{carParking == Y}">
+								<span class="separator">|</span>
+								<span class="postField">Car&nbsp;Parking</span>
+							</s:if>
+							<s:if test="%{powerBackup == Y}">
+								<span class="separator">|</span>
+								<span class="postField">Power&nbsp;Backup</span>
+							</s:if>
+							<s:if test="%{childrenPlayArea == Y}">
+								<span class="separator">|</span>
+								<span class="postField">Children&nbsp;Play&nbsp;Area</span>
+							</s:if>
+							<s:if test="%{gym == Y}">
+								<span class="separator">|</span>
+								<span class="postField">Gym</span>
+							</s:if>										
+							<br>
+
+						</s:elseif>
+						<s:elseif test="%{subCategory == 3}">
+							<span class="postField"><s:property value="bedrooms" /> BHK</span> <span class="separator">|</span>
+							<span class="postField"><s:property value="area" /> sq ft</span> <span class="separator">|</span>
+							<span class="postField"><s:property value="newOrResaleStr" /></span>						
+							<br>
+							<span class="postField">Contact <s:property value="ContactPersonName" /></span> <span class="separator">|</span>
+							<span class="postField"><s:property value="ContactNo" /></span>
+						</s:elseif>
+						<s:elseif test="%{subCategory == 4}">
+							<span class="postField"><s:property value="bedrooms" /> BHK</span> <span class="separator">|</span>
+							<span class="postField"><s:property value="area" /> sq ft</span> <span class="separator">|</span>
+							<span class="postField"><s:property value="newOrResaleStr" /></span>						
+						</s:elseif>
+						<s:elseif test="%{subCategory == 5}">
+							<span class="postField"><s:property value="bedrooms" /> BHK</span> <span class="separator">|</span>
+							<span class="postField"><s:property value="area" /> sq ft</span> <span class="separator">|</span>
+							<span class="postField"><s:property value="newOrResaleStr" /></span>						
+						</s:elseif>																		
+						<s:elseif test="%{subCategory == 6}">
+							<span class="postField"><s:property value="bedrooms" /> BHK</span> <span class="separator">|</span>
+							<span class="postField"><s:property value="area" /> sq ft</span> <span class="separator">|</span>
+							<span class="postField"><s:property value="newOrResaleStr" /></span>						
+						</s:elseif>
+						<s:elseif test="%{subCategory == 7}">
+							<span class="postField"><s:property value="bedrooms" /> BHK</span> <span class="separator">|</span>
+							<span class="postField"><s:property value="area" /> sq ft</span> <span class="separator">|</span>
+							<span class="postField"><s:property value="newOrResaleStr" /></span>						
+						</s:elseif>
+						<s:else>
+						
+						</s:else>
+						<br>
+					</td>
+					<td>
+						<span class="postField_Highlight">Rs.<s:property value="priceValueStr" /></span>
+					</td> 
+					<td><s:date name="createdOn" format="dd/MM/yyyy" /></td>
+				</tr>  
+			</s:iterator>
+		</table>
+	</s:if>
+	<s:else>
+		<div class="col-md-6 listSection">
+			<table class="table table-bordered">
+				<tr>
+					<td colspan="3" style="padding-left:15px;font-size:13px;">No posts found! Try refining search criteria</th>
+				</tr>
+			</table>
+		</div>	
+	</s:else>
+	</div>
 </div>
+<div id="right_LocationFilterSection">
+	<div id="cityBar">
+		<input type="radio" class="radioButton" name="city" id="city" value="BLR" checked><span class="radioCaption">Bangalore</span>
+		<input type="radio" class="radioButton" name="city" id="city" value="CHE"><span class="radioCaption_RightAlign">Chennai</span>
+	</div>
+	<div id="locationSearchBar">
+		<input type="text" class="locationTextBox" placeholder="Enter Area (e.g. JP Nagar)" name="locSearch" id="locSearch">
+		<img class="searchIcon" src="images/search_green_resized.png">	
+	</div>
+	<div id="locationDetails" style="display:none;">
+		<div id="locationListBar">
+			<div id="locationResultSection">
+				<input type="checkbox" class="checkBox" name="location" id="location" value="23"><span class="radioCaption">Electronics City</span>
+			</div>
+			<div id="clearSection">
+				<a class="smallLink" onClick="resetLocationFilter()">Clear Filter</a>
+			</div>
+		</div>
+		<div id="horizontalSeparator">
+			<hr>
+		</div>
+		<div id="neighborhoodLocationBar">
+			<div id="heading">Nearby Areas</div>
+			<div id="neighborAreaList">
+				<table>
+					<tr>
+						<td><input type="checkbox" class="checkBox" name="location" id="location" value="23"><span class="radioCaption">Location 1</span></td>
+					</tr>
+					<tr>
+						<td><input type="checkbox" class="checkBox" name="location" id="location" value="23"><span class="radioCaption">Location 2</span></td>
+					</tr>
+					<tr>
+						<td><input type="checkbox" class="checkBox" name="location" id="location" value="23"><span class="radioCaption">Location 3</span></td>
+					</tr>
+				</table>
+			</div>
+		</div>
+	</div>
+	<div id="companySearchBar">
+		<input type="text" class="locationTextBox" placeholder="Enter Company (e.g. Infosys)" name="companySearch" id="companySearch">
+		<img class="searchIcon" src="images/search_orange_resized.png">	
+	</div>		
+</div>
+
+<script>
+	$("#breadCrumb_Category").html("Real Estate");
+	if($("#breadCrumb_SubCategory").html() == ""){
+		$("#breadCrumb_SubCategory").html("Apartment for Rent");
+	}
+</script>
+
+<link rel="stylesheet" type="text/css" href="thirdparty/jquery-ui/jquery-ui-1.10.3.custom.min.css"/>
+<script src="js/jquery.min.js"></script>
+<script type="text/javascript" src="thirdparty/jquery-ui/jquery-ui-1.10.3.custom.min.js"></script>
+
+<script>
+	$(document).ready(function(){
+		$("#locSearch").autocomplete({
+		    source: function(request, response) {
+			    $.ajax({
+				    url: "http://localhost:8080/Virat/getLocation?city=BLR",
+				    type: "POST",
+				    dataType: "json",
+				    data: {location:$("#locSearch").val()},
+				    success: function(data) {
+				        response( $.map(data, function(item) {
+					        return {
+					            label: item.value,
+					            value: item.id,
+					        };
+				        }));
+				    },
+				    error: function (error) {
+				       alert('error: ' + error.responseText);
+				    }
+			    });
+			},
+			select:function(event, ui){
+				event.preventDefault();
+				$.ajax({
+					url:"http://localhost:8080/Virat/getNeighbor?city=BLR&location=" + ui.item.value,
+					type:"POST",
+					success:function(data){
+						$("#locationDetails").html(data);
+						$("#locationDetails").show();
+					},
+					error:function(data){
+						alert(data.responseText);
+					}
+				});
+			},
+		    minLength: 2
+		 });
+	});
+</script>
+
