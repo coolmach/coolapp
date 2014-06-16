@@ -7,7 +7,7 @@
 				<span class="content">Type</span><span
 					class="glyphicon glyphicon glyphicon-chevron-down form-control-show"></span>
 			</div>
-			<input type="hidden" id="contextPath" name="contextPath" value='<%=request.getContextPath()%>' />
+			
 			<div id="subCategory_hidden_sub" class="subCategory_hidden_bck" style="display: none;">
 				<ul class="list-unstyled">
 					<li value="2"><span class="content">Apartment For Rent</span></li>
@@ -534,7 +534,8 @@
 		    source: function(request, response) {
 			    $.ajax({
 				    //url: "http://localhost:8080/Virat/getLocation?city=BLR",
-				    url:$('#contextPath').text() + "/getLocation",
+				    //url:$('#context_path').text() + "/getLocation",
+				    url:"/Virat" + "/getLocation",
 				    type: "POST",
 				    dataType: "json",
 				    //data: {location:$("#locSearch").val()},
@@ -556,7 +557,8 @@
 				event.preventDefault();
 				$.ajax({
 					//url:"http://localhost:8080/Virat/getNeighbor?city=BLR&location=" + ui.item.value,
-					url:$('#contextPath').text() + "/getNeighbor",
+					//url:$('#contextPath').text() + "/getNeighbor",
+					url:"/Virat" + "/getNeighbor",
 					type:"POST",
 					data: {city:$('input[name=city]:checked').val(),location:ui.item.value},
 					success:function(data){
