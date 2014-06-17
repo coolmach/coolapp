@@ -26,6 +26,10 @@
 		<action name="">
 			<result type="tiles">/home.tiles</result>
 		</action>
+		<action name="mylogin" class="com.cbuddy.action.user.LoginAction" method="myLogin">
+		    <result name="input" type="tiles">/login.tiles</result>
+			<result name="success" type="tiles">/login.tiles</result>
+		</action>
 		<action name="login" class="com.cbuddy.action.user.LoginAction">
 			<result name="success" type="tiles">/postad.tiles</result>
 			<result name="input" type="tiles">/home.tiles</result>

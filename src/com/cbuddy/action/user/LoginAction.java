@@ -89,6 +89,11 @@ public class LoginAction extends ActionSupport implements SessionAware{
 		}
 	}
 	
+	public String myLogin(){
+		
+		return "success";
+	}
+	
 	private Map<String,Object> session;
 
 	@Override

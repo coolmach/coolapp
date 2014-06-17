@@ -40,7 +40,7 @@
     </nav> -->
     
     
-    <header id="login_top">
+    <%-- <header id="login_top">
     <div class="container-fluid">
       <div class="row">
       <div class="col-md-3">
@@ -74,9 +74,46 @@
 			  					  <span style="margin-left:5px;margin-top:10px;color:#FFFFFF;">|</span>
 			  <a class="" href="#"><span style="margin-left:5px;margin-top:10px;">Forgot Password</span></a> 
             </s:form>
-            <div class="col-md-4 forgot_pwd" style="color:#0099cc;"> &nbsp;</div>
-            <div class="col-md-4 forgot_pwd" style="color:#0099cc;"> &nbsp;</div>
+           <!--  <div class="col-md-4 forgot_pwd" style="color:#0099cc;"> &nbsp;</div>
+            <div class="col-md-4 forgot_pwd" style="color:#0099cc;"> &nbsp;</div> -->
+             <a class="" href="#"><span style="margin-left:5px;margin-top:10px;">Forgot Password</span></a> 
             </div>
       </div>
     </div>
-  </header>
+  </header> --%>
+  
+  <nav class="navbar navbar-custom navbar-fixed-top" role="navigation" style="background-color:#0099cc;">
+   
+        <div class="container" style="width:100%;">
+            <div class="navbar-header page-scroll">
+                <a class="navbar-logo" href="<s:url action=""/>">
+                    <b><i style="color:#ffff00;">CBuddy.</i>in</b>
+                </a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse navbar-right navbar-main-collapse" style="width:600px;">
+                <ul class="nav navbar-nav" style="float:right;">
+                    <!-- Hidden li included to remove active class from about link when scrolled up past about section -->
+                    <li class="hidden">
+                        <a href="#page-top"></a>
+                    </li>
+                    <li class="page-scroll">
+                        <a href="#about">About</a>
+                    </li>
+               
+                    <li class="page-scroll">
+                        <a href="#contact">Contact</a>
+                    </li>
+                   
+                     <li class="page-scroll">
+                    <a  href="<s:url action="mylogin"/>"> Login</a> 
+                    </li>
+                </ul>
+               <!--  <div class="pull-right"> <b id="myuser"> </b><br/><a id="nav_user" href="/Cool/logout.action">logout</a> </div> -->
+            </div>
+            <!-- /.navbar-collapse -->
+            
+        </div>
+        <!-- /.container -->
+    </nav>
