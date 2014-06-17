@@ -2,7 +2,7 @@
 <div class=" header_2">
 
 	<div class="col-md-12 filter_cat">
-		<div class="form-group pull-left" id="sub-main">
+		<div class="form-group pull-left searchFilter" id="sub-main" style="margin-left:4.5%;">
 			<div id="subCategory" class="inputstyle pointer form-control">
 				<span class="content">Categories</span><span
 					class="glyphicon glyphicon glyphicon-chevron-down form-control-show"></span>
@@ -10,17 +10,17 @@
 			<div id="subCategory_hidden_sub" class="subCategory_hidden_bck"
 				style="display: none;">
 				<ul class="list-unstyled">
-					<li><span class="content">Cars</span></li>
-					<li><span class="content">Motorcycles</span></li>
-					<li><span class="content">Scooters</span></li>
-					<li><span class="content">SUVs & Vans</span></li>
-					<li><span class="content">Bicycles</span></li>
-					<li><span class="content">Buses</span></li>
-					<li><span class="content">Trucks</span></li>
-					<li><span class="content">Motor Service/Repair</span></li>
-					<li><span class="content">Spare Parts/Accessories</span></li>
-					<li><span class="content">Driving Schools</span></li>
-					<li><span class="content">Other Vehicles</span></li>
+					<li value="1"><span class="content">Cars</span></li>
+					<li value="2"><span class="content">Motorcycles</span></li>
+					<li value="3"><span class="content">Scooters</span></li>
+					<li value="4"><span class="content">SUVs & Vans</span></li>
+					<li value="5"><span class="content">Bicycles</span></li>
+					<li value="6"><span class="content">Buses</span></li>
+					<li value="7"><span class="content">Trucks</span></li>
+					<li value="8"><span class="content">Motor Service/Repair</span></li>
+					<li value="9"><span class="content">Spare Parts/Accessories</span></li>
+					<li value="10"><span class="content">Driving Schools</span></li>
+					<li value="11"><span class="content">Other Vehicles</span></li>
 					
 				</ul>
 				<!-- <a href="#" class="clear blue_link">clear filters</a> -->
@@ -29,7 +29,7 @@
 		
 		<form class="form-inline" role="form" id="cars">
 
-			<div class=" pull-left hidden-subcat" id="brand-main">
+			<div class=" pull-left hidden-subcat searchFilter" id="brand-main">
 				<div id="brand" class="inputstyle pointer form-control">
 					<span class="content">Brand</span> <span
 						class="glyphicon glyphicon glyphicon-chevron-down form-control-show"></span>
@@ -59,7 +59,7 @@
 					<a href="#" class="clear blue_link">clear filters</a>
 				</div>
 			</div>
-			<div class=" pull-left hidden-subcat" id="brandBikes-main">
+			<div class=" pull-left hidden-subcat searchFilter" id="brandBikes-main">
 				<div id="brandBikes" class="inputstyle pointer form-control">
 					<span class="content">Brand</span> <span
 						class="glyphicon glyphicon glyphicon-chevron-down form-control-show"></span>
@@ -82,7 +82,7 @@
 					<a href="#" class="clear blue_link">clear filters</a>
 				</div>
 			</div>
-			<div class=" pull-left hidden-subcat" id="used-main">
+			<div class=" pull-left hidden-subcat searchFilter" id="used-main">
 				<div id="used" class="inputstyle pointer form-control">
 					Used/Unused <span
 						class="glyphicon glyphicon glyphicon-chevron-down form-control-show"></span>
@@ -98,7 +98,7 @@
 					<a href="#" class="clear blue_link">clear filters</a>
 				</div>
 			</div>
-			<div class=" pull-left hidden-subcat" id="amt-main">
+			<div class=" pull-left hidden-subcat searchFilter" id="amt-main">
 				<div id="amt" class="inputstyle pointer form-control">
 					<span class="content">Price</span> <span
 						class="glyphicon glyphicon glyphicon-chevron-down form-control-show"></span>
@@ -106,21 +106,17 @@
 				<div id="subCategory_hidden_amt" class="subCategory_hidden_bck"
 					style="display: none;">
 					<ul class="list-unstyled">
-					    <li><input type="checkbox" class="check_amt" name="amt" value="<5,000" /><span class="content"><5,000</span>
+					    <li><input type="checkbox" class="check_amt" name="amt" value="<2,00,000" /><span class="content"><2,00,000</span>
 						</li>
-						<li><input type="checkbox" class="check_amt" name="amt" value="5,000-10,000" /><span class="content"><10,000</span>
+						<li><input type="checkbox" class="check_amt" name="amt" value="2,00,000-5,00,000" /><span class="content">2,00,000-5,00,000</span>
 						</li>
-						<li><input type="checkbox" class="check_amt" name="amt" value="10,000-14,000" /><span class="content">10,000-14,000</span>
-						</li>
-						<li><input type="checkbox" class="check_amt" name="amt" value="14,000-18,000" /><span class="content">14,000-18,000</span>
-						</li>
-						<li><input type="checkbox" class="check_amt" name="amt" value=">18,000" /><span class="content">>18,000</span>
+						<li><input type="checkbox" class="check_amt" name="amt" value=">5,00,000" /><span class="content">>5,00,000</span>
 						</li>
 					</ul>
 					<a href="#" class="clear blue_link">clear filters</a>
 				</div>
 			</div>
-			 <div class=" pull-left hidden-subcat" id="loc-main">
+			 <div class=" pull-left hidden-subcat searchFilter" id="loc-main">
 				<div id="location" class="inputstyle pointer form-control">
 					<span class="content">Location</span> <span
 						class="glyphicon glyphicon glyphicon-chevron-down form-control-show"></span>
@@ -140,7 +136,7 @@
 					<a href="#" class="clear blue_link">clear filters</a>
 				</div>
 			</div>
-			<div class=" pull-left hidden-subcat" id="os-main">
+			<div class=" pull-left hidden-subcat searchFilter" id="os-main">
 				<div id="os" class="inputstyle pointer form-control">
 					Operating System <span
 						class="glyphicon glyphicon glyphicon-chevron-down form-control-show"></span>
@@ -162,7 +158,7 @@
 					<a href="#" class="clear blue_link">clear filters</a>
 				</div>
 			</div>
-			<div class=" pull-left hidden-subcat" id="sims-main">
+			<div class=" pull-left hidden-subcat searchFilter" id="sims-main">
 				<div id="sims" class="inputstyle pointer form-control">
 					Sims <span
 						class="glyphicon glyphicon glyphicon-chevron-down form-control-show"></span>
@@ -178,7 +174,7 @@
 					<a href="#" class="clear blue_link">clear filters</a>
 				</div>
 			</div>
-			<div class=" pull-left hidden-subcat" id="type-main">
+			<div class=" pull-left hidden-subcat searchFilter" id="type-main">
 				<div id="type" class="inputstyle pointer form-control">
 					Accessory Type <span
 						class="glyphicon glyphicon glyphicon-chevron-down form-control-show"></span>
@@ -209,49 +205,128 @@
 			</div>	
 		</form>
 	</div>
-	<div class="col-md-12 selected_filters"></div>
-	<div class="col-md-12">
-		<a class="grey_link" href="<s:url action=""  />">HOME</a> >
-		<span id="cat"><s:property value="category" /></span> > <span id="sub"><s:property value="subCat" /></span>
+	<div class="col-md-12 selected_filters" style="display:none;" id="filterValueBar"></div>
+	
+	<div class="col-md-12" id="breadCrumb">
+	   <span id="cat" style="display:none"><s:property value="category" /></span>
+	   <span id="sub" style="display:none"><s:property value="subCategory" /></span>
+	
+	<a class="grey_link" href="<s:url action=""  />">Home</a> >
+		<span id="breadCrumb_Category"><s:property value="categoryStr" /></span> > 
+		<span id="breadCrumb_SubCategory"><s:property value="subCategoryStr" /></span>
 	</div>
 </div>
 <!-- <div class="col-md-4"></div> -->
-<div class="col-md-6 data">
+<div class=" data">
 	<s:if test="adList.size() > 0">
+		<div class="col-md-6 listSection" id="postListSection">
 		<table class="table table-bordered">
 			<tr>
-				<th>Description</th>
-				<th></th>
-				<th>Price</th>
-				<th>Date</th>
-				<th>Posted By</th>
+				<th>Post Details</th>
+				<td colspan="3" style="text-align:right;width:100%;">Showing Records (? - ? of ?))</td>
 			</tr>
 			<s:iterator value="adList" status="userStatus">
-				<tr>
-					<td><img class="images_ad" src=" <s:property value="imageFileName" />">
+				<tr style="font-size:12px;">
+					 <td style="width:25%;"><img class="images_ad" src="<s:url value='ImageAction?imageId=%{imageFileName}' />" style="width:100px;height:100px;"></td> 
+					 <td>
+						<p style="color:#428bca;font-size:14px;">
+							<s:property value="title" />
+						</p> <%-- <s:iterator begin="1" end="rating">
+							<img class="rating_stars" src="images/star.jpg">
+						</s:iterator>  <br /> --%>
+						<span class="postField"><s:property value="city" /></span> <span class="separator">|</span>
+						<span class="postField"><s:property value="location" /></span>
+						<br>
+						
+						<s:if test="%{subCategory == 1}">
+							<!-- Apartment for Sale -->
+							<span class="postField"><s:property value="bedrooms" /> BHK</span> <span class="separator">|</span>
+							<span class="postField"><s:property value="area" /> sq ft</span> <span class="separator">|</span>
+							<span class="postField"><s:property value="newOrResaleStr" /></span>
+							<br>
+							<span class="postField"><s:property value="facingDirectionStr" /> facing</span> <span class="separator">|</span>
+							<span class="postField"><s:property value="floorNumberStr" /> Floor</span>
+						</s:if>
+						<s:elseif test="%{subCategory == 2}">
+							<!-- Apartment for Rent -->
+							<span class="postField"><s:property value="bedrooms" /> BHK</span> <span class="separator">|</span>
+							<span class="postField"><s:property value="area" /> sq ft</span>
+							<s:if test="%{furnished == F || furnished == S}">
+								<span class="separator">|</span>
+								<span class="postField"><s:property value="furnishedStr" /></span>
+							</s:if>
+							<s:if test="%{maintenance != 0}">
+								<span class="separator">|</span>
+								<span class="postField">Maintenance:&nbsp;<s:property value="maintenanceStr" /></span>
+							</s:if>
+							<s:if test="%{carParking == Y}">
+								<span class="separator">|</span>
+								<span class="postField">Car&nbsp;Parking</span>
+							</s:if>
+							<s:if test="%{powerBackup == Y}">
+								<span class="separator">|</span>
+								<span class="postField">Power&nbsp;Backup</span>
+							</s:if>
+							<s:if test="%{childrenPlayArea == Y}">
+								<span class="separator">|</span>
+								<span class="postField">Children&nbsp;Play&nbsp;Area</span>
+							</s:if>
+							<s:if test="%{gym == Y}">
+								<span class="separator">|</span>
+								<span class="postField">Gym</span>
+							</s:if>										
+							<br>
+
+						</s:elseif>
+						<s:elseif test="%{subCategory == 3}">
+							<span class="postField"><s:property value="bedrooms" /> BHK</span> <span class="separator">|</span>
+							<span class="postField"><s:property value="area" /> sq ft</span> <span class="separator">|</span>
+							<span class="postField"><s:property value="newOrResaleStr" /></span>						
+							<br>
+							<span class="postField">Contact <s:property value="ContactPersonName" /></span> <span class="separator">|</span>
+							<span class="postField"><s:property value="ContactNo" /></span>
+						</s:elseif>
+						<s:elseif test="%{subCategory == 4}">
+							<span class="postField"><s:property value="bedrooms" /> BHK</span> <span class="separator">|</span>
+							<span class="postField"><s:property value="area" /> sq ft</span> <span class="separator">|</span>
+							<span class="postField"><s:property value="newOrResaleStr" /></span>						
+						</s:elseif>
+						<s:elseif test="%{subCategory == 5}">
+							<span class="postField"><s:property value="bedrooms" /> BHK</span> <span class="separator">|</span>
+							<span class="postField"><s:property value="area" /> sq ft</span> <span class="separator">|</span>
+							<span class="postField"><s:property value="newOrResaleStr" /></span>						
+						</s:elseif>																		
+						<s:elseif test="%{subCategory == 6}">
+							<span class="postField"><s:property value="bedrooms" /> BHK</span> <span class="separator">|</span>
+							<span class="postField"><s:property value="area" /> sq ft</span> <span class="separator">|</span>
+							<span class="postField"><s:property value="newOrResaleStr" /></span>						
+						</s:elseif>
+						<s:elseif test="%{subCategory == 7}">
+							<span class="postField"><s:property value="bedrooms" /> BHK</span> <span class="separator">|</span>
+							<span class="postField"><s:property value="area" /> sq ft</span> <span class="separator">|</span>
+							<span class="postField"><s:property value="newOrResaleStr" /></span>						
+						</s:elseif>
+						<s:else>
+						
+						</s:else>
+						<br>
 					</td>
 					<td>
-						<p>
-							<s:property value="title" />
-						</p><%--  <s:iterator begin="1" end="rating">
-							<img class="rating_stars" src="images/star.jpg">
-						</s:iterator>  --%> <br /><small><b><s:property value="cityCode" />,<s:property
-									value="locCode" /> </b> </small><br /> <small>Contact <s:property
-								value="contactPerson" />,<s:property value="contactNo" /> </small>
-					</td>
-					<td><s:url action="addetails" var="urlTag">
-							<s:param name="price">
-								<s:property value="price" />
-							</s:param>
-						</s:url> <a class="blue_link" href="<s:property value="#urlTag" />"><s:property
-								value="price" /> </a>
-					</td>
-					<td><s:date name="rCreTime" format="dd/MM/yyyy" /></td>
-					<td><s:property value="firstName" />(<s:property
-							value="corpName" />)</td>
-				</tr>
+						<span class="postField_Highlight">Rs.<s:property value="priceValueStr" /></span>
+					</td> 
+					<td><s:date name="createdOn" format="dd/MM/yyyy" /></td>
+				</tr>  
 			</s:iterator>
 		</table>
-
 	</s:if>
+	<s:else>
+		<div class="col-md-6 listSection">
+			<table class="table table-bordered">
+				<tr>
+					<td colspan="3" style="padding-left:15px;font-size:13px;">No posts found! Try refining search criteria</th>
+				</tr>
+			</table>
+		</div>	
+	</s:else>
+	</div>
 </div>

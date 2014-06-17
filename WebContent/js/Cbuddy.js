@@ -16,9 +16,8 @@ $(document).ready(function() {
 		$("#ownership-main").show();
 		$("#amenities-main").show();
 		
-	}else if(cat == 'CARS'){
-		path="cars";
-		subCat="Cars";
+	}else if(cat == 'AUTO'){
+		path="automobilesFilter";
 		$("#brand-main").show();
 		$("#loc-main").show();
 		$("#amt-main").show();
@@ -294,7 +293,7 @@ $(document).ready(function() {
 
 		}
 
-		if($(this).text()!= 'Cars' && subCat=="Cars"){
+		if($(this).text()!= 'Cars' /*&& subCat=="1"*/){
 			if($(this).text()== 'Motorcycles' || $(this).text()== 'Scooters'){
 				$("#brandBikes-main").show();
 				$("#brand-main").hide();
@@ -302,10 +301,15 @@ $(document).ready(function() {
 				$("#brand-main").hide();
 				$("#brandBikes-main").hide();
 			}
-
-		}else if($(this).text()== 'Cars' && subCat=="Cars"){
+			$("#breadCrumb_Category").html("AutoMobiles");
+			$("#breadCrumb_SubCategory").html($(this).text());
+			
+		}else if($(this).text()== 'Cars' /*&& subCat=="Cars"*/){
 			$("#brand-main").show();
 			$("#brandBikes-main").hide();
+			
+			$("#breadCrumb_Category").html("AutoMobiles");
+			$("#breadCrumb_SubCategory").html($(this).text());
 		}
 
 		if( cat == 'HOUSEHOLD'){

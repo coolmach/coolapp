@@ -42,8 +42,11 @@
 		<action name="adListForHouseHoldItems" class="com.cbuddy.action.posts.HouseHoldItemsAction" method="getAdListForHouseHoldItems">
 			<result name="success">/AdList_For_HouseHoldItems.jsp</result>
 		</action> 
-		<action name="cars" class="com.cbuddy.action.user.HomeAction" method="getAdListForCars">
+		<action name="automobiles" class="com.cbuddy.action.posts.AutoMobilesAction" method="getAdListForAutoMobiles">
 			<result name="success" type="tiles">/cars.tiles</result>
+		</action>
+		<action name="automobilesFilter" class="com.cbuddy.action.posts.AutoMobilesAction" method="getAdListForAutoMobiles">
+			<result name="success">/AdList_AutoMobiles.jsp</result>
 		</action>
 		<action name="laptops" class="com.cbuddy.action.user.HomeAction" method="getAdListForLaptops">
 			<result name="success" type="tiles">/laptops.tiles</result>

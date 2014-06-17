@@ -47,6 +47,7 @@
 		<mapping class="com.cbuddy.beans.Location" />
 		<mapping class="com.cbuddy.beans.Neighborhood" />
 		<mapping class="com.model.user.RealEstatePostDetails" />
+		<mapping class="com.cbuddy.beans.Pdau" />
 	</session-factory>
 
 </hibernate-configuration>

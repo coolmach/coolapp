@@ -114,8 +114,9 @@
 				</s:url> 
 				<a href="<s:property value="#urlTag" />"><img class="images_ad" src="images/real_estate.png"> </a>
 			</td>
-			<td><s:url action="cars" var="urlTag1">
-					<s:param name="category">CARS</s:param>
+			<td><s:url action="automobiles" var="urlTag1" escapeAmp="false">
+					<s:param name="category">AUTO</s:param>
+					<s:param name="subCategory">1</s:param>
 				</s:url> <a href="<s:property value="#urlTag1" />"><img
 					class="images_ad" src="images/cars.png"> </a>
 			</td>

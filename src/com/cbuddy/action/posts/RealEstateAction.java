@@ -20,6 +20,7 @@ import com.cbuddy.beans.NameValuePair;
 import com.cbuddy.beans.Pdre;
 import com.cbuddy.beans.Poit;
 import com.cbuddy.services.AdDetailsService;
+import com.cbuddy.services.RealEstateAdService;
 import com.cbuddy.util.CBuddyConstants;
 import com.cbuddy.util.LocationUtil;
 import com.cbuddy.util.NumberFormatterUtil;
@@ -245,7 +246,7 @@ public class RealEstateAction extends ActionSupport implements SessionAware, Ser
 
 		categoryStr = Utils.getInstance().getCategoryDesc(category);
 		subCategoryStr = Utils.getInstance().getSubCategoryDesc(category, subCategory);
-
+		
 		if(category==null || category.equals("")){
 			setCategory(CBuddyConstants.CATEGORY_REAL_ESTATE);
 		}
@@ -253,8 +254,8 @@ public class RealEstateAction extends ActionSupport implements SessionAware, Ser
 			setSubCategory(CBuddyConstants.SUBCATEGORY_REAL_ESTATE_APARTMENT_FOR_RENT);
 		}
 
-		AdDetailsService adDetailService =  new AdDetailsService();
-		adList = adDetailService.getAdListByCategory(getModel(), subCategory);
+		RealEstateAdService realEstateAdService =  new RealEstateAdService();
+		adList = realEstateAdService.getAdListByCategory(getModel(), subCategory);
 
 		populateAdditionalDetails();
 
