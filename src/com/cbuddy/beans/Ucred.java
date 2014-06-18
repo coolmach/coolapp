@@ -9,9 +9,6 @@ import javax.persistence.*;
 
 public class Ucred {
 
-
-
-
 	private int UserId;
 	private String CorpEmailId;
 	private String Pwd;
@@ -23,10 +20,26 @@ public class Ucred {
 	private String CreatedBy;
 	private Timestamp ModifiedOn;
 	private String ModifiedBy;
+	private String FirstName;
+	private String PersonalEmailId;
 
-
+	@Transient
+	public String getFirstName() {
+		return FirstName;
+	}
+	public void setFirstName(String firstName) {
+		FirstName = firstName;
+	}
+	
+	@Transient
+	public String getPersonalEmailId() {
+		return PersonalEmailId;
+	}
+	public void setPersonalEmailId(String personalEmailId) {
+		PersonalEmailId = personalEmailId;
+	}
 	@Id
-	@GeneratedValue	
+	@GeneratedValue(strategy = GenerationType.IDENTITY)	
 	@Column(name="USER_ID")
 	public int getUserId(){
 		return this.UserId;

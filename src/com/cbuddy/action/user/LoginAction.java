@@ -2,22 +2,29 @@ package com.cbuddy.action.user;
 
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
+import org.apache.struts2.interceptor.ServletRequestAware;
 import org.apache.struts2.interceptor.SessionAware;
 
+import com.cbuddy.beans.Ucred;
+import com.cbuddy.beans.Uprof;
 import com.cbuddy.exception.CBuddyException;
 import com.cbuddy.services.AuthenticateUserService;
 import com.cbuddy.util.CBuddyConstants;
 import com.model.user.User;
 import com.opensymphony.xwork2.ActionSupport;
+import com.opensymphony.xwork2.ModelDriven;
 
-public class LoginAction extends ActionSupport implements SessionAware{
+public class LoginAction extends ActionSupport implements SessionAware,ServletRequestAware,ModelDriven<Ucred>{
 
 	private String userName;
 	private String password;
 	private String valid="true";
 	private boolean isValidUser = false;
 	private String firstName;
-	
+	Ucred ucred = new Ucred();
+
 	public boolean isValidUser() {
 		return isValidUser;
 	}
@@ -43,7 +50,7 @@ public class LoginAction extends ActionSupport implements SessionAware{
 		this.password = password;
 	}
 
-	public void validate(){
+	/*public void validate(){
 		System.out.println("LoginAction.validate()");
 		if (userName == null || userName.trim().equals("")){
 			addFieldError("userName","Username is required");
@@ -52,7 +59,7 @@ public class LoginAction extends ActionSupport implements SessionAware{
 			addFieldError("password","Password is required");
 			setValid("false");
 		}
-	}
+	}*/
 
 	public String execute(){
 		System.out.println("--------execute(): "+userName);
@@ -88,12 +95,29 @@ public class LoginAction extends ActionSupport implements SessionAware{
 			}
 		}
 	}
-	
-	public String myLogin(){
-		
+
+	public String signUp(){
+
+		try{
+			AuthenticateUserService auService = new AuthenticateUserService();
+			auService.registerUser(getModel());
+		}catch(CBuddyException e){
+			switch(e.getErrorCode()){
+			case CBuddyConstants.EXISTENT_USER_ID:
+				addFieldError("CorpEmailId",e.getMessage());
+				break;	
+			}
+			return "error";
+		}
+
 		return "success";
 	}
-	
+
+
+	public String myLogin(){
+		return "success";
+	}
+
 	private Map<String,Object> session;
 
 	@Override
@@ -105,5 +129,15 @@ public class LoginAction extends ActionSupport implements SessionAware{
 	}
 	public void setFirstName(String firstName) {
 		this.firstName = firstName;
+	}
+	@Override
+	public Ucred getModel() {
+		return ucred;
+	}
+	HttpServletRequest request;
+	@Override
+	public void setServletRequest(HttpServletRequest request) {
+		this.request = request;
+
 	}
 }

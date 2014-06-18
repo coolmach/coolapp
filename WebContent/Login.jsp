@@ -1,3 +1,5 @@
+<%@ page contentType="text/html; charset=UTF-8"%>
+<%@ taglib prefix="s" uri="/struts-tags"%>
 <div class="container" style="margin: 10%;">
 	<div class="row">
 		<div class="col-md-5 ">
@@ -47,49 +49,62 @@
 		</div>
 
 		<div class="col-md-5 " id="registerForm" style="border-left:1px solid #eeeeee">
-			<form class="form-horizontal" role="form" id="registration" method='post'
-				action='register.php'>
+		<div class="col-md-12 " id="divCheckPasswordMatch"><s:fielderror /> </div>
+		<div class="col-md-12 ">
+			<s:form cssClass="form-horizontal" role="form" id="registration" method='post'
+				action="signup" theme="simple">
 				<fieldset>
 					<legend>New to CBuddy? Sign Up!</legend>
 					<div class="form-group">
-						<label class="col-sm-3 control-label">Username:</label>
+						<label class="col-sm-3 control-label">Name:</label>
 						<div class="col-sm-9">
-							<input type="text" class="form-control" id="username" name="user_name" required="" placeholder="UserName" >
+							<input type="text" class="form-control" id="FirstName" name="FirstName" required="" placeholder="Name" >
 						</div>
 					</div>
 					<div class="form-group">
-						<label class="col-sm-3 control-label">Password:</label>
+						<label class="col-sm-3 control-label">Corporate Email:</label>
 						<div class="col-sm-9">
-							<input placeholder="Password" required="" type="password" class="form-control" id="password" name="password1" >
+							<input class="form-control" id="CorpEmailId" name="CorpEmailId" placeholder="Email"
+									required="" type="email">
+									<span class="help-block">*Corporate Email will only be used to verify a User.</span>
+									
 						</div>
 					</div>
 					<div class="form-group">
-						<label class="col-sm-3 control-label">Password:</label>
-						<div class="col-sm-9">
-							<input placeholder="Password" required="" type="password" class="form-control" id="password" name="password2">
-						</div>
-					</div>
-					<div class="form-group">
-						<label class="col-sm-3 control-label">Mobile:</label>
-						<div class="col-sm-9">
-							<input placeholder="Mobile" required="" type="text" class="form-control" id="mobile" name="mobile">
-						</div>
-					</div>
-					<div class="form-group">
-						<label class="col-sm-3 control-label">Email</label>
+						<label class="col-sm-3 control-label">Email:</label>
 						<div class="col-sm-9">
 							<input class="form-control" id="email" name="email" placeholder="Email"
 									required="" type="email">
 						</div>
 					</div>
 					<div class="form-group">
+						<label class="col-sm-3 control-label">Password:</label>
+						<div class="col-sm-9">
+							<input placeholder="Password" required="" type="password" class="form-control" id="Pwd" name="Pwd" >
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-sm-3 control-label">Password:</label>
+						<div class="col-sm-9">
+							<input placeholder="Password" required="" type="password" class="form-control" id="Pwd1" name="password1">
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-sm-3 control-label">Mobile:</label>
+						<div class="col-sm-9">
+							<input placeholder="Mobile"  type="text" class="form-control" id="MobileNo" name="MobileNo">
+						</div>
+					</div>
+					
+					<div class="form-group">
 						<label class="col-sm-3 control-label"></label>
 						<div class="col-sm-9">
-							<button type="submit" class="btn btn-success">Submit</button>
+							<button id="btnSignUp" type="submit" class="btn btn-success">Submit</button>
 						</div>
 					</div>
 				</fieldset>
-			</form>
+			</s:form>
+			</div>
 		</div>
 	</div>
 </div>
