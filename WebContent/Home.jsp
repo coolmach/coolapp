@@ -46,9 +46,9 @@
 			var options = [ 'Apartment for Sale', 'Apartment for Rent',
 					'Individual House for Sale', 'Individual House for Rent', 'PG Accommodation', 'Land For Sale', 'Roommate Required'];
 		} else if (category == "AUTO") {
-			var numbers = [ 1, 2, 3 ];
-			var values = [ 'CAR', 'BIKE', 'CYCLE' ];
-			var options = [ 'Cars', 'Bikes', 'Cycles' ];
+			var numbers = [ 1, 2];
+			var values = [ '1', '2'];
+			var options = [ 'Cars', 'Bikes/Scooters'];
 		} else if (category == "LAP") {
 			var numbers = [ 1, 2 ];
 			var values = [ 'LAPTOP', 'DESKTOP', 'ACC', 'OTH' ];
@@ -114,7 +114,7 @@
 				</s:url> 
 				<a href="<s:property value="#urlTag" />"><img class="images_ad" src="images/real_estate.png"> </a>
 			</td>
-			<td><s:url action="automobiles" var="urlTag1" escapeAmp="false">
+			<td><s:url action="automobile" var="urlTag1" escapeAmp="false">
 					<s:param name="category">AUTO</s:param>
 					<s:param name="subCategory">1</s:param>
 				</s:url> <a href="<s:property value="#urlTag1" />"><img

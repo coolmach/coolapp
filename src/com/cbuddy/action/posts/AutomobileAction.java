@@ -16,25 +16,24 @@ import org.apache.struts2.interceptor.SessionAware;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
-import com.cbuddy.beans.NameValuePair;
-import com.cbuddy.beans.Pdre;
+import com.cbuddy.beans.Pdau;
 import com.cbuddy.beans.Poit;
-import com.cbuddy.services.RealEstateAdService;
+import com.cbuddy.services.AutomobileAdService;
 import com.cbuddy.util.CBuddyConstants;
 import com.cbuddy.util.LocationUtil;
 import com.cbuddy.util.NumberFormatterUtil;
 import com.cbuddy.util.Utils;
-import com.model.user.RealEstatePostDetails;
+import com.model.user.AutomobilePostDetails;
 import com.model.user.User;
 import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
 
-public class RealEstateAction extends ActionSupport implements SessionAware, ServletRequestAware, ModelDriven<RealEstatePostDetails>{
+public class AutomobileAction extends ActionSupport implements SessionAware, ServletRequestAware, ModelDriven<AutomobilePostDetails>{
 
 	private static final long serialVersionUID = 1L;
 
-	RealEstatePostDetails postDetails = new RealEstatePostDetails();
+	AutomobilePostDetails postDetails = new AutomobilePostDetails();
 	private File upload;
 	private String uploadFileName;
 	private String uploadContentType;
@@ -44,17 +43,9 @@ public class RealEstateAction extends ActionSupport implements SessionAware, Ser
 
 	private String responseMsg;
 
-	private List<RealEstatePostDetails> adList = new ArrayList<RealEstatePostDetails>();
+	private List<AutomobilePostDetails> adList = new ArrayList<AutomobilePostDetails>();
 	private String category = "" ;
 	private String subCategory = "" ;
-	//private String basePath = "";
-	
-	/* TODO: The two attributes selectedLocation and neighborhoodLocations are added only to retain the values populated by LocationAction (that is,
-	 * when the user refreshes the list page after filtering based on a location and when the page is reloaded, the location selected by the user should be
-	 * shown and be selected by default. 
-	 */
-	private NameValuePair selectedLocation;
-	private List<NameValuePair> neighborhoodLocations;
 
 	private HttpServletRequest request = null;
 	@Override
@@ -85,7 +76,7 @@ public class RealEstateAction extends ActionSupport implements SessionAware, Ser
 	}
 
 	public String postAd(){
-		System.out.println("RealEstatePostAction.postAd()"+uploadContentType+" : "+uploadFileName+" : "+upload);
+		System.out.println("AutomobileAction.postAd()"+uploadContentType+" : "+uploadFileName+" : "+upload);
 		User user = (User)session.get("userInfo");
 		Timestamp current = new Timestamp(System.currentTimeMillis());
 		String userId = String.valueOf(user.getUserId());
@@ -100,7 +91,7 @@ public class RealEstateAction extends ActionSupport implements SessionAware, Ser
 		
 		//Make an entry in POIT
 		Poit poit = new Poit();
-		poit.setCategory(CBuddyConstants.CATEGORY_REAL_ESTATE);
+		poit.setCategory(CBuddyConstants.CATEGORY_AUTOMOBILES);
 		poit.setTitle(postDetails.getTitle());
 		poit.setCity(postDetails.getCity());
 		poit.setContactNo(postDetails.getContactNo());
@@ -115,7 +106,7 @@ public class RealEstateAction extends ActionSupport implements SessionAware, Ser
 		poit.setModifiedBy(userId);
 		poit.setModifiedOn(current);
 		poit.setNegotiable(null);
-		poit.setPrice(postDetails.getPriceValue());
+		poit.setPrice(postDetails.getPrice());
 		poit.setRating(0);
 		poit.setSubCategory(postDetails.getSubCategory());
 		poit.setThumbnailName(null);
@@ -131,48 +122,31 @@ public class RealEstateAction extends ActionSupport implements SessionAware, Ser
 
 		dbSession.flush(); //Flushing to retrieve the auto generated post id
 
-		//Make an entry in PDRE
-		Pdre pdre = new Pdre();
-		pdre.setAgeUnit("YEARS");
-		pdre.setAgeValue(postDetails.getAgeValue());
-		pdre.setAmt(postDetails.getAmt());
-		pdre.setApprovalAuthority(postDetails.getApprovalAuthority());
-		pdre.setExpectedCompletionDate(postDetails.getExpectedCompletionDate());
-		pdre.setReadyToOccupy(postDetails.getReadyToOccupy());
-		pdre.setArea(postDetails.getArea());
-		pdre.setBedrooms(postDetails.getBedrooms());
-		pdre.setBuilderName(postDetails.getBuilderName());
-		pdre.setCarParking(postDetails.getCarParking());
-		pdre.setChildrenPlayArea(postDetails.getChildrenPlayArea());
-		pdre.setCity(postDetails.getCity());
-		pdre.setClubHouse(postDetails.getClubHouse());
-		pdre.setCreatedBy(userId);
-		pdre.setCreatedOn(current);
-		pdre.setFacingDirection(postDetails.getFacingDirection());
-		pdre.setFloorNumber(postDetails.getFloorNumber());
-		pdre.setFoodPreference(postDetails.getFoodPreference());
-		pdre.setFurnished(postDetails.getFurnished());
-		pdre.setGender(postDetails.getGender());
-		pdre.setGym(postDetails.getGym());
-		//pdre.setImageFileName(this.uploadFileName);
-		pdre.setLocation(postDetails.getSelectedLocationCode());
-		pdre.setMaintenance(postDetails.getMaintenance());
-		pdre.setMaritalPreference(postDetails.getMaritalPreference());
-		pdre.setModifiedBy(userId);
-		pdre.setModifiedOn(current);
-		pdre.setNewOrResale(postDetails.getNewOrResale());
-		pdre.setNoOfRoommates(postDetails.getNoOfRoommates());
-		pdre.setPostId(poit.getPostId());
-		pdre.setPriceUnit("INR");
-		pdre.setPriceValue(postDetails.getPriceValue());
-		pdre.setRegionalPreference(postDetails.getRegionalPreference());
-		pdre.setSharing(postDetails.getSharing());
-		pdre.setSubCategory(postDetails.getSubCategory());
-		pdre.setSwimmingPool(postDetails.getSwimmingPool());
-		pdre.setTv(postDetails.getTv());
-		pdre.setWifi(postDetails.getWifi());
-
-		dbSession.save(pdre);
+		//Make an entry in PDAU
+		Pdau pdau = new Pdau();
+		pdau.setCity(postDetails.getCity());
+		pdau.setColor(postDetails.getColor());
+		pdau.setCreatedBy(userId);
+		pdau.setCreatedOn(current);
+		pdau.setFuelType(postDetails.getFuelType());
+		pdau.setInsuranceAvailable(postDetails.getInsuranceAvailable());
+		pdau.setKms(postDetails.getKms());
+		pdau.setLocation(postDetails.getSelectedLocationCode());
+		pdau.setMake(postDetails.getMake());
+		pdau.setModel(postDetails.getModel());
+		pdau.setModifiedBy(userId);
+		pdau.setModifiedOn(current);
+		pdau.setNoOfOwners(postDetails.getNoOfOwners());
+		pdau.setPostId(poit.getPostId());
+		pdau.setPrice(postDetails.getPrice());
+		pdau.setPriceNegotiable(postDetails.getPriceNegotiable());
+		pdau.setRegCity(postDetails.getRegCity());
+		pdau.setRegNo(postDetails.getRegNo());
+		pdau.setRegState(postDetails.getRegState());
+		pdau.setSubCategory(postDetails.getSubCategory());
+		pdau.setYear(postDetails.getYear());
+		
+		dbSession.save(pdau);
 
 		if(upload != null){
 			writeImage(upload, imgFileName);
@@ -201,44 +175,26 @@ public class RealEstateAction extends ActionSupport implements SessionAware, Ser
 	private void populateAdditionalDetails(){
 		SessionFactory sessionFactory = (SessionFactory) ServletActionContext.getServletContext().getAttribute("sessionFactory");
 		Session dbSession = sessionFactory.openSession();
-		for(RealEstatePostDetails postDetails:adList){
+		for(AutomobilePostDetails postDetails:adList){
 			String cityName = LocationUtil.getCityName(dbSession, postDetails.getCity());
 			String locName = LocationUtil.getLocationName(dbSession, postDetails.getCity(), postDetails.getLocation());
 			postDetails.setCity(cityName);
 			postDetails.setLocation(locName);
-			postDetails.setPriceValueStr(NumberFormatterUtil.formatAmount(postDetails.getPriceValue()));
-			postDetails.setMaintenanceStr(NumberFormatterUtil.formatAmount(postDetails.getMaintenance()));
-			postDetails.setFacingDirectionStr(Utils.getInstance().getDirectionDesc(postDetails.getFacingDirection()));
-			postDetails.setFloorNumberStr(Utils.getInstance().getFloorNumberDesc(postDetails.getFloorNumber()));
-			postDetails.setFurnishedStr(Utils.getInstance().getFurnishedDesc(postDetails.getFurnished()));
-			
-			String temp = "";
-			if(postDetails.getNewOrResale()!= null){
-				if(postDetails.getNewOrResale().equals("N")){
-					//New
-					if(postDetails.getReadyToOccupy().equals("Y")){
-						temp = "New - Ready to Move";
-					}else{
-						if(postDetails.getExpectedCompletionDate()!=null){
-							temp = "New - Expected Completion: " + postDetails.getExpectedCompletionDate();
-						}else{
-							temp = "New - Under Construction";
-						}
-					}
-				}else{
-					//Resale
-					if(postDetails.getAgeValue()>0){
-						temp = "Resale - " + postDetails.getAgeValue() + " years old";
-					}else{
-						temp = "Resale";
-					}
-				}
+			postDetails.setPriceStr(NumberFormatterUtil.formatAmount(postDetails.getPrice()));
+			if(postDetails.getFuelType()!=null){
+				postDetails.setFuelTypeStr(Utils.getInstance().getFuelTypeDesc(postDetails.getFuelType()));	
 			}
-			postDetails.setNewOrResaleStr(temp);
+			if(postDetails.getSubCategory().equals(CBuddyConstants.SUBCATEGORY_AUTOMOBILES_CARS)){
+				postDetails.setMakeStr(Utils.getInstance().getCarMakeDesc(postDetails.getMake()));
+				postDetails.setModelStr(Utils.getInstance().getCarModelDesc(postDetails.getMake(), postDetails.getModel()));
+			}else if(postDetails.getSubCategory().equals(CBuddyConstants.SUBCATEGORY_AUTOMOBILES_MOTORCYCLES)){
+				postDetails.setMakeStr(Utils.getInstance().getBikeMakeDesc(postDetails.getMake()));
+				postDetails.setModelStr(Utils.getInstance().getBikeModelDesc(postDetails.getMake(), postDetails.getModel()));
+			}
 		}
 	}
 
-	public String getAdListForRealEstate(){
+	public String getAdListForAutomobile(){
 
 		category = postDetails.getCategory();
 		subCategory = postDetails.getSubCategory();
@@ -247,14 +203,14 @@ public class RealEstateAction extends ActionSupport implements SessionAware, Ser
 		subCategoryStr = Utils.getInstance().getSubCategoryDesc(category, subCategory);
 		
 		if(category==null || category.equals("")){
-			setCategory(CBuddyConstants.CATEGORY_REAL_ESTATE);
+			setCategory(CBuddyConstants.CATEGORY_AUTOMOBILES);
 		}
-		if(category.equals(CBuddyConstants.CATEGORY_REAL_ESTATE) && (subCategory==null || subCategory.equals(""))){
-			setSubCategory(CBuddyConstants.SUBCATEGORY_REAL_ESTATE_APARTMENT_FOR_RENT);
+		if(category.equals(CBuddyConstants.CATEGORY_AUTOMOBILES) && (subCategory==null || subCategory.equals(""))){
+			setSubCategory(CBuddyConstants.SUBCATEGORY_AUTOMOBILES_MOTORCYCLES);
 		}
 
-		RealEstateAdService realEstateAdService =  new RealEstateAdService();
-		adList = realEstateAdService.getAdListByCategory(getModel(), subCategory);
+		AutomobileAdService automobileAdService =  new AutomobileAdService();
+		adList = automobileAdService.getAdListByCategory(getModel(), subCategory);
 
 		populateAdditionalDetails();
 
@@ -262,10 +218,9 @@ public class RealEstateAction extends ActionSupport implements SessionAware, Ser
 	}
 
 	@Override
-	public RealEstatePostDetails getModel() {
+	public AutomobilePostDetails getModel() {
 		return postDetails;
 	}
-
 
 	public File getUpload() {
 		return upload;
@@ -291,11 +246,11 @@ public class RealEstateAction extends ActionSupport implements SessionAware, Ser
 		this.uploadContentType = uploadContentType;
 	}
 
-	public List<RealEstatePostDetails> getAdList() {
+	public List<AutomobilePostDetails> getAdList() {
 		return adList;
 	}
 
-	public void setAdList(List<RealEstatePostDetails> adList) {
+	public void setAdList(List<AutomobilePostDetails> adList) {
 		this.adList = adList;
 	}
 
@@ -314,14 +269,6 @@ public class RealEstateAction extends ActionSupport implements SessionAware, Ser
 	public void setSubCategory(String subCategory) {
 		this.subCategory = subCategory;
 	}
-
-	//	public String getBasePath() {
-	//		return basePath;
-	//	}
-	//
-	//	public void setBasePath(String basePath) {
-	//		this.basePath = basePath;
-	//	}
 
 	@Transient
 	public String getCategoryStr() {

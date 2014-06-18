@@ -8,7 +8,6 @@ import org.apache.struts2.interceptor.ServletRequestAware;
 import org.apache.struts2.interceptor.SessionAware;
 
 import com.cbuddy.beans.Pdre;
-import com.cbuddy.services.AdDetailsService;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
 
@@ -135,7 +134,7 @@ public class HomeAction extends ActionSupport implements SessionAware, ServletRe
 		return "success";
 	}
 
-*/	public String getAdListForCars(){
+*/	/*public String getAdListForCars(){
 		
 		System.out.println("getAdListForCars(dd)"+subCat);
 		basePath = request.getSession().getServletContext().getRealPath("");
@@ -146,7 +145,7 @@ public class HomeAction extends ActionSupport implements SessionAware, ServletRe
 		if( category.equals("REAL ESTATE") && subCat=="" ){
 			setSubCat("Apartment/House For Rent");
 		}
-		AdDetailsService adDetailService =  new AdDetailsService();
+		CriteriaUtil adDetailService =  new CriteriaUtil();
 		//adList = adDetailService.getAdListByCategory(getModel(),subCat);
 		//System.out.println("HomeAction.getAdListForCars()"+adList.size());
 
@@ -162,7 +161,7 @@ public class HomeAction extends ActionSupport implements SessionAware, ServletRe
 		if( category.equals("MOBILES") && subCat=="" ){
 			setSubCat("Mobile Phones");
 		}
-		AdDetailsService adDetailService =  new AdDetailsService();
+		CriteriaUtil adDetailService =  new CriteriaUtil();
 		//adList = adDetailService.getAdListByCategory(getModel(),subCat);
 		//System.out.println("HomeAction.getAdListForMobiles()"+adList.size());
 		return "success";
@@ -177,12 +176,12 @@ public class HomeAction extends ActionSupport implements SessionAware, ServletRe
 		if( category.equals("LAPTOPS") && subCat=="" ){
 			setSubCat("Laptop");
 		}
-		AdDetailsService adDetailService =  new AdDetailsService();
+		CriteriaUtil adDetailService =  new CriteriaUtil();
 		//adList = adDetailService.getAdListByCategory(getModel(),subCat);
 		//System.out.println("HomeAction.getAdListForLaptops()"+adList.size());
 		return "success";
 		
-	}
+	}*/
 
 	public String getAdListForBooksAndDvds(){
 
@@ -192,7 +191,7 @@ public class HomeAction extends ActionSupport implements SessionAware, ServletRe
 	public String getAdDetails(){
 
 		setCategory(category);
-		AdDetailsService adDetailService =  new AdDetailsService();
+		//CriteriaUtil adDetailService =  new CriteriaUtil();
 		//adList = adDetailService.getAdListByCategoryAndPrice(price);
 
 		return "success";

@@ -5,22 +5,43 @@ import java.sql.Timestamp;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 
 @Entity
 @Table(name = "Pdau")
+@Inheritance(strategy = InheritanceType.JOINED)
 public class Pdau {
 	
 	private int postId;
 	private String subCategory;
-	private String category;
-	private String location;
 	private String city;
+	private String location;
+	private String make;
+	private String model;
+	private String color;
+	private int year;
+	private int noOfOwners;
+	private String fuelType;
+	private int kms;
+	private int mileage;
+	private double price;
+	private String priceNegotiable;
+	private String insuranceAvailable;
+	private String regNo;
+	private String regCity;
+	private String regState;
+	
 	private Timestamp createdOn;
 	private String createdBy;
 	private Timestamp modifiedOn;
 	private String modifiedBy;
+	
+	private String areaStr;
+	private String amt;
 
 	@Id
 	@Column(name="POST_ID")
@@ -87,12 +108,131 @@ public class Pdau {
 		this.modifiedBy = ModifiedBy;
 	}
 	
-	@Column(name="CATEGORY")
-	public String getCategory() {
-		return category;
+	@Column(name="MAKE")
+	public String getMake() {
+		return make;
 	}
-	public void setCategory(String category) {
-		this.category = category;
+	public void setMake(String make) {
+		this.make = make;
 	}
-
+	
+	@Column(name="MODEL")
+	public String getModel() {
+		return model;
+	}
+	public void setModel(String model) {
+		this.model = model;
+	}
+	
+	@Column(name="COLOR")
+	public String getColor() {
+		return color;
+	}
+	public void setColor(String color) {
+		this.color = color;
+	}
+	
+	@Column(name="YEAR")
+	public int getYear() {
+		return year;
+	}
+	public void setYear(int year) {
+		this.year = year;
+	}
+	
+	@Column(name="NO_OF_OWNERS")
+	public int getNoOfOwners() {
+		return noOfOwners;
+	}
+	public void setNoOfOwners(int noOfOwners) {
+		this.noOfOwners = noOfOwners;
+	}
+	
+	@Column(name="FUEL_TYPE")
+	public String getFuelType() {
+		return fuelType;
+	}
+	public void setFuelType(String fuelType) {
+		this.fuelType = fuelType;
+	}
+	
+	@Column(name="KMS_DONE")
+	public int getKms() {
+		return kms;
+	}
+	public void setKms(int kms) {
+		this.kms = kms;
+	}
+	
+	@Column(name="MILEAGE")
+	public int getMileage() {
+		return mileage;
+	}
+	public void setMileage(int mileage) {
+		this.mileage = mileage;
+	}
+	
+	@Column(name="PRICE")
+	public double getPrice() {
+		return price;
+	}
+	public void setPrice(double price) {
+		this.price = price;
+	}
+	
+	@Column(name="PRICE_NEGOTIABLE")
+	public String getPriceNegotiable() {
+		return priceNegotiable;
+	}
+	public void setPriceNegotiable(String priceNegotiable) {
+		this.priceNegotiable = priceNegotiable;
+	}
+	
+	@Column(name="INSURANCE_AVAILABLE")
+	public String getInsuranceAvailable() {
+		return insuranceAvailable;
+	}
+	public void setInsuranceAvailable(String insuranceAvailable) {
+		this.insuranceAvailable = insuranceAvailable;
+	}
+	
+	@Column(name="REG_NO")
+	public String getRegNo() {
+		return regNo;
+	}
+	public void setRegNo(String regNo) {
+		this.regNo = regNo;
+	}
+	
+	@Column(name="REG_CITY")
+	public String getRegCity() {
+		return regCity;
+	}
+	public void setRegCity(String regCity) {
+		this.regCity = regCity;
+	}
+	
+	@Column(name="REG_STATE")
+	public String getRegState() {
+		return regState;
+	}
+	public void setRegState(String regState) {
+		this.regState = regState;
+	}
+	
+	@Transient
+	public String getAreaStr() {
+		return areaStr;
+	}
+	public void setAreaStr(String areaStr) {
+		this.areaStr = areaStr;
+	}
+	
+	@Transient
+	public String getAmt() {
+		return amt;
+	}
+	public void setAmt(String amt) {
+		this.amt = amt;
+	}
 }

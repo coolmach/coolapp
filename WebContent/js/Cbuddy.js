@@ -17,8 +17,8 @@ $(document).ready(function() {
 		$("#amenities-main").show();
 		
 	}else if(cat == 'AUTO'){
-		path="automobilesFilter";
-		$("#brand-main").show();
+		path="automobileFilter";
+		$("#make-main").show();
 		$("#loc-main").show();
 		$("#amt-main").show();
 		$("#used-main").show();
@@ -294,18 +294,18 @@ $(document).ready(function() {
 		}
 
 		if($(this).text()!= 'Cars' /*&& subCat=="1"*/){
-			if($(this).text()== 'Motorcycles' || $(this).text()== 'Scooters'){
+			if($(this).text()== 'Bikes/Scooters' || $(this).text()== 'Scooters'){
 				$("#brandBikes-main").show();
-				$("#brand-main").hide();
+				$("#make-main").hide();
 			}else{
-				$("#brand-main").hide();
+				$("#make-main").hide();
 				$("#brandBikes-main").hide();
 			}
 			$("#breadCrumb_Category").html("AutoMobiles");
 			$("#breadCrumb_SubCategory").html($(this).text());
 			
 		}else if($(this).text()== 'Cars' /*&& subCat=="Cars"*/){
-			$("#brand-main").show();
+			$("#make-main").show();
 			$("#brandBikes-main").hide();
 			
 			$("#breadCrumb_Category").html("AutoMobiles");

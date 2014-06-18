@@ -33,8 +33,8 @@ public class Utils {
 	public static Utils getInstance(){
 		return instance;
 	}
-	
-	
+
+
 	public String getCategoryDesc(String categoryCode){
 		String output = categoryCode;
 		if(categoryDescMap.get(categoryCode) != null){
@@ -50,13 +50,13 @@ public class Utils {
 		}
 		return output;
 	}
-	
+
 	public String getFloorNumberDesc(String floorNumber){
-		
+
 		if(floorNumber == null){
 			return null;
 		}
-		
+
 		String output = floorNumber;
 
 		if(floorNumber.equals("G")){
@@ -78,13 +78,13 @@ public class Utils {
 		}
 		return output;
 	}
-	
+
 	public String getDirectionDesc(String direction){
-		
+
 		if(direction == null){
 			return null;
 		}
-		
+
 		String output = direction;
 		if(direction.equals("N")){
 			output = "North";
@@ -97,13 +97,13 @@ public class Utils {
 		}
 		return output;
 	}
-	
+
 	public String getFurnishedDesc(String furnish){
-		
+
 		if(furnish == null){
 			return null;
 		}
-		
+
 		String output = furnish;
 		if(furnish.equals("N")){
 			output = "Not Furnished";
@@ -112,6 +112,88 @@ public class Utils {
 		}else if(furnish.equals("F")){
 			output = "Fully Furnished";
 		}
+		return output;
+	}
+
+	public String getFuelTypeDesc(String fuelType){
+		if(fuelType == null){
+			return null;
+		}
+
+		String output = fuelType;
+		if(fuelType.equals("P")){
+			output = "Petrol";
+		}else if(fuelType.equals("D")){
+			output = "Diesel";
+		}
+		return output;
+	}
+
+	public String getCarMakeDesc(String input){
+		if(input == null){
+			return null;
+		}
+
+		String output = input;
+		if(input.equals("MAR")) output = "Maruti Suzuki";
+		else if(input.equals("HYU")) output = "Ford";
+		else if(input.equals("FORD")) output = "Fiat";
+		else if(input.equals("HON")) output = "Honda";
+		else if(input.equals("HYU")) output = "Hyundai";
+		else if(input.equals("MAH")) output = "Mahindra";
+		else if(input.equals("CHE")) output = "Chevrolet";
+		else if(input.equals("NIS")) output = "Nissan";
+		else if(input.equals("REN")) output = "Renault";
+		else if(input.equals("SKO")) output = "Skoda";
+		else if(input.equals("TATA")) output = "Tata";
+		else if(input.equals("TOY")) output = "Toyota";
+		else if(input.equals("VOL")) output = "Volkswagen";
+		else if(input.equals("OTH")) output = "Others";
+		return output;
+	}
+	
+	public String getCarModelDesc(String make, String model){
+		if(model == null || make == null){
+			return null;
+		}
+
+		String output = model;
+		if(model.equals("M1")) output = "Model 1";
+		else if(model.equals("M2")) output = "Model 2";
+		else if(model.equals("M3")) output = "Model 3";
+		else if(model.equals("M4")) output = "Model 4";
+		else if(model.equals("M5")) output = "Model 5";
+		return output;
+	}
+	
+	public String getBikeMakeDesc(String input){
+		if(input == null){
+			return null;
+		}
+
+		String output = input;
+		if(input.equals("BAJ")) output = "Bajaj";
+		else if(input.equals("HER")) output = "Hero Honda";
+		else if(input.equals("HON")) output = "Honda";
+		else if(input.equals("TVS")) output = "TVS";
+		else if(input.equals("YAM")) output = "Yamaha";
+		else if(input.equals("SUZ")) output = "Suzuki";
+		else if(input.equals("ROY")) output = "Royal Enfield";
+		else if(input.equals("OTH")) output = "Others";
+		return output;
+	}
+	
+	public String getBikeModelDesc(String make, String model){
+		if(model == null || make == null){
+			return null;
+		}
+
+		String output = model;
+		if(model.equals("M1")) output = "Model 1";
+		else if(model.equals("M2")) output = "Model 2";
+		else if(model.equals("M3")) output = "Model 3";
+		else if(model.equals("M4")) output = "Model 4";
+		else if(model.equals("M5")) output = "Model 5";
 		return output;
 	}
 }

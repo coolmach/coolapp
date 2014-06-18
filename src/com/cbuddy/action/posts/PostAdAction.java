@@ -25,22 +25,9 @@ public class PostAdAction extends ActionSupport implements ServletRequestAware{
 	public String execute(){
 		String output = "success";
 		if(category.equals(CBuddyConstants.CATEGORY_REAL_ESTATE)){
-			/*if(subCategory.equals(CBuddyConstants.SUBCATEGORY_REAL_ESTATE_APARTMENT_FOR_SALE)){
-				output = "real_1";
-			}else if(subCategory.equals(CBuddyConstants.SUBCATEGORY_REAL_ESTATE_APARTMENT_FOR_RENT)){
-				output = "real_2";
-			}else if(subCategory.equals(CBuddyConstants.SUBCATEGORY_REAL_ESTATE_IND_HOUSE_FOR_SALE)){
-				output = "real_3";
-			}else if(subCategory.equals(CBuddyConstants.SUBCATEGORY_REAL_ESTATE_IND_HOUSE_FOR_RENT)){
-				output = "real_4";
-			}else if(subCategory.equals(CBuddyConstants.SUBCATEGORY_REAL_ESTATE_PG_ACCOMODATION)){
-				output = "real_5";
-			}else if(subCategory.equals(CBuddyConstants.SUBCATEGORY_REAL_ESTATE_LAND_SALE)){
-				output = "real_6";
-			}else if(subCategory.equals(CBuddyConstants.SUBCATEGORY_REAL_ESTATE_ROOMMATE_REQUIRED)){
-				output = "real_7";
-			}*/
-			
+			output = "realEstate";
+		}else if(category.equals(CBuddyConstants.CATEGORY_AUTOMOBILES)){
+			output = "automobile";
 		}
 		return output;
 	}

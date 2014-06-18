@@ -1,7 +1,7 @@
 <%@ taglib prefix="s" uri="/struts-tags"%>
 
 <div class=" header_2">
-	<div class="col-md-12 filter_cat">
+	<div class="col-md-12 filter_cat" style="margin-top:3.86%;">
 		<div class="form-group pull-left searchFilter" id="sub-main" style="margin-left:4.5%;">
 			<div id="subCategory" class="inputstyle pointer form-control">
 				<span class="content">Type</span><span

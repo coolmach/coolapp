@@ -34,41 +34,18 @@
 			<result name="success" type="tiles">/postad.tiles</result>
 			<result name="input" type="tiles">/home.tiles</result>
 		</action>	
+		
+		
+		<!-- REAL_ESTATE - START -->
 		<action name="realestate" class="com.cbuddy.action.posts.RealEstateAction" method="getAdListForRealEstate">
 			<result name="success" type="tiles">/realestate.tiles</result>
 		</action>
 		<action name="realestateFilter" class="com.cbuddy.action.posts.RealEstateAction" method="getAdListForRealEstate">
 			<result name="success">/AdList_RealEstate.jsp</result>
 		</action>
-		<action name="household" class="com.cbuddy.action.posts.HouseHoldItemsAction" method="getAdListForHouseHoldItems">
-			<result name="success" type="tiles">/household.tiles</result>
-		</action>
-		<action name="adListForHouseHoldItems" class="com.cbuddy.action.posts.HouseHoldItemsAction" method="getAdListForHouseHoldItems">
-			<result name="success">/AdList_For_HouseHoldItems.jsp</result>
-		</action> 
-		<action name="automobiles" class="com.cbuddy.action.posts.AutoMobilesAction" method="getAdListForAutoMobiles">
-			<result name="success" type="tiles">/cars.tiles</result>
-		</action>
-		<action name="automobilesFilter" class="com.cbuddy.action.posts.AutoMobilesAction" method="getAdListForAutoMobiles">
-			<result name="success">/AdList_AutoMobiles.jsp</result>
-		</action>
-		<action name="laptops" class="com.cbuddy.action.user.HomeAction" method="getAdListForLaptops">
-			<result name="success" type="tiles">/laptops.tiles</result>
-		</action>
-		<action name="mobiles" class="com.cbuddy.action.user.HomeAction" method="getAdListForMobiles">
-			<result name="success" type="tiles">/mobiles.tiles</result>
-		</action>
-		<action name="books" class="com.cbuddy.action.user.HomeAction" method="getAdListForBooksAndDvds">
-			<result name="success" type="tiles">/books.tiles</result>
-		</action>	
 		<action name="addetails" class="com.cbuddy.action.user.HomeAction" method="getAdDetails">
 			<result name="success" type="tiles">/addetails.tiles</result>
 		</action>
-		<action name="postad" class="com.cbuddy.action.posts.PostAdAction">
-			<interceptor-ref name="secureStack"></interceptor-ref> 
-			<result name="login" type="tiles">/home.tiles</result>
-			<result name="success" type="tiles">/postad_real_estate.tiles</result>
-		</action>		
 		<action name="real_estate_postAd" class="com.cbuddy.action.posts.RealEstateAction" method="postAd">
 			 <interceptor-ref name="secureStack"></interceptor-ref> 
 			 <interceptor-ref name="fileUpload">
@@ -78,6 +55,35 @@
 			<result name="login" type="tiles">/home.tiles</result>
 			<result name="success" type="tiles">/home.tiles</result>
 			<result name="input" type="tiles">/postad_real_estate.tiles</result>
+		</action>
+		<!-- REAL_ESTATE - END -->
+		
+		<!-- AUTOMOBILES - START -->
+		<action name="automobile" class="com.cbuddy.action.posts.AutomobileAction" method="getAdListForAutomobile">
+			<result name="success" type="tiles">/automobile.tiles</result>
+		</action>
+		<action name="automobileFilter" class="com.cbuddy.action.posts.AutomobileAction" method="getAdListForAutomobile">
+			<result name="success">/AdList_Automobile.jsp</result>
+		</action>
+		<action name="automobile_postAd" class="com.cbuddy.action.posts.AutomobileAction" method="postAd">
+			 <interceptor-ref name="secureStack"></interceptor-ref> 
+			 <interceptor-ref name="fileUpload">
+                     <param name="allowedTypes">image/jpeg,image/gif,image/png</param>
+             </interceptor-ref>
+             <interceptor-ref name="defaultStack"></interceptor-ref>
+			<result name="login" type="tiles">/home.tiles</result>
+			<result name="success" type="tiles">/home.tiles</result>
+			<result name="input" type="tiles">/postad_automobile.tiles</result>
+		</action>
+		<!-- AUTOMOBILES - END -->		
+		
+		
+		<action name="postad" class="com.cbuddy.action.posts.PostAdAction">
+			<interceptor-ref name="secureStack"></interceptor-ref> 
+			<result name="login" type="tiles">/home.tiles</result>
+			<result name="success" type="tiles">/home.tiles</result>
+			<result name="realEstate" type="tiles">/postad_real_estate.tiles</result>
+			<result name="automobile" type="tiles">/postad_automobile.tiles</result>
 		</action>		
 		<action name="modalLogin" class="com.cbuddy.action.user.LoginAction">
 			<result name="input">/login_Retry_Modal_Window.jsp</result>

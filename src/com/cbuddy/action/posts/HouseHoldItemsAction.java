@@ -8,7 +8,6 @@ import javax.servlet.http.HttpServletRequest;
 import org.apache.struts2.interceptor.ServletRequestAware;
 
 import com.cbuddy.beans.Pdre;
-import com.cbuddy.services.AdDetailsService;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
 
@@ -56,7 +55,7 @@ public class HouseHoldItemsAction extends ActionSupport implements ServletReques
 		if( category.equals("HOUSEHOLD") && subCat=="" ){
 			setSubCat("Air Conditioners & Coolers");
 		}
-		AdDetailsService adDetailService =  new AdDetailsService();
+		//CriteriaUtil adDetailService =  new CriteriaUtil();
 		//adList = adDetailService.getAdListByCategory(getModel(),subCat);
 		System.out.println("HomeAction.getAdListForHouseHoldItems"+adList.size()+" : "+subCat);
 		return "success";

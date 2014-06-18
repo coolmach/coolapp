@@ -7,8 +7,7 @@
 				<span class="content">Type</span><span
 					class="glyphicon glyphicon glyphicon-chevron-down form-control-show"></span>
 			</div>
-			<div id="subCategory_hidden_sub" class="subCategory_hidden_bck"
-				style="display: none;">
+			<div id="subCategory_hidden_sub" class="subCategory_hidden_bck" style="display: none;">
 				<ul class="list-unstyled">
 					<li><span class="content">Air Conditioners & Coolers</span></li>
 					<li><span class="content">Bags/Luggage</span></li>

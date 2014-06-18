@@ -51,4 +51,12 @@
         <put-attribute name="title" value="Login" />
         <put-attribute name="body" value="/Login.jsp" />
     </definition>
+    <definition name="/postad_automobile.tiles" extends="baseLayout">
+        <put-attribute name="title" value="Post Ad" />
+        <put-attribute name="body" value="/PostAd_Automobile.jsp" />
+    </definition>
+    <definition name="/automobile.tiles" extends="baseLayout">
+        <put-attribute name="title" value="Automobiles" />
+        <put-attribute name="body" value="/Automobile.jsp" />
+    </definition>    
 </tiles-definitions>

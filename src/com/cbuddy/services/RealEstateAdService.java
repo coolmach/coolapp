@@ -15,10 +15,11 @@ import org.hibernate.criterion.Restrictions;
 
 import com.cbuddy.beans.Pdre;
 import com.cbuddy.util.CBuddyConstants;
+import com.cbuddy.util.CriteriaUtil;
 import com.cbuddy.util.NumberFormatterUtil;
 import com.model.user.RealEstatePostDetails;
 
-public class RealEstateAdService extends AdDetailsService{
+public class RealEstateAdService{
 	
 	@SuppressWarnings("unchecked")
 	public List<RealEstatePostDetails> getAdListByCategory(RealEstatePostDetails postDetails, String subCategory){
@@ -48,10 +49,10 @@ public class RealEstateAdService extends AdDetailsService{
 
 		if(subCategory.equals(CBuddyConstants.SUBCATEGORY_REAL_ESTATE_APARTMENT_FOR_RENT)){
 			if(postDetails.getLocation()!=null){
-				criteria = getCriteriaForLocation(criteria, postDetails);	
+				criteria = CriteriaUtil.getCriteriaForLocation(criteria, postDetails.getLocation());	
 			}
 			if(postDetails.getAreaStr()!=null && !postDetails.getAreaStr().equals("")){
-				criteria = getCriteriaForArea(criteria, postDetails);
+				criteria = CriteriaUtil.getCriteriaForArea(criteria, postDetails.getAreaStr());
 			}
 			if(postDetails.getBhk()!=null){
 				criteria = getCriteriaForBhk(criteria, postDetails);		
@@ -70,16 +71,16 @@ public class RealEstateAdService extends AdDetailsService{
 			}
 		}else if(subCategory.equals(CBuddyConstants.SUBCATEGORY_REAL_ESTATE_APARTMENT_FOR_SALE)){	
 			if(postDetails.getLocation()!=null){
-				criteria = getCriteriaForLocation(criteria, postDetails);	
+				criteria = CriteriaUtil.getCriteriaForLocation(criteria, postDetails.getLocation());	
 			}
 			if(postDetails.getAreaStr()!=null && !postDetails.getAreaStr().equals("")){
-				criteria = getCriteriaForArea(criteria, postDetails);
+				criteria = CriteriaUtil.getCriteriaForArea(criteria, postDetails.getAreaStr());
 			}
 			if(postDetails.getBhk()!=null){
 				criteria = getCriteriaForBhk(criteria, postDetails);		
 			}
 			if(postDetails.getAmt()!=null){
-				criteria = getCriteriaForAmt(criteria, postDetails);
+				criteria = CriteriaUtil.getCriteriaForAmt(criteria, postDetails.getAmt(), "priceValue");
 			}
 			if(postDetails.getNewOrResale()!=null){
 				criteria = getCriteriaForgetNewOrResale(criteria, postDetails);
@@ -104,23 +105,23 @@ public class RealEstateAdService extends AdDetailsService{
 			}	
 		}else if(subCategory.equals(CBuddyConstants.SUBCATEGORY_REAL_ESTATE_LAND_SALE)){
 			if(postDetails.getLocation()!=null){
-				criteria = getCriteriaForLocation(criteria, postDetails);	
+				criteria = CriteriaUtil.getCriteriaForLocation(criteria, postDetails.getLocation());	
 			}
 			if(postDetails.getAreaStr()!=null && !postDetails.getAreaStr().equals("")){
-				criteria = getCriteriaForArea(criteria, postDetails);
+				criteria = CriteriaUtil.getCriteriaForArea(criteria, postDetails.getAreaStr());
 			}
 			if(postDetails.getAmt()!=null){
-				criteria = getCriteriaForAmt(criteria, postDetails);
+				criteria = CriteriaUtil.getCriteriaForAmt(criteria, postDetails.getAmt(), "priceValue");
 			}
 			if(postDetails.getApprovalAuthority()!=null){
 				criteria = getCriteriaForApprovalAuthority(criteria, postDetails);
 			}	
 		}else if(subCategory.equals(CBuddyConstants.SUBCATEGORY_REAL_ESTATE_PG_ACCOMODATION)){
 			if(postDetails.getLocation()!=null){
-				criteria = getCriteriaForLocation(criteria, postDetails);	
+				criteria = CriteriaUtil.getCriteriaForLocation(criteria, postDetails.getLocation());	
 			}
 			if(postDetails.getAmt()!=null){
-				criteria = getCriteriaForAmt(criteria, postDetails);
+				criteria = CriteriaUtil.getCriteriaForAmt(criteria, postDetails.getAmt(), "priceValue");
 			}
 			if(postDetails.getWifi()!=null){
 				criteria = getCriteriaForWifi(criteria, postDetails);
@@ -149,62 +150,10 @@ public class RealEstateAdService extends AdDetailsService{
 		return criteria;	
 	}
 	
-	public Criteria getCriteriaForArea(Criteria criteria, RealEstatePostDetails postDetails){
-		String obj[] = postDetails.getAreaStr().split(",");
-		Criterion  c1 = null;
-		Criterion  c2 = null;
-		Criterion  c3 = null;
 
-		for(String str :obj){
-			if(str.contains("<") ){
-				str = NumberFormatterUtil.getNumericValue(str);
-				//Pattern pattern = Pattern.compile("\\w+([0-9]+)\\w+([0-9]+)");				
-				c1 =  Restrictions.le("area", Integer.parseInt(str));
-			}
-			if(str.contains(">")){
-				str = NumberFormatterUtil.getNumericValue(str);				
-				c2 =  Restrictions.gt("area", Integer.parseInt(str));
-			}
-			if(str.contains("-")){
-				String res[] = str.split("-");
-				String newRes[] = new String[2];
-				for(int i=0;i<res.length;i++){
-					newRes[i] = NumberFormatterUtil.getNumericValue(res[i]);
-				}	
-				c3 =  Restrictions.between("area", Integer.parseInt(newRes[0]),Integer.parseInt(newRes[1]));
-			}
-		}
-
-		if(c1!=null && c2!=null && c3!=null){
-			LogicalExpression orExp = Restrictions.or(c1,c2);
-			criteria.add(Restrictions.or(orExp, c3));
-		}
-		else if(c1!=null && c2!=null){
-			LogicalExpression orExp = Restrictions.or(c1,c2);
-			criteria.add(orExp);
-		}
-		else if(c2!=null && c3!=null){
-			LogicalExpression orExp = Restrictions.or(c2,c3);
-			criteria.add(orExp);
-		}else if(c3!=null && c1!=null){
-			LogicalExpression orExp = Restrictions.or(c1,c3);
-			criteria.add(orExp);
-		}
-		else if(c1!=null ){
-			criteria.add(c1);
-		}
-		else if(c2!=null){
-			criteria.add(c2);
-		}
-		else if(c3!=null){
-			criteria.add(c3);
-		}
-
-		return criteria;
-	}
 
 	public Criteria getCriteriaForBhk(Criteria criteria,Pdre pdre){
-		List loc = new ArrayList();
+		List<Integer> loc = new ArrayList<Integer>();
 		String obj[] = pdre.getBhk().split(",");
 		for(int i=0;i<obj.length;i++){
 			loc.add(Integer.parseInt(NumberFormatterUtil.getNumericValue(obj[i])));
@@ -270,7 +219,7 @@ public class RealEstateAdService extends AdDetailsService{
 
 	public Criteria getCriteriaForDirection(Criteria criteria ,Pdre pdre){
 
-		List dir = new ArrayList();
+		List<String> dir = new ArrayList<String>();
 		String obj[] = pdre.getFacingDirection().split(",");
 		for(String str :obj){
 			dir.add(str.trim());
@@ -282,7 +231,7 @@ public class RealEstateAdService extends AdDetailsService{
 
 	public Criteria getCriteriaForMaritalPreference(Criteria criteria ,Pdre pdre){
 
-		List pref = new ArrayList();
+		List<String> pref = new ArrayList<String>();
 		String obj[] = pdre.getMaritalPreference().split(",");
 		for(String str :obj){
 			pref.add(str.trim());
@@ -294,7 +243,7 @@ public class RealEstateAdService extends AdDetailsService{
 
 	public Criteria getCriteriaForCarParking(Criteria criteria ,Pdre pdre){
 
-		List park = new ArrayList();
+		List<String> park = new ArrayList<String>();
 		String obj[] = pdre.getCarParking().split(",");
 		for(String str :obj){
 			park.add(str.trim());
@@ -306,7 +255,7 @@ public class RealEstateAdService extends AdDetailsService{
 
 	public Criteria getCriteriaForgetNewOrResale(Criteria criteria,Pdre pdre){
 
-		List ownership = new ArrayList();
+		List<String> ownership = new ArrayList<String>();
 		String obj[] = pdre.getNewOrResale().split(",");
 		for(String str :obj){
 			ownership.add(str.trim());
@@ -318,7 +267,7 @@ public class RealEstateAdService extends AdDetailsService{
 
 	public Criteria getCriteriaForApprovalAuthority(Criteria criteria,Pdre pdre){
 
-		List approval = new ArrayList();
+		List<String> approval = new ArrayList<String>();
 		String obj[] = pdre.getApprovalAuthority().split(",");
 		for(String str :obj){
 			approval.add(str.trim());
@@ -414,7 +363,7 @@ public class RealEstateAdService extends AdDetailsService{
 	}
 
 	public Criteria getCriteriaForFood(Criteria criteria, Pdre pdre){
-		List food = new ArrayList();
+		List<String> food = new ArrayList<String>();
 		String obj[] = pdre.getFood().split(",");
 		for(String str :obj){
 			food.add(str.trim());
@@ -425,7 +374,7 @@ public class RealEstateAdService extends AdDetailsService{
 	}
 
 	public Criteria getCriteriaForFurnished(Criteria criteria, Pdre pdre){
-		List furnished = new ArrayList();
+		List<String> furnished = new ArrayList<String>();
 		String obj[] = pdre.getFurnished().split(",");
 		for(String str :obj){
 			furnished.add(str.trim());
@@ -436,7 +385,7 @@ public class RealEstateAdService extends AdDetailsService{
 	}
 
 	public Criteria getCriteriaForGender(Criteria criteria, Pdre pdre){
-		List gender = new ArrayList();
+		List<String> gender = new ArrayList<String>();
 		String obj[] = pdre.getGender().split(",");
 		for(String str :obj){
 			gender.add(str.trim());
@@ -447,7 +396,7 @@ public class RealEstateAdService extends AdDetailsService{
 	}
 
 	public Criteria getCriteriaForRegionalPreference(Criteria criteria, Pdre pdre){
-		List pref = new ArrayList();
+		List<String> pref = new ArrayList<String>();
 		String obj[] = pdre.getRegionalPreference().split(",");
 		for(String str :obj){
 			pref.add(str.trim());
