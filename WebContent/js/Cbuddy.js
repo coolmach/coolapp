@@ -1,5 +1,5 @@
 $(document).ready(function() {
-	
+
 	var ctxPath = $('#context_path').text();
 	var subCat = "";
 	var path="";
@@ -15,7 +15,7 @@ $(document).ready(function() {
 		$("#approval-main").show();
 		$("#ownership-main").show();
 		$("#amenities-main").show();
-		
+
 	}else if(cat == 'AUTO'){
 		path="automobileFilter";
 		$("#make-main").show();
@@ -53,22 +53,22 @@ $(document).ready(function() {
 	//if user click to cancel a selected filter
 	$('.selected_filters').bind('click', function(event) {
 		subCat = $('#sub').text();
-	    cat = $('#cat').text();
+		cat = $('#cat').text();
 		var data="";
 		var child = event.target;
 		var id = child.id;
 		var text = $(this).find('#'+id);
 		data = data + '&subCategory='+subCat+'&category='+cat;
-		
+
 		$("input[class^=check_]:checked").each(function(){
 			var sub = $(this).attr('name');
-				if(text.text() == $(this).parent().children('span.content').text()){
+			if(text.text() == $(this).parent().children('span.content').text()){
 				$(this).attr("checked",false);
 			}else{
 				data = data + '&'+sub+'='+$(this).val();
 			}
 		});
-	
+
 		$.ajax({
 			type: 'POST',
 			url: ctxPath+path, 
@@ -81,11 +81,11 @@ $(document).ready(function() {
 		});
 
 		$(this).find('#'+id).remove();
-		
+
 		if($("#filterValueBar").text() == ""){
 			$("#filterValueBar").hide();
 		}
-		
+
 	});
 
 	//if user clicks on checkboxes
@@ -93,7 +93,7 @@ $(document).ready(function() {
 		subCat = $('#sub').text();
 		cat = $('#cat').text();
 		$("#filterValueBar").show();
-		
+
 		var data="";
 		data = data + '&subCategory='+subCat+'&category='+cat;
 		var str="";
@@ -111,7 +111,7 @@ $(document).ready(function() {
 		if($("#filterValueBar").text() == ""){
 			$("#filterValueBar").hide();
 		}
-		
+
 		$.ajax({
 			type: 'POST',
 			url: ctxPath+path, 
@@ -122,9 +122,9 @@ $(document).ready(function() {
 
 			}
 		});
-	
+
 	});
-	
+
 	//if user clicks on subcaregory
 	var lastVal="";
 	$("#sub-main li").click(function(){
@@ -161,7 +161,7 @@ $(document).ready(function() {
 			}
 		});
 
-		
+
 		if($(this).text()== 'Apartment For Rent' || $(this).text() == 'Independent House For Rent'){
 			$("#loc-main").show();
 			$("#bhk-main").show();
@@ -182,7 +182,7 @@ $(document).ready(function() {
 			$("#breadCrumb_Category").html("Real Estate");
 			$("#breadCrumb_SubCategory").html($(this).text());
 		}
-		
+
 		if($(this).text()== 'Apartment For Sale' || $(this).text()== 'Independent House For Sale'){
 			$("#rent-main").hide();
 			$("#dir-main").hide();
@@ -198,11 +198,11 @@ $(document).ready(function() {
 			$("#approval-main").show();
 			$("#ownership-main").show();
 			$("#amenities-main").show();
-			
+
 			$("#breadCrumb_Category").html("Real Estate");
 			$("#breadCrumb_SubCategory").html($(this).text());
 		}
-		
+
 		if($(this).text()== 'Plot For Sale'){
 			$('#ownership-main').hide();
 			$('#bhk-main').hide();
@@ -221,11 +221,11 @@ $(document).ready(function() {
 			$("#approval-main").show();
 			$("#loc-main").show();
 			$("#area-main").show();
-			
+
 			$("#breadCrumb_Category").html("Real Estate");
 			$("#breadCrumb_SubCategory").html($(this).text());
 		}
-		
+
 		if($(this).text()== 'PG Accommodation'){
 			$('#ownership-main').hide();
 			$('#bhk-main').hide();
@@ -244,11 +244,11 @@ $(document).ready(function() {
 			$("#amt-main").show();
 			$("#amenitiesPg-main").show();
 			$("#food-main").show();
-			
+
 			$("#breadCrumb_Category").html("Real Estate");
 			$("#breadCrumb_SubCategory").html($(this).text());
 		}
-		
+
 		if($(this).text()== 'Roommate Required'){
 			$('#ownership-main').hide();
 			$('#bhk-main').hide();
@@ -267,11 +267,11 @@ $(document).ready(function() {
 			$("#furnished-main").show();
 			$("#gender-main").show();
 			$("#region-main").show();
-			
+
 			$("#breadCrumb_Category").html("Real Estate");
 			$("#breadCrumb_SubCategory").html($(this).text());
 		}
-		
+
 		if($(this).text()== 'Mobile Phones'){
 			$("#brand-main").show();
 			$("#used-main").show();
@@ -281,7 +281,7 @@ $(document).ready(function() {
 			$("#sims-main").show();
 			$("#type-main").hide();
 		}
-		
+
 		if($(this).text()== 'Mobile Accessories'){
 			$("#type-main").show();
 			$("#brand-main").show();
@@ -303,11 +303,11 @@ $(document).ready(function() {
 			}
 			$("#breadCrumb_Category").html("AutoMobiles");
 			$("#breadCrumb_SubCategory").html($(this).text());
-			
+
 		}else if($(this).text()== 'Cars' /*&& subCat=="Cars"*/){
 			$("#make-main").show();
 			$("#brandBikes-main").hide();
-			
+
 			$("#breadCrumb_Category").html("AutoMobiles");
 			$("#breadCrumb_SubCategory").html($(this).text());
 		}
@@ -341,7 +341,23 @@ $(document).ready(function() {
 		$(this).removeClass("highlight_subcat");
 	});
 
+	$("#Pwd1").keyup(checkPasswordMatch);
 
+	function checkPasswordMatch() {
+
+		var password = $("#Pwd").val();
+		var confirmPassword = $("#Pwd1").val();
+
+		if (password != confirmPassword)
+		{  $("#divCheckPasswordMatch").html("<span style='font-weight:bold;color:red'>Passwords do not match!</span>");
+		   $("#btnSignUp").attr("disabled", "disabled");
+		   
+		}else{
+			$("#divCheckPasswordMatch").html("<span style='font-weight:bold;color:green'>Passwords match.</span>");
+			$("#btnSignUp").removeAttr('disabled');
+		}
+		$("#btnSignUp").css("opacity", "unset");
+	}
 	/*$("subCategory-main li").click(function(){
 		//alert("000");
 		//$(this).parent().hide();

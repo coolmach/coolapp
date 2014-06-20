@@ -110,4 +110,34 @@ public class AuthenticateUserService {
 		List<Uprof> uprofList = (List<Uprof>)query.list();
 		return uprofList.get(0);
 	}
+	
+	public String registerUser(Ucred ucred) throws CBuddyException{
+
+		SessionFactory sessionFactory = (SessionFactory) ServletActionContext.getServletContext().getAttribute("sessionFactory");
+		Session session = sessionFactory.openSession();
+		session.beginTransaction();
+		
+		Query query = session.createQuery("from Ucred where CORP_EMAIL_ID = :CorpEmailId");
+		query.setParameter("CorpEmailId", ucred.getCorpEmailId());
+		Ucred result = (Ucred) query.uniqueResult();
+		if(result!=null){
+			throw new CBuddyException("User already exists with this Corporate Email", CBuddyConstants.EXISTENT_USER_ID);
+		}
+		
+		Ucred newUcred = new Ucred();
+		newUcred.setPwd(ucred.getPwd());
+		newUcred.setMobileNo(ucred.getMobileNo());
+		newUcred.setCorpEmailId(ucred.getCorpEmailId());
+		session.save(newUcred);
+		
+		Uprof uprof = new Uprof();
+		uprof.setFirstName(ucred.getFirstName());
+		uprof.setPersonalEmailId(ucred.getPersonalEmailId());
+		session.save(uprof);
+		
+		session.getTransaction().commit();
+		
+		return null;
+		
+	}
 }
