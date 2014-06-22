@@ -42,7 +42,7 @@
 		<action name="signup" class="com.cbuddy.action.user.LoginAction" method="signUp">
 		    <result name="error" type="tiles">/login.tiles</result>
 		    <result name="input" type="tiles">/login.tiles</result>
-		     <result name="success" type="tiles">/login.tiles</result>
+		     <result name="success" type="tiles">/home.tiles</result>
 		</action>
 		<action name="login" class="com.cbuddy.action.user.LoginAction">
 			<result name="success" type="tiles">/postad.tiles</result>

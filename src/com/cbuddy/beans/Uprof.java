@@ -32,7 +32,6 @@ public class Uprof {
 	private String ModifiedBy;
 
 	@Id
-	@GeneratedValue	
 	@Column(name="USER_ID")
 	public int getUserId(){
 		return this.UserId;

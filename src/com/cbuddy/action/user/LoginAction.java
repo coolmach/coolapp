@@ -12,7 +12,9 @@ import com.cbuddy.beans.Uprof;
 import com.cbuddy.exception.CBuddyException;
 import com.cbuddy.services.AuthenticateUserService;
 import com.cbuddy.util.CBuddyConstants;
+import com.cbuddy.util.LogUtil;
 import com.model.user.User;
+import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
 
@@ -23,6 +25,12 @@ public class LoginAction extends ActionSupport implements SessionAware,ServletRe
 	private String valid="true";
 	private boolean isValidUser = false;
 	private String firstName;
+	
+	private String selectedCompanyName; //In Sign Up screen, it corresponds to the value SELECTED by user in autosuggest list. This value cannot be modified after selection.
+	private String corpName; //In Sign Up screen, it corresponds to the value in Company Name text box at the time of form submission. This value can be modified by the user later even after selection from auto suggest.
+	
+	private String responseMsg;
+	
 	Ucred ucred = new Ucred();
 
 	public boolean isValidUser() {
@@ -97,10 +105,18 @@ public class LoginAction extends ActionSupport implements SessionAware,ServletRe
 	}
 
 	public String signUp(){
-
+		LogUtil.getInstance().info("LoginAction - Signup()");
 		try{
+			
+			if(!selectedCompanyName.equals(corpName)){
+				return Action.INPUT;
+			}
+			
 			AuthenticateUserService auService = new AuthenticateUserService();
 			auService.registerUser(getModel());
+			
+			responseMsg = "You have been successfully become a cBuddy " + getModel().getFirstName();
+			
 		}catch(CBuddyException e){
 			switch(e.getErrorCode()){
 			case CBuddyConstants.EXISTENT_USER_ID:
@@ -139,5 +155,23 @@ public class LoginAction extends ActionSupport implements SessionAware,ServletRe
 	public void setServletRequest(HttpServletRequest request) {
 		this.request = request;
 
+	}
+	public String selectedCompanyName() {
+		return selectedCompanyName;
+	}
+	public void setSelectedCompanyName(String selectedCompanyName) {
+		this.selectedCompanyName = selectedCompanyName;
+	}
+		public String getCorpName() {
+		return corpName;
+	}
+	public void setCorpName(String corpName) {
+		this.corpName = corpName;
+	}
+	public String getResponseMsg() {
+		return responseMsg;
+	}
+	public void setResponseMsg(String responseMsg) {
+		this.responseMsg = responseMsg;
 	}
 }

@@ -124,10 +124,18 @@ public class AuthenticateUserService {
 			throw new CBuddyException("User already exists with this Corporate Email", CBuddyConstants.EXISTENT_USER_ID);
 		}
 		
+		String userName = "SYSTEM";
+		Timestamp now = new Timestamp(System.currentTimeMillis());
+		
 		Ucred newUcred = new Ucred();
 		newUcred.setPwd(ucred.getPwd());
 		newUcred.setMobileNo(ucred.getMobileNo());
 		newUcred.setCorpEmailId(ucred.getCorpEmailId());
+		newUcred.setCreatedBy(userName);
+		newUcred.setCreatedOn(now);
+		newUcred.setModifiedBy(userName);
+		newUcred.setModifiedOn(now);
+		
 		try{
 			session.save(newUcred);
 		}catch(Exception e){
@@ -137,6 +145,15 @@ public class AuthenticateUserService {
 		Uprof uprof = new Uprof();
 		uprof.setFirstName(ucred.getFirstName());
 		uprof.setPersonalEmailId(ucred.getPersonalEmailId());
+		uprof.setCorpId(ucred.getCorpId());
+		uprof.setCreatedBy(userName);
+		uprof.setCreatedOn(now);
+		uprof.setModifiedBy(userName);
+		uprof.setModifiedOn(now);
+		uprof.setUserId(newUcred.getUserId());
+		uprof.setPersonalEmailId(ucred.getPersonalEmailId());
+		uprof.setMobileNo(ucred.getMobileNo());
+		
 		session.save(uprof);
 		
 		session.getTransaction().commit();

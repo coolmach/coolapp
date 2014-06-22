@@ -55,6 +55,7 @@ public class RealEstateAction extends ActionSupport implements SessionAware, Ser
 	 */
 	private NameValuePair selectedLocation;
 	private List<NameValuePair> neighborhoodLocations;
+	
 
 	private HttpServletRequest request = null;
 	@Override

@@ -8,7 +8,7 @@ import javax.persistence.*;
 @Table(name = "Ucred")
 
 public class Ucred {
-
+	private int corpId;
 	private int UserId;
 	private String CorpEmailId;
 	private String Pwd;
@@ -126,6 +126,14 @@ public class Ucred {
 	}
 	public void setModifiedBy(String ModifiedBy){
 		this.ModifiedBy = ModifiedBy;
+	}
+	
+	@Column(name="CORP_ID")
+	public int getCorpId() {
+		return corpId;
+	}
+	public void setCorpId(int corpId) {
+		this.corpId = corpId;
 	}
 
 
