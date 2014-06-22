@@ -352,7 +352,7 @@
 	   <span id="sub" style="display:none"><s:property value="subCategory" /></span>
 	
 	<a class="grey_link" href="<s:url action=""  />">Home</a> >
-		<span id="breadCrumb_Category"><s:property value="categoryStr" /></span> > 
+		<span id="breadCrumb_Category_1">Real Estate</span> > 
 		<span id="breadCrumb_SubCategory"><s:property value="subCategoryStr" /></span>
 	</div>
 </div>
@@ -474,8 +474,10 @@
 </div>
 <div id="right_LocationFilterSection">
 	<div id="cityBar">
-		<input type="radio" class="radioButton" name="city" id="city" value="BLR" checked><span class="radioCaption">Bangalore</span>
-		<input type="radio" class="radioButton" name="city" id="city" value="CHE"><span class="radioCaption_RightAlign">Chennai</span>
+		<form id="cityForm">
+			<input type="radio" class="radioButton" name="city" id="city" value="BLR" checked onClick="applyFilters()"><span class="radioCaption">Bangalore</span>
+			<input type="radio" class="radioButton" name="city" id="city" value="CHE" onClick="applyFilters()"><span class="radioCaption_RightAlign">Chennai</span>
+		</form>
 	</div>
 	<div id="locationSearchBar">
 		<input type="text" class="locationTextBox" placeholder="Enter Area (e.g. JP Nagar)" name="locSearch" id="locSearch">
@@ -511,7 +513,8 @@
 		</div>
 	</div>
 	<div id="companySearchBar">
-		<input type="text" class="locationTextBox" placeholder="Enter Company (e.g. Infosys)" name="companySearch" id="companySearch">
+		<input type="text" class="locationTextBox" placeholder="Enter Company (e.g. Infosys)" name="corpSearchString" id="corpSearchString">
+		<input type="hidden" name="corpId" id="corpId">
 		<img class="searchIcon" src="images/search_orange_resized.png">	
 	</div>
 			
@@ -564,6 +567,8 @@
 					success:function(data){
 						$("#locationDetails").html(data);
 						$("#locationDetails").show();
+						$("#location").attr("checked", "true");
+						applyFilters();
 					},
 					error:function(data){
 						alert(data.responseText);
@@ -575,17 +580,46 @@
 	});
 </script>
 
+
 <script>
-//if user clicks on Clear Filter in Location bar in Ad List page
-function resetLocationFilter(event) {
+	$(document).ready(function(){
+		$("#corpSearchString").autocomplete({
+		    source: function(request, response) {
+			    $.ajax({
+				    url:"/Virat" + "/autoSuggestCorp",
+				    type: "POST",
+				    dataType: "json",
+				    data: {corpSearchString:$("#corpSearchString").val()},
+				    success: function(data) {
+				        response( $.map(data, function(item) {
+					        return {
+					            value: item.id,
+					            label: item.description,
+					        };
+				        }));
+				    },
+				    error: function (error) {
+				       alert('error: ' + error.responseText);
+				    }
+			    });
+			},
+			select:function(event, ui){
+				event.preventDefault();
+				$("#corpId").val(ui.item.value);
+				$("#corpSearchString").val(ui.item.label);
+				applyFilters();
+			},
+		    minLength: 2
+		 });
+	});
+</script>
+
+<script>
+function applyFilters(){
 	var ctxPath = $('#context_path').text();
 	var path = "realestateFilter";
-	$('input[class^=check_location]').attr("checked", false);
-	
 	subCat = $('#sub').text();
 	cat = $('#cat').text();
-	$("#filterValueBar").show();
-	
 	var data="";
 	data = data + '&subCategory='+subCat+'&category='+cat;
 	var str="";
@@ -600,6 +634,11 @@ function resetLocationFilter(event) {
 
 	$('.selected_filters').html(str);
 
+	data = data + "&city=" + $("input[name=city]:checked", "#cityForm").val();
+	if($("#corpId").val() != ""){
+		data = data + "&corpId=" + $("#corpId").val();
+	}
+	
 	if($("#filterValueBar").text() == ""){
 		$("#filterValueBar").hide();
 	}
@@ -614,9 +653,26 @@ function resetLocationFilter(event) {
 
 		}
 	});
+}
+</script>
 
-	$("#locationListBar").html("")
-	$("#horizontalSeparator").html("")
-	$("#neighborhoodLocationBar").html("")
+<script>
+//if user clicks on Clear Filter in Location bar in Ad List page
+function resetLocationFilter(event) {
+	
+	//$("#filterValueBar").show();
+	$('input[class^=check_location]').attr("checked", false);
+	
+	var ctxPath = $('#context_path').text();
+	var path = "realestateFilter";
+	
+	subCat = $('#sub').text();
+	cat = $('#cat').text();
+	
+	applyFilters();	
+
+	$("#locationListBar").html("");
+	$("#horizontalSeparator").html("");
+	$("#neighborhoodLocationBar").html("");
 }
 </script>

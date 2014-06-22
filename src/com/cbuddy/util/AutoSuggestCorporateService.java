@@ -19,15 +19,27 @@ import org.apache.lucene.store.FSDirectory;
 import org.apache.lucene.util.Version;
 import org.hibernate.Session;
 
-import com.cbuddy.beans.Location;
+import com.cbuddy.beans.Corp;
 
-public class AutoSuggestLocationService{
+public class AutoSuggestCorporateService{
 
-	public List<Location> getList(Session session, String city, String searchString) throws IOException{
-		LocationIndexCreator.getInstance().indexAllLocations(session);
+	public List<Corp> getList(Session session, String searchString){
+		List<Corp> corporatesList = null;
+		try{
+			corporatesList = getAutoSuggestList(session, searchString);
+		}catch(IOException e){
+			e.printStackTrace();
+		}
+		return corporatesList;
+	}
+	
+	public List<Corp> getAutoSuggestList(Session session, String searchString) throws IOException{
+
 		StandardAnalyzer analyzer = new StandardAnalyzer(Version.LUCENE_44);
 		
-		String fileName = city + "-location-index";
+		String fileName = "corporate-index";
+		
+		//String fileName = "BLR-location-index";
 		
 		Directory index = FSDirectory.open(new File(CBuddyConstants.BASE_FOLDER_NAME_INDEX, fileName));
 		String querystr = searchString;
@@ -35,7 +47,7 @@ public class AutoSuggestLocationService{
 		int hitsPerPage = 10;
 		org.apache.lucene.search.Query q = null;
 		
-		List<Location> locationList = new ArrayList<Location>();
+		List<Corp> corporatesList = new ArrayList<Corp>();
 		
 		try {
 			q = new QueryParser(Version.LUCENE_44, "name", analyzer).parse(querystr);
@@ -51,11 +63,12 @@ public class AutoSuggestLocationService{
 			for(int i=0; i<hits.length; ++i) {
 				int docId = hits[i].doc;
 				Document d = searcher.doc(docId);
-				Location location = new Location();
-				location.setLocCode(d.get("code"));
-				location.setLocName(d.get("name"));
-				System.out.println((i + 1) + ". " + d.get("code") + "\t" + d.get("name"));
-				locationList.add(location);
+				Corp corp = new Corp();
+				corp.setCorpShortName(d.get("shortName"));
+				corp.setCorpName(d.get("name"));
+				corp.setCorpId(Integer.valueOf(d.get("id")));
+				System.out.println((i + 1) + ". " + d.get("id") + "\t" + d.get("name"));
+				corporatesList.add(corp);
 			}
 
 			// reader can only be closed when there
@@ -65,6 +78,6 @@ public class AutoSuggestLocationService{
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
-		return locationList;
+		return corporatesList;
 	}
 }

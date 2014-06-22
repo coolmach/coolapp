@@ -37,17 +37,18 @@
 		<property name="show_sql">false</property>
 
 		<!-- Drop and re-create the database schema on startup -->
-		<property name="hbm2ddl.auto">update</property>
+		<property name="hbm2ddl.auto">none</property>
 
 		<mapping class="com.cbuddy.beans.Poit" />
 		<mapping class="com.cbuddy.beans.Pdre" />
 		<mapping class="com.cbuddy.beans.Ucred" />
 		<mapping class="com.cbuddy.beans.Uprof" />
 		<mapping class="com.cbuddy.beans.City" />
+		<mapping class="com.cbuddy.beans.Pdau" />
+		<mapping class="com.cbuddy.beans.Corp" />		
 		<mapping class="com.cbuddy.beans.Location" />
 		<mapping class="com.cbuddy.beans.Neighborhood" />
 		<mapping class="com.model.user.RealEstatePostDetails" />
-		<mapping class="com.cbuddy.beans.Pdau" />
 		<mapping class="com.model.user.AutomobilePostDetails" />
 	</session-factory>
 

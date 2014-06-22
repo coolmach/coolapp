@@ -24,6 +24,7 @@ public class RealEstatePostDetails extends Pdre implements Serializable{
 	private String ContactPersonName;
 	private String ImageFileName;
 	private String category;
+	private int corpId;
 	//private String subcategory;
 	private String priceValueStr;
 	private String newOrResaleStr;
@@ -33,6 +34,7 @@ public class RealEstatePostDetails extends Pdre implements Serializable{
 	private String selectedLocationStr;
 	private String userEnteredLocationStr;
 	private String selectedLocationCode;
+	private String selectedCityCode;
 	private String areaSq;
 
 	@Transient
@@ -166,5 +168,23 @@ public class RealEstatePostDetails extends Pdre implements Serializable{
 
 	public void setSelectedLocationCode(String selectedLocationCode) {
 		this.selectedLocationCode = selectedLocationCode;
+	}
+
+	@Transient
+	public String getSelectedCityCode() {
+		return selectedCityCode;
+	}
+
+	public void setSelectedCityCode(String selectedCityCode) {
+		this.selectedCityCode = selectedCityCode;
+	}
+	
+	@Column(name="CORP_ID")
+	public int getCorpId() {
+		return corpId;
+	}
+
+	public void setCorpId(int corpId) {
+		this.corpId = corpId;
 	}
 }

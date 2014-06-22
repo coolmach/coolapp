@@ -128,7 +128,11 @@ public class AuthenticateUserService {
 		newUcred.setPwd(ucred.getPwd());
 		newUcred.setMobileNo(ucred.getMobileNo());
 		newUcred.setCorpEmailId(ucred.getCorpEmailId());
-		session.save(newUcred);
+		try{
+			session.save(newUcred);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
 		
 		Uprof uprof = new Uprof();
 		uprof.setFirstName(ucred.getFirstName());

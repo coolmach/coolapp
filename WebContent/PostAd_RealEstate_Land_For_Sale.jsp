@@ -11,51 +11,42 @@
 	<s:form cssClass="form-horizontal post" action="real_estate_postAd.action" enctype="multipart/form-data">
 		<input type="hidden" name="category" value="REAL"/>
 		<input type="hidden" name="subCategory" value="6"/>
-		<div class="col-md-12 post_title">Land For Sale</div>
+		<div class="col-md-12 post_title">
+			<div style="float:left;">
+				Plot for Sale
+			</div>
+			<span class="error"><s:fielderror fieldName="errorMsg"/></span>
+		</div>
 	   <div class="col-md-8">
 			<div class="form-group">
-				<label for="title" class="col-sm-4 control-label">Title</label>
+				<label for="title" class="col-sm-4 control-label">Title<span class="mandatory">*</span></label>
 				<div class="col-sm-8">
-					<input type="text" class="form-control" id="Title" name="Title" value="2BHK For Sale">
+					<input type="text" class="form-control" maxlength="200" id="Title" name="Title" value="Land for sale in Bangalore" required>
 				</div>
 			</div>
-			<%--
-			<div class="form-group">
-				<label for="location" class="col-sm-4 control-label">City</label>
-				<div class="col-sm-6">
-					<input type="text" class="form-control" name="City" id="City" value="BLR">
-				</div>
-			</div>			
-			<div class="form-group">
-				<label for="location" class="col-sm-4 control-label">Location</label>
-				<div class="col-sm-6">
-					<input type="text" class="form-control" name="Location" id="Location" value="46">
-				</div>
-			</div>
-			--%>
 			<%@include file="locationStrip.jsp" %>
 			<div class="form-group">
-				<label for="area" class="col-sm-4 control-label">Total Area (sq. ft)</label>
-				<div class="col-sm-6">
-					<input type="text" class="form-control" name="Area" id="Area" value="1200"> 
+				<label for="area" class="col-sm-4 control-label">Total Area (sq. ft)<span class="mandatory">*</span></label>
+				<div class="col-sm-3">
+					<input type="text" class="form-control" maxlength="5" name="Area" id="Area" value="2400" required> 
 				</div>
 			</div>			
 			<div class="form-group">
-				<label for="priceValue" class="col-sm-4 control-label">Price</label>
+				<label for="priceValue" class="col-sm-4 control-label">Price<span class="mandatory">*</span></label>
 				<div class="col-sm-6">
-					<input type="text" class="form-control" name="PriceValue" id="PriceValue" value="3000000">
+					<input type="text" class="form-control" maxlength="9" name="PriceValue" id="PriceValue" value="1500000" required>
 				</div>
 			</div>			
 			<div class="form-group">
 				<label for="approvalAuthority" class="col-sm-4 control-label">Approval Authority</label>
 				<div class="col-sm-6">
-					<input type="text" class="form-control" name="ApprovalAuthority" id="ApprovalAuthority" value="BDA">
+					<input type="text" class="form-control" maxlength="30" name="ApprovalAuthority" id="ApprovalAuthority" value="BDA">
 				</div>
 			</div>
 			<div class="form-group">
 				<label for="description" class="col-sm-4 control-label">Remarks</label>
 				<div class="col-sm-8">
-					<textarea class="form-control" rows="3" name="Description" id="Description">Hello tHis is description</textarea>
+					<textarea class="form-control" maxlength="256" rows="3" name="Description" id="Description">Hello tHis is description</textarea>
 				</div>
 			</div>
 			<div class="form-group">
@@ -75,17 +66,17 @@
 			</div>
 			<div class="form-group">
 				<div class="col-sm-8">
-					<label for="" class="col-sm-6 control-label" style="text-align:left;">Contact Details</label>
+					<label for="" class="col-sm-6 control-label" style="text-align:left;">Contact Details<span class="mandatory">*</span></label>
 				</div>
 			</div>
 			<div class="form-group">
 				<div class="col-sm-6">
-					<input type="text" class="form-control" name="ContactPersonName" placeholder="Contact Person Name" value="MGR">
+					<input type="text" class="form-control" maxlength="30" name="ContactPersonName" placeholder="Contact Person Name" value="MGR" required>
 				</div>
 			</div>
 			<div class="form-group">
 				<div class="col-sm-6">
-					<input type="text" class="form-control" name="ContactNo" placeholder="Contact Number" value="77777766666">
+					<input type="text" class="form-control" maxlength="15" name="ContactNo" placeholder="Contact Number" value="77777766666" required>
 				</div>
 			</div>
 		</div>

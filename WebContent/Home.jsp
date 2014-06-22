@@ -5,7 +5,7 @@
 		//$('#basic-modal-content').modal();
 
 		// Load dialog on click
-		$('#basic-modal .basic').click(function(e) {
+		$('#basic-modal .myButton').click(function(e) {
 			$('#basic-modal-content').modal();
 			return false;
 		});
@@ -81,24 +81,26 @@
 	</div>
 	<div class="col-md-9">
 		<div class="col-md-12 cbuddy_intro">
-			<div style="font-family:Tw Cen MT Condensed;font-size:30px;float:left;">An exclusive Classifieds portal for Techies</div>
+			<div class="mainHeading">An exclusive Classifieds portal for Techies</div>
 		</div>
 		<div class="col-md-12 cbuddy_intro">
-			<h5 style="margin: 10px; color:#808080;font-family:Tw Cen MT Condensed;font-size:26px;">"Say no to brokers, yes to fellow IT Community"</h5>
+			<h5 class="subHeading">"Say no to brokers, yes to fellow IT Community"</h5>
 		</div>
-		<div class="col-md-12 cbuddy_intro">
+		<div class="col-md-12 cbuddy_intro bulletSection">
 			<div style="margin: 15px;">
-				<img class="star-img" src="images/star.png"><b>Verified Posts</b>
+				<img class="star-img" src="images/star.png">
+				<span class="bulletItem">Verified Posts</span>
 			</div>
 			<div style="margin: 15px;">
-				<img class="star-img" src="images/star.png"><b>Authenticated Users</b>
+				<img class="star-img" src="images/star.png">
+				<span class="bulletItem">Authenticated Users</span>
 			</div>
 		</div>
 		
 	</div>
 	<!-- <div class="col-md-2">
 	</div> -->
-	<div class="col-md-10" style="float:right;">
+	<div class="col-md-10" style="float:right;margin-top:5%;padding-left:10%;">
 			<img src="images/arrow.png" id="arr_img"> <input
 				type="text" class="form-control" id="category_search" name="category" 
 				placeholder="I am looking for...">

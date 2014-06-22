@@ -23,15 +23,20 @@ public class CBuddyConstants {
 	
 	public static final String SUBCATEGORY_AUTOMOBILES_CARS ="1";
 	public static final String SUBCATEGORY_AUTOMOBILES_MOTORCYCLES ="2";
-	public static final String SUBCATEGORY_AUTOMOBILES_SCOOTERS ="3";
-	public static final String SUBCATEGORY_AUTOMOBILES_VANS = "4";
-	public static final String SUBCATEGORY_AUTOMOBILES_BICYCLES = "5";
-	public static final String SUBCATEGORY_AUTOMOBILES_BUSES = "6";
-	public static final String SUBCATEGORY_AUTOMOBILES_TRUCKS = "7";
-	public static final String SUBCATEGORY_AUTOMOBILES_REPAIRS = "8";
-	public static final String SUBCATEGORY_AUTOMOBILES_SPARE_PARTS = "9";
-	public static final String SUBCATEGORY_AUTOMOBILES_DRIVING_SCHOOLS = "10";
-	public static final String SUBCATEGORY_AUTOMOBILES_OTHER_VEHICLES = "11";
+//	public static final String SUBCATEGORY_AUTOMOBILES_SCOOTERS ="3";
+//	public static final String SUBCATEGORY_AUTOMOBILES_VANS = "4";
+//	public static final String SUBCATEGORY_AUTOMOBILES_BICYCLES = "5";
+//	public static final String SUBCATEGORY_AUTOMOBILES_BUSES = "6";
+//	public static final String SUBCATEGORY_AUTOMOBILES_TRUCKS = "7";
+//	public static final String SUBCATEGORY_AUTOMOBILES_REPAIRS = "8";
+//	public static final String SUBCATEGORY_AUTOMOBILES_SPARE_PARTS = "9";
+//	public static final String SUBCATEGORY_AUTOMOBILES_DRIVING_SCHOOLS = "10";
+//	public static final String SUBCATEGORY_AUTOMOBILES_OTHER_VEHICLES = "11";
+	
+	public static final String NEW_OR_RESALE_NEW = "N";
+	public static final String NEW_OR_RESALE_RESALE = "R";
+	public static final String READY_TO_OCCUPY_YES = "Y";
+	public static final String READY_TO_OCCUPY_NO = "N";
 
 	public static final String BASE_FOLDER_NAME_INDEX = "C:\\Shiva\\indexes\\";
 }

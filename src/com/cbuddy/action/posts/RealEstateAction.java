@@ -38,7 +38,7 @@ public class RealEstateAction extends ActionSupport implements SessionAware, Ser
 	private File upload;
 	private String uploadFileName;
 	private String uploadContentType;
-
+	
 	private String categoryStr;
 	private String subCategoryStr;
 
@@ -48,7 +48,7 @@ public class RealEstateAction extends ActionSupport implements SessionAware, Ser
 	private String category = "" ;
 	private String subCategory = "" ;
 	//private String basePath = "";
-	
+
 	/* TODO: The two attributes selectedLocation and neighborhoodLocations are added only to retain the values populated by LocationAction (that is,
 	 * when the user refreshes the list page after filtering based on a location and when the page is reloaded, the location selected by the user should be
 	 * shown and be selected by default. 
@@ -84,20 +84,180 @@ public class RealEstateAction extends ActionSupport implements SessionAware, Ser
 		return extension;
 	}
 
+	private boolean validateMandatoryFields(){
+		String subCategory = postDetails.getSubCategory();
+		
+		//Common validations
+		if(postDetails.getTitle().equals("")){
+			addFieldError("errorMsg", "Please enter Title");
+			return false;
+		}
+		if(postDetails.getContactNo().equals("")){
+			addFieldError("errorMsg", "Please enter Contact Number");
+			return false;
+		}
+		if(postDetails.getContactPersonName().equals("")){
+			addFieldError("errorMsg", "Please enter Contact Person Name");
+			return false;
+		}
+		if(postDetails.getCity().equals("")){
+			addFieldError("errorMsg", "Please enter City");
+			return false;
+		}
+		if(postDetails.getSelectedLocationCode().equals("")){
+			addFieldError("errorMsg", "Please enter Location");
+			return false;
+		}
+
+		//Subcategory specific validations
+		if(subCategory.equals(CBuddyConstants.SUBCATEGORY_REAL_ESTATE_APARTMENT_FOR_RENT) ||
+				subCategory.equals(CBuddyConstants.SUBCATEGORY_REAL_ESTATE_APARTMENT_FOR_SALE) ||
+				subCategory.equals(CBuddyConstants.SUBCATEGORY_REAL_ESTATE_IND_HOUSE_FOR_RENT) ||
+				subCategory.equals(CBuddyConstants.SUBCATEGORY_REAL_ESTATE_IND_HOUSE_FOR_SALE)){
+			if(postDetails.getArea() == 0){
+				addFieldError("errorMsg", "Please enter Area");
+				return false;
+			}
+			if(postDetails.getBedrooms()==0){
+				addFieldError("errorMsg", "Please enter number of bedrooms");
+				return false;
+			}
+			if(postDetails.getFacingDirection().equals("")){
+				addFieldError("errorMsg", "Please enter Facing Direction");
+				return false;
+			}
+			if(postDetails.getFloorNumber().equals("")){
+				addFieldError("errorMsg", "Please enter Floor number");
+				return false;
+			}
+		}
+		
+		if(subCategory.equals(CBuddyConstants.SUBCATEGORY_REAL_ESTATE_APARTMENT_FOR_SALE)){
+			String newOrResale = postDetails.getNewOrResale();
+			if(newOrResale.equals("")){
+				addFieldError("errorMsg", "Please select if it is a new property or for resale");
+				return false;
+			}else{
+				if(newOrResale.equals(CBuddyConstants.NEW_OR_RESALE_RESALE)){
+					if(postDetails.getAgeValue() == 0){
+						addFieldError("errorMsg", "Please enter the age of the property");
+						return false;
+					}
+				}
+			}
+		}
+		
+		return true;
+	}
+
+	private boolean validateFieldLength(){
+		boolean output = true;
+		String temp = postDetails.getTitle();
+		if(temp!=null && temp.length()>100){
+			addFieldError("errorMsg", "Please enter a smaller Title (less than 100 characters)");
+		}
+		temp = postDetails.getCity();
+		if(temp!=null && temp.length()>8){
+			addFieldError("errorMsg", "Invalid City");
+		}
+		temp = postDetails.getUserEnteredLocationStr();
+		if(temp!=null && temp.length()>30){
+			addFieldError("errorMsg", "Invalid Location");
+		}
+		temp = postDetails.getSelectedLocationCode();
+		if(temp!=null && temp.length()>8){
+			addFieldError("errorMsg", "Invalid Location");
+		}
+		temp = postDetails.getSelectedLocationStr();
+		if(temp!=null && temp.length()>30){
+			addFieldError("errorMsg", "Invalid Location");
+		}
+		int tempInt = postDetails.getArea();
+		if(tempInt > 100000){
+			addFieldError("errorMsg", "Invalid Area");
+		}
+		tempInt = postDetails.getBedrooms();
+		if(tempInt > 10){
+			addFieldError("errorMsg", "Invalid number of Bedrooms");
+		}
+		temp = postDetails.getMaritalPreference();
+		if(temp!=null && temp.length()>1){
+			addFieldError("errorMsg", "Invalid Family Preference");
+		}
+		temp = postDetails.getFurnished();
+		if(temp!=null && temp.length()>1){
+			addFieldError("errorMsg", "Invalid Furnishing");
+		}
+		double tempD = postDetails.getPriceValue();
+		if(tempD > 100000000 || tempD == 0){
+			String subCategory = postDetails.getSubCategory();
+			if(subCategory.equals(CBuddyConstants.SUBCATEGORY_REAL_ESTATE_APARTMENT_FOR_RENT) || 
+					subCategory.equals(CBuddyConstants.SUBCATEGORY_REAL_ESTATE_IND_HOUSE_FOR_RENT) ||
+					subCategory.equals(CBuddyConstants.SUBCATEGORY_REAL_ESTATE_PG_ACCOMODATION) ||
+					subCategory.equals(CBuddyConstants.SUBCATEGORY_REAL_ESTATE_ROOMMATE_REQUIRED)
+					){
+				addFieldError("errorMsg", "Invalid Rent");	
+			}else{
+				addFieldError("errorMsg", "Invalid Price");
+			}
+		}
+		tempD = postDetails.getMaintenance();
+		if(tempD > 100000000){
+			addFieldError("errorMsg", "Invalid Maintenance");
+		}
+		temp = postDetails.getFacingDirection();
+		if(temp!=null && temp.length()>1){
+			addFieldError("errorMsg", "Invalid Facing Direction");
+		}
+		temp = postDetails.getFloorNumber();
+		if(temp!=null && temp.length()>2){
+			addFieldError("errorMsg", "Invalid Floor Number");
+		}
+		temp = postDetails.getDescription();
+		if(temp!=null && temp.length()>256){
+			addFieldError("errorMsg", "Invalid Description");
+		}
+		return output;
+	}
+
 	public String postAd(){
+		if(!validateMandatoryFields()){
+			return Action.INPUT;
+		}
+		if(!validateFieldLength()){
+			return Action.INPUT;
+		}
 		System.out.println("RealEstatePostAction.postAd()"+uploadContentType+" : "+uploadFileName+" : "+upload);
 		User user = (User)session.get("userInfo");
 		Timestamp current = new Timestamp(System.currentTimeMillis());
 		String userId = String.valueOf(user.getUserId());
 		String imgFileName = String.valueOf(System.currentTimeMillis()) + "." + getExtension(uploadContentType) + "";
 
+		SessionFactory sessionFactory = (SessionFactory) ServletActionContext.getServletContext().getAttribute("sessionFactory");
+		Session dbSession = sessionFactory.openSession();
+
 		//Checking if user has manually tampered location after selecting from auto suggest list
-		if(postDetails.getUserEnteredLocationStr() != null && postDetails.getSelectedLocationStr()!=null){
-			if(!postDetails.getUserEnteredLocationStr().equals(postDetails.getSelectedLocationStr())){
+
+		if(!postDetails.getUserEnteredLocationStr().equals(postDetails.getSelectedLocationStr())){
+			//Check if the user entered value is valid
+			String locCode = LocationUtil.getLocationCode(dbSession, postDetails.getSelectedLocationCode(), postDetails.getUserEnteredLocationStr());
+			if(locCode == null){
+				addFieldError("errorMsg", "Invalid Location");
+				return Action.INPUT;
+			}else{
+				//Updating new location
+				postDetails.setSelectedLocationStr(postDetails.getUserEnteredLocationStr());
+				postDetails.setSelectedLocationCode(locCode);
+			}
+		}else if(!postDetails.getCity().equals(postDetails.getSelectedCityCode())){
+			//User selects a different City after choosing a location for a different city
+			String locName = LocationUtil.getLocationName(dbSession, postDetails.getCity(), postDetails.getSelectedLocationCode());
+			if(locName.equals(postDetails.getSelectedLocationCode())){
+				addFieldError("errorMsg", "Invalid Location");
 				return Action.INPUT;
 			}
 		}
-		
+
 		//Make an entry in POIT
 		Poit poit = new Poit();
 		poit.setCategory(CBuddyConstants.CATEGORY_REAL_ESTATE);
@@ -121,9 +281,6 @@ public class RealEstateAction extends ActionSupport implements SessionAware, Ser
 		poit.setThumbnailName(null);
 		poit.setThumbnailType(null);
 		poit.setUserFirstName(user.getFirstName());
-
-		SessionFactory sessionFactory = (SessionFactory) ServletActionContext.getServletContext().getAttribute("sessionFactory");
-		Session dbSession = sessionFactory.openSession();
 
 		dbSession.beginTransaction();
 		dbSession.save(poit);
@@ -181,8 +338,9 @@ public class RealEstateAction extends ActionSupport implements SessionAware, Ser
 		dbSession.getTransaction().commit();
 
 		responseMsg = "Your post has been placed successfully! Post Id is " + poit.getPostId();
-
+		
 		return "success";
+		//return "redirect";
 	}
 
 	private void writeImage(File inputFile, String outputFileName){
@@ -211,7 +369,7 @@ public class RealEstateAction extends ActionSupport implements SessionAware, Ser
 			postDetails.setFacingDirectionStr(Utils.getInstance().getDirectionDesc(postDetails.getFacingDirection()));
 			postDetails.setFloorNumberStr(Utils.getInstance().getFloorNumberDesc(postDetails.getFloorNumber()));
 			postDetails.setFurnishedStr(Utils.getInstance().getFurnishedDesc(postDetails.getFurnished()));
-			
+
 			String temp = "";
 			if(postDetails.getNewOrResale()!= null){
 				if(postDetails.getNewOrResale().equals("N")){
@@ -245,7 +403,7 @@ public class RealEstateAction extends ActionSupport implements SessionAware, Ser
 
 		categoryStr = Utils.getInstance().getCategoryDesc(category);
 		subCategoryStr = Utils.getInstance().getSubCategoryDesc(category, subCategory);
-		
+
 		if(category==null || category.equals("")){
 			setCategory(CBuddyConstants.CATEGORY_REAL_ESTATE);
 		}

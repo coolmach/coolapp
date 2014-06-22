@@ -9,20 +9,29 @@
 	<constant name="struts.custom.i18n.resources" value="ApplicationResources" />
 	<constant name="struts.multipart.maxSize" value="1000000" />
 
-	<package name="default" extends="struts-default,json-default"
-		namespace="/">
+	<package name="default" extends="struts-default,json-default" namespace="/">
 		<result-types>
 			<result-type name="tiles" class="org.apache.struts2.views.tiles.TilesResult" />
 			<result-type name="imageResult" class="com.cbuddy.result.ImageResult" />
 		</result-types>
 		<interceptors>
-			<interceptor name="loginInterceptor"
-				class="com.login.interceptors.LoginInterceptor"></interceptor>
+			<interceptor name="loginInterceptor" class="com.login.interceptors.LoginInterceptor"></interceptor>
 			<interceptor-stack name="secureStack">
 				<interceptor-ref name="loginInterceptor"></interceptor-ref>
-				<interceptor-ref name="defaultStack"></interceptor-ref>
+				<interceptor-ref name="defaultStack">
+					<param name="exception.logEnabled">true</param>
+       				<param name="exception.logLevel">ERROR</param>
+				</interceptor-ref>
 			</interceptor-stack>
 		</interceptors>
+		<global-results>  
+			<result name="myresult">exception.jsp</result>  
+		</global-results>  
+		  
+		<global-exception-mappings>  
+		<exception-mapping result="myresult" exception="java.lang.Exception"></exception-mapping>  
+		</global-exception-mappings>  	
+		
 		<action name="">
 			<result type="tiles">/home.tiles</result>
 		</action>
@@ -59,6 +68,7 @@
              <interceptor-ref name="defaultStack"></interceptor-ref>
 			<result name="login" type="tiles">/home.tiles</result>
 			<result name="success" type="tiles">/home.tiles</result>
+			<!--result name="redirect" type="redirect">/</result-->
 			<result name="input" type="tiles">/postad_real_estate.tiles</result>
 		</action>
 		<!-- REAL_ESTATE - END -->
@@ -106,6 +116,9 @@
 		</action>
 		<action name="getNeighbor" class="com.cbuddy.action.location.LocationAction" method="getNeighborhood">
 			<result name="success">/neighborhood_Locations.jsp</result>
+		</action>
+		<action name="autoSuggestCorp" class="com.cbuddy.action.user.CorpAction" method="autoPopulateCorporates">
+			<result name="success">/ajax_Autosuggest_Corporates.jsp</result>
 		</action>							
 	</package>
 </struts>

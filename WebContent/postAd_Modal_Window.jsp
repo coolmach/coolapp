@@ -1,5 +1,5 @@
 <%@ taglib prefix="s" uri="/struts-tags"%>
-	<div id='content'>
+	<div id='content' style="margin-top:5%;">
 		<!-- div id='basic-modal' class="mygrid_post">
 			<input type='button' name='basic' value='Post Advertisement' class='basic'/>
 		</div-->	

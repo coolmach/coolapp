@@ -48,7 +48,7 @@ public class LocationAction extends ActionSupport implements SessionAware, Servl
 		AutoSuggestLocationService service = new AutoSuggestLocationService();
 		List<Location> locationList = null;
 		try{
-			locationList = service.process(dbSession, city, locationStr);
+			locationList = service.getList(dbSession, city, locationStr);
 		}catch(IOException e){
 			e.printStackTrace();
 		}

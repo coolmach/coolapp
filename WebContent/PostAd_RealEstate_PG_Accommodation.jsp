@@ -11,28 +11,19 @@
 	<s:form cssClass="form-horizontal post" action="real_estate_postAd.action" enctype="multipart/form-data">
 		<input type="hidden" name="category" value="REAL"/>
 		<input type="hidden" name="subCategory" value="5"/>
-		<div class="col-md-12 post_title">PG Accommodation</div>
+		<div class="col-md-12 post_title">
+			<div style="float:left;">
+				PG Accommodation
+			</div>
+			<span class="error"><s:fielderror fieldName="errorMsg"/></span>
+		</div>
 	   <div class="col-md-8">
 			<div class="form-group">
-				<label for="title" class="col-sm-4 control-label">Title</label>
+				<label for="title" class="col-sm-4 control-label">Title<span class="mandatory">*</span></label>
 				<div class="col-sm-8">
-					<input type="text" class="form-control" id="Title" name="Title" value="2BHK For Sale">
+					<input type="text" class="form-control" maxlength="200" id="Title" name="Title" value="PG accommodation for girls" required>
 				</div>
 			</div>
-			<%--
-			<div class="form-group">
-				<label for="location" class="col-sm-4 control-label">City</label>
-				<div class="col-sm-6">
-					<input type="text" class="form-control" name="City" id="City" value="BLR">
-				</div>
-			</div>			
-			<div class="form-group">
-				<label for="location" class="col-sm-4 control-label">Location</label>
-				<div class="col-sm-6">
-					<input type="text" class="form-control" name="Location" id="Location" value="46">
-				</div>
-			</div>
-			--%>
 			<%@include file="locationStrip.jsp" %>
 			<div class="form-group">
 				<label for="gender" class="col-sm-4 control-label">Gender</label>
@@ -40,23 +31,30 @@
 					<input type="radio" class="form-control-radio" name="genderPreference" id="genderPreference" value="M"> <span class="form-control-radio-label">Male</span>
 					<input type="radio" class="form-control-radio" name="genderPreference" id="genderPreference" value="F"> <span class="form-control-radio-label">Female</span>
 				</div>
-			</div>			
+			</div>	
 			<div class="form-group">
-				<label for="priceValue" class="col-sm-4 control-label">Rent</label>
+				<label for="gender" class="col-sm-4 control-label">Food</label>
 				<div class="col-sm-6">
-					<input type="text" class="form-control" name="PriceValue" id="PriceValue" value="3000000">
+					<input type="radio" class="form-control-radio" name="food" id="food" value="Y"> <span class="form-control-radio-label">Available</span>
+					<input type="radio" class="form-control-radio" name="food" id="food" value="N"> <span class="form-control-radio-label">Not Available</span>
 				</div>
-			</div>			
+			</div>						
 			<div class="form-group">
-				<label for="floorNumber" class="col-sm-4 control-label">Floor No</label>
-				<div class="col-sm-6">
-					<input type="text" class="form-control" name="FloorNumber" id="FloorNumber" value="G">
+				<label for="priceValue" class="col-sm-4 control-label">Rent<span class="mandatory">*</span></label>
+				<div class="col-sm-3">
+					<input type="text" class="form-control" maxlength="6" name="PriceValue" id="PriceValue" value="7000" required>
+				</div>
+			</div>		
+			<div class="form-group">
+				<label for="floorNumber" class="col-sm-4 control-label">Floor No<span class="mandatory">*</span></label>
+				<div class="col-sm-2">
+					<input type="text" class="form-control" maxlength="2" name="FloorNumber" id="FloorNumber" value="G" required>
 				</div>
 			</div>
 			<div class="form-group">
 				<label for="description" class="col-sm-4 control-label">Remarks</label>
 				<div class="col-sm-8">
-					<textarea class="form-control" rows="3" name="Description" id="Description">Hello tHis is description</textarea>
+					<textarea class="form-control" rows="3" maxlength="256" name="Description" id="Description">Hello tHis is description</textarea>
 				</div>
 			</div>
 			<div class="form-group">
@@ -76,17 +74,17 @@
 			</div>
 			<div class="form-group">
 				<div class="col-sm-8">
-					<label for="" class="col-sm-6 control-label" style="text-align:left;">Contact Details</label>
+					<label for="" class="col-sm-6 control-label" style="text-align:left;">Contact Details<span class="mandatory">*</span></label>
 				</div>
 			</div>
 			<div class="form-group">
 				<div class="col-sm-6">
-					<input type="text" class="form-control" name="ContactPersonName" placeholder="Contact Person Name" value="MGR">
+					<input type="text" class="form-control" maxlength="30" name="ContactPersonName" placeholder="Contact Person Name" value="MGR" required>
 				</div>
 			</div>
 			<div class="form-group">
 				<div class="col-sm-6">
-					<input type="text" class="form-control" name="ContactNo" placeholder="Contact Number" value="77777766666">
+					<input type="text" class="form-control" maxlength="15" name="ContactNo" placeholder="Contact Number" value="77777766666" required>
 				</div>
 			</div>
 			<div class="form-group">

@@ -8,12 +8,12 @@
 		</div>
 	</div>			
 	<div class="form-group">
-		<label for="location" class="col-sm-4 control-label">Location</label>
+		<label for="location" class="col-sm-4 control-label">Location<span class="mandatory">*</span></label>
 		<div class="col-sm-6">
-			<input type="text" class="locationTextBox" placeholder="Enter Area (e.g. JP Nagar)" name="userEnteredLocationStr" id="userEnteredLocationStr">
+			<input type="text" class="locationTextBox" placeholder="Enter Area (e.g. JP Nagar)" name="userEnteredLocationStr" id="userEnteredLocationStr" required>
 		</div>
 	</div>
-	
+	<input type="hidden" name="selectedCityCode" id="selectedCityCode">
 	<input type="hidden" name="selectedLocationCode" id="selectedLocationCode">
 	<input type="hidden" name="selectedLocationStr" id="selectedLocationStr">
 	<input type="hidden" id="contextPath" value='<%=request.getContextPath()%>' />

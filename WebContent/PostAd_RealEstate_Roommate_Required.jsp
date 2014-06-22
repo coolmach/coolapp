@@ -11,60 +11,49 @@
 	<s:form cssClass="form-horizontal post" action="real_estate_postAd.action" enctype="multipart/form-data">
 		<input type="hidden" name="category" value="REAL"/>
 		<input type="hidden" name="subCategory" value="7"/>
-		<div class="col-md-12 post_title">Roommate Required</div>
+		<div class="col-md-12 post_title">
+			<div style="float:left;">
+				Roommate Required
+			</div>
+			<span class="error"><s:fielderror fieldName="errorMsg"/></span>
+		</div>
 	   <div class="col-md-8">
 			<div class="form-group">
-				<label for="title" class="col-sm-4 control-label">Title</label>
+				<label for="title" class="col-sm-4 control-label">Title<span class="mandatory">*</span></label>
 				<div class="col-sm-8">
-					<input type="text" class="form-control" id="Title" name="Title" value="2BHK For Sale">
+					<input type="text" class="form-control" maxlength="200" id="Title" name="Title" value="Looking for a roommate" required>
 				</div>
 			</div>
-			<%--
-			<div class="form-group">
-				<label for="location" class="col-sm-4 control-label">City</label>
-				<div class="col-sm-6">
-					<input type="text" class="form-control" name="City" id="City" value="BLR">
-				</div>
-			</div>			
-			<div class="form-group">
-				<label for="location" class="col-sm-4 control-label">Location</label>
-				<div class="col-sm-6">
-					<input type="text" class="form-control" name="Location" id="Location" value="46">
-				</div>
-			</div>
-			--%>
 			<%@include file="locationStrip.jsp" %>
 			<div class="form-group">
 				<label for="gender" class="col-sm-4 control-label">Gender</label>
 				<div class="col-sm-6">
-					<input type="radio" class="form-control-radio" name="genderPreference" id="genderPreference" value="M"> <span class="form-control-radio-label">Male</span>
+					<input type="radio" class="form-control-radio" name="genderPreference" id="genderPreference" value="M" checked> <span class="form-control-radio-label">Male</span>
 					<input type="radio" class="form-control-radio" name="genderPreference" id="genderPreference" value="F"> <span class="form-control-radio-label">Female</span>
 				</div>
 			</div>
 			<div class="form-group">
-				<label for="area" class="col-sm-4 control-label">Total Area (sq. ft)</label>
-				<div class="col-sm-6">
-					<input type="text" class="form-control" name="Area" id="Area" value="1200"> 
+				<label for="area" class="col-sm-4 control-label">Total Area (sq. ft)<span class="mandatory">*</span></label>
+				<div class="col-sm-3">
+					<input type="text" class="form-control" maxlength="5" name="Area" id="Area" value="1200" required> 
 				</div>
-			</div>
-			<div class="form-group">
-				<label for="bedrooms" class="col-sm-4 control-label">Bedrooms</label>
-				<div class="col-sm-6">
-					<input type="text" class="form-control" name="Bedrooms" id="Bedrooms" value="2">
-				</div>
+				<label for="Bedrooms" class="col-sm-3 control-label">Bedrooms<span class="mandatory">*</span></label>
+				<div class="col-sm-2">
+					<input type="text" class="form-control" maxlength="1" name="Bedrooms" id="Bedrooms" value="2" required>
+				</div>	
 			</div>			
 			<div class="form-group">
 				<label for="noOfRoommates" class="col-sm-4 control-label">Number of Occupants</label>
-				<div class="col-sm-6">
-					<input type="text" class="form-control" name="noOfRoommates" id="noOfRoommates" value="3">
+				<div class="col-sm-3">
+					<input type="text" class="form-control" maxlength="1" name="noOfRoommates" id="noOfRoommates" value="3">
 				</div>
 			</div>
 			<div class="form-group">
-				<label for="priceValue" class="col-sm-4 control-label">Rent per person</label>
-				<div class="col-sm-6">
-					<input type="text" class="form-control" name="PriceValue" id="PriceValue" value="3000000">
+				<label for="priceValue" class="col-sm-4 control-label">Rent per person<span class="mandatory">*</span></label>
+				<div class="col-sm-3">
+					<input type="text" class="form-control" maxlength="6" name="PriceValue" id="PriceValue" value="20000" required>
 				</div>
-			</div>			
+			</div>		
 			<div class="form-group">
 				<label for="regionalPreference" class="col-sm-4 control-label">Regional Preference</label>
 				<div class="col-sm-6" style="padding-top:6px;">
@@ -84,7 +73,7 @@
 			<div class="form-group">
 				<label for="description" class="col-sm-4 control-label">Remarks</label>
 				<div class="col-sm-8">
-					<textarea class="form-control" rows="3" name="Description" id="Description">Hello tHis is description</textarea>
+					<textarea class="form-control" maxlength="256" rows="3" name="Description" id="Description">Hello this is description</textarea>
 				</div>
 			</div>
 			<div class="form-group">
@@ -104,17 +93,17 @@
 			</div>
 			<div class="form-group">
 				<div class="col-sm-8">
-					<label for="" class="col-sm-6 control-label" style="text-align:left;">Contact Details</label>
+					<label for="" class="col-sm-6 control-label" style="text-align:left;">Contact Details<span class="mandatory">*</span></label>
 				</div>
 			</div>
 			<div class="form-group">
 				<div class="col-sm-6">
-					<input type="text" class="form-control" name="ContactPersonName" placeholder="Contact Person Name" value="MGR">
+					<input type="text" class="form-control" maxlength="30" name="ContactPersonName" placeholder="Contact Person Name" value="MGR" required>
 				</div>
 			</div>
 			<div class="form-group">
 				<div class="col-sm-6">
-					<input type="text" class="form-control" name="ContactNo" placeholder="Contact Number" value="77777766666">
+					<input type="text" class="form-control" maxlength="15" name="ContactNo" placeholder="Contact Number" value="77777766666" required>
 				</div>
 			</div>
 			<div class="form-group">

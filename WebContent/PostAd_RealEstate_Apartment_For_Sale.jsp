@@ -34,28 +34,19 @@
 	<s:form cssClass="form-horizontal post" action="real_estate_postAd.action" enctype="multipart/form-data">
 		<input type="hidden" name="category" value="REAL"/>
 		<input type="hidden" name="subCategory" value="1"/>
-		<div class="col-md-12 post_title">Apartment for Sale</div>
+		<div class="col-md-12 post_title">
+			<div style="float:left;">
+				Apartment for Sale
+			</div>
+			<span class="error"><s:fielderror fieldName="errorMsg"/></span>
+		</div>
 	   <div class="col-md-8">
 			<div class="form-group">
-				<label for="title" class="col-sm-4 control-label">Title</label>
+				<label for="title" class="col-sm-4 control-label">Title<span class="mandatory">*</span></label>
 				<div class="col-sm-8">
-					<input type="text" class="form-control" id="Title" name="Title" value="2BHK For Sale">
+					<input type="text" class="form-control" maxlength="200" id="Title" name="Title" value="2BHK For Sale" required>
 				</div>
 			</div>
-			<%--
-			<div class="form-group">
-				<label for="location" class="col-sm-4 control-label">City</label>
-				<div class="col-sm-6">
-					<input type="text" class="form-control" name="City" id="City" value="BLR">
-				</div>
-			</div>			
-			<div class="form-group">
-				<label for="location" class="col-sm-4 control-label">Location</label>
-				<div class="col-sm-6">
-					<input type="text" class="form-control" name="Location" id="Location" value="46">
-				</div>
-			</div>
-			--%>
 			<%@include file="locationStrip.jsp" %>
 			<div class="form-group">
 				<label for="rent" class="col-sm-4 control-label">New/Re-sale</label>
@@ -74,42 +65,34 @@
 			<div class="form-group" id="ageBlock" style="display:none;">
 				<label for="ageValue" class="col-sm-4 control-label">&nbsp;</label>
 				<div class="col-sm-6">
-					<input type="text" class="form-control" name="AgeValue" id="AgeValue" placeholder="Age (in years)">
+					<input type="text" class="form-control" maxlength="2" name="AgeValue" id="AgeValue" placeholder="Age (in years)">
 				</div>
 			</div>
 			<div class="form-group" id="completionDateBlock" style="display:none;">
 				<label for="expectedCompletionDate" class="col-sm-4 control-label">&nbsp;</label>
 				<div class="col-sm-6"> 
-					<input type="text" class="form-control" name="ExpectedCompletionDate" id="ExpectedCompletionDate" placeholder="Expected Completion Date">
+					<input type="text" class="form-control" maxlength="12" name="ExpectedCompletionDate" id="ExpectedCompletionDate" placeholder="Expected Completion Date">
 				</div>
 			</div>
 			<div class="form-group">
-				<label for="area" class="col-sm-4 control-label">Total Area (sq. ft)</label>
-				<div class="col-sm-6">
-					<input type="text" class="form-control" name="Area" id="Area" value="1200"> 
+				<label for="area" class="col-sm-4 control-label">Total Area (sq. ft)<span class="mandatory">*</span></label>
+				<div class="col-sm-3">
+					<input type="text" class="form-control" maxlength="5" name="Area" id="Area" value="1200" required> 
+				</div>
+				<label for="bedrooms" class="col-sm-3 control-label">Bedrooms<span class="mandatory">*</span></label>
+				<div class="col-sm-2">
+					<input type="text" class="form-control" maxlength="1" name="Bedrooms" id="Bedrooms" value="2" required>
 				</div>
 			</div>
 			<div class="form-group">
-				<label for="bedrooms" class="col-sm-4 control-label">Bedrooms</label>
+				<label for="priceValue" class="col-sm-4 control-label">Price<span class="mandatory">*</span></label>
 				<div class="col-sm-6">
-					<input type="text" class="form-control" name="Bedrooms" id="Bedrooms" value="2">
-				</div>
-			</div>
-			<div class="form-group">
-				<label for="floorNumber" class="col-sm-4 control-label">Floor No</label>
-				<div class="col-sm-6">
-					<input type="text" class="form-control" name="FloorNumber" id="FloorNumber" value="G">
-				</div>
-			</div>
-			<div class="form-group">
-				<label for="priceValue" class="col-sm-4 control-label">Price</label>
-				<div class="col-sm-6">
-					<input type="text" class="form-control" name="PriceValue" id="PriceValue" value="3000000">
+					<input type="text" class="form-control" maxlength="9" name="PriceValue" id="PriceValue" value="3000000" required>
 				</div>
 			</div>
 			<div class="form-group">
 				<label for="facingDirection" class="col-sm-4 control-label">Facing Direction</label>
-				<div class="col-sm-6" style="padding-top:6px;">
+				<div class="col-sm-2" style="padding-top:6px;">
 					<select class="dropDown" name="FacingDirection" id="FacingDirection">
 						<option value="N">North</option>
 						<option value="S">South</option>
@@ -117,23 +100,27 @@
 						<option value="W">West</option>
 					</select>
 				</div>
-			</div>		
+				<label for="floorNumber" class="col-sm-4 control-label">Floor No<span class="mandatory">*</span></label>
+				<div class="col-sm-2">
+					<input type="text" class="form-control" maxlength="2" name="FloorNumber" id="FloorNumber" value="G" required>
+				</div>
+			</div>			
 			<div class="form-group">
 				<label for="approvalAuthority" class="col-sm-4 control-label">Approval Authority</label>
 				<div class="col-sm-6">
-					<input type="text" class="form-control" name="ApprovalAuthority" id="ApprovalAuthority" value="BDA">
+					<input type="text" class="form-control" maxlength="30" name="ApprovalAuthority" id="ApprovalAuthority" value="BDA">
 				</div>
 			</div>
 			<div class="form-group">
 				<label for="builderName" class="col-sm-4 control-label">Builder Name</label>
 				<div class="col-sm-6">
-					<input type="text" class="form-control" name="BuilderName" id="BuilderName" value="MGR">
+					<input type="text" class="form-control" maxlength="50" name="BuilderName" id="BuilderName" value="MGR">
 				</div>
 			</div>
 			<div class="form-group">
 				<label for="description" class="col-sm-4 control-label">Remarks</label>
 				<div class="col-sm-8">
-					<textarea class="form-control" rows="3" name="Description" id="Description">Hello tHis is description</textarea>
+					<textarea class="form-control" rows="3" maxlength="256" name="Description" id="Description">Hello tHis is description</textarea>
 				</div>
 			</div>
 			<div class="form-group">
@@ -153,17 +140,17 @@
 			</div>
 			<div class="form-group">
 				<div class="col-sm-8">
-					<label for="" class="col-sm-6 control-label" style="text-align:left;">Contact Details</label>
+					<label for="" class="col-sm-6 control-label" style="text-align:left;">Contact Details<span class="mandatory">*</span></label>
 				</div>
 			</div>
 			<div class="form-group">
 				<div class="col-sm-6">
-					<input type="text" class="form-control" name="ContactPersonName" placeholder="Contact Person Name" value="MGR">
+					<input type="text" class="form-control" maxlength="30" name="ContactPersonName" placeholder="Contact Person Name" value="MGR" required>
 				</div>
 			</div>
 			<div class="form-group">
 				<div class="col-sm-6">
-					<input type="text" class="form-control" name="ContactNo" placeholder="Contact Number" value="77777766666">
+					<input type="text" class="form-control" maxlength="15" name="ContactNo" placeholder="Contact Number" value="77777766666" required>
 				</div>
 			</div>
 			<div class="form-group">
