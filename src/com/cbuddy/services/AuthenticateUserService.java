@@ -54,6 +54,7 @@ public class AuthenticateUserService {
 		
 		User user = new User();
 		user.setUserId(ucred.getUserId());
+		System.out.println(uprof.getFirstName());
 		user.setFirstName(uprof.getFirstName());
 		user.setMobileNo(ucred.getMobileNo());
 		user.setEmailId(ucred.getCorpEmailId());

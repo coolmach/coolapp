@@ -7,21 +7,26 @@
 				<div class="panel-heading">
 					<strong>Login</strong>
 				</div>
+				
+				<s:if test="isLoginErrorExists =='true'">
+				<div class="col-md-12 " id="loginBox"><s:fielderror /> </div>
+				</s:if>
+				
 				<div class="panel-body">
-					<form class="form-horizontal" role="form">
+					<s:form cssClass="form-horizontal" role="form" action="login">
 						<div class="form-group">
-							<label for="inputEmail3" class="col-sm-3 control-label">
+							<label for="CorpEmailId" class="col-sm-3 control-label">
 								Email</label>
 							<div class="col-sm-9">
-								<input class="form-control" id="inputEmail3" placeholder="Email"
+								<input class="form-control" id="username" name="username" placeholder="Email"
 									required="" type="email">
 							</div>
 						</div>
 						<div class="form-group">
-							<label for="inputPassword3" class="col-sm-3 control-label">
+							<label for="Pwd" class="col-sm-3 control-label">
 								Password</label>
 							<div class="col-sm-9">
-								<input class="form-control" id="inputPassword3"
+								<input class="form-control" id="password" name="password"
 									placeholder="Password" required="" type="password">
 							</div>
 						</div>
@@ -40,7 +45,7 @@
 									Reset</button>
 							</div>
 						</div>
-					</form>
+					</s:form>
 				</div>
 				<!-- <div class="panel-footer">
 					Not Registered? <a href="#">Register here</a>
@@ -49,7 +54,10 @@
 		</div>
 
 		<div class="col-md-5 " id="registerForm" style="border-left:1px solid #eeeeee">
-		<div class="col-md-12 " id="divCheckPasswordMatch"><s:fielderror /> </div>
+		<s:if test="isSignUpErrorExists =='true'">
+		<div class="col-md-12 " id="signUpBox"><s:fielderror /> </div>
+		</s:if>
+		<div class="col-md-12 " id="divCheckPasswordMatch"> </div>
 		<div class="col-md-12 ">
 			<s:form cssClass="form-horizontal" role="form" id="registration" method='post'
 				action="signup" theme="simple">
@@ -100,6 +108,7 @@
 						<label class="col-sm-3 control-label"></label>
 						<div class="col-sm-9">
 							<button id="btnSignUp" type="submit" class="btn btn-success">Submit</button>
+							<button type="reset" class="btn btn-default btn-sm">Reset</button>
 						</div>
 					</div>
 				</fieldset>

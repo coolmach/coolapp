@@ -12,16 +12,18 @@ public class LogOutAction extends ActionSupport implements SessionAware{
 
 	@Override
 	public void setSession(Map<String, Object> session) {
-	this.session=session;
-		
+		this.session=session;
+
 	}
-	
+
 	public String logout()  {
-	      System.out.println("LogOutAction.logout()");
-	      clearFieldErrors();
-	      session.remove("userInfo");
-	   
-	      return "success";
-		}
+		
+		clearFieldErrors();
+		session.remove("userInfo");
+		session.remove("userLoggedIn");
+		session.remove("username");
+
+		return "success";
+	}
 
 }
