@@ -45,10 +45,13 @@
 		     <result name="success" type="tiles">/home.tiles</result>
 		</action>
 		<action name="login" class="com.cbuddy.action.user.LoginAction">
-			<result name="success" type="tiles">/postad.tiles</result>
-			<result name="input" type="tiles">/home.tiles</result>
+			<result name="success" type="tiles">/userdashboard.tiles</result>
+			<result name="input" type="tiles">/login.tiles</result>
 		</action>	
-		
+		<action name="logout" class="com.cbuddy.action.user.LogOutAction" method="logout"> 
+			<result name="success" type="tiles">/home.tiles</result> 
+			<result name="input" type="tiles">/home.tiles</result> 
+		</action> 
 		
 		<!-- REAL_ESTATE - START -->
 		<action name="realestate" class="com.cbuddy.action.posts.RealEstateAction" method="getAdListForRealEstate">
@@ -104,10 +107,6 @@
 			<result name="input">/login_Retry_Modal_Window.jsp</result>
 			<result name="success">/postAdCategories_Section.jsp</result>
 		</action>
-		<action name="logout" class="com.cbuddy.action.user.LogOutAction" method="logout"> 
-			<result name="success" type="tiles">/home.tiles</result> 
-			<result name="input" type="tiles">/home.tiles</result> 
-		</action> 
 		<action name="ImageAction" class="com.cbuddy.action.posts.ImageAction">
 			<result name="success" type="imageResult"></result>
 		</action>

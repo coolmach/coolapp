@@ -17,7 +17,7 @@
 
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse navbar-right navbar-main-collapse" style="width:600px;">
-                <ul class="nav navbar-nav" style="float:right;">
+                <ul class="nav navbar-nav" >
                     <!-- Hidden li included to remove active class from about link when scrolled up past about section -->
                     <li class="hidden">
                         <a href="#page-top"></a>
@@ -29,13 +29,20 @@
                     <li class="page-scroll">
                         <a href="#contact">Contact</a>
                     </li>
-                   
+                   <s:if test="%{#session.userLoggedIn == null}">
                      <li class="page-scroll">
                     <a  href="<s:url action="mylogin"/>"> Login</a> 
                     </li>
+                    </s:if>
                 </ul>
-               <!--  <div class="pull-right"> <b id="myuser"> </b><br/><a id="nav_user" href="/Cool/logout.action">logout</a> </div> -->
+
+                <s:if test="%{#session.userLoggedIn != null}">
+                <s:url action="logout" var="logoutTag">
+                </s:url>
+                  <div class="pull-right"> <b id="myuser" style="color:#ffffff;">Welcome <s:property value="%{#session.username}"/> |  </b> <a id="nav_user" href="<s:property value="#logoutTag" />">logout</a> </div>
+           </s:if>
             </div>
+            
             <!-- /.navbar-collapse -->
             
         </div>

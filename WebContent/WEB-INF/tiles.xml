@@ -59,4 +59,8 @@
         <put-attribute name="title" value="Automobiles" />
         <put-attribute name="body" value="/Automobile.jsp" />
     </definition>    
+     <definition name="/userdashboard.tiles" extends="baseLayout">
+        <put-attribute name="title" value="My Dashboard" />
+        <put-attribute name="body" value="/MyDashBoard.jsp" />
+    </definition>
 </tiles-definitions>

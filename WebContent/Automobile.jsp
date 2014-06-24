@@ -24,20 +24,20 @@
 				</div>
 				<div id="subCategory_hidden_make" class="subCategory_hidden_bck" style="display: none;">
 					<ul class="list-unstyled">
-						<li><input type="checkbox" class="check_make" name="make" value="MAR"<span class="content">Maruti Suzuki</span></li>
-						<li><input type="checkbox" class="check_make" name="make" value="HYU"<span class="content">Ford</span></li>
-						<li><input type="checkbox" class="check_make" name="make" value="FORD"<span class="content">Fiat</span></li>
-						<li><input type="checkbox" class="check_make" name="make" value="HON"<span class="content">Honda</span></li>
-						<li><input type="checkbox" class="check_make" name="make" value="HYU"<span class="content">Hyundai</span></li>
-						<li><input type="checkbox" class="check_make" name="make" value="MAH"<span class="content">Mahindra</span></li>
-						<li><input type="checkbox" class="check_make" name="make" value="CHE"<span class="content">Chevrolet</span></li>
-						<li><input type="checkbox" class="check_make" name="make" value="NIS"<span class="content">Nissan</span></li>
-						<li><input type="checkbox" class="check_make" name="make" value="REN"<span class="content">Renault</span></li>
-						<li><input type="checkbox" class="check_make" name="make" value="SKO"<span class="content">Skoda</span></li>
-						<li><input type="checkbox" class="check_make" name="make" value="TATA"<span class="content">Tata</span></li>
-						<li><input type="checkbox" class="check_make" name="make" value="TOY"<span class="content">Toyota</span></li>
-						<li><input type="checkbox" class="check_make" name="make" value="VOL"<span class="content">Volkswagen</span></li>
-						<li><input type="checkbox" class="check_make" name="make" value="OTH"<span class="content">Others</span></li>
+						<li><input type="checkbox" class="check_make" name="make" value="MAR"/><span class="content">Maruti Suzuki</span></li>
+						<li><input type="checkbox" class="check_make" name="make" value="HYU"/><span class="content">Ford</span></li>
+						<li><input type="checkbox" class="check_make" name="make" value="FORD"/><span class="content">Fiat</span></li>
+						<li><input type="checkbox" class="check_make" name="make" value="HON"/><span class="content">Honda</span></li>
+						<li><input type="checkbox" class="check_make" name="make" value="HYU"/><span class="content">Hyundai</span></li>
+						<li><input type="checkbox" class="check_make" name="make" value="MAH"/><span class="content">Mahindra</span></li>
+						<li><input type="checkbox" class="check_make" name="make" value="CHE"/><span class="content">Chevrolet</span></li>
+						<li><input type="checkbox" class="check_make" name="make" value="NIS"/><span class="content">Nissan</span></li>
+						<li><input type="checkbox" class="check_make" name="make" value="REN"/><span class="content">Renault</span></li>
+						<li><input type="checkbox" class="check_make" name="make" value="SKO"/><span class="content">Skoda</span></li>
+						<li><input type="checkbox" class="check_make" name="make" value="TATA"/><span class="content">Tata</span></li>
+						<li><input type="checkbox" class="check_make" name="make" value="TOY"/><span class="content">Toyota</span></li>
+						<li><input type="checkbox" class="check_make" name="make" value="VOL"/><span class="content">Volkswagen</span></li>
+						<li><input type="checkbox" class="check_make" name="make" value="OTH"/><span class="content">Others</span></li>
 					</ul>
 					<a href="#" class="clear blue_link">clear filters</a>
 				</div>
