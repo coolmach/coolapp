@@ -1,12 +1,13 @@
 $(document).ready(function() {
 
-	var ctxPath = $('#context_path').text();
+	var ctxPath = $('#context_path').val().trim();
 	var subCat = "";
 	var path="";
 	var cat = $('#cat').text();
+	$('#clear_all_f').hide();
 
 	if(cat == 'REAL'){
-		path="realestateFilter";
+		path="/realestateFilter";
 		// shows default filters for SUBCATEGORY_REAL_ESTATE_APARTMENT_FOR_SALE
 		$("#loc-main").show();
 		$("#bhk-main").show();
@@ -17,7 +18,7 @@ $(document).ready(function() {
 		$("#amenities-main").show();
 
 	}else if(cat == 'AUTO'){
-		path="automobileFilter";
+		path="/automobileFilter";
 		$("#make-main").show();
 		$("#loc-main").show();
 		$("#amt-main").show();
@@ -49,6 +50,42 @@ $(document).ready(function() {
 	}else if(cat == 'DVD'){
 		path="books";
 	}
+
+
+	$('#clear_all_f').click(function(event){
+	   
+		subCat = $('#sub').text();
+		cat = $('#cat').text();
+		var data="";
+		var child = event.target;
+		var id = child.id;
+		var text = $(this).find('#'+id);
+		data = data + '&subCategory='+subCat+'&category='+cat;
+
+		$("input[class^=check_]:checked").each(function(){
+				$(this).attr("checked",false);
+		});
+
+		$.ajax({
+			type: 'POST',
+			url: ctxPath+path, 
+			data: data,
+			success: function(data, status) {
+				$('.data').html('');
+				$('.data').html(data);
+
+			}
+		});
+
+		$(".filters").remove();
+
+		if($("#filterValueBar").text() == ""){
+			$("#filterValueBar").hide();
+		}
+		
+		$(this).hide();
+
+	});
 
 	//if user click to cancel a selected filter
 	$('.selected_filters').bind('click', function(event) {
@@ -88,60 +125,29 @@ $(document).ready(function() {
 
 	});
 
-	//if user clicks on checkboxes
-	$('input[class^=check_]').click(function(event) {
-		subCat = $('#sub').text();
-		cat = $('#cat').text();
-		$("#filterValueBar").show();
-
-		var data="";
-		data = data + '&subCategory='+subCat+'&category='+cat;
-		var str="";
-		$("input[class^=check_]:checked").each(function()
-				{		 
-			var sub = $(this).attr('name');
-			data = data + '&'+sub+'='+$(this).val();
-			var check = $(this).parent().children('span.content').text();
-			var div_Id = check.replace(/\s+/g, '').replace(/[^a-z0-9\s]/gi, '').replace(/[_\s]/g, '-');
-			str = str+'<div style="margin-left:12px;" class="pull-left filters" id="'+div_Id+'">'+check+'<span style="margin-left:4px;" class="glyphicon glyphicon-remove form-control-show"id="'+div_Id+'">'+'</span>'+'</div >';
-				});
-
-		$('.selected_filters').html(str);
-
-		if($("#filterValueBar").text() == ""){
-			$("#filterValueBar").hide();
-		}
-
-		$.ajax({
-			type: 'POST',
-			url: ctxPath+path, 
-			data: data,
-			success: function(data, status) {
-				$('.data').html('');
-				$('.data').html(data);
-
-			}
-		});
-
-	});
+	
 
 	//if user clicks on subcaregory
 	var lastVal="";
 	$("#sub-main li").click(function(){
+
 		subCat = $('#sub').text();
 		cat = $('#cat').text();
 		var defaultSubCat = $(this).parent().children().first('.content').text();
 
 		if(lastVal!=$(this).text() ){
 
-			if(lastVal!=""){
-				$('.filters').remove();
-				//}
-				$("input[class^=check_]:checked").each(function()
-						{	
-					$(this).attr("checked",false);
-						});
+			//if(lastVal!=""){
+			$('.filters').remove();
+			if($("#filterValueBar").text() == ""){
+				$("#filterValueBar").hide();
 			}
+			//}
+			$("input[class^=check_]:checked").each(function()
+					{	
+				$(this).attr("checked",false);
+					});
+			//}
 			lastVal = $(this).text();
 		}
 
@@ -149,6 +155,7 @@ $(document).ready(function() {
 		subCat = $(this).val();
 		var data = "";
 		var data = data + '&subCategory='+subCat+'&category='+cat;
+		
 		$.ajax({
 			type: 'POST',
 			url: ctxPath+path, 
@@ -320,6 +327,44 @@ $(document).ready(function() {
 			}
 		}
 	});
+	
+	//if user clicks on checkboxes
+	$('input[class^=check_]').click(function(event) {
+		$('#clear_all_f').show();
+		subCat = $('#sub').text();
+		cat = $('#cat').text();
+		$("#filterValueBar").show();
+
+		var data="";
+		data = data + '&subCategory='+subCat+'&category='+cat;
+		var str="";
+		$("input[class^=check_]:checked").each(function()
+				{		 
+			var sub = $(this).attr('name');
+			data = data + '&'+sub+'='+$(this).val();
+			var check = $(this).parent().children('span.content').text();
+			var div_Id = check.replace(/\s+/g, '').replace(/[^a-z0-9\s]/gi, '').replace(/[_\s]/g, '-');
+			str = str+'<div style="margin-left:12px;" class="pull-left filters" id="'+div_Id+'">'+check+'<span style="margin-left:4px;" class="glyphicon glyphicon-remove form-control-show"id="'+div_Id+'">'+'</span>'+'</div >';
+				});
+
+		$('.selected_filters').html(str);
+
+		if($("#filterValueBar").text() == ""){
+			$("#filterValueBar").hide();
+		}
+
+		$.ajax({
+			type: 'POST',
+			url: ctxPath+path, 
+			data: data,
+			success: function(data, status) {
+				$('.data').html('');
+				$('.data').html(data);
+
+			}
+		});
+
+	});
 
 	//if hover on any filters category shown([id*=-main] pattern where it ends with -main)
 	$("div[id*=-main]").hover(function(){
@@ -350,8 +395,8 @@ $(document).ready(function() {
 
 		if (password != confirmPassword)
 		{  $("#divCheckPasswordMatch").html("<span style='font-weight:bold;color:red'>Passwords do not match!</span>");
-		   $("#btnSignUp").attr("disabled", "disabled");
-		   
+		$("#btnSignUp").attr("disabled", "disabled");
+
 		}else{
 			$("#divCheckPasswordMatch").html("<span style='font-weight:bold;color:green'>Passwords match.</span>");
 			$("#btnSignUp").removeAttr('disabled');
