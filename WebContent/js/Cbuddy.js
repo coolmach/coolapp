@@ -108,6 +108,12 @@ $(document).ready(function() {
 
 		$('.selected_filters').html(str);
 
+		data = data + "&city=" + $("input[name=city]:checked", "#cityForm").val();
+
+		if($("#corpId").val() != "" && data.indexOf("corpId", 0)<0){
+			data = data + "&corpId=" + $("#corpId").val();
+		}
+		
 		if($("#filterValueBar").text() == ""){
 			$("#filterValueBar").hide();
 		}

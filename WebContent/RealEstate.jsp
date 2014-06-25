@@ -489,7 +489,7 @@
 				<input type="checkbox" class="checkBox" name="location" id="location" value="23"><span class="radioCaption">Electronics City</span>
 			</div>
 			<div id="clearSection">
-				<a class="smallLink" onClick="resetLocationFilter()">Clear Filter</a>
+				<a class="smallLink_Yellow" onClick="resetLocationFilter()">Clear Filter</a>
 			</div>
 		</div>
 		<div id="horizontalSeparator">
@@ -512,12 +512,23 @@
 			</div>
 		</div>
 	</div>
+
 	<div id="companySearchBar">
 		<input type="text" class="locationTextBox" placeholder="Enter Company (e.g. Infosys)" name="corpSearchString" id="corpSearchString">
-		<input type="hidden" name="corpId" id="corpId">
-		<img class="searchIcon" src="images/search_orange_resized.png">	
+		<img class="searchIcon" src="images/search_orange_resized.png">
+	</div>	
+	<div id="selectedCorporateDetails" style="display:none;">
+		<div id="corporateListBar">
+			<div id="corporateResultSection">
+				<!--div id="corpCheckBoxSection" class="checkboxColumn"><input type="checkbox" class="check_corpId checkbox" name="corpId" id="corpId" value="${selectedCorporate.name}"></div-->
+				<input type="hidden" name="corpId" id="corpId">
+				<div id="corpNameSection" class=""><span class="radioCaptionWithoutSpace">${selectedCorporate.value}</span></div>
+			</div>
+			<div id="clearSection">
+				<a class="smallLink_Yellow" onClick="resetCorporateFilter()">Clear Filter</a>
+			</div>
+		</div>
 	</div>
-			
 </div>
 
 <script>
@@ -580,21 +591,23 @@
 	});
 </script>
 
-
 <script>
 	$(document).ready(function(){
 		$("#corpSearchString").autocomplete({
 		    source: function(request, response) {
 			    $.ajax({
+				    //url: "http://localhost:8080/Virat/getLocation?city=BLR",
+				    //url:$('#context_path').text() + "/getLocation",
 				    url:"/Virat" + "/autoSuggestCorp",
 				    type: "POST",
 				    dataType: "json",
+				    //data: {location:$("#locSearch").val()},
 				    data: {corpSearchString:$("#corpSearchString").val()},
 				    success: function(data) {
 				        response( $.map(data, function(item) {
 					        return {
-					            value: item.id,
 					            label: item.description,
+					            value: item.id,
 					        };
 				        }));
 				    },
@@ -605,8 +618,13 @@
 			},
 			select:function(event, ui){
 				event.preventDefault();
-				$("#corpId").val(ui.item.value);
 				$("#corpSearchString").val(ui.item.label);
+				//content = "<div id='corpCheckBoxSection' class='checkboxColumn'><input type='checkbox' class='check_corpId checkbox' name='corpId' id='corpId' value='" + ui.item.value + "'></div>";
+				//$("#corpCheckBoxSection").html(content);
+				content = "<div id='corpNameSection' class='checkboxCaptionColumn'><span class='radioCaptionWithoutSpace'>" + ui.item.label + "</span></div>";
+				$("#corpNameSection").html(content);
+				$("#selectedCorporateDetails").show();
+				$("#corpId").val(ui.item.value);
 				applyFilters();
 			},
 		    minLength: 2
@@ -635,10 +653,12 @@ function applyFilters(){
 	$('.selected_filters').html(str);
 
 	data = data + "&city=" + $("input[name=city]:checked", "#cityForm").val();
-	if($("#corpId").val() != ""){
-		data = data + "&corpId=" + $("#corpId").val();
-	}
-	
+
+		if($("#corpId").val() != "" && data.indexOf("corpId", 0)<0){
+			data = data + "&corpId=" + $("#corpId").val();
+		}
+
+
 	if($("#filterValueBar").text() == ""){
 		$("#filterValueBar").hide();
 	}
@@ -658,7 +678,7 @@ function applyFilters(){
 
 <script>
 //if user clicks on Clear Filter in Location bar in Ad List page
-function resetLocationFilter(event) {
+function resetLocationFilter() {
 	
 	//$("#filterValueBar").show();
 	$('input[class^=check_location]').attr("checked", false);
@@ -674,5 +694,23 @@ function resetLocationFilter(event) {
 	$("#locationListBar").html("");
 	$("#horizontalSeparator").html("");
 	$("#neighborhoodLocationBar").html("");
+}
+
+function resetCorporateFilter() {
+	
+	//$("#filterValueBar").show();
+	//$('input[class^=check_corpId]').attr("checked", false);
+	$("#corpId").val("");
+	
+	var ctxPath = $('#context_path').text();
+	var path = "realestateFilter";
+	
+	subCat = $('#sub').text();
+	cat = $('#cat').text();
+	
+	applyFilters();	
+
+	$("#corpSearchString").val("");
+	$("#selectedCorporateDetails").hide();
 }
 </script>
