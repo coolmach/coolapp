@@ -7,26 +7,21 @@
 				<div class="panel-heading">
 					<strong>Login</strong>
 				</div>
-				
-				<s:if test="isLoginErrorExists =='true'">
-				<div class="col-md-12 " id="loginBox"><s:fielderror /> </div>
-				</s:if>
-				
 				<div class="panel-body">
-					<s:form cssClass="form-horizontal" role="form" action="login">
+					<form class="form-horizontal" role="form">
 						<div class="form-group">
-							<label for="CorpEmailId" class="col-sm-3 control-label">
+							<label for="inputEmail3" class="col-sm-3 control-label">
 								Email</label>
 							<div class="col-sm-9">
-								<input class="form-control" id="username" name="username" placeholder="Email"
+								<input class="form-control" id="inputEmail3" placeholder="Email"
 									required="" type="email">
 							</div>
 						</div>
 						<div class="form-group">
-							<label for="Pwd" class="col-sm-3 control-label">
+							<label for="inputPassword3" class="col-sm-3 control-label">
 								Password</label>
 							<div class="col-sm-9">
-								<input class="form-control" id="password" name="password"
+								<input class="form-control" id="inputPassword3"
 									placeholder="Password" required="" type="password">
 							</div>
 						</div>
@@ -45,7 +40,7 @@
 									Reset</button>
 							</div>
 						</div>
-					</s:form>
+					</form>
 				</div>
 				<!-- <div class="panel-footer">
 					Not Registered? <a href="#">Register here</a>
@@ -53,15 +48,8 @@
 			</div>
 		</div>
 
-<<<<<<< HEAD
 		<div class="col-md-5 " id="registerForm" style="border-left:1px solid #eeeeee;margin-left:20px;">
 		<div class="col-md-12 " id="divCheckPasswordMatch"><s:fielderror /> </div>
-=======
-		<div class="col-md-5 " id="registerForm" style="border-left:1px solid #eeeeee">
-		<s:if test="isSignUpErrorExists =='true'">
-		<div class="col-md-12 " id="signUpBox"><s:fielderror /> </div>
-		</s:if>
-		<div class="col-md-12 " id="divCheckPasswordMatch"> </div>
 		<div class="col-md-12 ">
 			<s:form cssClass="form-horizontal" role="form" id="registration" method='post'
 				action="signup" theme="simple">
@@ -78,7 +66,6 @@
 						<div class="col-sm-8">
 							<input class="form-control" id="corpName" name="corpName" placeholder="Company Name" required>
 							<input type="hidden" name="corpId" id="corpId">
-							<input type="hidden" name="selectedCompanyName" id="selectedCompanyName">
 						</div>
 					</div>
 					<div class="form-group">
@@ -120,7 +107,6 @@
 						<label class="col-sm-4 control-label"></label>
 						<div class="col-sm-8">
 							<button id="btnSignUp" type="submit" class="btn btn-success">Submit</button>
-							<button type="reset" class="btn btn-default btn-sm">Reset</button>
 						</div>
 					</div>
 				</fieldset>
@@ -158,13 +144,12 @@
 				event.preventDefault();
 				$("#corpId").val(ui.item.value);
 				$("#corpName").val(ui.item.label);
-				$("#selectedCompanyName").val(ui.item.label);
+				applyFilters();
 			},
 		    minLength: 2
 		 });
 	});
 </script>
-
 <link rel="stylesheet" type="text/css" href="thirdparty/jquery-ui/jquery-ui-1.10.3.custom.min.css"/>
 <script src="js/jquery.min.js"></script>
 <script type="text/javascript" src="thirdparty/jquery-ui/jquery-ui-1.10.3.custom.min.js"></script>

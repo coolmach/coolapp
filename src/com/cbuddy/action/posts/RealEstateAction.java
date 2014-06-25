@@ -156,38 +156,47 @@ public class RealEstateAction extends ActionSupport implements SessionAware, Ser
 		String temp = postDetails.getTitle();
 		if(temp!=null && temp.length()>100){
 			addFieldError("errorMsg", "Please enter a smaller Title (less than 100 characters)");
+			return false;
 		}
 		temp = postDetails.getCity();
 		if(temp!=null && temp.length()>8){
 			addFieldError("errorMsg", "Invalid City");
+			return false;
 		}
 		temp = postDetails.getUserEnteredLocationStr();
 		if(temp!=null && temp.length()>30){
 			addFieldError("errorMsg", "Invalid Location");
+			return false;
 		}
 		temp = postDetails.getSelectedLocationCode();
 		if(temp!=null && temp.length()>8){
 			addFieldError("errorMsg", "Invalid Location");
+			return false;
 		}
 		temp = postDetails.getSelectedLocationStr();
 		if(temp!=null && temp.length()>30){
 			addFieldError("errorMsg", "Invalid Location");
+			return false;
 		}
 		int tempInt = postDetails.getArea();
 		if(tempInt > 100000){
 			addFieldError("errorMsg", "Invalid Area");
+			return false;
 		}
 		tempInt = postDetails.getBedrooms();
 		if(tempInt > 10){
 			addFieldError("errorMsg", "Invalid number of Bedrooms");
+			return false;
 		}
 		temp = postDetails.getMaritalPreference();
 		if(temp!=null && temp.length()>1){
 			addFieldError("errorMsg", "Invalid Family Preference");
+			return false;
 		}
 		temp = postDetails.getFurnished();
 		if(temp!=null && temp.length()>1){
 			addFieldError("errorMsg", "Invalid Furnishing");
+			return false;
 		}
 		double tempD = postDetails.getPriceValue();
 		if(tempD > 100000000 || tempD == 0){
@@ -201,22 +210,27 @@ public class RealEstateAction extends ActionSupport implements SessionAware, Ser
 			}else{
 				addFieldError("errorMsg", "Invalid Price");
 			}
+			return false;
 		}
 		tempD = postDetails.getMaintenance();
 		if(tempD > 100000000){
 			addFieldError("errorMsg", "Invalid Maintenance");
+			return false;
 		}
 		temp = postDetails.getFacingDirection();
 		if(temp!=null && temp.length()>1){
 			addFieldError("errorMsg", "Invalid Facing Direction");
+			return false;
 		}
 		temp = postDetails.getFloorNumber();
 		if(temp!=null && temp.length()>2){
 			addFieldError("errorMsg", "Invalid Floor Number");
+			return false;
 		}
 		temp = postDetails.getDescription();
 		if(temp!=null && temp.length()>256){
 			addFieldError("errorMsg", "Invalid Description");
+			return false;
 		}
 		return output;
 	}

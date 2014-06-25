@@ -74,8 +74,130 @@ public class AutomobileAction extends ActionSupport implements SessionAware, Ser
 		}
 		return extension;
 	}
+	
+	private boolean validateMandatoryFields(){
+		String subCategory = postDetails.getSubCategory();
+		
+		//Common validations
+		if(postDetails.getTitle().equals("")){
+			addFieldError("errorMsg", "Please enter Title");
+			return false;
+		}
+		if(postDetails.getContactNo().equals("")){
+			addFieldError("errorMsg", "Please enter Contact Number");
+			return false;
+		}
+		if(postDetails.getContactPersonName().equals("")){
+			addFieldError("errorMsg", "Please enter Contact Person Name");
+			return false;
+		}
+		if(postDetails.getCity().equals("")){
+			addFieldError("errorMsg", "Please enter City");
+			return false;
+		}
+		if(postDetails.getSelectedLocationCode().equals("")){
+			addFieldError("errorMsg", "Please enter Location");
+			return false;
+		}
+		if(postDetails.getPrice()==0){
+			addFieldError("errorMsg", "Please enter Location");
+			return false;
+		}
+		if(postDetails.getMake().equals("")){
+			addFieldError("errorMsg", "Please select the Make of the vehicle");
+			return false;
+		}
+		if(postDetails.getModel().equals("")){
+			addFieldError("errorMsg", "Please select the Model of the vehicle");
+			return false;
+		}
+		if(postDetails.getYear() == 0){
+			addFieldError("errorMsg", "Please select the year of purchase (model)");
+			return false;
+		}
+		if(postDetails.getNoOfOwners() == 0){
+			addFieldError("errorMsg", "Please enter the number of owners");
+			return false;
+		}
+
+		//Subcategory specific validations
+		if(subCategory.equals(CBuddyConstants.SUBCATEGORY_AUTOMOBILES_CARS)){
+			if(postDetails.getFuelType() == null || postDetails.getFuelType().equals("")){
+				addFieldError("errorMsg", "Is it a Petrol or Diesel vehicle?");
+				return false;
+			}
+		}
+		
+		return true;
+	}
+
+	private boolean validateFieldLength(){
+		boolean output = true;
+		String temp = postDetails.getTitle();
+		if(temp!=null && temp.length()>100){
+			addFieldError("errorMsg", "Please enter a smaller Title (less than 100 characters)");
+			return false;
+		}
+		temp = postDetails.getCity();
+		if(temp!=null && temp.length()>8){
+			addFieldError("errorMsg", "Invalid City");
+			return false;
+		}
+		temp = postDetails.getUserEnteredLocationStr();
+		if(temp!=null && temp.length()>30){
+			addFieldError("errorMsg", "Invalid Location");
+			return false;
+		}
+		temp = postDetails.getSelectedLocationCode();
+		if(temp!=null && temp.length()>8){
+			addFieldError("errorMsg", "Invalid Location");
+			return false;
+		}
+		temp = postDetails.getSelectedLocationStr();
+		if(temp!=null && temp.length()>30){
+			addFieldError("errorMsg", "Invalid Location");
+			return false;
+		}
+		
+		temp = postDetails.getDescription();
+		if(temp!=null && temp.length()>256){
+			addFieldError("errorMsg", "Invalid Description");
+			return false;
+		}
+		
+		temp = postDetails.getMake();
+		if(temp!=null && temp.length()>16){
+			addFieldError("errorMsg", "Invalid Make");
+			return false;
+		}
+		
+		temp = postDetails.getModel();
+		if(temp!=null && temp.length()>16){
+			addFieldError("errorMsg", "Invalid Model");
+			return false;
+		}
+		
+		int year = postDetails.getYear();
+		if(year<1950 || year>2014){
+			addFieldError("errorMsg", "Invalid Year");
+			return false;
+		}
+		
+		int noOfOwners = postDetails.getNoOfOwners();
+		if(noOfOwners<=0 || noOfOwners>10){
+			addFieldError("errorMsg", "Invalid No. Of Owners");
+			return false;
+		}
+		return output;
+	}
 
 	public String postAd(){
+		if(!validateMandatoryFields()){
+			return Action.INPUT;
+		}
+		if(!validateFieldLength()){
+			return Action.INPUT;
+		}
 		System.out.println("AutomobileAction.postAd()"+uploadContentType+" : "+uploadFileName+" : "+upload);
 		User user = (User)session.get("userInfo");
 		Timestamp current = new Timestamp(System.currentTimeMillis());

@@ -29,6 +29,12 @@ public class AutomobileAdService{
 			criteria.addOrder(Order.desc("postId"));
 			criteria.setMaxResults(20);
 			criteria.add(Restrictions.eq("subCategory", subCategory));
+			if(postDetails.getCity() != null){
+				criteria.add(Restrictions.eq("city", postDetails.getCity()));
+			}
+			if(postDetails.getCorpId() > 0){
+				criteria.add(Restrictions.eq("corpId", postDetails.getCorpId()));
+			}
 			criteria = generateFilters(postDetails, criteria, subCategory);
 			
 			list = criteria.list();

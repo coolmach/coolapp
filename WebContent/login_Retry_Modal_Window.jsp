@@ -6,7 +6,7 @@
 			</h3>
 			<form class="form-horizontal post" id="loginForm" action="modalLogin.action">
 				<div class="form-group-modal">
-					<input type="text" class="form-control" id="userName" name="userName" placeholder="Email ID / Mobile No.">
+					<input type="text" class="form-control" id="username" name="userName" placeholder="Email ID / Mobile No.">
 				</div>
 				<div class="form-group-modal">
 					<input type="password" class="form-control" id="password" name="password" placeholder="Password">

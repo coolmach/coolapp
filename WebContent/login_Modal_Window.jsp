@@ -9,7 +9,7 @@
 			<h3>Login</h3>
 			<form class="form-horizontal post" id="loginForm" action="modalLogin.action">
 				<div class="form-group-modal">
-					<input type="text" class="form-control" id="userName" name="userName" placeholder="Email Id / Mobile No." value="shivaksk1@gmail.com">
+					<input type="text" class="form-control" id="userName" name="username" placeholder="Email Id / Mobile No." value="shivaksk1@gmail.com">
 					<s:fielderror fieldName="username"/>
 				</div>
 				<div class="form-group-modal">

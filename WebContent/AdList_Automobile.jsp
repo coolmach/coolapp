@@ -27,31 +27,17 @@
 							<span class="postField">Color:&nbsp;<s:property value="color" /></span>
 							<br>
 							<span class="postField"><s:property value="kms" />&nbsp;Kms&nbsp;done</span> <span class="separator">|</span>
-							<span class="postField"><s:property value="fuelTypeStr" /></span>
-							<s:if test="%{insuranceAvailable == Y}">
-								<span class="separator">|</span>
-								<span class="postField">Insurance&nbsp;Available</span>
-							</s:if>	
-							<s:if test="%{priceNegotiable == Y}">
-								<span class="separator">|</span>
-								<span class="postField">Price&nbsp;Negotiable</span>
-							</s:if>														
+							<span class="postField"><s:property value="fuelTypeStr" /></span> <span class="separator">|</span>
+							<span class="postField">No.&nbsp;Of&nbsp;Owners:&nbsp;<s:property value="noOfOwners" /></span>						
 						</s:if>
 						<s:elseif test="%{subCategory == 2}">
 							<!-- Bikes -->
-							<span class="postField"><s:property value="modelStr" /></span> <span class="separator">|</span>
 							<span class="postField"><s:property value="makeStr" /></span> <span class="separator">|</span>
+							<span class="postField"><s:property value="modelStr" /></span> <span class="separator">|</span>
 							<span class="postField">Color:&nbsp;<s:property value="color" /></span>
 							<br>
-							<span class="postField"><s:property value="kms" />&nbsp;Kms&nbsp;done</span>
-							<s:if test="%{insuranceAvailable == Y}">
-								<span class="separator">|</span>
-								<span class="postField">Insurance Available</span>
-							</s:if>	
-							<s:if test="%{priceNegotiable == Y}">
-								<span class="separator">|</span>
-								<span class="postField">Price Negotiable</span>
-							</s:if>									
+							<span class="postField"><s:property value="kms" />&nbsp;Kms&nbsp;done</span> <span class="separator">|</span>
+							<span class="postField">No.&nbsp;Of&nbsp;Owners:&nbsp;<s:property value="noOfOwners" /></span> 		
 							<br>
 						</s:elseif>
 						<br>
