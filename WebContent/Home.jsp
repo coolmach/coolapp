@@ -75,7 +75,7 @@
 </script>
 <div class="header_2"></div>
 <div class="header_responseMessage"><s:property value="responseMsg"/></div>
-<div class="col-md-6 pull-left" style="margin-top:5%;">
+<div class="col-md-7 pull-left" style="margin-top:5%;max-width:660px;">
 	<div class="col-md-3">
 		<img id="guy-img" src="images/Guy.png">
 	</div>
@@ -106,7 +106,7 @@
 				placeholder="I am looking for...">
 		</div>
 </div>
-<div class="col-md-4" style="margin-top:5%;">
+<div class="col-md-4" style="margin-top:5%;max-width:400px;">
 	<table class="table1 mygrid1 imageTable">
 		<tr>
 			<td>
