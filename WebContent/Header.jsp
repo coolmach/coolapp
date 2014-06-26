@@ -17,7 +17,7 @@
 
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse navbar-right navbar-main-collapse" style="width:600px;">
-                <ul class="nav navbar-nav" >
+                <ul class="nav navbar-nav pull-right" >
                     <!-- Hidden li included to remove active class from about link when scrolled up past about section -->
                     <li class="hidden">
                         <a href="#page-top"></a>
