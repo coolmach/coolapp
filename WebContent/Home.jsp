@@ -1,5 +1,5 @@
 <%@ taglib prefix="s" uri="/struts-tags"%>
-<script>
+<%-- <script>
 	jQuery(function($) {
 		// Load dialog on page load
 		//$('#basic-modal-content').modal();
@@ -72,86 +72,84 @@
 		login();
 		return false;
 	});
-</script>
-<div class="header_2"></div>
-<div class="header_responseMessage"><s:property value="responseMsg"/></div>
-<div class="col-md-7 pull-left" style="margin-top:5%;max-width:660px;">
-	<div class="col-md-3">
+</script> --%>
+<!-- <div class="header_2"></div> -->
+<div class="header_responseMessage">
+	<s:property value="responseMsg" />
+</div>
+<div class="col-md-12" style="max-width: 100%;">
+	<div class="col-md-3 pull-left">
 		<img id="guy-img" src="images/Guy.png">
 	</div>
-	<div class="col-md-9">
+	<div class="col-md-6" style="width: 600px;">
 		<div class="col-md-12 cbuddy_intro">
-			<div class="mainHeading">An exclusive Classifieds portal for Techies</div>
+			<div class="mainHeading">An exclusive Classifieds portal for
+				Techies</div>
 		</div>
 		<div class="col-md-12 cbuddy_intro">
-			<h5 class="subHeading">"Say no to brokers, yes to fellow IT Community"</h5>
+			<h5 class="subHeading">"Say no to brokers, yes to fellow IT
+				Community"</h5>
 		</div>
 		<div class="col-md-12 cbuddy_intro bulletSection">
 			<div style="margin: 15px;">
-				<img class="star-img" src="images/star.png">
-				<span class="bulletItem">Verified Posts</span>
+				<img class="star-img" src="images/star.png"> <span
+					class="bulletItem">Verified Posts</span>
 			</div>
 			<div style="margin: 15px;">
-				<img class="star-img" src="images/star.png">
-				<span class="bulletItem">Authenticated Users</span>
+				<img class="star-img" src="images/star.png"> <span
+					class="bulletItem">Authenticated Users</span>
 			</div>
 		</div>
-		
+
 	</div>
-	<!-- <div class="col-md-2">
+	<!-- <div class="col-md-3">
+	
 	</div> -->
-	<div class="col-md-10" style="float:right;margin-top:5%;padding-left:10%;">
-			<img src="images/arrow.png" id="arr_img"> <input
-				type="text" class="form-control" id="category_search" name="category" 
-				placeholder="I am looking for...">
-		</div>
+
 </div>
-<div class="col-md-4" style="margin-top:5%;max-width:400px;">
-	<table class="table1 mygrid1 imageTable">
+<div class="col-md-12" style="padding-left: 2%; max-width: 200px;">
+	<a class="myButton" id="post_ad" href="<s:url action="mylogin"/>">Post
+		Ad</a>
+
+</div>
+<div class="col-md-12" style="margin-top: 1%; padding-left: 18%;">
+	<img src="images/arrow.png" id="arr_img"> <input type="text"
+		class="form-control" id="category_search" name="category"
+		placeholder="I am looking for...">
+
+</div>
+<div class="col-md-8"
+	style="margin-top: 1%; margin-left: 17%; max-width: 900px;">
+	<table class="imageTable">
 		<tr>
-			<td>
-				<s:url action="realestate" var="urlTag" escapeAmp="false">
+			<td><s:url action="realestate" var="urlTag" escapeAmp="false">
 					<s:param name="category">REAL</s:param>
 					<s:param name="subCategory">1</s:param>
-				</s:url> 
-				<a href="<s:property value="#urlTag" />"><img class="images_ad" src="images/real_estate.png"> </a>
-			</td>
+				</s:url> <a href="<s:property value="#urlTag" />"><img class="images_ad"
+					src="images/real_estate.png"> </a></td>
 			<td><s:url action="automobile" var="urlTag1" escapeAmp="false">
 					<s:param name="category">AUTO</s:param>
 					<s:param name="subCategory">1</s:param>
 				</s:url> <a href="<s:property value="#urlTag1" />"><img
-					class="images_ad" src="images/cars.png"> </a>
-			</td>
+					class="images_ad" src="images/cars.png"> </a></td>
 			<td><s:url action="household" var="urlTag2">
 					<s:param name="category">HOUSEHOLD</s:param>
 				</s:url> <a href="<s:property value="#urlTag2" />"><img
-					class="images_ad" src="images/household.png"> </a>
-			</td>
-		</tr>
-		<tr>
+					class="images_ad" src="images/household.png"> </a></td>
 			<td><s:url action="laptops" var="urlTag3">
 					<s:param name="category">LAPTOPS</s:param>
 				</s:url> <a href="<s:property value="#urlTag3" />"><img
-					class="images_ad" src="images/laptops.png"> </a>
-		    </td>
+					class="images_ad" src="images/laptops.png"> </a></td>
 			<td><s:url action="mobiles" var="urlTag4">
 					<s:param name="category">MOBILES</s:param>
 				</s:url> <a href="<s:property value="#urlTag4" />"><img
-					class="images_ad" src="images/mobiles.png"> </a>
-			</td>
+					class="images_ad" src="images/mobiles.png"> </a></td>
 			<td><s:url action="books" var="urlTag5">
 					<s:param name="category">DVD</s:param>
 				</s:url> <a href="<s:property value="#urlTag5" />"><img
-					class="images_ad" src="images/dvd.png"> </a>
-			</td>
+					class="images_ad" src="images/dvd.png"> </a></td>
 		</tr>
 
 	</table>
 
-	<s:if test="%{#session.userLoggedIn} != null">
-		<%@include file="./postAd_Modal_Window.jsp"%>
-	</s:if>
-	<s:else>
-		<%@include file="./login_Modal_Window.jsp"%>
-	</s:else>
 </div>
