@@ -26,12 +26,19 @@ public class LoginAction extends ActionSupport implements SessionAware,ServletRe
 	private boolean isValidUser = false;
 
 	private String firstName;
-	
-	private String selectedCompanyName; //In Sign Up screen, it corresponds to the value SELECTED by user in autosuggest list. This value cannot be modified after selection.
+
+	private String selectedCorpName; //In Sign Up screen, it corresponds to the value SELECTED by user in autosuggest list. This value cannot be modified after selection.
+	public String getSelectedCorpName() {
+		return selectedCorpName;
+	}
+	public void setSelectedCorpName(String selectedCorpName) {
+		this.selectedCorpName = selectedCorpName;
+	}
+
 	private String corpName; //In Sign Up screen, it corresponds to the value in Company Name text box at the time of form submission. This value can be modified by the user later even after selection from auto suggest.
-	
+
 	private String responseMsg;
-	
+
 
 	Ucred ucred = new Ucred();
 
@@ -53,14 +60,14 @@ public class LoginAction extends ActionSupport implements SessionAware,ServletRe
 	public void setValidUser(boolean isValidUser) {
 		this.isValidUser = isValidUser;
 	}
-	
+
 	public String getIsLoginErrorExists() {
 		return isLoginErrorExists;
 	}
 	public void setIsLoginErrorExists(String isLoginErrorExists) {
 		this.isLoginErrorExists = isLoginErrorExists;
 	}
-	
+
 	public String getIsSignUpErrorExists() {
 		return isSignUpErrorExists;
 	}
@@ -80,7 +87,7 @@ public class LoginAction extends ActionSupport implements SessionAware,ServletRe
 	}*/
 
 	public String execute(){
-		
+
 		clearErrors();
 		User user =  (User) session.get("userInfo");
 		if(user != null){
@@ -110,7 +117,7 @@ public class LoginAction extends ActionSupport implements SessionAware,ServletRe
 					break;
 				}
 				isLoginErrorExists="true";
-				
+
 				return "input";
 			}
 		}
@@ -119,16 +126,16 @@ public class LoginAction extends ActionSupport implements SessionAware,ServletRe
 	public String signUp(){
 		LogUtil.getInstance().info("LoginAction - Signup()");
 		try{
-			
-			if(!selectedCompanyName.equals(corpName)){
+
+			if(!selectedCorpName.equals(corpName)){
 				return Action.INPUT;
 			}
-			
+
 			AuthenticateUserService auService = new AuthenticateUserService();
 			auService.registerUser(getModel());
-			
+
 			responseMsg = "You have been successfully become a cBuddy " + getModel().getFirstName();
-			
+
 		}catch(CBuddyException e){
 			switch(e.getErrorCode()){
 			case CBuddyConstants.EXISTENT_USER_ID:
@@ -136,7 +143,7 @@ public class LoginAction extends ActionSupport implements SessionAware,ServletRe
 				break;	
 			}
 			isSignUpErrorExists="true";
-			
+
 			return "error";
 		}
 
@@ -165,12 +172,9 @@ public class LoginAction extends ActionSupport implements SessionAware,ServletRe
 
 	}
 	public String selectedCompanyName() {
-		return selectedCompanyName;
+		return selectedCorpName;
 	}
-	public void setSelectedCompanyName(String selectedCompanyName) {
-		this.selectedCompanyName = selectedCompanyName;
-	}
-		public String getCorpName() {
+	public String getCorpName() {
 		return corpName;
 	}
 	public void setCorpName(String corpName) {
