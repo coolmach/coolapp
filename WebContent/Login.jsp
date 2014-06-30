@@ -7,22 +7,21 @@
 				<div class="panel-heading">
 					<strong>Login</strong>
 				</div>
+				
 				<div class="panel-body">
-					<form class="form-horizontal" role="form">
+					<form class="form-horizontal" role="form" action="modalLogin" method="get">
 						<div class="form-group">
 							<label for="inputEmail3" class="col-sm-3 control-label">
 								Email</label>
 							<div class="col-sm-9">
-								<input class="form-control" id="inputEmail3" placeholder="Email"
-									required="" type="email">
+								<input class="form-control" id="username" placeholder="Email/Mobile Number" required>
 							</div>
 						</div>
 						<div class="form-group">
 							<label for="inputPassword3" class="col-sm-3 control-label">
 								Password</label>
 							<div class="col-sm-9">
-								<input class="form-control" id="inputPassword3"
-									placeholder="Password" required="" type="password">
+								<input class="form-control" id="password" placeholder="Password" type="password" required>
 							</div>
 						</div>
 						<div class="form-group">
@@ -66,6 +65,7 @@
 						<div class="col-sm-8">
 							<input class="form-control" id="corpName" name="corpName" placeholder="Company Name" required>
 							<input type="hidden" name="corpId" id="corpId">
+							<input type="hidden" name="selectedCorpName" id="selectedCorpName">
 						</div>
 					</div>
 					<div class="form-group">
@@ -144,7 +144,7 @@
 				event.preventDefault();
 				$("#corpId").val(ui.item.value);
 				$("#corpName").val(ui.item.label);
-				applyFilters();
+				$("#selectedCorpName").val(ui.item.label);
 			},
 		    minLength: 2
 		 });
