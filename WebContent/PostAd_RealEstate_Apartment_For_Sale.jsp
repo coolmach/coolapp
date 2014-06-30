@@ -44,7 +44,7 @@
 			<div class="form-group">
 				<label for="title" class="col-sm-4 control-label">Title<span class="mandatory">*</span></label>
 				<div class="col-sm-8">
-					<input type="text" class="form-control" maxlength="200" id="Title" name="Title" value="2BHK For Sale" required>
+					<input type="text" class="form-control" maxlength="200" id="Title" name="Title" value="<s:property value='title'/>" required>
 				</div>
 			</div>
 			<%@include file="locationStrip.jsp" %>
