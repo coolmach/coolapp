@@ -42,6 +42,7 @@ public class Pdau {
 	
 	private String areaStr;
 	private String amt;
+	private String yearOfMake;
 
 	@Id
 	@Column(name="POST_ID")
@@ -235,4 +236,14 @@ public class Pdau {
 	public void setAmt(String amt) {
 		this.amt = amt;
 	}
+	
+	@Transient
+	public String getYearOfMake() {
+		return yearOfMake;
+	}
+	public void setYearOfMake(String yearOfMake) {
+		this.yearOfMake = yearOfMake;
+	}
+	
+	
 }

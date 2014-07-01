@@ -25,19 +25,21 @@ public class AutomobileAdService{
 		
 		List<AutomobilePostDetails> list = null;
 		try {
+			System.out.println(postDetails.getCity()+ " : "+postDetails.getCorpId());
 			Criteria criteria = session.createCriteria(AutomobilePostDetails.class);
 			criteria.addOrder(Order.desc("postId"));
 			criteria.setMaxResults(20);
 			criteria.add(Restrictions.eq("subCategory", subCategory));
-			if(postDetails.getCity() != null){
+			/*if(postDetails.getCity() != null){
 				criteria.add(Restrictions.eq("city", postDetails.getCity()));
-			}
+			}*/
 			if(postDetails.getCorpId() > 0){
 				criteria.add(Restrictions.eq("corpId", postDetails.getCorpId()));
 			}
 			criteria = generateFilters(postDetails, criteria, subCategory);
 			
 			list = criteria.list();
+			System.out.println(list.size());
 		} catch (HibernateException e) {
 			e.printStackTrace();
 		}
@@ -67,13 +69,28 @@ public class AutomobileAdService{
 				criteria = getCriteriaForFuelType(criteria, postDetails.getFuelType());		
 			}	
 			if(postDetails.getAmt()!=null){
-				criteria = CriteriaUtil.getCriteriaForAmt(criteria, postDetails.getAmt(), "price");
+				criteria = CriteriaUtil.getCriteriaForAmt(criteria, postDetails.getAmt(),"price");
+			}
+			if(postDetails.getYearOfMake()!=null){
+				criteria = getCriteriaForYear(criteria, postDetails.getYearOfMake());
 			}
 		}
 		
 		return criteria;	
 	}
 	
+	public Criteria getCriteriaForYear(Criteria criteria, String yearOfMake) {
+		List yearList = new ArrayList();
+		String obj[] = yearOfMake.split(",");
+		for(String make:obj){
+			yearList.add(Integer.parseInt(make));
+		}	
+		criteria.add(Restrictions.in("year", yearList));
+
+		return criteria;
+	}
+
+
 	public Criteria getCriteriaForMake(Criteria criteria, String makeStr){
 		List makesList = new ArrayList();
 		String obj[] = makeStr.split(",");
