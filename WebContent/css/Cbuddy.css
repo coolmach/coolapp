@@ -90,3 +90,6 @@
 .error{font-size:13px;float:left;padding-left:50px;}
 
 #selectedCorporateDetails{margin-top:10px;padding-left:8px;width:90%;overflow:hidden;background-color:rgb(255,255,190);}
+
+#signInSection ul.errorMessage{float:right !important;}
+	

@@ -42,7 +42,11 @@
 		<action name="signup" class="com.cbuddy.action.user.LoginAction" method="signUp">
 		    <result name="error" type="tiles">/login.tiles</result>
 		    <result name="input" type="tiles">/login.tiles</result>
-		     <result name="success" type="tiles">/home.tiles</result>
+		    <result name="success" type="tiles">/login.tiles</result>
+		     <!-- <result name="success" type="redirect">mydashboard</result> -->
+		</action>
+		<action name="mydashboard" class="com.cbuddy.action.user.UserAction" method="mydashboard">
+		     <result name="success" type="tiles">/userdashboard.tiles</result>
 		</action>
 		<action name="login" class="com.cbuddy.action.user.LoginAction">
 			<result name="success" type="tiles">/userdashboard.tiles</result>
@@ -85,10 +89,6 @@
 		</action>
 		<action name="automobile_postAd" class="com.cbuddy.action.posts.AutomobileAction" method="postAd">
 			 <interceptor-ref name="secureStack"></interceptor-ref> 
-			 <interceptor-ref name="fileUpload">
-                     <param name="allowedTypes">image/jpeg,image/gif,image/png</param>
-             </interceptor-ref>
-             <interceptor-ref name="defaultStack"></interceptor-ref>
 			<result name="login" type="tiles">/home.tiles</result>
 			<result name="success" type="tiles">/home.tiles</result>
 			<result name="input" type="tiles">/postad_automobile.tiles</result>
@@ -115,7 +115,7 @@
 		<!-- COMPUTERS - END -->		
 		
 		<action name="postad" class="com.cbuddy.action.posts.PostAdAction">
-			<interceptor-ref name="secureStack"></interceptor-ref> 
+			
 			<result name="login" type="tiles">/home.tiles</result>
 			<result name="success" type="tiles">/home.tiles</result>
 			<result name="realEstate" type="tiles">/postad_real_estate.tiles</result>
@@ -126,9 +126,9 @@
 			<result name="input" type="tiles">/login.tiles</result>
 			<result name="success" type="tiles">/categories.tiles</result>
 		</action>
-		<action name="ImageAction" class="com.cbuddy.action.posts.ImageAction">
+		 <action name="ImageAction" class="com.cbuddy.action.posts.ImageAction">
 			<result name="success" type="imageResult"></result>
-		</action>
+		</action> 
 		<action name="getLocation" class="com.cbuddy.action.location.LocationAction" method="getLocations">
 			<result name="success">/ajax_Autosuggest_Locations.jsp</result>
 		</action>

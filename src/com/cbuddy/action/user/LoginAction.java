@@ -102,7 +102,9 @@ public class LoginAction extends ActionSupport implements SessionAware,ServletRe
 
 				return "success";
 			}catch(CBuddyException e){
+				System.out.println(e.getErrorCode());
 				switch(e.getErrorCode()){
+				
 				case CBuddyConstants.NON_EXISTENT_USER_ID:
 					//Email Id / Mobile number does not exist
 					addFieldError("username", "Invalid user credentials");
@@ -124,6 +126,7 @@ public class LoginAction extends ActionSupport implements SessionAware,ServletRe
 	}
 
 	public String signUp(){
+		
 		LogUtil.getInstance().info("LoginAction - Signup()");
 		try{
 

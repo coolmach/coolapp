@@ -15,5 +15,10 @@ public class UserAction extends ActionSupport implements ModelDriven{
 		return null;
 	}
 	
+	public String mydashboard(){
+		System.out.println("UserAction.mydashboard()");
+		return "success";
+		
+	}
 
 }

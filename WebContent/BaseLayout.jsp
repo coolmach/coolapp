@@ -13,11 +13,14 @@
 <title><tiles:insertAttribute name="title" /></title>
 
 <script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="thirdparty/jquery-ui/jquery-ui-1.10.3.custom.min.js"></script>
 <script type="text/javascript" src="js/jasny-bootstrap.min.js"></script>
 <script type="text/javascript" src="js/jquery-ui.js"></script>
 <script type="text/javascript" src="js/bootstrap.js"></script>
 <script type="text/javascript" src="js/home.js"></script>
+<script type="text/javascript" src="js/common.js"></script>
 <script type="text/javascript" src="js/jquery.validate.js"></script>
+<script src="js/jquery.simplemodal.js"></script>
 <!-- <link rel="stylesheet" href="css/bootstrapValidator.css" type="text/css"> -->
 <link rel="stylesheet" href="css/Cbuddy.css" type="text/css">
 <script type="text/javascript" src="js/Cbuddy.js"></script>
@@ -28,7 +31,8 @@
 <link rel="stylesheet" href="css/home.css" type="text/css">
 <link rel="stylesheet" type="text/css" href="css/postAd.css" />
 <link rel="stylesheet" type="text/css" href="css/jquery.simplemodal.css" />
-<script src="js/jquery.simplemodal.js"></script>
+<link rel="stylesheet" type="text/css" href="thirdparty/jquery-ui/jquery-ui-1.10.3.custom.min.css" />
+
 
 </head>
 <body>
