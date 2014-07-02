@@ -19,9 +19,11 @@ $(document).ready(function() {
 	}else if(cat == 'AUTO'){
 		path="automobileFilter";
 		$("#make-main").show();
-		$("#loc-main").show();
+		$("#year-main").show();
 		$("#amt-main").show();
-		$("#used-main").show();
+		$("#model-main").show();
+		$("#fuelType-main").show();
+		
 	}else if(cat == 'HOUSEHOLD'){
 		path="adListForHouseHoldItems";
 		subCat="Air Conditioners & Coolers";
@@ -138,17 +140,21 @@ $(document).ready(function() {
 
 		if(lastVal!=$(this).text() ){
 
-			if(lastVal!=""){
+			//if(lastVal!=""){
 				$('.filters').remove();
 				//}
 				$("input[class^=check_]:checked").each(function()
 						{	
 					$(this).attr("checked",false);
 						});
-			}
+			//}
 			lastVal = $(this).text();
 		}
 
+		if($("#filterValueBar").text() == ""){
+			$("#filterValueBar").hide();
+		}
+		
 		$(this).parent().hide();
 		subCat = $(this).val();
 		var data = "";
@@ -299,11 +305,13 @@ $(document).ready(function() {
 
 		if($(this).text()!= 'Cars' /*&& subCat=="1"*/){
 			if($(this).text()== 'Bikes/Scooters' || $(this).text()== 'Scooters'){
-				$("#brandBikes-main").show();
+				$("#makeBikes-main").show();
+				$("#fuelType-main").hide();
 				$("#make-main").hide();
 			}else{
 				$("#make-main").hide();
-				$("#brandBikes-main").hide();
+				$("#fuelType-main").show();
+				$("#makeBikes-main").hide();
 			}
 			$("#breadCrumb_Category").html("AutoMobiles");
 			$("#breadCrumb_SubCategory").html($(this).text());
