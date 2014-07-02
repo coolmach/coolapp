@@ -2,7 +2,7 @@
 <%@ taglib prefix="s" uri="/struts-tags"%>
 <div class="container" style="margin: 10%;">
 	<div class="row">
-		<div class="col-md-5 ">
+		<div class="col-md-5 " id="signInSection" style="margin-left:19.9999%;margin-top:5%;">
 			<div class="panel panel-default">
 				<div class="panel-heading">
 					<strong>Login</strong>
@@ -14,20 +14,21 @@
 							<label for="inputEmail3" class="col-sm-3 control-label">
 								Email</label>
 							<div class="col-sm-9">
-								<input class="form-control" id="username" placeholder="Email/Mobile Number" required>
+								<input class="form-control" name="username" id="username" placeholder="Email/Mobile Number" required>
 							</div>
 						</div>
 						<div class="form-group">
 							<label for="inputPassword3" class="col-sm-3 control-label">
 								Password</label>
 							<div class="col-sm-9">
-								<input class="form-control" id="password" placeholder="Password" type="password" required>
+								<input class="form-control" name="password" id="password" placeholder="Password" type="password" required>
 							</div>
 						</div>
 						<div class="form-group">
 							<div class="col-sm-offset-3 col-sm-9">
 								<div class="checkbox">
 									<label> <input type="checkbox"> Remember me </label>
+									<label> <a style="margin-left:50px;" class="smallLink" href="#" onClick="showRegistrationForm()">New User? Register</a> </label>
 								</div>
 							</div>
 						</div>
@@ -47,11 +48,10 @@
 			</div>
 		</div>
 
-		<div class="col-md-5 " id="registerForm" style="border-left:1px solid #eeeeee;margin-left:20px;">
+		<div class="col-md-5 " id="signUpSection" style="border-left:1px solid #eeeeee;margin-left:19.9999%;display:none;">
 		<div class="col-md-12 " id="divCheckPasswordMatch"><s:fielderror /> </div>
 		<div class="col-md-12 ">
-			<s:form cssClass="form-horizontal" role="form" id="registration" method='post'
-				action="signup" theme="simple">
+			<s:form cssClass="form-horizontal" role="form" id="registration" method='post' action="signup" theme="simple">
 				<fieldset>
 					<legend>New to CBuddy? Sign Up!</legend>
 					<div class="form-group">
@@ -149,6 +149,16 @@
 		    minLength: 2
 		 });
 	});
+</script>
+<script>
+	function showRegistrationForm(){
+		$("#signUpSection").show();
+		$("#signInSection").hide();		
+	}
+	function showSignInForm(){
+		$("#signUpSection").hide();
+		$("#signInSection").show();		
+	}
 </script>
 <link rel="stylesheet" type="text/css" href="thirdparty/jquery-ui/jquery-ui-1.10.3.custom.min.css"/>
 <script src="js/jquery.min.js"></script>

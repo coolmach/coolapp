@@ -27,9 +27,9 @@
         <put-attribute name="title" value="Household Items" />
         <put-attribute name="body" value="/HouseHoldItems.jsp" />
     </definition>
-     <definition name="/laptops.tiles" extends="baseLayout">
-        <put-attribute name="title" value="Laptops/Computers" />
-        <put-attribute name="body" value="/Laptops.jsp" />
+     <definition name="/computers.tiles" extends="baseLayout">
+        <put-attribute name="title" value="Computers/Laptops" />
+        <put-attribute name="body" value="/Computers.jsp" />
     </definition>
      <definition name="/mobiles.tiles" extends="baseLayout">
         <put-attribute name="title" value="Mobile Phones" />
@@ -51,10 +51,18 @@
         <put-attribute name="title" value="Login" />
         <put-attribute name="body" value="/Login.jsp" />
     </definition>
+    <definition name="/categories.tiles" extends="baseLayout">
+        <put-attribute name="title" value="Choose Category" />
+        <put-attribute name="body" value="/Categories.jsp" />
+    </definition>    
     <definition name="/postad_automobile.tiles" extends="baseLayout">
         <put-attribute name="title" value="Post Ad" />
         <put-attribute name="body" value="/PostAd_Automobile.jsp" />
     </definition>
+    <definition name="/postad_computers.tiles" extends="baseLayout">
+        <put-attribute name="title" value="Post Ad" />
+        <put-attribute name="body" value="/PostAd_Computers.jsp" />
+    </definition>    
     <definition name="/automobile.tiles" extends="baseLayout">
         <put-attribute name="title" value="Automobiles" />
         <put-attribute name="body" value="/Automobile.jsp" />

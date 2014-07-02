@@ -1,6 +1,5 @@
 package com.cbuddy.services;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.struts2.ServletActionContext;
@@ -58,13 +57,13 @@ public class AutomobileAdService{
 				criteria = CriteriaUtil.getCriteriaForArea(criteria, postDetails.getAreaStr());
 			}
 			if(postDetails.getMake()!=null){
-				criteria = getCriteriaForMake(criteria, postDetails.getMake());		
+				criteria = CriteriaUtil.createCriteriaForIn(criteria, postDetails.getMake(), "make");		
 			}
 			if(postDetails.getModel()!=null){
-				criteria = getCriteriaForModel(criteria, postDetails.getModel());		
+				criteria = CriteriaUtil.createCriteriaForIn(criteria, postDetails.getModel(), "model");
 			}
 			if(postDetails.getFuelType()!=null){
-				criteria = getCriteriaForFuelType(criteria, postDetails.getFuelType());		
+				criteria = CriteriaUtil.createCriteriaForIn(criteria, postDetails.getFuelType(), "fuelType");
 			}	
 			if(postDetails.getAmt()!=null){
 				criteria = CriteriaUtil.getCriteriaForAmt(criteria, postDetails.getAmt(), "price");
@@ -74,37 +73,4 @@ public class AutomobileAdService{
 		return criteria;	
 	}
 	
-	public Criteria getCriteriaForMake(Criteria criteria, String makeStr){
-		List makesList = new ArrayList();
-		String obj[] = makeStr.split(",");
-		for(String make:obj){
-			makesList.add(make);
-		}	
-		criteria.add(Restrictions.in("make", makesList));
-
-		return criteria;
-	}
-	
-	public Criteria getCriteriaForModel(Criteria criteria, String modelStr){
-		List modelList = new ArrayList();
-		String obj[] = modelStr.split(",");
-		for(String model:obj){
-			modelList.add(model);
-		}	
-		criteria.add(Restrictions.in("model", modelList));
-
-		return criteria;
-	}
-	
-	public Criteria getCriteriaForFuelType(Criteria criteria, String fuelTypeStr){
-		List fuelTypeList = new ArrayList();
-		String obj[] = fuelTypeStr.split(",");
-		for(String fuelType:obj){
-			fuelTypeList.add(fuelType);
-		}	
-		criteria.add(Restrictions.in("fuelType", fuelTypeList));
-
-		return criteria;
-	}
-
 }

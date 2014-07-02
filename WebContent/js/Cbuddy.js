@@ -28,15 +28,13 @@ $(document).ready(function() {
 		$("#loc-main").show();
 		$("#amt-main").show();
 		$("#used-main").show();
-	}else if(cat == 'LAPTOPS'){
-		path="laptops";
-		subCat="LAPTOPS";
-		$("#brand-main").show();
-		$("#used-main").show();
-		$("#amt-main").show();
-		$("#loc-main").show();
-		$("#screen-main").show();
-		$("#ram-main").show();
+	}else if(cat == 'COMP'){
+		path = "Computers and Laptops";
+		subCat = "1";
+		$("#make-main").show();
+		$("#year-main").show();
+		$("#processorSize-main").show();
+		$("#hddSize-main").show();
 	}else if(cat == 'MOBILES'){
 		path="mobiles";
 		subCat="Mobile Phones";
@@ -318,6 +316,18 @@ $(document).ready(function() {
 			$("#breadCrumb_SubCategory").html($(this).text());
 		}
 
+		if($(this).text()== 'Tablets' /*&& subCat=="1"*/){
+			$("#model-main").show();
+			
+			$("#breadCrumb_Category").html("Computers and Laptops");
+			$("#breadCrumb_SubCategory").html($(this).text());
+		}else if($(this).text()== 'Cars' /*&& subCat=="Cars"*/){
+			$("#model-main").hide();
+			
+			$("#breadCrumb_Category").html("Computers and Laptops");
+			$("#breadCrumb_SubCategory").html($(this).text());		}
+		
+		
 		if( cat == 'HOUSEHOLD'){
 			if($(this).text()=='Air Conditioners & Coolers'){
 				$("#brand-main").show();

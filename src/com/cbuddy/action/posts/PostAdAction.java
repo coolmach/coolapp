@@ -28,6 +28,8 @@ public class PostAdAction extends ActionSupport implements ServletRequestAware{
 			output = "realEstate";
 		}else if(category.equals(CBuddyConstants.CATEGORY_AUTOMOBILES)){
 			output = "automobile";
+		}else if(category.equals(CBuddyConstants.CATEGORY_COMPUTERS)){
+			output = "computers";
 		}
 		return output;
 	}

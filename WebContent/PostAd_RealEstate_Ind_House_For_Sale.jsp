@@ -118,7 +118,10 @@
 				</div>
 			</div>
 			<div class="form-group">
-				<div class="col-sm-offset-2 col-sm-10">
+				<div class="col-sm-offset-2 col-sm-5">
+					<button type="submit" class="btn btn-primary pull-right" onClick="history.go(-1);">Back</button>
+				</div>
+				<div class="col-sm-offset-0 col-sm-3">
 					<button type="submit" class="btn btn-primary pull-right">Post Ad</button>
 				</div>
 			</div>

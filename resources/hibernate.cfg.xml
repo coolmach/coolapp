@@ -45,6 +45,7 @@
 		<mapping class="com.cbuddy.beans.Uprof" />
 		<mapping class="com.cbuddy.beans.City" />
 		<mapping class="com.cbuddy.beans.Pdau" />
+		<mapping class="com.cbuddy.beans.Pcomp" />
 		<mapping class="com.cbuddy.beans.Corp" />		
 		<mapping class="com.cbuddy.beans.Location" />
 		<mapping class="com.cbuddy.beans.Neighborhood" />

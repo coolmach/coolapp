@@ -132,4 +132,15 @@ public class CriteriaUtil {
 
 		return criteria;
 	}
+	
+
+	public static Criteria createCriteriaForIn(Criteria criteria, String inputStr, String fieldName){
+		List list = new ArrayList();
+		String tokens[] = inputStr.split(",");
+		for(String token:tokens){
+			list.add(token);
+		}
+		criteria.add(Restrictions.in(fieldName, list));
+		return criteria;
+	}
 }

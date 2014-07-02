@@ -136,7 +136,7 @@
 					<s:param name="category">HOUSEHOLD</s:param>
 				</s:url> <a href="<s:property value="#urlTag2" />"><img
 					class="images_ad" src="images/household.png"> </a></td>
-			<td><s:url action="laptops" var="urlTag3">
+			<td><s:url action="computers" var="urlTag3">
 					<s:param name="category">LAPTOPS</s:param>
 				</s:url> <a href="<s:property value="#urlTag3" />"><img
 					class="images_ad" src="images/laptops.png"> </a></td>

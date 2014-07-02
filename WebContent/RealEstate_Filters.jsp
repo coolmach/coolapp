@@ -24,8 +24,7 @@
 	 	<form class="form-inline" id="apartment-rent"> 
 			<div class=" pull-left hidden-subcat searchFilter" id="area-main">
 				<div id="area" class="inputstyle pointer form-control">
-					Area <span
-						class="glyphicon glyphicon glyphicon-chevron-down form-control-show"></span>
+					Area <span class="glyphicon glyphicon glyphicon-chevron-down form-control-show"></span>
 				</div>
 				<div id="subCategory_hidden_area" class="subCategory_hidden_bck"
 					style="display: none;">
