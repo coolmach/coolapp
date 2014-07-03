@@ -21,12 +21,14 @@
 			<div class="form-group">
 				<label for="title" class="col-sm-4 control-label">Title<span class="mandatory">*</span></label>
 				<div class="col-sm-8">
-					<input type="text" class="form-control" maxlength="200" id="Title" name="Title" value="256MB RAM available for Sale" required>
+					<input type="text" class="form-control" maxlength="200" id="Title" name="Title" value="Lenovo Laptop available for sale" required>
 				</div>
 			</div>
-			<%@include file="locationStrip.jsp" %>		
+			
+			<%@include file="locationStrip.jsp" %>
+					
 			<div class="form-group">
-				<label for="make" class="col-sm-4 control-label">Make</label>
+				<label for="make" class="col-sm-4 control-label">Make <span class="mandatory">*</span></label>
 				<div class="col-sm-6" style="padding-top:6px;">
 					<select class="dropDown" name="make" id="make">
 						<option value="SON">Sony</option>
@@ -42,7 +44,13 @@
 				</div>
 			</div>
 			<div class="form-group">
-				<label for="year" class="col-sm-4 control-label">Year</label>
+				<label for="approvalAuthority" class="col-sm-4 control-label">Model<span class="mandatory">*</span></label>
+				<div class="col-sm-6">
+					<input type="text" maxlength="30" class="form-control" name="model" id="model" value="Compaq Presario" required>
+				</div>
+			</div>			
+			<div class="form-group">
+				<label for="year" class="col-sm-4 control-label">Year of purchase<span class="mandatory">*</span></label>
 				<div class="col-sm-3">
 					<input type="text" maxlength="4" class="form-control" name="year" id="year" value="2007">
 				</div>
@@ -58,15 +66,15 @@
 				</div>
 			</div>
 			<div class="form-group">
-				<label for="price" class="col-sm-4 control-label">Price</label>
+				<label for="price" class="col-sm-4 control-label">Price<span class="mandatory">*</span></label>
 				<div class="col-sm-3">
-					<input type="text" maxlength="6" class="form-control" name="price" id="price" value="30000">
+					<input type="text" maxlength="6" class="form-control" name="price" id="price" value="30000" required>
 				</div>
 			</div>
 			<div class="form-group">
-				<label for="description" class="col-sm-4 control-label">Other Features</label>
+				<label for="description" class="col-sm-4 control-label">Other Specifications</label>
 				<div class="col-sm-8">
-					<textarea class="form-control" maxlength="256" rows="3" name="Description" id="Description">Hello tHis is description</textarea>
+					<textarea class="form-control" maxlength="256" rows="3" name="Description" id="Description" placeholder="Please enter other specifications of your laptop"></textarea>
 				</div>
 			</div>
 			<div class="form-group">
@@ -107,36 +115,3 @@
 
 </div>
 <div class="col-md-5"></div>
-
-<script>
-$("#userEnteredLocationStr").autocomplete({
-	source: function(request, response) {
-		$.ajax({
-			url: "http://localhost:8080/Virat/getLocation?",
-			//url:$('#contextPath').text() + "getLocation",
-			type: "POST",
-			dataType: "json",
-			data: {city:$('input[name=city]:checked').val(),location:$("#userEnteredLocationStr").val()},
-			success: function(data) {
-				response( $.map(data, function(item) {
-					return {
-						label: item.value,
-						value: item.id
-					};
-				}));
-			},
-			error: function (error) {
-				alert('error: ' + error.responseText);
-			}
-		});
-	},
-	select:function(event, ui){
-		event.preventDefault();
-		$("#userEnteredLocationStr").val(ui.item.label);
-		$("#selectedLocationCode").val(ui.item.value);
-		$("#selectedLocationStr").val(ui.item.label);
-	},
-	minLength: 2
-});
-
-</script>

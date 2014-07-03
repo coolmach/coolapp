@@ -8,12 +8,12 @@
 	</div-->
 </div>
 <div class="col-md-8" id="my">
-	<s:form cssClass="form-horizontal post" action="automobile_postAd" enctype="multipart/form-data">
+	<s:form cssClass="form-horizontal post" action="computers_postAd" enctype="multipart/form-data">
 		<input type="hidden" name="category" value="COMP"/>
-		<input type="hidden" name="subCategory" value="2"/>
+		<input type="hidden" name="subCategory" value="3"/>
 		<div class="col-md-12 post_title">
 			<div style="float:left;">
-				Desktops For Sale
+				Tab For Sale
 			</div>
 			<span class="error"><s:fielderror fieldName="errorMsg"/></span>
 		</div>
@@ -21,48 +21,45 @@
 			<div class="form-group">
 				<label for="title" class="col-sm-4 control-label">Title<span class="mandatory">*</span></label>
 				<div class="col-sm-8">
-					<input type="text" class="form-control" maxlength="200" id="Title" name="Title" value="256MB RAM available for Sale" required>
+					<input type="text" class="form-control" maxlength="200" id="Title" name="Title" value="Samsung Galaxy available for sale" required>
 				</div>
 			</div>
-			<%@include file="locationStrip.jsp" %>		
+			
+			<%@include file="locationStrip.jsp" %>
+					
 			<div class="form-group">
-				<label for="facingDirection" class="col-sm-4 control-label">Make</label>
+				<label for="make" class="col-sm-4 control-label">Make <span class="mandatory">*</span></label>
 				<div class="col-sm-6" style="padding-top:6px;">
 					<select class="dropDown" name="make" id="make">
 						<option value="SON">Sony</option>
-						<option value="ACE">Acer</option>
-						<option value="DELL">Dell</option>
-						<option value="HP">HP/Compaq</option>
 						<option value="SAM">Samsung</option>
-						<option value="WIP">Wipro</option>
-						<option value="HCL">HCL</option>
 						<option value="APP">Apple</option>
 						<option value="OTH">Others</option>
 					</select>
 				</div>
 			</div>
 			<div class="form-group">
-				<label for="approvalAuthority" class="col-sm-4 control-label">Year</label>
+				<label for="approvalAuthority" class="col-sm-4 control-label">Model<span class="mandatory">*</span></label>
+				<div class="col-sm-6">
+					<input type="text" maxlength="30" class="form-control" name="model" id="model" value="Galaxy" required>
+				</div>
+			</div>			
+			<div class="form-group">
+				<label for="year" class="col-sm-4 control-label">Year of purchase<span class="mandatory">*</span></label>
 				<div class="col-sm-3">
 					<input type="text" maxlength="4" class="form-control" name="year" id="year" value="2007">
 				</div>
 			</div>
 			<div class="form-group">
-				<label for="approvalAuthority" class="col-sm-2 control-label">RAM Size<span class="mandatory">*</span></label>
+				<label for="price" class="col-sm-4 control-label">Price<span class="mandatory">*</span></label>
 				<div class="col-sm-3">
-					<input type="text" maxlength="4" class="form-control" name="processorSize" id="processorSize" value="2"> GB
+					<input type="text" maxlength="6" class="form-control" name="price" id="price" value="30000">
 				</div>
 			</div>
 			<div class="form-group">
-				<label for="approvalAuthority" class="col-sm-2 control-label">HDD Size<span class="mandatory">*</span></label>
-				<div class="col-sm-3">
-					<input type="text" maxlength="4" class="form-control" name="hddSize" id="hddSize" value="60"> GB
-				</div>
-			</div>			
-			<div class="form-group">
-				<label for="description" class="col-sm-4 control-label">Other Features</label>
+				<label for="description" class="col-sm-4 control-label">Other Specifications</label>
 				<div class="col-sm-8">
-					<textarea class="form-control" maxlength="256" rows="3" name="Description" id="Description">Hello tHis is description</textarea>
+					<textarea class="form-control" maxlength="256" rows="3" name="Description" id="Description" placeholder="Please enter other specifications of your laptop"></textarea>
 				</div>
 			</div>
 			<div class="form-group">

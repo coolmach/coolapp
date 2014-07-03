@@ -74,10 +74,9 @@ public class ComputersAction extends ActionSupport implements SessionAware, Serv
 		}
 		return extension;
 	}
-	
+
 	private boolean validateMandatoryFields(){
 		String subCategory = postDetails.getSubCategory();
-		
 		//Common validations
 		if(postDetails.getTitle().equals("")){
 			addFieldError("errorMsg", "Please enter Title");
@@ -99,7 +98,7 @@ public class ComputersAction extends ActionSupport implements SessionAware, Serv
 			addFieldError("errorMsg", "Please enter Location");
 			return false;
 		}
-		if(postDetails.getPrice()==0){
+		if(postDetails.getPrice() <= 0){
 			addFieldError("errorMsg", "Please enter Price");
 			return false;
 		}
@@ -111,54 +110,94 @@ public class ComputersAction extends ActionSupport implements SessionAware, Serv
 			addFieldError("errorMsg", "Please select the year of purchase (model)");
 			return false;
 		}
-
+		if(postDetails.getMake().equals("")){
+			addFieldError("errorMsg", "Please select the Make");
+			return false;
+		}
+		if(postDetails.getModel().equals("")){
+			addFieldError("errorMsg", "Please enter the Model");
+			return false;
+		}
+		if(subCategory.equals(CBuddyConstants.SUBCATEGORY_COMPUTERS_DESKTOPS) ||
+				subCategory.equals(CBuddyConstants.SUBCATEGORY_COMPUTERS_LAPTOPS)){
+			if(postDetails.getHddSize() == 0){
+				addFieldError("errorMsg", "Please enter HDD size");
+				return false;
+			}
+			if(postDetails.getProcessorSize() == 0){
+				addFieldError("errorMsg", "Please enter Processor size");
+				return false;
+			}
+		}
 		return true;
 	}
 
 	private boolean validateFieldLength(){
 		boolean output = true;
+		String subCategory = postDetails.getSubCategory();
 		String temp = postDetails.getTitle();
-		if(temp!=null && temp.length()>100){
+		if(temp != null && temp.length() > 100){
 			addFieldError("errorMsg", "Please enter a smaller Title (less than 100 characters)");
 			return false;
 		}
 		temp = postDetails.getCity();
-		if(temp!=null && temp.length()>8){
+		if(temp != null && temp.length() > 8){
 			addFieldError("errorMsg", "Invalid City");
 			return false;
 		}
 		temp = postDetails.getUserEnteredLocationStr();
-		if(temp!=null && temp.length()>30){
+		if(temp != null && temp.length() > 30){
 			addFieldError("errorMsg", "Invalid Location");
 			return false;
 		}
 		temp = postDetails.getSelectedLocationCode();
-		if(temp!=null && temp.length()>8){
+		if(temp != null && temp.length() > 8){
 			addFieldError("errorMsg", "Invalid Location");
 			return false;
 		}
 		temp = postDetails.getSelectedLocationStr();
-		if(temp!=null && temp.length()>30){
+		if(temp != null && temp.length() > 30){
 			addFieldError("errorMsg", "Invalid Location");
 			return false;
 		}
-		
+
 		temp = postDetails.getDescription();
-		if(temp!=null && temp.length()>256){
+		if(temp != null && temp.length() > 256){
 			addFieldError("errorMsg", "Invalid Description");
 			return false;
 		}
-		
+
 		temp = postDetails.getMake();
-		if(temp!=null && temp.length()>16){
+		if(temp != null && temp.length() > 16){
 			addFieldError("errorMsg", "Invalid Make");
 			return false;
 		}
-		
+
+		temp = postDetails.getModel();
+		if(temp != null && temp.length() > 30){
+			addFieldError("errorMsg", "Invalid Model");
+			return false;
+		}
+
 		int year = postDetails.getYear();
-		if(year<1950 || year>2014){
+		if(year < 1950 || year > 2014){
 			addFieldError("errorMsg", "Invalid Year");
 			return false;
+		}
+
+		if(subCategory.equals(CBuddyConstants.SUBCATEGORY_COMPUTERS_DESKTOPS) ||
+				subCategory.equals(CBuddyConstants.SUBCATEGORY_COMPUTERS_LAPTOPS)){
+			int hddSize = postDetails.getHddSize();
+			if(hddSize <= 0){
+				addFieldError("errorMsg", "Invalid HDD Size");
+				return false;
+			}
+
+			int processorSize = postDetails.getProcessorSize();
+			if(processorSize <= 0){
+				addFieldError("errorMsg", "Invalid Processor Size");
+				return false;
+			}
 		}
 
 		return output;
@@ -183,7 +222,7 @@ public class ComputersAction extends ActionSupport implements SessionAware, Serv
 				return Action.INPUT;
 			}
 		}
-		
+
 		//Make an entry in POIT
 		Poit poit = new Poit();
 		poit.setCategory(CBuddyConstants.CATEGORY_COMPUTERS);
@@ -225,6 +264,7 @@ public class ComputersAction extends ActionSupport implements SessionAware, Serv
 		pcomp.setHddSize(postDetails.getHddSize());
 		pcomp.setLocation(postDetails.getSelectedLocationCode());
 		pcomp.setMake(postDetails.getMake());
+		pcomp.setModel(postDetails.getModel());
 		pcomp.setModifiedBy(userId);
 		pcomp.setModifiedOn(current);
 		pcomp.setPostId(poit.getPostId());
@@ -232,7 +272,7 @@ public class ComputersAction extends ActionSupport implements SessionAware, Serv
 		pcomp.setProcessorSize(postDetails.getProcessorSize());
 		pcomp.setSubCategory(postDetails.getSubCategory());
 		pcomp.setYear(postDetails.getYear());
-		
+
 		dbSession.save(pcomp);
 
 		if(upload != null){
@@ -268,6 +308,7 @@ public class ComputersAction extends ActionSupport implements SessionAware, Serv
 			postDetails.setCity(cityName);
 			postDetails.setLocation(locName);
 			postDetails.setPriceStr(NumberFormatterUtil.formatAmount(postDetails.getPrice()));
+			postDetails.setMakeStr(Utils.getInstance().getLaptopMakeDesc(postDetails.getMake()));
 		}
 	}
 
@@ -278,7 +319,7 @@ public class ComputersAction extends ActionSupport implements SessionAware, Serv
 
 		categoryStr = Utils.getInstance().getCategoryDesc(category);
 		subCategoryStr = Utils.getInstance().getSubCategoryDesc(category, subCategory);
-		
+
 		if(category == null || category.equals("")){
 			setCategory(CBuddyConstants.CATEGORY_COMPUTERS);
 		}

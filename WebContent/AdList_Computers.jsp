@@ -19,16 +19,14 @@
 						<span class="postField"><s:property value="city" /></span> <span class="separator">|</span>
 						<span class="postField"><s:property value="location" /></span>
 						<br>
-						
-						<s:if test="%{subCategory == 1}">
-							<!-- Cars -->
-							<span class="postField"><s:property value="makeStr" /></span> <span class="separator">|</span>
+						<span class="postField"><s:property value="makeStr" /></span> <span class="separator">|</span>
+						<span class="postField"><s:property value="model" /></span> <span class="separator">|</span>												
+						<s:if test="%{subCategory != 3}">
+							<!-- Desktops, Laptops -->
+							<span class="postField">HDD:&nbsp;<s:property value="hddSize" />&nbsp;GB</span> <span class="separator">|</span>
+							<span class="postField">RAM:&nbsp;<s:property value="processorSize" />&nbsp;GB</span> <span class="separator">|</span>
 						</s:if>
-						<s:elseif test="%{subCategory == 2}">
-							<!-- Bikes -->
-							<span class="postField"><s:property value="makeStr" /></span> <span class="separator">|</span>
-							<br>
-						</s:elseif>
+						<span class="postField">Bought&nbsp;on:&nbsp;<s:property value="year" />
 						<br>
 					</td>
 					<td>

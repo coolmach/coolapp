@@ -7,7 +7,7 @@ $(document).ready(function(){
 			$.ajax({
 				//url: "http://localhost:8080/Virat/getLocation?city=BLR",
 				//url:$('#context_path').text() + "/getLocation",
-				url:ctxPath + "/getLocation",
+				url:"Virat" + "/getLocation",
 				type: "POST",
 				dataType: "json",
 				//data: {location:$("#locSearch").val()},
@@ -30,7 +30,7 @@ $(document).ready(function(){
 			$.ajax({
 				//url:"http://localhost:8080/Virat/getNeighbor?city=BLR&location=" + ui.item.value,
 				//url:$('#contextPath').text() + "/getNeighbor",
-				url:ctxPath + "/getNeighbor",
+				url:"Virat" + "/getNeighbor",
 				type:"POST",
 				data: {city:$('input[name=city]:checked').val(),location:ui.item.value},
 				success:function(data){
@@ -211,36 +211,6 @@ function applyFilters(){
 		$("#selectedCorporateDetails").hide();
 	}
 
-	$("#userEnteredLocationStr").autocomplete({
-		source: function(request, response) {
-			$.ajax({
-				url: "http://localhost:8080/Virat/getLocation?",
-				//url:$('#contextPath').text() + "getLocation",
-				type: "POST",
-				dataType: "json",
-				data: {city:$('input[name=city]:checked').val(),location:$("#userEnteredLocationStr").val()},
-				success: function(data) {
-					response( $.map(data, function(item) {
-						return {
-							label: item.value,
-							value: item.id
-						};
-					}));
-				},
-				error: function (error) {
-					alert('error: ' + error.responseText);
-				}
-			});
-		},
-		select:function(event, ui){
-			event.preventDefault();
-			$("#userEnteredLocationStr").val(ui.item.label);
-			$("#selectedLocationCode").val(ui.item.value);
-			$("#selectedLocationStr").val(ui.item.label);
-		},
-		minLength: 2
-	});
-
 	function getSubCategory() {
 		var category = $("#category").val();
 		$("#subCategory").html("");
@@ -254,8 +224,8 @@ function applyFilters(){
 			var values = [ '0', '1', '2'];
 			var options = [ 'Select', 'Cars', 'Bikes/Scooters'];
 		} else if (category == "COMP") {
-			var numbers = [ 1, 2, 3];
-			var values = [ '1', '2', '3' ];
+			var numbers = [ 1, 2, 3, 4];
+			var values = [ '0', '1', '2', '3' ];
 			var options = [ 'Select', 'Desktops', 'Laptops', 'Tablets' ];
 		} else if (category == "ELEC") {
 			var numbers = [ 1, 2, 3 ];

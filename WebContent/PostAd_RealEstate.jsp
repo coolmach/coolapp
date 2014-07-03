@@ -25,3 +25,4 @@
 	<%@include file="PostAd_RealEstate_Apartment_For_Rent.jsp" %>
 </s:else>
 
+<script type="text/javascript" src="js/autocomplete.js"></script>

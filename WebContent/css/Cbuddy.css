@@ -98,3 +98,5 @@
 @font-face{font-family:TimeBurner; src:url(fonts/timeburner_regular.ttf);}
 .logo{font-family:TimeBurner;font-size:22px;font-weight:bold;color:#FFFFFF;text-decoration:none}
 .logo hover{text-decoration:none;}
+
+.dropDown{height:25px;width:150px;}

@@ -10,3 +10,4 @@
 	<%@include file="PostAd_Automobile_Cars.jsp" %>
 </s:else>
 
+<script type="text/javascript" src="js/autocomplete.js"></script>

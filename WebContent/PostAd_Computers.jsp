@@ -10,3 +10,4 @@
 	<%@include file="PostAd_Computers_Tab.jsp" %>
 </s:else>
 
+<script type="text/javascript" src="js/autocomplete.js"></script>

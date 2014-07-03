@@ -31,7 +31,7 @@ $(document).ready(function() {
 		$("#amt-main").show();
 		$("#used-main").show();
 	}else if(cat == 'COMP'){
-		path = "Computers and Laptops";
+		path = "computersFilter";
 		subCat = "1";
 		$("#make-main").show();
 		$("#year-main").show();

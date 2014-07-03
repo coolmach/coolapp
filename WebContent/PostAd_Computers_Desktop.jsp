@@ -10,7 +10,7 @@
 <div class="col-md-8" id="my">
 	<s:form cssClass="form-horizontal post" action="computers_postAd" enctype="multipart/form-data">
 		<input type="hidden" name="category" value="COMP"/>
-		<input type="hidden" name="subCategory" value="2"/>
+		<input type="hidden" name="subCategory" value="1"/>
 		<div class="col-md-12 post_title">
 			<div style="float:left;">
 				Desktops For Sale
@@ -21,12 +21,14 @@
 			<div class="form-group">
 				<label for="title" class="col-sm-4 control-label">Title<span class="mandatory">*</span></label>
 				<div class="col-sm-8">
-					<input type="text" class="form-control" maxlength="200" id="Title" name="Title" value="256MB RAM available for Sale" required>
+					<input type="text" class="form-control" maxlength="200" id="Title" name="Title" value="Acer Desktop available for Sale" required>
 				</div>
 			</div>
-			<%@include file="locationStrip.jsp" %>		
+			
+			<%@include file="locationStrip.jsp" %>
+			
 			<div class="form-group">
-				<label for="facingDirection" class="col-sm-4 control-label">Make</label>
+				<label for="make" class="col-sm-4 control-label">Make <span class="mandatory">*</span></label>
 				<div class="col-sm-6" style="padding-top:6px;">
 					<select class="dropDown" name="make" id="make">
 						<option value="SON">Sony</option>
@@ -42,27 +44,37 @@
 				</div>
 			</div>
 			<div class="form-group">
-				<label for="approvalAuthority" class="col-sm-4 control-label">Year</label>
-				<div class="col-sm-3">
-					<input type="text" maxlength="4" class="form-control" name="year" id="year" value="2007">
+				<label for="approvalAuthority" class="col-sm-4 control-label">Model<span class="mandatory">*</span></label>
+				<div class="col-sm-6">
+					<input type="text" maxlength="30" class="form-control" name="model" id="model" value="Compaq Presario" required>
 				</div>
 			</div>
 			<div class="form-group">
-				<label for="approvalAuthority" class="col-sm-4 control-label">RAM Size<span class="mandatory">*</span></label>
+				<label for="approvalAuthority" class="col-sm-4 control-label">Year of Purchase<span class="mandatory">*</span></label>
 				<div class="col-sm-3">
-					<input type="text" maxlength="4" class="form-control" name="processorSize" id="processorSize" value="2"> GB
+					<input type="text" maxlength="4" class="form-control" name="year" id="year" value="2007" required>
 				</div>
 			</div>
 			<div class="form-group">
-				<label for="approvalAuthority" class="col-sm-4 control-label">HDD Size<span class="mandatory">*</span></label>
-				<div class="col-sm-3">
-					<input type="text" maxlength="4" class="form-control" name="hddSize" id="hddSize" value="60"> GB
+				<label for="processorSize" class="col-sm-4 control-label">RAM Size (GB)<span class="mandatory">*</span></label>
+				<div class="col-sm-2">
+					<input type="text" maxlength="2" class="form-control" name="processorSize" id="processorSize" value="2">
 				</div>
-			</div>			
+				<label for="processorSize" class="col-sm-4 control-label">HDD Size (GB)<span class="mandatory">*</span></label>
+				<div class="col-sm-2">
+					<input type="text" maxlength="4" class="form-control" name="hddSize" id="hddSize" value="60">
+				</div>
+			</div>
 			<div class="form-group">
-				<label for="description" class="col-sm-4 control-label">Other Features</label>
+				<label for="price" class="col-sm-4 control-label">Price<span class="mandatory">*</span></label>
+				<div class="col-sm-3">
+					<input type="text" maxlength="6" class="form-control" name="price" id="price" value="30000" required>
+				</div>
+			</div>	
+			<div class="form-group">
+				<label for="description" class="col-sm-4 control-label">Other Specifications</label>
 				<div class="col-sm-8">
-					<textarea class="form-control" maxlength="256" rows="3" name="Description" id="Description">Hello tHis is description</textarea>
+					<textarea class="form-control" maxlength="256" rows="3" name="Description" id="Description" placeholder="Please enter other specifications of your desktop"></textarea>
 				</div>
 			</div>
 			<div class="form-group">

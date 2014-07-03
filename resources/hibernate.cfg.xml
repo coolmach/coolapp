@@ -51,6 +51,7 @@
 		<mapping class="com.cbuddy.beans.Neighborhood" />
 		<mapping class="com.model.user.RealEstatePostDetails" />
 		<mapping class="com.model.user.AutomobilePostDetails" />
+		<mapping class="com.model.user.ComputersPostDetails" />
 	</session-factory>
 
 </hibernate-configuration>

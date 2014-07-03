@@ -36,6 +36,9 @@ public class ComputersAdService{
 			criteria = generateFilters(postDetails, criteria, subCategory);
 
 			list = criteria.list();
+			
+			System.out.println(list);
+			
 		} catch (HibernateException e) {
 			e.printStackTrace();
 		}

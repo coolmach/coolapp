@@ -196,4 +196,22 @@ public class Utils {
 		else if(model.equals("M5")) output = "Model 5";
 		return output;
 	}
+	
+	public String getLaptopMakeDesc(String input){
+		if(input == null){
+			return null;
+		}
+
+		String output = input;
+		if(input.equals("SON")) output = "Sony";
+		else if(input.equals("ACE")) output = "Acer";
+		else if(input.equals("DELL")) output = "Dell";
+		else if(input.equals("SAM")) output = "Samsung";
+		else if(input.equals("HP")) output = "HP/Compaq";
+		else if(input.equals("APP")) output = "Apple";
+		else if(input.equals("WIP")) output = "Wipro";
+		else if(input.equals("HCL")) output = "HCL";
+		else if(input.equals("OTH")) output = "Others";
+		return output;
+	}
 }
