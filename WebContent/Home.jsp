@@ -81,16 +81,14 @@
 	<div class="col-md-3 pull-left">
 		<img id="guy-img" src="images/Guy.png">
 	</div>
-	<div class="col-md-6" style="width: 600px;">
+	<div class="col-md-6" style="width: 650px;margin-top:4%;">
 		<div class="col-md-12 cbuddy_intro">
-			<div class="mainHeading">An exclusive Classifieds portal for
-				Techies</div>
+			<div class="mainHeading">An exclusive Classifieds portal for Techies</div>
 		</div>
-		<div class="col-md-12 cbuddy_intro">
-			<h5 class="subHeading">"Say no to brokers, yes to fellow IT
-				Community"</h5>
+		<div class="col-md-12 cbuddy_intro" style="margin-top:3%;margin-left:2%;">
+			<h5 class="subHeading">"Say no to brokers, yes to fellow IT Community"</h5>
 		</div>
-		<div class="col-md-12 cbuddy_intro bulletSection">
+		<!-- div class="col-md-12 cbuddy_intro bulletSection">
 			<div style="margin: 15px;">
 				<img class="star-img" src="images/star.png"> <span
 					class="bulletItem">Verified Posts</span>
@@ -99,7 +97,7 @@
 				<img class="star-img" src="images/star.png"> <span
 					class="bulletItem">Authenticated Users</span>
 			</div>
-		</div>
+		</div-->
 
 	</div>
 	<!-- <div class="col-md-3">
@@ -112,14 +110,9 @@
 		Ad</a>
 
 </div>
-<div class="col-md-12" style="margin-top: 1%; padding-left: 18%;">
-	<img src="images/arrow.png" id="arr_img"> <input type="text"
-		class="form-control" id="category_search" name="category"
-		placeholder="I am looking for...">
 
-</div>
 <div class="col-md-8"
-	style="margin-top: 1%; margin-left: 17%; max-width: 900px;">
+	style="margin-top: 1%; margin-left: 5%; max-width: 900px;margin-bottom:20px;">
 	<table class="imageTable">
 		<tr>
 			<td><s:url action="realestate" var="urlTag" escapeAmp="false">
@@ -137,7 +130,7 @@
 				</s:url> <a href="<s:property value="#urlTag2" />"><img
 					class="images_ad" src="images/household.png"> </a></td>
 			<td><s:url action="computers" var="urlTag3">
-					<s:param name="category">LAPTOPS</s:param>
+					<s:param name="category">COMP</s:param>
 				</s:url> <a href="<s:property value="#urlTag3" />"><img
 					class="images_ad" src="images/laptops.png"> </a></td>
 			<td><s:url action="mobiles" var="urlTag4">
@@ -151,5 +144,13 @@
 		</tr>
 
 	</table>
+
+</div>
+
+<div class="col-md-12" style="margin-top: 1%; padding-left: 18%;">
+	<img src="images/arrow.png" id="arr_img"> 
+	<input type="text"
+		class="form-control" id="category_search" name="category"
+		placeholder="I am looking for...">
 
 </div>
