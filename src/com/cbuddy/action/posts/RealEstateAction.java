@@ -433,6 +433,14 @@ public class RealEstateAction extends ActionSupport implements SessionAware, Ser
 
 		return "success";
 	}
+	
+	public String getAdDetailsForRealEstate(){
+		
+		RealEstateAdService adService = new RealEstateAdService();
+		postDetails = adService.getAdDetailsForRealEstate(getModel());
+		
+		return "success";
+	}
 
 	@Override
 	public RealEstatePostDetails getModel() {
@@ -477,6 +485,7 @@ public class RealEstateAction extends ActionSupport implements SessionAware, Ser
 	}
 
 	public void setCategory(String category) {
+		System.out.println(category);
 		this.category = category;
 	}
 
@@ -519,6 +528,16 @@ public class RealEstateAction extends ActionSupport implements SessionAware, Ser
 	}
 
 	public void setResponseMsg(String responseMsg) {
+		System.out.println(responseMsg);
 		this.responseMsg = responseMsg;
 	}
+	
+	public RealEstatePostDetails getPostDetails() {
+		return postDetails;
+	}
+
+	public void setPostDetails(RealEstatePostDetails postDetails) {
+		this.postDetails = postDetails;
+	}
+
 }

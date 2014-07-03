@@ -15,6 +15,8 @@ import javax.persistence.Transient;
 @Table(name = "Pdre")
 @Inheritance(strategy = InheritanceType.JOINED)
 public class Pdre {
+	
+	private int postIdStr;
 	private int postId;
 	private String subCategory;
 	private String rentOrSale;
@@ -69,6 +71,14 @@ public class Pdre {
 //	public void setImageFileName(String imageFileName) {
 //		this.imageFileName = imageFileName;
 //	}
+	
+	@Transient
+	public int getPostIdStr() {
+		return postIdStr;
+	}
+	public void setPostIdStr(int postIdStr) {
+		this.postIdStr = postIdStr;
+	}
 	
 	@Id
 	@Column(name="POST_ID")

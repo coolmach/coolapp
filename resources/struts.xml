@@ -65,7 +65,7 @@
 		<action name="realestateFilter" class="com.cbuddy.action.posts.RealEstateAction" method="getAdListForRealEstate">
 			<result name="success">/AdList_RealEstate.jsp</result>
 		</action>
-		<action name="addetails" class="com.cbuddy.action.user.HomeAction" method="getAdDetails">
+		<action name="realestateaddetails" class="com.cbuddy.action.posts.RealEstateAction" method="getAdDetailsForRealEstate">
 			<result name="success" type="tiles">/addetails.tiles</result>
 		</action>
 		<action name="real_estate_postAd" class="com.cbuddy.action.posts.RealEstateAction" method="postAd">

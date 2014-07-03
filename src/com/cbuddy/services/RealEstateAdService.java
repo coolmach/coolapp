@@ -20,13 +20,13 @@ import com.cbuddy.util.NumberFormatterUtil;
 import com.model.user.RealEstatePostDetails;
 
 public class RealEstateAdService{
-	
+
 	@SuppressWarnings("unchecked")
 	public List<RealEstatePostDetails> getAdListByCategory(RealEstatePostDetails postDetails, String subCategory){
 
 		SessionFactory sessionFactory = (SessionFactory) ServletActionContext.getServletContext().getAttribute("sessionFactory");
 		Session session = sessionFactory.openSession();
-		
+
 		List<RealEstatePostDetails> list = null;
 		try {
 			Criteria criteria = session.createCriteria(RealEstatePostDetails.class);
@@ -40,7 +40,7 @@ public class RealEstateAdService{
 				criteria.add(Restrictions.eq("corpId", postDetails.getCorpId()));
 			}
 			criteria = generateFilters(postDetails, criteria, subCategory);
-			
+
 			list = criteria.list();
 		} catch (HibernateException e) {
 			e.printStackTrace();
@@ -49,8 +49,8 @@ public class RealEstateAdService{
 
 		return list;
 	}
-	
-	
+
+
 	private Criteria generateFilters(RealEstatePostDetails postDetails, Criteria criteria, String subCategory) {
 
 		if(subCategory.equals(CBuddyConstants.SUBCATEGORY_REAL_ESTATE_APARTMENT_FOR_RENT)){
@@ -155,7 +155,7 @@ public class RealEstateAdService{
 
 		return criteria;	
 	}
-	
+
 
 
 	public Criteria getCriteriaForBhk(Criteria criteria,Pdre pdre){
@@ -302,7 +302,7 @@ public class RealEstateAdService{
 		criteria.add(Restrictions.eq("childrenPlayArea", pdre.getChildrenPlayArea()));
 		return criteria;	
 	}
-	
+
 	public Criteria getCriteriaForShare(Criteria criteria, Pdre pdre){
 
 		String obj[] = pdre.getShare().split(",");
@@ -412,5 +412,13 @@ public class RealEstateAdService{
 		return criteria;
 	}
 
+	public RealEstatePostDetails getAdDetailsForRealEstate(RealEstatePostDetails postDetails){
+		SessionFactory sessionFactory = (SessionFactory) ServletActionContext.getServletContext().getAttribute("sessionFactory");
+		Session session = sessionFactory.openSession();
+		RealEstatePostDetails adDetails = (RealEstatePostDetails)session.get(RealEstatePostDetails.class, new Integer(postDetails.getPostIdStr()));
+		return adDetails;
+
+
+	}
 
 }

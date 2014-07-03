@@ -37,7 +37,7 @@
     </definition>
    <definition name="/addetails.tiles" extends="baseLayout">
         <put-attribute name="title" value="Ad Details" />
-        <put-attribute name="body" value="/AdDetails.jsp" />
+        <put-attribute name="body" value="/pages/adDetails/realestate/AdDetails.jsp" />
     </definition>
     <definition name="/postad_real_estate.tiles" extends="baseLayout">
         <put-attribute name="title" value="Post Ad" />
