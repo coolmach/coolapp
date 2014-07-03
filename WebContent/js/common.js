@@ -174,48 +174,48 @@ function applyFilters(){
 }
 
 
-//if user clicks on Clear Filter in Location bar in Ad List page
-function resetLocationFilter() {
+	//if user clicks on Clear Filter in Location bar in Ad List page
+	function resetLocationFilter() {
+	
+		//$("#filterValueBar").show();
+		$('input[class^=check_location]').attr("checked", false);
+	
+		var ctxPath = $('#context_path').text();
+		var path = "realestateFilter";
+	
+		subCat = $('#sub').text();
+		cat = $('#cat').text();
+	
+		applyFilters();	
+	
+		$("#locationListBar").html("");
+		$("#horizontalSeparator").html("");
+		$("#neighborhoodLocationBar").html("");
+	}
 
-	//$("#filterValueBar").show();
-	$('input[class^=check_location]').attr("checked", false);
+	function resetCorporateFilter() {
+	
+		//$("#filterValueBar").show();
+		//$('input[class^=check_corpId]').attr("checked", false);
+		$("#corpId").val("");
+	
+		var ctxPath = $('#context_path').text();
+		var path = "realestateFilter";
+	
+		subCat = $('#sub').text();
+		cat = $('#cat').text();
+	
+		applyFilters();	
+	
+		$("#corpSearchString").val("");
+		$("#selectedCorporateDetails").hide();
+	}
 
-	var ctxPath = $('#context_path').text();
-	var path = "realestateFilter";
-
-	subCat = $('#sub').text();
-	cat = $('#cat').text();
-
-	applyFilters();	
-
-	$("#locationListBar").html("");
-	$("#horizontalSeparator").html("");
-	$("#neighborhoodLocationBar").html("");
-}
-
-function resetCorporateFilter() {
-
-	//$("#filterValueBar").show();
-	//$('input[class^=check_corpId]').attr("checked", false);
-	$("#corpId").val("");
-
-	var ctxPath = $('#context_path').text();
-	var path = "realestateFilter";
-
-	subCat = $('#sub').text();
-	cat = $('#cat').text();
-
-	applyFilters();	
-
-	$("#corpSearchString").val("");
-	$("#selectedCorporateDetails").hide();
-}
-$(document).ready(function(){
 	$("#userEnteredLocationStr").autocomplete({
 		source: function(request, response) {
 			$.ajax({
-				//url: "http://localhost:8080/Virat/getLocation?",
-				url:$('#contextPath').text() + "getLocation",
+				url: "http://localhost:8080/Virat/getLocation?",
+				//url:$('#contextPath').text() + "getLocation",
 				type: "POST",
 				dataType: "json",
 				data: {city:$('input[name=city]:checked').val(),location:$("#userEnteredLocationStr").val()},
@@ -250,13 +250,13 @@ $(document).ready(function(){
 			var options = [ 'Apartment for Sale', 'Apartment for Rent',
 			                'Individual House for Sale', 'Individual House for Rent', 'PG Accommodation', 'Land For Sale', 'Roommate Required'];
 		} else if (category == "AUTO") {
-			var numbers = [ 1, 2];
-			var values = [ '1', '2'];
-			var options = [ 'Cars', 'Bikes/Scooters'];
+			var numbers = [ 1, 2, 3];
+			var values = [ '0', '1', '2'];
+			var options = [ 'Select', 'Cars', 'Bikes/Scooters'];
 		} else if (category == "COMP") {
-			var numbers = [ 1, 2 ];
+			var numbers = [ 1, 2, 3];
 			var values = [ '1', '2', '3' ];
-			var options = [ 'Desktops', 'Laptops', 'Tablets' ];
+			var options = [ 'Select', 'Desktops', 'Laptops', 'Tablets' ];
 		} else if (category == "ELEC") {
 			var numbers = [ 1, 2, 3 ];
 			var values = [ 'TV', 'DVD', 'MUSIC', 'OTH' ];
@@ -273,6 +273,3 @@ $(document).ready(function(){
 	function submitForm(){
 		$("#categoryForm").submit();
 	}
-	
-});
-

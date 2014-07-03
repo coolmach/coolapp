@@ -9,7 +9,7 @@
 </div>
 <div class="col-md-8" id="my">
 	<s:form cssClass="form-horizontal post" action="automobile_postAd" enctype="multipart/form-data">
-		<input type="hidden" name="category" value="AUTO"/>
+		<input type="hidden" name="category" value="COMP"/>
 		<input type="hidden" name="subCategory" value="2"/>
 		<div class="col-md-12 post_title">
 			<div style="float:left;">

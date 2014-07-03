@@ -186,7 +186,7 @@ public class ComputersAction extends ActionSupport implements SessionAware, Serv
 		
 		//Make an entry in POIT
 		Poit poit = new Poit();
-		poit.setCategory(CBuddyConstants.CATEGORY_AUTOMOBILES);
+		poit.setCategory(CBuddyConstants.CATEGORY_COMPUTERS);
 		poit.setTitle(postDetails.getTitle());
 		poit.setCity(postDetails.getCity());
 		poit.setContactNo(postDetails.getContactNo());
@@ -227,7 +227,7 @@ public class ComputersAction extends ActionSupport implements SessionAware, Serv
 		pcomp.setMake(postDetails.getMake());
 		pcomp.setModifiedBy(userId);
 		pcomp.setModifiedOn(current);
-		pcomp.setPostId(postDetails.getPostId());
+		pcomp.setPostId(poit.getPostId());
 		pcomp.setPrice(postDetails.getPrice());
 		pcomp.setProcessorSize(postDetails.getProcessorSize());
 		pcomp.setSubCategory(postDetails.getSubCategory());
@@ -280,7 +280,7 @@ public class ComputersAction extends ActionSupport implements SessionAware, Serv
 		subCategoryStr = Utils.getInstance().getSubCategoryDesc(category, subCategory);
 		
 		if(category == null || category.equals("")){
-			setCategory(CBuddyConstants.CATEGORY_AUTOMOBILES);
+			setCategory(CBuddyConstants.CATEGORY_COMPUTERS);
 		}
 		if(category.equals(CBuddyConstants.CATEGORY_COMPUTERS) && (subCategory==null || subCategory.equals(""))){
 			setSubCategory(CBuddyConstants.SUBCATEGORY_COMPUTERS_DESKTOPS);
