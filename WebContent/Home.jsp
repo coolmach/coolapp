@@ -133,8 +133,8 @@
 					<s:param name="category">COMP</s:param>
 				</s:url> <a href="<s:property value="#urlTag3" />"><img
 					class="images_ad" src="images/laptops.png"> </a></td>
-			<td><s:url action="mobiles" var="urlTag4">
-					<s:param name="category">MOBILES</s:param>
+			<td><s:url action="mobile" var="urlTag4">
+					<s:param name="category">MOBILE</s:param>
 				</s:url> <a href="<s:property value="#urlTag4" />"><img
 					class="images_ad" src="images/mobiles.png"> </a></td>
 			<td><s:url action="books" var="urlTag5">

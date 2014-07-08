@@ -19,7 +19,7 @@
 							<div class="col-sm-9" style="margin-top:5px;">
 								<s:select class="form-control" id="category"
 									headerKey="-1" headerValue="Select Category" onChange="getSubCategory()"
-									list="#{'REAL':'Real Estate', 'AUTO':'Cars/Bikes', 'COMP':'Computers/Laptops', 'ELEC':'Electronics', 'HOUSE':'Household Items', 'BOOK':'Books/DVDs'}" 
+									list="#{'REAL':'Real Estate', 'AUTO':'Cars/Bikes', 'COMP':'Computers/Laptops', 'MOBILE':'Mobiles', 'HOUSE':'Household Items', 'BOOK':'Books/DVDs'}" 
 									name="category" 
 									value="2" />
 							</div>

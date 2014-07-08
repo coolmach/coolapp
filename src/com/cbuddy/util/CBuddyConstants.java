@@ -13,6 +13,7 @@ public class CBuddyConstants {
 	public static final String CATEGORY_HOUSEHOLD = "HOUSE";
 	public static final String CATEGORY_BOOK_DVD = "BOOK";
 	public static final String CATEGORY_COMPUTERS = "COMP";
+	public static final String CATEGORY_MOBILE = "MOBILE";
 
 	public static final String SUBCATEGORY_REAL_ESTATE_APARTMENT_FOR_SALE = "1";
 	public static final String SUBCATEGORY_REAL_ESTATE_APARTMENT_FOR_RENT = "2";
@@ -29,6 +30,9 @@ public class CBuddyConstants {
 	public static final String SUBCATEGORY_COMPUTERS_LAPTOPS = "2";
 	public static final String SUBCATEGORY_COMPUTERS_TABS = "3";
 	public static final String SUBCATEGORY_COMPUTERS_ACCESSORIES = "4";
+
+	public static final String SUBCATEGORY_MOBILE_MOBILEPHONES = "1";
+	public static final String SUBCATEGORY_MOBILE_ACCESORIES = "2";
 	
 //	public static final String SUBCATEGORY_AUTOMOBILES_SCOOTERS ="3";
 //	public static final String SUBCATEGORY_AUTOMOBILES_VANS = "4";

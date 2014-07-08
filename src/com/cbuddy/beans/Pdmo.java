@@ -12,37 +12,37 @@ import javax.persistence.Transient;
 
 
 @Entity
-@Table(name = "Pdau")
+@Table(name = "Pdmo")
 @Inheritance(strategy = InheritanceType.JOINED)
-public class Pdau {
+public class Pdmo {
 	
 	private int postId;
 	private String subCategory;
 	private String city;
 	private String location;
-	private String make;
+	private String brand;
 	private String model;
 	private String color;
 	private int year;
-	private int noOfOwners;
-	private String fuelType;
-	private int kms;
-	private int mileage;
+	private String smartPhone;
+	private String touchScreen;
+	private double screenSize;
+	private double cameraResolution;
+	private String operatingSystem;
+	private String wiFi;
+	private String fontCamera;
+	private String fmRadio;
+	private String processorSpeed;
+	private String memorySize;
+	
 	private double price;
-	private String priceNegotiable;
-	private String insuranceAvailable;
-	private String regNo;
-	private String regCity;
-	private String regState;
 	
 	private Timestamp createdOn;
 	private String createdBy;
 	private Timestamp modifiedOn;
 	private String modifiedBy;
 	
-	private String areaStr;
-	private String amt;
-	private String yearOfMake;
+	private String amtStr;
 
 	@Id
 	@Column(name="POST_ID")
@@ -109,14 +109,6 @@ public class Pdau {
 		this.modifiedBy = ModifiedBy;
 	}
 	
-	@Column(name="MAKE")
-	public String getMake() {
-		return make;
-	}
-	public void setMake(String make) {
-		this.make = make;
-	}
-	
 	@Column(name="MODEL")
 	public String getModel() {
 		return model;
@@ -141,38 +133,6 @@ public class Pdau {
 		this.year = year;
 	}
 	
-	@Column(name="NO_OF_OWNERS")
-	public int getNoOfOwners() {
-		return noOfOwners;
-	}
-	public void setNoOfOwners(int noOfOwners) {
-		this.noOfOwners = noOfOwners;
-	}
-	
-	@Column(name="FUEL_TYPE")
-	public String getFuelType() {
-		return fuelType;
-	}
-	public void setFuelType(String fuelType) {
-		this.fuelType = fuelType;
-	}
-	
-	@Column(name="KMS_DONE")
-	public int getKms() {
-		return kms;
-	}
-	public void setKms(int kms) {
-		this.kms = kms;
-	}
-	
-	@Column(name="MILEAGE")
-	public int getMileage() {
-		return mileage;
-	}
-	public void setMileage(int mileage) {
-		this.mileage = mileage;
-	}
-	
 	@Column(name="PRICE")
 	public double getPrice() {
 		return price;
@@ -181,67 +141,99 @@ public class Pdau {
 		this.price = price;
 	}
 	
-	@Column(name="PRICE_NEGOTIABLE")
-	public String getPriceNegotiable() {
-		return priceNegotiable;
-	}
-	public void setPriceNegotiable(String priceNegotiable) {
-		this.priceNegotiable = priceNegotiable;
-	}
-	
-	@Column(name="INSURANCE_AVAILABLE")
-	public String getInsuranceAvailable() {
-		return insuranceAvailable;
-	}
-	public void setInsuranceAvailable(String insuranceAvailable) {
-		this.insuranceAvailable = insuranceAvailable;
-	}
-	
-	@Column(name="REG_NO")
-	public String getRegNo() {
-		return regNo;
-	}
-	public void setRegNo(String regNo) {
-		this.regNo = regNo;
-	}
-	
-	@Column(name="REG_CITY")
-	public String getRegCity() {
-		return regCity;
-	}
-	public void setRegCity(String regCity) {
-		this.regCity = regCity;
-	}
-	
-	@Column(name="REG_STATE")
-	public String getRegState() {
-		return regState;
-	}
-	public void setRegState(String regState) {
-		this.regState = regState;
-	}
-	
 	@Transient
-	public String getAreaStr() {
-		return areaStr;
+	public String getAmtStr() {
+		return amtStr;
 	}
-	public void setAreaStr(String areaStr) {
-		this.areaStr = areaStr;
-	}
-	
-	@Transient
-	public String getAmt() {
-		return amt;
-	}
-	public void setAmt(String amt) {
-		this.amt = amt;
+	public void setAmtStr(String amtStr) {
+		this.amtStr = amtStr;
 	}
 	
-	@Transient
-	public String getYearOfMake() {
-		return yearOfMake;
+	@Column(name="BRAND")
+	public String getBrand() {
+		return brand;
 	}
-	public void setYearOfMake(String yearOfMake) {
-		this.yearOfMake = yearOfMake;
+	public void setBrand(String brand) {
+		this.brand = brand;
+	}
+	
+	@Column(name="TOUCH_SCREEN")
+	public String getTouchScreen() {
+		return touchScreen;
+	}
+	public void setTouchScreen(String touchScreen) {
+		this.touchScreen = touchScreen;
+	}
+	
+	@Column(name="SCREEN_SIZE")
+	public double getScreenSize() {
+		return screenSize;
+	}
+	public void setScreenSize(double screenSize) {
+		this.screenSize = screenSize;
+	}
+	
+	@Column(name="CAMERA_RESOLUTION")
+	public double getCameraResolution() {
+		return cameraResolution;
+	}
+	public void setCameraResolution(double cameraResolution) {
+		this.cameraResolution = cameraResolution;
+	}
+	
+	@Column(name="WI_FI")
+	public String getWiFi() {
+		return wiFi;
+	}
+	public void setWiFi(String wiFi) {
+		this.wiFi = wiFi;
+	}
+	
+	@Column(name="FRONT_CAMERA")
+	public String getFontCamera() {
+		return fontCamera;
+	}
+	public void setFontCamera(String fontCamera) {
+		this.fontCamera = fontCamera;
+	}
+	
+	@Column(name="FM_RADIO")
+	public String getFmRadio() {
+		return fmRadio;
+	}
+	public void setFmRadio(String fmRadio) {
+		this.fmRadio = fmRadio;
+	}
+	
+	@Column(name="PROCESSOR_SPEED")
+	public String getProcessorSpeed() {
+		return processorSpeed;
+	}
+	public void setProcessorSpeed(String processorSpeed) {
+		this.processorSpeed = processorSpeed;
+	}
+	
+	@Column(name="MEMORY_SIZE")
+	public String getMemorySize() {
+		return memorySize;
+	}
+	public void setMemorySize(String memorySize) {
+		this.memorySize = memorySize;
+	}
+	
+	@Column(name="SMART_PHONE")
+	public String getSmartPhone() {
+		return smartPhone;
+	}
+	public void setSmartPhone(String smartPhone) {
+		this.smartPhone = smartPhone;
+	}
+	
+	@Column(name="OPERATING_SYSTEM")
+	public String getOperatingSystem() {
+		return operatingSystem;
+	}
+	public void setOperatingSystem(String operatingSystem) {
+		this.operatingSystem = operatingSystem;
 	}
 }

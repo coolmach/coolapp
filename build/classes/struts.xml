@@ -65,7 +65,7 @@
 		<action name="realestateFilter" class="com.cbuddy.action.posts.RealEstateAction" method="getAdListForRealEstate">
 			<result name="success">/AdList_RealEstate.jsp</result>
 		</action>
-		<action name="addetails" class="com.cbuddy.action.user.HomeAction" method="getAdDetails">
+		<action name="realestateaddetails" class="com.cbuddy.action.posts.RealEstateAction" method="getAdDetailsForRealEstate">
 			<result name="success" type="tiles">/addetails.tiles</result>
 		</action>
 		<action name="real_estate_postAd" class="com.cbuddy.action.posts.RealEstateAction" method="postAd">
@@ -115,6 +115,29 @@
 		</action>
 		<!-- COMPUTERS - END -->		
 		
+		
+		<!-- MOBILE - START -->
+		<action name="mobile" class="com.cbuddy.action.posts.MobileAction" method="getAdListForMobile">
+			<result name="success" type="tiles">/mobile.tiles</result>
+		</action>
+		<action name="mobileFilter" class="com.cbuddy.action.posts.MobileAction" method="getAdListForMobile">
+			<result name="success">/AdList_Mobile.jsp</result>
+		</action>
+		<action name="mobile_postAd" class="com.cbuddy.action.posts.MobileAction" method="postAd">
+			 <interceptor-ref name="secureStack"></interceptor-ref> 
+			 <interceptor-ref name="fileUpload">
+                     <param name="allowedTypes">image/jpeg,image/gif,image/png</param>
+             </interceptor-ref>
+             <interceptor-ref name="defaultStack"></interceptor-ref>
+			<result name="login" type="tiles">/home.tiles</result>
+			<result name="success" type="tiles">/home.tiles</result>
+			<result name="input" type="tiles">/postad_mobile.tiles</result>
+		</action>		
+		<action name="autoSuggestMobile" class="com.cbuddy.action.posts.MobileAction" method="autoPopulateMobileModels">
+			<result name="success">/ajax_Autosuggest_Mobile.jsp</result>
+		</action>
+		<!-- MOBILE - END -->
+		
 		<action name="postad" class="com.cbuddy.action.posts.PostAdAction">
 			
 			<result name="login" type="tiles">/home.tiles</result>
@@ -122,6 +145,7 @@
 			<result name="realEstate" type="tiles">/postad_real_estate.tiles</result>
 			<result name="automobile" type="tiles">/postad_automobile.tiles</result>
 			<result name="computers" type="tiles">/postad_computers.tiles</result>
+			<result name="mobile" type="tiles">/postad_mobile.tiles</result>
 		</action>		
 		<action name="modalLogin" class="com.cbuddy.action.user.LoginAction">
 			<result name="input" type="tiles">/login.tiles</result>
@@ -138,6 +162,6 @@
 		</action>
 		<action name="autoSuggestCorp" class="com.cbuddy.action.user.CorpAction" method="autoPopulateCorporates">
 			<result name="success">/ajax_Autosuggest_Corporates.jsp</result>
-		</action>							
+		</action>		
 	</package>
 </struts>

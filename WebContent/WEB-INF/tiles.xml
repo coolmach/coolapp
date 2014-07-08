@@ -27,7 +27,7 @@
         <put-attribute name="title" value="Computers/Laptops" />
         <put-attribute name="body" value="/Computers.jsp" />
     </definition>
-     <definition name="/mobiles.tiles" extends="baseLayout">
+     <definition name="/mobile.tiles" extends="baseLayout">
         <put-attribute name="title" value="Mobile Phones" />
         <put-attribute name="body" value="/Mobiles.jsp" />
     </definition>
@@ -62,7 +62,11 @@
     <definition name="/automobile.tiles" extends="baseLayout">
         <put-attribute name="title" value="Automobiles" />
         <put-attribute name="body" value="/Automobile.jsp" />
-    </definition>    
+    </definition>
+    <definition name="/postad_mobile.tiles" extends="baseLayout">
+        <put-attribute name="title" value="Post Ad" />
+        <put-attribute name="body" value="/PostAd_Mobile.jsp" />
+    </definition>         
      <definition name="/userdashboard.tiles" extends="baseLayout">
         <put-attribute name="title" value="My Dashboard" />
         <put-attribute name="body" value="/MyDashBoard.jsp" />

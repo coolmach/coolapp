@@ -214,4 +214,18 @@ public class Utils {
 		else if(input.equals("OTH")) output = "Others";
 		return output;
 	}
+	
+	public String getMobileBrandDesc(String input){
+		if(input == null){
+			return null;
+		}
+
+		String output = input;
+		if(input.equals("SON")) output = "Sony";
+		else if(input.equals("SAM")) output = "Samsung";
+		else if(input.equals("NOK")) output = "Nokia";
+		else if(input.equals("APP")) output = "Apple";
+		else if(input.equals("OTH")) output = "Others";
+		return output;
+	}
 }

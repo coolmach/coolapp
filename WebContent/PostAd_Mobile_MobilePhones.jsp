@@ -8,12 +8,12 @@
 	</div-->
 </div>
 <div class="col-md-8" id="my">
-	<s:form cssClass="form-horizontal post" action="computers_postAd" enctype="multipart/form-data">
-		<input type="hidden" name="category" value="COMP"/>
-		<input type="hidden" name="subCategory" value="3"/>
+	<s:form cssClass="form-horizontal post" action="mobile_postAd" enctype="multipart/form-data">
+		<input type="hidden" name="category" value="MOBILE"/>
+		<input type="hidden" name="subCategory" value="1"/>
 		<div class="col-md-12 post_title">
 			<div style="float:left;">
-				Tab For Sale
+				Mobile for Sale
 			</div>
 			<span class="error"><s:fielderror fieldName="errorMsg"/></span>
 		</div>
@@ -28,12 +28,13 @@
 			<%@include file="locationStrip.jsp" %>
 					
 			<div class="form-group">
-				<label for="make" class="col-sm-4 control-label">Make <span class="mandatory">*</span></label>
+				<label for="brand" class="col-sm-4 control-label">Brand <span class="mandatory">*</span></label>
 				<div class="col-sm-6" style="padding-top:6px;">
-					<select class="dropDown" name="make" id="make">
-						<option value="SON">Sony</option>
-						<option value="SAM">Samsung</option>
-						<option value="APP">Apple</option>
+					<select class="dropDown" name="brand" id="brand">
+						<option value="Nokia">Nokia</option>
+						<option value="Sony">Sony</option>
+						<option value="Samsung">Samsung</option>
+						<option value="Apple">Apple</option>
 						<option value="OTH">Others</option>
 					</select>
 				</div>
@@ -41,7 +42,10 @@
 			<div class="form-group">
 				<label for="approvalAuthority" class="col-sm-4 control-label">Model<span class="mandatory">*</span></label>
 				<div class="col-sm-6">
-					<input type="text" maxlength="30" class="form-control" name="model" id="model" value="Galaxy" required>
+					<input type="text" class="locationTextBox" maxlength="16" placeholder="Enter Area (e.g. JP Nagar)" name="userEnteredModelStr" id="userEnteredModelStr" required>
+					<input type="hidden" name="model" id="model">
+					<input type="hidden" name="selectedModelStr" id="selectedModelStr">
+					<input type="hidden" name="selectedBrand" id="selectedBrand">
 				</div>
 			</div>			
 			<div class="form-group">
@@ -50,6 +54,12 @@
 					<input type="text" maxlength="4" class="form-control" name="year" id="year" value="2007" required>
 				</div>
 			</div>
+			<div class="form-group">
+				<label for="color" class="col-sm-4 control-label">Color<span class="mandatory">*</span></label>
+				<div class="col-sm-3">
+					<input type="text" maxlength="16" class="form-control" name="color" id="color" value="Black" required>
+				</div>
+			</div>			
 			<div class="form-group">
 				<label for="price" class="col-sm-4 control-label">Price<span class="mandatory">*</span></label>
 				<div class="col-sm-3">

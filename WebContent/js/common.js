@@ -227,10 +227,10 @@ function applyFilters(){
 			var numbers = [ 1, 2, 3, 4];
 			var values = [ '0', '1', '2', '3' ];
 			var options = [ 'Select', 'Desktops', 'Laptops', 'Tablets' ];
-		} else if (category == "ELEC") {
+		} else if (category == "MOBILE") {
 			var numbers = [ 1, 2, 3 ];
-			var values = [ 'TV', 'DVD', 'MUSIC', 'OTH' ];
-			var options = [ 'TVs', 'Music Players', 'Others' ];
+			var values = [ '0', '1', '2' ];
+			var options = [ 'Select', 'Handsets', 'Accessories' ];
 		}
 		var index = 0;
 		$.each(numbers, function(val, text) {

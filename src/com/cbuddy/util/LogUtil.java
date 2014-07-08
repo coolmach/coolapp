@@ -4,7 +4,7 @@ import org.apache.log4j.Logger;
 
 public class LogUtil {
 
-	private static Logger instance = Logger.getLogger(LogUtil.class.getName());
+	private static Logger instance = Logger.getLogger("CBUDDY_LOGGER");
 	private LogUtil(){
 
 	}
@@ -12,7 +12,7 @@ public class LogUtil {
 		return instance;
 	}
 	public void log(String message){
-		instance.debug(message);
+		instance.info(message);
 	}
 	public void logException(Exception e){
 		instance.error(e);
