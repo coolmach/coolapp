@@ -23,7 +23,7 @@
                         <a href="#page-top"></a>
                     </li>
                     <li class="page-scroll">
-                        <a href="#about">About</a>
+                        <a  href="<s:url action="newHome"/>"> About</a>
                     </li>
                
                     <li class="page-scroll">

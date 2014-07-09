@@ -162,6 +162,9 @@
 		</action>
 		<action name="autoSuggestCorp" class="com.cbuddy.action.user.CorpAction" method="autoPopulateCorporates">
 			<result name="success">/ajax_Autosuggest_Corporates.jsp</result>
-		</action>		
+		</action>
+		<action name="newHome">
+			<result name="success">/newHome.jsp</result>
+		</action>				
 	</package>
 </struts>
