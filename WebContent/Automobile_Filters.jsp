@@ -139,7 +139,7 @@
 	   <span id="sub" style="display:none"><s:property value="subCategory" /></span>
 	
 	<a class="grey_link" href="<s:url action=""  />">Home</a> >
-		<span id="breadCrumb_Category_1">Real Estate</span> > 
+		<span id="breadCrumb_Category_1">AutoMobiles</span> > 
 		<span id="breadCrumb_SubCategory"><s:property value="subCategoryStr" /></span>
 	</div>
 </div>

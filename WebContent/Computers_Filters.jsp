@@ -1,8 +1,9 @@
 <div class=" header_2">
 	<div class="col-md-12 filter_cat" style="margin-top:3.86%;">
+	  <div id="clear_all_f" class="pull-left pointer" style="text-decoration: underline;color:#4f00fc">clear all</div>
 		<div class="form-group pull-left searchFilter" id="sub-main" style="margin-left:4.5%;">
 			<div id="subCategory" class="inputstyle pointer form-control">
-				<span class="content">Type</span><span
+				Type<span
 					class="glyphicon glyphicon glyphicon-chevron-down form-control-show"></span>
 			</div>
 			
@@ -42,12 +43,16 @@
 				</div>
 				<div id="subCategory_hidden_year" class="subCategory_hidden_bck" style="display: none;">
 					<ul class="list-unstyled">
-						<li><input type="checkbox" class="check_year" name="year" value="<2005" /><span class="content">< 2005</span></li>
-						<li><input type="checkbox" class="check_year" name="year" value="2005-2010" /><span class="content">2005-2010</span></li>
-						<li><input type="checkbox" class="check_year" name="year" value="2011" /><span class="content">2011</span></li>
-						<li><input type="checkbox" class="check_year" name="year" value="2012" /><span class="content">2012</span></li>
-						<li><input type="checkbox" class="check_year" name="year" value="2013" /><span class="content">2013</span></li>
-						<li><input type="checkbox" class="check_year" name="year" value="2014" /><span class="content">2014</span></li>
+						<li><input type="checkbox" class="check_year" name="yearStr" value="2005" /><span class="content">2005</span></li>
+						<li><input type="checkbox" class="check_year" name="yearStr" value="2006" /><span class="content">2006</span></li>
+						<li><input type="checkbox" class="check_year" name="yearStr" value="2007" /><span class="content">2007</span></li>
+						<li><input type="checkbox" class="check_year" name="yearStr" value="2008" /><span class="content">2008</span></li>
+						<li><input type="checkbox" class="check_year" name="yearStr" value="2009" /><span class="content">2009</span></li>
+						<li><input type="checkbox" class="check_year" name="yearStr" value="2010" /><span class="content">2010</span></li>
+						<li><input type="checkbox" class="check_year" name="yearStr" value="2011" /><span class="content">2011</span></li>
+						<li><input type="checkbox" class="check_year" name="yearStr" value="2012" /><span class="content">2012</span></li>
+						<li><input type="checkbox" class="check_year" name="yearStr" value="2013" /><span class="content">2013</span></li>
+						<li><input type="checkbox" class="check_year" name="yearStr" value="2014" /><span class="content">2014</span></li>
 					</ul>
 					<a href="#" class="clear blue_link">clear filters</a>
 				</div>
@@ -65,15 +70,15 @@
 					<a href="#" class="clear blue_link">clear filters</a>
 				</div>
 			</div>			
-			<div class=" pull-left hidden-subcat searchFilter" id="processorSpeed-main">
+			<div class=" pull-left hidden-subcat searchFilter" id="processorSize-main">
 				<div id="rent" class="inputstyle pointer form-control">
 					RAM <span class="glyphicon glyphicon glyphicon-chevron-down form-control-show"></span>
 				</div>
 				<div id="subCategory_hidden_processorSize" class="subCategory_hidden_bck" style="display: none;">
 					<ul class="list-unstyled">
-						<li><input type="checkbox" class="check_processorSize" name="processorSize" value="1 GB" /><span class="content"><= 1 GB</span></li>
-						<li><input type="checkbox" class="check_processorSize" name="processorSize" value="2 - 4 GB" /><span class="content">2 GB - 4 GB</span></li>
-						<li><input type="checkbox" class="check_processorSize" name="processorSize" value="> 4 GB" /><span class="content">> 4 GB</span></li>
+						<li><input type="checkbox" class="check_processorSize" name="processorSizeStr" value="<2" /><span class="content"><2 GB</span></li>
+						<li><input type="checkbox" class="check_processorSize" name="processorSizeStr" value="2-4" /><span class="content">2 GB - 4 GB</span></li>
+						<li><input type="checkbox" class="check_processorSize" name="processorSizeStr" value=">4" /><span class="content">> 4 GB</span></li>
 					</ul>
 					<a href="#" class="clear blue_link">clear filters</a>
 				</div>
@@ -84,27 +89,23 @@
 				</div>
 				<div id="subCategory_hidden_hddSize" class="subCategory_hidden_bck" style="display: none;">
 					<ul class="list-unstyled">
-						<li><input type="checkbox" class="check_hddSize" name="hddSize" value="< 20 GB" /><span class="content">< 20 GB</span></li>
-						<li><input type="checkbox" class="check_hddSize" name="hddSize" value="20 - 40 GB" /><span class="content">20 GB - 40 GB</span></li>
-						<li><input type="checkbox" class="check_hddSize" name="hddSize" value="> 40 GB" /><span class="content">> 40 GB</span></li>
+						<li><input type="checkbox" class="check_hddSize" name="hddSizeStr" value="<20" /><span class="content">< 20 GB</span></li>
+						<li><input type="checkbox" class="check_hddSize" name="hddSizeStr" value="20-40" /><span class="content">20 GB - 40 GB</span></li>
+						<li><input type="checkbox" class="check_hddSize" name="hddSizeStr" value=">40" /><span class="content">> 40 GB</span></li>
 					</ul>
 					<a href="#" class="clear blue_link">clear filters</a>
 				</div>
 			</div>			
-			<div class=" pull-left hidden-subcat" id="amt-main">
+			<div class=" pull-left hidden-subcat searchFilter" id="amt-main">
 				<div id="amt" class="inputstyle pointer form-control">
-					<span class="content">Price</span> <span class="glyphicon glyphicon glyphicon-chevron-down form-control-show"></span>
+					Price<span class="glyphicon glyphicon glyphicon-chevron-down form-control-show"></span>
 				</div>
 				<div id="subCategory_hidden_amt" class="subCategory_hidden_bck"
 					style="display: none;">
 					<ul class="list-unstyled">
 					    <li><input type="checkbox" class="check_amt" name="amt" value="<15000" /><span class="content"><15,000</span>
 						</li>
-						<li><input type="checkbox" class="check_amt" name="amt" value="15000-30000" /><span class="content"><30,000</span>
-						</li>
-						<li><input type="checkbox" class="check_amt" name="amt" value="30000-40000" /><span class="content">30,000-40,000</span>
-						</li>
-						<li><input type="checkbox" class="check_amt" name="amt" value="40000-50000" /><span class="content">40,000-50,000</span>
+						<li><input type="checkbox" class="check_amt" name="amt" value="15000-30000" /><span class="content">15,000-30,000</span>
 						</li>
 						<li><input type="checkbox" class="check_amt" name="amt" value=">50000" /><span class="content">>50,000</span>
 						</li>
@@ -121,7 +122,7 @@
 	   <span id="sub" style="display:none"><s:property value="subCategory" /></span>
 	
 	<a class="grey_link" href="<s:url action=""  />">Home</a> >
-		<span id="breadCrumb_Category"><s:property value="categoryStr" /></span> > 
+		<span id="breadCrumb_Category">Computers and Laptops</span> > 
 		<span id="breadCrumb_SubCategory"><s:property value="subCategoryStr" /></span>
 	</div>
 </div>

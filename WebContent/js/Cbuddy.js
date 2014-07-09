@@ -23,7 +23,7 @@ $(document).ready(function() {
 		$("#amt-main").show();
 		$("#model-main").show();
 		$("#fuelType-main").show();
-		
+
 	}else if(cat == 'HOUSEHOLD'){
 		path="adListForHouseHoldItems";
 		subCat="Air Conditioners & Coolers";
@@ -32,9 +32,9 @@ $(document).ready(function() {
 		$("#used-main").show();
 	}else if(cat == 'COMP'){
 		path = "computersFilter";
-		subCat = "1";
 		$("#make-main").show();
 		$("#year-main").show();
+		$("#amt-main").show();
 		$("#processorSize-main").show();
 		$("#hddSize-main").show();
 	}else if(cat == 'MOBILES'){
@@ -113,7 +113,7 @@ $(document).ready(function() {
 		if($("#corpId").val() != "" && data.indexOf("corpId", 0)<0){
 			data = data + "&corpId=" + $("#corpId").val();
 		}
-		
+
 		if($("#filterValueBar").text() == ""){
 			$("#filterValueBar").hide();
 		}
@@ -141,12 +141,12 @@ $(document).ready(function() {
 		if(lastVal!=$(this).text() ){
 
 			//if(lastVal!=""){
-				$('.filters').remove();
-				//}
-				$("input[class^=check_]:checked").each(function()
-						{	
-					$(this).attr("checked",false);
-						});
+			$('.filters').remove();
+			//}
+			$("input[class^=check_]:checked").each(function()
+					{	
+				$(this).attr("checked",false);
+					});
 			//}
 			lastVal = $(this).text();
 		}
@@ -154,11 +154,12 @@ $(document).ready(function() {
 		if($("#filterValueBar").text() == ""){
 			$("#filterValueBar").hide();
 		}
-		
+
 		$(this).parent().hide();
 		subCat = $(this).val();
 		var data = "";
 		var data = data + '&subCategory='+subCat+'&category='+cat;
+
 		$.ajax({
 			type: 'POST',
 			url: ctxPath+path, 
@@ -171,172 +172,158 @@ $(document).ready(function() {
 			}
 		});
 
+		if(cat=="REAL")
+		{
+			if($(this).text()== 'Apartment For Rent' || $(this).text() == 'Independent House For Rent'){
+				$("#loc-main").show();
+				$("#bhk-main").show();
+				$("#area-main").show();
+				$("#rent-main").show();
+				$("#dir-main").show();
+				$("#pref-main").show();
+				$("#park-main").show();
+				$("#amt-main").hide();
+				$("#approval-main").hide();
+				$("#ownership-main").hide();
+				$("#amenities-main").hide();
+				$("#share-main").hide();
+				$("#furnished-main").hide();
+				$("#gender-main").hide();
+				$("#region-main").hide();
+			}
 
-		if($(this).text()== 'Apartment For Rent' || $(this).text() == 'Independent House For Rent'){
-			$("#loc-main").show();
-			$("#bhk-main").show();
-			$("#area-main").show();
-			$("#rent-main").show();
-			$("#dir-main").show();
-			$("#pref-main").show();
-			$("#park-main").show();
-			$("#amt-main").hide();
-			$("#approval-main").hide();
-			$("#ownership-main").hide();
-			$("#amenities-main").hide();
-			$("#share-main").hide();
-			$("#furnished-main").hide();
-			$("#gender-main").hide();
-			$("#region-main").hide();
+			if($(this).text()== 'Apartment For Sale' || $(this).text()== 'Independent House For Sale'){
+				$("#rent-main").hide();
+				$("#dir-main").hide();
+				$("#pref-main").hide();
+				$("#park-main").hide();
+				$("#amenitiesPg-main").hide();
+				$("#food-main").hide();
+				$("#share-main").hide();
+				$("#furnished-main").hide();
+				$("#gender-main").hide();
+				$("#region-main").hide();
+				$("#amt-main").show();
+				$("#approval-main").show();
+				$("#ownership-main").show();
+				$("#amenities-main").show();
+			}
 
+			if($(this).text()== 'Plot For Sale'){
+				$('#ownership-main').hide();
+				$('#bhk-main').hide();
+				$('#park-main').hide();
+				$("#rent-main").hide();
+				$("#dir-main").hide();
+				$("#pref-main").hide();
+				$("#amenities-main").hide();
+				$("#amenitiesPg-main").hide();
+				$("#food-main").hide();
+				$("#share-main").hide();
+				$("#furnished-main").hide();
+				$("#gender-main").hide();
+				$("#region-main").hide();
+				$("#amt-main").show();
+				$("#approval-main").show();
+				$("#loc-main").show();
+				$("#area-main").show();
+			}
+
+			if($(this).text()== 'PG Accommodation'){
+				$('#ownership-main').hide();
+				$('#bhk-main').hide();
+				$('#park-main').hide();
+				$("#rent-main").hide();
+				$("#dir-main").hide();
+				$("#pref-main").hide();
+				$("#amenities-main").hide();
+				$("#approval-main").hide();
+				$("#area-main").hide();
+				$("#share-main").hide();
+				$("#furnished-main").hide();
+				$("#gender-main").hide();
+				$("#region-main").hide();
+				$("#loc-main").show();
+				$("#amt-main").show();
+				$("#amenitiesPg-main").show();
+				$("#food-main").show();
+			}
+
+			if($(this).text()== 'Roommate Required'){
+				$('#ownership-main').hide();
+				$('#bhk-main').hide();
+				$('#park-main').hide();
+				$("#rent-main").hide();
+				$("#dir-main").hide();
+				$("#pref-main").hide();
+				$("#amenities-main").hide();
+				$("#approval-main").hide();
+				$("#amt-main").hide();
+				$("#amenitiesPg-main").hide();
+				$("#food-main").hide();
+				$("#area-main").show();
+				$("#loc-main").show();
+				$("#share-main").show();
+				$("#furnished-main").show();
+				$("#gender-main").show();
+				$("#region-main").show();
+			}
 			$("#breadCrumb_Category").html("Real Estate");
 			$("#breadCrumb_SubCategory").html($(this).text());
 		}
+		else if(cat == "MOBILE")
+		{
+			if($(this).text()== 'Mobile Phones'){
+				$("#brand-main").show();
+				$("#used-main").show();
+				$("#amt-main").show();
+				$("#loc-main").show();
+				$("#os-main").show();
+				$("#sims-main").show();
+				$("#type-main").hide();
+			}
 
-		if($(this).text()== 'Apartment For Sale' || $(this).text()== 'Independent House For Sale'){
-			$("#rent-main").hide();
-			$("#dir-main").hide();
-			$("#pref-main").hide();
-			$("#park-main").hide();
-			$("#amenitiesPg-main").hide();
-			$("#food-main").hide();
-			$("#share-main").hide();
-			$("#furnished-main").hide();
-			$("#gender-main").hide();
-			$("#region-main").hide();
-			$("#amt-main").show();
-			$("#approval-main").show();
-			$("#ownership-main").show();
-			$("#amenities-main").show();
+			if($(this).text()== 'Mobile Accessories'){
+				$("#type-main").show();
+				$("#brand-main").show();
+				$("#used-main").show();
+				$("#amt-main").show();
+				$("#loc-main").show();
+				$("#os-main").hide();
+				$("#sims-main").hide();
 
-			$("#breadCrumb_Category").html("Real Estate");
-			$("#breadCrumb_SubCategory").html($(this).text());
+			}
 		}
-
-		if($(this).text()== 'Plot For Sale'){
-			$('#ownership-main').hide();
-			$('#bhk-main').hide();
-			$('#park-main').hide();
-			$("#rent-main").hide();
-			$("#dir-main").hide();
-			$("#pref-main").hide();
-			$("#amenities-main").hide();
-			$("#amenitiesPg-main").hide();
-			$("#food-main").hide();
-			$("#share-main").hide();
-			$("#furnished-main").hide();
-			$("#gender-main").hide();
-			$("#region-main").hide();
-			$("#amt-main").show();
-			$("#approval-main").show();
-			$("#loc-main").show();
-			$("#area-main").show();
-
-			$("#breadCrumb_Category").html("Real Estate");
-			$("#breadCrumb_SubCategory").html($(this).text());
-		}
-
-		if($(this).text()== 'PG Accommodation'){
-			$('#ownership-main').hide();
-			$('#bhk-main').hide();
-			$('#park-main').hide();
-			$("#rent-main").hide();
-			$("#dir-main").hide();
-			$("#pref-main").hide();
-			$("#amenities-main").hide();
-			$("#approval-main").hide();
-			$("#area-main").hide();
-			$("#share-main").hide();
-			$("#furnished-main").hide();
-			$("#gender-main").hide();
-			$("#region-main").hide();
-			$("#loc-main").show();
-			$("#amt-main").show();
-			$("#amenitiesPg-main").show();
-			$("#food-main").show();
-
-			$("#breadCrumb_Category").html("Real Estate");
-			$("#breadCrumb_SubCategory").html($(this).text());
-		}
-
-		if($(this).text()== 'Roommate Required'){
-			$('#ownership-main').hide();
-			$('#bhk-main').hide();
-			$('#park-main').hide();
-			$("#rent-main").hide();
-			$("#dir-main").hide();
-			$("#pref-main").hide();
-			$("#amenities-main").hide();
-			$("#approval-main").hide();
-			$("#amt-main").hide();
-			$("#amenitiesPg-main").hide();
-			$("#food-main").hide();
-			$("#area-main").show();
-			$("#loc-main").show();
-			$("#share-main").show();
-			$("#furnished-main").show();
-			$("#gender-main").show();
-			$("#region-main").show();
-
-			$("#breadCrumb_Category").html("Real Estate");
-			$("#breadCrumb_SubCategory").html($(this).text());
-		}
-
-		if($(this).text()== 'Mobile Phones'){
-			$("#brand-main").show();
-			$("#used-main").show();
-			$("#amt-main").show();
-			$("#loc-main").show();
-			$("#os-main").show();
-			$("#sims-main").show();
-			$("#type-main").hide();
-		}
-
-		if($(this).text()== 'Mobile Accessories'){
-			$("#type-main").show();
-			$("#brand-main").show();
-			$("#used-main").show();
-			$("#amt-main").show();
-			$("#loc-main").show();
-			$("#os-main").hide();
-			$("#sims-main").hide();
-
-		}
-
-		if($(this).text()!= 'Cars' /*&& subCat=="1"*/){
-			if($(this).text()== 'Bikes/Scooters' || $(this).text()== 'Scooters'){
-				$("#makeBikes-main").show();
-				$("#fuelType-main").hide();
-				$("#make-main").hide();
-			}else{
-				$("#make-main").hide();
-				$("#fuelType-main").show();
-				$("#makeBikes-main").hide();
+		else if (cat == "AUTO")
+		{
+			if($(this).text()!= 'Cars' /*&& subCat=="1"*/){
+				if($(this).text()== 'Bikes/Scooters' || $(this).text()== 'Scooters'){
+					$("#makeBikes-main").show();
+					$("#fuelType-main").hide();
+					$("#make-main").hide();
+				}else{
+					$("#make-main").hide();
+					$("#fuelType-main").show();
+					$("#makeBikes-main").hide();
+				}
+			}else if($(this).text()== 'Cars' /*&& subCat=="Cars"*/){
+				$("#make-main").show();
+				$("#brandBikes-main").hide();
 			}
 			$("#breadCrumb_Category").html("AutoMobiles");
 			$("#breadCrumb_SubCategory").html($(this).text());
-
-		}else if($(this).text()== 'Cars' /*&& subCat=="Cars"*/){
-			$("#make-main").show();
-			$("#brandBikes-main").hide();
-
-			$("#breadCrumb_Category").html("AutoMobiles");
+		}
+		else if(cat == "COMP")
+		{
+			if($(this).text()== 'Tabs'){
+				$("#model-main").show();
+			}else {
+				$("#model-main").hide();	
+			}
+			$("#breadCrumb_Category").html("Computers and Laptops");
 			$("#breadCrumb_SubCategory").html($(this).text());
 		}
-
-		if($(this).text()== 'Tablets' /*&& subCat=="1"*/){
-			$("#model-main").show();
-			
-			$("#breadCrumb_Category").html("Computers and Laptops");
-			$("#breadCrumb_SubCategory").html($(this).text());
-		}else if($(this).text()== 'Cars' /*&& subCat=="Cars"*/){
-			$("#model-main").hide();
-			
-			$("#breadCrumb_Category").html("Computers and Laptops");
-			$("#breadCrumb_SubCategory").html($(this).text());		}
-		
-		
-		if( cat == 'HOUSEHOLD'){
+		else if( cat == 'HOUSEHOLD'){
 			if($(this).text()=='Air Conditioners & Coolers'){
 				$("#brand-main").show();
 			}else{
@@ -374,8 +361,8 @@ $(document).ready(function() {
 
 		if (password != confirmPassword)
 		{  $("#divCheckPasswordMatch").html("<span style='font-weight:bold;color:red'>Passwords do not match!</span>");
-		   $("#btnSignUp").attr("disabled", "disabled");
-		   
+		$("#btnSignUp").attr("disabled", "disabled");
+
 		}else{
 			$("#divCheckPasswordMatch").html("<span style='font-weight:bold;color:green'>Passwords match.</span>");
 			$("#btnSignUp").removeAttr('disabled');

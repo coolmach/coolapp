@@ -16,6 +16,7 @@ public class Utils {
 		categoryDescMap.put(CBuddyConstants.CATEGORY_REAL_ESTATE + "_" + CBuddyConstants.SUBCATEGORY_REAL_ESTATE_LAND_SALE, "Land for Sale");
 		categoryDescMap.put(CBuddyConstants.CATEGORY_REAL_ESTATE + "_" + CBuddyConstants.SUBCATEGORY_REAL_ESTATE_PG_ACCOMODATION, "PG Accommodation");
 		categoryDescMap.put(CBuddyConstants.CATEGORY_REAL_ESTATE + "_" + CBuddyConstants.SUBCATEGORY_REAL_ESTATE_ROOMMATE_REQUIRED, "Roommate Required");
+		
 		//Category and Sub Categories for CARS/BIKES
 		categoryDescMap.put(CBuddyConstants.CATEGORY_AUTOMOBILES, "AutoMobiles");
 		categoryDescMap.put(CBuddyConstants.CATEGORY_AUTOMOBILES + "_" + CBuddyConstants.SUBCATEGORY_AUTOMOBILES_CARS, "Cars");
@@ -29,6 +30,13 @@ public class Utils {
 //		categoryDescMap.put(CBuddyConstants.CATEGORY_AUTOMOBILES + "_" + CBuddyConstants.SUBCATEGORY_AUTOMOBILES_SPARE_PARTS, "Spare Parts");
 //		categoryDescMap.put(CBuddyConstants.CATEGORY_AUTOMOBILES + "_" + CBuddyConstants.SUBCATEGORY_AUTOMOBILES_DRIVING_SCHOOLS, "Driving Schools");
 //		categoryDescMap.put(CBuddyConstants.CATEGORY_AUTOMOBILES + "_" + CBuddyConstants.SUBCATEGORY_AUTOMOBILES_OTHER_VEHICLES, "Other Vehicles");
+		
+		//Category and Sub Categories for LAPTOPS
+		categoryDescMap.put(CBuddyConstants.CATEGORY_COMPUTERS, "Computers and Laptops");
+		categoryDescMap.put(CBuddyConstants.CATEGORY_COMPUTERS + "_" + CBuddyConstants.SUBCATEGORY_COMPUTERS_DESKTOPS, "Desktops");
+		categoryDescMap.put(CBuddyConstants.CATEGORY_COMPUTERS + "_" + CBuddyConstants.SUBCATEGORY_COMPUTERS_LAPTOPS, "Laptops");
+		categoryDescMap.put(CBuddyConstants.CATEGORY_COMPUTERS + "_" + CBuddyConstants.SUBCATEGORY_COMPUTERS_TABS, "Tabs");
+		categoryDescMap.put(CBuddyConstants.CATEGORY_COMPUTERS + "_" + CBuddyConstants.SUBCATEGORY_COMPUTERS_ACCESSORIES, "Accessories");
 	}
 	public static Utils getInstance(){
 		return instance;

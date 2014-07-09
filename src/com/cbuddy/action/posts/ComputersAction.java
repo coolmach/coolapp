@@ -316,10 +316,10 @@ public class ComputersAction extends ActionSupport implements SessionAware, Serv
 
 		category = postDetails.getCategory();
 		subCategory = postDetails.getSubCategory();
-
+     
 		categoryStr = Utils.getInstance().getCategoryDesc(category);
 		subCategoryStr = Utils.getInstance().getSubCategoryDesc(category, subCategory);
-
+		 
 		if(category == null || category.equals("")){
 			setCategory(CBuddyConstants.CATEGORY_COMPUTERS);
 		}

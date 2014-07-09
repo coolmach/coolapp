@@ -81,12 +81,15 @@
 	<div class="col-md-3 pull-left">
 		<img id="guy-img" src="images/Guy.png">
 	</div>
-	<div class="col-md-6" style="width: 650px;margin-top:4%;">
+	<div class="col-md-6" style="width: 650px; margin-top: 4%;">
 		<div class="col-md-12 cbuddy_intro">
-			<div class="mainHeading">An exclusive Classifieds portal for Techies</div>
+			<div class="mainHeading">An exclusive Classifieds portal for
+				Techies</div>
 		</div>
-		<div class="col-md-12 cbuddy_intro" style="margin-top:3%;margin-left:2%;">
-			<h5 class="subHeading">"Say no to brokers, yes to fellow IT Community"</h5>
+		<div class="col-md-12 cbuddy_intro"
+			style="margin-top: 3%; margin-left: 2%;">
+			<h5 class="subHeading">"Say no to brokers, yes to fellow IT
+				Community"</h5>
 		</div>
 		<!-- div class="col-md-12 cbuddy_intro bulletSection">
 			<div style="margin: 15px;">
@@ -112,35 +115,42 @@
 </div>
 
 <div class="col-md-8"
-	style="margin-top: 1%; margin-left: 5%; max-width: 900px;margin-bottom:20px;">
+	style="margin-top: 1%; margin-left: 5%; max-width: 900px; margin-bottom: 20px;">
 	<table class="imageTable">
 		<tr>
 			<td><s:url action="realestate" var="urlTag" escapeAmp="false">
 					<s:param name="category">REAL</s:param>
 					<s:param name="subCategory">1</s:param>
 				</s:url> <a href="<s:property value="#urlTag" />"><img class="images_ad"
-					src="images/real_estate.png"> </a></td>
+					src="images/real_estate.png"> </a>
+			</td>
 			<td><s:url action="automobile" var="urlTag1" escapeAmp="false">
 					<s:param name="category">AUTO</s:param>
 					<s:param name="subCategory">1</s:param>
 				</s:url> <a href="<s:property value="#urlTag1" />"><img
-					class="images_ad" src="images/cars.png"> </a></td>
+					class="images_ad" src="images/cars.png"> </a>
+			</td>
 			<td><s:url action="household" var="urlTag2">
 					<s:param name="category">HOUSEHOLD</s:param>
 				</s:url> <a href="<s:property value="#urlTag2" />"><img
-					class="images_ad" src="images/household.png"> </a></td>
-			<td><s:url action="computers" var="urlTag3">
+					class="images_ad" src="images/household.png"> </a>
+			</td>
+			<td><s:url action="computers" var="urlTag3" escapeAmp="false">
 					<s:param name="category">COMP</s:param>
+					<s:param name="subCategory">1</s:param>
 				</s:url> <a href="<s:property value="#urlTag3" />"><img
-					class="images_ad" src="images/laptops.png"> </a></td>
+					class="images_ad" src="images/laptops.png"> </a>
+			</td>
 			<td><s:url action="mobile" var="urlTag4">
 					<s:param name="category">MOBILE</s:param>
 				</s:url> <a href="<s:property value="#urlTag4" />"><img
-					class="images_ad" src="images/mobiles.png"> </a></td>
+					class="images_ad" src="images/mobiles.png"> </a>
+			</td>
 			<td><s:url action="books" var="urlTag5">
 					<s:param name="category">DVD</s:param>
 				</s:url> <a href="<s:property value="#urlTag5" />"><img
-					class="images_ad" src="images/dvd.png"> </a></td>
+					class="images_ad" src="images/dvd.png"> </a>
+			</td>
 		</tr>
 
 	</table>
@@ -148,8 +158,7 @@
 </div>
 
 <div class="col-md-12" style="margin-top: 1%; padding-left: 18%;">
-	<img src="images/arrow.png" id="arr_img"> 
-	<input type="text"
+	<img src="images/arrow.png" id="arr_img"> <input type="text"
 		class="form-control" id="category_search" name="category"
 		placeholder="I am looking for...">
 

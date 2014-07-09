@@ -30,7 +30,10 @@ public class ComputersPostDetails extends Pcomp implements Serializable{
 	private String selectedLocationStr;
 	private String userEnteredLocationStr;
 	private String selectedLocationCode;
-	
+	private String processorSizeStr;
+	private String yearStr;
+	private String hddSizeStr;
+
 	private int corpId;
 
 	@Transient
@@ -150,4 +153,32 @@ public class ComputersPostDetails extends Pcomp implements Serializable{
 		this.corpId = corpId;
 	}
 
+	@Transient
+	public String getYearStr() {
+		return yearStr;
+	}
+
+	public void setYearStr(String yearStr) {
+		this.yearStr = yearStr;
+	}
+	
+	@Transient
+	public String getProcessorSizeStr() {
+		return processorSizeStr;
+	}
+
+	public void setProcessorSizeStr(String processorSizeStr) {
+		this.processorSizeStr = processorSizeStr;
+	}
+	
+	@Transient
+	public String getHddSizeStr() {
+		return hddSizeStr;
+	}
+
+	public void setHddSizeStr(String hddSizeStr) {
+		this.hddSizeStr = hddSizeStr;
+	}
+	
+	
 }
