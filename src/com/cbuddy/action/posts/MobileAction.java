@@ -281,7 +281,7 @@ public class MobileAction extends ActionSupport implements SessionAware, Servlet
 		}else{
 			pdmo.setModel(postDetails.getModel());
 		}
-		
+
 		pdmo.setModifiedBy(userId);
 		pdmo.setModifiedOn(current);
 		pdmo.setPostId(poit.getPostId());
@@ -360,7 +360,7 @@ public class MobileAction extends ActionSupport implements SessionAware, Servlet
 
 		category = postDetails.getCategory();
 		subCategory = postDetails.getSubCategory();
-
+		
 		categoryStr = Utils.getInstance().getCategoryDesc(category);
 		subCategoryStr = Utils.getInstance().getSubCategoryDesc(category, subCategory);
 

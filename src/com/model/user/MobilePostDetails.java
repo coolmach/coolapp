@@ -35,6 +35,7 @@ public class MobilePostDetails extends Pdmo implements Serializable{
 	private String userEnteredLocationStr;
 	private String selectedLocationCode;
 	private String selectedCityCode;
+	private String yearStr;
 	
 	private int corpId;
 	private String amt;
@@ -208,5 +209,14 @@ public class MobilePostDetails extends Pdmo implements Serializable{
 
 	public void setSelectedBrand(String selectedBrand) {
 		this.selectedBrand = selectedBrand;
+	}
+	
+	@Transient
+	public String getYearStr() {
+		return yearStr;
+	}
+
+	public void setYearStr(String yearStr) {
+		this.yearStr = yearStr;
 	}
 }
