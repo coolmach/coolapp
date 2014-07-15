@@ -20,27 +20,27 @@
 			</div>
 		</div>
 		<form class="form-inline" id="cars">
-			<div class=" pull-left hidden-subcat searchFilter" id="make-main">
-				<div id="make" class="inputstyle pointer form-control">
+			<div class=" pull-left hidden-subcat searchFilter" id="brand-main">
+				<div id="brand" class="inputstyle pointer form-control">
 					Make <span
 						class="glyphicon glyphicon glyphicon-chevron-down form-control-show"></span>
 				</div>
-				<div id="subCategory_hidden_make" class="subCategory_hidden_bck"
+				<div id="subCategory_hidden_brand" class="subCategory_hidden_bck"
 					style="display: none;">
 					<ul class="list-unstyled">
-						<li><input type="checkbox" class="check_make" name="make"
+						<li><input type="checkbox" class="check_brand" name="brand"
 							value="SON" /><span class="content">Sony</span>
 						</li>
-						<li><input type="checkbox" class="check_make" name="make"
+						<li><input type="checkbox" class="check_brand" name="brand"
 							value="NOK" /><span class="content">Nokia</span>
 						</li>
-						<li><input type="checkbox" class="check_make" name="make"
+						<li><input type="checkbox" class="check_brand" name="brand"
 							value="SAM" /><span class="content">Samsung</span>
 						</li>
-						<li><input type="checkbox" class="check_make" name="make"
+						<li><input type="checkbox" class="check_brand" name="brand"
 							value="APP" /><span class="content">Apple</span>
 						</li>
-						<li><input type="checkbox" class="check_make" name="make"
+						<li><input type="checkbox" class="check_brand" name="brand"
 							value="OTH" /><span class="content">Others</span>
 						</li>
 					</ul>
@@ -92,15 +92,15 @@
 				<div id="subCategory_hidden_os" class="subCategory_hidden_bck"
 					style="display: none;">
 					<ul class="list-unstyled">
-					   <li><input type="checkbox" class="check_os" name="os" value="Android" /><span class="content">Android</span>
+					   <li><input type="checkbox" class="check_os" name="operatingSystem" value="Android" /><span class="content">Android</span>
 						</li>
-						<li><input type="checkbox" class="check_os" name="os" value="Apple-iOS" /><span class="content">Apple-iOS</span>
+						<li><input type="checkbox" class="check_os" name="operatingSystem" value="Apple-iOS" /><span class="content">Apple-iOS</span>
 						</li>
-						<li><input type="checkbox" class="check_os" name="os" value="Windows" /><span class="content">Windows</span>
+						<li><input type="checkbox" class="check_os" name="operatingSystem" value="Windows" /><span class="content">Windows</span>
 						</li>
-						<li><input type="checkbox" class="check_os" name="os" value="Blackberry" /><span class="content">Blackberry</span>
+						<li><input type="checkbox" class="check_os" name="operatingSystem" value="Blackberry" /><span class="content">Blackberry</span>
 						</li>
-						<li><input type="checkbox" class="check_os" name="os" value="Other" /><span class="content">Other</span>
+						<li><input type="checkbox" class="check_os" name="operatingSystem" value="Other" /><span class="content">Other</span>
 						</li>
 					</ul>
 					<a href="#" class="clear blue_link">clear filters</a>
@@ -114,9 +114,9 @@
 				<div id="subCategory_hidden_sims" class="subCategory_hidden_bck"
 					style="display: none;">
 					<ul class="list-unstyled">
-						<li><input type="checkbox" class="check_sims" name="sims" value="Dual" /><span class="content">Dual</span>
+						<li><input type="checkbox" class="check_sims" name="sims" value="D" /><span class="content">Dual</span>
 						</li>
-						<li><input type="checkbox" class="check_sims" name="sims" value="Single" /><span class="content">Single</span>
+						<li><input type="checkbox" class="check_sims" name="sims" value="S" /><span class="content">Single</span>
 						</li>
 					</ul>
 					<a href="#" class="clear blue_link">clear filters</a>

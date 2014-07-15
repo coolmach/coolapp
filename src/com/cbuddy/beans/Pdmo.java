@@ -43,6 +43,7 @@ public class Pdmo {
 	private String modifiedBy;
 	
 	private String amtStr;
+	private String sims;
 
 	@Id
 	@Column(name="POST_ID")
@@ -235,5 +236,13 @@ public class Pdmo {
 	}
 	public void setOperatingSystem(String operatingSystem) {
 		this.operatingSystem = operatingSystem;
+	}
+	
+	public String getSims() {
+		return sims;
+	}
+
+	public void setSims(String sims) {
+		this.sims = sims;
 	}
 }

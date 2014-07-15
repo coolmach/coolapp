@@ -41,7 +41,7 @@ $(document).ready(function() {
 		
 	}else if(cat == 'MOBILE'){
 		path="mobileFilter";
-		$("#make-main").show();
+		$("#brand-main").show();
 		$("#year-main").show();
 		$("#amt-main").show();
 		$("#os-main").show();
@@ -275,7 +275,7 @@ $(document).ready(function() {
 		else if(cat == "MOBILE")
 		{
 			if($(this).text()== 'Handsets'){
-				$("#make-main").show();
+				$("#brand-main").show();
 				$("#amt-main").show();
 				$("#os-main").show();
 				$("#sims-main").show();
@@ -284,7 +284,7 @@ $(document).ready(function() {
 
 			if($(this).text()== 'Accessories'){
 				$("#type-main").show();
-				$("#make-main").show();
+				$("#brand-main").show();
 				$("#amt-main").show();
 				$("#os-main").hide();
 				$("#sims-main").hide();
