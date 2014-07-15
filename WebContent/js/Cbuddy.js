@@ -15,7 +15,7 @@ $(document).ready(function() {
 		$("#approval-main").show();
 		$("#ownership-main").show();
 		$("#amenities-main").show();
-
+		
 	}else if(cat == 'AUTO'){
 		path="automobileFilter";
 		$("#make-main").show();
@@ -23,13 +23,14 @@ $(document).ready(function() {
 		$("#amt-main").show();
 		$("#model-main").show();
 		$("#fuelType-main").show();
-
+		
 	}else if(cat == 'HOUSEHOLD'){
 		path="adListForHouseHoldItems";
 		subCat="Air Conditioners & Coolers";
 		$("#loc-main").show();
 		$("#amt-main").show();
 		$("#used-main").show();
+		
 	}else if(cat == 'COMP'){
 		path = "computersFilter";
 		$("#make-main").show();
@@ -37,15 +38,15 @@ $(document).ready(function() {
 		$("#amt-main").show();
 		$("#processorSize-main").show();
 		$("#hddSize-main").show();
-	}else if(cat == 'MOBILES'){
-		path="mobiles";
-		subCat="Mobile Phones";
+		
+	}else if(cat == 'MOBILE'){
+		path="mobileFilter";
 		$("#brand-main").show();
-		$("#used-main").show();
+		$("#year-main").show();
 		$("#amt-main").show();
-		$("#loc-main").show();
 		$("#os-main").show();
 		$("#sims-main").show();
+		
 	}else if(cat == 'DVD'){
 		path="books";
 	}
@@ -273,26 +274,24 @@ $(document).ready(function() {
 		}
 		else if(cat == "MOBILE")
 		{
-			if($(this).text()== 'Mobile Phones'){
+			if($(this).text()== 'Handsets'){
 				$("#brand-main").show();
-				$("#used-main").show();
 				$("#amt-main").show();
-				$("#loc-main").show();
 				$("#os-main").show();
 				$("#sims-main").show();
 				$("#type-main").hide();
 			}
 
-			if($(this).text()== 'Mobile Accessories'){
+			if($(this).text()== 'Accessories'){
 				$("#type-main").show();
 				$("#brand-main").show();
-				$("#used-main").show();
 				$("#amt-main").show();
-				$("#loc-main").show();
 				$("#os-main").hide();
 				$("#sims-main").hide();
 
 			}
+			$("#breadCrumb_Category").html("Mobiles And Accessories");
+			$("#breadCrumb_SubCategory").html($(this).text());
 		}
 		else if (cat == "AUTO")
 		{
