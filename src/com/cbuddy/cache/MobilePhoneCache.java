@@ -19,8 +19,8 @@ public class MobilePhoneCache {
 		return instance;
 	}
 	
-	public void addToMobileModelCache(String brand, String modelCode, String modelName){
-		mobileModelCache.put(brand + "_" + modelCode, modelName);
+	public void addToMobileModelCache(String brand, String modelCode){
+		mobileModelCache.put(brand + "_" + modelCode, modelCode);
 	}
 	
 	public String getModelName(String brand, String modelCode){
@@ -36,7 +36,7 @@ public class MobilePhoneCache {
 		Query query = dbSession.createQuery(queryString);
 		List<MobileMaster> modelsList = query.list();
 		for(MobileMaster model:modelsList){
-			mobileModelCache.put(model.getBrand() + "_" + model.getModel(), model.getModelName());
+			addToMobileModelCache(model.getBrand().trim(), model.getModel().trim());
 		}
 	}
 	

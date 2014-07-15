@@ -157,9 +157,7 @@
 
 </div>
 
-<div class="col-md-12" style="margin-top: 1%; padding-left: 18%;">
-	<img src="images/arrow.png" id="arr_img"> <input type="text"
-		class="form-control" id="category_search" name="category"
-		placeholder="I am looking for...">
-
+<div class="col-md-12" style="margin-top:2%;margin-left:16%; padding-left: 18%;">
+	<img src="images/arrow.png" id="arr_img"> 
+	<input type="text" class="form-control" id="category_search" name="category" placeholder="I am looking for...">
 </div>

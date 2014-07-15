@@ -68,7 +68,7 @@ public class ComputersAdService{
 			criteria = CriteriaUtil.getCriteriaForAmt(criteria, postDetails.getAmt(), "price");
 		}
 		if(postDetails.getYearStr()!=null){
-			criteria = getCriteriaForYear(criteria, postDetails.getYearStr());
+			criteria = CriteriaUtil.createCriteriaForYear(criteria, postDetails.getYearStr());
 		}
 		if(postDetails.getProcessorSizeStr()!=null){
 			criteria = getCriteriaForProcessorSize(criteria, postDetails.getProcessorSizeStr());
@@ -191,17 +191,5 @@ public class ComputersAdService{
 			}
 
 			return criteria;
-	}
-
-
-	public Criteria getCriteriaForYear(Criteria criteria, String yearOfMake) {
-		List yearList = new ArrayList();
-		String obj[] = yearOfMake.split(",");
-		for(String make:obj){
-			yearList.add(Integer.parseInt(make));
-		}	
-		criteria.add(Restrictions.in("year", yearList));
-
-		return criteria;
 	}
 }

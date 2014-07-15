@@ -228,9 +228,13 @@ function applyFilters(){
 			var values = [ '0', '1', '2', '3' ];
 			var options = [ 'Select', 'Desktops', 'Laptops', 'Tablets' ];
 		} else if (category == "MOBILE") {
-			var numbers = [ 1, 2, 3 ];
-			var values = [ '0', '1', '2' ];
-			var options = [ 'Select', 'Handsets', 'Accessories' ];
+			var numbers = [ 1, 2];
+			var values = [ '0', '1'];
+			var options = [ 'Select', 'Handsets'];
+		}else if (category == "ELEC") {
+			var numbers = [ 1, 2, 3, 4, 5, 6, 7, 8 ];
+			var values = [ '0', '1', '2', '3', '4', '5', '6', '7' ];
+			var options = [ 'Select', 'Television', 'DVD/Music Player/iPod', 'Digital Camera/Camcorder', 'Fridge', 'AC', 'Washing Machine', 'Others' ];
 		}
 		var index = 0;
 		$.each(numbers, function(val, text) {

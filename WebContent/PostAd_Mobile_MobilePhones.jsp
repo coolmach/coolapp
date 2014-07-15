@@ -31,11 +31,29 @@
 				<label for="brand" class="col-sm-4 control-label">Brand <span class="mandatory">*</span></label>
 				<div class="col-sm-6" style="padding-top:6px;">
 					<select class="dropDown" name="brand" id="brand">
-						<option value="Nokia">Nokia</option>
-						<option value="Sony">Sony</option>
-						<option value="Samsung">Samsung</option>
+						<option value="Sony">Sony</option> 
+						<option value="Nokia">Nokia</option>  
+						<option value="Samsung">Samsung</option> 
+						<option value="Micromax">Micromax</option>
+						<option value="LG">LG</option> 
 						<option value="Apple">Apple</option>
-						<option value="OTH">Others</option>
+						<option value="Blackberry">Blackberry</option>
+						<option value="HTC">HTC</option> 
+						<option value="Karbonn">Karbonn</option> 
+						<option value="Xolo">Xolo</option> 
+						<optgroup label="Other Brands">
+							<option value="Maxx">Maxx</option> 
+	 						<option value="Motorola">Motorola</option> 
+							<option value="Tata">Tata</option> 
+							<option value="Spice">Spice</option> 
+							<option value="iBall">iBall</option> 
+							<option value="Lenovo">Lenovo</option> 
+							<option value="Intex">Intex</option> 
+							<option value="Fly">Fly</option> 
+							<option value="Videocon">Videocon</option> 
+							<option value="Lava">Lava</option> 
+							<option value="MTS">MTS</option>
+						</optgroup> 
 					</select>
 				</div>
 			</div>
@@ -55,11 +73,38 @@
 				</div>
 			</div>
 			<div class="form-group">
+				<label for="brand" class="col-sm-4 control-label">Operating System <span class="mandatory">*</span></label>
+				<div class="col-sm-6" style="padding-top:6px;">
+					<select class="dropDown" name="operatingSystem" id="operatingSystem">
+						<option value="Android">Android</option>
+						<option value="Symbian">Symbian (Nokia)</option> 
+						<option value="Windows">Windows</option>  
+						<option value="Apple-iOS">Apple-iOS</option>
+						<option value="Blackberry">Blackberry</option>
+						<option value="Others">Others</option> 
+					</select>
+				</div>
+			</div>			
+			<div class="form-group">
 				<label for="color" class="col-sm-4 control-label">Color<span class="mandatory">*</span></label>
 				<div class="col-sm-3">
 					<input type="text" maxlength="16" class="form-control" name="color" id="color" value="Black" required>
 				</div>
-			</div>			
+			</div>
+			<div class="form-group">
+				<label for="touchScreen" class="col-sm-4 control-label">Touch Screen<span class="mandatory">*</span></label>
+				<div class="col-sm-6">
+					<input type="radio" class="form-control-radio" name="touchScreen" id="touchScreen" value="Y"> <span class="form-control-radio-label">Yes</span>
+					<input type="radio" class="form-control-radio" name="touchScreen" id="touchScreen" value="N"> <span class="form-control-radio-label">No</span>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="dualSim" class="col-sm-4 control-label">Dual Sim<span class="mandatory">*</span></label>
+				<div class="col-sm-6">
+					<input type="radio" class="form-control-radio" name="dualSim" id="dualSim" value="Y"> <span class="form-control-radio-label">Yes</span>
+					<input type="radio" class="form-control-radio" name="dualSim" id="dualSim" value="N"> <span class="form-control-radio-label">No</span>
+				</div>
+			</div>		
 			<div class="form-group">
 				<label for="price" class="col-sm-4 control-label">Price<span class="mandatory">*</span></label>
 				<div class="col-sm-3">

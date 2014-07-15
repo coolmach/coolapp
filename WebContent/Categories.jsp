@@ -19,7 +19,7 @@
 							<div class="col-sm-9" style="margin-top:5px;">
 								<s:select class="form-control" id="category"
 									headerKey="-1" headerValue="Select Category" onChange="getSubCategory()"
-									list="#{'REAL':'Real Estate', 'AUTO':'Cars/Bikes', 'COMP':'Computers/Laptops', 'MOBILE':'Mobiles', 'HOUSE':'Household Items', 'BOOK':'Books/DVDs'}" 
+									list="#{'REAL':'Real Estate', 'AUTO':'Cars/Bikes', 'COMP':'Computers/Laptops', 'MOBILE':'Mobiles', 'ELEC':'Electronics & Household Items', 'BOOK':'Books/DVDs'}" 
 									name="category" 
 									value="2" />
 							</div>
@@ -29,7 +29,7 @@
 							<div class="col-sm-9" style="margin-top:5px;">
 								<s:select class="form-control dropdown" id="subCategory" onChange="submitForm()"
 									headerKey="-1" headerValue="Select Subcategory"
-									list="#{'REAL':'Real Estate', 'AUTO':'Cars/Bikes', 'COMP':'Computers/Laptops', 'ELEC':'Electronics', 'HOUSE':'Household Items', 'BOOK':'Books/DVDs'}" 
+									list="#{'REAL':'Real Estate', 'AUTO':'Cars/Bikes', 'COMP':'Computers/Laptops', 'ELEC':'Electronics  & Household Items', 'FUR':'Furniture', 'BOOK':'Books/DVDs'}" 
 									name="subCategory" 
 									value="2" />
 							</div>

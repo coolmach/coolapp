@@ -9,8 +9,7 @@ public class CBuddyConstants {
 	public static final String CATEGORY_REAL_ESTATE = "REAL";
 	public static final String CATEGORY_AUTOMOBILES = "AUTO";
 	public static final String CATEGORY_LAPTOP_AND_ACCESSORIES = "LAPTOP";
-	public static final String CATEGORY_ELECTRONICS = "ELEC";
-	public static final String CATEGORY_HOUSEHOLD = "HOUSE";
+	public static final String CATEGORY_ELECTRONICS_AND_HOUSEHOLD = "ELEC";
 	public static final String CATEGORY_BOOK_DVD = "BOOK";
 	public static final String CATEGORY_COMPUTERS = "COMP";
 	public static final String CATEGORY_MOBILE = "MOBILE";
@@ -43,6 +42,15 @@ public class CBuddyConstants {
 //	public static final String SUBCATEGORY_AUTOMOBILES_SPARE_PARTS = "9";
 //	public static final String SUBCATEGORY_AUTOMOBILES_DRIVING_SCHOOLS = "10";
 //	public static final String SUBCATEGORY_AUTOMOBILES_OTHER_VEHICLES = "11";
+	
+	public static final String SUBCATEGORY_ELECTRONICS_AND_HOUSEHOLD_TELEVISION = "1";
+	public static final String SUBCATEGORY_ELECTRONICS_AND_HOUSEHOLD_DVD_MUSIC_PLAYER = "2";
+	public static final String SUBCATEGORY_ELECTRONICS_AND_HOUSEHOLD_CAMERA = "3";
+	public static final String SUBCATEGORY_ELECTRONICS_AND_HOUSEHOLD_FRIDGE = "4";
+	public static final String SUBCATEGORY_ELECTRONICS_AND_HOUSEHOLD_WASHINGMACHINE = "5";
+	public static final String SUBCATEGORY_ELECTRONICS_AND_HOUSEHOLD_AIRCOOLER = "6";
+	
+	public static final String SUBCATEGORY_OTHERS = "7";
 	
 	public static final String NEW_OR_RESALE_NEW = "N";
 	public static final String NEW_OR_RESALE_RESALE = "R";

@@ -48,6 +48,13 @@
 		<mapping class="com.cbuddy.beans.Pdmo" />
 		<mapping class="com.cbuddy.beans.MobileMaster" />
 		<mapping class="com.cbuddy.beans.Pcomp" />
+		<mapping class="com.cbuddy.beans.PTelevision" />
+		<mapping class="com.cbuddy.beans.PDVD" />
+		<mapping class="com.cbuddy.beans.PCamera" />
+		<mapping class="com.cbuddy.beans.PFridge" />
+		<mapping class="com.cbuddy.beans.PAirCooler" />
+		<mapping class="com.cbuddy.beans.PWashingMachine" />
+		<mapping class="com.cbuddy.beans.POthers" />
 		<mapping class="com.cbuddy.beans.Corp" />		
 		<mapping class="com.cbuddy.beans.Location" />
 		<mapping class="com.cbuddy.beans.Neighborhood" />
@@ -55,6 +62,13 @@
 		<mapping class="com.model.user.AutomobilePostDetails" />
 		<mapping class="com.model.user.ComputersPostDetails" />
 		<mapping class="com.model.user.MobilePostDetails" />
+		<mapping class="com.model.user.TelevisionPostDetails" />
+		<mapping class="com.model.user.DVDPostDetails" />
+		<mapping class="com.model.user.CameraPostDetails" />
+		<mapping class="com.model.user.FridgePostDetails" />
+		<mapping class="com.model.user.AirCoolerPostDetails" />
+		<mapping class="com.model.user.WashingMachinePostDetails" />
+		<mapping class="com.model.user.OtherPostDetails" />
 	</session-factory>
 
 </hibernate-configuration>

@@ -13,49 +13,42 @@ import org.apache.commons.io.FileUtils;
 import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.interceptor.ServletRequestAware;
 import org.apache.struts2.interceptor.SessionAware;
-import org.hibernate.Query;
+import org.hibernate.Criteria;
+import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.json.JSONArray;
-import org.json.JSONObject;
+import org.hibernate.criterion.Order;
+import org.hibernate.criterion.Restrictions;
 
-import com.cbuddy.beans.MobileMaster;
-import com.cbuddy.beans.Pdmo;
+import com.cbuddy.beans.PAirCooler;
 import com.cbuddy.beans.Poit;
-import com.cbuddy.cache.MobilePhoneCache;
-import com.cbuddy.services.MobileAdService;
-import com.cbuddy.util.AutoSuggestMobileService;
 import com.cbuddy.util.CBuddyConstants;
+import com.cbuddy.util.CriteriaUtil;
 import com.cbuddy.util.LocationUtil;
 import com.cbuddy.util.NumberFormatterUtil;
 import com.cbuddy.util.Utils;
-import com.model.user.MobilePostDetails;
+import com.model.user.AirCoolerPostDetails;
 import com.model.user.User;
 import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
 
-public class MobileAction extends ActionSupport implements SessionAware, ServletRequestAware, ModelDriven<MobilePostDetails>{
+public class AirCoolerAction extends ActionSupport implements SessionAware, ServletRequestAware, ModelDriven<AirCoolerPostDetails>{
 
 	private static final long serialVersionUID = 1L;
 
-	MobilePostDetails postDetails = new MobilePostDetails();
+	AirCoolerPostDetails postDetails = new AirCoolerPostDetails();
 	private File upload;
 	private String uploadFileName;
 	private String uploadContentType;
 
 	private String categoryStr;
-	private String subCategoryStr;
 
 	private String responseMsg;
 
-	private List<MobilePostDetails> adList = new ArrayList<MobilePostDetails>();
+	private List<AirCoolerPostDetails> adList = new ArrayList<AirCoolerPostDetails>();
 	private String category = "" ;
 	private String subCategory = "" ;
-
-	private String brandNew;
-	private String modelSearchStr;
-	private JSONArray modelDetailsJsonArray;
 
 	private HttpServletRequest request = null;
 	@Override
@@ -86,6 +79,7 @@ public class MobileAction extends ActionSupport implements SessionAware, Servlet
 	}
 
 	private boolean validateMandatoryFields(){
+
 		//Common validations
 		if(postDetails.getTitle().equals("")){
 			addFieldError("errorMsg", "Please enter Title");
@@ -112,39 +106,24 @@ public class MobileAction extends ActionSupport implements SessionAware, Servlet
 			return false;
 		}
 		if(postDetails.getBrand().equals("")){
-			addFieldError("errorMsg", "Please select the Brand");
+			addFieldError("errorMsg", "Please enter the Brand");
 			return false;
 		}
 		if(postDetails.getYear() == 0){
-			addFieldError("errorMsg", "Please select the year of purchase (model)");
+			addFieldError("errorMsg", "Please select the year of purchase");
 			return false;
 		}
-		if(postDetails.getColor().equals("")){
-			addFieldError("errorMsg", "Please enter the Color");
+		if(postDetails.getAcType() == null || postDetails.getAcType().equals("")){
+			addFieldError("errorMsg", "Please select AC Type");
 			return false;
 		}
-		if(postDetails.getUserEnteredModelStr().equals("")){
-			addFieldError("errorMsg", "Please enter the Model");
-			return false;
-		}
-		if(postDetails.getTouchScreen().equals("")){
-			addFieldError("errorMsg", "Please specify if Touch Screen is present");
-			return false;
-		}
-		if(postDetails.getDualSim().equals("")){
-			addFieldError("errorMsg", "Please specify whether Dual Sim is enabled");
-			return false;
-		}
-		if(postDetails.getOperatingSystem().equals("")){
-			addFieldError("errorMsg", "Please enter Operating System");
-			return false;
-		}
+		
 		return true;
 	}
 
 	private boolean validateFieldLength(){
 		boolean output = true;
-		String subCategory = postDetails.getSubCategory();
+
 		String temp = postDetails.getTitle();
 		if(temp != null && temp.length() > 100){
 			addFieldError("errorMsg", "Please enter a smaller Title (less than 100 characters)");
@@ -184,35 +163,35 @@ public class MobileAction extends ActionSupport implements SessionAware, Servlet
 		}
 
 		temp = postDetails.getModel();
-		if(temp != null && temp.length() > 16){
+		if(temp != null && temp.length() > 30){
 			addFieldError("errorMsg", "Invalid Model");
 			return false;
 		}
 
 		int year = postDetails.getYear();
-		if(year < 2005 || year > 2014){
+		if(year < 1950 || year > 2014){
 			addFieldError("errorMsg", "Invalid Year");
 			return false;
 		}
 
-		temp = postDetails.getDualSim();
-		if(temp != null && temp.length() > 1){
-			addFieldError("errorMsg", "Invalid Sim Type");
+		temp = postDetails.getBillAvailable();
+		if(temp == null || (!temp.equals("Y") && !temp.equals("N"))){
+			addFieldError("errorMsg", "Please choose if Bill is available");
 			return false;
 		}
 		
-		temp = postDetails.getTouchScreen();
-		if(temp != null && temp.length() > 1){
-			addFieldError("errorMsg", "Invalid Touch Screen");
+		double tonnage = postDetails.getTonnage();
+		if(tonnage > 10){
+			addFieldError("errorMsg", "Invalid Tonnage");
 			return false;
 		}
 		
-		temp = postDetails.getOperatingSystem();
-		if(temp != null && temp.length() > 16){
-			addFieldError("errorMsg", "Invalid Operating System");
+		temp = postDetails.getAcType();
+		if(temp != null && temp.length() > 6){
+			addFieldError("errorMsg", "Invalid AC Type");
 			return false;
 		}
-
+		
 		return output;
 	}
 
@@ -223,46 +202,25 @@ public class MobileAction extends ActionSupport implements SessionAware, Servlet
 		if(!validateFieldLength()){
 			return Action.INPUT;
 		}
-		System.out.println("MobileAction.postAd(): " + uploadContentType + " : " + uploadFileName + " : " + upload);
+		System.out.println("ComputersAction.postAd(): " + uploadContentType + " : " + uploadFileName + " : " + upload);
 		User user = (User)session.get("userInfo");
 		Timestamp current = new Timestamp(System.currentTimeMillis());
 		String userId = String.valueOf(user.getUserId());
 		String imgFileName = String.valueOf(System.currentTimeMillis()) + "." + getExtension(uploadContentType) + "";
 
-
 		//Checking if user has manually tampered location after selecting from auto suggest list
-		if(postDetails.getUserEnteredLocationStr() != null && postDetails.getSelectedLocationStr() != null){
+		if(postDetails.getUserEnteredLocationStr() != null && postDetails.getSelectedLocationStr()!=null){
 			if(!postDetails.getUserEnteredLocationStr().equals(postDetails.getSelectedLocationStr())){
-				addFieldError("errorMsg", "Invalid Location");
-				return Action.INPUT;
-			}
-		}
-
-		//Check if user has selected a different city AFTER choosing a location for a different city
-		if(!postDetails.getCity().equals(postDetails.getSelectedCityCode())){
-			addFieldError("errorMsg", "Invalid Location");
-			return Action.INPUT;
-		}
-
-		if(!postDetails.getBrand().equals("OTH")){
-			//Checking if the user has manually modified tampered mobile model after selecting from auto suggest list
-			if(postDetails.getUserEnteredModelStr() != null && postDetails.getSelectedModelStr() != null){
-				if(!postDetails.getUserEnteredModelStr().equals(postDetails.getSelectedModelStr())){
-					addFieldError("errorMsg", "Invalid Model");
-					return Action.INPUT;
-				}
-			}
-
-			//Check if user has chosen a different brand after choosing a model for a different brand
-			if(!postDetails.getBrand().equals(postDetails.getSelectedBrand())){
-				addFieldError("errorMsg", "Invalid Model");
 				return Action.INPUT;
 			}
 		}
 
 		//Make an entry in POIT
 		Poit poit = new Poit();
-		poit.setCategory(CBuddyConstants.CATEGORY_MOBILE);
+		
+		poit.setCategory(CBuddyConstants.CATEGORY_COMPUTERS);
+		poit.setSubCategory(CBuddyConstants.SUBCATEGORY_ELECTRONICS_AND_HOUSEHOLD_TELEVISION);
+		
 		poit.setTitle(postDetails.getTitle());
 		poit.setCity(postDetails.getCity());
 		poit.setContactNo(postDetails.getContactNo());
@@ -279,7 +237,6 @@ public class MobileAction extends ActionSupport implements SessionAware, Servlet
 		poit.setNegotiable(null);
 		poit.setPrice(postDetails.getPrice());
 		poit.setRating(0);
-		poit.setSubCategory(postDetails.getSubCategory());
 		poit.setThumbnailName(null);
 		poit.setThumbnailType(null);
 		poit.setUserFirstName(user.getFirstName());
@@ -293,36 +250,24 @@ public class MobileAction extends ActionSupport implements SessionAware, Servlet
 
 		dbSession.flush(); //Flushing to retrieve the auto generated post id
 
-		//Make an entry in PDMO
-		Pdmo pdmo = new Pdmo();
-		pdmo.setCity(postDetails.getCity());
-		pdmo.setCreatedBy(userId);
-		pdmo.setCreatedOn(current);
-		pdmo.setBrand(postDetails.getBrand());
-		pdmo.setColor(postDetails.getColor());
-		pdmo.setLocation(postDetails.getSelectedLocationCode());
-		pdmo.setMemorySize(postDetails.getMemorySize());
-		if(postDetails.getBrand().equals("OTH")){
-			//User would not have selected from auto suggest list and the hidden field 'model' would not have been populated.
-			//In this case take whatever the user entered in the model text box.
-			pdmo.setModel(postDetails.getUserEnteredModelStr());
-		}else{
-			pdmo.setModel(postDetails.getModel());
-		}
+		//Make an entry in PDVD
+		PAirCooler entity = new PAirCooler();
+		entity.setPostId(poit.getPostId());
+		entity.setCity(postDetails.getCity());
+		entity.setYear(postDetails.getYear());
+		entity.setLocation(postDetails.getSelectedLocationCode());
+		entity.setBillAvailable(postDetails.getBillAvailable());
+		entity.setBrand(postDetails.getBrand());
+		entity.setCreatedBy(userId);
+		entity.setCreatedOn(current);
+		entity.setModel(postDetails.getModel());
+		entity.setModifiedBy(userId);
+		entity.setModifiedOn(current);
+		entity.setPrice(postDetails.getPrice());
+		entity.setTonnage(postDetails.getTonnage());
+		entity.setAcType(postDetails.getAcType());
 		
-		pdmo.setModifiedBy(userId);
-		pdmo.setModifiedOn(current);
-		pdmo.setPostId(poit.getPostId());
-		pdmo.setPrice(postDetails.getPrice());
-		pdmo.setProcessorSpeed(postDetails.getProcessorSpeed());
-		pdmo.setSubCategory(postDetails.getSubCategory());
-		pdmo.setYear(postDetails.getYear());
-		pdmo.setDualSim(postDetails.getDualSim());
-		pdmo.setTouchScreen(postDetails.getTouchScreen());
-
-		//populateModelDetails(dbSession, pdmo);
-
-		dbSession.save(pdmo);
+		dbSession.save(entity);
 
 		if(upload != null){
 			writeImage(upload, imgFileName);
@@ -333,30 +278,6 @@ public class MobileAction extends ActionSupport implements SessionAware, Servlet
 		responseMsg = "Your post has been placed successfully! Post Id is " + poit.getPostId();
 
 		return "success";
-	}
-
-	private void populateModelDetails(Session dbSession, Pdmo pdmo){
-		String brand = pdmo.getBrand();
-		String mobileModel = pdmo.getModel();
-		String queryStr = "From MobileMaster where brand = :brand and model = :model";
-		Query query = dbSession.createQuery(queryStr);
-		query.setParameter("brand", brand);
-		query.setParameter("model", mobileModel);
-		List<MobileMaster> list = query.list();
-		if(list.size() == 0){
-			return;
-		}
-		MobileMaster model = list.get(0);
-		pdmo.setCameraResolution(model.getCameraResolution());
-		pdmo.setFmRadio(model.getFmRadio());
-		pdmo.setFontCamera(model.getFontCamera());
-		pdmo.setMemorySize(model.getMemorySize());
-		pdmo.setOperatingSystem(model.getOperatingSystem());
-		pdmo.setProcessorSpeed(model.getProcessorSpeed());
-		pdmo.setScreenSize(model.getScreenSize());
-		pdmo.setSmartPhone(model.getSmartPhone());
-		pdmo.setTouchScreen(model.getTouchScreen());
-		pdmo.setWiFi(model.getWiFi());
 	}
 
 	private void writeImage(File inputFile, String outputFileName){
@@ -375,62 +296,81 @@ public class MobileAction extends ActionSupport implements SessionAware, Servlet
 	private void populateAdditionalDetails(){
 		SessionFactory sessionFactory = (SessionFactory) ServletActionContext.getServletContext().getAttribute("sessionFactory");
 		Session dbSession = sessionFactory.openSession();
-		for(MobilePostDetails postDetails:adList){
+		for(AirCoolerPostDetails postDetails:adList){
 			String cityName = LocationUtil.getCityName(dbSession, postDetails.getCity());
 			String locName = LocationUtil.getLocationName(dbSession, postDetails.getCity(), postDetails.getLocation());
 			postDetails.setCity(cityName);
 			postDetails.setLocation(locName);
 			postDetails.setPriceStr(NumberFormatterUtil.formatAmount(postDetails.getPrice()));
-			postDetails.setBrandStr(Utils.getInstance().getMobileBrandDesc(postDetails.getBrand()));
-			postDetails.setModelStr(MobilePhoneCache.getInstance().getModelName(postDetails.getBrand(), postDetails.getModel()));
 		}
 	}
 
-	public String getAdListForMobile(){
+	public String getAdListForCriteria(){
 
 		category = postDetails.getCategory();
-		subCategory = postDetails.getSubCategory();
-
 		categoryStr = Utils.getInstance().getCategoryDesc(category);
-		subCategoryStr = Utils.getInstance().getSubCategoryDesc(category, subCategory);
 
 		if(category == null || category.equals("")){
-			setCategory(CBuddyConstants.CATEGORY_MOBILE);
+			setCategory(CBuddyConstants.CATEGORY_ELECTRONICS_AND_HOUSEHOLD);
 		}
-		if(category.equals(CBuddyConstants.CATEGORY_MOBILE) && (subCategory==null || subCategory.equals(""))){
-			setSubCategory(CBuddyConstants.SUBCATEGORY_MOBILE_MOBILEPHONES);
-		}
-
-		MobileAdService mobileAdService =  new MobileAdService();
-		adList = mobileAdService.getAdListByCategory(getModel(), subCategory);
+		
+		adList = getAdListByCategory(getModel());
 
 		populateAdditionalDetails();
 
 		return "success";
 	}
-
-	public String autoPopulateMobileModels(){
-		String output = "success";
+	
+	private List<AirCoolerPostDetails> getAdListByCategory(AirCoolerPostDetails postDetails){
 		SessionFactory sessionFactory = (SessionFactory) ServletActionContext.getServletContext().getAttribute("sessionFactory");
-		Session dbSession = sessionFactory.openSession();
-		List<MobileMaster> corpList = new AutoSuggestMobileService().autopopulateModels(dbSession, modelSearchStr, brandNew);
+		Session session = sessionFactory.openSession();
 
-		if(corpList != null){
-			modelDetailsJsonArray = new JSONArray();
-
-			for(MobileMaster modelDetails:corpList){
-				JSONObject obj = new JSONObject();
-				obj.put("model", modelDetails.getModel());
-				obj.put("modelName", modelDetails.getModelName());
-				modelDetailsJsonArray.put(obj);
+		List<AirCoolerPostDetails> list = null;
+		try {
+			Criteria criteria = session.createCriteria(AirCoolerPostDetails.class);
+			criteria.addOrder(Order.desc("postId"));
+			criteria.setMaxResults(20);
+			criteria.add(Restrictions.eq("subCategory", subCategory));
+			
+			/*if(postDetails.getCity() != null){
+				criteria.add(Restrictions.eq("city", postDetails.getCity()));
+			}*/
+			if(postDetails.getCorpId() > 0){
+				criteria.add(Restrictions.eq("corpId", postDetails.getCorpId()));
 			}
+			criteria = generateFilters(postDetails, criteria);
+
+			list = criteria.list();
+			
+			System.out.println(list);
+			
+		} catch (HibernateException e) {
+			e.printStackTrace();
 		}
-
-		return output;
+		session.close();
+		return list;
 	}
+	
+	private Criteria generateFilters(AirCoolerPostDetails postDetails, Criteria criteria) {
 
+		if(postDetails.getLocation() != null){
+			criteria = CriteriaUtil.getCriteriaForLocation(criteria, postDetails.getLocation());	
+		}
+		if(postDetails.getBrand() != null){
+			criteria = CriteriaUtil.createCriteriaForIn(criteria, postDetails.getBrand(), "brand");		
+		}
+		if(postDetails.getAmt() != null){
+			criteria = CriteriaUtil.getCriteriaForAmt(criteria, postDetails.getAmt(), "price");
+		}
+		if(postDetails.getYearStr() != null){
+			criteria = CriteriaUtil.createCriteriaForYear(criteria, postDetails.getYearStr());
+		}		
+		return criteria;	
+	}
+	
+	
 	@Override
-	public MobilePostDetails getModel() {
+	public AirCoolerPostDetails getModel() {
 		return postDetails;
 	}
 
@@ -458,11 +398,11 @@ public class MobileAction extends ActionSupport implements SessionAware, Servlet
 		this.uploadContentType = uploadContentType;
 	}
 
-	public List<MobilePostDetails> getAdList() {
+	public List<AirCoolerPostDetails> getAdList() {
 		return adList;
 	}
 
-	public void setAdList(List<MobilePostDetails> adList) {
+	public void setAdList(List<AirCoolerPostDetails> adList) {
 		this.adList = adList;
 	}
 
@@ -491,44 +431,11 @@ public class MobileAction extends ActionSupport implements SessionAware, Servlet
 		this.categoryStr = categoryStr;
 	}
 
-	@Transient
-	public String getSubCategoryStr() {
-		return subCategoryStr;
-	}
-
-	public void setSubCategoryStr(String subCategoryStr) {
-		this.subCategoryStr = subCategoryStr;
-	}
-
 	public String getResponseMsg() {
 		return responseMsg;
 	}
 
 	public void setResponseMsg(String responseMsg) {
 		this.responseMsg = responseMsg;
-	}
-
-	public JSONArray getModelDetailsJsonArray() {
-		return modelDetailsJsonArray;
-	}
-
-	public void setModelDetailsJsonArray(JSONArray modelDetailsJsonArray) {
-		this.modelDetailsJsonArray = modelDetailsJsonArray;
-	}
-
-	public String getModelSearchStr() {
-		return modelSearchStr;
-	}
-
-	public void setModelSearchStr(String modelSearchStr) {
-		this.modelSearchStr = modelSearchStr;
-	}
-
-	public String getBrandNew() {
-		return brandNew;
-	}
-
-	public void setBrandNew(String brandNew) {
-		this.brandNew = brandNew;
 	}
 }

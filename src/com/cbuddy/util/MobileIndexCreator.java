@@ -49,7 +49,6 @@ public class MobileIndexCreator{
 		Document doc = new Document();
 		doc.add(new TextField("brand", modelDetails.getBrand(), Field.Store.YES));
 		doc.add(new TextField("model", modelDetails.getModel(), Field.Store.YES));
-		doc.add(new TextField("modelName", modelDetails.getModelName(), Field.Store.YES));
 		w.addDocument(doc);
 	}
 

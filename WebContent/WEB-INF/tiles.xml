@@ -71,4 +71,12 @@
         <put-attribute name="title" value="My Dashboard" />
         <put-attribute name="body" value="/MyDashBoard.jsp" />
     </definition>
+    <definition name="/electronics.tiles" extends="baseLayout">
+        <put-attribute name="title" value="Electronics And Household Items" />
+        <put-attribute name="body" value="/Electronics.jsp" />
+    </definition>
+    <definition name="/postad_electronics.tiles" extends="baseLayout">
+        <put-attribute name="title" value="Post Ad" />
+        <put-attribute name="body" value="/PostAd_Electronics.jsp" />
+    </definition>    
 </tiles-definitions>

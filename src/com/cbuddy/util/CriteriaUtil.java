@@ -8,9 +8,6 @@ import org.hibernate.criterion.Criterion;
 import org.hibernate.criterion.LogicalExpression;
 import org.hibernate.criterion.Restrictions;
 
-import com.cbuddy.util.NumberFormatterUtil;
-import com.model.user.RealEstatePostDetails;
-
 public class CriteriaUtil {
 
 	public static Criteria getCriteriaForLocation(Criteria criteria, String location){
@@ -141,6 +138,17 @@ public class CriteriaUtil {
 			list.add(token);
 		}
 		criteria.add(Restrictions.in(fieldName, list));
+		return criteria;
+	}
+	
+	public static Criteria createCriteriaForYear(Criteria criteria, String yearOfMake) {
+		List yearList = new ArrayList();
+		String obj[] = yearOfMake.split(",");
+		for(String make:obj){
+			yearList.add(Integer.parseInt(make));
+		}	
+		criteria.add(Restrictions.in("year", yearList));
+
 		return criteria;
 	}
 }

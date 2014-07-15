@@ -35,9 +35,9 @@ public class AutoSuggestMobileService{
 			IndexSearcher searcher = new IndexSearcher(reader);
 //			Analyzer analyzer = new StandardAnalyzer(Version.LUCENE_44);
 
-			QueryParser queryParser = new QueryParser(Version.LUCENE_44, "modelName", new SimpleAnalyzer(Version.LUCENE_44));
+			QueryParser queryParser = new QueryParser(Version.LUCENE_44, "model", new SimpleAnalyzer(Version.LUCENE_44));
 
-			Query query = queryParser.parse("brand:" + brand + " AND modelName:" + modelSearchStr + "*");
+			Query query = queryParser.parse("brand:" + brand + " AND model:" + modelSearchStr + "*");
 			TopDocs topDocs = searcher.search(query, 10);
 			ScoreDoc[] hits = topDocs.scoreDocs;
 			LogUtil.getInstance().info("Search Results: " + hits.length);

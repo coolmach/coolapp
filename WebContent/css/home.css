@@ -404,14 +404,15 @@ html,body {
 
 #category_search {
 	border-radius: inherit;
-	width: 72% !important;
-	border: 1px groove #aaaaaa;
-	height:45px;
+	width: 25% !important;
+	border: 1px groove rgb(0,255,0);
+	height:35px;
+	margin-left:1%;
 }
 
 #arr_img {
 	float: left;
-	width: 50px;
+	width: 30px;
 	margin-right: 10px;
 	margin-left: 10px;
 }
@@ -461,14 +462,14 @@ html,body {
 
 
 .mainHeading {
-	font-size: 28px;
+	font-size: 30px;
 	float: left;
 }
 
 .subHeading {
-	font-size:22px;
+	font-size:24px;
 	margin: 10px;
-	color: #808080;
+	color: rgb(255,127,39);
 }
 
 .bulletSection {

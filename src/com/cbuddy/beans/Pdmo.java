@@ -34,6 +34,7 @@ public class Pdmo {
 	private String fmRadio;
 	private String processorSpeed;
 	private String memorySize;
+	private String dualSim;
 	
 	private double price;
 	
@@ -42,7 +43,7 @@ public class Pdmo {
 	private Timestamp modifiedOn;
 	private String modifiedBy;
 	
-	private String amtStr;
+	private String amt;
 
 	@Id
 	@Column(name="POST_ID")
@@ -142,11 +143,11 @@ public class Pdmo {
 	}
 	
 	@Transient
-	public String getAmtStr() {
-		return amtStr;
+	public String getAmt() {
+		return amt;
 	}
-	public void setAmtStr(String amtStr) {
-		this.amtStr = amtStr;
+	public void setAmt(String amt) {
+		this.amt = amt;
 	}
 	
 	@Column(name="BRAND")
@@ -235,5 +236,13 @@ public class Pdmo {
 	}
 	public void setOperatingSystem(String operatingSystem) {
 		this.operatingSystem = operatingSystem;
+	}
+	
+	@Column(name="DUAL_SIM")
+	public String getDualSim() {
+		return dualSim;
+	}
+	public void setDualSim(String dualSim) {
+		this.dualSim = dualSim;
 	}
 }
