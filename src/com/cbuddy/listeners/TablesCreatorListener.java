@@ -9,6 +9,7 @@ import org.hibernate.cfg.AnnotationConfiguration;
 
 import com.cbuddy.cache.MobilePhoneCache;
 import com.cbuddy.util.CorporateIndexCreator;
+import com.cbuddy.util.LogUtil;
 import com.cbuddy.util.MobileIndexCreator;
 
 public class TablesCreatorListener implements ServletContextListener{
@@ -32,9 +33,11 @@ public class TablesCreatorListener implements ServletContextListener{
 		Session dbSession = factory.openSession();
 		CorporateIndexCreator.getInstance().indexCorporates(dbSession);
 		System.out.println(">>> Corporate Indexes created successfully");
+		LogUtil.getInstance().info(">>> Corporate Indexes created successfully");
 		
 		MobileIndexCreator.getInstance().indexMobileModels(dbSession);
 		System.out.println(">>> Mobile Model Indexes created successfully");
+		LogUtil.getInstance().info(">>> Mobile Model Indexes created successfully");
 		
 		MobilePhoneCache.getInstance().initialize(dbSession);
 		System.out.println(">>> Mobile Model cache created successfully");

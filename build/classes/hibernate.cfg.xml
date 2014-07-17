@@ -54,6 +54,7 @@
 		<mapping class="com.cbuddy.beans.PFridge" />
 		<mapping class="com.cbuddy.beans.PAirCooler" />
 		<mapping class="com.cbuddy.beans.PWashingMachine" />
+		<mapping class="com.cbuddy.beans.PFurniture" />
 		<mapping class="com.cbuddy.beans.POthers" />
 		<mapping class="com.cbuddy.beans.Corp" />		
 		<mapping class="com.cbuddy.beans.Location" />
@@ -68,6 +69,7 @@
 		<mapping class="com.model.user.FridgePostDetails" />
 		<mapping class="com.model.user.AirCoolerPostDetails" />
 		<mapping class="com.model.user.WashingMachinePostDetails" />
+		<mapping class="com.model.user.FurniturePostDetails" />
 		<mapping class="com.model.user.OtherPostDetails" />
 	</session-factory>
 

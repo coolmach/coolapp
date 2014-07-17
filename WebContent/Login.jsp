@@ -3,10 +3,11 @@
 
 <div class="container" style="margin: 10%;">
 	<div class="row">
+	<s:if test="responseMsg != null">
 		<div class="header_responseMessage">
 			<s:property value="responseMsg" />
 		</div>
-		
+	</s:if>
 		<div class="col-md-5 " id="signInSection"
 			style="margin-left: 19.9999%; margin-top: 5%;">
 			
@@ -18,7 +19,8 @@
 
 				<div class="panel-body">
 				
-					<s:form cssClass="form-horizontal" role="form" action="login" theme="simple">
+					<!--s:form cssClass="form-horizontal" role="form" action="login" theme="simple"-->
+					<s:form cssClass="form-horizontal" role="form" action="postAdLogin" theme="simple">
 						<div class="form-group">
 							<label for="inputEmail3" class="col-sm-3 control-label">
 								Email</label>

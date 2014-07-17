@@ -2,7 +2,7 @@
 	$("#userEnteredLocationStr").autocomplete({
 		source: function(request, response) {
 			$.ajax({
-				url: "http://localhost:8080/Virat/getLocation?",
+				url: "Virat" + "/getLocation?",
 				//url:$('#contextPath').text() + "getLocation",
 				type: "POST",
 				dataType: "json",
@@ -33,7 +33,7 @@
 	$("#userEnteredModelStr").autocomplete({
 		source: function(request, response) {
 			$.ajax({
-				url: "http://localhost:8080/Virat/autoSuggestMobile?",
+				url: "Virat" + "/autoSuggestMobile?",
 				//url:$('#contextPath').text() + "getLocation",
 				type: "POST",
 				dataType: "json",

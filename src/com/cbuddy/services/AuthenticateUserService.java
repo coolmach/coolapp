@@ -1,7 +1,6 @@
 package com.cbuddy.services;
 
 import java.sql.Timestamp;
-import java.util.Date;
 import java.util.List;
 
 import org.apache.struts2.ServletActionContext;

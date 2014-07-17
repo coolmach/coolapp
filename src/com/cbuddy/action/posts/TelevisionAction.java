@@ -232,7 +232,7 @@ public class TelevisionAction extends ActionSupport implements SessionAware, Ser
 		//Make an entry in POIT
 		Poit poit = new Poit();
 		
-		poit.setCategory(CBuddyConstants.CATEGORY_COMPUTERS);
+		poit.setCategory(CBuddyConstants.CATEGORY_ELECTRONICS_AND_HOUSEHOLD);
 		poit.setSubCategory(CBuddyConstants.SUBCATEGORY_ELECTRONICS_AND_HOUSEHOLD_TELEVISION);
 		
 		poit.setTitle(postDetails.getTitle());
@@ -348,15 +348,28 @@ public class TelevisionAction extends ActionSupport implements SessionAware, Ser
 			Criteria criteria = session.createCriteria(TelevisionPostDetails.class);
 			criteria.addOrder(Order.desc("postId"));
 			criteria.setMaxResults(20);
-			criteria.add(Restrictions.eq("subCategory", subCategory));
 			
-			/*if(postDetails.getCity() != null){
+			if(postDetails.getCity() != null){
 				criteria.add(Restrictions.eq("city", postDetails.getCity()));
-			}*/
+			}
 			if(postDetails.getCorpId() > 0){
 				criteria.add(Restrictions.eq("corpId", postDetails.getCorpId()));
 			}
-			criteria = generateFilters(postDetails, criteria);
+			if(postDetails.getLocation() != null){
+				criteria = CriteriaUtil.getCriteriaForLocation(criteria, postDetails.getLocation());
+			}
+			if(postDetails.getBrand() != null){
+				criteria = CriteriaUtil.createCriteriaForIn(criteria, postDetails.getBrand(), "brand");		
+			}
+			if(postDetails.getAmt() != null){
+				criteria = CriteriaUtil.getCriteriaForAmt(criteria, postDetails.getAmt(), "price");
+			}
+			if(postDetails.getScreenType() != null){
+				criteria = CriteriaUtil.createCriteriaForIn(criteria, postDetails.getScreenType(), "screenType");
+			}
+			if(postDetails.getYearStr() != null){
+				criteria = CriteriaUtil.createCriteriaForYear(criteria, postDetails.getYearStr());
+			}
 
 			list = criteria.list();
 			
@@ -367,26 +380,6 @@ public class TelevisionAction extends ActionSupport implements SessionAware, Ser
 		}
 		session.close();
 		return list;
-	}
-	
-	private Criteria generateFilters(TelevisionPostDetails postDetails, Criteria criteria) {
-
-		if(postDetails.getLocation() != null){
-			criteria = CriteriaUtil.getCriteriaForLocation(criteria, postDetails.getLocation());	
-		}
-		if(postDetails.getBrand() != null){
-			criteria = CriteriaUtil.createCriteriaForIn(criteria, postDetails.getBrand(), "brand");		
-		}
-		if(postDetails.getAmt() != null){
-			criteria = CriteriaUtil.getCriteriaForAmt(criteria, postDetails.getAmt(), "price");
-		}
-		if(postDetails.getScreenType() != null){
-			criteria = CriteriaUtil.createCriteriaForIn(criteria, postDetails.getScreenType(), "screenType");
-		}
-		if(postDetails.getYearStr() != null){
-			criteria = CriteriaUtil.createCriteriaForYear(criteria, postDetails.getYearStr());
-		}		
-		return criteria;	
 	}
 	
 	

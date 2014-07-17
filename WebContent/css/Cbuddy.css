@@ -100,3 +100,9 @@
 .logo hover{text-decoration:none;}
 
 .dropDown{height:25px;width:150px;}
+
+
+#electronicsSubCategorySection{margin-bottom:4%;width:120%;margin-left:-15px;}
+#electronicsSubCategorySection a{text-decoration:underline;color:#428bca}
+#electronicsSubCategorySection li{font-size:14px;color:#428bca;padding:5px;}
+#electronicsSubCategorySection li:hover{background-color:#FFFFFF;}

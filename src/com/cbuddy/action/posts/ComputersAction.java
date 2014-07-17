@@ -323,9 +323,9 @@ public class ComputersAction extends ActionSupport implements SessionAware, Serv
 		if(category == null || category.equals("")){
 			setCategory(CBuddyConstants.CATEGORY_COMPUTERS);
 		}
-		if(category.equals(CBuddyConstants.CATEGORY_COMPUTERS) && (subCategory==null || subCategory.equals(""))){
-			setSubCategory(CBuddyConstants.SUBCATEGORY_COMPUTERS_DESKTOPS);
-		}
+//		if(category.equals(CBuddyConstants.CATEGORY_COMPUTERS) && (subCategory==null || subCategory.equals(""))){
+//			setSubCategory(CBuddyConstants.SUBCATEGORY_COMPUTERS_DESKTOPS);
+//		}
 
 		ComputersAdService computersAdService =  new ComputersAdService();
 		adList = computersAdService.getAdListByCategory(getModel(), subCategory);

@@ -109,6 +109,10 @@ public class DVDAction extends ActionSupport implements SessionAware, ServletReq
 			addFieldError("errorMsg", "Please enter the Brand");
 			return false;
 		}
+		if(postDetails.getPlayerType()==null){
+			addFieldError("errorMsg", "Please select Player Type");
+			return false;
+		}
 		if(postDetails.getYear() == 0){
 			addFieldError("errorMsg", "Please select the year of purchase");
 			return false;
@@ -176,6 +180,11 @@ public class DVDAction extends ActionSupport implements SessionAware, ServletReq
 			return false;
 		}
 		
+		temp = postDetails.getPlayerType();
+		if(temp == null || (!temp.equals("DVD") && !temp.equals("MP3") && !temp.equals("iPod"))){
+			addFieldError("errorMsg", "Player Type is not valid");
+			return false;
+		}
 		return output;
 	}
 
@@ -202,7 +211,7 @@ public class DVDAction extends ActionSupport implements SessionAware, ServletReq
 		//Make an entry in POIT
 		Poit poit = new Poit();
 		
-		poit.setCategory(CBuddyConstants.CATEGORY_COMPUTERS);
+		poit.setCategory(CBuddyConstants.CATEGORY_ELECTRONICS_AND_HOUSEHOLD);
 		poit.setSubCategory(CBuddyConstants.SUBCATEGORY_ELECTRONICS_AND_HOUSEHOLD_TELEVISION);
 		
 		poit.setTitle(postDetails.getTitle());
@@ -248,6 +257,7 @@ public class DVDAction extends ActionSupport implements SessionAware, ServletReq
 		entity.setModifiedBy(userId);
 		entity.setModifiedOn(current);
 		entity.setPrice(postDetails.getPrice());
+		entity.setPlayerType(postDetails.getPlayerType());
 		
 		dbSession.save(entity);
 
@@ -312,15 +322,28 @@ public class DVDAction extends ActionSupport implements SessionAware, ServletReq
 			Criteria criteria = session.createCriteria(DVDPostDetails.class);
 			criteria.addOrder(Order.desc("postId"));
 			criteria.setMaxResults(20);
-			criteria.add(Restrictions.eq("subCategory", subCategory));
 			
-			/*if(postDetails.getCity() != null){
+			if(postDetails.getCity() != null){
 				criteria.add(Restrictions.eq("city", postDetails.getCity()));
-			}*/
+			}
 			if(postDetails.getCorpId() > 0){
 				criteria.add(Restrictions.eq("corpId", postDetails.getCorpId()));
 			}
-			criteria = generateFilters(postDetails, criteria);
+			if(postDetails.getLocation() != null){
+				criteria = CriteriaUtil.getCriteriaForLocation(criteria, postDetails.getLocation());
+			}
+			if(postDetails.getBrand() != null){
+				criteria = CriteriaUtil.createCriteriaForIn(criteria, postDetails.getBrand(), "brand");		
+			}
+			if(postDetails.getAmt() != null){
+				criteria = CriteriaUtil.getCriteriaForAmt(criteria, postDetails.getAmt(), "price");
+			}
+			if(postDetails.getPlayerType() != null){
+				criteria = CriteriaUtil.createCriteriaForIn(criteria, postDetails.getPlayerType(), "playerType");
+			}
+			if(postDetails.getYearStr() != null){
+				criteria = CriteriaUtil.createCriteriaForYear(criteria, postDetails.getYearStr());
+			}
 
 			list = criteria.list();
 			
@@ -332,24 +355,6 @@ public class DVDAction extends ActionSupport implements SessionAware, ServletReq
 		session.close();
 		return list;
 	}
-	
-	private Criteria generateFilters(DVDPostDetails postDetails, Criteria criteria) {
-
-		if(postDetails.getLocation() != null){
-			criteria = CriteriaUtil.getCriteriaForLocation(criteria, postDetails.getLocation());	
-		}
-		if(postDetails.getBrand() != null){
-			criteria = CriteriaUtil.createCriteriaForIn(criteria, postDetails.getBrand(), "brand");		
-		}
-		if(postDetails.getAmt() != null){
-			criteria = CriteriaUtil.getCriteriaForAmt(criteria, postDetails.getAmt(), "price");
-		}
-		if(postDetails.getYearStr() != null){
-			criteria = CriteriaUtil.createCriteriaForYear(criteria, postDetails.getYearStr());
-		}		
-		return criteria;	
-	}
-	
 	
 	@Override
 	public DVDPostDetails getModel() {

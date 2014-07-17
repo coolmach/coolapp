@@ -1,5 +1,3 @@
-
-
 	<div class="form-group">
 		<label for="location" class="col-sm-4 control-label">City</label>
 		<div class="col-sm-6">

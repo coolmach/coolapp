@@ -24,6 +24,7 @@ public class PDVD {
 	private int year;
 	private double price;
 	private String billAvailable;
+	private String playerType;
 	private Timestamp createdOn;
 	private String createdBy;
 	private Timestamp modifiedOn;
@@ -134,5 +135,13 @@ public class PDVD {
 	}
 	public void setAmt(String amt) {
 		this.amt = amt;
+	}
+	
+	@Column(name="PLAYER_TYPE")
+	public String getPlayerType() {
+		return playerType;
+	}
+	public void setPlayerType(String playerType) {
+		this.playerType = playerType;
 	}
 }

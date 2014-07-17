@@ -27,6 +27,10 @@ public class AutoSuggestLocationService{
 		LocationIndexCreator.getInstance().indexAllLocations(session);
 		StandardAnalyzer analyzer = new StandardAnalyzer(Version.LUCENE_44);
 		
+		LogUtil.getInstance().info(">>> AutoSuggestLocationService.getList() - ENTER");
+		
+		LogUtil.getInstance().info(">>> AutoSuggestLocationService.getList() - city: " + city + ", searchString: " + searchString);
+		
 		String fileName = city + "-location-index";
 		
 		Directory index = FSDirectory.open(new File(CBuddyConstants.BASE_FOLDER_NAME_INDEX, fileName));
@@ -47,6 +51,7 @@ public class AutoSuggestLocationService{
 
 			// 4. display results
 			System.out.println("Found " + hits.length + " hits.");
+			LogUtil.getInstance().info(">>> Found " + hits.length + " hits.");
 			
 			for(int i=0; i<hits.length; ++i) {
 				int docId = hits[i].doc;
@@ -55,6 +60,7 @@ public class AutoSuggestLocationService{
 				location.setLocCode(d.get("code"));
 				location.setLocName(d.get("name"));
 				System.out.println((i + 1) + ". " + d.get("code") + "\t" + d.get("name"));
+				LogUtil.getInstance().info(">>> " + (i + 1) + ". " + d.get("code") + "\t" + d.get("name"));
 				locationList.add(location);
 			}
 

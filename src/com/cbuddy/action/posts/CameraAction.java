@@ -28,7 +28,6 @@ import com.cbuddy.util.LocationUtil;
 import com.cbuddy.util.NumberFormatterUtil;
 import com.cbuddy.util.Utils;
 import com.model.user.CameraPostDetails;
-import com.model.user.ComputersPostDetails;
 import com.model.user.User;
 import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.ActionSupport;
@@ -215,7 +214,7 @@ public class CameraAction extends ActionSupport implements SessionAware, Servlet
 		//Make an entry in POIT
 		Poit poit = new Poit();
 		
-		poit.setCategory(CBuddyConstants.CATEGORY_COMPUTERS);
+		poit.setCategory(CBuddyConstants.CATEGORY_ELECTRONICS_AND_HOUSEHOLD);
 		poit.setSubCategory(CBuddyConstants.SUBCATEGORY_ELECTRONICS_AND_HOUSEHOLD_TELEVISION);
 		
 		poit.setTitle(postDetails.getTitle());
@@ -327,15 +326,25 @@ public class CameraAction extends ActionSupport implements SessionAware, Servlet
 			Criteria criteria = session.createCriteria(CameraPostDetails.class);
 			criteria.addOrder(Order.desc("postId"));
 			criteria.setMaxResults(20);
-			criteria.add(Restrictions.eq("subCategory", subCategory));
 			
-			/*if(postDetails.getCity() != null){
+			if(postDetails.getCity() != null){
 				criteria.add(Restrictions.eq("city", postDetails.getCity()));
-			}*/
+			}
 			if(postDetails.getCorpId() > 0){
 				criteria.add(Restrictions.eq("corpId", postDetails.getCorpId()));
 			}
-			criteria = generateFilters(postDetails, criteria);
+			if(postDetails.getLocation() != null){
+				criteria = CriteriaUtil.getCriteriaForLocation(criteria, postDetails.getLocation());
+			}
+			if(postDetails.getBrand() != null){
+				criteria = CriteriaUtil.createCriteriaForIn(criteria, postDetails.getBrand(), "brand");		
+			}
+			if(postDetails.getAmt() != null){
+				criteria = CriteriaUtil.getCriteriaForAmt(criteria, postDetails.getAmt(), "price");
+			}
+			if(postDetails.getYearStr() != null){
+				criteria = CriteriaUtil.createCriteriaForYear(criteria, postDetails.getYearStr());
+			}
 
 			list = criteria.list();
 			

@@ -163,5 +163,4 @@
 			</table>
 		</div>
 	</s:else>
-
 </div>

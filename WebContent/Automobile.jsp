@@ -6,4 +6,4 @@
 
 <%@include file="AdList_Automobile.jsp" %>
 
-<%@include file="location_And_Corporate_Details.jsp" %>
+<%@include file="automobile_SubCategory_Strip.jsp" %>

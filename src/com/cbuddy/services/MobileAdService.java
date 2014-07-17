@@ -28,9 +28,9 @@ public class MobileAdService{
 			criteria.addOrder(Order.desc("postId"));
 			criteria.setMaxResults(20);
 			criteria.add(Restrictions.eq("subCategory", subCategory));
-			/*if(postDetails.getCity() != null){
+			if(postDetails.getCity() != null){
 				criteria.add(Restrictions.eq("city", postDetails.getCity()));
-			}*/
+			}
 			if(postDetails.getCorpId() > 0){
 				criteria.add(Restrictions.eq("corpId", postDetails.getCorpId()));
 			}
@@ -68,9 +68,6 @@ public class MobileAdService{
 		}
 		if(postDetails.getOperatingSystem()!=null){
 			criteria = getCriteriaForOS(criteria, postDetails.getOperatingSystem());
-		}
-		if(postDetails.getSims()!=null){
-			criteria = getCriteriaForSims(criteria, postDetails.getSims());
 		}
 
 		return criteria;	

@@ -34,6 +34,8 @@ public class PostAdAction extends ActionSupport implements ServletRequestAware{
 			output = "mobile";
 		}else if(category.equals(CBuddyConstants.CATEGORY_ELECTRONICS_AND_HOUSEHOLD)){
 			output = "electronics";
+		}else if(category.equals(CBuddyConstants.CATEGORY_FURNITURE)){
+			output = "furniture";
 		}
 		return output;
 	}

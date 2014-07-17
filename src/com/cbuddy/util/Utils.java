@@ -241,4 +241,24 @@ public class Utils {
 		else if(input.equals("OTH")) output = "Others";
 		return output;
 	}
+	
+	public String getFurnitureTypeDesc(String input){
+		if(input == null){
+			return null;
+		}
+
+		String output = input;
+		if(input.equals("COT_WOOD")) output = "Cot - Wooden";
+		else if(input.equals("COT_STEEL")) output = "Cot - Steel";
+		else if(input.equals("MATTRESS")) output = "Mattress";
+		else if(input.equals("DINING")) output = "Dining Table";
+		else if(input.equals("SHOE")) output = "Shoe Rack";
+		else if(input.equals("TV")) output = "TV Stand";
+		else if(input.equals("TABLE")) output = "Table";
+		else if(input.equals("CHAIR_WOOD")) output = "Chair - Wooden";
+		else if(input.equals("CHAIR_PLASTIC")) output = "Chair - Plastic";
+		else if(input.equals("ALMIRAH")) output = "Almirah";
+		else if(input.equals("OTH")) output = "Others";
+		return output;
+	}
 }

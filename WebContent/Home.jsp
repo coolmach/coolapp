@@ -109,7 +109,7 @@
 
 </div>
 <div class="col-md-12" style="padding-left: 2%; max-width: 200px;">
-	<a class="myButton" id="post_ad" href="<s:url action="mylogin"/>">Post
+	<a class="myButton" id="post_ad" href="<s:url action="postAdStart"/>">Post
 		Ad</a>
 
 </div>
@@ -128,13 +128,12 @@
 					<s:param name="subCategory">1</s:param>
 				</s:url> <a href="<s:property value="#urlTag1" />"><img
 					class="images_ad" src="images/cars.png"> </a></td>
-			<td><s:url action="household" var="urlTag2" escapeAmp="false">
-					<s:param name="category">HOUSEHOLD</s:param>
+			<td><s:url action="electronics" var="urlTag2" escapeAmp="false">
+					<s:param name="category">ELEC</s:param>
 				</s:url> <a href="<s:property value="#urlTag2" />"><img
 					class="images_ad" src="images/household.png"> </a></td>
 			<td><s:url action="computers" var="urlTag3" escapeAmp="false">
 					<s:param name="category">COMP</s:param>
-					<s:param name="subCategory">1</s:param>
 				</s:url> <a href="<s:property value="#urlTag3" />"><img
 					class="images_ad" src="images/laptops.png"> </a></td>
 			<td><s:url action="mobile" var="urlTag4" escapeAmp="false">
@@ -142,8 +141,8 @@
 					<s:param name="subCategory">1</s:param>
 				</s:url> <a href="<s:property value="#urlTag4" />"><img
 					class="images_ad" src="images/mobiles.png"> </a></td>
-			<td><s:url action="books" var="urlTag5" escapeAmp="false">
-					<s:param name="category">DVD</s:param>
+			<td><s:url action="furniture" var="urlTag5" escapeAmp="false">
+					<s:param name="category">FURN</s:param>
 				</s:url> <a href="<s:property value="#urlTag5" />"><img
 					class="images_ad" src="images/dvd.png"> </a></td>
 		</tr>

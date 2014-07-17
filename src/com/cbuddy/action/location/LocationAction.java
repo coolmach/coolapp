@@ -22,6 +22,7 @@ import com.cbuddy.beans.NameValuePair;
 import com.cbuddy.beans.Neighborhood;
 import com.cbuddy.util.AutoSuggestLocationService;
 import com.cbuddy.util.LocationUtil;
+import com.cbuddy.util.LogUtil;
 import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.ActionSupport;
 
@@ -39,6 +40,7 @@ public class LocationAction extends ActionSupport implements SessionAware, Servl
 
 	public String getLocations(){
 		System.out.println("LocationAction.getLocations() - ENTER");
+		LogUtil.getInstance().info(">>> LocationAction.getLocations() - ENTER");
 		String city = request.getParameter("city");
 		String locationStr = request.getParameter("location");
 		
@@ -62,7 +64,10 @@ public class LocationAction extends ActionSupport implements SessionAware, Servl
 			jsonArray.put(obj);
 		}
 		
+		LogUtil.getInstance().info(">>> LocationAction.getLocations() - Returning List of size: " + locationList.size());
+		
 		System.out.println("LocationAction.getLocations() - EXIT");
+		LogUtil.getInstance().info(">>> LocationAction.getLocations() - EXIT");
 		return Action.SUCCESS;
 	}
 	

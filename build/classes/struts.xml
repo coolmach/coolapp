@@ -39,6 +39,12 @@
 		    <result name="input" type="tiles">/login.tiles</result>
 			<result name="success" type="tiles">/login.tiles</result>
 		</action>
+		<action name="postAdStart">
+			<interceptor-ref name="secureStack"></interceptor-ref>
+		    <result name="input" type="tiles">/home.tiles</result>
+		    <result name="login" type="tiles">/login.tiles</result>
+			<result name="success" type="tiles">/categories.tiles</result>
+		</action>		
 		<action name="signup" class="com.cbuddy.action.user.LoginAction" method="signUp">
 		    <result name="error" type="tiles">/login.tiles</result>
 		    <result name="input" type="tiles">/login.tiles</result>
@@ -49,10 +55,14 @@
 		     <result name="success" type="tiles">/userdashboard.tiles</result>
 		</action>
 		<action name="login" class="com.cbuddy.action.user.LoginAction">
-			<!-- result name="success" type="tiles">/userdashboard.tiles</result-->
+			<result name="success" type="tiles">/userdashboard.tiles</result>
+			<!-- result name="success" type="tiles">/categories.tiles</result-->
+			<result name="input" type="tiles">/login.tiles</result>
+		</action>
+		<action name="postAdLogin" class="com.cbuddy.action.user.LoginAction">
 			<result name="success" type="tiles">/categories.tiles</result>
 			<result name="input" type="tiles">/login.tiles</result>
-		</action>	
+		</action>			
 		<action name="logout" class="com.cbuddy.action.user.LogOutAction" method="logout"> 
 			<result name="success" type="tiles">/home.tiles</result> 
 			<result name="input" type="tiles">/home.tiles</result> 
@@ -69,7 +79,7 @@
 			<result name="success" type="tiles">/addetails.tiles</result>
 		</action>
 		<action name="real_estate_postAd" class="com.cbuddy.action.posts.RealEstateAction" method="postAd">
-			 <interceptor-ref name="secureStack"></interceptor-ref> 
+			 <interceptor-ref name="secureStack"></interceptor-ref>
 			 <interceptor-ref name="fileUpload">
                      <param name="allowedTypes">image/jpeg,image/gif,image/png</param>
              </interceptor-ref>
@@ -104,7 +114,7 @@
 			<result name="success">/AdList_Computers.jsp</result>
 		</action>
 		<action name="computers_postAd" class="com.cbuddy.action.posts.ComputersAction" method="postAd">
-			 <interceptor-ref name="secureStack"></interceptor-ref> 
+			 <interceptor-ref name="secureStack"></interceptor-ref>
 			 <interceptor-ref name="fileUpload">
                      <param name="allowedTypes">image/jpeg,image/gif,image/png</param>
              </interceptor-ref>
@@ -140,6 +150,27 @@
 		
 				
 		<!-- ELECTRONICS AND HOUSEHOLD - START -->
+		<action name="electronics" class="com.cbuddy.action.posts.CommonPostsAction" method="getAdListForCriteria">
+			<result type="tiles" name="success">/electronics.tiles</result>
+		</action>
+		<action name="television" class="com.cbuddy.action.posts.TelevisionAction" method="getAdListForCriteria">
+			<result type="tiles" name="success">/television.tiles</result>
+		</action>
+		<action name="dvd" class="com.cbuddy.action.posts.DVDAction" method="getAdListForCriteria">
+			<result type="tiles" name="success">/dvd.tiles</result>
+		</action>
+		<action name="camera" class="com.cbuddy.action.posts.CameraAction" method="getAdListForCriteria">
+			<result type="tiles" name="success">/camera.tiles</result>
+		</action>
+		<action name="fridge" class="com.cbuddy.action.posts.FridgeAction" method="getAdListForCriteria">
+			<result type="tiles" name="success">/fridge.tiles</result>
+		</action>
+		<action name="airCooler" class="com.cbuddy.action.posts.AirCoolerAction" method="getAdListForCriteria">
+			<result type="tiles" name="success">/airCooler.tiles</result>
+		</action>
+		<action name="washingMachine" class="com.cbuddy.action.posts.WashingMachineAction" method="getAdListForCriteria">
+			<result type="tiles" name="success">/washingMachine.tiles</result>
+		</action>
 		<action name="televisionFilter" class="com.cbuddy.action.posts.TelevisionAction" method="getAdListForCriteria">
 			<result name="success">/AdList_Television.jsp</result>
 		</action>
@@ -155,11 +186,17 @@
 		<action name="airCoolerFilter" class="com.cbuddy.action.posts.AirCoolerAction" method="getAdListForCriteria">
 			<result name="success">/AdList_AirCooler.jsp</result>
 		</action>
+		<action name="washingMachineFilter" class="com.cbuddy.action.posts.WashingMachineAction" method="getAdListForCriteria">
+			<result name="success">/AdList_WashingMachine.jsp</result>
+		</action>		
 		<action name="othersFilter" class="com.cbuddy.action.posts.OtherPostsAction" method="getAdListForCriteria">
 			<result name="success">/AdList_Others.jsp</result>
-		</action>			
+		</action>
+		<action name="commonFilter" class="com.cbuddy.action.posts.CommonPostsAction" method="getAdListForCriteria">
+			<result name="success">/AdList_Common.jsp</result>
+		</action>
 		<action name="television_postAd" class="com.cbuddy.action.posts.TelevisionAction" method="postAd">
-			 <interceptor-ref name="secureStack"></interceptor-ref> 
+			 <interceptor-ref name="secureStack"></interceptor-ref>
 			 <interceptor-ref name="fileUpload">
                      <param name="allowedTypes">image/jpeg,image/gif,image/png</param>
              </interceptor-ref>
@@ -169,7 +206,7 @@
 			<result name="input" type="tiles">/postad_electronics.tiles</result>
 		</action>
 		<action name="dvd_postAd" class="com.cbuddy.action.posts.DVDAction" method="postAd">
-			 <interceptor-ref name="secureStack"></interceptor-ref> 
+			 <interceptor-ref name="secureStack"></interceptor-ref>
 			 <interceptor-ref name="fileUpload">
                      <param name="allowedTypes">image/jpeg,image/gif,image/png</param>
              </interceptor-ref>
@@ -179,7 +216,7 @@
 			<result name="input" type="tiles">/postad_electronics.tiles</result>
 		</action>
 		<action name="camera_postAd" class="com.cbuddy.action.posts.CameraAction" method="postAd">
-			 <interceptor-ref name="secureStack"></interceptor-ref> 
+			 <interceptor-ref name="secureStack"></interceptor-ref>
 			 <interceptor-ref name="fileUpload">
                      <param name="allowedTypes">image/jpeg,image/gif,image/png</param>
              </interceptor-ref>
@@ -189,7 +226,7 @@
 			<result name="input" type="tiles">/postad_electronics.tiles</result>
 		</action>
 		<action name="fridge_postAd" class="com.cbuddy.action.posts.FridgeAction" method="postAd">
-			 <interceptor-ref name="secureStack"></interceptor-ref> 
+			 <interceptor-ref name="secureStack"></interceptor-ref>
 			 <interceptor-ref name="fileUpload">
                      <param name="allowedTypes">image/jpeg,image/gif,image/png</param>
              </interceptor-ref>
@@ -199,7 +236,7 @@
 			<result name="input" type="tiles">/postad_electronics.tiles</result>
 		</action>
 		<action name="airCooler_postAd" class="com.cbuddy.action.posts.AirCoolerAction" method="postAd">
-			 <interceptor-ref name="secureStack"></interceptor-ref> 
+			 <interceptor-ref name="secureStack"></interceptor-ref>
 			 <interceptor-ref name="fileUpload">
                      <param name="allowedTypes">image/jpeg,image/gif,image/png</param>
              </interceptor-ref>
@@ -209,7 +246,7 @@
 			<result name="input" type="tiles">/postad_electronics.tiles</result>
 		</action>
 		<action name="washingMachine_postAd" class="com.cbuddy.action.posts.WashingMachineAction" method="postAd">
-			 <interceptor-ref name="secureStack"></interceptor-ref> 
+			 <interceptor-ref name="secureStack"></interceptor-ref>
 			 <interceptor-ref name="fileUpload">
                      <param name="allowedTypes">image/jpeg,image/gif,image/png</param>
              </interceptor-ref>
@@ -219,7 +256,7 @@
 			<result name="input" type="tiles">/postad_electronics.tiles</result>
 		</action>
 		<action name="others_postAd" class="com.cbuddy.action.posts.OtherPostsAction" method="postAd">
-			 <interceptor-ref name="secureStack"></interceptor-ref> 
+			 <interceptor-ref name="secureStack"></interceptor-ref>
 			 <interceptor-ref name="fileUpload">
                      <param name="allowedTypes">image/jpeg,image/gif,image/png</param>
              </interceptor-ref>
@@ -229,8 +266,28 @@
 			<result name="input" type="tiles">/postad_electronics.tiles</result>
 		</action>		
 		<!-- ELECTRONICS AND HOUSEHOLD - END -->
+
+		<!-- FURNITURE - START -->
+		<action name="furniture" class="com.cbuddy.action.posts.FurnitureAction" method="getAdListForCriteria">
+			<result type="tiles" name="success">/furniture.tiles</result>
+		</action>		
+		<action name="furnitureFilter" class="com.cbuddy.action.posts.FurnitureAction" method="getAdListForCriteria">
+			<result name="success">/AdList_Furniture.jsp</result>
+		</action>		
+		<action name="furniture_postAd" class="com.cbuddy.action.posts.FurnitureAction" method="postAd">
+			 <interceptor-ref name="secureStack"></interceptor-ref> 
+			 <interceptor-ref name="fileUpload">
+                     <param name="allowedTypes">image/jpeg,image/gif,image/png</param>
+             </interceptor-ref>
+             <interceptor-ref name="defaultStack"></interceptor-ref>
+			<result name="login" type="tiles">/home.tiles</result>
+			<result name="success" type="tiles">/home.tiles</result>
+			<result name="input" type="tiles">/postad_furniture.tiles</result>
+		</action>
+		<!-- FURNITURE - END -->
 		
-		<action name="postad" class="com.cbuddy.action.posts.PostAdAction">
+		<action name="postAdContinue" class="com.cbuddy.action.posts.PostAdAction">
+			<interceptor-ref name="secureStack"></interceptor-ref>
 			<result name="login" type="tiles">/home.tiles</result>
 			<result name="success" type="tiles">/home.tiles</result>
 			<result name="realEstate" type="tiles">/postad_real_estate.tiles</result>
@@ -238,6 +295,7 @@
 			<result name="computers" type="tiles">/postad_computers.tiles</result>
 			<result name="mobile" type="tiles">/postad_mobile.tiles</result>
 			<result name="electronics" type="tiles">/postad_electronics.tiles</result>
+			<result name="furniture" type="tiles">/postad_furniture.tiles</result>
 		</action>		
 		<action name="modalLogin" class="com.cbuddy.action.user.LoginAction">
 			<result name="input" type="tiles">/login.tiles</result>

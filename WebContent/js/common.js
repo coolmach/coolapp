@@ -235,6 +235,10 @@ function applyFilters(){
 			var numbers = [ 1, 2, 3, 4, 5, 6, 7, 8 ];
 			var values = [ '0', '1', '2', '3', '4', '5', '6', '7' ];
 			var options = [ 'Select', 'Television', 'DVD/Music Player/iPod', 'Digital Camera/Camcorder', 'Fridge', 'AC', 'Washing Machine', 'Others' ];
+		}else if (category == "FURN") {
+			var numbers = [ 1, 2 ];
+			var values = [ '0', '1' ];
+			var options = [ 'Select', 'All Furnitures' ];
 		}
 		var index = 0;
 		$.each(numbers, function(val, text) {

@@ -1,6 +1,5 @@
 package com.cbuddy.services;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.struts2.ServletActionContext;
@@ -32,9 +31,9 @@ public class ComputersAdService{
 			criteria.setMaxResults(20);
 			criteria.add(Restrictions.eq("subCategory", subCategory));
 			
-			/*if(postDetails.getCity() != null){
+			if(postDetails.getCity() != null){
 				criteria.add(Restrictions.eq("city", postDetails.getCity()));
-			}*/
+			}
 			if(postDetails.getCorpId() > 0){
 				criteria.add(Restrictions.eq("corpId", postDetails.getCorpId()));
 			}

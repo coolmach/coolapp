@@ -12,7 +12,7 @@ public class CriteriaUtil {
 
 	public static Criteria getCriteriaForLocation(Criteria criteria, String location){
 
-		List loc = new ArrayList();
+		List<String> loc = new ArrayList<String>();
 		String obj[] = location.split(",");
 		for(String str :obj){
 			loc.add(str.trim());
@@ -132,7 +132,7 @@ public class CriteriaUtil {
 	
 
 	public static Criteria createCriteriaForIn(Criteria criteria, String inputStr, String fieldName){
-		List list = new ArrayList();
+		List<String> list = new ArrayList<String>();
 		String tokens[] = inputStr.split(",");
 		for(String token:tokens){
 			list.add(token);
@@ -142,7 +142,7 @@ public class CriteriaUtil {
 	}
 	
 	public static Criteria createCriteriaForYear(Criteria criteria, String yearOfMake) {
-		List yearList = new ArrayList();
+		List<Integer> yearList = new ArrayList<Integer>();
 		String obj[] = yearOfMake.split(",");
 		for(String make:obj){
 			yearList.add(Integer.parseInt(make));

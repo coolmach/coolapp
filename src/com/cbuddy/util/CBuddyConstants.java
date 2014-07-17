@@ -13,6 +13,7 @@ public class CBuddyConstants {
 	public static final String CATEGORY_BOOK_DVD = "BOOK";
 	public static final String CATEGORY_COMPUTERS = "COMP";
 	public static final String CATEGORY_MOBILE = "MOBILE";
+	public static final String CATEGORY_FURNITURE = "FURN";
 
 	public static final String SUBCATEGORY_REAL_ESTATE_APARTMENT_FOR_SALE = "1";
 	public static final String SUBCATEGORY_REAL_ESTATE_APARTMENT_FOR_RENT = "2";

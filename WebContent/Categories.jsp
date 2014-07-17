@@ -13,13 +13,13 @@
 				</div>
 				
 				<div class="panel-body">
-					<form class="form-horizontal" role="form" action="postad" id="categoryForm" method="get">
+					<form class="form-horizontal" role="form" action="postAdContinue" id="categoryForm" method="get">
 						<div class="form-group">
 							<label for="inputEmail3" class="col-sm-3 control-label">Category</label>
 							<div class="col-sm-9" style="margin-top:5px;">
 								<s:select class="form-control" id="category"
 									headerKey="-1" headerValue="Select Category" onChange="getSubCategory()"
-									list="#{'REAL':'Real Estate', 'AUTO':'Cars/Bikes', 'COMP':'Computers/Laptops', 'MOBILE':'Mobiles', 'ELEC':'Electronics & Household Items', 'BOOK':'Books/DVDs'}" 
+									list="#{'REAL':'Real Estate', 'AUTO':'Cars/Bikes', 'COMP':'Computers/Laptops', 'MOBILE':'Mobiles', 'ELEC':'Electronics & Household Items', 'FURN':'Furniture'}" 
 									name="category" 
 									value="2" />
 							</div>
@@ -29,7 +29,7 @@
 							<div class="col-sm-9" style="margin-top:5px;">
 								<s:select class="form-control dropdown" id="subCategory" onChange="submitForm()"
 									headerKey="-1" headerValue="Select Subcategory"
-									list="#{'REAL':'Real Estate', 'AUTO':'Cars/Bikes', 'COMP':'Computers/Laptops', 'ELEC':'Electronics  & Household Items', 'FUR':'Furniture', 'BOOK':'Books/DVDs'}" 
+									list="#{'REAL':'Real Estate', 'AUTO':'Cars/Bikes', 'COMP':'Computers/Laptops', 'ELEC':'Electronics  & Household Items', 'FURN':'Furniture'}" 
 									name="subCategory" 
 									value="2" />
 							</div>

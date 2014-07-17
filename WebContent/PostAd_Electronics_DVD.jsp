@@ -36,6 +36,14 @@
 				</div>
 			</div>
 			<div class="form-group">
+				<label for="billAvailable" class="col-sm-4 control-label">Player Type<span class="mandatory">*</span></label>
+				<div class="col-sm-6">
+					<input type="radio" class="form-control-radio" name="playerType" id="playerType" value="DVD"> <span class="form-control-radio-label">DVD</span>
+					<input type="radio" class="form-control-radio" name="playerType" id="playerType" value="MP3"> <span class="form-control-radio-label">MP3</span>
+					<input type="radio" class="form-control-radio" name="playerType" id="playerType" value="IPOD"> <span class="form-control-radio-label">iPod</span>
+				</div>
+			</div>			
+			<div class="form-group">
 				<label for="year" class="col-sm-4 control-label">Year of purchase<span class="mandatory">*</span></label>
 				<div class="col-sm-3">
 					<input type="text" maxlength="4" class="form-control" name="year" id="year" value="2007" required>
@@ -54,11 +62,10 @@
 					<input type="radio" class="form-control-radio" name="billAvailable" id="billAvailable" value="N"> <span class="form-control-radio-label">Not Available</span>
 				</div>
 			</div>
-											
 			<div class="form-group">
-				<label for="description" class="col-sm-4 control-label">Other Specifications</label>
+				<label for="description" class="col-sm-4 control-label">Description</label>
 				<div class="col-sm-8">
-					<textarea class="form-control" maxlength="256" rows="3" name="Description" id="Description" placeholder="Please enter other specifications of your laptop"></textarea>
+					<textarea class="form-control" maxlength="256" rows="3" name="Description" id="Description" placeholder="Please enter description"></textarea>
 				</div>
 			</div>
 			<div class="form-group">

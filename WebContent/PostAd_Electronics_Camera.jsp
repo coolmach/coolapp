@@ -67,9 +67,9 @@
 				</div>
 			</div>														
 			<div class="form-group">
-				<label for="description" class="col-sm-4 control-label">Other Specifications</label>
+				<label for="description" class="col-sm-4 control-label">Description</label>
 				<div class="col-sm-8">
-					<textarea class="form-control" maxlength="256" rows="3" name="Description" id="Description" placeholder="Please enter other specifications of your laptop"></textarea>
+					<textarea class="form-control" maxlength="256" rows="3" name="Description" id="Description" placeholder="Please enter description"></textarea>
 				</div>
 			</div>
 			<div class="form-group">
