@@ -163,4 +163,5 @@
 		<span id="breadCrumb_Category">Mobiles And Accessories</span> > 
 		<span id="breadCrumb_SubCategory"><s:property value="subCategoryStr" /></span>
 	</div>
+	<%@include file="Pagination.jsp" %>
 </div>

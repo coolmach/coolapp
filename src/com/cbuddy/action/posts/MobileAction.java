@@ -56,6 +56,8 @@ public class MobileAction extends ActionSupport implements SessionAware, Servlet
 	private String brandNew;
 	private String modelSearchStr;
 	private JSONArray modelDetailsJsonArray;
+	
+	private int count;
 
 	private HttpServletRequest request = null;
 	@Override
@@ -402,6 +404,8 @@ public class MobileAction extends ActionSupport implements SessionAware, Servlet
 		}
 
 		MobileAdService mobileAdService =  new MobileAdService();
+		count = mobileAdService.getAdListCount(getModel(), subCategory);
+		System.out.println(count);
 		adList = mobileAdService.getAdListByCategory(getModel(), subCategory);
 
 		populateAdditionalDetails();
@@ -531,4 +535,13 @@ public class MobileAction extends ActionSupport implements SessionAware, Servlet
 	public void setBrandNew(String brandNew) {
 		this.brandNew = brandNew;
 	}
+	
+	public int getCount() {
+		return count;
+	}
+
+	public void setCount(int count) {
+		this.count = count;
+	}
+
 }

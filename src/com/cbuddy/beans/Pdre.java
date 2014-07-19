@@ -63,6 +63,9 @@ public class Pdre {
 	private String amt;
 	private String share;
 	private String powerBackup;
+	private String limit;
+	private String offset;
+	private String page="1";
 
 //	@Column(name="IMAGE_FILENAME")
 //	public String getImageFileName() {
@@ -438,6 +441,30 @@ public class Pdre {
 	}
 	public void setPowerBackup(String powerBackup) {
 		this.powerBackup = powerBackup;
+	}
+	
+	@Transient
+	public String getLimit() {
+		return limit;
+	}
+	public void setLimit(String limit) {
+		this.limit = limit;
+	}
+	
+	@Transient
+	public String getOffset() {
+		return offset;
+	}
+	public void setOffset(String offset) {
+		this.offset = offset;
+	}
+	
+	@Transient
+	public String getPage() {
+		return page;
+	}
+	public void setPage(String page) {
+		this.page = page;
 	}
 	
 }

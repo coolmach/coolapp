@@ -46,6 +46,7 @@ public class ComputersAction extends ActionSupport implements SessionAware, Serv
 	private List<ComputersPostDetails> adList = new ArrayList<ComputersPostDetails>();
 	private String category = "" ;
 	private String subCategory = "" ;
+	private int count;
 
 	private HttpServletRequest request = null;
 	@Override
@@ -328,6 +329,8 @@ public class ComputersAction extends ActionSupport implements SessionAware, Serv
 //		}
 
 		ComputersAdService computersAdService =  new ComputersAdService();
+		count = computersAdService.getAdListCount(getModel(), subCategory);
+		System.out.println(count);
 		adList = computersAdService.getAdListByCategory(getModel(), subCategory);
 
 		populateAdditionalDetails();
@@ -412,5 +415,13 @@ public class ComputersAction extends ActionSupport implements SessionAware, Serv
 
 	public void setResponseMsg(String responseMsg) {
 		this.responseMsg = responseMsg;
+	}
+	
+	public int getCount() {
+		return count;
+	}
+
+	public void setCount(int count) {
+		this.count = count;
 	}
 }

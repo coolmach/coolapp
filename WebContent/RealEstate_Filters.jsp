@@ -332,4 +332,7 @@
 		<span id="breadCrumb_Category_1">Real Estate</span> > 
 		<span id="breadCrumb_SubCategory"><s:property value="subCategoryStr" /></span>
 	</div>
+	
+	<%@include file="Pagination.jsp" %>
+	 
 </div>

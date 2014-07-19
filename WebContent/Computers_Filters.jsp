@@ -125,4 +125,5 @@
 		<span id="breadCrumb_Category">Computers and Laptops</span> > 
 		<span id="breadCrumb_SubCategory"><s:property value="subCategoryStr" /></span>
 	</div>
+	<%@include file="Pagination.jsp" %>
 </div>

@@ -1,12 +1,14 @@
+
 $(document).ready(function() {
 
-	var ctxPath = $('#context_path').text();
+	var ctxPath = $('#context_path').val().trim();
 	var subCat = "";
 	var path="";
 	var cat = $('#cat').text();
+	var filterData = "";
 
 	if(cat == 'REAL'){
-		path="realestateFilter";
+		path="/realestateFilter";
 		// shows default filters for SUBCATEGORY_REAL_ESTATE_APARTMENT_FOR_SALE
 		$("#loc-main").show();
 		$("#bhk-main").show();
@@ -15,44 +17,136 @@ $(document).ready(function() {
 		$("#approval-main").show();
 		$("#ownership-main").show();
 		$("#amenities-main").show();
-		
+
 	}else if(cat == 'AUTO'){
-		path="automobileFilter";
+		path="/automobileFilter";
 		$("#make-main").show();
 		$("#year-main").show();
 		$("#amt-main").show();
 		$("#model-main").show();
 		$("#fuelType-main").show();
-		
+
 	}else if(cat == 'HOUSEHOLD'){
-		path="adListForHouseHoldItems";
+		path="/adListForHouseHoldItems";
 		subCat="Air Conditioners & Coolers";
 		$("#loc-main").show();
 		$("#amt-main").show();
 		$("#used-main").show();
-		
+
 	}else if(cat == 'COMP'){
-		path = "computersFilter";
+		path = "/computersFilter";
 		$("#make-main").show();
 		$("#year-main").show();
 		$("#amt-main").show();
 		$("#processorSize-main").show();
 		$("#hddSize-main").show();
-		
+
 	}else if(cat == 'MOBILE'){
-		path="mobileFilter";
+		path="/mobileFilter";
 		$("#brand-main").show();
 		$("#year-main").show();
 		$("#amt-main").show();
 		$("#os-main").show();
 		$("#sims-main").show();
-		
+
 	}else if(cat == 'DVD'){
 		path="books";
 	}
 
+	// if user clicks on NEXT
+	$('#page_prev').bind('click', function(event) {
+		
+		subCat = $('#sub').text();
+		cat = $('#cat').text();
+		
+		var pageNo = $('#page_info').val();
+		var page = parseInt(pageNo.split(" ")[2]);
+		var pageCount = parseInt(pageNo.split(" ")[4]);
+		var limit = 10;
+		var offset = limit * (page-2);
+		var data="";
+		if(filterData == ""){
+			data = data + '&subCategory='+subCat+'&category='+cat;
+		}
+		data = data+filterData +'&limit='+limit+'&offset='+offset+'&page='+(page+1);
+		
+		$.ajax({
+			type: 'POST',
+			url: ctxPath+path, 
+			data: data,
+			success: function(data, status) {
+
+				$('.data').html('');
+				$('.data').html(data);
+				$('#page_info').remove();
+				$( ".pager li" ).eq(1).html( '<input id="page_info" type="text" readonly="readonly" value="Showing Page '+(page-1) +' of '+pageCount+'" >' );
+
+				if(offset == 0){
+					$( ".pager li" ).eq(0).addClass('hidden');
+				}else{
+					$( ".pager li" ).eq(2).removeClass('hidden');
+				}
+
+
+			}
+		});
+
+
+	});
+
+	// if user clicks on PREVIOUS
+	$('#page_next').bind('click', function(event) {
+		
+		subCat = $('#sub').text();
+		cat = $('#cat').text();
+		
+		var pageNo = $('#page_info').val();
+		var page = parseInt(pageNo.split(" ")[2]);
+		var pageCount = parseInt(pageNo.split(" ")[4]);
+		var limit = 10;
+		var offset = limit * page;
+
+		var data="";
+		if(filterData == ""){
+			data = data + '&subCategory='+subCat+'&category='+cat;
+		}
+		data = data+filterData +'&limit='+limit+'&offset='+offset+'&page='+(page+1);
+
+		$.ajax({
+			type: 'POST',
+			url: ctxPath+path, 
+			data: data,
+			success: function(data, status) {
+
+				$('.data').html('');
+				$('.data').html(data);
+				$('#page_info').remove();
+				$( ".pager li" ).eq(1).html( '<input id="page_info" type="text" readonly="readonly" value="Showing Page '+(page+1) +' of '+pageCount+'" >' );
+				var pC = parseInt($('#pagecount').val())/10;
+				if(pC % 1 != 0){
+					pC = ((Math.floor(pC))+1)*10;
+				}else{
+					pC = (Math.floor(pC))*10;
+				}
+				
+				if((offset+10)==pC){
+					$( ".pager li" ).eq(2).addClass('hidden');
+				}else{
+					$( ".pager li" ).eq(0).removeClass('hidden');
+				}
+
+			}
+		});
+
+
+	});
+
 	//if user click to cancel a selected filter
 	$('.selected_filters').bind('click', function(event) {
+		var pageNo = $('#page_info').val();
+		var page = parseInt(pageNo.split(" ")[2]);
+		var pageCount = parseInt(pageNo.split(" ")[4]);
+		
 		subCat = $('#sub').text();
 		cat = $('#cat').text();
 		var data="";
@@ -69,7 +163,7 @@ $(document).ready(function() {
 				data = data + '&'+sub+'='+$(this).val();
 			}
 		});
-
+		filterData = data;
 		$.ajax({
 			type: 'POST',
 			url: ctxPath+path, 
@@ -77,7 +171,20 @@ $(document).ready(function() {
 			success: function(data, status) {
 				$('.data').html('');
 				$('.data').html(data);
+				$('#page_info').remove();
 
+				var pC = parseInt($('#pagecount').val())/10;
+				
+				if(pC % 1 != 0){
+					pC = (Math.floor(pC))+1;
+				}
+				$( ".pager li" ).eq(1).html( '<input id="page_info" type="text" readonly="readonly" value="Showing Page '+ (pC==0?pC:1) +' of '+pC+'" >' );
+				if(pC<=1)
+				{
+					$( ".pager li" ).eq(2).hide();
+				}else{
+					$( ".pager li" ).eq(2).show();
+				}
 			}
 		});
 
@@ -109,7 +216,10 @@ $(document).ready(function() {
 
 		$('.selected_filters').html(str);
 
-		data = data + "&city=" + $("input[name=city]:checked", "#cityForm").val();
+		if (typeof $("input[name=city]:checked", "#cityForm").val() != "undefined") {
+			data = data + "&city=" + $("input[name=city]:checked", "#cityForm").val();
+		}
+
 
 		if($("#corpId").val() != "" && data.indexOf("corpId", 0)<0){
 			data = data + "&corpId=" + $("#corpId").val();
@@ -119,6 +229,8 @@ $(document).ready(function() {
 			$("#filterValueBar").hide();
 		}
 
+		filterData = data;
+		
 		$.ajax({
 			type: 'POST',
 			url: ctxPath+path, 
@@ -126,7 +238,14 @@ $(document).ready(function() {
 			success: function(data, status) {
 				$('.data').html('');
 				$('.data').html(data);
-
+				var pC = parseInt($('#pagecount').val())/10;
+		
+				if(pC % 1 != 0){
+					pC = (Math.floor(pC))+1;
+				}
+				$( ".pager li" ).eq(1).html( '<input id="page_info" type="text" readonly="readonly" value="Showing Page '+ (pC==0?pC:1) +' of '+pC+'" >' );
+				if(pC<=1)
+				$( ".pager li" ).eq(2).hide();
 			}
 		});
 
@@ -342,12 +461,11 @@ $(document).ready(function() {
 		$("#subCategory_hidden_"+divId+ " ul").css("display","block");
 	});
 
-	$("li").mouseenter(function(){
+	$(".searchFilter li").mouseenter(function(){
 		$(this).addClass("highlight_subcat");
-
 	});
 
-	$("li").mouseleave(function(){
+	$(".searchFilter li").mouseleave(function(){
 		$(this).removeClass("highlight_subcat");
 	});
 
@@ -368,12 +486,5 @@ $(document).ready(function() {
 		}
 		$("#btnSignUp").css("opacity", "unset");
 	}
-	/*$("subCategory-main li").click(function(){
-		//alert("000");
-		//$(this).parent().hide();
-		//alert($(this).parent().parent().parent().first().children().first().html());
-		//$(this).parent().parent().parent().first().children().first().html('<span class="content">'+$(this).text()+'</span>'+'<span class="glyphicon glyphicon glyphicon-chevron-down form-control-show"></span>');
-
-	});*/
 
 });

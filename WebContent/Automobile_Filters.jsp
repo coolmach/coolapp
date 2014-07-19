@@ -142,4 +142,5 @@
 		<span id="breadCrumb_Category_1">AutoMobiles</span> > 
 		<span id="breadCrumb_SubCategory"><s:property value="subCategoryStr" /></span>
 	</div>
+	<%@include file="Pagination.jsp" %>
 </div>

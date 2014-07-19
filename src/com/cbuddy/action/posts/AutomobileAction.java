@@ -46,6 +46,8 @@ public class AutomobileAction extends ActionSupport implements SessionAware, Ser
 	private List<AutomobilePostDetails> adList = new ArrayList<AutomobilePostDetails>();
 	private String category = "" ;
 	private String subCategory = "" ;
+	
+	private int count;
 
 	private HttpServletRequest request = null;
 	@Override
@@ -332,6 +334,8 @@ public class AutomobileAction extends ActionSupport implements SessionAware, Ser
 		}
 
 		AutomobileAdService automobileAdService =  new AutomobileAdService();
+		count = automobileAdService.getAdListCount(getModel(), subCategory);
+		System.out.println("count "+count);
 		adList = automobileAdService.getAdListByCategory(getModel(), subCategory);
 
 		populateAdditionalDetails();
@@ -416,5 +420,14 @@ public class AutomobileAction extends ActionSupport implements SessionAware, Ser
 
 	public void setResponseMsg(String responseMsg) {
 		this.responseMsg = responseMsg;
+	}
+	
+
+	public int getCount() {
+		return count;
+	}
+
+	public void setCount(int count) {
+		this.count = count;
 	}
 }

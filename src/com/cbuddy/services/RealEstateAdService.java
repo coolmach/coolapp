@@ -11,6 +11,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Criterion;
 import org.hibernate.criterion.LogicalExpression;
 import org.hibernate.criterion.Order;
+import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 
 import com.cbuddy.beans.Pdre;
@@ -21,6 +22,34 @@ import com.model.user.RealEstatePostDetails;
 
 public class RealEstateAdService{
 
+	
+	public int getAdListCount(RealEstatePostDetails postDetails, String subCategory){
+		SessionFactory sessionFactory = (SessionFactory) ServletActionContext.getServletContext().getAttribute("sessionFactory");
+		Session session = sessionFactory.openSession();
+		
+		if(postDetails.getLimit() == null){
+			postDetails.setLimit("10");
+		}
+		if(postDetails.getOffset() == null){
+			postDetails.setOffset("0");
+		}
+		Criteria criteria = session.createCriteria(RealEstatePostDetails.class);
+		criteria.addOrder(Order.desc("postId"));
+		criteria.add(Restrictions.eq("subCategory", subCategory));
+		if(postDetails.getCity() != null){
+			criteria.add(Restrictions.eq("city", postDetails.getCity()));
+		}
+		if(postDetails.getCorpId() > 0){
+			criteria.add(Restrictions.eq("corpId", postDetails.getCorpId()));
+		}
+		criteria = generateFilters(postDetails, criteria, subCategory);
+		criteria.setCacheable(true);
+		
+		int count = (Integer) criteria.setProjection(Projections.rowCount()).uniqueResult();
+	
+		return count;
+	}
+	
 	@SuppressWarnings("unchecked")
 	public List<RealEstatePostDetails> getAdListByCategory(RealEstatePostDetails postDetails, String subCategory){
 
@@ -29,9 +58,17 @@ public class RealEstateAdService{
 
 		List<RealEstatePostDetails> list = null;
 		try {
+			System.out.println(postDetails.getLimit()+" : "+postDetails.getOffset()+" : "+postDetails.getPage());
+			if(postDetails.getLimit() == null){
+				postDetails.setLimit("10");
+			}
+			if(postDetails.getOffset() == null){
+				postDetails.setOffset("0");
+			}
 			Criteria criteria = session.createCriteria(RealEstatePostDetails.class);
 			criteria.addOrder(Order.desc("postId"));
-			criteria.setMaxResults(20);
+			criteria.setFirstResult(Integer.parseInt(postDetails.getOffset()));
+			criteria.setMaxResults(Integer.parseInt(postDetails.getLimit()));
 			criteria.add(Restrictions.eq("subCategory", subCategory));
 			if(postDetails.getCity() != null){
 				criteria.add(Restrictions.eq("city", postDetails.getCity()));
@@ -42,6 +79,7 @@ public class RealEstateAdService{
 			criteria = generateFilters(postDetails, criteria, subCategory);
 
 			list = criteria.list();
+			System.out.println();
 		} catch (HibernateException e) {
 			e.printStackTrace();
 		}

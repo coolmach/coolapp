@@ -10,14 +10,43 @@ import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Criterion;
 import org.hibernate.criterion.LogicalExpression;
 import org.hibernate.criterion.Order;
+import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 
 import com.cbuddy.util.CriteriaUtil;
 import com.cbuddy.util.NumberFormatterUtil;
 import com.model.user.ComputersPostDetails;
+import com.model.user.MobilePostDetails;
 
 public class ComputersAdService{
 
+	public int getAdListCount(ComputersPostDetails postDetails, String subCategory){
+		SessionFactory sessionFactory = (SessionFactory) ServletActionContext.getServletContext().getAttribute("sessionFactory");
+		Session session = sessionFactory.openSession();
+		
+		if(postDetails.getLimit() == null){
+			postDetails.setLimit("10");
+		}
+		if(postDetails.getOffset() == null){
+			postDetails.setOffset("0");
+		}
+		Criteria criteria = session.createCriteria(ComputersPostDetails.class);
+		criteria.addOrder(Order.desc("postId"));
+		criteria.add(Restrictions.eq("subCategory", subCategory));
+		if(postDetails.getCity() != null){
+			criteria.add(Restrictions.eq("city", postDetails.getCity()));
+		}
+		if(postDetails.getCorpId() > 0){
+			criteria.add(Restrictions.eq("corpId", postDetails.getCorpId()));
+		}
+		criteria = generateFilters(postDetails, criteria, subCategory);
+		criteria.setCacheable(true);
+		
+		int count = (Integer) criteria.setProjection(Projections.rowCount()).uniqueResult();
+	
+		return count;
+	}
+	
 	@SuppressWarnings("unchecked")
 	public List<ComputersPostDetails> getAdListByCategory(ComputersPostDetails postDetails, String subCategory){
 
@@ -26,9 +55,18 @@ public class ComputersAdService{
 
 		List<ComputersPostDetails> list = null;
 		try {
+			System.out.println(postDetails.getLimit()+" : "+postDetails.getOffset()+" : "+postDetails.getPage());
+			if(postDetails.getLimit() == null){
+				postDetails.setLimit("10");
+			}
+			if(postDetails.getOffset() == null){
+				postDetails.setOffset("0");
+			}
+			
 			Criteria criteria = session.createCriteria(ComputersPostDetails.class);
 			criteria.addOrder(Order.desc("postId"));
-			criteria.setMaxResults(20);
+			criteria.setFirstResult(Integer.parseInt(postDetails.getOffset()));
+			criteria.setMaxResults(Integer.parseInt(postDetails.getLimit()));
 			criteria.add(Restrictions.eq("subCategory", subCategory));
 			
 			if(postDetails.getCity() != null){

@@ -1,5 +1,6 @@
 <%@ taglib prefix="s" uri="/struts-tags"%>
 <div class="data">
+<input id="pagecount" type="hidden" value="<s:property value="count"/>">
 	<s:if test="adList.size() > 0">
 		<div class="col-md-6 listSection" id="postListSection">
 		<table class="table table-bordered">

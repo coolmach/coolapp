@@ -47,6 +47,7 @@ public class RealEstateAction extends ActionSupport implements SessionAware, Ser
 	private List<RealEstatePostDetails> adList = new ArrayList<RealEstatePostDetails>();
 	private String category = "" ;
 	private String subCategory = "" ;
+	private int count;
 	//private String basePath = "";
 
 	/* TODO: The two attributes selectedLocation and neighborhoodLocations are added only to retain the values populated by LocationAction (that is,
@@ -427,8 +428,10 @@ public class RealEstateAction extends ActionSupport implements SessionAware, Ser
 		}
 
 		RealEstateAdService realEstateAdService =  new RealEstateAdService();
+		count = realEstateAdService.getAdListCount(getModel(), subCategory);
+		System.out.println(count);
 		adList = realEstateAdService.getAdListByCategory(getModel(), subCategory);
-
+		System.out.println(adList.size());
 		populateAdditionalDetails();
 
 		return "success";
@@ -538,6 +541,14 @@ public class RealEstateAction extends ActionSupport implements SessionAware, Ser
 
 	public void setPostDetails(RealEstatePostDetails postDetails) {
 		this.postDetails = postDetails;
+	}
+
+	public int getCount() {
+		return count;
+	}
+
+	public void setCount(int count) {
+		this.count = count;
 	}
 
 }

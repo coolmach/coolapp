@@ -43,6 +43,10 @@ public class Pdau {
 	private String areaStr;
 	private String amt;
 	private String yearOfMake;
+	
+	private String limit;
+	private String offset;
+	private String page="1";
 
 	@Id
 	@Column(name="POST_ID")
@@ -244,4 +248,29 @@ public class Pdau {
 	public void setYearOfMake(String yearOfMake) {
 		this.yearOfMake = yearOfMake;
 	}
+	
+	@Transient
+	public String getLimit() {
+		return limit;
+	}
+	public void setLimit(String limit) {
+		this.limit = limit;
+	}
+	
+	@Transient
+	public String getOffset() {
+		return offset;
+	}
+	public void setOffset(String offset) {
+		this.offset = offset;
+	}
+	
+	@Transient
+	public String getPage() {
+		return page;
+	}
+	public void setPage(String page) {
+		this.page = page;
+	}
+	
 }

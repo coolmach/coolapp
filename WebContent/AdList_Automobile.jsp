@@ -1,11 +1,12 @@
 <%@ taglib prefix="s" uri="/struts-tags"%>
 <div class="data">
+<input id="pagecount" type="hidden" value="<s:property value="count"/>">
 	<s:if test="adList.size() > 0">
 		<div class="col-md-6 listSection" id="postListSection">
 		<table class="table table-bordered">
 			<tr>
 				<th>Post Details</th>
-				<td colspan="3" style="text-align:right;width:100%;">Showing Records (? - ? of ?))</td>
+				<td colspan="3" style="text-align:right;width:100%;"></td>
 			</tr>
 			<s:iterator value="adList" status="userStatus">
 				<tr style="font-size:12px;">
@@ -49,6 +50,7 @@
 				</tr>  
 			</s:iterator>
 		</table>
+	</div>
 	</s:if>
 	<s:else>
 		<div class="col-md-6 listSection">
@@ -60,4 +62,3 @@
 		</div>	
 	</s:else>
 	</div>
-</div>
