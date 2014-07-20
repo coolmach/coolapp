@@ -122,45 +122,38 @@
 					<s:param name="category">REAL</s:param>
 					<s:param name="subCategory">1</s:param>
 				</s:url> <a href="<s:property value="#urlTag" />"><img class="images_ad"
-					src="images/real_estate.png"> </a>
-			</td>
+					src="images/real_estate.png"> </a></td>
 			<td><s:url action="automobile" var="urlTag1" escapeAmp="false">
 					<s:param name="category">AUTO</s:param>
 					<s:param name="subCategory">1</s:param>
 				</s:url> <a href="<s:property value="#urlTag1" />"><img
-					class="images_ad" src="images/cars.png"> </a>
-			</td>
+					class="images_ad" src="images/cars.png"> </a></td>
 			<td><s:url action="electronics" var="urlTag2" escapeAmp="false">
 					<s:param name="category">ELEC</s:param>
 				</s:url> <a href="<s:property value="#urlTag2" />"><img
-					class="images_ad" src="images/household.png"> </a>
-			</td>
+					class="images_ad" src="images/household.png"> </a></td>
 			<td><s:url action="computers" var="urlTag3" escapeAmp="false">
 					<s:param name="category">COMP</s:param>
-				</s:url> <s:param name="subCategory">1</s:param> <a
-				href="<s:property value="#urlTag3" />"><img class="images_ad"
-					src="images/laptops.png"> </a>
-			</td>
+					<s:param name="subCategory">1</s:param>
+				</s:url> <a href="<s:property value="#urlTag3" />"><img
+					class="images_ad" src="images/laptops.png"> </a></td>
 			<td><s:url action="mobile" var="urlTag4" escapeAmp="false">
 					<s:param name="category">MOBILE</s:param>
 					<s:param name="subCategory">1</s:param>
 				</s:url> <a href="<s:property value="#urlTag4" />"><img
-					class="images_ad" src="images/mobiles.png"> </a>
-			</td>
+					class="images_ad" src="images/mobiles.png"> </a></td>
 			<td><s:url action="furniture" var="urlTag5" escapeAmp="false">
 					<s:param name="category">FURN</s:param>
+					<s:param name="subCategory">1</s:param>
 				</s:url> <a href="<s:property value="#urlTag5" />"><img
-					class="images_ad" src="images/dvd.png"> </a>
-			</td>
+					class="images_ad" src="images/dvd.png"> </a></td>
 		</tr>
 
 	</table>
 
 </div>
 
-<div class="col-md-12"
-	style="margin-top: 2%; margin-left: 16%; padding-left: 18%;">
-	<img src="images/arrow.png" id="arr_img"> <input type="text"
-		class="form-control" id="category_search" name="category"
-		placeholder="I am looking for...">
+<div class="col-md-12" style="margin-top:2%;margin-left:16%; padding-left: 18%;">
+	<img src="images/arrow.png" id="arr_img"> 
+	<input type="text" class="form-control" id="category_search" name="category" placeholder="I am looking for...">
 </div>

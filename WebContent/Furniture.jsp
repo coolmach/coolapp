@@ -6,4 +6,4 @@
 
 <%@include file="AdList_Furniture.jsp" %>
 
-<%@include file="location_And_Corporate_Details.jsp" %>
+<%@include file="/pages/furniture/filters/furniture_SubCategory_Strip.jsp" %>

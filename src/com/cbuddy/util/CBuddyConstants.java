@@ -34,15 +34,16 @@ public class CBuddyConstants {
 	public static final String SUBCATEGORY_MOBILE_MOBILEPHONES = "1";
 	public static final String SUBCATEGORY_MOBILE_ACCESORIES = "2";
 	
-//	public static final String SUBCATEGORY_AUTOMOBILES_SCOOTERS ="3";
-//	public static final String SUBCATEGORY_AUTOMOBILES_VANS = "4";
-//	public static final String SUBCATEGORY_AUTOMOBILES_BICYCLES = "5";
-//	public static final String SUBCATEGORY_AUTOMOBILES_BUSES = "6";
-//	public static final String SUBCATEGORY_AUTOMOBILES_TRUCKS = "7";
-//	public static final String SUBCATEGORY_AUTOMOBILES_REPAIRS = "8";
-//	public static final String SUBCATEGORY_AUTOMOBILES_SPARE_PARTS = "9";
-//	public static final String SUBCATEGORY_AUTOMOBILES_DRIVING_SCHOOLS = "10";
-//	public static final String SUBCATEGORY_AUTOMOBILES_OTHER_VEHICLES = "11";
+	public static final String SUBCATEGORY_FURNITURE_COT_WOOD = "1";
+	public static final String SUBCATEGORY_FURNITURE_COT_STEEL = "2";
+	public static final String SUBCATEGORY_FURNITURE_MATTRESS = "3";
+	public static final String SUBCATEGORY_FURNITURE_DINING = "4";
+	public static final String SUBCATEGORY_FURNITURE_SHOE = "5";
+	public static final String SUBCATEGORY_FURNITURE_TV = "6";
+	public static final String SUBCATEGORY_FURNITURE_TABLE = "7";
+	public static final String SUBCATEGORY_FURNITURE_CHAIR_WOOD = "8";
+	public static final String SUBCATEGORY_FURNITURE_CHAIR_PLASTIC = "9";
+	public static final String SUBCATEGORY_FURNITURE_OTHERS = "10";
 	
 	public static final String SUBCATEGORY_ELECTRONICS_AND_HOUSEHOLD_TELEVISION = "1";
 	public static final String SUBCATEGORY_ELECTRONICS_AND_HOUSEHOLD_DVD_MUSIC_PLAYER = "2";

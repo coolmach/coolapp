@@ -29,6 +29,7 @@ $(document).ready(function() {
 
 	}else if(cat == 'HOUSEHOLD'){
 		path="/adListForHouseHoldItems";
+		$("#subCategory-right li").eq(0).addClass("highlight_subcat");
 		subCat="Air Conditioners & Coolers";
 		$("#loc-main").show();
 		$("#amt-main").show();
@@ -45,14 +46,18 @@ $(document).ready(function() {
 
 	}else if(cat == 'MOBILE'){
 		path="/mobileFilter";
+		$("#subCategory-right li").eq(0).addClass("highlight_subcat");
 		$("#brand-main").show();
 		$("#year-main").show();
 		$("#amt-main").show();
 		$("#os-main").show();
 		$("#sims-main").show();
 
-	}else if(cat == 'DVD'){
-		path="books";
+	}else if(cat == 'FURN'){
+		path="/furnitureFilter";
+		$("#subCategory-right li").eq(0).addClass("highlight_subcat");
+		$("#year-main").show();
+		$("#amt-main").show();
 	}
 
 	// if user clicks on NEXT
@@ -466,6 +471,10 @@ $(document).ready(function() {
 				$("#model-main").hide();	
 			}
 			$("#breadCrumb_Category").html("Computers and Laptops");
+			$("#breadCrumb_SubCategory").html($(this).text());
+		}
+		else if(cat == 'FURN'){
+			$("#breadCrumb_Category").html("Furniture");
 			$("#breadCrumb_SubCategory").html($(this).text());
 		}
 		else if( cat == 'HOUSEHOLD'){

@@ -268,10 +268,10 @@
 		<!-- ELECTRONICS AND HOUSEHOLD - END -->
 
 		<!-- FURNITURE - START -->
-		<action name="furniture" class="com.cbuddy.action.posts.FurnitureAction" method="getAdListForCriteria">
+		<action name="furniture" class="com.cbuddy.action.posts.FurnitureAction" method="getAdListForFurniture">
 			<result type="tiles" name="success">/furniture.tiles</result>
 		</action>		
-		<action name="furnitureFilter" class="com.cbuddy.action.posts.FurnitureAction" method="getAdListForCriteria">
+		<action name="furnitureFilter" class="com.cbuddy.action.posts.FurnitureAction" method="getAdListForFurniture">
 			<result name="success">/AdList_Furniture.jsp</result>
 		</action>		
 		<action name="furniture_postAd" class="com.cbuddy.action.posts.FurnitureAction" method="postAd">

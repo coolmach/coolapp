@@ -42,6 +42,19 @@ public class Utils {
 		categoryDescMap.put(CBuddyConstants.CATEGORY_MOBILE, "Mobiles And Accessories");
 		categoryDescMap.put(CBuddyConstants.CATEGORY_MOBILE + "_" + CBuddyConstants.SUBCATEGORY_MOBILE_MOBILEPHONES, "Handsets");
 		categoryDescMap.put(CBuddyConstants.CATEGORY_MOBILE + "_" + CBuddyConstants.SUBCATEGORY_MOBILE_ACCESORIES, "Accessories");
+	
+		//Category and Sub Categories for CARS/BIKES
+		categoryDescMap.put(CBuddyConstants.CATEGORY_FURNITURE, "Furniture");
+		categoryDescMap.put(CBuddyConstants.CATEGORY_FURNITURE + "_" + CBuddyConstants.SUBCATEGORY_FURNITURE_COT_WOOD, "Cot - Wooden");
+		categoryDescMap.put(CBuddyConstants.CATEGORY_FURNITURE + "_" + CBuddyConstants.SUBCATEGORY_FURNITURE_COT_STEEL, "Cot - Steel");		
+		categoryDescMap.put(CBuddyConstants.CATEGORY_FURNITURE + "_" + CBuddyConstants.SUBCATEGORY_FURNITURE_MATTRESS, "Mattress");
+		categoryDescMap.put(CBuddyConstants.CATEGORY_FURNITURE + "_" + CBuddyConstants.SUBCATEGORY_FURNITURE_DINING, "Dining Table");
+		categoryDescMap.put(CBuddyConstants.CATEGORY_FURNITURE + "_" + CBuddyConstants.SUBCATEGORY_FURNITURE_SHOE, "Shoe Rack");
+     	categoryDescMap.put(CBuddyConstants.CATEGORY_FURNITURE + "_" + CBuddyConstants.SUBCATEGORY_FURNITURE_TV, "TV Stand");
+		categoryDescMap.put(CBuddyConstants.CATEGORY_FURNITURE + "_" + CBuddyConstants.SUBCATEGORY_FURNITURE_TABLE, "Table");
+		categoryDescMap.put(CBuddyConstants.CATEGORY_FURNITURE + "_" + CBuddyConstants.SUBCATEGORY_FURNITURE_CHAIR_WOOD, "Chair - Wood");
+		categoryDescMap.put(CBuddyConstants.CATEGORY_FURNITURE + "_" + CBuddyConstants.SUBCATEGORY_FURNITURE_CHAIR_PLASTIC, "hair - Plastic");
+		categoryDescMap.put(CBuddyConstants.CATEGORY_FURNITURE + "_" + CBuddyConstants.SUBCATEGORY_FURNITURE_OTHERS, "Others");
 	}
 	public static Utils getInstance(){
 		return instance;

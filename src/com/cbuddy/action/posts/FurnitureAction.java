@@ -22,6 +22,7 @@ import org.hibernate.criterion.Restrictions;
 
 import com.cbuddy.beans.PFurniture;
 import com.cbuddy.beans.Poit;
+import com.cbuddy.services.FurnitureAdService;
 import com.cbuddy.util.CBuddyConstants;
 import com.cbuddy.util.CriteriaUtil;
 import com.cbuddy.util.LocationUtil;
@@ -43,12 +44,14 @@ public class FurnitureAction extends ActionSupport implements SessionAware, Serv
 	private String uploadContentType;
 
 	private String categoryStr;
+	private String subCategoryStr;
 
 	private String responseMsg;
 
 	private List<FurniturePostDetails> adList = new ArrayList<FurniturePostDetails>();
 	private String category = "" ;
 	private String subCategory = "" ;
+	private int count;
 
 	private HttpServletRequest request = null;
 	@Override
@@ -109,7 +112,7 @@ public class FurnitureAction extends ActionSupport implements SessionAware, Serv
 			addFieldError("errorMsg", "Please select the Furniture Type");
 			return false;
 		}
-		
+
 		return true;
 	}
 
@@ -153,7 +156,7 @@ public class FurnitureAction extends ActionSupport implements SessionAware, Serv
 			addFieldError("errorMsg", "Invalid Furniture Type");
 			return false;
 		}
-		
+
 		return output;
 	}
 
@@ -179,10 +182,10 @@ public class FurnitureAction extends ActionSupport implements SessionAware, Serv
 
 		//Make an entry in POIT
 		Poit poit = new Poit();
-		
+
 		poit.setCategory(CBuddyConstants.CATEGORY_FURNITURE);
-		poit.setSubCategory("1"); //For future use only.
-		
+		poit.setSubCategory(findSubCategory(postDetails.getType())); //For future use only.
+
 		poit.setTitle(postDetails.getTitle());
 		poit.setCity(postDetails.getCity());
 		poit.setContactNo(postDetails.getContactNo());
@@ -225,7 +228,7 @@ public class FurnitureAction extends ActionSupport implements SessionAware, Serv
 		entity.setModifiedBy(userId);
 		entity.setModifiedOn(current);
 		entity.setPrice(postDetails.getPrice());
-		
+
 		dbSession.save(entity);
 
 		if(upload != null){
@@ -237,6 +240,33 @@ public class FurnitureAction extends ActionSupport implements SessionAware, Serv
 		responseMsg = "Your post has been placed successfully! Post Id is " + poit.getPostId();
 
 		return "success";
+	}
+
+	private String findSubCategory(String type) {
+
+		if(type=="COT_WOOD")
+			return CBuddyConstants.SUBCATEGORY_FURNITURE_COT_WOOD;
+		else if(type=="COT_STEEL")
+			return CBuddyConstants.SUBCATEGORY_FURNITURE_COT_STEEL;
+		else if(type=="MATTRESS")
+			return CBuddyConstants.SUBCATEGORY_FURNITURE_MATTRESS;
+		else if(type=="DINING")
+			return CBuddyConstants.SUBCATEGORY_FURNITURE_DINING;
+		else if(type=="SHOE")
+			return CBuddyConstants.SUBCATEGORY_FURNITURE_SHOE;
+		else if(type=="TV")
+			return CBuddyConstants.SUBCATEGORY_FURNITURE_TV;
+		else if(type=="TABLE")
+			return CBuddyConstants.SUBCATEGORY_FURNITURE_TABLE;
+	    else if(type=="CHAIR_WOOD")
+	    	return CBuddyConstants.SUBCATEGORY_FURNITURE_CHAIR_WOOD;
+		else if(type=="CHAIR_PLASTIC")
+			return CBuddyConstants.SUBCATEGORY_FURNITURE_CHAIR_PLASTIC;
+		else if(type=="OTHERS")
+			return CBuddyConstants.SUBCATEGORY_FURNITURE_OTHERS;
+
+
+												return null;
 	}
 
 	private void writeImage(File inputFile, String outputFileName){
@@ -265,62 +295,33 @@ public class FurnitureAction extends ActionSupport implements SessionAware, Serv
 		}
 	}
 
-	public String getAdListForCriteria(){
+	public String getAdListForFurniture(){
 
 		category = postDetails.getCategory();
+		subCategory = postDetails.getSubCategory();
+		System.out.println(category + " : "+subCategory);
 		categoryStr = Utils.getInstance().getCategoryDesc(category);
+		subCategoryStr = Utils.getInstance().getSubCategoryDesc(category, subCategory);
 
 		if(category == null || category.equals("")){
-			setCategory(CBuddyConstants.CATEGORY_ELECTRONICS_AND_HOUSEHOLD);
+			setCategory(CBuddyConstants.CATEGORY_FURNITURE);
 		}
-		
-		adList = getAdListByCategory(getModel());
+		if(category.equals(CBuddyConstants.CATEGORY_FURNITURE) && (subCategory==null || subCategory.equals(""))){
+			setSubCategory(CBuddyConstants.SUBCATEGORY_FURNITURE_COT_WOOD);
+		}
+
+		FurnitureAdService furnitureAdService =  new FurnitureAdService();
+		count = furnitureAdService.getAdListCount(getModel(), subCategory);
+		System.out.println(count);
+		adList = furnitureAdService.getAdListByCategory(getModel(), subCategory);
+		System.out.println(adList);
 
 		populateAdditionalDetails();
 
 		return "success";
 	}
-	
-	private List<FurniturePostDetails> getAdListByCategory(FurniturePostDetails postDetails){
-		SessionFactory sessionFactory = (SessionFactory) ServletActionContext.getServletContext().getAttribute("sessionFactory");
-		Session session = sessionFactory.openSession();
 
-		List<FurniturePostDetails> list = null;
-		try {
-			Criteria criteria = session.createCriteria(FurniturePostDetails.class);
-			criteria.addOrder(Order.desc("postId"));
-			criteria.setMaxResults(20);
-			
-			if(postDetails.getCity() != null){
-				criteria.add(Restrictions.eq("city", postDetails.getCity()));
-			}
-			if(postDetails.getCorpId() > 0){
-				criteria.add(Restrictions.eq("corpId", postDetails.getCorpId()));
-			}
-			if(postDetails.getLocation() != null){
-				criteria = CriteriaUtil.getCriteriaForLocation(criteria, postDetails.getLocation());
-			}
-			if(postDetails.getAmt() != null){
-				criteria = CriteriaUtil.getCriteriaForAmt(criteria, postDetails.getAmt(), "price");
-			}
-			if(postDetails.getType() != null){
-				criteria = CriteriaUtil.createCriteriaForIn(criteria, postDetails.getType(), "type");
-			}
-			if(postDetails.getYearStr() != null){
-				criteria = CriteriaUtil.createCriteriaForYear(criteria, postDetails.getYearStr());
-			}
 
-			list = criteria.list();
-			
-			System.out.println(list);
-			
-		} catch (HibernateException e) {
-			e.printStackTrace();
-		}
-		session.close();
-		return list;
-	}
-	
 	@Override
 	public FurniturePostDetails getModel() {
 		return postDetails;
@@ -383,11 +384,28 @@ public class FurnitureAction extends ActionSupport implements SessionAware, Serv
 		this.categoryStr = categoryStr;
 	}
 
+	@Transient
+	public String getSubCategoryStr() {
+		return subCategoryStr;
+	}
+
+	public void setSubCategoryStr(String subCategoryStr) {
+		this.subCategoryStr = subCategoryStr;
+	}
+
 	public String getResponseMsg() {
 		return responseMsg;
 	}
 
 	public void setResponseMsg(String responseMsg) {
 		this.responseMsg = responseMsg;
+	}
+
+	public int getCount() {
+		return count;
+	}
+
+	public void setCount(int count) {
+		this.count = count;
 	}
 }
