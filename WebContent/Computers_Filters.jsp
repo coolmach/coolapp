@@ -1,7 +1,7 @@
 <div class=" header_2">
 	<div class="col-md-12 filter_cat" style="margin-top:3.86%;">
 	  <div id="clear_all_f" class="pull-left pointer" style="text-decoration: underline;color:#4f00fc">clear all</div>
-		<div class="form-group pull-left searchFilter" id="sub-main" style="margin-left:4.5%;">
+		<!-- <div class="form-group pull-left searchFilter" id="sub-main" style="margin-left:4.5%;">
 			<div id="subCategory" class="inputstyle pointer form-control">
 				Type<span
 					class="glyphicon glyphicon glyphicon-chevron-down form-control-show"></span>
@@ -14,7 +14,7 @@
 					<li value="3"><span class="content">Tabs</span></li>
 				</ul>
 			</div>
-		</div>
+		</div> -->
 		
 	 <form class="form-inline" id="cars"> 
 			<div class=" pull-left hidden-subcat searchFilter" id="make-main">

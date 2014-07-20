@@ -6,7 +6,7 @@
 		<table class="table table-bordered">
 			<tr>
 				<th>Post Details</th>
-				<td colspan="3" style="text-align:right;width:100%;">Showing Records (? - ? of ?))</td>
+				<td colspan="3" style="text-align:right;width:100%;"></td>
 			</tr>
 			<s:iterator value="adList" status="userStatus">
 				<tr style="font-size:12px;">
@@ -27,7 +27,7 @@
 							<span class="postField">HDD:&nbsp;<s:property value="hddSize" />&nbsp;GB</span> <span class="separator">|</span>
 							<span class="postField">RAM:&nbsp;<s:property value="processorSize" />&nbsp;GB</span> <span class="separator">|</span>
 						</s:if>
-						<span class="postField">Bought&nbsp;on:&nbsp;<s:property value="year" />
+						<span class="postField">Bought&nbsp;on:&nbsp;<s:property value="year" /></span>
 						<br>
 					</td>
 					<td>
@@ -37,12 +37,13 @@
 				</tr>  
 			</s:iterator>
 		</table>
+		</div>
 	</s:if>
 	<s:else>
 		<div class="col-md-6 listSection">
 			<table class="table table-bordered">
 				<tr>
-					<td colspan="3" style="padding-left:15px;font-size:13px;">No posts found! Try refining search criteria</th>
+					<th colspan="3" style="padding-left:15px;font-size:13px;">No posts found! Try refining search criteria</th>
 				</tr>
 			</table>
 		</div>	

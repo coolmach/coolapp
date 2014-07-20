@@ -6,4 +6,4 @@
 
 <%@include file="AdList_RealEstate.jsp"%>
 
-<%@include file="location_And_Corporate_Details.jsp" %>
+<%@include file="/pages/realestate/filters/realestate_SubCategory_Strip.jsp" %>

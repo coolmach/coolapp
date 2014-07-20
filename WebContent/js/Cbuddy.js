@@ -9,7 +9,7 @@ $(document).ready(function() {
 
 	if(cat == 'REAL'){
 		path="/realestateFilter";
-		// shows default filters for SUBCATEGORY_REAL_ESTATE_APARTMENT_FOR_SALE
+		$("#subCategory-right li").eq(1).addClass("highlight_subcat");
 		$("#loc-main").show();
 		$("#bhk-main").show();
 		$("#area-main").show();
@@ -20,6 +20,7 @@ $(document).ready(function() {
 
 	}else if(cat == 'AUTO'){
 		path="/automobileFilter";
+		$("#subCategory-right li").eq(0).addClass("highlight_subcat");
 		$("#make-main").show();
 		$("#year-main").show();
 		$("#amt-main").show();
@@ -35,6 +36,7 @@ $(document).ready(function() {
 
 	}else if(cat == 'COMP'){
 		path = "/computersFilter";
+		$("#subCategory-right li").eq(0).addClass("highlight_subcat");
 		$("#make-main").show();
 		$("#year-main").show();
 		$("#amt-main").show();
@@ -55,10 +57,10 @@ $(document).ready(function() {
 
 	// if user clicks on NEXT
 	$('#page_prev').bind('click', function(event) {
-		
+
 		subCat = $('#sub').text();
 		cat = $('#cat').text();
-		
+
 		var pageNo = $('#page_info').val();
 		var page = parseInt(pageNo.split(" ")[2]);
 		var pageCount = parseInt(pageNo.split(" ")[4]);
@@ -69,7 +71,7 @@ $(document).ready(function() {
 			data = data + '&subCategory='+subCat+'&category='+cat;
 		}
 		data = data+filterData +'&limit='+limit+'&offset='+offset+'&page='+(page+1);
-		
+
 		$.ajax({
 			type: 'POST',
 			url: ctxPath+path, 
@@ -83,6 +85,7 @@ $(document).ready(function() {
 
 				if(offset == 0){
 					$( ".pager li" ).eq(0).addClass('hidden');
+					$( ".pager li" ).eq(2).removeClass('hidden');
 				}else{
 					$( ".pager li" ).eq(2).removeClass('hidden');
 				}
@@ -96,10 +99,10 @@ $(document).ready(function() {
 
 	// if user clicks on PREVIOUS
 	$('#page_next').bind('click', function(event) {
-		
+
 		subCat = $('#sub').text();
 		cat = $('#cat').text();
-		
+
 		var pageNo = $('#page_info').val();
 		var page = parseInt(pageNo.split(" ")[2]);
 		var pageCount = parseInt(pageNo.split(" ")[4]);
@@ -128,9 +131,10 @@ $(document).ready(function() {
 				}else{
 					pC = (Math.floor(pC))*10;
 				}
-				
+
 				if((offset+10)==pC){
 					$( ".pager li" ).eq(2).addClass('hidden');
+					$( ".pager li" ).eq(0).removeClass('hidden');
 				}else{
 					$( ".pager li" ).eq(0).removeClass('hidden');
 				}
@@ -146,7 +150,7 @@ $(document).ready(function() {
 		var pageNo = $('#page_info').val();
 		var page = parseInt(pageNo.split(" ")[2]);
 		var pageCount = parseInt(pageNo.split(" ")[4]);
-		
+
 		subCat = $('#sub').text();
 		cat = $('#cat').text();
 		var data="";
@@ -174,16 +178,18 @@ $(document).ready(function() {
 				$('#page_info').remove();
 
 				var pC = parseInt($('#pagecount').val())/10;
-				
+
 				if(pC % 1 != 0){
 					pC = (Math.floor(pC))+1;
 				}
 				$( ".pager li" ).eq(1).html( '<input id="page_info" type="text" readonly="readonly" value="Showing Page '+ (pC==0?pC:1) +' of '+pC+'" >' );
+			
 				if(pC<=1)
 				{
-					$( ".pager li" ).eq(2).hide();
+					$( ".pager li" ).eq(2).addClass('hidden');
 				}else{
-					$( ".pager li" ).eq(2).show();
+					$( ".pager li" ).eq(2).removeClass('hidden');
+					$( ".pager li" ).eq(0).addClass('hidden');
 				}
 			}
 		});
@@ -230,7 +236,7 @@ $(document).ready(function() {
 		}
 
 		filterData = data;
-		
+
 		$.ajax({
 			type: 'POST',
 			url: ctxPath+path, 
@@ -239,13 +245,17 @@ $(document).ready(function() {
 				$('.data').html('');
 				$('.data').html(data);
 				var pC = parseInt($('#pagecount').val())/10;
-		
+
 				if(pC % 1 != 0){
 					pC = (Math.floor(pC))+1;
 				}
 				$( ".pager li" ).eq(1).html( '<input id="page_info" type="text" readonly="readonly" value="Showing Page '+ (pC==0?pC:1) +' of '+pC+'" >' );
+
 				if(pC<=1)
-				$( ".pager li" ).eq(2).hide();
+				{$( ".pager li" ).eq(2).addClass('hidden');}
+				else
+				{$( ".pager li" ).eq(2).removeClass('hidden');
+				$( ".pager li" ).eq(0).addClass('hidden');}
 			}
 		});
 
@@ -253,7 +263,7 @@ $(document).ready(function() {
 
 	//if user clicks on subcaregory
 	var lastVal="";
-	$("#sub-main li").click(function(){
+	$("#subCategory-right li").click(function(){
 		subCat = $('#sub').text();
 		cat = $('#cat').text();
 		var defaultSubCat = $(this).parent().children().first('.content').text();
@@ -275,7 +285,7 @@ $(document).ready(function() {
 			$("#filterValueBar").hide();
 		}
 
-		$(this).parent().hide();
+		//$(this).parent().hide();
 		subCat = $(this).val();
 		var data = "";
 		var data = data + '&subCategory='+subCat+'&category='+cat;
@@ -289,6 +299,23 @@ $(document).ready(function() {
 				$('.data').html('');
 				$('.data').html(data);
 				$('#sub').text(subCat);
+				$('#page_info').remove();
+
+				var pC = parseInt($('#pagecount').val())/10;
+
+				if(pC % 1 != 0){
+					pC = (Math.floor(pC))+1;
+				}
+				$( ".pager li" ).eq(1).html( '<input id="page_info" type="text" readonly="readonly" value="Showing Page '+ (pC==0?pC:1) +' of '+pC+'" >' );
+
+				if(pC<=1)
+				{
+					$( ".pager li" ).eq(2).addClass('hidden');
+					$( ".pager li" ).eq(0).addClass('hidden');
+				}else{
+					$( ".pager li" ).eq(2).removeClass('hidden');
+					$( ".pager li" ).eq(0).addClass('hidden');
+				}
 			}
 		});
 
@@ -448,6 +475,10 @@ $(document).ready(function() {
 				$("#brand-main").hide();
 			}
 		}
+		if($(this).parent().children().hasClass('highlight_subcat')){
+			$(this).parent().children().removeClass('highlight_subcat');
+		}
+		$(this).addClass("highlight_subcat");
 	});
 
 	//if hover on any filters category shown([id*=-main] pattern where it ends with -main)
