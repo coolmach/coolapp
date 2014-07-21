@@ -47,8 +47,6 @@ public class TelevisionAction extends ActionSupport implements SessionAware, Ser
 	private String responseMsg;
 
 	private List<TelevisionPostDetails> adList = new ArrayList<TelevisionPostDetails>();
-	private String category = "" ;
-	private String subCategory = "" ;
 
 	private HttpServletRequest request = null;
 	@Override
@@ -325,12 +323,11 @@ public class TelevisionAction extends ActionSupport implements SessionAware, Ser
 
 	public String getAdListForCriteria(){
 
-		category = postDetails.getCategory();
-		categoryStr = Utils.getInstance().getCategoryDesc(category);
+		if(postDetails.getCategory()==null || postDetails.getCategory().equals("") || !postDetails.getCategory().equals(CBuddyConstants.CATEGORY_ELECTRONICS_AND_HOUSEHOLD)){
+			postDetails.setCategory(CBuddyConstants.CATEGORY_ELECTRONICS_AND_HOUSEHOLD);
+		}	
 
-		if(category == null || category.equals("")){
-			setCategory(CBuddyConstants.CATEGORY_ELECTRONICS_AND_HOUSEHOLD);
-		}
+		categoryStr = Utils.getInstance().getCategoryDesc(postDetails.getCategory());
 		
 		adList = getAdListByCategory(getModel());
 
@@ -418,22 +415,6 @@ public class TelevisionAction extends ActionSupport implements SessionAware, Ser
 
 	public void setAdList(List<TelevisionPostDetails> adList) {
 		this.adList = adList;
-	}
-
-	public String getCategory() {
-		return category;
-	}
-
-	public void setCategory(String category) {
-		this.category = category;
-	}
-
-	public String getSubCategory() {
-		return subCategory;
-	}
-
-	public void setSubCategory(String subCategory) {
-		this.subCategory = subCategory;
 	}
 
 	@Transient

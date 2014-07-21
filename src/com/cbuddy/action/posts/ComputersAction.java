@@ -44,8 +44,6 @@ public class ComputersAction extends ActionSupport implements SessionAware, Serv
 	private String responseMsg;
 
 	private List<ComputersPostDetails> adList = new ArrayList<ComputersPostDetails>();
-	private String category = "" ;
-	private String subCategory = "" ;
 	private int count;
 
 	private HttpServletRequest request = null;
@@ -315,24 +313,22 @@ public class ComputersAction extends ActionSupport implements SessionAware, Serv
 
 	public String getAdListForComputers(){
 
-		category = postDetails.getCategory();
-		subCategory = postDetails.getSubCategory();
-     
-		categoryStr = Utils.getInstance().getCategoryDesc(category);
-		subCategoryStr = Utils.getInstance().getSubCategoryDesc(category, subCategory);
-		 
-		if(category == null || category.equals("")){
-			setCategory(CBuddyConstants.CATEGORY_COMPUTERS);
+		if(postDetails.getCategory()==null || postDetails.getCategory().equals("") || !postDetails.getCategory().equals(CBuddyConstants.CATEGORY_COMPUTERS)){
+			postDetails.setCategory(CBuddyConstants.CATEGORY_COMPUTERS);
+		}	
+
+		categoryStr = Utils.getInstance().getCategoryDesc(postDetails.getCategory());
+		subCategoryStr = Utils.getInstance().getSubCategoryDesc(postDetails.getCategory(), postDetails.getSubCategory());
+
+		if(postDetails.getSubCategory()==null || postDetails.getSubCategory().equals("") || subCategoryStr.equals("")){
+			postDetails.setSubCategory(CBuddyConstants.SUBCATEGORY_COMPUTERS_DESKTOPS);
+			subCategoryStr = Utils.getInstance().getSubCategoryDesc(postDetails.getCategory(), postDetails.getSubCategory());
 		}
-//		if(category.equals(CBuddyConstants.CATEGORY_COMPUTERS) && (subCategory==null || subCategory.equals(""))){
-//			setSubCategory(CBuddyConstants.SUBCATEGORY_COMPUTERS_DESKTOPS);
-//		}
-
+ 
 		ComputersAdService computersAdService =  new ComputersAdService();
-		count = computersAdService.getAdListCount(getModel(), subCategory);
-		System.out.println(count);
-		adList = computersAdService.getAdListByCategory(getModel(), subCategory);
-
+		count = computersAdService.getAdListCount(getModel(), postDetails.getSubCategory());
+		adList = computersAdService.getAdListByCategory(getModel(), postDetails.getSubCategory());
+		System.out.println(count+" : "+adList.size());
 		populateAdditionalDetails();
 
 		return "success";
@@ -373,22 +369,6 @@ public class ComputersAction extends ActionSupport implements SessionAware, Serv
 
 	public void setAdList(List<ComputersPostDetails> adList) {
 		this.adList = adList;
-	}
-
-	public String getCategory() {
-		return category;
-	}
-
-	public void setCategory(String category) {
-		this.category = category;
-	}
-
-	public String getSubCategory() {
-		return subCategory;
-	}
-
-	public void setSubCategory(String subCategory) {
-		this.subCategory = subCategory;
 	}
 
 	@Transient

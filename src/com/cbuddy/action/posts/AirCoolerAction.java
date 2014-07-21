@@ -22,6 +22,7 @@ import org.hibernate.criterion.Restrictions;
 
 import com.cbuddy.beans.PAirCooler;
 import com.cbuddy.beans.Poit;
+import com.cbuddy.services.FurnitureAdService;
 import com.cbuddy.util.CBuddyConstants;
 import com.cbuddy.util.CriteriaUtil;
 import com.cbuddy.util.LocationUtil;
@@ -47,8 +48,6 @@ public class AirCoolerAction extends ActionSupport implements SessionAware, Serv
 	private String responseMsg;
 
 	private List<AirCoolerPostDetails> adList = new ArrayList<AirCoolerPostDetails>();
-	private String category = "" ;
-	private String subCategory = "" ;
 
 	private HttpServletRequest request = null;
 	@Override
@@ -307,12 +306,11 @@ public class AirCoolerAction extends ActionSupport implements SessionAware, Serv
 
 	public String getAdListForCriteria(){
 
-		category = postDetails.getCategory();
-		categoryStr = Utils.getInstance().getCategoryDesc(category);
+		if(postDetails.getCategory()==null || postDetails.getCategory().equals("") || !postDetails.getCategory().equals(CBuddyConstants.CATEGORY_ELECTRONICS_AND_HOUSEHOLD)){
+			postDetails.setCategory(CBuddyConstants.CATEGORY_ELECTRONICS_AND_HOUSEHOLD);
+		}	
 
-		if(category == null || category.equals("")){
-			setCategory(CBuddyConstants.CATEGORY_ELECTRONICS_AND_HOUSEHOLD);
-		}
+		categoryStr = Utils.getInstance().getCategoryDesc(postDetails.getCategory());
 		
 		adList = getAdListByCategory(getModel());
 
@@ -399,22 +397,6 @@ public class AirCoolerAction extends ActionSupport implements SessionAware, Serv
 
 	public void setAdList(List<AirCoolerPostDetails> adList) {
 		this.adList = adList;
-	}
-
-	public String getCategory() {
-		return category;
-	}
-
-	public void setCategory(String category) {
-		this.category = category;
-	}
-
-	public String getSubCategory() {
-		return subCategory;
-	}
-
-	public void setSubCategory(String subCategory) {
-		this.subCategory = subCategory;
 	}
 
 	@Transient

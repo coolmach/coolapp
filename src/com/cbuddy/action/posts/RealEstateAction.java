@@ -19,6 +19,7 @@ import org.hibernate.SessionFactory;
 import com.cbuddy.beans.NameValuePair;
 import com.cbuddy.beans.Pdre;
 import com.cbuddy.beans.Poit;
+import com.cbuddy.services.AutomobileAdService;
 import com.cbuddy.services.RealEstateAdService;
 import com.cbuddy.util.CBuddyConstants;
 import com.cbuddy.util.LocationUtil;
@@ -38,15 +39,13 @@ public class RealEstateAction extends ActionSupport implements SessionAware, Ser
 	private File upload;
 	private String uploadFileName;
 	private String uploadContentType;
-	
+
 	private String categoryStr;
 	private String subCategoryStr;
 
 	private String responseMsg;
 
 	private List<RealEstatePostDetails> adList = new ArrayList<RealEstatePostDetails>();
-	private String category = "" ;
-	private String subCategory = "" ;
 	private int count;
 	//private String basePath = "";
 
@@ -56,7 +55,7 @@ public class RealEstateAction extends ActionSupport implements SessionAware, Ser
 	 */
 	private NameValuePair selectedLocation;
 	private List<NameValuePair> neighborhoodLocations;
-	
+
 
 	private HttpServletRequest request = null;
 	@Override
@@ -88,7 +87,7 @@ public class RealEstateAction extends ActionSupport implements SessionAware, Ser
 
 	private boolean validateMandatoryFields(){
 		String subCategory = postDetails.getSubCategory();
-		
+
 		//Common validations
 		if(postDetails.getTitle().equals("")){
 			addFieldError("errorMsg", "Please enter Title");
@@ -133,7 +132,7 @@ public class RealEstateAction extends ActionSupport implements SessionAware, Ser
 				return false;
 			}
 		}
-		
+
 		if(subCategory.equals(CBuddyConstants.SUBCATEGORY_REAL_ESTATE_APARTMENT_FOR_SALE)){
 			String newOrResale = postDetails.getNewOrResale();
 			if(newOrResale.equals("")){
@@ -148,7 +147,7 @@ public class RealEstateAction extends ActionSupport implements SessionAware, Ser
 				}
 			}
 		}
-		
+
 		return true;
 	}
 
@@ -206,7 +205,7 @@ public class RealEstateAction extends ActionSupport implements SessionAware, Ser
 					subCategory.equals(CBuddyConstants.SUBCATEGORY_REAL_ESTATE_IND_HOUSE_FOR_RENT) ||
 					subCategory.equals(CBuddyConstants.SUBCATEGORY_REAL_ESTATE_PG_ACCOMODATION) ||
 					subCategory.equals(CBuddyConstants.SUBCATEGORY_REAL_ESTATE_ROOMMATE_REQUIRED)
-					){
+			){
 				addFieldError("errorMsg", "Invalid Rent");	
 			}else{
 				addFieldError("errorMsg", "Invalid Price");
@@ -354,7 +353,7 @@ public class RealEstateAction extends ActionSupport implements SessionAware, Ser
 		dbSession.getTransaction().commit();
 
 		responseMsg = "Your post has been placed successfully! Post Id is " + poit.getPostId();
-		
+
 		return "success";
 		//return "redirect";
 	}
@@ -413,35 +412,32 @@ public class RealEstateAction extends ActionSupport implements SessionAware, Ser
 	}
 
 	public String getAdListForRealEstate(){
+		if(postDetails.getCategory()==null || postDetails.getCategory().equals("") || !postDetails.getCategory().equals(CBuddyConstants.CATEGORY_REAL_ESTATE)){
+			postDetails.setCategory(CBuddyConstants.CATEGORY_REAL_ESTATE);
+		}	
 
-		category = postDetails.getCategory();
-		subCategory = postDetails.getSubCategory();
+		categoryStr = Utils.getInstance().getCategoryDesc(postDetails.getCategory());
+		subCategoryStr = Utils.getInstance().getSubCategoryDesc(postDetails.getCategory(), postDetails.getSubCategory());
 
-		categoryStr = Utils.getInstance().getCategoryDesc(category);
-		subCategoryStr = Utils.getInstance().getSubCategoryDesc(category, subCategory);
-
-		if(category==null || category.equals("")){
-			setCategory(CBuddyConstants.CATEGORY_REAL_ESTATE);
-		}
-		if(category.equals(CBuddyConstants.CATEGORY_REAL_ESTATE) && (subCategory==null || subCategory.equals(""))){
-			setSubCategory(CBuddyConstants.SUBCATEGORY_REAL_ESTATE_APARTMENT_FOR_RENT);
+		if(postDetails.getSubCategory()==null || postDetails.getSubCategory().equals("") || subCategoryStr.equals("")){
+			postDetails.setSubCategory(CBuddyConstants.SUBCATEGORY_REAL_ESTATE_APARTMENT_FOR_SALE);
+			subCategoryStr = Utils.getInstance().getSubCategoryDesc(postDetails.getCategory(), postDetails.getSubCategory());
 		}
 
 		RealEstateAdService realEstateAdService =  new RealEstateAdService();
-		count = realEstateAdService.getAdListCount(getModel(), subCategory);
-		System.out.println(count);
-		adList = realEstateAdService.getAdListByCategory(getModel(), subCategory);
-		System.out.println(adList.size());
+		count = realEstateAdService.getAdListCount(getModel(), postDetails.getSubCategory());
+		adList = realEstateAdService.getAdListByCategory(getModel(), postDetails.getSubCategory());
+
 		populateAdditionalDetails();
 
 		return "success";
 	}
-	
+
 	public String getAdDetailsForRealEstate(){
-		
+
 		RealEstateAdService adService = new RealEstateAdService();
 		postDetails = adService.getAdDetailsForRealEstate(getModel());
-		
+
 		return "success";
 	}
 
@@ -483,23 +479,6 @@ public class RealEstateAction extends ActionSupport implements SessionAware, Ser
 		this.adList = adList;
 	}
 
-	public String getCategory() {
-		return category;
-	}
-
-	public void setCategory(String category) {
-		System.out.println(category);
-		this.category = category;
-	}
-
-	public String getSubCategory() {
-		return subCategory;
-	}
-
-	public void setSubCategory(String subCategory) {
-		this.subCategory = subCategory;
-	}
-
 	//	public String getBasePath() {
 	//		return basePath;
 	//	}
@@ -534,7 +513,7 @@ public class RealEstateAction extends ActionSupport implements SessionAware, Ser
 		System.out.println(responseMsg);
 		this.responseMsg = responseMsg;
 	}
-	
+
 	public RealEstatePostDetails getPostDetails() {
 		return postDetails;
 	}

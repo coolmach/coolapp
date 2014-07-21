@@ -60,9 +60,8 @@ $(document).ready(function() {
 		$("#amt-main").show();
 	}
 
-	// if user clicks on NEXT
+	// *******************************if user clicks on NEXT*******************************************************
 	$('#page_prev').bind('click', function(event) {
-
 		subCat = $('#sub').text();
 		cat = $('#cat').text();
 
@@ -94,17 +93,12 @@ $(document).ready(function() {
 				}else{
 					$( ".pager li" ).eq(2).removeClass('hidden');
 				}
-
-
 			}
 		});
-
-
 	});
 
-	// if user clicks on PREVIOUS
+	//**********************************if user clicks on PREVIOUS************************************************
 	$('#page_next').bind('click', function(event) {
-
 		subCat = $('#sub').text();
 		cat = $('#cat').text();
 
@@ -143,14 +137,11 @@ $(document).ready(function() {
 				}else{
 					$( ".pager li" ).eq(0).removeClass('hidden');
 				}
-
 			}
 		});
-
-
 	});
 
-	//if user click to cancel a selected filter
+	//*************************if user click to cancel a selected filter****************************************
 	$('.selected_filters').bind('click', function(event) {
 		var pageNo = $('#page_info').val();
 		var page = parseInt(pageNo.split(" ")[2]);
@@ -188,7 +179,7 @@ $(document).ready(function() {
 					pC = (Math.floor(pC))+1;
 				}
 				$( ".pager li" ).eq(1).html( '<input id="page_info" type="text" readonly="readonly" value="Showing Page '+ (pC==0?pC:1) +' of '+pC+'" >' );
-			
+
 				if(pC<=1)
 				{
 					$( ".pager li" ).eq(2).addClass('hidden');
@@ -205,10 +196,9 @@ $(document).ready(function() {
 		if($("#filterValueBar").text() == ""){
 			$("#filterValueBar").hide();
 		}
-
 	});
 
-	//if user clicks on checkboxes
+	//*****************************if user clicks on checkboxes******************************************
 	$('input[class^=check_]').click(function(event) {
 		subCat = $('#sub').text();
 		cat = $('#cat').text();
@@ -231,7 +221,6 @@ $(document).ready(function() {
 		if (typeof $("input[name=city]:checked", "#cityForm").val() != "undefined") {
 			data = data + "&city=" + $("input[name=city]:checked", "#cityForm").val();
 		}
-
 
 		if($("#corpId").val() != "" && data.indexOf("corpId", 0)<0){
 			data = data + "&corpId=" + $("#corpId").val();
@@ -257,20 +246,19 @@ $(document).ready(function() {
 				}
 				$( ".pager li" ).eq(1).html( '<input id="page_info" type="text" readonly="readonly" value="Showing Page '+ (pC==0?pC:1) +' of '+pC+'" >' );
 
-			
+
 				if(pC<=1)
 				{$( ".pager li" ).eq(2).addClass('hidden');
-				 $( ".pager li" ).eq(0).addClass('hidden');
+				$( ".pager li" ).eq(0).addClass('hidden');
 				}
 				else
 				{$( ".pager li" ).eq(2).removeClass('hidden');
 				$( ".pager li" ).eq(0).addClass('hidden');}
 			}
 		});
-
 	});
 
-	//if user clicks on subcaregory
+	//***********************************if user clicks on subcaregory****************************************
 	var lastVal="";
 	$("#subCategory-right li").click(function(){
 		subCat = $('#sub').text();
@@ -494,7 +482,7 @@ $(document).ready(function() {
 		$(this).addClass("highlight_subcat");
 	});
 
-	//if hover on any filters category shown([id*=-main] pattern where it ends with -main)
+	//**********if hover on any filters category shown([id*=-main] pattern where it ends with -main)************
 	$("div[id*=-main]").hover(function(){
 		var divId = $(this).attr('id').split('-')[0];
 		if($("#subCategory_hidden_"+divId).is(':visible')){

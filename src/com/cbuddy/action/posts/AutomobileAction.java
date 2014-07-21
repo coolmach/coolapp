@@ -44,9 +44,6 @@ public class AutomobileAction extends ActionSupport implements SessionAware, Ser
 	private String responseMsg;
 
 	private List<AutomobilePostDetails> adList = new ArrayList<AutomobilePostDetails>();
-	private String category = "" ;
-	private String subCategory = "" ;
-	
 	private int count;
 
 	private HttpServletRequest request = null;
@@ -319,25 +316,23 @@ public class AutomobileAction extends ActionSupport implements SessionAware, Ser
 	}
 
 	public String getAdListForAutomobile(){
-		System.out.println(getModel().getMake() + " + "+ getModel().getYearOfMake()+" : "+getModel().getPriceStr()+ " : "+getModel().getFuelType());
-		category = postDetails.getCategory();
-		subCategory = postDetails.getSubCategory();
 
-		categoryStr = Utils.getInstance().getCategoryDesc(category);
-		subCategoryStr = Utils.getInstance().getSubCategoryDesc(category, subCategory);
-		System.out.println(categoryStr + " : "+subCategoryStr);
-		if(category==null || category.equals("")){
-			setCategory(CBuddyConstants.CATEGORY_AUTOMOBILES);
-		}
-		if(category.equals(CBuddyConstants.CATEGORY_AUTOMOBILES) && (subCategory==null || subCategory.equals(""))){
-			setSubCategory(CBuddyConstants.SUBCATEGORY_AUTOMOBILES_MOTORCYCLES);
+		if(postDetails.getCategory()==null || postDetails.getCategory().equals("") || !postDetails.getCategory().equals(CBuddyConstants.CATEGORY_AUTOMOBILES)){
+			postDetails.setCategory(CBuddyConstants.CATEGORY_AUTOMOBILES);
+		}	
+
+		categoryStr = Utils.getInstance().getCategoryDesc(postDetails.getCategory());
+		subCategoryStr = Utils.getInstance().getSubCategoryDesc(postDetails.getCategory(), postDetails.getSubCategory());
+
+		if(postDetails.getSubCategory()==null || postDetails.getSubCategory().equals("") || subCategoryStr.equals("")){
+			postDetails.setSubCategory(CBuddyConstants.SUBCATEGORY_AUTOMOBILES_CARS);
+			subCategoryStr = Utils.getInstance().getSubCategoryDesc(postDetails.getCategory(), postDetails.getSubCategory());
 		}
 
 		AutomobileAdService automobileAdService =  new AutomobileAdService();
-		count = automobileAdService.getAdListCount(getModel(), subCategory);
-		System.out.println("count "+count);
-		adList = automobileAdService.getAdListByCategory(getModel(), subCategory);
-
+		count = automobileAdService.getAdListCount(getModel(), postDetails.getSubCategory());
+		adList = automobileAdService.getAdListByCategory(getModel(), postDetails.getSubCategory());
+		
 		populateAdditionalDetails();
 
 		return "success";
@@ -380,22 +375,6 @@ public class AutomobileAction extends ActionSupport implements SessionAware, Ser
 		this.adList = adList;
 	}
 
-	public String getCategory() {
-		return category;
-	}
-
-	public void setCategory(String category) {
-		this.category = category;
-	}
-
-	public String getSubCategory() {
-		return subCategory;
-	}
-
-	public void setSubCategory(String subCategory) {
-		this.subCategory = subCategory;
-	}
-
 	@Transient
 	public String getCategoryStr() {
 		return categoryStr;
@@ -421,7 +400,7 @@ public class AutomobileAction extends ActionSupport implements SessionAware, Ser
 	public void setResponseMsg(String responseMsg) {
 		this.responseMsg = responseMsg;
 	}
-	
+
 
 	public int getCount() {
 		return count;

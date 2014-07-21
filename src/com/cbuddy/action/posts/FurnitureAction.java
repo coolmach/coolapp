@@ -22,6 +22,7 @@ import org.hibernate.criterion.Restrictions;
 
 import com.cbuddy.beans.PFurniture;
 import com.cbuddy.beans.Poit;
+import com.cbuddy.services.ComputersAdService;
 import com.cbuddy.services.FurnitureAdService;
 import com.cbuddy.util.CBuddyConstants;
 import com.cbuddy.util.CriteriaUtil;
@@ -49,8 +50,6 @@ public class FurnitureAction extends ActionSupport implements SessionAware, Serv
 	private String responseMsg;
 
 	private List<FurniturePostDetails> adList = new ArrayList<FurniturePostDetails>();
-	private String category = "" ;
-	private String subCategory = "" ;
 	private int count;
 
 	private HttpServletRequest request = null;
@@ -297,24 +296,21 @@ public class FurnitureAction extends ActionSupport implements SessionAware, Serv
 
 	public String getAdListForFurniture(){
 
-		category = postDetails.getCategory();
-		subCategory = postDetails.getSubCategory();
-		System.out.println(category + " : "+subCategory);
-		categoryStr = Utils.getInstance().getCategoryDesc(category);
-		subCategoryStr = Utils.getInstance().getSubCategoryDesc(category, subCategory);
+		if(postDetails.getCategory()==null || postDetails.getCategory().equals("") || !postDetails.getCategory().equals(CBuddyConstants.CATEGORY_FURNITURE)){
+			postDetails.setCategory(CBuddyConstants.CATEGORY_FURNITURE);
+		}	
 
-		if(category == null || category.equals("")){
-			setCategory(CBuddyConstants.CATEGORY_FURNITURE);
-		}
-		if(category.equals(CBuddyConstants.CATEGORY_FURNITURE) && (subCategory==null || subCategory.equals(""))){
-			setSubCategory(CBuddyConstants.SUBCATEGORY_FURNITURE_COT_WOOD);
-		}
+		categoryStr = Utils.getInstance().getCategoryDesc(postDetails.getCategory());
+		subCategoryStr = Utils.getInstance().getSubCategoryDesc(postDetails.getCategory(), postDetails.getSubCategory());
 
+		if(postDetails.getSubCategory()==null || postDetails.getSubCategory().equals("") || subCategoryStr.equals("")){
+			postDetails.setSubCategory(CBuddyConstants.SUBCATEGORY_FURNITURE_COT_WOOD);
+			subCategoryStr = Utils.getInstance().getSubCategoryDesc(postDetails.getCategory(), postDetails.getSubCategory());
+		}
+ 
 		FurnitureAdService furnitureAdService =  new FurnitureAdService();
-		count = furnitureAdService.getAdListCount(getModel(), subCategory);
-		System.out.println(count);
-		adList = furnitureAdService.getAdListByCategory(getModel(), subCategory);
-		System.out.println(adList);
+		count = furnitureAdService.getAdListCount(getModel(), postDetails.getSubCategory());
+		adList = furnitureAdService.getAdListByCategory(getModel(), postDetails.getSubCategory());
 
 		populateAdditionalDetails();
 
@@ -357,22 +353,6 @@ public class FurnitureAction extends ActionSupport implements SessionAware, Serv
 
 	public void setAdList(List<FurniturePostDetails> adList) {
 		this.adList = adList;
-	}
-
-	public String getCategory() {
-		return category;
-	}
-
-	public void setCategory(String category) {
-		this.category = category;
-	}
-
-	public String getSubCategory() {
-		return subCategory;
-	}
-
-	public void setSubCategory(String subCategory) {
-		this.subCategory = subCategory;
 	}
 
 	@Transient

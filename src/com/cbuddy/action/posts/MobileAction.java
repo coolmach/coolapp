@@ -23,6 +23,7 @@ import com.cbuddy.beans.MobileMaster;
 import com.cbuddy.beans.Pdmo;
 import com.cbuddy.beans.Poit;
 import com.cbuddy.cache.MobilePhoneCache;
+import com.cbuddy.services.AutomobileAdService;
 import com.cbuddy.services.MobileAdService;
 import com.cbuddy.util.AutoSuggestMobileService;
 import com.cbuddy.util.CBuddyConstants;
@@ -50,15 +51,12 @@ public class MobileAction extends ActionSupport implements SessionAware, Servlet
 	private String responseMsg;
 
 	private List<MobilePostDetails> adList = new ArrayList<MobilePostDetails>();
-	private String category = "" ;
-	private String subCategory = "" ;
-
+	private int count;
+	
 	private String brandNew;
 	private String modelSearchStr;
 	private JSONArray modelDetailsJsonArray;
 	
-	private int count;
-
 	private HttpServletRequest request = null;
 	@Override
 	public void setServletRequest(HttpServletRequest request) {
@@ -390,24 +388,22 @@ public class MobileAction extends ActionSupport implements SessionAware, Servlet
 
 	public String getAdListForMobile(){
 
-		category = postDetails.getCategory();
-		subCategory = postDetails.getSubCategory();
-		
-		categoryStr = Utils.getInstance().getCategoryDesc(category);
-		subCategoryStr = Utils.getInstance().getSubCategoryDesc(category, subCategory);
+		if(postDetails.getCategory()==null || postDetails.getCategory().equals("") || !postDetails.getCategory().equals(CBuddyConstants.CATEGORY_MOBILE)){
+			postDetails.setCategory(CBuddyConstants.CATEGORY_MOBILE);
+		}	
 
-		if(category == null || category.equals("")){
-			setCategory(CBuddyConstants.CATEGORY_MOBILE);
-		}
-		if(category.equals(CBuddyConstants.CATEGORY_MOBILE) && (subCategory==null || subCategory.equals(""))){
-			setSubCategory(CBuddyConstants.SUBCATEGORY_MOBILE_MOBILEPHONES);
+		categoryStr = Utils.getInstance().getCategoryDesc(postDetails.getCategory());
+		subCategoryStr = Utils.getInstance().getSubCategoryDesc(postDetails.getCategory(), postDetails.getSubCategory());
+
+		if(postDetails.getSubCategory()==null || postDetails.getSubCategory().equals("") || subCategoryStr.equals("")){
+			postDetails.setSubCategory(CBuddyConstants.SUBCATEGORY_MOBILE_MOBILEPHONES);
+			subCategoryStr = Utils.getInstance().getSubCategoryDesc(postDetails.getCategory(), postDetails.getSubCategory());
 		}
 
 		MobileAdService mobileAdService =  new MobileAdService();
-		count = mobileAdService.getAdListCount(getModel(), subCategory);
-		System.out.println(count);
-		adList = mobileAdService.getAdListByCategory(getModel(), subCategory);
-
+		count = mobileAdService.getAdListCount(getModel(), postDetails.getSubCategory());
+		adList = mobileAdService.getAdListByCategory(getModel(), postDetails.getSubCategory());
+		
 		populateAdditionalDetails();
 
 		return "success";
@@ -468,22 +464,6 @@ public class MobileAction extends ActionSupport implements SessionAware, Servlet
 
 	public void setAdList(List<MobilePostDetails> adList) {
 		this.adList = adList;
-	}
-
-	public String getCategory() {
-		return category;
-	}
-
-	public void setCategory(String category) {
-		this.category = category;
-	}
-
-	public String getSubCategory() {
-		return subCategory;
-	}
-
-	public void setSubCategory(String subCategory) {
-		this.subCategory = subCategory;
 	}
 
 	@Transient

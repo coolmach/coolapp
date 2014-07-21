@@ -47,8 +47,6 @@ public class OtherPostsAction extends ActionSupport implements SessionAware, Ser
 	private String responseMsg;
 
 	private List<OtherPostDetails> adList = new ArrayList<OtherPostDetails>();
-	private String category = "" ;
-	private String subCategory = "" ;
 
 	private HttpServletRequest request = null;
 	@Override
@@ -318,12 +316,11 @@ public class OtherPostsAction extends ActionSupport implements SessionAware, Ser
 
 	public String getAdListForCriteria(){
 
-		category = postDetails.getCategory();
-		categoryStr = Utils.getInstance().getCategoryDesc(category);
+		if(postDetails.getCategory()==null || postDetails.getCategory().equals("") || !postDetails.getCategory().equals(CBuddyConstants.CATEGORY_ELECTRONICS_AND_HOUSEHOLD)){
+			postDetails.setCategory(CBuddyConstants.CATEGORY_ELECTRONICS_AND_HOUSEHOLD);
+		}	
 
-		if(category == null || category.equals("")){
-			setCategory(CBuddyConstants.CATEGORY_ELECTRONICS_AND_HOUSEHOLD);
-		}
+		categoryStr = Utils.getInstance().getCategoryDesc(postDetails.getCategory());
 		
 		adList = getAdListByCategory(getModel());
 
@@ -341,7 +338,7 @@ public class OtherPostsAction extends ActionSupport implements SessionAware, Ser
 			Criteria criteria = session.createCriteria(OtherPostDetails.class);
 			criteria.addOrder(Order.desc("postId"));
 			criteria.setMaxResults(20);
-			criteria.add(Restrictions.eq("subCategory", subCategory));
+			criteria.add(Restrictions.eq("subCategory", postDetails.getSubCategory()));
 			
 			/*if(postDetails.getCity() != null){
 				criteria.add(Restrictions.eq("city", postDetails.getCity()));
@@ -415,22 +412,6 @@ public class OtherPostsAction extends ActionSupport implements SessionAware, Ser
 
 	public void setAdList(List<OtherPostDetails> adList) {
 		this.adList = adList;
-	}
-
-	public String getCategory() {
-		return category;
-	}
-
-	public void setCategory(String category) {
-		this.category = category;
-	}
-
-	public String getSubCategory() {
-		return subCategory;
-	}
-
-	public void setSubCategory(String subCategory) {
-		this.subCategory = subCategory;
 	}
 
 	@Transient

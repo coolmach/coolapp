@@ -62,7 +62,7 @@ public class Utils {
 
 
 	public String getCategoryDesc(String categoryCode){
-		String output = categoryCode;
+		String output = "";
 		if(categoryDescMap.get(categoryCode) != null){
 			output = categoryDescMap.get(categoryCode);
 		}
@@ -70,7 +70,7 @@ public class Utils {
 	}
 
 	public String getSubCategoryDesc(String categoryCode, String subCategoryCode){
-		String output = subCategoryCode;
+		String output = "";
 		if(categoryDescMap.get(categoryCode + "_" + subCategoryCode) != null){
 			output = categoryDescMap.get(categoryCode + "_" + subCategoryCode);
 		}

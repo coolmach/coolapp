@@ -47,8 +47,6 @@ public class DVDAction extends ActionSupport implements SessionAware, ServletReq
 	private String responseMsg;
 
 	private List<DVDPostDetails> adList = new ArrayList<DVDPostDetails>();
-	private String category = "" ;
-	private String subCategory = "" ;
 
 	private HttpServletRequest request = null;
 	@Override
@@ -299,12 +297,11 @@ public class DVDAction extends ActionSupport implements SessionAware, ServletReq
 
 	public String getAdListForCriteria(){
 
-		category = postDetails.getCategory();
-		categoryStr = Utils.getInstance().getCategoryDesc(category);
+		if(postDetails.getCategory()==null || postDetails.getCategory().equals("") || !postDetails.getCategory().equals(CBuddyConstants.CATEGORY_ELECTRONICS_AND_HOUSEHOLD)){
+			postDetails.setCategory(CBuddyConstants.CATEGORY_ELECTRONICS_AND_HOUSEHOLD);
+		}	
 
-		if(category == null || category.equals("")){
-			setCategory(CBuddyConstants.CATEGORY_ELECTRONICS_AND_HOUSEHOLD);
-		}
+		categoryStr = Utils.getInstance().getCategoryDesc(postDetails.getCategory());
 		
 		adList = getAdListByCategory(getModel());
 
@@ -391,22 +388,6 @@ public class DVDAction extends ActionSupport implements SessionAware, ServletReq
 
 	public void setAdList(List<DVDPostDetails> adList) {
 		this.adList = adList;
-	}
-
-	public String getCategory() {
-		return category;
-	}
-
-	public void setCategory(String category) {
-		this.category = category;
-	}
-
-	public String getSubCategory() {
-		return subCategory;
-	}
-
-	public void setSubCategory(String subCategory) {
-		this.subCategory = subCategory;
 	}
 
 	@Transient
