@@ -107,26 +107,26 @@
 					<s:param name="subCategory">1</s:param>
 				     </s:url> <a href="<s:property value="#urlTag" />">REAL ESTATE</a>
 				</li>
-                  <li><s:url action="realestate" var="urlTag" escapeAmp="false">
+                  <li><s:url action="automobile" var="urlTag" escapeAmp="false">
 					<s:param name="category">AUTO</s:param>
 					<s:param name="subCategory">1</s:param>
 				     </s:url> <a href="<s:property value="#urlTag" />">AUTOMOBILES</a>
 				</li>
-				<li><s:url action="realestate" var="urlTag" escapeAmp="false">
+				<li><s:url action="electronics" var="urlTag" escapeAmp="false">
 					<s:param name="category">ELEC</s:param>
 				     </s:url> <a href="<s:property value="#urlTag" />">ELECTRONICS & HOUSEHOLD</a>
 				</li>
-				<li><s:url action="realestate" var="urlTag" escapeAmp="false">
+				<li><s:url action="computers" var="urlTag" escapeAmp="false">
 					<s:param name="category">COMP</s:param>
 					<s:param name="subCategory">1</s:param>
 				     </s:url> <a href="<s:property value="#urlTag" />">LAPTOPS & COMPUTERS</a>
 				</li>
-				<li><s:url action="realestate" var="urlTag" escapeAmp="false">
+				<li><s:url action="mobile" var="urlTag" escapeAmp="false">
 					<s:param name="category">MOBILE</s:param>
 					<s:param name="subCategory">1</s:param>
 				     </s:url> <a href="<s:property value="#urlTag" />">MOBILE PHONES</a>
 				</li>
-				<li><s:url action="realestate" var="urlTag" escapeAmp="false">
+				<li><s:url action="furniture" var="urlTag" escapeAmp="false">
 					<s:param name="category">FURN</s:param>
 					<s:param name="subCategory">1</s:param>
 				     </s:url> <a href="<s:property value="#urlTag" />">FURNITURE</a>
