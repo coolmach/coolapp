@@ -133,3 +133,51 @@
 .logo hover {
 	text-decoration: none;
 }
+
+#top_menu {
+    background: none repeat scroll 0 0 #fff;
+    border-bottom: 2px solid #0099cc;
+    box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.31);
+    clear: both;
+    height: 35px;
+    position: relative;
+    top: 0;
+    width: 100%;
+}
+
+.menu_icon_holder {
+    display: block;
+    height: 35px;
+    margin: 0 auto;
+    width: 990px;
+}
+
+#menu {
+    float: left;
+    height: 34px;
+    list-style: none outside none;
+    padding: 0;
+}
+
+#menu li {
+    display: block;
+    float: left;
+    padding: 9px 20px 11px 15px;
+    position: relative;
+    text-align: center;
+}
+
+#menu li a {
+    color: #484848;
+    cursor: pointer;
+    display: block;
+    font-family: arial;
+    font-size: 12px;
+    outline: 0 none;
+    text-decoration: none;
+    text-shadow:3px 4px 2px rgba(150, 150, 150, 1);
+}
+
+#menu li a:hover {
+    color :	#0099cc;
+}

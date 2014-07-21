@@ -99,4 +99,39 @@
 			</div>
 		</div>
 	</div>
+	<div id="top_menu">
+        <div class="menu_icon_holder">
+               <ul id="menu" style="padding: 0px;">
+                  <li><s:url action="realestate" var="urlTag" escapeAmp="false">
+					<s:param name="category">REAL</s:param>
+					<s:param name="subCategory">1</s:param>
+				     </s:url> <a href="<s:property value="#urlTag" />">REAL ESTATE</a>
+				</li>
+                  <li><s:url action="realestate" var="urlTag" escapeAmp="false">
+					<s:param name="category">AUTO</s:param>
+					<s:param name="subCategory">1</s:param>
+				     </s:url> <a href="<s:property value="#urlTag" />">AUTOMOBILES</a>
+				</li>
+				<li><s:url action="realestate" var="urlTag" escapeAmp="false">
+					<s:param name="category">ELEC</s:param>
+				     </s:url> <a href="<s:property value="#urlTag" />">ELECTRONICS & HOUSEHOLD</a>
+				</li>
+				<li><s:url action="realestate" var="urlTag" escapeAmp="false">
+					<s:param name="category">COMP</s:param>
+					<s:param name="subCategory">1</s:param>
+				     </s:url> <a href="<s:property value="#urlTag" />">LAPTOPS & COMPUTERS</a>
+				</li>
+				<li><s:url action="realestate" var="urlTag" escapeAmp="false">
+					<s:param name="category">MOBILE</s:param>
+					<s:param name="subCategory">1</s:param>
+				     </s:url> <a href="<s:property value="#urlTag" />">MOBILE PHONES</a>
+				</li>
+				<li><s:url action="realestate" var="urlTag" escapeAmp="false">
+					<s:param name="category">FURN</s:param>
+					<s:param name="subCategory">1</s:param>
+				     </s:url> <a href="<s:property value="#urlTag" />">FURNITURE</a>
+				</li>
+               </ul>
+        </div>
+    </div>
 </div>
