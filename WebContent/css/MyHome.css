@@ -1,0 +1,135 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+
+#header_wrapper {
+	background: none repeat scroll 0 0 #0099cc;
+	display: block;
+	float: left;
+	height: 105px;
+	width: 100%;
+}
+
+#top_bar {
+	background: #000000;
+	display: block !important;
+	height: 39px !important;
+	margin-bottom: 0 !important;
+	padding-top: 0 !important;
+	position: fixed;
+	top: 0;
+	width: 100% !important;
+	z-index: 1000;
+}
+
+.top_bar_holder {
+	display: block;
+	height: 38px;
+	margin: 0 auto;
+	width: 980px;
+}
+
+.top_bar_left_list_container {
+	display: block;
+	height: 38px;
+	list-style-type: none;
+	width: 100%;
+}
+
+.top_bar_leftside {
+	display: block;
+	float: left;
+	height: 38px;
+	width: 60%;
+}
+
+.top_bar_rightside {
+	display: block;
+	float: right;
+	height: 35px;
+	overflow: hidden;
+}
+
+.topmenu_divider {
+	background: none repeat scroll 0 0 #2d2d2d;
+	display: block;
+	float: left;
+	height: 20px;
+	margin-top: 9px;
+	width: 2px;
+}
+
+.top_bar_left_list_container li {
+	display: inline-block;
+}
+
+.top_bar_cod {
+	color: #fff;
+	display: inline-block;
+	float: left;
+	font-family: 'Karla', sans-serif;
+	font-size: 11px;
+	margin: 7px 0 0;
+	padding: 6px 7px;
+	text-decoration: none;
+	text-transform: uppercase;
+}
+
+#container {
+	float: left;
+	height: 77px !important;
+	width: 100%;
+}
+
+#header {
+	height: 77px !important;
+	margin: 46px auto 0;
+	width: 980px;
+}
+
+#search_container {
+	display: block;
+	float: right;
+	margin: 9px -2px 0 0;
+	overflow: visible;
+	width: 324px;
+}
+
+#content {
+	clear: both;
+	display: block;
+	height: auto;
+	margin: 0 auto;
+	position: relative;
+	width: 980px;
+}
+
+.container_of_imgs {
+	background: none repeat scroll 0 0 white;
+	box-shadow: 0 0 24px 3px rgba(58, 58, 58, 0.2);
+	display: block;
+	float: left;
+	height: auto;
+	margin-bottom: 30px;
+	margin-left: -50px;
+	margin-top: 15px;
+	width: 1080px;
+}
+
+@font-face {
+	font-family: TimeBurner;
+	src: url(fonts/timeburner_regular.ttf);
+}
+
+.logo {
+	font-family: TimeBurner;
+	font-size: 22px;
+	font-weight: bold;
+	color: #FFFFFF;
+	text-decoration: none
+}
+
+.logo hover {
+	text-decoration: none;
+}

@@ -1,12 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
-<style>
-	@font-face{font-family:TimeBurner; src:url(fonts/timeburner_regular.ttf);}
-	.logo{font-family:TimeBurner;font-size:22px;font-weight:bold;color:#FFFFFF;text-decoration:none}
-	.logo hover{text-decoration:none;}
-</style>
-  
-  <nav class="navbar navbar-custom navbar-fixed-top" role="navigation" style="background-color:#0099cc;">
+
+<%-- <nav class="navbar navbar-custom navbar-fixed-top" role="navigation" style="background-color:#0099cc;">
    
         <div class="container" style="width:100%;">
             <div class="navbar-header page-scroll" style="margin-top:-5px;">
@@ -47,4 +42,61 @@
             
         </div>
         <!-- /.container -->
-    </nav>
+    </nav> --%>
+<div id="header_main" style="overflow: visible;">
+	<div id="header_wrapper">
+		<div id="top_bar" style="left: 0; position: fixed; top: 0;">
+
+			<div class="top_bar_holder">
+				<div class="top_bar_leftside">
+					<ul class="top_bar_left_list_container">
+						<li><a href="<s:url action="newHome"/>" class="top_bar_cod">
+								About</a>
+							<div class="topmenu_divider"></div>
+						</li>
+						<li><a href="<s:url action="newHome"/>" class="top_bar_cod">FAQ</a>
+							<div class="topmenu_divider"></div>
+						</li>
+						<li><img src="images/phone_icon.png" width="14" height="16"
+							style="margin-top: 10px; float: left; margin-left: 9px;" /><a
+							class="top_bar_cod">xxx-xxxxxx</a>
+						</li>
+					</ul>
+				</div>
+				<div class="top_bar_rightside" style="width: 180px">
+
+					<ul class="top_bar_right_list_container">
+						<s:if test="%{#session.userLoggedIn == null}">
+							<li><a href="<s:url action="mylogin"/>" class="top_bar_cod">
+									Login</a>
+								<div class="topmenu_divider"></div></li>
+						</s:if>
+						<s:else>
+							<s:url action="logout" var="logoutTag" />
+							<li>Welcome <s:property value="%{#session.username}" /> <a
+								id="nav_user" href="<s:property value="#logoutTag" />">Logout</a>
+							</li>
+						</s:else>
+					</ul>
+
+				</div>
+				<!--Right side top bar hoder ends-->
+			</div>
+		</div>
+		<div id="container" style="overflow: visible;">
+			<div id="header">
+				<a class="navbar-logo" href="<s:url action=""/>"
+					style="float: none, line-height : 58px;"> <span class="logo">CBuddy.<span
+						style="color: #FFFF00;">in</span>
+				</span> </a>
+				<div id="search_container">
+					<img src="images/arrow.png" id="arr_img"
+						style="float: left; margin-left: -36px; position: absolute; width: 30px;">
+					<input type="text" class="form-control" id="category_search"
+						name="category" placeholder="I am looking for..."
+						style="width: 100% !important;">
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

@@ -1,15 +1,15 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
 
-<div class="container" style="margin: 10%;">
+<div class="container-fluid" style="margin: 10%;margin-top:3%">
 	<div class="row">
-	<s:if test="responseMsg != null">
+	
 		<div class="header_responseMessage">
 			<s:property value="responseMsg" />
 		</div>
-	</s:if>
-		<div class="col-md-5 " id="signInSection"
-			style="margin-left: 19.9999%; margin-top: 5%;">
+
+		<div class="col-md-6 " id="signInSection"
+			style="margin-left: 24%; margin-top: 5%;">
 			
 			<div class="panel panel-default">
 				<div class="panel-heading">
@@ -63,8 +63,8 @@
 			</div>
 		</div>
 
-		<div class="col-md-5 " id="signUpSection"
-			style="border-left: 1px solid #eeeeee; margin-left: 19.9999%; display: none;">
+		<div class="col-md-7 " id="signUpSection"
+			style="border-left: 1px solid #eeeeee; margin-left: 24%; display: none;">
 			<div class="col-md-12 " id="divCheckPasswordMatch">
 				<s:fielderror />
 			</div>
@@ -143,3 +143,45 @@
 		</div>
 	</div>
 </div>
+<script>
+	$(document).ready(function(){
+		$("#corpName").autocomplete({
+		    source: function(request, response) {
+			    $.ajax({
+				    url:"/Virat" + "/autoSuggestCorp",
+				    type: "POST",
+				    dataType: "json",
+				    data: {corpSearchString:$("#corpName").val()},
+				    success: function(data) {
+				        response( $.map(data, function(item) {
+					        return {
+					            value: item.id,
+					            label: item.description,
+					        };
+				        }));
+				    },
+				    error: function (error) {
+				       alert('error: ' + error.responseText);
+				    }
+			    });
+			},
+			select:function(event, ui){
+				event.preventDefault();
+				$("#corpId").val(ui.item.value);
+				$("#corpName").val(ui.item.label);
+				$("#selectedCorpName").val(ui.item.label);
+			},
+		    minLength: 2
+		 });
+	});
+</script>
+<script>
+	function showRegistrationForm(){
+		$("#signUpSection").show();
+		$("#signInSection").hide();		
+	}
+	function showSignInForm(){
+		$("#signUpSection").hide();
+		$("#signInSection").show();		
+	}
+</script>

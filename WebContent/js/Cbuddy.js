@@ -192,6 +192,7 @@ $(document).ready(function() {
 				if(pC<=1)
 				{
 					$( ".pager li" ).eq(2).addClass('hidden');
+					$( ".pager li" ).eq(0).addClass('hidden');
 				}else{
 					$( ".pager li" ).eq(2).removeClass('hidden');
 					$( ".pager li" ).eq(0).addClass('hidden');
@@ -256,8 +257,11 @@ $(document).ready(function() {
 				}
 				$( ".pager li" ).eq(1).html( '<input id="page_info" type="text" readonly="readonly" value="Showing Page '+ (pC==0?pC:1) +' of '+pC+'" >' );
 
+			
 				if(pC<=1)
-				{$( ".pager li" ).eq(2).addClass('hidden');}
+				{$( ".pager li" ).eq(2).addClass('hidden');
+				 $( ".pager li" ).eq(0).addClass('hidden');
+				}
 				else
 				{$( ".pager li" ).eq(2).removeClass('hidden');
 				$( ".pager li" ).eq(0).addClass('hidden');}

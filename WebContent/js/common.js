@@ -88,45 +88,7 @@ $(document).ready(function(){
 		minLength: 2
 	});
 
-	$("#corpName").autocomplete({
-		source: function(request, response) {
-			$.ajax({
-				url:ctxPath + "/autoSuggestCorp",
-				type: "POST",
-				dataType: "json",
-				data: {corpSearchString:$("#corpName").val()},
-				success: function(data) {
-					response( $.map(data, function(item) {
-						return {
-							value: item.id,
-							label: item.description
-						};
-					}));
-				},
-				error: function (error) {
-					alert('error: ' + error.responseText);
-				}
-			});
-		},
-		select:function(event, ui){
-			event.preventDefault();
-			$("#corpId").val(ui.item.value);
-			$("#corpName").val(ui.item.label);
-			$("#selectedCorpName").val(ui.item.label);
-		},
-		minLength: 2
-	});
-
-	function showRegistrationForm(){
-		$("#signUpSection").show();
-		$("#signInSection").hide();		
-		$(".errorMessage").remove();
-	}
-	function showSignInForm(){
-		$("#signUpSection").hide();
-		$("#signInSection").show();	
-		$(".errorMessage").remove();
-	}
+	
 });
 
 function applyFilters(){
