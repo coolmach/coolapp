@@ -5553,7 +5553,8 @@ button.close {
   width: 12px;
   height: 12px;
   margin: 0;
-  background-color: #fff;
+  /* background-color: #fff; */
+  background-color: #000000; 
 }
 .carousel-caption {
   position: absolute;

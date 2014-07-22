@@ -131,7 +131,11 @@
 					<s:param name="subCategory">1</s:param>
 				     </s:url> <a href="<s:property value="#urlTag" />">FURNITURE</a>
 				</li>
+				<li>|</li>
+				<li><a style="padding:0;" class="myButton" id="post_ad"
+					href="<s:url action="postAdStart"/>">Post Ad</a></li>
                </ul>
+              
         </div>
     </div>
 </div>
