@@ -314,7 +314,7 @@ html,body {
 
 /* Wrapper for page content to push down footer */
 #wrap {
-	min-height: 90%;
+	min-height: 100%;
 	height: auto;
 	/* Negative indent footer by its height */
 	margin: 0 auto -60px;

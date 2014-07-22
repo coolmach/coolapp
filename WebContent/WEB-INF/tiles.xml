@@ -114,5 +114,10 @@
     <definition name="/postad_furniture.tiles" extends="baseLayout">
         <put-attribute name="title" value="Post Ad" />
         <put-attribute name="body" value="/PostAd_Furniture.jsp" />
+    </definition> 
+     <definition name="/pageNotFound.tiles" extends="baseLayout">
+        <put-attribute name="title" value="Page Not Found" />
+        <put-attribute name="body" value="/PageNotFound.jsp" />
     </definition>        
+    
 </tiles-definitions>
