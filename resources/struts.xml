@@ -10,10 +10,13 @@
 	<constant name="struts.multipart.maxSize" value="1000000" />
 
 	<package name="default" extends="struts-default,json-default" namespace="/">
+
+    
 		<result-types>
 			<result-type name="tiles" class="org.apache.struts2.views.tiles.TilesResult" />
 			<result-type name="imageResult" class="com.cbuddy.result.ImageResult" />
 		</result-types>
+		
 		<interceptors>
 			<interceptor name="loginInterceptor" class="com.login.interceptors.LoginInterceptor"></interceptor>
 			<interceptor-stack name="secureStack">
@@ -24,6 +27,7 @@
 				</interceptor-ref>
 			</interceptor-stack>
 		</interceptors>
+		<default-action-ref name="PageNotFound"/>
 		<global-results>  
 			<result name="myresult">exception.jsp</result>  
 		</global-results>  
@@ -32,6 +36,10 @@
 		<exception-mapping result="myresult" exception="java.lang.Exception"></exception-mapping>  
 		</global-exception-mappings>  	
 		
+			
+    <action name="PageNotFound">
+        <result type="tiles">/pageNotFound.tiles</result>
+    </action>
 		<action name="">
 			<result type="tiles">/home.tiles</result>
 		</action>
