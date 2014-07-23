@@ -15,7 +15,7 @@
 						<p style="color:#428bca;font-size:14px;">
 								<a
 									href="<s:url action="automobileAdDetails" escapeAmp="false"> 
-											<s:param name="category" value="'REAL'"></s:param>
+											<s:param name="category" value="'AUTO'"></s:param>
 					                        <s:param name="subCategory" value="%{subCategory}"></s:param>
 					                        <s:param name="postIdStr" value="%{postId}"></s:param>
 											</s:url>">
@@ -55,7 +55,7 @@
 						<span class="postField_Highlight">
 							<a
 								href="<s:url action="automobileAdDetails" escapeAmp="false"> 
-										<s:param name="category" value="AUTO"></s:param>
+										<s:param name="category" value="'AUTO'"></s:param>
 				                        <s:param name="subCategory" value="%{subCategory}"></s:param>
 				                        <s:param name="postIdStr" value="%{postId}"></s:param>
 										</s:url>">

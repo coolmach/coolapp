@@ -143,9 +143,4 @@
         <put-attribute name="title" value="Page Not Found" />
         <put-attribute name="body" value="/PageNotFound.jsp" />
     </definition>        
-	<definition name="/pageNotFound.tiles" extends="baseLayout">
-        <put-attribute name="title" value="Page Not Found" />
-        <put-attribute name="body" value="/PageNotFound.jsp" />
-    </definition>    
-
 </tiles-definitions>

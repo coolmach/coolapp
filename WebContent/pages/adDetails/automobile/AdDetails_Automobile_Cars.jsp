@@ -21,7 +21,7 @@
 			<div class="form-group">
 				<label for="make" class="col-sm-4 control-label fieldCaption">Make</label>
 				<div class="col-sm-6">
-					<label class="form-control-static"><s:property value="postDetails.make"/></label>
+					<label class="form-control-static"><s:property value="postDetails.makeStr"/></label>
 				</div>
 			</div>		
 			<div class="form-group">
