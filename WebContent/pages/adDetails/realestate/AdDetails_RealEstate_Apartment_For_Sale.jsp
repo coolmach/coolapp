@@ -3,6 +3,7 @@
 <div class=" header_2">
 	<div class=""></div>
 </div>
+
 <div class="col-md-8" id="my">
 	<s:form cssClass="form-horizontal post" action="#">
 		<div class="col-md-12 post_title">

@@ -49,7 +49,7 @@
 			<div class="form-group">
 				<label for="facingDirection" class="col-sm-4 control-label">Model</label>
 				<div class="col-sm-6" style="padding-top:6px;">
-					<select class="dropDown" name="model" id="model">
+					<select class="dropDown" name="automobileModel" id="automobileModel">
 						<option value="M1">Model 1</option>
 						<option value="M2">Model 2</option>
 						<option value="M3">Model 3</option>

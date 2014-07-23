@@ -36,6 +36,8 @@ public class PTelevision {
 	private String hdmi;
 	
 	private String amt;
+	
+	private int postIdStr;
 
 	@Id
 	@Column(name="POST_ID")
@@ -181,5 +183,13 @@ public class PTelevision {
 	}
 	public void setHdmi(String hdmi) {
 		this.hdmi = hdmi;
+	}
+	
+	@Transient
+	public int getPostIdStr() {
+		return postIdStr;
+	}
+	public void setPostIdStr(int postIdStr) {
+		this.postIdStr = postIdStr;
 	}
 }

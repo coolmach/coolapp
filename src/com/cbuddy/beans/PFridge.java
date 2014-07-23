@@ -33,6 +33,8 @@ public class PFridge {
 	private String color;
 	private double capacity;
 	private String doubleDoor;
+	
+	private int postIdStr;
 
 	@Id
 	@Column(name="POST_ID")
@@ -163,4 +165,13 @@ public class PFridge {
 	public void setDoubleDoor(String doubleDoor) {
 		this.doubleDoor = doubleDoor;
 	}
+	
+	@Transient
+	public int getPostIdStr() {
+		return postIdStr;
+	}
+	public void setPostIdStr(int postIdStr) {
+		this.postIdStr = postIdStr;
+	}
+
 }

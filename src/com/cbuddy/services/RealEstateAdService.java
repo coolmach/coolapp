@@ -456,5 +456,4 @@ public class RealEstateAdService{
 		RealEstatePostDetails adDetails = (RealEstatePostDetails)session.get(RealEstatePostDetails.class, new Integer(postDetails.getPostIdStr()));
 		return adDetails;
 	}
-
 }

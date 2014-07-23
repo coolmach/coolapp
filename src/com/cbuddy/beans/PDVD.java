@@ -30,6 +30,8 @@ public class PDVD {
 	private Timestamp modifiedOn;
 	private String modifiedBy;
 	private String amt;
+	
+	private int postIdStr;
 
 	@Id
 	@Column(name="POST_ID")
@@ -144,4 +146,13 @@ public class PDVD {
 	public void setPlayerType(String playerType) {
 		this.playerType = playerType;
 	}
+	
+	@Transient
+	public int getPostIdStr() {
+		return postIdStr;
+	}
+	public void setPostIdStr(int postIdStr) {
+		this.postIdStr = postIdStr;
+	}
+
 }

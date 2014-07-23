@@ -29,6 +29,8 @@ public class PWashingMachine {
 	private Timestamp modifiedOn;
 	private String modifiedBy;
 	private String amt;
+	
+	private int postIdStr;
 
 	@Id
 	@Column(name="POST_ID")
@@ -135,4 +137,13 @@ public class PWashingMachine {
 	public void setAmt(String amtStr) {
 		this.amt = amtStr;
 	}
+	
+	@Transient
+	public int getPostIdStr() {
+		return postIdStr;
+	}
+	public void setPostIdStr(int postIdStr) {
+		this.postIdStr = postIdStr;
+	}
+
 }

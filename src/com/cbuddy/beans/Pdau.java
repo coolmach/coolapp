@@ -21,7 +21,7 @@ public class Pdau {
 	private String city;
 	private String location;
 	private String make;
-	private String model;
+	private String automobileModel;
 	private String color;
 	private int year;
 	private int noOfOwners;
@@ -48,6 +48,8 @@ public class Pdau {
 	private String offset;
 	private String page="1";
 
+	private int postIdStr;
+	
 	@Id
 	@Column(name="POST_ID")
 	public int getPostId() {
@@ -122,11 +124,11 @@ public class Pdau {
 	}
 	
 	@Column(name="MODEL")
-	public String getModel() {
-		return model;
+	public String getAutomobileModel() {
+		return automobileModel;
 	}
-	public void setModel(String model) {
-		this.model = model;
+	public void setAutomobileModel(String model) {
+		this.automobileModel = model;
 	}
 	
 	@Column(name="COLOR")
@@ -271,6 +273,15 @@ public class Pdau {
 	}
 	public void setPage(String page) {
 		this.page = page;
+	}
+
+	@Transient
+	public int getPostIdStr() {
+		return postIdStr;
+	}
+
+	public void setPostIdStr(int postIdStr) {
+		this.postIdStr = postIdStr;
 	}
 	
 }

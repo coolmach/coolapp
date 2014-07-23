@@ -33,6 +33,8 @@ public class PCamera {
 	
 	private String resolution;
 	private String zoom;
+	
+	private int postIdStr;
 
 	@Id
 	@Column(name="POST_ID")
@@ -155,4 +157,13 @@ public class PCamera {
 	public void setZoom(String zoom) {
 		this.zoom = zoom;
 	}
+	
+	@Transient
+	public int getPostIdStr() {
+		return postIdStr;
+	}
+	public void setPostIdStr(int postIdStr) {
+		this.postIdStr = postIdStr;
+	}
+
 }

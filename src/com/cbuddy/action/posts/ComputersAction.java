@@ -298,16 +298,20 @@ public class ComputersAction extends ActionSupport implements SessionAware, Serv
 		}
 	}
 
+	private void populateAdditionalDetailsForPost(ComputersPostDetails postDetails, Session dbSession){
+		String cityName = LocationUtil.getCityName(dbSession, postDetails.getCity());
+		String locName = LocationUtil.getLocationName(dbSession, postDetails.getCity(), postDetails.getLocation());
+		postDetails.setCity(cityName);
+		postDetails.setLocation(locName);
+		postDetails.setPriceStr(NumberFormatterUtil.formatAmount(postDetails.getPrice()));
+		postDetails.setMakeStr(Utils.getInstance().getLaptopMakeDesc(postDetails.getMake()));
+	}
+	
 	private void populateAdditionalDetails(){
 		SessionFactory sessionFactory = (SessionFactory) ServletActionContext.getServletContext().getAttribute("sessionFactory");
 		Session dbSession = sessionFactory.openSession();
 		for(ComputersPostDetails postDetails:adList){
-			String cityName = LocationUtil.getCityName(dbSession, postDetails.getCity());
-			String locName = LocationUtil.getLocationName(dbSession, postDetails.getCity(), postDetails.getLocation());
-			postDetails.setCity(cityName);
-			postDetails.setLocation(locName);
-			postDetails.setPriceStr(NumberFormatterUtil.formatAmount(postDetails.getPrice()));
-			postDetails.setMakeStr(Utils.getInstance().getLaptopMakeDesc(postDetails.getMake()));
+			populateAdditionalDetailsForPost(postDetails, dbSession);
 		}
 	}
 
@@ -334,6 +338,19 @@ public class ComputersAction extends ActionSupport implements SessionAware, Serv
 		return "success";
 	}
 
+	public String getAdDetails(){
+
+		ComputersAdService adService = new ComputersAdService();
+		postDetails = adService.getAdDetailsForComputers(getModel());
+
+		SessionFactory sessionFactory = (SessionFactory) ServletActionContext.getServletContext().getAttribute("sessionFactory");
+		Session dbSession = sessionFactory.openSession();
+		
+		populateAdditionalDetailsForPost(postDetails, dbSession);
+		
+		return "success";
+	}
+	
 	@Override
 	public ComputersPostDetails getModel() {
 		return postDetails;

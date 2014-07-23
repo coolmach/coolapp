@@ -431,6 +431,7 @@ public class RealEstateAction extends ActionSupport implements SessionAware, Ser
 	}
 
 	public String getAdListForRealEstate(){
+		
 		if(postDetails.getCategory()==null || postDetails.getCategory().equals("") || !postDetails.getCategory().equals(CBuddyConstants.CATEGORY_REAL_ESTATE)){
 			postDetails.setCategory(CBuddyConstants.CATEGORY_REAL_ESTATE);
 		}	

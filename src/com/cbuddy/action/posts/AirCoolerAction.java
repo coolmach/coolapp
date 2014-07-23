@@ -22,7 +22,7 @@ import org.hibernate.criterion.Restrictions;
 
 import com.cbuddy.beans.PAirCooler;
 import com.cbuddy.beans.Poit;
-import com.cbuddy.services.FurnitureAdService;
+import com.cbuddy.services.AirCoolerAdService;
 import com.cbuddy.util.CBuddyConstants;
 import com.cbuddy.util.CriteriaUtil;
 import com.cbuddy.util.LocationUtil;
@@ -218,7 +218,7 @@ public class AirCoolerAction extends ActionSupport implements SessionAware, Serv
 		Poit poit = new Poit();
 		
 		poit.setCategory(CBuddyConstants.CATEGORY_ELECTRONICS_AND_HOUSEHOLD);
-		poit.setSubCategory(CBuddyConstants.SUBCATEGORY_ELECTRONICS_AND_HOUSEHOLD_TELEVISION);
+		poit.setSubCategory(CBuddyConstants.SUBCATEGORY_ELECTRONICS_AND_HOUSEHOLD_AIRCOOLER);
 		
 		poit.setTitle(postDetails.getTitle());
 		poit.setCity(postDetails.getCity());
@@ -296,12 +296,29 @@ public class AirCoolerAction extends ActionSupport implements SessionAware, Serv
 		SessionFactory sessionFactory = (SessionFactory) ServletActionContext.getServletContext().getAttribute("sessionFactory");
 		Session dbSession = sessionFactory.openSession();
 		for(AirCoolerPostDetails postDetails:adList){
-			String cityName = LocationUtil.getCityName(dbSession, postDetails.getCity());
-			String locName = LocationUtil.getLocationName(dbSession, postDetails.getCity(), postDetails.getLocation());
-			postDetails.setCity(cityName);
-			postDetails.setLocation(locName);
-			postDetails.setPriceStr(NumberFormatterUtil.formatAmount(postDetails.getPrice()));
+			populateAdditionalDetailsForPost(postDetails, dbSession);
 		}
+	}
+	
+	private void populateAdditionalDetailsForPost(AirCoolerPostDetails postDetails, Session dbSession){
+		String cityName = LocationUtil.getCityName(dbSession, postDetails.getCity());
+		String locName = LocationUtil.getLocationName(dbSession, postDetails.getCity(), postDetails.getLocation());
+		postDetails.setCity(cityName);
+		postDetails.setLocation(locName);
+		postDetails.setPriceStr(NumberFormatterUtil.formatAmount(postDetails.getPrice()));
+	}
+	
+	public String getAdDetails(){
+
+		AirCoolerAdService adService = new AirCoolerAdService();
+		postDetails = adService.getAdDetailsForAirCooler(getModel());
+
+		SessionFactory sessionFactory = (SessionFactory) ServletActionContext.getServletContext().getAttribute("sessionFactory");
+		Session dbSession = sessionFactory.openSession();
+		
+		populateAdditionalDetailsForPost(postDetails, dbSession);
+		
+		return "success";
 	}
 
 	public String getAdListForCriteria(){

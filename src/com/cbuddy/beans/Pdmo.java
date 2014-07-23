@@ -47,6 +47,8 @@ public class Pdmo {
 	private String limit;
 	private String offset;
 	private String page="1";
+	
+	private int postIdStr;
 
 	@Id
 	@Column(name="POST_ID")
@@ -271,5 +273,13 @@ public class Pdmo {
 	}
 	public void setPage(String page) {
 		this.page = page;
+	}
+	
+	@Transient
+	public int getPostIdStr() {
+		return postIdStr;
+	}
+	public void setPostIdStr(int postIdStr) {
+		this.postIdStr = postIdStr;
 	}
 }

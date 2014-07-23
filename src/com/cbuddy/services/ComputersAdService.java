@@ -16,7 +16,6 @@ import org.hibernate.criterion.Restrictions;
 import com.cbuddy.util.CriteriaUtil;
 import com.cbuddy.util.NumberFormatterUtil;
 import com.model.user.ComputersPostDetails;
-import com.model.user.MobilePostDetails;
 
 public class ComputersAdService{
 
@@ -228,5 +227,12 @@ public class ComputersAdService{
 			}
 
 			return criteria;
+	}
+	
+	public ComputersPostDetails getAdDetailsForComputers(ComputersPostDetails postDetails){
+		SessionFactory sessionFactory = (SessionFactory) ServletActionContext.getServletContext().getAttribute("sessionFactory");
+		Session session = sessionFactory.openSession();
+		ComputersPostDetails adDetails = (ComputersPostDetails)session.get(ComputersPostDetails.class, new Integer(postDetails.getPostIdStr()));
+		return adDetails;
 	}
 }

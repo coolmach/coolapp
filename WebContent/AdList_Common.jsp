@@ -1,7 +1,7 @@
 <%@ taglib prefix="s" uri="/struts-tags"%>
 <div class="data">
 	<s:if test="adList.size() > 0">
-		<div class="col-md-6 listSection" id="postListSection">
+		<div class="col-md-8 listSection" id="postListSection">
 		<table class="table table-bordered">
 			<tr>
 				<th>Post Details</th>

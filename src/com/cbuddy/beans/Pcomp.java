@@ -38,6 +38,8 @@ public class Pcomp {
 	private String offset;
 	private String page="1";
 	
+	private int postIdStr;
+	
 	@Id
 	@Column(name="POST_ID")
 	public int getPostId() {
@@ -181,5 +183,13 @@ public class Pcomp {
 	}
 	public void setPage(String page) {
 		this.page = page;
+	}
+	
+	@Transient
+	public int getPostIdStr() {
+		return postIdStr;
+	}
+	public void setPostIdStr(int postIdStr) {
+		this.postIdStr = postIdStr;
 	}
 }

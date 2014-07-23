@@ -25,6 +25,7 @@ import com.cbuddy.beans.Poit;
 import com.cbuddy.cache.MobilePhoneCache;
 import com.cbuddy.services.AutomobileAdService;
 import com.cbuddy.services.MobileAdService;
+import com.cbuddy.services.MobileAdService;
 import com.cbuddy.util.AutoSuggestMobileService;
 import com.cbuddy.util.CBuddyConstants;
 import com.cbuddy.util.LocationUtil;
@@ -127,11 +128,11 @@ public class MobileAction extends ActionSupport implements SessionAware, Servlet
 			addFieldError("errorMsg", "Please enter the Model");
 			return false;
 		}
-		if(postDetails.getTouchScreen().equals("")){
+		if(postDetails.getTouchScreen() == null || postDetails.getTouchScreen().equals("")){
 			addFieldError("errorMsg", "Please specify if Touch Screen is present");
 			return false;
 		}
-		if(postDetails.getDualSim().equals("")){
+		if(postDetails.getDualSim() == null || postDetails.getDualSim().equals("")){
 			addFieldError("errorMsg", "Please specify whether Dual Sim is enabled");
 			return false;
 		}
@@ -376,14 +377,18 @@ public class MobileAction extends ActionSupport implements SessionAware, Servlet
 		SessionFactory sessionFactory = (SessionFactory) ServletActionContext.getServletContext().getAttribute("sessionFactory");
 		Session dbSession = sessionFactory.openSession();
 		for(MobilePostDetails postDetails:adList){
-			String cityName = LocationUtil.getCityName(dbSession, postDetails.getCity());
-			String locName = LocationUtil.getLocationName(dbSession, postDetails.getCity(), postDetails.getLocation());
-			postDetails.setCity(cityName);
-			postDetails.setLocation(locName);
-			postDetails.setPriceStr(NumberFormatterUtil.formatAmount(postDetails.getPrice()));
-			postDetails.setBrandStr(Utils.getInstance().getMobileBrandDesc(postDetails.getBrand()));
-			postDetails.setModelStr(MobilePhoneCache.getInstance().getModelName(postDetails.getBrand(), postDetails.getModel()));
+			populateAdditionalDetailsForPost(postDetails, dbSession);
 		}
+	}
+	
+	private void populateAdditionalDetailsForPost(MobilePostDetails postDetails, Session dbSession){
+		String cityName = LocationUtil.getCityName(dbSession, postDetails.getCity());
+		String locName = LocationUtil.getLocationName(dbSession, postDetails.getCity(), postDetails.getLocation());
+		postDetails.setCity(cityName);
+		postDetails.setLocation(locName);
+		postDetails.setPriceStr(NumberFormatterUtil.formatAmount(postDetails.getPrice()));
+		postDetails.setBrandStr(Utils.getInstance().getMobileBrandDesc(postDetails.getBrand()));
+		postDetails.setModelStr(MobilePhoneCache.getInstance().getModelName(postDetails.getBrand(), postDetails.getModel()));
 	}
 
 	public String getAdListForMobile(){
@@ -429,6 +434,20 @@ public class MobileAction extends ActionSupport implements SessionAware, Servlet
 		return output;
 	}
 
+	public String getAdDetails(){
+
+		MobileAdService adService = new MobileAdService();
+		postDetails = adService.getAdDetailsForMobile(getModel());
+
+		SessionFactory sessionFactory = (SessionFactory) ServletActionContext.getServletContext().getAttribute("sessionFactory");
+		Session dbSession = sessionFactory.openSession();
+		
+		populateAdditionalDetailsForPost(postDetails, dbSession);
+		
+		return "success";
+	}
+
+	
 	@Override
 	public MobilePostDetails getModel() {
 		return postDetails;

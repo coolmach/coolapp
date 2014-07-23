@@ -2,7 +2,7 @@
 <div class="data">
 <input id="pagecount" type="hidden" value="<s:property value="count"/>">
 	<s:if test="adList.size() > 0">
-		<div class="col-md-6 listSection" id="postListSection">
+		<div class="col-md-8 listSection" id="postListSection">
 		<table class="table table-bordered">
 			<tr>
 				<th>Post Details</th>
@@ -13,7 +13,14 @@
 					 <td style="width:25%;"><img class="images_ad" src="<s:url value='ImageAction?imageId=%{imageFileName}' />" style="width:100px;height:100px;"></td> 
 					 <td>
 						<p style="color:#428bca;font-size:14px;">
-							<s:property value="title" />
+							<a
+								href="<s:url action="computersAdDetails" escapeAmp="false"> 
+										<s:param name="category" value="'COMP'"></s:param>
+				                        <s:param name="subCategory" value="%{subCategory}"></s:param>
+				                        <s:param name="postIdStr" value="%{postId}"></s:param>
+										</s:url>">
+								<s:property value="title" />
+							</a>
 						</p> <%-- <s:iterator begin="1" end="rating">
 							<img class="rating_stars" src="images/star.jpg">
 						</s:iterator>  <br /> --%>
@@ -31,7 +38,16 @@
 						<br>
 					</td>
 					<td>
-						<span class="postField_Highlight">Rs.<s:property value="priceStr" /></span>
+						<span class="postField_Highlight">
+							<a
+										class="grey_link"
+										href="<s:url action="computersAdDetails" escapeAmp="false"> 
+								<s:param name="category" value="'COMP'"></s:param>
+		                        <s:param name="subCategory" value="%{subCategory}"></s:param>
+		                        <s:param name="postIdStr" value="%{postId}"></s:param>
+								</s:url>">Rs.<s:property value="priceStr" /> 
+							</a>
+						</span>
 					</td> 
 					<td><s:date name="createdOn" format="dd/MM/yyyy" /></td>
 				</tr>  

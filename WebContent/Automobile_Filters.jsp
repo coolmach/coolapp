@@ -58,15 +58,15 @@
 			
 				</div>
 			</div>
-			<div class=" pull-left hidden-subcat searchFilter" id="model-main">
-				<div id="model" class="inputstyle pointer form-control">
+			<div class=" pull-left hidden-subcat searchFilter" id="automobileModel-main">
+				<div id="automobileModel" class="inputstyle pointer form-control">
 					Model <span class="glyphicon glyphicon glyphicon-chevron-down form-control-show"></span>
 				</div>
-				<div id="subCategory_hidden_model" class="subCategory_hidden_bck" style="display: none;">
+				<div id="subCategory_hidden_automobileModel" class="subCategory_hidden_bck" style="display: none;">
 					<ul class="list-unstyled">
-						<li><input type="checkbox" class="check_model" name="model" value="M1"/><span class="content">Model 1</span></li>
-						<li><input type="checkbox" class="check_model" name="model" value="M2"/><span class="content">Model 2</span></li>
-						<li><input type="checkbox" class="check_model" name="model" value="M3"/><span class="content">Model 3</span></li>
+						<li><input type="checkbox" class="check_automobileModel" name="automobileModel" value="M1"/><span class="content">Model 1</span></li>
+						<li><input type="checkbox" class="check_automobileModel" name="automobileModel" value="M2"/><span class="content">Model 2</span></li>
+						<li><input type="checkbox" class="check_automobileModel" name="automobileModel" value="M3"/><span class="content">Model 3</span></li>
 					</ul>
 				</div>
 			</div>

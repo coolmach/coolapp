@@ -22,11 +22,13 @@ import org.hibernate.criterion.Restrictions;
 
 import com.cbuddy.beans.PWashingMachine;
 import com.cbuddy.beans.Poit;
+import com.cbuddy.services.WashingMachineAdService;
 import com.cbuddy.util.CBuddyConstants;
 import com.cbuddy.util.CriteriaUtil;
 import com.cbuddy.util.LocationUtil;
 import com.cbuddy.util.NumberFormatterUtil;
 import com.cbuddy.util.Utils;
+import com.model.user.WashingMachinePostDetails;
 import com.model.user.User;
 import com.model.user.WashingMachinePostDetails;
 import com.opensymphony.xwork2.Action;
@@ -201,7 +203,7 @@ public class WashingMachineAction extends ActionSupport implements SessionAware,
 		Poit poit = new Poit();
 		
 		poit.setCategory(CBuddyConstants.CATEGORY_ELECTRONICS_AND_HOUSEHOLD);
-		poit.setSubCategory(CBuddyConstants.SUBCATEGORY_ELECTRONICS_AND_HOUSEHOLD_TELEVISION);
+		poit.setSubCategory(CBuddyConstants.SUBCATEGORY_ELECTRONICS_AND_HOUSEHOLD_WASHINGMACHINE);
 		
 		poit.setTitle(postDetails.getTitle());
 		poit.setCity(postDetails.getCity());
@@ -232,7 +234,7 @@ public class WashingMachineAction extends ActionSupport implements SessionAware,
 
 		dbSession.flush(); //Flushing to retrieve the auto generated post id
 
-		//Make an entry in PDVD
+		//Make an entry in PWashingMachine
 		PWashingMachine entity = new PWashingMachine();
 		entity.setPostId(poit.getPostId());
 		entity.setCity(postDetails.getCity());
@@ -277,14 +279,31 @@ public class WashingMachineAction extends ActionSupport implements SessionAware,
 		SessionFactory sessionFactory = (SessionFactory) ServletActionContext.getServletContext().getAttribute("sessionFactory");
 		Session dbSession = sessionFactory.openSession();
 		for(WashingMachinePostDetails postDetails:adList){
-			String cityName = LocationUtil.getCityName(dbSession, postDetails.getCity());
-			String locName = LocationUtil.getLocationName(dbSession, postDetails.getCity(), postDetails.getLocation());
-			postDetails.setCity(cityName);
-			postDetails.setLocation(locName);
-			postDetails.setPriceStr(NumberFormatterUtil.formatAmount(postDetails.getPrice()));
+			populateAdditionalDetailsForPost(postDetails, dbSession);
 		}
 	}
+	
+	private void populateAdditionalDetailsForPost(WashingMachinePostDetails postDetails, Session dbSession){
+		String cityName = LocationUtil.getCityName(dbSession, postDetails.getCity());
+		String locName = LocationUtil.getLocationName(dbSession, postDetails.getCity(), postDetails.getLocation());
+		postDetails.setCity(cityName);
+		postDetails.setLocation(locName);
+		postDetails.setPriceStr(NumberFormatterUtil.formatAmount(postDetails.getPrice()));
+	}
+	
+	public String getAdDetails(){
 
+		WashingMachineAdService adService = new WashingMachineAdService();
+		postDetails = adService.getAdDetailsForWashingMachine(getModel());
+
+		SessionFactory sessionFactory = (SessionFactory) ServletActionContext.getServletContext().getAttribute("sessionFactory");
+		Session dbSession = sessionFactory.openSession();
+		
+		populateAdditionalDetailsForPost(postDetails, dbSession);
+		
+		return "success";
+	}
+	
 	public String getAdListForCriteria(){
 
 		if(postDetails.getCategory()==null || postDetails.getCategory().equals("") || !postDetails.getCategory().equals(CBuddyConstants.CATEGORY_ELECTRONICS_AND_HOUSEHOLD)){

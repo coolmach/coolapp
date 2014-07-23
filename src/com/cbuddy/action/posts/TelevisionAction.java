@@ -22,6 +22,7 @@ import org.hibernate.criterion.Restrictions;
 
 import com.cbuddy.beans.PTelevision;
 import com.cbuddy.beans.Poit;
+import com.cbuddy.services.TelevisionAdService;
 import com.cbuddy.util.CBuddyConstants;
 import com.cbuddy.util.CriteriaUtil;
 import com.cbuddy.util.LocationUtil;
@@ -313,12 +314,16 @@ public class TelevisionAction extends ActionSupport implements SessionAware, Ser
 		SessionFactory sessionFactory = (SessionFactory) ServletActionContext.getServletContext().getAttribute("sessionFactory");
 		Session dbSession = sessionFactory.openSession();
 		for(TelevisionPostDetails postDetails:adList){
-			String cityName = LocationUtil.getCityName(dbSession, postDetails.getCity());
-			String locName = LocationUtil.getLocationName(dbSession, postDetails.getCity(), postDetails.getLocation());
-			postDetails.setCity(cityName);
-			postDetails.setLocation(locName);
-			postDetails.setPriceStr(NumberFormatterUtil.formatAmount(postDetails.getPrice()));
+			populateAdditionalDetailsForPost(postDetails, dbSession);
 		}
+	}
+	
+	private void populateAdditionalDetailsForPost(TelevisionPostDetails postDetails, Session dbSession){
+		String cityName = LocationUtil.getCityName(dbSession, postDetails.getCity());
+		String locName = LocationUtil.getLocationName(dbSession, postDetails.getCity(), postDetails.getLocation());
+		postDetails.setCity(cityName);
+		postDetails.setLocation(locName);
+		postDetails.setPriceStr(NumberFormatterUtil.formatAmount(postDetails.getPrice()));		
 	}
 
 	public String getAdListForCriteria(){
@@ -379,6 +384,18 @@ public class TelevisionAction extends ActionSupport implements SessionAware, Ser
 		return list;
 	}
 	
+	public String getAdDetails(){
+
+		TelevisionAdService adService = new TelevisionAdService();
+		postDetails = adService.getAdDetailsForTelevision(getModel());
+
+		SessionFactory sessionFactory = (SessionFactory) ServletActionContext.getServletContext().getAttribute("sessionFactory");
+		Session dbSession = sessionFactory.openSession();
+		
+		populateAdditionalDetailsForPost(postDetails, dbSession);
+		
+		return "success";
+	}
 	
 	@Override
 	public TelevisionPostDetails getModel() {

@@ -22,6 +22,7 @@ import org.hibernate.criterion.Restrictions;
 
 import com.cbuddy.beans.PFridge;
 import com.cbuddy.beans.Poit;
+import com.cbuddy.services.FridgeAdService;
 import com.cbuddy.util.CBuddyConstants;
 import com.cbuddy.util.CriteriaUtil;
 import com.cbuddy.util.LocationUtil;
@@ -223,7 +224,7 @@ public class FridgeAction extends ActionSupport implements SessionAware, Servlet
 		Poit poit = new Poit();
 		
 		poit.setCategory(CBuddyConstants.CATEGORY_ELECTRONICS_AND_HOUSEHOLD);
-		poit.setSubCategory(CBuddyConstants.SUBCATEGORY_ELECTRONICS_AND_HOUSEHOLD_TELEVISION);
+		poit.setSubCategory(CBuddyConstants.SUBCATEGORY_ELECTRONICS_AND_HOUSEHOLD_FRIDGE);
 		
 		poit.setTitle(postDetails.getTitle());
 		poit.setCity(postDetails.getCity());
@@ -254,7 +255,7 @@ public class FridgeAction extends ActionSupport implements SessionAware, Servlet
 
 		dbSession.flush(); //Flushing to retrieve the auto generated post id
 
-		//Make an entry in PDVD
+		//Make an entry in PFridge
 		PFridge entity = new PFridge();
 		entity.setPostId(poit.getPostId());
 		entity.setCity(postDetails.getCity());
@@ -302,14 +303,30 @@ public class FridgeAction extends ActionSupport implements SessionAware, Servlet
 		SessionFactory sessionFactory = (SessionFactory) ServletActionContext.getServletContext().getAttribute("sessionFactory");
 		Session dbSession = sessionFactory.openSession();
 		for(FridgePostDetails postDetails:adList){
-			String cityName = LocationUtil.getCityName(dbSession, postDetails.getCity());
-			String locName = LocationUtil.getLocationName(dbSession, postDetails.getCity(), postDetails.getLocation());
-			postDetails.setCity(cityName);
-			postDetails.setLocation(locName);
-			postDetails.setPriceStr(NumberFormatterUtil.formatAmount(postDetails.getPrice()));
+			populateAdditionalDetailsForPost(postDetails, dbSession);
 		}
 	}
+	
+	private void populateAdditionalDetailsForPost(FridgePostDetails postDetails, Session dbSession){
+		String cityName = LocationUtil.getCityName(dbSession, postDetails.getCity());
+		String locName = LocationUtil.getLocationName(dbSession, postDetails.getCity(), postDetails.getLocation());
+		postDetails.setCity(cityName);
+		postDetails.setLocation(locName);
+		postDetails.setPriceStr(NumberFormatterUtil.formatAmount(postDetails.getPrice()));
+	}
+	
+	public String getAdDetails(){
 
+		FridgeAdService adService = new FridgeAdService();
+		postDetails = adService.getAdDetailsForFridge(getModel());
+
+		SessionFactory sessionFactory = (SessionFactory) ServletActionContext.getServletContext().getAttribute("sessionFactory");
+		Session dbSession = sessionFactory.openSession();
+		
+		populateAdditionalDetailsForPost(postDetails, dbSession);
+		
+		return "success";
+	}
 	public String getAdListForCriteria(){
 
 		if(postDetails.getCategory()==null || postDetails.getCategory().equals("") || !postDetails.getCategory().equals(CBuddyConstants.CATEGORY_ELECTRONICS_AND_HOUSEHOLD)){

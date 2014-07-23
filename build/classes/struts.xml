@@ -336,14 +336,59 @@
 			<result name="furniture" type="tiles">/adDetails_furniture.tiles</result>
 		</action-->
 		<action name="realestateAdDetails" class="com.cbuddy.action.posts.RealEstateAction" method="getAdDetails">
-			<interceptor-ref name="secureStack"></interceptor-ref>
+			<!--interceptor-ref name="secureStack"></interceptor-ref-->
 			<result name="login" type="tiles">/login.tiles</result>
 			<result name="success" type="tiles">/adDetails_realestate.tiles</result>
 		</action>
 		<action name="automobileAdDetails" class="com.cbuddy.action.posts.AutomobileAction" method="getAdDetails">
-			<interceptor-ref name="secureStack"></interceptor-ref>
+			<!--interceptor-ref name="secureStack"></interceptor-ref-->
 			<result name="login" type="tiles">/login.tiles</result>
 			<result name="success" type="tiles">/adDetails_automobile.tiles</result>
 		</action>						
+		<action name="computersAdDetails" class="com.cbuddy.action.posts.ComputersAction" method="getAdDetails">
+			<!--interceptor-ref name="secureStack"></interceptor-ref-->
+			<result name="login" type="tiles">/login.tiles</result>
+			<result name="success" type="tiles">/adDetails_computers.tiles</result>
+		</action>
+		<action name="mobileAdDetails" class="com.cbuddy.action.posts.MobileAction" method="getAdDetails">
+			<!--interceptor-ref name="secureStack"></interceptor-ref-->
+			<result name="login" type="tiles">/login.tiles</result>
+			<result name="success" type="tiles">/adDetails_mobile.tiles</result>
+		</action>
+		<action name="televisionAdDetails" class="com.cbuddy.action.posts.TelevisionAction" method="getAdDetails">
+			<!--interceptor-ref name="secureStack"></interceptor-ref-->
+			<result name="login" type="tiles">/login.tiles</result>
+			<result name="success" type="tiles">/adDetails_television.tiles</result>
+		</action>
+		<action name="cameraAdDetails" class="com.cbuddy.action.posts.CameraAction" method="getAdDetails">
+			<!--interceptor-ref name="secureStack"></interceptor-ref-->
+			<result name="login" type="tiles">/login.tiles</result>
+			<result name="success" type="tiles">/adDetails_camera.tiles</result>
+		</action>
+		<action name="dvdAdDetails" class="com.cbuddy.action.posts.DVDAction" method="getAdDetails">
+			<!--interceptor-ref name="secureStack"></interceptor-ref-->
+			<result name="login" type="tiles">/login.tiles</result>
+			<result name="success" type="tiles">/adDetails_dvd.tiles</result>
+		</action>
+		<action name="airCoolerAdDetails" class="com.cbuddy.action.posts.AirCoolerAction" method="getAdDetails">
+			<!--interceptor-ref name="secureStack"></interceptor-ref-->
+			<result name="login" type="tiles">/login.tiles</result>
+			<result name="success" type="tiles">/adDetails_airCooler.tiles</result>
+		</action>
+		<action name="fridgeAdDetails" class="com.cbuddy.action.posts.FridgeAction" method="getAdDetails">
+			<!--interceptor-ref name="secureStack"></interceptor-ref-->
+			<result name="login" type="tiles">/login.tiles</result>
+			<result name="success" type="tiles">/adDetails_fridge.tiles</result>
+		</action>
+		<action name="washingMachineAdDetails" class="com.cbuddy.action.posts.WashingMachineAction" method="getAdDetails">
+			<!--interceptor-ref name="secureStack"></interceptor-ref-->
+			<result name="login" type="tiles">/login.tiles</result>
+			<result name="success" type="tiles">/adDetails_washingMachine.tiles</result>
+		</action>
+		<action name="othersAdDetails" class="com.cbuddy.action.posts.OtherPostsAction" method="getAdDetails">
+			<!--interceptor-ref name="secureStack"></interceptor-ref-->
+			<result name="login" type="tiles">/login.tiles</result>
+			<result name="success" type="tiles">/adDetails_others.tiles</result>
+		</action>		
 	</package>
 </struts>

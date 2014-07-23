@@ -22,6 +22,7 @@ import org.hibernate.criterion.Restrictions;
 
 import com.cbuddy.beans.PCamera;
 import com.cbuddy.beans.Poit;
+import com.cbuddy.services.CameraAdService;
 import com.cbuddy.util.CBuddyConstants;
 import com.cbuddy.util.CriteriaUtil;
 import com.cbuddy.util.LocationUtil;
@@ -213,7 +214,7 @@ public class CameraAction extends ActionSupport implements SessionAware, Servlet
 		Poit poit = new Poit();
 		
 		poit.setCategory(CBuddyConstants.CATEGORY_ELECTRONICS_AND_HOUSEHOLD);
-		poit.setSubCategory(CBuddyConstants.SUBCATEGORY_ELECTRONICS_AND_HOUSEHOLD_TELEVISION);
+		poit.setSubCategory(CBuddyConstants.SUBCATEGORY_ELECTRONICS_AND_HOUSEHOLD_CAMERA);
 		
 		poit.setTitle(postDetails.getTitle());
 		poit.setCity(postDetails.getCity());
@@ -291,14 +292,18 @@ public class CameraAction extends ActionSupport implements SessionAware, Servlet
 		SessionFactory sessionFactory = (SessionFactory) ServletActionContext.getServletContext().getAttribute("sessionFactory");
 		Session dbSession = sessionFactory.openSession();
 		for(CameraPostDetails postDetails:adList){
-			String cityName = LocationUtil.getCityName(dbSession, postDetails.getCity());
-			String locName = LocationUtil.getLocationName(dbSession, postDetails.getCity(), postDetails.getLocation());
-			postDetails.setCity(cityName);
-			postDetails.setLocation(locName);
-			postDetails.setPriceStr(NumberFormatterUtil.formatAmount(postDetails.getPrice()));
+			populateAdditionalDetailsForPost(postDetails, dbSession);
 		}
 	}
 
+	private void populateAdditionalDetailsForPost(CameraPostDetails postDetails, Session dbSession){
+		String cityName = LocationUtil.getCityName(dbSession, postDetails.getCity());
+		String locName = LocationUtil.getLocationName(dbSession, postDetails.getCity(), postDetails.getLocation());
+		postDetails.setCity(cityName);
+		postDetails.setLocation(locName);
+		postDetails.setPriceStr(NumberFormatterUtil.formatAmount(postDetails.getPrice()));		
+	}
+	
 	public String getAdListForCriteria(){
 
 		if(postDetails.getCategory()==null || postDetails.getCategory().equals("") || !postDetails.getCategory().equals(CBuddyConstants.CATEGORY_ELECTRONICS_AND_HOUSEHOLD)){
@@ -354,23 +359,18 @@ public class CameraAction extends ActionSupport implements SessionAware, Servlet
 		return list;
 	}
 	
-	private Criteria generateFilters(CameraPostDetails postDetails, Criteria criteria) {
+	public String getAdDetails(){
 
-		if(postDetails.getLocation() != null){
-			criteria = CriteriaUtil.getCriteriaForLocation(criteria, postDetails.getLocation());	
-		}
-		if(postDetails.getBrand() != null){
-			criteria = CriteriaUtil.createCriteriaForIn(criteria, postDetails.getBrand(), "brand");		
-		}
-		if(postDetails.getAmt() != null){
-			criteria = CriteriaUtil.getCriteriaForAmt(criteria, postDetails.getAmt(), "price");
-		}
-		if(postDetails.getYearStr() != null){
-			criteria = CriteriaUtil.createCriteriaForYear(criteria, postDetails.getYearStr());
-		}		
-		return criteria;	
+		CameraAdService adService = new CameraAdService();
+		postDetails = adService.getAdDetailsForCamera(getModel());
+
+		SessionFactory sessionFactory = (SessionFactory) ServletActionContext.getServletContext().getAttribute("sessionFactory");
+		Session dbSession = sessionFactory.openSession();
+		
+		populateAdditionalDetailsForPost(postDetails, dbSession);
+		
+		return "success";
 	}
-	
 	
 	@Override
 	public CameraPostDetails getModel() {

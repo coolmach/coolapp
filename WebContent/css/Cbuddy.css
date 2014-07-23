@@ -108,3 +108,4 @@
 #electronicsSubCategorySection li:hover{background-color:#FFFFFF;}
 .fieldCaption{color:#AAAAAA;}
 .fieldValueBold{color:#FF0000;}
+.fieldValueItalics{font-style:italic;}

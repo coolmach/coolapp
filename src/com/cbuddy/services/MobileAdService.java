@@ -14,7 +14,7 @@ import org.hibernate.criterion.Restrictions;
 
 import com.cbuddy.util.CriteriaUtil;
 import com.model.user.MobilePostDetails;
-import com.model.user.RealEstatePostDetails;
+import com.model.user.MobilePostDetails;
 
 public class MobileAdService{
 	
@@ -102,16 +102,18 @@ public class MobileAdService{
 			criteria = CriteriaUtil.getCriteriaForAmt(criteria, postDetails.getAmt(), "price");
 		}
 		if(postDetails.getYearStr()!=null){
-			criteria = getCriteriaForYear(criteria, postDetails.getYearStr());
+			//criteria = getCriteriaForYear(criteria, postDetails.getYearStr());
+			criteria = CriteriaUtil.createCriteriaForIn(criteria, postDetails.getYearStr(), "year");
 		}
 		if(postDetails.getOperatingSystem()!=null){
-			criteria = getCriteriaForOS(criteria, postDetails.getOperatingSystem());
+			//criteria = getCriteriaForOS(criteria, postDetails.getOperatingSystem());
+			criteria = CriteriaUtil.createCriteriaForIn(criteria, postDetails.getOperatingSystem(), "os");
 		}
 
 		return criteria;	
 	}
 
-	private Criteria getCriteriaForSims(Criteria criteria, String sims) {
+	/*private Criteria getCriteriaForSims(Criteria criteria, String sims) {
 		List simsList = new ArrayList();
 		String obj[] = sims.split(",");
 		for(String make:obj){
@@ -122,8 +124,8 @@ public class MobileAdService{
 		return criteria;
 	}
 
-
-	private Criteria getCriteriaForOS(Criteria criteria, String osSTR) {
+*/
+	/*private Criteria getCriteriaForOS(Criteria criteria, String osSTR) {
 		List osList = new ArrayList();
 		String obj[] = osSTR.split(",");
 		for(String make:obj){
@@ -132,10 +134,10 @@ public class MobileAdService{
 		criteria.add(Restrictions.in("year", osList));
 
 		return criteria;
-	}
+	}*/
 
 
-	public Criteria getCriteriaForYear(Criteria criteria, String yearOfMake) {
+	/*public Criteria getCriteriaForYear(Criteria criteria, String yearOfMake) {
 		List yearList = new ArrayList();
 		String obj[] = yearOfMake.split(",");
 		for(String make:obj){
@@ -144,5 +146,13 @@ public class MobileAdService{
 		criteria.add(Restrictions.in("year", yearList));
 
 		return criteria;
+	}*/
+	
+	public MobilePostDetails getAdDetailsForMobile(MobilePostDetails postDetails){
+		SessionFactory sessionFactory = (SessionFactory) ServletActionContext.getServletContext().getAttribute("sessionFactory");
+		Session session = sessionFactory.openSession();
+		MobilePostDetails adDetails = (MobilePostDetails)session.get(MobilePostDetails.class, new Integer(postDetails.getPostIdStr()));
+		return adDetails;
 	}
+
 }

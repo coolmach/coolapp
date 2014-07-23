@@ -32,6 +32,8 @@ public class PAirCooler {
 	
 	private double tonnage;
 	private String acType;
+	
+	private int postIdStr;
 
 	@Id
 	@Column(name="POST_ID")
@@ -154,4 +156,13 @@ public class PAirCooler {
 	public void setAcType(String acType) {
 		this.acType = acType;
 	}
+	
+	@Transient
+	public int getPostIdStr() {
+		return postIdStr;
+	}
+	public void setPostIdStr(int postIdStr) {
+		this.postIdStr = postIdStr;
+	}
+
 }

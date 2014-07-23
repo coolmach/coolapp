@@ -19,7 +19,6 @@ import org.hibernate.SessionFactory;
 import com.cbuddy.beans.Pdau;
 import com.cbuddy.beans.Poit;
 import com.cbuddy.services.AutomobileAdService;
-import com.cbuddy.services.RealEstateAdService;
 import com.cbuddy.util.CBuddyConstants;
 import com.cbuddy.util.LocationUtil;
 import com.cbuddy.util.NumberFormatterUtil;
@@ -107,7 +106,7 @@ public class AutomobileAction extends ActionSupport implements SessionAware, Ser
 			addFieldError("errorMsg", "Please select the Make of the vehicle");
 			return false;
 		}
-		if(postDetails.getModel().equals("")){
+		if(postDetails.getAutomobileModel().equals("")){
 			addFieldError("errorMsg", "Please select the Model of the vehicle");
 			return false;
 		}
@@ -171,7 +170,7 @@ public class AutomobileAction extends ActionSupport implements SessionAware, Ser
 			return false;
 		}
 
-		temp = postDetails.getModel();
+		temp = postDetails.getAutomobileModel();
 		if(temp!=null && temp.length()>16){
 			addFieldError("errorMsg", "Invalid Model");
 			return false;
@@ -255,7 +254,7 @@ public class AutomobileAction extends ActionSupport implements SessionAware, Ser
 		pdau.setKms(postDetails.getKms());
 		pdau.setLocation(postDetails.getSelectedLocationCode());
 		pdau.setMake(postDetails.getMake());
-		pdau.setModel(postDetails.getModel());
+		pdau.setAutomobileModel(postDetails.getAutomobileModel());
 		pdau.setModifiedBy(userId);
 		pdau.setModifiedOn(current);
 		pdau.setNoOfOwners(postDetails.getNoOfOwners());
@@ -303,6 +302,9 @@ public class AutomobileAction extends ActionSupport implements SessionAware, Ser
 	}
 
 	private void populateAdditionalDetailsForPost(AutomobilePostDetails postDetails, Session dbSession){
+		if(postDetails == null){
+			return;
+		}
 		String cityName = LocationUtil.getCityName(dbSession, postDetails.getCity());
 		String locName = LocationUtil.getLocationName(dbSession, postDetails.getCity(), postDetails.getLocation());
 		postDetails.setCity(cityName);
@@ -313,10 +315,10 @@ public class AutomobileAction extends ActionSupport implements SessionAware, Ser
 		}
 		if(postDetails.getSubCategory().equals(CBuddyConstants.SUBCATEGORY_AUTOMOBILES_CARS)){
 			postDetails.setMakeStr(Utils.getInstance().getCarMakeDesc(postDetails.getMake()));
-			postDetails.setModelStr(Utils.getInstance().getCarModelDesc(postDetails.getMake(), postDetails.getModel()));
+			postDetails.setModelStr(Utils.getInstance().getCarModelDesc(postDetails.getMake(), postDetails.getAutomobileModel()));
 		}else if(postDetails.getSubCategory().equals(CBuddyConstants.SUBCATEGORY_AUTOMOBILES_MOTORCYCLES)){
 			postDetails.setMakeStr(Utils.getInstance().getBikeMakeDesc(postDetails.getMake()));
-			postDetails.setModelStr(Utils.getInstance().getBikeModelDesc(postDetails.getMake(), postDetails.getModel()));
+			postDetails.setModelStr(Utils.getInstance().getBikeModelDesc(postDetails.getMake(), postDetails.getAutomobileModel()));
 		}
 	}
 	

@@ -34,6 +34,8 @@ public class POthers {
 	private String subCategory;
 	private String productType;
 	
+	private int postIdStr;
+	
 	@Id
 	@Column(name="POST_ID")
 	public int getPostId() {
@@ -163,4 +165,13 @@ public class POthers {
 	public void setProductType(String productType) {
 		this.productType = productType;
 	}
+	
+	@Transient
+	public int getPostIdStr() {
+		return postIdStr;
+	}
+	public void setPostIdStr(int postIdStr) {
+		this.postIdStr = postIdStr;
+	}
+
 }

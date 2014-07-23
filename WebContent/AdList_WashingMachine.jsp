@@ -1,7 +1,7 @@
 <%@ taglib prefix="s" uri="/struts-tags"%>
 <div class="data">
 	<s:if test="adList.size() > 0">
-		<div class="col-md-6 listSection" id="postListSection">
+		<div class="col-md-8 listSection" id="postListSection">
 		<table class="table table-bordered">
 			<tr>
 				<th>Post Details</th>
@@ -12,8 +12,15 @@
 					 <td style="width:25%;"><img class="images_ad" src="<s:url value='ImageAction?imageId=%{imageFileName}' />" style="width:100px;height:100px;"></td> 
 					 <td>
 						<p style="color:#428bca;font-size:14px;">
-							<s:property value="title" />
-						</p>
+							<a
+								href="<s:url action="washingMachineAdDetails" escapeAmp="false"> 
+										<s:param name="category" value="'ELEC'"></s:param>
+				                        <s:param name="subCategory" value="%{subCategory}"></s:param>
+				                        <s:param name="postIdStr" value="%{postId}"></s:param>
+										</s:url>">
+								<s:property value="title" />
+							</a>
+						</p> 
 						<span class="postField"><s:property value="city" /></span> <span class="separator">|</span>
 						<span class="postField"><s:property value="location" /></span>
 						<br>
@@ -23,7 +30,16 @@
 						<br>
 					</td>
 					<td>
-						<span class="postField_Highlight">Rs.<s:property value="priceStr" /></span>
+						<span class="postField_Highlight">
+							<a
+										class="grey_link"
+										href="<s:url action="washingMachineAdDetails" escapeAmp="false"> 
+								<s:param name="category" value="'ELEC'"></s:param>
+		                        <s:param name="subCategory" value="%{subCategory}"></s:param>
+		                        <s:param name="postIdStr" value="%{postId}"></s:param>
+								</s:url>">Rs.<s:property value="priceStr" /> 
+							</a>						
+						</span>
 					</td> 
 					<td><s:date name="createdOn" format="dd/MM/yyyy" /></td>
 				</tr>  

@@ -105,8 +105,8 @@ public class AutomobileAdService{
 			if(postDetails.getMake()!=null){
 				criteria = getCriteriaForMake(criteria, postDetails.getMake());		
 			}
-			if(postDetails.getModel()!=null){
-				criteria = getCriteriaForModel(criteria, postDetails.getModel());		
+			if(postDetails.getAutomobileModel()!=null){
+				criteria = getCriteriaForModel(criteria, postDetails.getAutomobileModel());		
 			}
 			if(postDetails.getFuelType()!=null){
 				criteria = getCriteriaForFuelType(criteria, postDetails.getFuelType());		
