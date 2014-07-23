@@ -315,6 +315,27 @@
 		</action>
 		<action name="newHome">
 			<result name="success">/newHome.jsp</result>
-		</action>				
+		</action>	
+		<!--action name="adDetails" class="com.cbuddy.action.posts.AdDetailsAction">
+			<interceptor-ref name="secureStack"></interceptor-ref>
+			<result name="login" type="tiles">/home.tiles</result>
+			<result name="success" type="tiles">/home.tiles</result>
+			<result name="realEstate" type="tiles">/adDetails_real_estate.tiles</result>
+			<result name="automobile" type="tiles">/adDetails_automobile.tiles</result>
+			<result name="computers" type="tiles">/adDetails_computers.tiles</result>
+			<result name="mobile" type="tiles">/adDetails_mobile.tiles</result>
+			<result name="electronics" type="tiles">/adDetails_electronics.tiles</result>
+			<result name="furniture" type="tiles">/adDetails_furniture.tiles</result>
+		</action-->
+		<action name="realestateAdDetails" class="com.cbuddy.action.posts.RealEstateAction" method="getAdDetails">
+			<interceptor-ref name="secureStack"></interceptor-ref>
+			<result name="login" type="tiles">/login.tiles</result>
+			<result name="success" type="tiles">/adDetails_realestate.tiles</result>
+		</action>
+		<action name="automobileAdDetails" class="com.cbuddy.action.posts.AutomobileAction" method="getAdDetails">
+			<interceptor-ref name="secureStack"></interceptor-ref>
+			<result name="login" type="tiles">/login.tiles</result>
+			<result name="success" type="tiles">/adDetails_automobile.tiles</result>
+		</action>						
 	</package>
 </struts>

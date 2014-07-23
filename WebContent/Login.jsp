@@ -185,3 +185,7 @@
 		$("#signInSection").show();		
 	}
 </script>
+
+<link rel="stylesheet" type="text/css" href="thirdparty/jquery-ui/jquery-ui-1.10.3.custom.min.css"/>
+<script src="js/jquery.min.js"></script>
+<script type="text/javascript" src="thirdparty/jquery-ui/jquery-ui-1.10.3.custom.min.js"></script>	

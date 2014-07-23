@@ -34,6 +34,7 @@ public class AutomobilePostDetails extends Pdau implements Serializable{
 	private String selectedLocationCode;
 	
 	private int corpId;
+	private int postIdStr;
 
 	@Transient
 	public String getCategory() {
@@ -168,6 +169,15 @@ public class AutomobilePostDetails extends Pdau implements Serializable{
 
 	public void setCorpId(int corpId) {
 		this.corpId = corpId;
+	}
+
+	@Transient
+	public int getPostIdStr() {
+		return postIdStr;
+	}
+
+	public void setPostIdStr(int postIdStr) {
+		this.postIdStr = postIdStr;
 	}
 
 }

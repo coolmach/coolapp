@@ -36,16 +36,17 @@
 				</div>	
 			</div>
 			<div class="form-group">
-				<label for="carParking" class="col-sm-4 control-label">Preference</label>
-				<div class="col-sm-6">
+				<label for="maritalPreference" class="col-sm-4 control-label">Preference</label>
+				<div class="col-sm-7">
 					<input type="radio" class="form-control-radio" name="maritalPreference" id="maritalPreference" value="B"> <span class="form-control-radio-label">Bachelors</span>
 					<input type="radio" class="form-control-radio" name="maritalPreference" id="maritalPreference" value="F"> <span class="form-control-radio-label">Family</span>
+					<input type="radio" class="form-control-radio" name="maritalPreference" id="maritalPreference" value="N" checked> <span class="form-control-radio-label">None</span>
 				</div>
 			</div>
 			<div class="form-group">
 				<label for="furnished" class="col-sm-4 control-label">Furnished</label>
 				<div class="col-sm-6">
-					<input type="radio" class="form-control-radio" name="furnished" id="furnished" value="N"> <span class="form-control-radio-label">No</span>
+					<input type="radio" class="form-control-radio" name="furnished" id="furnished" value="N" checked> <span class="form-control-radio-label">No</span>
 					<input type="radio" class="form-control-radio" name="furnished" id="furnished" value="S"> <span class="form-control-radio-label">Partial</span>
 					<input type="radio" class="form-control-radio" name="furnished" id="furnished" value="F"> <span class="form-control-radio-label">Full</span>
 				</div>

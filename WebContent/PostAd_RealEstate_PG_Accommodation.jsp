@@ -28,8 +28,8 @@
 			<div class="form-group">
 				<label for="gender" class="col-sm-4 control-label">Gender</label>
 				<div class="col-sm-6">
-					<input type="radio" class="form-control-radio" name="genderPreference" id="genderPreference" value="M"> <span class="form-control-radio-label">Male</span>
-					<input type="radio" class="form-control-radio" name="genderPreference" id="genderPreference" value="F"> <span class="form-control-radio-label">Female</span>
+					<input type="radio" class="form-control-radio" name="gender" id="gender" value="M"> <span class="form-control-radio-label">Male</span>
+					<input type="radio" class="form-control-radio" name="gender" id="gender" value="F"> <span class="form-control-radio-label">Female</span>
 				</div>
 			</div>	
 			<div class="form-group">
@@ -98,7 +98,7 @@
 			<div class="form-group">
 				<div class="col-sm-6">
 					<input type="checkbox" name="carParking" value="Y"><span class="checkBoxText">Car Parking</span><BR>
-					<input type="checkbox" name="wiFi" value="Y"><span class="checkBoxText">Wi-Fi</span><BR>
+					<input type="checkbox" name="wifi" value="Y"><span class="checkBoxText">Wi-Fi</span><BR>
 					<input type="checkbox" name="tv" value="Y"><span class="checkBoxText">TV/DTH</span><BR>
 				</div>
 			</div>	

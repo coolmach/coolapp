@@ -19,7 +19,6 @@ import org.hibernate.SessionFactory;
 import com.cbuddy.beans.NameValuePair;
 import com.cbuddy.beans.Pdre;
 import com.cbuddy.beans.Poit;
-import com.cbuddy.services.AutomobileAdService;
 import com.cbuddy.services.RealEstateAdService;
 import com.cbuddy.util.CBuddyConstants;
 import com.cbuddy.util.LocationUtil;
@@ -205,7 +204,7 @@ public class RealEstateAction extends ActionSupport implements SessionAware, Ser
 					subCategory.equals(CBuddyConstants.SUBCATEGORY_REAL_ESTATE_IND_HOUSE_FOR_RENT) ||
 					subCategory.equals(CBuddyConstants.SUBCATEGORY_REAL_ESTATE_PG_ACCOMODATION) ||
 					subCategory.equals(CBuddyConstants.SUBCATEGORY_REAL_ESTATE_ROOMMATE_REQUIRED)
-			){
+					){
 				addFieldError("errorMsg", "Invalid Rent");	
 			}else{
 				addFieldError("errorMsg", "Invalid Price");
@@ -323,6 +322,7 @@ public class RealEstateAction extends ActionSupport implements SessionAware, Ser
 		pdre.setFacingDirection(postDetails.getFacingDirection());
 		pdre.setFloorNumber(postDetails.getFloorNumber());
 		pdre.setFoodPreference(postDetails.getFoodPreference());
+		pdre.setFood(postDetails.getFood());
 		pdre.setFurnished(postDetails.getFurnished());
 		pdre.setGender(postDetails.getGender());
 		pdre.setGym(postDetails.getGym());
@@ -343,6 +343,7 @@ public class RealEstateAction extends ActionSupport implements SessionAware, Ser
 		pdre.setSwimmingPool(postDetails.getSwimmingPool());
 		pdre.setTv(postDetails.getTv());
 		pdre.setWifi(postDetails.getWifi());
+		pdre.setPowerBackup(postDetails.getPowerBackup());
 
 		dbSession.save(pdre);
 
@@ -375,40 +376,58 @@ public class RealEstateAction extends ActionSupport implements SessionAware, Ser
 		SessionFactory sessionFactory = (SessionFactory) ServletActionContext.getServletContext().getAttribute("sessionFactory");
 		Session dbSession = sessionFactory.openSession();
 		for(RealEstatePostDetails postDetails:adList){
-			String cityName = LocationUtil.getCityName(dbSession, postDetails.getCity());
-			String locName = LocationUtil.getLocationName(dbSession, postDetails.getCity(), postDetails.getLocation());
-			postDetails.setCity(cityName);
-			postDetails.setLocation(locName);
-			postDetails.setPriceValueStr(NumberFormatterUtil.formatAmount(postDetails.getPriceValue()));
-			postDetails.setMaintenanceStr(NumberFormatterUtil.formatAmount(postDetails.getMaintenance()));
-			postDetails.setFacingDirectionStr(Utils.getInstance().getDirectionDesc(postDetails.getFacingDirection()));
-			postDetails.setFloorNumberStr(Utils.getInstance().getFloorNumberDesc(postDetails.getFloorNumber()));
-			postDetails.setFurnishedStr(Utils.getInstance().getFurnishedDesc(postDetails.getFurnished()));
+			populateAdditionalDetailsForPost(postDetails, dbSession);
+		}
+	}
 
-			String temp = "";
-			if(postDetails.getNewOrResale()!= null){
-				if(postDetails.getNewOrResale().equals("N")){
-					//New
-					if(postDetails.getReadyToOccupy().equals("Y")){
-						temp = "New - Ready to Move";
-					}else{
-						if(postDetails.getExpectedCompletionDate()!=null){
-							temp = "New - Expected Completion: " + postDetails.getExpectedCompletionDate();
-						}else{
-							temp = "New - Under Construction";
-						}
-					}
+	private void populateAdditionalDetailsForPost(RealEstatePostDetails postDetails, Session dbSession){
+		String cityName = LocationUtil.getCityName(dbSession, postDetails.getCity());
+		String locName = LocationUtil.getLocationName(dbSession, postDetails.getCity(), postDetails.getLocation());
+		postDetails.setCity(cityName);
+		postDetails.setLocation(locName);
+		postDetails.setPriceValueStr(NumberFormatterUtil.formatAmount(postDetails.getPriceValue()));
+		postDetails.setMaintenanceStr(NumberFormatterUtil.formatAmount(postDetails.getMaintenance()));
+		postDetails.setFacingDirectionStr(Utils.getInstance().getDirectionDesc(postDetails.getFacingDirection()));
+		postDetails.setFloorNumberStr(Utils.getInstance().getFloorNumberDesc(postDetails.getFloorNumber()));
+		postDetails.setFurnishedStr(Utils.getInstance().getFurnishedDesc(postDetails.getFurnished()));
+		String maritalPreference = postDetails.getMaritalPreference();
+		if(maritalPreference != null){
+			if(maritalPreference.equals("B")){
+				postDetails.setMaritalPreference("Bachelors");
+			}else if(maritalPreference.equals("F")){
+				postDetails.setMaritalPreference("Family");
+			}else{
+				postDetails.setMaritalPreference("None");
+			}
+		}
+		String genderPreference = postDetails.getGender();
+		if(genderPreference != null){
+			postDetails.setGender(genderPreference.equals("M")?"Male":"Female");
+		}
+		
+		String temp = "";
+		if(postDetails.getNewOrResale()!= null){
+			if(postDetails.getNewOrResale().equals("N")){
+				//New
+				if(postDetails.getReadyToOccupy().equals("Y")){
+					temp = "New - Ready to Move";
 				}else{
-					//Resale
-					if(postDetails.getAgeValue()>0){
-						temp = "Resale - " + postDetails.getAgeValue() + " years old";
+					if(postDetails.getExpectedCompletionDate()!=null){
+						temp = "New - Expected Completion: " + postDetails.getExpectedCompletionDate();
 					}else{
-						temp = "Resale";
+						temp = "New - Under Construction";
 					}
 				}
+			}else{
+				//Resale
+				if(postDetails.getAgeValue()>0){
+					temp = "Resale - " + postDetails.getAgeValue() + " years old";
+				}else{
+					temp = "Resale";
+				}
 			}
-			postDetails.setNewOrResaleStr(temp);
 		}
+		postDetails.setNewOrResaleStr(temp);
 	}
 
 	public String getAdListForRealEstate(){
@@ -433,11 +452,16 @@ public class RealEstateAction extends ActionSupport implements SessionAware, Ser
 		return "success";
 	}
 
-	public String getAdDetailsForRealEstate(){
+	public String getAdDetails(){
 
 		RealEstateAdService adService = new RealEstateAdService();
 		postDetails = adService.getAdDetailsForRealEstate(getModel());
 
+		SessionFactory sessionFactory = (SessionFactory) ServletActionContext.getServletContext().getAttribute("sessionFactory");
+		Session dbSession = sessionFactory.openSession();
+		
+		populateAdditionalDetailsForPost(postDetails, dbSession);
+		
 		return "success";
 	}
 

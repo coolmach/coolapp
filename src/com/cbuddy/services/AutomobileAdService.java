@@ -15,7 +15,6 @@ import org.hibernate.criterion.Restrictions;
 import com.cbuddy.util.CBuddyConstants;
 import com.cbuddy.util.CriteriaUtil;
 import com.model.user.AutomobilePostDetails;
-import com.model.user.MobilePostDetails;
 
 public class AutomobileAdService{
 	
@@ -44,6 +43,13 @@ public class AutomobileAdService{
 		int count = (Integer) criteria.setProjection(Projections.rowCount()).uniqueResult();
 	
 		return count;
+	}
+	
+	public AutomobilePostDetails getAdDetails(AutomobilePostDetails postDetails){
+		SessionFactory sessionFactory = (SessionFactory) ServletActionContext.getServletContext().getAttribute("sessionFactory");
+		Session session = sessionFactory.openSession();
+		AutomobilePostDetails adDetails = (AutomobilePostDetails)session.get(AutomobilePostDetails.class, new Integer(postDetails.getPostIdStr()));
+		return adDetails;
 	}
 	
 	

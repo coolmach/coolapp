@@ -455,8 +455,6 @@ public class RealEstateAdService{
 		Session session = sessionFactory.openSession();
 		RealEstatePostDetails adDetails = (RealEstatePostDetails)session.get(RealEstatePostDetails.class, new Integer(postDetails.getPostIdStr()));
 		return adDetails;
-
-
 	}
 
 }

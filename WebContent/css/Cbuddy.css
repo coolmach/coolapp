@@ -106,3 +106,5 @@
 #electronicsSubCategorySection a{text-decoration:underline;color:#428bca}
 #electronicsSubCategorySection li{font-size:14px;color:#428bca;padding:5px;}
 #electronicsSubCategorySection li:hover{background-color:#FFFFFF;}
+.fieldCaption{color:#AAAAAA;}
+.fieldValueBold{color:#FF0000;}

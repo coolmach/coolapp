@@ -177,9 +177,9 @@ function applyFilters(){
 		var category = $("#category").val();
 		$("#subCategory").html("");
 		if (category == "REAL") {
-			var numbers = [ 1, 2, 3, 4, 5, 6, 7];
-			var values = [ '1', '2', '3', '4' ,'5', '6', '7'];
-			var options = [ 'Apartment for Sale', 'Apartment for Rent',
+			var numbers = [ 1, 2, 3, 4, 5, 6, 7, 8];
+			var values = [ '0', '1', '2', '3', '4' ,'5', '6', '7'];
+			var options = [ 'Select', 'Apartment for Sale', 'Apartment for Rent',
 			                'Individual House for Sale', 'Individual House for Rent', 'PG Accommodation', 'Land For Sale', 'Roommate Required'];
 		} else if (category == "AUTO") {
 			var numbers = [ 1, 2, 3];

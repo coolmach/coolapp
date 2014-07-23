@@ -28,8 +28,8 @@
 			<div class="form-group">
 				<label for="gender" class="col-sm-4 control-label">Gender</label>
 				<div class="col-sm-6">
-					<input type="radio" class="form-control-radio" name="genderPreference" id="genderPreference" value="M" checked> <span class="form-control-radio-label">Male</span>
-					<input type="radio" class="form-control-radio" name="genderPreference" id="genderPreference" value="F"> <span class="form-control-radio-label">Female</span>
+					<input type="radio" class="form-control-radio" name="gender" id="gender" value="M" checked> <span class="form-control-radio-label">Male</span>
+					<input type="radio" class="form-control-radio" name="gender" id="gender" value="F"> <span class="form-control-radio-label">Female</span>
 				</div>
 			</div>
 			<div class="form-group">
@@ -59,14 +59,13 @@
 				<div class="col-sm-6" style="padding-top:6px;">
 					<select class="dropDown" name="regionalPreference" id="regionalPreference">
 						<option value="No Preference">No Preference</option>
-						<option value="T">Tamil</option>
-						<option value="H">Hindi</option>
-						<option value="K">Kannada</option>
-						<option value="H">Hindi</option>
-						<option value="T">Telugu</option>
-						<option value="M">Malayalam</option>
-						<option value="P">Punjabi</option>
-						<option value="B">Bengali</option>
+						<option value="Tamil">Tamil</option>
+						<option value="Hindi">Hindi</option>
+						<option value="Kannada">Kannada</option>
+						<option value="Telugu">Telugu</option>
+						<option value="Malayalam">Malayalam</option>
+						<option value="Punjabi">Punjabi</option>
+						<option value="Bengali">Bengali</option>
 					</select>
 				</div>
 			</div>

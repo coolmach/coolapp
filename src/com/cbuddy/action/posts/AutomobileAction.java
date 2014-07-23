@@ -19,6 +19,7 @@ import org.hibernate.SessionFactory;
 import com.cbuddy.beans.Pdau;
 import com.cbuddy.beans.Poit;
 import com.cbuddy.services.AutomobileAdService;
+import com.cbuddy.services.RealEstateAdService;
 import com.cbuddy.util.CBuddyConstants;
 import com.cbuddy.util.LocationUtil;
 import com.cbuddy.util.NumberFormatterUtil;
@@ -297,24 +298,28 @@ public class AutomobileAction extends ActionSupport implements SessionAware, Ser
 		SessionFactory sessionFactory = (SessionFactory) ServletActionContext.getServletContext().getAttribute("sessionFactory");
 		Session dbSession = sessionFactory.openSession();
 		for(AutomobilePostDetails postDetails:adList){
-			String cityName = LocationUtil.getCityName(dbSession, postDetails.getCity());
-			String locName = LocationUtil.getLocationName(dbSession, postDetails.getCity(), postDetails.getLocation());
-			postDetails.setCity(cityName);
-			postDetails.setLocation(locName);
-			postDetails.setPriceStr(NumberFormatterUtil.formatAmount(postDetails.getPrice()));
-			if(postDetails.getFuelType()!=null){
-				postDetails.setFuelTypeStr(Utils.getInstance().getFuelTypeDesc(postDetails.getFuelType()));	
-			}
-			if(postDetails.getSubCategory().equals(CBuddyConstants.SUBCATEGORY_AUTOMOBILES_CARS)){
-				postDetails.setMakeStr(Utils.getInstance().getCarMakeDesc(postDetails.getMake()));
-				postDetails.setModelStr(Utils.getInstance().getCarModelDesc(postDetails.getMake(), postDetails.getModel()));
-			}else if(postDetails.getSubCategory().equals(CBuddyConstants.SUBCATEGORY_AUTOMOBILES_MOTORCYCLES)){
-				postDetails.setMakeStr(Utils.getInstance().getBikeMakeDesc(postDetails.getMake()));
-				postDetails.setModelStr(Utils.getInstance().getBikeModelDesc(postDetails.getMake(), postDetails.getModel()));
-			}
+			populateAdditionalDetailsForPost(postDetails, dbSession);
 		}
 	}
 
+	private void populateAdditionalDetailsForPost(AutomobilePostDetails postDetails, Session dbSession){
+		String cityName = LocationUtil.getCityName(dbSession, postDetails.getCity());
+		String locName = LocationUtil.getLocationName(dbSession, postDetails.getCity(), postDetails.getLocation());
+		postDetails.setCity(cityName);
+		postDetails.setLocation(locName);
+		postDetails.setPriceStr(NumberFormatterUtil.formatAmount(postDetails.getPrice()));
+		if(postDetails.getFuelType()!=null){
+			postDetails.setFuelTypeStr(Utils.getInstance().getFuelTypeDesc(postDetails.getFuelType()));	
+		}
+		if(postDetails.getSubCategory().equals(CBuddyConstants.SUBCATEGORY_AUTOMOBILES_CARS)){
+			postDetails.setMakeStr(Utils.getInstance().getCarMakeDesc(postDetails.getMake()));
+			postDetails.setModelStr(Utils.getInstance().getCarModelDesc(postDetails.getMake(), postDetails.getModel()));
+		}else if(postDetails.getSubCategory().equals(CBuddyConstants.SUBCATEGORY_AUTOMOBILES_MOTORCYCLES)){
+			postDetails.setMakeStr(Utils.getInstance().getBikeMakeDesc(postDetails.getMake()));
+			postDetails.setModelStr(Utils.getInstance().getBikeModelDesc(postDetails.getMake(), postDetails.getModel()));
+		}
+	}
+	
 	public String getAdListForAutomobile(){
 
 		if(postDetails.getCategory()==null || postDetails.getCategory().equals("") || !postDetails.getCategory().equals(CBuddyConstants.CATEGORY_AUTOMOBILES)){
@@ -337,6 +342,20 @@ public class AutomobileAction extends ActionSupport implements SessionAware, Ser
 
 		return "success";
 	}
+	
+	public String getAdDetails(){
+
+		AutomobileAdService adService = new AutomobileAdService();
+		postDetails = adService.getAdDetails(getModel());
+
+		SessionFactory sessionFactory = (SessionFactory) ServletActionContext.getServletContext().getAttribute("sessionFactory");
+		Session dbSession = sessionFactory.openSession();
+		
+		populateAdditionalDetailsForPost(postDetails, dbSession);
+		
+		return "success";
+	}
+
 
 	@Override
 	public AutomobilePostDetails getModel() {
