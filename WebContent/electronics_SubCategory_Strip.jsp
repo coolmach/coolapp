@@ -1,5 +1,23 @@
+<%-- <div id="right_LocationFilterSection">
+	<div class="form-group" id="subCategory-right">
+		<div id="" class="" style="position: relative;">
+			<h4>Categories</h4>
+			<ul class="list-unstyled">
+			       <!--  <li value="0"><span class="content">All</span></li> -->
+				    <li value="1"><span class="content">Televisions</span><span class="filter hidden">/televisionFilter</span></li>
+					<li value="2"><span class="content">Digital Cameras, Camcorders</span><span class="filter hidden">/cameraFilter</span></li>
+					<li value="3"><span class="content">Refrigerators</span><span class="filter hidden">/fridgeFilter</span></li>
+					<li value="4"><span class="content">Air Coolers, Air Conditioners</span><span class="filter hidden">/airCoolerFilter</span></li>
+					<li value="5"><span class="content">Washing Machines</span><span class="filter hidden">/washingMachineFilter</span></li>
+					<li value="6"><span class="content">DVD Players, Music Players, iPods</span><span class="filter hidden">/dvdFilter</span></li>
+			</ul>
+		</div>
+	</div>
+	<%@include file="/location_And_Corporate_Strip.jsp"%>
+</div>
+ --%>
 
-<div id="right_LocationFilterSection">
+ <div id="right_LocationFilterSection">
 
 	<div class="form-group">
 		<div class="col-sm-12" id="electronicsSubCategorySection">
@@ -23,5 +41,5 @@
 	</div>	
 
 	<%@include file="location_And_Corporate_Strip.jsp" %>
-</div>
+</div> 
 

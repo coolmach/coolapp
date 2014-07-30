@@ -114,6 +114,7 @@
 				</li>
 				<li><s:url action="electronics" var="urlTag" escapeAmp="false">
 					<s:param name="category">ELEC</s:param>
+					<s:param name="subCategory">0</s:param>
 				     </s:url> <a href="<s:property value="#urlTag" />">ELECTRONICS & HOUSEHOLD</a>
 				</li>
 				<li><s:url action="computers" var="urlTag" escapeAmp="false">

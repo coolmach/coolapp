@@ -1,11 +1,13 @@
 <%@ taglib prefix="s" uri="/struts-tags"%>
+
 <div class="data">
+<input id="pagecount" type="hidden" value="<s:property value="count"/>">
 	<s:if test="adList.size() > 0">
 		<div class="col-md-8 listSection" id="postListSection">
 		<table class="table table-bordered">
 			<tr>
 				<th>Post Details</th>
-				<td colspan="3" style="text-align:right;width:100%;">Showing Records (? - ? of ?))</td>
+				<td colspan="3" style="text-align:right;width:100%;"></td>
 			</tr>
 			<s:iterator value="adList" status="userStatus">
 				<tr style="font-size:12px;">
@@ -29,11 +31,11 @@
 						<span class="postField">Bought:&nbsp;On&nbsp;<s:property value="year" /></span>
 						<s:if test="%{resolution != null}">
 						<br>
-						<span class="separator">|</span> <span class="postField"><s:property value="resolution" /></span>&nbsp;MP</span>
+						<span><span class="separator">|</span> <span class="postField"><s:property value="resolution" /></span>&nbsp;MP</span>
 						</s:if>
 						<s:if test="%{zoom != null}">
 						<br>
-						<span class="separator">|</span> <span class="postField">Zoom:&nbsp;<s:property value="zoom" /></span>&nbsp;X</span>
+						<span><span class="separator">|</span> <span class="postField">Zoom:&nbsp;<s:property value="zoom" /></span>&nbsp;X</span>
 						</s:if> 		
 						<br>
 					</td>
@@ -53,15 +55,15 @@
 				</tr>  
 			</s:iterator>
 		</table>
+	</div>
 	</s:if>
 	<s:else>
 		<div class="col-md-6 listSection">
 			<table class="table table-bordered">
 				<tr>
-					<td colspan="3" style="padding-left:15px;font-size:13px;">No posts found! Try refining search criteria</th>
+					<th colspan="3" style="padding-left:15px;font-size:13px;">No posts found! Try refining search criteria</th>
 				</tr>
 			</table>
 		</div>	
 	</s:else>
 	</div>
-</div>

@@ -158,7 +158,7 @@
 		
 				
 		<!-- ELECTRONICS AND HOUSEHOLD - START -->
-		<action name="electronics" class="com.cbuddy.action.posts.CommonPostsAction" method="getAdListForCriteria">
+		 <action name="electronics" class="com.cbuddy.action.posts.CommonPostsAction" method="getAdListForCriteria">
 			<result type="tiles" name="success">/electronics.tiles</result>
 		</action>
 		<action name="television" class="com.cbuddy.action.posts.TelevisionAction" method="getAdListForCriteria">

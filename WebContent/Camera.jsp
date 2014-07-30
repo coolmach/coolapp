@@ -6,4 +6,4 @@
 
 <%@include file="AdList_Camera.jsp" %>
 
-<%@include file="location_And_Corporate_Details.jsp" %>
+<%@include file="electronics_SubCategory_Strip.jsp" %>

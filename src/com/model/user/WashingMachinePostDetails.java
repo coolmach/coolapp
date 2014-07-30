@@ -24,14 +24,27 @@ public class WashingMachinePostDetails extends PWashingMachine implements Serial
 	private String ContactPersonName;
 	private String ImageFileName;
 	private String category;
-
+	private String subCategory;
 	private String yearStr;
 	private String priceStr;
 	private String selectedLocationStr;
 	private String userEnteredLocationStr;
 	private String selectedLocationCode;
 
+	private String limit;
+	private String offset;
+	private String page="1";
+	
 	private int corpId;
+
+	@Transient
+	public String getSubCategory() {
+		return subCategory;
+	}
+
+	public void setSubCategory(String subCategory) {
+		this.subCategory = subCategory;
+	}
 
 	@Transient
 	public String getCategory() {
@@ -139,5 +152,29 @@ public class WashingMachinePostDetails extends PWashingMachine implements Serial
 
 	public void setYearStr(String yearStr) {
 		this.yearStr = yearStr;
+	}
+	
+	@Transient
+	public String getLimit() {
+		return limit;
+	}
+	public void setLimit(String limit) {
+		this.limit = limit;
+	}
+	
+	@Transient
+	public String getOffset() {
+		return offset;
+	}
+	public void setOffset(String offset) {
+		this.offset = offset;
+	}
+	
+	@Transient
+	public String getPage() {
+		return page;
+	}
+	public void setPage(String page) {
+		this.page = page;
 	}
 }

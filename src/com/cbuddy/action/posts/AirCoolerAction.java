@@ -23,6 +23,7 @@ import org.hibernate.criterion.Restrictions;
 import com.cbuddy.beans.PAirCooler;
 import com.cbuddy.beans.Poit;
 import com.cbuddy.services.AirCoolerAdService;
+import com.cbuddy.services.FridgeAdService;
 import com.cbuddy.util.CBuddyConstants;
 import com.cbuddy.util.CriteriaUtil;
 import com.cbuddy.util.LocationUtil;
@@ -44,6 +45,8 @@ public class AirCoolerAction extends ActionSupport implements SessionAware, Serv
 	private String uploadContentType;
 
 	private String categoryStr;
+	private String subCategoryStr;
+	private int count;
 
 	private String responseMsg;
 
@@ -323,60 +326,27 @@ public class AirCoolerAction extends ActionSupport implements SessionAware, Serv
 
 	public String getAdListForCriteria(){
 
+		System.out.println(postDetails.getBrand()+" : "+postDetails.getAmt()+" : "+postDetails.getYearStr());
 		if(postDetails.getCategory()==null || postDetails.getCategory().equals("") || !postDetails.getCategory().equals(CBuddyConstants.CATEGORY_ELECTRONICS_AND_HOUSEHOLD)){
 			postDetails.setCategory(CBuddyConstants.CATEGORY_ELECTRONICS_AND_HOUSEHOLD);
 		}	
 
 		categoryStr = Utils.getInstance().getCategoryDesc(postDetails.getCategory());
-		
-		adList = getAdListByCategory(getModel());
+		subCategoryStr = Utils.getInstance().getSubCategoryDesc(postDetails.getCategory(), postDetails.getSubCategory());
 
+		if(postDetails.getSubCategory()==null || postDetails.getSubCategory().equals("") || subCategoryStr.equals("")){
+			postDetails.setSubCategory(CBuddyConstants.SUBCATEGORY_ELECTRONICS_AND_HOUSEHOLD_AIRCOOLER);
+			subCategoryStr = Utils.getInstance().getSubCategoryDesc(postDetails.getCategory(), postDetails.getSubCategory());
+		}
+
+		AirCoolerAdService adService = new AirCoolerAdService();
+		count = adService.getAdListCount(getModel());
+		adList = adService.getAdListByCategory(getModel());
+		System.out.println(subCategoryStr);
+		
 		populateAdditionalDetails();
 
 		return "success";
-	}
-	
-	private List<AirCoolerPostDetails> getAdListByCategory(AirCoolerPostDetails postDetails){
-		SessionFactory sessionFactory = (SessionFactory) ServletActionContext.getServletContext().getAttribute("sessionFactory");
-		Session session = sessionFactory.openSession();
-
-		List<AirCoolerPostDetails> list = null;
-		try {
-			Criteria criteria = session.createCriteria(AirCoolerPostDetails.class);
-			criteria.addOrder(Order.desc("postId"));
-			criteria.setMaxResults(20);
-			
-			if(postDetails.getCity() != null){
-				criteria.add(Restrictions.eq("city", postDetails.getCity()));
-			}
-			if(postDetails.getCorpId() > 0){
-				criteria.add(Restrictions.eq("corpId", postDetails.getCorpId()));
-			}
-			if(postDetails.getLocation() != null){
-				criteria = CriteriaUtil.getCriteriaForLocation(criteria, postDetails.getLocation());
-			}
-			if(postDetails.getBrand() != null){
-				criteria = CriteriaUtil.createCriteriaForIn(criteria, postDetails.getBrand(), "brand");		
-			}
-			if(postDetails.getAmt() != null){
-				criteria = CriteriaUtil.getCriteriaForAmt(criteria, postDetails.getAmt(), "price");
-			}
-			if(postDetails.getAcType() != null){
-				criteria = CriteriaUtil.createCriteriaForIn(criteria, postDetails.getAcType(), "acType");
-			}
-			if(postDetails.getYearStr() != null){
-				criteria = CriteriaUtil.createCriteriaForYear(criteria, postDetails.getYearStr());
-			}
-
-			list = criteria.list();
-			
-			System.out.println(list);
-			
-		} catch (HibernateException e) {
-			e.printStackTrace();
-		}
-		session.close();
-		return list;
 	}
 	
 	@Override
@@ -425,11 +395,23 @@ public class AirCoolerAction extends ActionSupport implements SessionAware, Serv
 		this.categoryStr = categoryStr;
 	}
 
-	public String getResponseMsg() {
-		return responseMsg;
+	public String getSubCategoryStr() {
+		return subCategoryStr;
+	}
+
+	public void setSubCategoryStr(String subCategoryStr) {
+		this.subCategoryStr = subCategoryStr;
 	}
 
 	public void setResponseMsg(String responseMsg) {
 		this.responseMsg = responseMsg;
+	}
+	
+	public int getCount() {
+		return count;
+	}
+
+	public void setCount(int count) {
+		this.count = count;
 	}
 }

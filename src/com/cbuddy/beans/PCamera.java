@@ -35,6 +35,10 @@ public class PCamera {
 	private String zoom;
 	
 	private int postIdStr;
+	
+	private String limit;
+	private String offset;
+	private String page="1";
 
 	@Id
 	@Column(name="POST_ID")
@@ -164,6 +168,30 @@ public class PCamera {
 	}
 	public void setPostIdStr(int postIdStr) {
 		this.postIdStr = postIdStr;
+	}
+	
+	@Transient
+	public String getLimit() {
+		return limit;
+	}
+	public void setLimit(String limit) {
+		this.limit = limit;
+	}
+	
+	@Transient
+	public String getOffset() {
+		return offset;
+	}
+	public void setOffset(String offset) {
+		this.offset = offset;
+	}
+	
+	@Transient
+	public String getPage() {
+		return page;
+	}
+	public void setPage(String page) {
+		this.page = page;
 	}
 
 }

@@ -24,7 +24,7 @@ public class AirCoolerPostDetails extends PAirCooler implements Serializable{
 	private String ContactPersonName;
 	private String ImageFileName;
 	private String category;
-
+	private String subCategory;
 	private String yearStr;
 	private String priceStr;
 	private String selectedLocationStr;
@@ -32,6 +32,15 @@ public class AirCoolerPostDetails extends PAirCooler implements Serializable{
 	private String selectedLocationCode;
 
 	private int corpId;
+
+	@Transient
+	public String getSubCategory() {
+		return subCategory;
+	}
+
+	public void setSubCategory(String subCategory) {
+		this.subCategory = subCategory;
+	}
 
 	@Transient
 	public String getCategory() {

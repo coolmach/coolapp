@@ -36,8 +36,13 @@ public class PTelevision {
 	private String hdmi;
 	
 	private String amt;
+	private String make;
 	
 	private int postIdStr;
+	
+	private String limit;
+	private String offset;
+	private String page="1";
 
 	@Id
 	@Column(name="POST_ID")
@@ -191,5 +196,37 @@ public class PTelevision {
 	}
 	public void setPostIdStr(int postIdStr) {
 		this.postIdStr = postIdStr;
+	}
+	
+	@Transient
+	public String getMake() {
+		return make;
+	}
+	public void setMake(String make) {
+		this.make = make;
+	}
+	
+	@Transient
+	public String getLimit() {
+		return limit;
+	}
+	public void setLimit(String limit) {
+		this.limit = limit;
+	}
+	
+	@Transient
+	public String getOffset() {
+		return offset;
+	}
+	public void setOffset(String offset) {
+		this.offset = offset;
+	}
+	
+	@Transient
+	public String getPage() {
+		return page;
+	}
+	public void setPage(String page) {
+		this.page = page;
 	}
 }

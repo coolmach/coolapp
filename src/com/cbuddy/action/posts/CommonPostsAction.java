@@ -18,6 +18,7 @@ import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 
 import com.cbuddy.beans.Poit;
+import com.cbuddy.services.CommonAdService;
 import com.cbuddy.util.CBuddyConstants;
 import com.cbuddy.util.CriteriaUtil;
 import com.cbuddy.util.LocationUtil;
@@ -31,15 +32,18 @@ public class CommonPostsAction extends ActionSupport implements SessionAware, Se
 	private static final long serialVersionUID = 1L;
 
 	CommonPostDetails postDetails = new CommonPostDetails();
-	
+
 	private String categoryStr;
+	private String subCategoryStr;
 
 	private String responseMsg;
 
 	private List<CommonPostDetails> adList = new ArrayList<CommonPostDetails>();
 
 	private HttpServletRequest request = null;
-	
+
+	private int count;
+
 	@Override
 	public void setServletRequest(HttpServletRequest request) {
 		this.request = request;
@@ -55,7 +59,7 @@ public class CommonPostsAction extends ActionSupport implements SessionAware, Se
 	public void validate(){
 
 	}
-	
+
 	private void populateAdditionalDetails(){
 		SessionFactory sessionFactory = (SessionFactory) ServletActionContext.getServletContext().getAttribute("sessionFactory");
 		Session dbSession = sessionFactory.openSession();
@@ -72,52 +76,28 @@ public class CommonPostsAction extends ActionSupport implements SessionAware, Se
 	}
 
 	public String getAdListForCriteria(){
-
+		System.out.println(postDetails.getSubCategory()+ " : "+postDetails.getCategory());
 		if(postDetails.getCategory()==null || postDetails.getCategory().equals("") || !postDetails.getCategory().equals(CBuddyConstants.CATEGORY_ELECTRONICS_AND_HOUSEHOLD)){
 			postDetails.setCategory(CBuddyConstants.CATEGORY_ELECTRONICS_AND_HOUSEHOLD);
 		}	
 
 		categoryStr = Utils.getInstance().getCategoryDesc(postDetails.getCategory());
-		
-		adList = getAdListByCategory(postDetails);
+		subCategoryStr = Utils.getInstance().getSubCategoryDesc(postDetails.getCategory(), postDetails.getSubCategory());
+
+		if(postDetails.getSubCategory()==null || postDetails.getSubCategory().equals("") || subCategoryStr.equals("")){
+			postDetails.setSubCategory(CBuddyConstants.SUBCATEGORY_ELECTRONICS_AND_HOUSEHOLD_ALL);
+			subCategoryStr = Utils.getInstance().getSubCategoryDesc(postDetails.getCategory(), postDetails.getSubCategory());
+		}
+
+		CommonAdService adService = new CommonAdService();
+		count = adService.getAdListCount(postDetails);
+		adList = adService.getAdListByCategory(postDetails);
 
 		populateAdditionalDetails();
-		
+
 		return "success";
 	}
-	
-	
-	private List<CommonPostDetails> getAdListByCategory(CommonPostDetails postDetails){
-		SessionFactory sessionFactory = (SessionFactory) ServletActionContext.getServletContext().getAttribute("sessionFactory");
-		Session session = sessionFactory.openSession();
 
-		List<CommonPostDetails> list = null;
-		try {
-			Criteria criteria = session.createCriteria(Poit.class);
-			criteria.addOrder(Order.desc("postId"));
-			criteria.setMaxResults(20);
-			criteria.add(Restrictions.eq("category", CBuddyConstants.CATEGORY_ELECTRONICS_AND_HOUSEHOLD));
-			
-			if(postDetails.getCity() != null){
-				criteria.add(Restrictions.eq("city", postDetails.getCity()));
-			}
-			if(postDetails.getCorpId() > 0){
-				criteria.add(Restrictions.eq("corpId", postDetails.getCorpId()));
-			}
-			if(postDetails.getLocation()!=null){
-				criteria = CriteriaUtil.getCriteriaForLocation(criteria, postDetails.getLocation());	
-			}
-			list = criteria.list();
-			
-			System.out.println(list);
-			
-		} catch (HibernateException e) {
-			e.printStackTrace();
-		}
-		session.close();
-		return list;
-	}
-	
 	@Override
 	public Poit getModel() {
 		return postDetails;
@@ -130,7 +110,7 @@ public class CommonPostsAction extends ActionSupport implements SessionAware, Se
 	public void setAdList(List<CommonPostDetails> adList) {
 		this.adList = adList;
 	}
-	
+
 	@Transient
 	public String getCategoryStr() {
 		return categoryStr;
@@ -140,11 +120,28 @@ public class CommonPostsAction extends ActionSupport implements SessionAware, Se
 		this.categoryStr = categoryStr;
 	}
 
+	@Transient
+	public String getSubCategoryStr() {
+		return subCategoryStr;
+	}
+
+	public void setSubCategoryStr(String subCategoryStr) {
+		this.subCategoryStr = subCategoryStr;
+	}
+
 	public String getResponseMsg() {
 		return responseMsg;
 	}
 
 	public void setResponseMsg(String responseMsg) {
 		this.responseMsg = responseMsg;
+	}
+
+	public int getCount() {
+		return count;
+	}
+
+	public void setCount(int count) {
+		this.count = count;
 	}
 }

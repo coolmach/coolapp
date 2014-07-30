@@ -22,6 +22,7 @@ import org.hibernate.criterion.Restrictions;
 
 import com.cbuddy.beans.PTelevision;
 import com.cbuddy.beans.Poit;
+import com.cbuddy.services.CommonAdService;
 import com.cbuddy.services.TelevisionAdService;
 import com.cbuddy.util.CBuddyConstants;
 import com.cbuddy.util.CriteriaUtil;
@@ -44,6 +45,8 @@ public class TelevisionAction extends ActionSupport implements SessionAware, Ser
 	private String uploadContentType;
 
 	private String categoryStr;
+	private String subCategoryStr;
+	private int count;
 
 	private String responseMsg;
 
@@ -174,13 +177,13 @@ public class TelevisionAction extends ActionSupport implements SessionAware, Ser
 			addFieldError("errorMsg", "Please choose if Bill is available");
 			return false;
 		}
-		
+
 		temp = postDetails.getScreenType();
 		if(temp == null || (!temp.equals("CRT") && !temp.equals("LCD") && !temp.equals("LED"))){
 			addFieldError("errorMsg", "Invalid Screen Type");
 			return false;
 		}
-		
+
 		temp = postDetails.getStabilizer();
 		if(temp == null || (!temp.equals("Y") && !temp.equals("N"))){
 			addFieldError("errorMsg", "Invalid Stabilizer Availability");
@@ -192,19 +195,19 @@ public class TelevisionAction extends ActionSupport implements SessionAware, Ser
 			addFieldError("errorMsg", "Invalid USB Port Availability");
 			return false;
 		}
-		
+
 		temp = postDetails.getHdmi();
 		if(temp == null || (!temp.equals("Y") && !temp.equals("N"))){
 			addFieldError("errorMsg", "Invalid HDMI Availability");
 			return false;
 		}
-		
+
 		temp = postDetails.getScreenSize();
 		if(temp != null && temp.length() > 3){
 			addFieldError("errorMsg", "Invalid Screen Size");
 			return false;
 		}
-		
+
 		return output;
 	}
 
@@ -230,10 +233,10 @@ public class TelevisionAction extends ActionSupport implements SessionAware, Ser
 
 		//Make an entry in POIT
 		Poit poit = new Poit();
-		
+
 		poit.setCategory(CBuddyConstants.CATEGORY_ELECTRONICS_AND_HOUSEHOLD);
 		poit.setSubCategory(CBuddyConstants.SUBCATEGORY_ELECTRONICS_AND_HOUSEHOLD_TELEVISION);
-		
+
 		poit.setTitle(postDetails.getTitle());
 		poit.setCity(postDetails.getCity());
 		poit.setContactNo(postDetails.getContactNo());
@@ -283,7 +286,7 @@ public class TelevisionAction extends ActionSupport implements SessionAware, Ser
 		entity.setStabilizer(postDetails.getStabilizer());
 		entity.setUsb(postDetails.getUsb());
 		entity.setYear(postDetails.getYear());
-		
+
 		dbSession.save(entity);
 
 		if(upload != null){
@@ -317,7 +320,7 @@ public class TelevisionAction extends ActionSupport implements SessionAware, Ser
 			populateAdditionalDetailsForPost(postDetails, dbSession);
 		}
 	}
-	
+
 	private void populateAdditionalDetailsForPost(TelevisionPostDetails postDetails, Session dbSession){
 		String cityName = LocationUtil.getCityName(dbSession, postDetails.getCity());
 		String locName = LocationUtil.getLocationName(dbSession, postDetails.getCity(), postDetails.getLocation());
@@ -327,63 +330,28 @@ public class TelevisionAction extends ActionSupport implements SessionAware, Ser
 	}
 
 	public String getAdListForCriteria(){
-
+		System.out.println(postDetails.getMake()+" : "+postDetails.getAmt()+" : "+postDetails.getYearStr());
 		if(postDetails.getCategory()==null || postDetails.getCategory().equals("") || !postDetails.getCategory().equals(CBuddyConstants.CATEGORY_ELECTRONICS_AND_HOUSEHOLD)){
 			postDetails.setCategory(CBuddyConstants.CATEGORY_ELECTRONICS_AND_HOUSEHOLD);
 		}	
 
 		categoryStr = Utils.getInstance().getCategoryDesc(postDetails.getCategory());
-		
-		adList = getAdListByCategory(getModel());
+		subCategoryStr = Utils.getInstance().getSubCategoryDesc(postDetails.getCategory(), postDetails.getSubCategory());
 
+		if(postDetails.getSubCategory()==null || postDetails.getSubCategory().equals("") || subCategoryStr.equals("")){
+			postDetails.setSubCategory(CBuddyConstants.SUBCATEGORY_ELECTRONICS_AND_HOUSEHOLD_TELEVISION);
+			subCategoryStr = Utils.getInstance().getSubCategoryDesc(postDetails.getCategory(), postDetails.getSubCategory());
+		}
+
+		TelevisionAdService adService = new TelevisionAdService();
+		count = adService.getAdListCount(getModel());
+		adList = adService.getAdListByCategory(getModel());
+		System.out.println("list"+adList.size());
 		populateAdditionalDetails();
 
 		return "success";
 	}
-	
-	private List<TelevisionPostDetails> getAdListByCategory(TelevisionPostDetails postDetails){
-		SessionFactory sessionFactory = (SessionFactory) ServletActionContext.getServletContext().getAttribute("sessionFactory");
-		Session session = sessionFactory.openSession();
 
-		List<TelevisionPostDetails> list = null;
-		try {
-			Criteria criteria = session.createCriteria(TelevisionPostDetails.class);
-			criteria.addOrder(Order.desc("postId"));
-			criteria.setMaxResults(20);
-			
-			if(postDetails.getCity() != null){
-				criteria.add(Restrictions.eq("city", postDetails.getCity()));
-			}
-			if(postDetails.getCorpId() > 0){
-				criteria.add(Restrictions.eq("corpId", postDetails.getCorpId()));
-			}
-			if(postDetails.getLocation() != null){
-				criteria = CriteriaUtil.getCriteriaForLocation(criteria, postDetails.getLocation());
-			}
-			if(postDetails.getBrand() != null){
-				criteria = CriteriaUtil.createCriteriaForIn(criteria, postDetails.getBrand(), "brand");		
-			}
-			if(postDetails.getAmt() != null){
-				criteria = CriteriaUtil.getCriteriaForAmt(criteria, postDetails.getAmt(), "price");
-			}
-			if(postDetails.getScreenType() != null){
-				criteria = CriteriaUtil.createCriteriaForIn(criteria, postDetails.getScreenType(), "screenType");
-			}
-			if(postDetails.getYearStr() != null){
-				criteria = CriteriaUtil.createCriteriaForYear(criteria, postDetails.getYearStr());
-			}
-
-			list = criteria.list();
-			
-			System.out.println(list);
-			
-		} catch (HibernateException e) {
-			e.printStackTrace();
-		}
-		session.close();
-		return list;
-	}
-	
 	public String getAdDetails(){
 
 		TelevisionAdService adService = new TelevisionAdService();
@@ -391,12 +359,12 @@ public class TelevisionAction extends ActionSupport implements SessionAware, Ser
 
 		SessionFactory sessionFactory = (SessionFactory) ServletActionContext.getServletContext().getAttribute("sessionFactory");
 		Session dbSession = sessionFactory.openSession();
-		
+
 		populateAdditionalDetailsForPost(postDetails, dbSession);
-		
+
 		return "success";
 	}
-	
+
 	@Override
 	public TelevisionPostDetails getModel() {
 		return postDetails;
@@ -443,11 +411,27 @@ public class TelevisionAction extends ActionSupport implements SessionAware, Ser
 		this.categoryStr = categoryStr;
 	}
 
+	public String getSubCategoryStr() {
+		return subCategoryStr;
+	}
+
+	public void setSubCategoryStr(String subCategoryStr) {
+		this.subCategoryStr = subCategoryStr;
+	}
+	
 	public String getResponseMsg() {
 		return responseMsg;
 	}
 
 	public void setResponseMsg(String responseMsg) {
 		this.responseMsg = responseMsg;
+	}
+	
+	public int getCount() {
+		return count;
+	}
+
+	public void setCount(int count) {
+		this.count = count;
 	}
 }

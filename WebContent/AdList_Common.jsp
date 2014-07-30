@@ -1,11 +1,12 @@
 <%@ taglib prefix="s" uri="/struts-tags"%>
 <div class="data">
+<input id="pagecount" type="hidden" value="<s:property value="count"/>">
 	<s:if test="adList.size() > 0">
 		<div class="col-md-8 listSection" id="postListSection">
 		<table class="table table-bordered">
 			<tr>
 				<th>Post Details</th>
-				<td colspan="3" style="text-align:right;width:100%;">Showing Records (? - ? of ?))</td>
+				<td colspan="3" style="text-align:right;width:100%;"></td>
 			</tr>
 			<s:iterator value="adList" status="userStatus">
 				<tr style="font-size:12px;">
@@ -17,7 +18,7 @@
 						<span class="postField"><s:property value="city" /></span> <span class="separator">|</span>
 						<span class="postField"><s:property value="location" /></span>
 						<br>
-						<span class="postField" style="margin-top:15px;"><s:property value="description" />
+						<span class="postField" style="margin-top:15px;"><s:property value="description" /></span>
 					</td>
 					<td>
 						<span class="postField_Highlight">Rs.<s:property value="price" /></span>
@@ -26,15 +27,15 @@
 				</tr>  
 			</s:iterator>
 		</table>
+	</div>
 	</s:if>
 	<s:else>
 		<div class="col-md-6 listSection">
 			<table class="table table-bordered">
 				<tr>
-					<td colspan="3" style="padding-left:15px;font-size:13px;">No posts found! Try refining search criteria</th>
+					<th colspan="3" style="padding-left:15px;font-size:13px;">No posts found! Try refining search criteria</th>
 				</tr>
 			</table>
 		</div>	
 	</s:else>
 	</div>
-</div>

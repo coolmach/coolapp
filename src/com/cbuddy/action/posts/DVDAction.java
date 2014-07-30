@@ -23,6 +23,7 @@ import org.hibernate.criterion.Restrictions;
 import com.cbuddy.beans.PDVD;
 import com.cbuddy.beans.Poit;
 import com.cbuddy.services.DVDAdService;
+import com.cbuddy.services.WashingMachineAdService;
 import com.cbuddy.util.CBuddyConstants;
 import com.cbuddy.util.CriteriaUtil;
 import com.cbuddy.util.LocationUtil;
@@ -44,6 +45,8 @@ public class DVDAction extends ActionSupport implements SessionAware, ServletReq
 	private String uploadContentType;
 
 	private String categoryStr;
+	private String subCategoryStr;
+	private int count;
 
 	private String responseMsg;
 
@@ -316,14 +319,24 @@ public class DVDAction extends ActionSupport implements SessionAware, ServletReq
 
 	public String getAdListForCriteria(){
 
+		System.out.println(postDetails.getBrand()+" : "+postDetails.getAmt()+" : "+postDetails.getYearStr());
 		if(postDetails.getCategory()==null || postDetails.getCategory().equals("") || !postDetails.getCategory().equals(CBuddyConstants.CATEGORY_ELECTRONICS_AND_HOUSEHOLD)){
 			postDetails.setCategory(CBuddyConstants.CATEGORY_ELECTRONICS_AND_HOUSEHOLD);
 		}	
 
 		categoryStr = Utils.getInstance().getCategoryDesc(postDetails.getCategory());
-		
-		adList = getAdListByCategory(getModel());
+		subCategoryStr = Utils.getInstance().getSubCategoryDesc(postDetails.getCategory(), postDetails.getSubCategory());
 
+		if(postDetails.getSubCategory()==null || postDetails.getSubCategory().equals("") || subCategoryStr.equals("")){
+			postDetails.setSubCategory(CBuddyConstants.SUBCATEGORY_ELECTRONICS_AND_HOUSEHOLD_DVD_MUSIC_PLAYER);
+			subCategoryStr = Utils.getInstance().getSubCategoryDesc(postDetails.getCategory(), postDetails.getSubCategory());
+		}
+
+		DVDAdService adService = new DVDAdService();
+		count = adService.getAdListCount(getModel());
+		adList = adService.getAdListByCategory(getModel());
+		System.out.println("list"+adList.size());
+		
 		populateAdditionalDetails();
 
 		return "success";
@@ -418,11 +431,27 @@ public class DVDAction extends ActionSupport implements SessionAware, ServletReq
 		this.categoryStr = categoryStr;
 	}
 
+	public String getSubCategoryStr() {
+		return subCategoryStr;
+	}
+
+	public void setSubCategoryStr(String subCategoryStr) {
+		this.subCategoryStr = subCategoryStr;
+	}
+	
 	public String getResponseMsg() {
 		return responseMsg;
 	}
 
 	public void setResponseMsg(String responseMsg) {
 		this.responseMsg = responseMsg;
+	}
+	
+	public int getCount() {
+		return count;
+	}
+
+	public void setCount(int count) {
+		this.count = count;
 	}
 }

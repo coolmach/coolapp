@@ -27,14 +27,36 @@ $(document).ready(function() {
 		$("#model-main").show();
 		$("#fuelType-main").show();
 
-	}else if(cat == 'HOUSEHOLD'){
-		path="/adListForHouseHoldItems";
-		$("#subCategory-right li").eq(0).addClass("highlight_subcat");
-		subCat="Air Conditioners & Coolers";
-		$("#loc-main").show();
+	}else if(cat == 'ELEC'){
+		$("#brand-main").show();
+		$("#make-main").show();
+		$("#year-main").show();
 		$("#amt-main").show();
-		$("#used-main").show();
 
+		var sub = $('#sub').text();
+		if(sub=="0"){
+			path="/commonFilter";
+			$("#screenType-main").show();
+		}
+		else if(sub=="1"){
+			path="/televisionFilter";
+			$("#screenType-main").show();
+		}else if(sub=="2"){
+			path="/dvdFilter";
+		}else if(sub=="3"){
+			path="/cameraFilter";
+		}
+		else if(sub=="4"){
+			path="/fridgeFilter";
+		}
+		else if(sub=="5"){
+			path="/washingMachineFilter";
+		}
+		else if(sub=="6"){
+			path="/airCoolerFilter";
+			$("#acType-main").show();
+		}
+		
 	}else if(cat == 'COMP'){
 		path = "/computersFilter";
 		$("#subCategory-right li").eq(0).addClass("highlight_subcat");
@@ -60,7 +82,7 @@ $(document).ready(function() {
 		$("#amt-main").show();
 	}
 
-	// *******************************if user clicks on NEXT*******************************************************
+	// *******************************if user clicks on PREVIOUS*******************************************************
 	$('#page_prev').bind('click', function(event) {
 		subCat = $('#sub').text();
 		cat = $('#cat').text();
@@ -97,7 +119,7 @@ $(document).ready(function() {
 		});
 	});
 
-	//**********************************if user clicks on PREVIOUS************************************************
+	//**********************************if user clicks on NEXT************************************************
 	$('#page_next').bind('click', function(event) {
 		subCat = $('#sub').text();
 		cat = $('#cat').text();
@@ -113,7 +135,7 @@ $(document).ready(function() {
 			data = data + '&subCategory='+subCat+'&category='+cat;
 		}
 		data = data+filterData +'&limit='+limit+'&offset='+offset+'&page='+(page+1);
-
+		
 		$.ajax({
 			type: 'POST',
 			url: ctxPath+path, 
@@ -239,11 +261,13 @@ $(document).ready(function() {
 			success: function(data, status) {
 				$('.data').html('');
 				$('.data').html(data);
+
 				var pC = parseInt($('#pagecount').val())/10;
 
 				if(pC % 1 != 0){
 					pC = (Math.floor(pC))+1;
 				}
+
 				$( ".pager li" ).eq(1).html( '<input id="page_info" type="text" readonly="readonly" value="Showing Page '+ (pC==0?pC:1) +' of '+pC+'" >' );
 
 
@@ -469,13 +493,30 @@ $(document).ready(function() {
 			$("#breadCrumb_Category").html("Furniture");
 			$("#breadCrumb_SubCategory").html($(this).text());
 		}
-		else if( cat == 'HOUSEHOLD'){
-			if($(this).text()=='Air Conditioners & Coolers'){
-				$("#brand-main").show();
-			}else{
-				$("#brand-main").hide();
+		/*else if( cat == 'ELEC'){
+			if($(this).text()== 'Televisions'){
+				$("#make-main").show();
+				$("#year-main").show();
+				$("#amt-main").show();
+				$("#screenType-main").show();
+			}else if($(this).text()== 'Digital Cameras, Camcorders') {
+				$("#model-main").hide();	
 			}
-		}
+			else if($(this).text()== 'Refrigerators') {
+				$("#model-main").hide();	
+			}
+			else if($(this).text()== 'Air Coolers, Air Conditioners') {
+				$("#model-main").hide();	
+			}
+			else if($(this).text()== 'Washing Machines') {
+				$("#model-main").hide();	
+			}
+			else if($(this).text()== 'DVD Players, Music Players, iPods') {
+				$("#model-main").hide();	
+			}
+			$("#breadCrumb_Category").html("Electronics");
+			$("#breadCrumb_SubCategory").html($(this).text());
+		}*/
 		if($(this).parent().children().hasClass('highlight_subcat')){
 			$(this).parent().children().removeClass('highlight_subcat');
 		}

@@ -22,15 +22,10 @@ public class MobileAdService{
 		SessionFactory sessionFactory = (SessionFactory) ServletActionContext.getServletContext().getAttribute("sessionFactory");
 		Session session = sessionFactory.openSession();
 		
-		if(postDetails.getLimit() == null){
-			postDetails.setLimit("10");
-		}
-		if(postDetails.getOffset() == null){
-			postDetails.setOffset("0");
-		}
 		Criteria criteria = session.createCriteria(MobilePostDetails.class);
 		criteria.addOrder(Order.desc("postId"));
 		criteria.add(Restrictions.eq("subCategory", subCategory));
+		
 		if(postDetails.getCity() != null){
 			criteria.add(Restrictions.eq("city", postDetails.getCity()));
 		}

@@ -135,7 +135,7 @@ public class CriteriaUtil {
 		List<String> list = new ArrayList<String>();
 		String tokens[] = inputStr.split(",");
 		for(String token:tokens){
-			list.add(token);
+			list.add(token.trim());
 		}
 		criteria.add(Restrictions.in(fieldName, list));
 		return criteria;

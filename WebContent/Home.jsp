@@ -144,6 +144,7 @@
             <div class="item">
                   <s:url action="electronics" var="urlTag2" escapeAmp="false">
 					<s:param name="category">ELEC</s:param>
+					<s:param name="subCategory">0</s:param>
 				</s:url> <a href="<s:property value="#urlTag2" />"><img
 					class="" src="images/Electronic_Corousel.jpg" style="width:100%;height:78%;"></a> 
               ELECTRONICS AND HOUSEHOLD 
@@ -220,6 +221,7 @@
 					class="images_ad" src="images/cars.png"> </a></td>
 			<td><s:url action="electronics" var="urlTag2" escapeAmp="false">
 					<s:param name="category">ELEC</s:param>
+					<s:param name="subCategory">0</s:param>
 				</s:url> <a href="<s:property value="#urlTag2" />"><img
 					class="images_ad" src="images/household.png"> </a></td>
 			<td><s:url action="computers" var="urlTag3" escapeAmp="false">

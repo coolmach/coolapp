@@ -43,7 +43,7 @@ public class Utils {
 		categoryDescMap.put(CBuddyConstants.CATEGORY_MOBILE + "_" + CBuddyConstants.SUBCATEGORY_MOBILE_MOBILEPHONES, "Handsets");
 		categoryDescMap.put(CBuddyConstants.CATEGORY_MOBILE + "_" + CBuddyConstants.SUBCATEGORY_MOBILE_ACCESORIES, "Accessories");
 	
-		//Category and Sub Categories for CARS/BIKES
+		//Category and Sub Categories for FURNITURE
 		categoryDescMap.put(CBuddyConstants.CATEGORY_FURNITURE, "Furniture");
 		categoryDescMap.put(CBuddyConstants.CATEGORY_FURNITURE + "_" + CBuddyConstants.SUBCATEGORY_FURNITURE_COT_WOOD, "Cot - Wooden");
 		categoryDescMap.put(CBuddyConstants.CATEGORY_FURNITURE + "_" + CBuddyConstants.SUBCATEGORY_FURNITURE_COT_STEEL, "Cot - Steel");		
@@ -55,6 +55,17 @@ public class Utils {
 		categoryDescMap.put(CBuddyConstants.CATEGORY_FURNITURE + "_" + CBuddyConstants.SUBCATEGORY_FURNITURE_CHAIR_WOOD, "Chair - Wood");
 		categoryDescMap.put(CBuddyConstants.CATEGORY_FURNITURE + "_" + CBuddyConstants.SUBCATEGORY_FURNITURE_CHAIR_PLASTIC, "hair - Plastic");
 		categoryDescMap.put(CBuddyConstants.CATEGORY_FURNITURE + "_" + CBuddyConstants.SUBCATEGORY_FURNITURE_OTHERS, "Others");
+	
+		////Category and Sub Categories for ELECTRONICS AND HOUSEHOLD
+		categoryDescMap.put(CBuddyConstants.CATEGORY_ELECTRONICS_AND_HOUSEHOLD, "Electronics & Household");
+		categoryDescMap.put(CBuddyConstants.CATEGORY_ELECTRONICS_AND_HOUSEHOLD + "_" + CBuddyConstants.SUBCATEGORY_ELECTRONICS_AND_HOUSEHOLD_ALL, "All");
+		categoryDescMap.put(CBuddyConstants.CATEGORY_ELECTRONICS_AND_HOUSEHOLD + "_" + CBuddyConstants.SUBCATEGORY_ELECTRONICS_AND_HOUSEHOLD_TELEVISION, "Televisions");
+		categoryDescMap.put(CBuddyConstants.CATEGORY_ELECTRONICS_AND_HOUSEHOLD + "_" + CBuddyConstants.SUBCATEGORY_ELECTRONICS_AND_HOUSEHOLD_CAMERA, "Digital Cameras, Camcorders");
+		categoryDescMap.put(CBuddyConstants.CATEGORY_ELECTRONICS_AND_HOUSEHOLD + "_" + CBuddyConstants.SUBCATEGORY_ELECTRONICS_AND_HOUSEHOLD_AIRCOOLER, "Air Coolers, Air Conditioners");
+		categoryDescMap.put(CBuddyConstants.CATEGORY_ELECTRONICS_AND_HOUSEHOLD + "_" + CBuddyConstants.SUBCATEGORY_ELECTRONICS_AND_HOUSEHOLD_FRIDGE, "Refrigerators");
+		categoryDescMap.put(CBuddyConstants.CATEGORY_ELECTRONICS_AND_HOUSEHOLD + "_" + CBuddyConstants.SUBCATEGORY_ELECTRONICS_AND_HOUSEHOLD_WASHINGMACHINE, "Washing Machines");
+		categoryDescMap.put(CBuddyConstants.CATEGORY_ELECTRONICS_AND_HOUSEHOLD + "_" + CBuddyConstants.SUBCATEGORY_ELECTRONICS_AND_HOUSEHOLD_DVD_MUSIC_PLAYER, "DVD Players, Music Players, iPods");
+	
 	}
 	public static Utils getInstance(){
 		return instance;

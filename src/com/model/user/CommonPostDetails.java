@@ -17,16 +17,47 @@ public class CommonPostDetails extends Poit implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 
-	private String priceStr;
+	
 	private int corpId;
+	private String make;
+	private String model;
+	private String amt;
+	private String yearStr;
 
 	@Transient
-	public String getPriceStr() {
-		return priceStr;
+	public String getMake() {
+		return make;
 	}
 
-	public void setPriceStr(String priceStr) {
-		this.priceStr = priceStr;
+	public void setMake(String make) {
+		this.make = make;
+	}
+
+	@Transient
+	public String getModel() {
+		return model;
+	}
+
+	public void setModel(String model) {
+		this.model = model;
+	}
+
+	@Transient
+	public String getAmt() {
+		return amt;
+	}
+
+	public void setAmt(String amt) {
+		this.amt = amt;
+	}
+
+	@Transient
+	public String getYearStr() {
+		return yearStr;
+	}
+
+	public void setYearStr(String yearStr) {
+		this.yearStr = yearStr;
 	}
 
 	@Column(name="CORP_ID")
