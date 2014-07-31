@@ -531,3 +531,7 @@ html,body {
 #subCategory-right li {
 	padding:3px !important;	
 }
+
+#clear_all_f{
+    display: none;	
+}

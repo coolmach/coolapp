@@ -34,29 +34,40 @@ $(document).ready(function() {
 		$("#amt-main").show();
 
 		var sub = $('#sub').text();
+
+		if($("#electronics_right li").hasClass('highlight_subcat')){
+			$("#electronics_right li").remove();
+		}
 		if(sub=="0"){
 			path="/commonFilter";
 			$("#screenType-main").show();
+			$("#electronics_right li").eq(0).addClass("highlight_subcat");
 		}
 		else if(sub=="1"){
 			path="/televisionFilter";
 			$("#screenType-main").show();
+			$("#electronics_right li").eq(1).addClass("highlight_subcat");
 		}else if(sub=="2"){
 			path="/dvdFilter";
+			$("#electronics_right li").eq(6).addClass("highlight_subcat");
 		}else if(sub=="3"){
 			path="/cameraFilter";
+			$("#electronics_right li").eq(2).addClass("highlight_subcat");
 		}
 		else if(sub=="4"){
 			path="/fridgeFilter";
+			$("#electronics_right li").eq(3).addClass("highlight_subcat");
 		}
 		else if(sub=="5"){
 			path="/washingMachineFilter";
+			$("#electronics_right li").eq(5).addClass("highlight_subcat");
 		}
 		else if(sub=="6"){
 			path="/airCoolerFilter";
 			$("#acType-main").show();
+			$("#electronics_right li").eq(4).addClass("highlight_subcat");
 		}
-		
+
 	}else if(cat == 'COMP'){
 		path = "/computersFilter";
 		$("#subCategory-right li").eq(0).addClass("highlight_subcat");
@@ -81,6 +92,18 @@ $(document).ready(function() {
 		$("#year-main").show();
 		$("#amt-main").show();
 	}
+
+	//********************************if user clicks on CLEAR ALL*****************************************************
+	$('#clear_all_f').bind('click', function(event) {
+
+		$("input[class^=check_]:checked").each(function(){
+			$(this).attr("checked",false);
+		});
+		$("#filterValueBar").html('');
+		$("#filterValueBar").hide();
+		location.reload(true);
+
+	});
 
 	// *******************************if user clicks on PREVIOUS*******************************************************
 	$('#page_prev').bind('click', function(event) {
@@ -135,7 +158,7 @@ $(document).ready(function() {
 			data = data + '&subCategory='+subCat+'&category='+cat;
 		}
 		data = data+filterData +'&limit='+limit+'&offset='+offset+'&page='+(page+1);
-		
+
 		$.ajax({
 			type: 'POST',
 			url: ctxPath+path, 
@@ -217,13 +240,17 @@ $(document).ready(function() {
 
 		if($("#filterValueBar").text() == ""){
 			$("#filterValueBar").hide();
+			$('#clear_all_f').hide();
 		}
 	});
 
 	//*****************************if user clicks on checkboxes******************************************
 	$('input[class^=check_]').click(function(event) {
+
+
 		subCat = $('#sub').text();
 		cat = $('#cat').text();
+		$('#clear_all_f').show();
 		$("#filterValueBar").show();
 
 		var data="";
@@ -250,6 +277,7 @@ $(document).ready(function() {
 
 		if($("#filterValueBar").text() == ""){
 			$("#filterValueBar").hide();
+			$('#clear_all_f').hide();
 		}
 
 		filterData = data;

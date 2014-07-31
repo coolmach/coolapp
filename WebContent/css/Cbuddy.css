@@ -109,3 +109,11 @@
 .fieldCaption{color:#AAAAAA;}
 .fieldValueBold{color:#FF0000;}
 .fieldValueItalics{font-style:italic;}
+
+#electronics_right{
+	border : 1px solid;
+}
+
+#electronics_right li{
+	padding: 3px !important;
+}
