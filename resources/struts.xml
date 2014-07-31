@@ -81,10 +81,7 @@
 			<result name="success" type="tiles">/realestate.tiles</result>
 		</action>
 		<action name="realestateFilter" class="com.cbuddy.action.posts.RealEstateAction" method="getAdListForRealEstate">
-			<result name="success">/AdList_RealEstate.jsp</result>
-		</action>
-		<action name="realestateaddetails" class="com.cbuddy.action.posts.RealEstateAction" method="getAdDetailsForRealEstate">
-			<result name="success" type="tiles">/addetails.tiles</result>
+			<result name="success">/pages/realestate/adList/AdList_RealEstate.jsp</result>
 		</action>
 		<action name="real_estate_postAd" class="com.cbuddy.action.posts.RealEstateAction" method="postAd">
 			 <interceptor-ref name="secureStack"></interceptor-ref>
@@ -104,7 +101,7 @@
 			<result name="success" type="tiles">/automobile.tiles</result>
 		</action>
 		<action name="automobileFilter" class="com.cbuddy.action.posts.AutomobileAction" method="getAdListForAutomobile">
-			<result name="success">/AdList_Automobile.jsp</result>
+			<result name="success">/pages/automobile/adList/AdList_Automobile.jsp</result>
 		</action>
 		<action name="automobile_postAd" class="com.cbuddy.action.posts.AutomobileAction" method="postAd">
 			 <interceptor-ref name="secureStack"></interceptor-ref> 
@@ -119,7 +116,7 @@
 			<result name="success" type="tiles">/computers.tiles</result>
 		</action>
 		<action name="computersFilter" class="com.cbuddy.action.posts.ComputersAction" method="getAdListForComputers">
-			<result name="success">/AdList_Computers.jsp</result>
+			<result name="success">/pages/computer/adList/AdList_Computers.jsp</result>
 		</action>
 		<action name="computers_postAd" class="com.cbuddy.action.posts.ComputersAction" method="postAd">
 			 <interceptor-ref name="secureStack"></interceptor-ref>
@@ -139,7 +136,7 @@
 			<result name="success" type="tiles">/mobile.tiles</result>
 		</action>
 		<action name="mobileFilter" class="com.cbuddy.action.posts.MobileAction" method="getAdListForMobile">
-			<result name="success">/AdList_Mobile.jsp</result>
+			<result name="success">/pages/mobile/adList/AdList_Mobile.jsp</result>
 		</action>
 		<action name="mobile_postAd" class="com.cbuddy.action.posts.MobileAction" method="postAd">
 			 <interceptor-ref name="secureStack"></interceptor-ref> 
@@ -180,28 +177,28 @@
 			<result type="tiles" name="success">/washingMachine.tiles</result>
 		</action>
 		<action name="televisionFilter" class="com.cbuddy.action.posts.TelevisionAction" method="getAdListForCriteria">
-			<result name="success">/AdList_Television.jsp</result>
+			<result name="success">/pages/electronics/adList/AdList_Television.jsp</result>
 		</action>
 		<action name="dvdFilter" class="com.cbuddy.action.posts.DVDAction" method="getAdListForCriteria">
-			<result name="success">/AdList_DVD.jsp</result>
+			<result name="success">/pages/electronics/adList/AdList_DVD.jsp</result>
 		</action>
 		<action name="cameraFilter" class="com.cbuddy.action.posts.CameraAction" method="getAdListForCriteria">
-			<result name="success">/AdList_Camera.jsp</result>
+			<result name="success">/pages/electronics/adList/AdList_Camera.jsp</result>
 		</action>		
 		<action name="fridgeFilter" class="com.cbuddy.action.posts.FridgeAction" method="getAdListForCriteria">
-			<result name="success">/AdList_Fridge.jsp</result>
+			<result name="success">/pages/electronics/adList/AdList_Fridge.jsp</result>
 		</action>
 		<action name="airCoolerFilter" class="com.cbuddy.action.posts.AirCoolerAction" method="getAdListForCriteria">
-			<result name="success">/AdList_AirCooler.jsp</result>
+			<result name="success">/pages/electronics/adList/AdList_AirCooler.jsp</result>
 		</action>
 		<action name="washingMachineFilter" class="com.cbuddy.action.posts.WashingMachineAction" method="getAdListForCriteria">
-			<result name="success">/AdList_WashingMachine.jsp</result>
+			<result name="success">/pages/electronics/adList/AdList_WashingMachine.jsp</result>
 		</action>		
 		<action name="othersFilter" class="com.cbuddy.action.posts.OtherPostsAction" method="getAdListForCriteria">
 			<result name="success">/AdList_Others.jsp</result>
 		</action>
 		<action name="commonFilter" class="com.cbuddy.action.posts.CommonPostsAction" method="getAdListForCriteria">
-			<result name="success">/AdList_Common.jsp</result>
+			<result name="success">/pages/electronics/adList/AdList_Common.jsp</result>
 		</action>
 		<action name="television_postAd" class="com.cbuddy.action.posts.TelevisionAction" method="postAd">
 			 <interceptor-ref name="secureStack"></interceptor-ref>
@@ -280,7 +277,7 @@
 			<result type="tiles" name="success">/furniture.tiles</result>
 		</action>		
 		<action name="furnitureFilter" class="com.cbuddy.action.posts.FurnitureAction" method="getAdListForFurniture">
-			<result name="success">/AdList_Furniture.jsp</result>
+			<result name="success">/pages/furniture/adList/AdList_Furniture.jsp</result>
 		</action>		
 		<action name="furniture_postAd" class="com.cbuddy.action.posts.FurnitureAction" method="postAd">
 			 <interceptor-ref name="secureStack"></interceptor-ref> 

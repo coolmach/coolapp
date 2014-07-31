@@ -1,4 +1,4 @@
-<div class="paginate col-md-6" style="margin-left: 5%;">
+<div class="paginate col-md-8" style="margin-left: 5%;">
 	<ul class="pager">
 		<li class="previous hidden"><a id="page_prev" href="#">Previous</a>
 		</li>
