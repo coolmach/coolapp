@@ -45,6 +45,8 @@
 
 .content{padding-right:10px;font-size: 13px;}
 
+.content:hover{text-decoration: underline;}
+
 #breadCrumb{/* margin-top:20px; */ margin-bottom:15px;color:#428bca;font-size:16px;/* margin-left:5%; */}
 
 
@@ -115,6 +117,11 @@
 
 #electronics_right li{
 	padding: 3px !important;
+	font-size: 13px;
+}
+
+#collapse_ul a{
+	color: #555544 !important;
 }
 
 #locationSection {
