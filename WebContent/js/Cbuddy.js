@@ -94,7 +94,7 @@ $(document).ready(function() {
 	}
 
 	//********************************if user clicks on CLEAR ALL*****************************************************
-	$('#clear_all_f').bind('click', function(event) {
+	$('#clear_all_f').off().on('click', function(event) {
 
 		$("input[class^=check_]:checked").each(function(){
 			$(this).attr("checked",false);
@@ -106,7 +106,7 @@ $(document).ready(function() {
 	});
 
 	// *******************************if user clicks on PREVIOUS*******************************************************
-	$('#page_prev').bind('click', function(event) {
+	$('#page_prev').off().on('click', function(event) {
 		subCat = $('#sub').text();
 		cat = $('#cat').text();
 
@@ -150,7 +150,7 @@ $(document).ready(function() {
 	});
 
 	//**********************************if user clicks on NEXT************************************************
-	$('#page_next').bind('click', function(event) {
+	$('#page_next').off().on('click', function(event) {
 		subCat = $('#sub').text();
 		cat = $('#cat').text();
 
@@ -164,7 +164,7 @@ $(document).ready(function() {
 		if(filterData == ""){
 			data = data + '&subCategory='+subCat+'&category='+cat;
 		}
-		
+
 		if (typeof $("input[name=city]:checked", "#cityForm").val() != "undefined") {
 			data = data + "&city=" + $("input[name=city]:checked", "#cityForm").val();
 		}
@@ -172,7 +172,7 @@ $(document).ready(function() {
 		if($("#corpId").val() != "" && data.indexOf("corpId", 0)<0){
 			data = data + "&corpId=" + $("#corpId").val();
 		}
-		
+
 		data = data+filterData +'&limit='+limit+'&offset='+offset+'&page='+(page+1);
 
 		$.ajax({
@@ -203,7 +203,7 @@ $(document).ready(function() {
 	});
 
 	//*************************if user click to cancel a selected filter****************************************
-	$('.selected_filters').bind('click', function(event) {
+	$('.selected_filters').off().on('click', function(event) {
 		var pageNo = $('#page_info').val();
 		var page = parseInt(pageNo.split(" ")[2]);
 		var pageCount = parseInt(pageNo.split(" ")[4]);
@@ -224,7 +224,7 @@ $(document).ready(function() {
 				data = data + '&'+sub+'='+$(this).val();
 			}
 		});
-		
+
 		if (typeof $("input[name=city]:checked", "#cityForm").val() != "undefined") {
 			data = data + "&city=" + $("input[name=city]:checked", "#cityForm").val();
 		}
@@ -232,7 +232,7 @@ $(document).ready(function() {
 		if($("#corpId").val() != "" && data.indexOf("corpId", 0)<0){
 			data = data + "&corpId=" + $("#corpId").val();
 		}
-		
+
 		filterData = data;
 		$.ajax({
 			type: 'POST',
@@ -270,8 +270,7 @@ $(document).ready(function() {
 	});
 
 	//*****************************if user clicks on checkboxes******************************************
-	$('input[class^=check_]').click(function(event) {
-
+	$('input[class^=check_]').off().on('click',function(event) {
 
 		subCat = $('#sub').text();
 		cat = $('#cat').text();
@@ -282,12 +281,13 @@ $(document).ready(function() {
 		data = data + '&subCategory='+subCat+'&category='+cat;
 		var str="";
 		$("input[class^=check_]:checked").each(function()
-				{		 
+				{	
 			var sub = $(this).attr('name');
 			data = data + '&'+sub+'='+$(this).val();
 			var check = $(this).parent().children('span.content').text();
 			var div_Id = check.replace(/\s+/g, '').replace(/[^a-z0-9\s]/gi, '').replace(/[_\s]/g, '-');
-			str = str+'<div style="margin-left:12px;" class="pull-left filters" id="'+div_Id+'">'+check+'<span style="margin-left:4px;" class="glyphicon glyphicon-remove form-control-show"id="'+div_Id+'">'+'</span>'+'</div >';
+			if(sub!="location")
+				str = str+'<div style="margin-left:12px;" class="pull-left filters" id="'+div_Id+'">'+check+'<span style="margin-left:4px;" class="glyphicon glyphicon-remove form-control-show"id="'+div_Id+'">'+'</span>'+'</div >';
 				});
 
 		$('.selected_filters').html(str);
@@ -337,7 +337,7 @@ $(document).ready(function() {
 
 	//***********************************if user clicks on subcaregory****************************************
 	var lastVal="";
-	$("#subCategory-right li").click(function(){
+	$("#subCategory-right li").off().on('click',function(){
 		subCat = $('#sub').text();
 		cat = $('#cat').text();
 		var defaultSubCat = $(this).parent().children().first('.content').text();
@@ -369,7 +369,7 @@ $(document).ready(function() {
 		if($("#corpId").val() != "" && data.indexOf("corpId", 0)<0){
 			data = data + "&corpId=" + $("#corpId").val();
 		}
-		 data = data + '&subCategory='+subCat+'&category='+cat;
+		data = data + '&subCategory='+subCat+'&category='+cat;
 
 		$.ajax({
 			type: 'POST',
@@ -584,16 +584,17 @@ $(document).ready(function() {
 	});
 
 	//**********if hover on any filters category shown([id*=-main] pattern where it ends with -main)************
-	$("div[id*=-main]").hover(function(){
-		var divId = $(this).attr('id').split('-')[0];
-		if($("#subCategory_hidden_"+divId).is(':visible')){
-			$("#subCategory_hidden_"+divId).css("display","none");
-		}else{
-			$("#subCategory_hidden_"+divId).css("display","block");
-		}
-		$("#subCategory_hidden_"+divId+ " ul").css("display","block");
-	});
 
+	$("div[id*=-main]").mouseenter(function() {   
+		var divId = $(this).attr('id').split('-')[0];
+		$("#subCategory_hidden_"+divId).css("display","block");
+		$("#subCategory_hidden_"+divId+ " ul").css("display","block");   
+	}).mouseleave(function () {  
+		var divId = $(this).attr('id').split('-')[0];
+		$("#subCategory_hidden_"+divId).css("display","none");
+		$("#subCategory_hidden_"+divId+ " ul").css("display","none");
+	});
+	
 	$(".searchFilter li").mouseenter(function(){
 		$(this).addClass("highlight_subcat");
 	});
