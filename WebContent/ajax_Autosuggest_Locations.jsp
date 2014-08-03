@@ -1,5 +1,5 @@
 <%@page import="com.opensymphony.xwork2.ognl.OgnlValueStack"%>
-<%@page import="com.cbuddy.action.location.LocationAction"%>
+<%@page import="com.cbuddy.common.action.LocationAction"%>
 <%@ page import="java.util.List"%>
 <%@ page import="org.json.JSONObject"%>
 <%@ page import="org.json.JSONArray"%>

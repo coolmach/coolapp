@@ -17,11 +17,17 @@
 </div>
  --%>
 
- <div id="right_LocationFilterSection">
+ <div id="right_LocationFilterSection" class="col-md-3">
 		<div class="form-group" id="electronics_right">
 		<div id="" class="" style="position: relative;">
-			<h4>Categories</h4>
-			<ul class="list-unstyled">
+			<div class="heading">
+			<h4><a class="heading_link" data-toggle="collapse" data-parent="#accordion" href="#collapse_ul">
+          Categories
+                 <span class="glyphicon glyphicon-chevron-down"></span>
+               </a>
+             </h4>
+        </div>
+			<ul class="list-unstyled collapse in"" id="collapse_ul" style="margin-left:10px;">
 			    <s:url action="electronics" var="urlTag0" escapeAmp="false"><s:param name="category">ALL</s:param></s:url>
 				<s:url action="television" var="urlTag1" escapeAmp="false"><s:param name="category">TV</s:param></s:url>
 				<s:url action="camera" var="urlTag2" escapeAmp="false"><s:param name="category">CAMERA</s:param></s:url>

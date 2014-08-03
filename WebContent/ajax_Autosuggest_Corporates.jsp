@@ -1,5 +1,5 @@
 <%@page import="com.opensymphony.xwork2.ognl.OgnlValueStack"%>
-<%@page import="com.cbuddy.action.user.CorpAction"%>
+<%@page import="com.cbuddy.user.action.CorpAction"%>
 <%@ page import="java.util.List"%>
 <%@ page import="org.json.JSONObject"%>
 <%@ page import="org.json.JSONArray"%>

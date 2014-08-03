@@ -107,7 +107,7 @@
 
 .container_of_imgs {
 	background: none repeat scroll 0 0 white;
-	box-shadow: 0 0 24px 3px rgba(58, 58, 58, 0.2);
+	/* box-shadow: 0 0 24px 3px rgba(58, 58, 58, 0.2); */
 	display: block;
 	float: left;
 	height: auto;

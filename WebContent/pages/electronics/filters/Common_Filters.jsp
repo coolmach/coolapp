@@ -1,4 +1,7 @@
 <div class=" header_2">
+
+<%@include file="/BreadCrumb.jsp" %>
+
 	<div class="col-md-12 filter_cat" >
 	  <div id="clear_all_f" class="pull-left pointer" style="text-decoration: underline;color:#4f00fc">clear all</div>
 	<!-- 	<div class="form-group pull-left searchFilter" id="sub-main" style="margin-left:4.5%;">
@@ -89,15 +92,7 @@
 			</div>
 		 </form> 
 	</div>
-	<div class="col-md-12 selected_filters" style="display:none;" id="filterValueBar"></div>
+	<div class="col-md-11 selected_filters" style="display:none;" id="filterValueBar"></div>
 	
-	<div class="col-md-12" id="breadCrumb">
-	   <span id="cat" style="display:none"><s:property value="category" /></span>
-	   <span id="sub" style="display:none"><s:property value="subCategory" /></span>
-	
-	<a class="grey_link" href="<s:url action=""  />">Home</a> >
-		<span id="breadCrumb_Category">Electronics and Household Items</span> >
-		<span id="breadCrumb_SubCategory"><s:property value="subCategoryStr" /></span>
-	</div>
 	<%@include file="/Pagination.jsp" %>
 </div>

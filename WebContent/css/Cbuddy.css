@@ -15,9 +15,9 @@
 }
 
 .filter_cat {
-	background-color: #eeeeee;
+	/* background-color: #eeeeee;
 	border: 1px solid #AAAAAA;
-	padding-top: 15px;
+	padding-top: 15px; */
 }
 
 .subCategory_hidden_bck ul>li {
@@ -25,13 +25,12 @@
 }
 
 .highlight_subcat {
-	background-color: #a1a1a1;
+	background-color: #00b0f5;
 }
 
 .selected_filters {
 	padding:5px;
-	background-color: #FFFCED;
-	border: 1px solid #AAAAAA;
+	background-color: #ffffa1;
 	border-top:none;
 }
 
@@ -44,15 +43,15 @@
 
 .searchFilter{padding-left:5px; padding-right:5px;margin-bottom:15px;}
 
-.content{padding-right:10px;}
+.content{padding-right:10px;font-size: 13px;}
 
-#breadCrumb{margin-top:20px; margin-bottom:15px;color:#428bca;font-size:16px;margin-left:5%;}
+#breadCrumb{/* margin-top:20px; */ margin-bottom:15px;color:#428bca;font-size:16px;/* margin-left:5%; */}
 
 
 .form-control-radio-label{padding-right:10px;}
 
 #left_TableList{float:left;}
-#right_LocationFilterSection{float:left;margin-left:25px;color:#555544;font-size:12px;width:20%;}
+#right_LocationFilterSection{float:left;margin-left:25px;color:#555544;font-size:12px;/* width:20%; */}
 #cityBar{padding-left:2px;}
 	.radioButton{margin-bottom:5px;background-color:#FFFFFF;}
 	.radioCaption{padding-left:5px;padding-right:20px;margin-bottom:2px;}
@@ -84,7 +83,7 @@
 .checkboxColumn{float:left;width:10%;}
 .checkboxCaptionColumn{float:left;/*width:90%*/;padding-left:10px;}
 .radioCaptionWithoutSpace{padding-right:20px;margin-bottom:2px;}
-.listSection{min-width:50%;margin-left:5%;}
+.listSection{min-width:50%;/* margin-left:5%; */}
 
 .mandatory{color:#FF0000;padding-left:5px;}
 .error{font-size:13px;float:left;padding-left:50px;}
@@ -111,9 +110,29 @@
 .fieldValueItalics{font-style:italic;}
 
 #electronics_right{
-	border : 1px solid;
+	border: 1px solid #dddddd;
 }
 
 #electronics_right li{
 	padding: 3px !important;
+}
+
+#locationSection {
+    border: 1px solid #dddddd;
+    margin-top: 20px;
+    padding-bottom: 10px;
+    padding-left: 15px;
+    padding-top: 5px;
+}
+
+#companySection {
+    border: 1px solid #dddddd;
+    margin-top: 20px;
+    padding-bottom: 10px;
+    padding-left: 15px;
+    padding-top: 5px;
+}
+
+#filterValueBar{
+    margin-left:1%;	
 }

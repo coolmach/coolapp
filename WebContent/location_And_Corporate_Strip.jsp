@@ -1,4 +1,8 @@
 
+<div id="locationSection">
+        <div class="heading">
+			Location
+        </div>
 	<div id="cityBar">
 		<form id="cityForm">
 			<input type="radio" class="radioButton" name="city" id="city" value="BLR" onClick="applyFilters()"><span class="radioCaption">Bangalore</span>
@@ -12,7 +16,12 @@
 	<div id="locationDetails" style="display:none;">
 
 	</div>
+</div>
 
+<div id="companySection">
+        <div class="heading">
+			Company
+        </div>
 	<div id="companySearchBar">
 		<input type="text" class="locationTextBox" placeholder="Enter Company (e.g. Infosys)" name="corpSearchString" id="corpSearchString">
 		<img class="searchIcon" src="images/search_orange_resized.png">
@@ -29,6 +38,7 @@
 			</div>
 		</div>
 	</div>
+</div>
 
 <link rel="stylesheet" type="text/css" href="thirdparty/jquery-ui/jquery-ui-1.10.3.custom.min.css"/>
 <script src="js/jquery.min.js"></script>

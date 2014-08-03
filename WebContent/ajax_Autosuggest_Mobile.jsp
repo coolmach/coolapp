@@ -1,4 +1,4 @@
-<%@page import="com.cbuddy.action.posts.MobileAction"%>
+<%@page import="com.cbuddy.posts.action.MobileAction"%>
 <%@page import="com.opensymphony.xwork2.ognl.OgnlValueStack"%>
 <%@ page import="java.util.List"%>
 <%@ page import="org.json.JSONObject"%>

@@ -59,18 +59,18 @@
 		<mapping class="com.cbuddy.beans.Corp" />		
 		<mapping class="com.cbuddy.beans.Location" />
 		<mapping class="com.cbuddy.beans.Neighborhood" />
-		<mapping class="com.model.user.RealEstatePostDetails" />
-		<mapping class="com.model.user.AutomobilePostDetails" />
-		<mapping class="com.model.user.ComputersPostDetails" />
-		<mapping class="com.model.user.MobilePostDetails" />
-		<mapping class="com.model.user.TelevisionPostDetails" />
-		<mapping class="com.model.user.DVDPostDetails" />
-		<mapping class="com.model.user.CameraPostDetails" />
-		<mapping class="com.model.user.FridgePostDetails" />
-		<mapping class="com.model.user.AirCoolerPostDetails" />
-		<mapping class="com.model.user.WashingMachinePostDetails" />
-		<mapping class="com.model.user.FurniturePostDetails" />
-		<mapping class="com.model.user.OtherPostDetails" />
+		<mapping class="com.cbuddy.posts.model.RealEstatePostDetails" />
+		<mapping class="com.cbuddy.posts.model.AutomobilePostDetails" />
+		<mapping class="com.cbuddy.posts.model.ComputersPostDetails" />
+		<mapping class="com.cbuddy.posts.model.MobilePostDetails" />
+		<mapping class="com.cbuddy.posts.model.TelevisionPostDetails" />
+		<mapping class="com.cbuddy.posts.model.DVDPostDetails" />
+		<mapping class="com.cbuddy.posts.model.CameraPostDetails" />
+		<mapping class="com.cbuddy.posts.model.FridgePostDetails" />
+		<mapping class="com.cbuddy.posts.model.AirCoolerPostDetails" />
+		<mapping class="com.cbuddy.posts.model.WashingMachinePostDetails" />
+		<mapping class="com.cbuddy.posts.model.FurniturePostDetails" />
+		<mapping class="com.cbuddy.posts.model.OtherPostDetails" />
 	</session-factory>
 
 </hibernate-configuration>
