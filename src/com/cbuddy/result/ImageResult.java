@@ -4,7 +4,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.struts2.ServletActionContext;
 
-import com.cbuddy.action.posts.ImageAction;
+import com.cbuddy.posts.action.ImageAction;
 import com.opensymphony.xwork2.ActionInvocation;
 import com.opensymphony.xwork2.Result;
 
