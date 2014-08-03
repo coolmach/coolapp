@@ -119,6 +119,13 @@ $(document).ready(function() {
 		if(filterData == ""){
 			data = data + '&subCategory='+subCat+'&category='+cat;
 		}
+		if (typeof $("input[name=city]:checked", "#cityForm").val() != "undefined") {
+			data = data + "&city=" + $("input[name=city]:checked", "#cityForm").val();
+		}
+
+		if($("#corpId").val() != "" && data.indexOf("corpId", 0)<0){
+			data = data + "&corpId=" + $("#corpId").val();
+		}
 		data = data+filterData +'&limit='+limit+'&offset='+offset+'&page='+(page+1);
 
 		$.ajax({
@@ -157,6 +164,15 @@ $(document).ready(function() {
 		if(filterData == ""){
 			data = data + '&subCategory='+subCat+'&category='+cat;
 		}
+		
+		if (typeof $("input[name=city]:checked", "#cityForm").val() != "undefined") {
+			data = data + "&city=" + $("input[name=city]:checked", "#cityForm").val();
+		}
+
+		if($("#corpId").val() != "" && data.indexOf("corpId", 0)<0){
+			data = data + "&corpId=" + $("#corpId").val();
+		}
+		
 		data = data+filterData +'&limit='+limit+'&offset='+offset+'&page='+(page+1);
 
 		$.ajax({
@@ -208,6 +224,15 @@ $(document).ready(function() {
 				data = data + '&'+sub+'='+$(this).val();
 			}
 		});
+		
+		if (typeof $("input[name=city]:checked", "#cityForm").val() != "undefined") {
+			data = data + "&city=" + $("input[name=city]:checked", "#cityForm").val();
+		}
+
+		if($("#corpId").val() != "" && data.indexOf("corpId", 0)<0){
+			data = data + "&corpId=" + $("#corpId").val();
+		}
+		
 		filterData = data;
 		$.ajax({
 			type: 'POST',
@@ -337,7 +362,14 @@ $(document).ready(function() {
 		//$(this).parent().hide();
 		subCat = $(this).val();
 		var data = "";
-		var data = data + '&subCategory='+subCat+'&category='+cat;
+		if (typeof $("input[name=city]:checked", "#cityForm").val() != "undefined") {
+			data = data + "&city=" + $("input[name=city]:checked", "#cityForm").val();
+		}
+
+		if($("#corpId").val() != "" && data.indexOf("corpId", 0)<0){
+			data = data + "&corpId=" + $("#corpId").val();
+		}
+		 data = data + '&subCategory='+subCat+'&category='+cat;
 
 		$.ajax({
 			type: 'POST',

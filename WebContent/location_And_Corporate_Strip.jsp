@@ -5,7 +5,7 @@
         </div>
 	<div id="cityBar">
 		<form id="cityForm">
-			<input type="radio" class="radioButton" name="city" id="city" value="BLR" onClick="applyFilters()"><span class="radioCaption">Bangalore</span>
+			<input type="radio" class="radioButton" checked="checked" name="city" id="city" value="BLR" onClick="applyFilters()"><span class="radioCaption">Bangalore</span>
 			<input type="radio" class="radioButton" name="city" id="city" value="CHE" onClick="applyFilters()"><span class="radioCaption_RightAlign">Chennai</span>
 		</form>
 	</div>

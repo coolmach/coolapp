@@ -1,13 +1,12 @@
 
 $(document).ready(function(){
-	var ctxPath = $('#context_path').text();
-
+	var ctxPath = $('#context_path').val().trim();
 	$("#locSearch").autocomplete({
 		source: function(request, response) {
 			$.ajax({
 				//url: "http://localhost:8080/Virat/getLocation?city=BLR",
 				//url:$('#context_path').text() + "/getLocation",
-				url:"Virat" + "/getLocation",
+				url:ctxPath + "/getLocation",
 				type: "POST",
 				dataType: "json",
 				//data: {location:$("#locSearch").val()},
@@ -30,7 +29,7 @@ $(document).ready(function(){
 			$.ajax({
 				//url:"http://localhost:8080/Virat/getNeighbor?city=BLR&location=" + ui.item.value,
 				//url:$('#contextPath').text() + "/getNeighbor",
-				url:"Virat" + "/getNeighbor",
+				url:ctxPath + "/getNeighbor",
 				type:"POST",
 				data: {city:$('input[name=city]:checked').val(),location:ui.item.value},
 				success:function(data){
@@ -49,8 +48,7 @@ $(document).ready(function(){
 });
 
 $(document).ready(function(){
-	var ctxPath = $('#context_path').text();
-
+	var ctxPath = $('#context_path').val().trim();
 	$("#corpSearchString").autocomplete({
 		source: function(request, response) {
 			$.ajax({
@@ -92,8 +90,8 @@ $(document).ready(function(){
 });
 
 function applyFilters(){
-	var ctxPath = $('#context_path').text();
-	//var path = "realestateFilter";
+	
+	var ctxPath = $('#context_path').val().trim();
 	var path = $("#action").val();
 
 	subCat = $('#sub').text();
@@ -112,7 +110,9 @@ function applyFilters(){
 
 	$('.selected_filters').html(str);
 
-	data = data + "&city=" + $("input[name=city]:checked", "#cityForm").val();
+	if (typeof $("input[name=city]:checked", "#cityForm").val() != "undefined") {
+		data = data + "&city=" + $("input[name=city]:checked", "#cityForm").val();
+	}
 
 	if($("#corpId").val() != "" && data.indexOf("corpId", 0)<0){
 		data = data + "&corpId=" + $("#corpId").val();
@@ -125,12 +125,29 @@ function applyFilters(){
 
 	$.ajax({
 		type: 'POST',
-		url: ctxPath+path, 
+		url: ctxPath+"/"+path, 
 		data: data,
 		success: function(data, status) {
+			
 			$('.data').html('');
 			$('.data').html(data);
 
+			var pC = parseInt($('#pagecount').val())/10;
+
+			if(pC % 1 != 0){
+				pC = (Math.floor(pC))+1;
+			}
+
+			$( ".pager li" ).eq(1).html( '<input id="page_info" type="text" readonly="readonly" value="Showing Page '+ (pC==0?pC:1) +' of '+pC+'" >' );
+
+
+			if(pC<=1)
+			{$( ".pager li" ).eq(2).addClass('hidden');
+			$( ".pager li" ).eq(0).addClass('hidden');
+			}
+			else
+			{$( ".pager li" ).eq(2).removeClass('hidden');
+			$( ".pager li" ).eq(0).addClass('hidden');}
 		}
 	});
 }
@@ -141,9 +158,6 @@ function applyFilters(){
 	
 		//$("#filterValueBar").show();
 		$('input[class^=check_location]').attr("checked", false);
-	
-		var ctxPath = $('#context_path').text();
-		var path = "realestateFilter";
 	
 		subCat = $('#sub').text();
 		cat = $('#cat').text();
@@ -160,9 +174,6 @@ function applyFilters(){
 		//$("#filterValueBar").show();
 		//$('input[class^=check_corpId]').attr("checked", false);
 		$("#corpId").val("");
-	
-		var ctxPath = $('#context_path').text();
-		var path = "realestateFilter";
 	
 		subCat = $('#sub').text();
 		cat = $('#cat').text();

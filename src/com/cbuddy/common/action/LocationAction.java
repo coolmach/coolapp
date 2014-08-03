@@ -43,6 +43,10 @@ public class LocationAction extends ActionSupport implements SessionAware, Servl
 		LogUtil.getInstance().info(">>> LocationAction.getLocations() - ENTER");
 		String city = request.getParameter("city");
 		String locationStr = request.getParameter("location");
+
+		//setting default city to Bangalore
+		if(city==null)
+			city="BLR";
 		
 		SessionFactory sessionFactory = (SessionFactory) ServletActionContext.getServletContext().getAttribute("sessionFactory");
 		Session dbSession = sessionFactory.openSession();
