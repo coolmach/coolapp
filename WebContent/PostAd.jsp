@@ -7,7 +7,7 @@
 	</div>
 </div>
 <div class="col-md-8" id="my">
-   <%@include file="./PostAd_RealEstate_Apartment_For_Sale.jsp" %>
+   <%@include file="/pages/realestate/postad/PostAd_RealEstate_Apartment_For_Sale.jsp" %>
 </div>
 
 <div class="col-md-5"></div>

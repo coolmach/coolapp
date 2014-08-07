@@ -25,7 +25,7 @@
 				</div>
 			</div>
 			
-			<%@include file="locationStrip.jsp" %>
+			<%@include file="/locationStrip.jsp" %>
 			
 			<div class="form-group">
 				<label for="make" class="col-sm-4 control-label">Make <span class="mandatory">*</span></label>

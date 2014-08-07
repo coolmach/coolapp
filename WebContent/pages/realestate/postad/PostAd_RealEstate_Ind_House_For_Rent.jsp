@@ -24,7 +24,7 @@
 					<input type="text" class="form-control" maxlength="200" id="Title" name="Title" value="Individual House for Rent - 2BHK" required>
 				</div>
 			</div>
-			<%@include file="locationStrip.jsp" %>
+			<%@include file="/locationStrip.jsp" %>
 			<div class="form-group">
 				<label for="area" class="col-sm-4 control-label">Total Area (sq. ft)<span class="mandatory">*</span></label>
 				<div class="col-sm-3">

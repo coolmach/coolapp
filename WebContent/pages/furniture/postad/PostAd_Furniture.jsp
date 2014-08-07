@@ -22,7 +22,7 @@
 				</div>
 			</div>
 			
-			<%@include file="locationStrip.jsp" %>
+			<%@include file="/locationStrip.jsp" %>
 
 			<div class="form-group">
 				<label for="brand" class="col-sm-4 control-label">Furniture Type<span class="mandatory">*</span></label>

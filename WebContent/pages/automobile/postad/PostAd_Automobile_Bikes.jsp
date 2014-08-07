@@ -24,7 +24,7 @@
 					<input type="text" class="form-control" maxlength="200" id="Title" name="Title" value="Honda Shine available for Sale" required>
 				</div>
 			</div>
-			<%@include file="locationStrip.jsp" %>		
+			<%@include file="/locationStrip.jsp" %>		
 			<div class="form-group">
 				<label for="facingDirection" class="col-sm-4 control-label">Make</label>
 				<div class="col-sm-6" style="padding-top:6px;">

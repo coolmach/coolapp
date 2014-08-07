@@ -24,7 +24,7 @@
 					<input type="text" class="form-control" maxlength="200" id="Title" name="Title" value="Looking for a roommate" required>
 				</div>
 			</div>
-			<%@include file="locationStrip.jsp" %>
+			<%@include file="/locationStrip.jsp" %>
 			<div class="form-group">
 				<label for="gender" class="col-sm-4 control-label">Gender</label>
 				<div class="col-sm-6">
