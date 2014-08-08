@@ -76,12 +76,13 @@ public class CommonPostsAction extends ActionSupport implements SessionAware, Se
 			postDetails.setCategory(CBuddyConstants.CATEGORY_ELECTRONICS_AND_HOUSEHOLD);
 		}	
 
-		categoryStr = Utils.getInstance().getCategoryDesc(postDetails.getCategory());
-		subCategoryStr = Utils.getInstance().getSubCategoryDesc(postDetails.getCategory(), postDetails.getSubCategory());
+		Utils utils = new Utils();
+		categoryStr = utils.getCategoryDesc(postDetails.getCategory());
+		subCategoryStr = utils.getSubCategoryDesc(postDetails.getCategory(), postDetails.getSubCategory());
 
 		if(postDetails.getSubCategory()==null || postDetails.getSubCategory().equals("") || subCategoryStr.equals("")){
 			postDetails.setSubCategory(CBuddyConstants.SUBCATEGORY_ELECTRONICS_AND_HOUSEHOLD_ALL);
-			subCategoryStr = Utils.getInstance().getSubCategoryDesc(postDetails.getCategory(), postDetails.getSubCategory());
+			subCategoryStr = utils.getSubCategoryDesc(postDetails.getCategory(), postDetails.getSubCategory());
 		}
 
 		CommonAdService adService = new CommonAdService();

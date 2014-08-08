@@ -25,6 +25,7 @@ public class Poit {
 	private String thumbnailName;
 	private String thumbnailType;
 	private String userFirstName;
+	private String postStatus;
 	private int corpId;
 	private int rating;
 	private Timestamp createdOn;
@@ -235,5 +236,13 @@ public class Poit {
 	}
 	public void setPage(String page) {
 		this.page = page;
+	}
+	
+	@Column(name="POST_STATUS")
+	public String getPostStatus() {
+		return postStatus;
+	}
+	public void setPostStatus(String postStatus) {
+		this.postStatus = postStatus;
 	}
 }

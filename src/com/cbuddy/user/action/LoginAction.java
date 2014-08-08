@@ -25,7 +25,8 @@ public class LoginAction extends ActionSupport implements SessionAware,ServletRe
 	private String isSignUpErrorExists="false";
 	private boolean isValidUser = false;
 
-	private String firstName;
+	private String email; //For activating user
+	private String activationCode; //For activating user
 
 	private String selectedCorpName; //In Sign Up screen, it corresponds to the value SELECTED by user in autosuggest list. This value cannot be modified after selection.
 	public String getSelectedCorpName() {
@@ -36,9 +37,8 @@ public class LoginAction extends ActionSupport implements SessionAware,ServletRe
 	}
 
 	private String corpName; //In Sign Up screen, it corresponds to the value in Company Name text box at the time of form submission. This value can be modified by the user later even after selection from auto suggest.
-
+	
 	private String responseMsg;
-
 
 	Ucred ucred = new Ucred();
 
@@ -135,7 +135,11 @@ public class LoginAction extends ActionSupport implements SessionAware,ServletRe
 			}
 
 			AuthenticateUserService auService = new AuthenticateUserService();
-			auService.registerUser(getModel());
+			User u = auService.registerUser(getModel(), request.getContextPath());
+			
+			session.put("userInfo", u);
+			session.put("userLoggedIn", "Y");
+			session.put("username", u.getFirstName());
 
 			responseMsg = "You have been successfully become a cBuddy " + getModel().getFirstName();
 
@@ -153,7 +157,17 @@ public class LoginAction extends ActionSupport implements SessionAware,ServletRe
 		return "success";
 	}
 
-
+	public String activateUser(){
+		try{
+			new AuthenticateUserService().activateUser(activationCode, email);
+		}catch(CBuddyException e){
+			addFieldError("email", e.getMessage());
+			return Action.INPUT;
+		}
+		return Action.SUCCESS;
+	}
+	
+	
 	public String myLogin(){
 		return "success";
 	}
@@ -188,5 +202,17 @@ public class LoginAction extends ActionSupport implements SessionAware,ServletRe
 	}
 	public void setResponseMsg(String responseMsg) {
 		this.responseMsg = responseMsg;
+	}
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	public String getActivationCode() {
+		return activationCode;
+	}
+	public void setActivationCode(String activationCode) {
+		this.activationCode = activationCode;
 	}
 }

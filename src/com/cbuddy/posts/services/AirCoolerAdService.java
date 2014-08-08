@@ -12,6 +12,7 @@ import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 
 import com.cbuddy.posts.model.AirCoolerPostDetails;
+import com.cbuddy.util.CBuddyConstants;
 import com.cbuddy.util.CriteriaUtil;
 
 
@@ -29,6 +30,7 @@ public class AirCoolerAdService{
 		Session session = sessionFactory.openSession();
 
 		Criteria criteria = session.createCriteria(AirCoolerPostDetails.class);
+		criteria.add(Restrictions.eq("postStatus", CBuddyConstants.USER_STATUS_ACTIVE));
 		criteria.addOrder(Order.desc("postId"));
 
 		if(postDetails.getCity() != null){
@@ -59,6 +61,7 @@ public class AirCoolerAdService{
 			}
 
 			Criteria criteria = session.createCriteria(AirCoolerPostDetails.class);
+			criteria.add(Restrictions.eq("postStatus", CBuddyConstants.USER_STATUS_ACTIVE));
 			criteria.addOrder(Order.desc("postId"));
 			criteria.setFirstResult(Integer.parseInt(postDetails.getOffset()));
 			criteria.setMaxResults(Integer.parseInt(postDetails.getLimit()));

@@ -61,4 +61,9 @@ public class CBuddyConstants {
 	public static final String READY_TO_OCCUPY_NO = "N";
 
 	public static final String BASE_FOLDER_NAME_INDEX = "C:\\Shiva\\indexes\\";
+	
+	public static String USER_STATUS_PENDING_VERIFICATION = "PEN";
+	public static String USER_STATUS_ACTIVE = "ACT";
+	public static String USER_STATUS_BLOCKED = "BLO";
+	
 }

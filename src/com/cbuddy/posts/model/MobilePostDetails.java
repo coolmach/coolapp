@@ -13,7 +13,7 @@ import com.cbuddy.beans.Pdmo;
 @Table(name = "MOBILE_POSTS")
 
 
-public class MobilePostDetails extends Pdmo implements Serializable{
+public class MobilePostDetails extends Pdmo implements Serializable, CommonDetailsForPost{
 
 	private static final long serialVersionUID = 1L;
 
@@ -39,6 +39,17 @@ public class MobilePostDetails extends Pdmo implements Serializable{
 	
 	private int corpId;
 	private String amt;
+	
+	private String postStatus;
+
+	@Column(name="POST_STATUS")
+	public String getPostStatus() {
+		return postStatus;
+	}
+
+	public void setPostStatus(String postStatus) {
+		this.postStatus = postStatus;
+	}
 
 	@Transient
 	public String getCategory() {

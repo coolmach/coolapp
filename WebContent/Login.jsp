@@ -102,8 +102,8 @@
 						<div class="form-group">
 							<label class="col-sm-4 control-label">Personal Email</label>
 							<div class="col-sm-8">
-								<input class="form-control" id="email" name="email"
-									placeholder="Email" required="" type="email">
+								<input class="form-control" id="PersonalEmailId" name="PersonalEmailId"
+									placeholder="Personal Email Id" required="" type="email">
 							</div>
 						</div>
 						<div class="form-group">

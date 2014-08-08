@@ -24,6 +24,7 @@ import com.cbuddy.beans.PDVD;
 import com.cbuddy.beans.Poit;
 import com.cbuddy.posts.model.DVDPostDetails;
 import com.cbuddy.posts.services.DVDAdService;
+import com.cbuddy.posts.util.PostsUtil;
 import com.cbuddy.user.model.User;
 import com.cbuddy.util.CBuddyConstants;
 import com.cbuddy.util.CriteriaUtil;
@@ -210,37 +211,39 @@ public class DVDAction extends ActionSupport implements SessionAware, ServletReq
 		}
 
 		//Make an entry in POIT
-		Poit poit = new Poit();
-		
-		poit.setCategory(CBuddyConstants.CATEGORY_ELECTRONICS_AND_HOUSEHOLD);
-		poit.setSubCategory(CBuddyConstants.SUBCATEGORY_ELECTRONICS_AND_HOUSEHOLD_DVD_MUSIC_PLAYER);
-		
-		poit.setTitle(postDetails.getTitle());
-		poit.setCity(postDetails.getCity());
-		poit.setContactNo(postDetails.getContactNo());
-		poit.setContactPersonName(postDetails.getContactPersonName());
-		poit.setCorpId(user.getCorpId());
-		poit.setCreatedBy(String.valueOf(userId));
-		poit.setCreatedOn(current);
-		poit.setDescription(postDetails.getDescription());
-		poit.setImageFileName(imgFileName);
-		poit.setImageType(getExtension(uploadContentType));
-		poit.setLocation(postDetails.getSelectedLocationCode());
-		poit.setModifiedBy(userId);
-		poit.setModifiedOn(current);
-		poit.setNegotiable(null);
-		poit.setPrice(postDetails.getPrice());
-		poit.setRating(0);
-		poit.setThumbnailName(null);
-		poit.setThumbnailType(null);
-		poit.setUserFirstName(user.getFirstName());
+//		Poit poit = new Poit();
+//		
+//		poit.setCategory(CBuddyConstants.CATEGORY_ELECTRONICS_AND_HOUSEHOLD);
+//		poit.setSubCategory(CBuddyConstants.SUBCATEGORY_ELECTRONICS_AND_HOUSEHOLD_DVD_MUSIC_PLAYER);
+//		
+//		poit.setTitle(postDetails.getTitle());
+//		poit.setCity(postDetails.getCity());
+//		poit.setContactNo(postDetails.getContactNo());
+//		poit.setContactPersonName(postDetails.getContactPersonName());
+//		poit.setCorpId(user.getCorpId());
+//		poit.setCreatedBy(String.valueOf(userId));
+//		poit.setCreatedOn(current);
+//		poit.setDescription(postDetails.getDescription());
+//		poit.setImageFileName(imgFileName);
+//		poit.setImageType(getExtension(uploadContentType));
+//		poit.setLocation(postDetails.getSelectedLocationCode());
+//		poit.setModifiedBy(userId);
+//		poit.setModifiedOn(current);
+//		poit.setNegotiable(null);
+//		poit.setPrice(postDetails.getPrice());
+//		poit.setRating(0);
+//		poit.setThumbnailName(null);
+//		poit.setThumbnailType(null);
+//		poit.setUserFirstName(user.getFirstName());
 
 		SessionFactory sessionFactory = (SessionFactory) ServletActionContext.getServletContext().getAttribute("sessionFactory");
 		Session dbSession = sessionFactory.openSession();
 
 		dbSession.beginTransaction();
-		dbSession.save(poit);
-		//dbSession.getTransaction().commit();
+
+		Poit poit = new PostsUtil().createPOIT(postDetails, user, dbSession, uploadContentType, CBuddyConstants.CATEGORY_ELECTRONICS_AND_HOUSEHOLD);
+		
+		//dbSession.save(poit);
 
 		dbSession.flush(); //Flushing to retrieve the auto generated post id
 
@@ -323,12 +326,13 @@ public class DVDAction extends ActionSupport implements SessionAware, ServletReq
 			postDetails.setCategory(CBuddyConstants.CATEGORY_ELECTRONICS_AND_HOUSEHOLD);
 		}	
 
-		categoryStr = Utils.getInstance().getCategoryDesc(postDetails.getCategory());
-		subCategoryStr = Utils.getInstance().getSubCategoryDesc(postDetails.getCategory(), postDetails.getSubCategory());
+		Utils utils = new Utils();
+		categoryStr = utils.getCategoryDesc(postDetails.getCategory());
+		subCategoryStr = utils.getSubCategoryDesc(postDetails.getCategory(), postDetails.getSubCategory());
 
 		if(postDetails.getSubCategory()==null || postDetails.getSubCategory().equals("") || subCategoryStr.equals("")){
 			postDetails.setSubCategory(CBuddyConstants.SUBCATEGORY_ELECTRONICS_AND_HOUSEHOLD_DVD_MUSIC_PLAYER);
-			subCategoryStr = Utils.getInstance().getSubCategoryDesc(postDetails.getCategory(), postDetails.getSubCategory());
+			subCategoryStr = utils.getSubCategoryDesc(postDetails.getCategory(), postDetails.getSubCategory());
 		}
 
 		DVDAdService adService = new DVDAdService();

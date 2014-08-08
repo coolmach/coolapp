@@ -56,6 +56,8 @@
 		<mapping class="com.cbuddy.beans.PWashingMachine" />
 		<mapping class="com.cbuddy.beans.PFurniture" />
 		<mapping class="com.cbuddy.beans.POthers" />
+		<mapping class="com.cbuddy.beans.Pact" />
+		<mapping class="com.cbuddy.beans.Uact" />
 		<mapping class="com.cbuddy.beans.Corp" />		
 		<mapping class="com.cbuddy.beans.Location" />
 		<mapping class="com.cbuddy.beans.Neighborhood" />

@@ -29,6 +29,7 @@ public class RealEstateAdService{
 		
 		Criteria criteria = session.createCriteria(RealEstatePostDetails.class);
 		criteria.addOrder(Order.desc("postId"));
+		criteria.add(Restrictions.eq("postStatus", CBuddyConstants.USER_STATUS_ACTIVE));
 		criteria.add(Restrictions.eq("subCategory", subCategory));
 		
 		if(postDetails.getCity() != null){
@@ -61,6 +62,7 @@ public class RealEstateAdService{
 				postDetails.setOffset("0");
 			}
 			Criteria criteria = session.createCriteria(RealEstatePostDetails.class);
+			criteria.add(Restrictions.eq("postStatus", CBuddyConstants.USER_STATUS_ACTIVE));
 			criteria.addOrder(Order.desc("postId"));
 			criteria.setFirstResult(Integer.parseInt(postDetails.getOffset()));
 			criteria.setMaxResults(Integer.parseInt(postDetails.getLimit()));

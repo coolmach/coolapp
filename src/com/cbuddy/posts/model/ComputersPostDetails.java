@@ -13,7 +13,7 @@ import com.cbuddy.beans.Pcomp;
 @Table(name = "COMPUTERS_POSTS")
 
 
-public class ComputersPostDetails extends Pcomp implements Serializable{
+public class ComputersPostDetails extends Pcomp implements Serializable, CommonDetailsForPost{
 
 	private static final long serialVersionUID = 1L;
 
@@ -36,65 +36,76 @@ public class ComputersPostDetails extends Pcomp implements Serializable{
 
 	private int corpId;
 
+	private String postStatus;
+
+	@Column(name="POST_STATUS")
+	public String getPostStatus() {
+		return postStatus;
+	}
+
+	public void setPostStatus(String postStatus) {
+		this.postStatus = postStatus;
+	}
+
 	@Transient
 	public String getCategory() {
 		return category;
 	}
-	
+
 	public void setCategory(String category) {
 		this.category = category;
 	}
-	
-//	@Column(name="SUB_CATEGORY")
-//	public String getSubcategory() {
-//		return subcategory;
-//	}
-//	
-//	public void setSubcategory(String subcategory) {
-//		this.subcategory = subcategory;
-//	}
-	
+
+	//	@Column(name="SUB_CATEGORY")
+	//	public String getSubcategory() {
+	//		return subcategory;
+	//	}
+	//	
+	//	public void setSubcategory(String subcategory) {
+	//		this.subcategory = subcategory;
+	//	}
+
 	@Column(name="TITLE")
 	public String getTitle() {
 		return Title;
 	}
-	
+
 	public void setTitle(String title) {
 		Title = title;
 	}
-	
+
 	@Column(name="DESCRIPTION")
 	public String getDescription() {
 		return Description;
 	}
-	
+
 	public void setDescription(String description) {
 		Description = description;
 	}
-	
+
 	@Column(name="CONTACT_NO")
 	public String getContactNo() {
 		return ContactNo;
 	}
-	
+
 	public void setContactNo(String contactNo) {
 		ContactNo = contactNo;
 	}
-	
+
 	@Column(name="CONTACT_PERSON_NAME")
 	public String getContactPersonName() {
 		return ContactPersonName;
 	}
-	
+
 	public void setContactPersonName(String contactPersonName) {
 		ContactPersonName = contactPersonName;
 	}
-	
+
 	@Column(name="IMAGE_FILE_NAME")
 	public String getImageFileName() {
 		return ImageFileName;
 	}
-	
+
 	public void setImageFileName(String imageFileName) {
 		ImageFileName = imageFileName;
 	}
@@ -161,7 +172,7 @@ public class ComputersPostDetails extends Pcomp implements Serializable{
 	public void setYearStr(String yearStr) {
 		this.yearStr = yearStr;
 	}
-	
+
 	@Transient
 	public String getProcessorSizeStr() {
 		return processorSizeStr;
@@ -170,7 +181,7 @@ public class ComputersPostDetails extends Pcomp implements Serializable{
 	public void setProcessorSizeStr(String processorSizeStr) {
 		this.processorSizeStr = processorSizeStr;
 	}
-	
+
 	@Transient
 	public String getHddSizeStr() {
 		return hddSizeStr;
@@ -179,6 +190,6 @@ public class ComputersPostDetails extends Pcomp implements Serializable{
 	public void setHddSizeStr(String hddSizeStr) {
 		this.hddSizeStr = hddSizeStr;
 	}
-	
-	
+
+
 }

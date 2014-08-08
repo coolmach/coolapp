@@ -4,9 +4,8 @@ import java.util.HashMap;
 
 
 public class Utils {
-	private static Utils instance = new Utils();
-	private HashMap<String, String> categoryDescMap = new HashMap<String, String>(); 
-	private Utils(){
+	private static HashMap<String, String> categoryDescMap = new HashMap<String, String>(); 
+	static{
 		//Category and Sub Categories for REAL_ESTATE
 		categoryDescMap.put(CBuddyConstants.CATEGORY_REAL_ESTATE, "Real Estate");
 		categoryDescMap.put(CBuddyConstants.CATEGORY_REAL_ESTATE + "_" + CBuddyConstants.SUBCATEGORY_REAL_ESTATE_APARTMENT_FOR_RENT, "Apartments for Rent");
@@ -66,11 +65,11 @@ public class Utils {
 		categoryDescMap.put(CBuddyConstants.CATEGORY_ELECTRONICS_AND_HOUSEHOLD + "_" + CBuddyConstants.SUBCATEGORY_ELECTRONICS_AND_HOUSEHOLD_WASHINGMACHINE, "Washing Machines");
 		categoryDescMap.put(CBuddyConstants.CATEGORY_ELECTRONICS_AND_HOUSEHOLD + "_" + CBuddyConstants.SUBCATEGORY_ELECTRONICS_AND_HOUSEHOLD_DVD_MUSIC_PLAYER, "DVD Players, Music Players, iPods");
 	
+		
 	}
-	public static Utils getInstance(){
-		return instance;
+	
+	public Utils(){
 	}
-
 
 	public String getCategoryDesc(String categoryCode){
 		String output = "";
@@ -284,5 +283,17 @@ public class Utils {
 		else if(input.equals("ALMIRAH")) output = "Almirah";
 		else if(input.equals("OTH")) output = "Others";
 		return output;
+	}
+	
+	private static String[] keywords = {"JUNGLE", "HILL", "CHIMNEY", "BREEZE", "FLOWER", "BROOK", "SNOW", "COFFEE", "FOUNTAIN", "GREEN"};
+	public String generateActivationCode(){
+		//Math.random gives between 0 and 1.
+		long randomNumber = Math.round(Math.random() * 100000);
+		String actCode = String.valueOf(randomNumber).substring(0,4);
+		
+		int randomIndex = (int)Math.round(Math.random() * 10);
+		actCode = keywords[randomIndex%10] + "@" + actCode;
+		
+		return actCode;
 	}
 }

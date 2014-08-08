@@ -12,6 +12,7 @@ import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 
 import com.cbuddy.posts.model.FurniturePostDetails;
+import com.cbuddy.util.CBuddyConstants;
 import com.cbuddy.util.CriteriaUtil;
 
 public class FurnitureAdService {
@@ -53,6 +54,7 @@ public class FurnitureAdService {
 			}
 			
 			Criteria criteria = session.createCriteria(FurniturePostDetails.class);
+			criteria.add(Restrictions.eq("postStatus", CBuddyConstants.USER_STATUS_ACTIVE));
 			criteria.addOrder(Order.desc("postId"));
 			criteria.setFirstResult(Integer.parseInt(postDetails.getOffset()));
 			criteria.setMaxResults(Integer.parseInt(postDetails.getLimit()));

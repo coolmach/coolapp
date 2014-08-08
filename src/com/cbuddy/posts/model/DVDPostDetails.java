@@ -13,7 +13,7 @@ import com.cbuddy.beans.PDVD;
 @Table(name = "DVD_POSTS")
 
 
-public class DVDPostDetails extends PDVD implements Serializable{
+public class DVDPostDetails extends PDVD implements Serializable, CommonDetailsForPost{
 
 	private static final long serialVersionUID = 1L;
 
@@ -33,6 +33,17 @@ public class DVDPostDetails extends PDVD implements Serializable{
 
 	private int corpId;
 
+	private String postStatus;
+
+	@Column(name="POST_STATUS")
+	public String getPostStatus() {
+		return postStatus;
+	}
+
+	public void setPostStatus(String postStatus) {
+		this.postStatus = postStatus;
+	}
+	
 	@Transient
 	public String getSubCategory() {
 		return subCategory;

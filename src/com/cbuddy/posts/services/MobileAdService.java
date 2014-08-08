@@ -12,6 +12,7 @@ import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 
 import com.cbuddy.posts.model.MobilePostDetails;
+import com.cbuddy.util.CBuddyConstants;
 import com.cbuddy.util.CriteriaUtil;
 
 public class MobileAdService{
@@ -22,6 +23,7 @@ public class MobileAdService{
 		
 		Criteria criteria = session.createCriteria(MobilePostDetails.class);
 		criteria.addOrder(Order.desc("postId"));
+		criteria.add(Restrictions.eq("postStatus", CBuddyConstants.USER_STATUS_ACTIVE));
 		criteria.add(Restrictions.eq("subCategory", subCategory));
 		
 		if(postDetails.getCity() != null){
@@ -55,6 +57,7 @@ public class MobileAdService{
 			}
 			
 			Criteria criteria = session.createCriteria(MobilePostDetails.class);
+			criteria.add(Restrictions.eq("postStatus", CBuddyConstants.USER_STATUS_ACTIVE));
 			criteria.addOrder(Order.desc("postId"));
 			criteria.setFirstResult(Integer.parseInt(postDetails.getOffset()));
 			criteria.setMaxResults(Integer.parseInt(postDetails.getLimit()));

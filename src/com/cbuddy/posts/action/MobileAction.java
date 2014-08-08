@@ -25,6 +25,7 @@ import com.cbuddy.beans.Poit;
 import com.cbuddy.posts.cache.MobilePhoneCache;
 import com.cbuddy.posts.model.MobilePostDetails;
 import com.cbuddy.posts.services.MobileAdService;
+import com.cbuddy.posts.util.PostsUtil;
 import com.cbuddy.user.model.User;
 import com.cbuddy.util.AutoSuggestMobileService;
 import com.cbuddy.util.CBuddyConstants;
@@ -183,7 +184,7 @@ public class MobileAction extends ActionSupport implements SessionAware, Servlet
 		}
 
 		temp = postDetails.getModel();
-		if(temp != null && temp.length() > 16){
+		if(temp != null && temp.length() > 30){
 			addFieldError("errorMsg", "Invalid Model");
 			return false;
 		}
@@ -260,35 +261,37 @@ public class MobileAction extends ActionSupport implements SessionAware, Servlet
 		}
 
 		//Make an entry in POIT
-		Poit poit = new Poit();
-		poit.setCategory(CBuddyConstants.CATEGORY_MOBILE);
-		poit.setTitle(postDetails.getTitle());
-		poit.setCity(postDetails.getCity());
-		poit.setContactNo(postDetails.getContactNo());
-		poit.setContactPersonName(postDetails.getContactPersonName());
-		poit.setCorpId(user.getCorpId());
-		poit.setCreatedBy(String.valueOf(userId));
-		poit.setCreatedOn(current);
-		poit.setDescription(postDetails.getDescription());
-		poit.setImageFileName(imgFileName);
-		poit.setImageType(getExtension(uploadContentType));
-		poit.setLocation(postDetails.getSelectedLocationCode());
-		poit.setModifiedBy(userId);
-		poit.setModifiedOn(current);
-		poit.setNegotiable(null);
-		poit.setPrice(postDetails.getPrice());
-		poit.setRating(0);
-		poit.setSubCategory(postDetails.getSubCategory());
-		poit.setThumbnailName(null);
-		poit.setThumbnailType(null);
-		poit.setUserFirstName(user.getFirstName());
+//		Poit poit = new Poit();
+//		poit.setCategory(CBuddyConstants.CATEGORY_MOBILE);
+//		poit.setTitle(postDetails.getTitle());
+//		poit.setCity(postDetails.getCity());
+//		poit.setContactNo(postDetails.getContactNo());
+//		poit.setContactPersonName(postDetails.getContactPersonName());
+//		poit.setCorpId(user.getCorpId());
+//		poit.setCreatedBy(String.valueOf(userId));
+//		poit.setCreatedOn(current);
+//		poit.setDescription(postDetails.getDescription());
+//		poit.setImageFileName(imgFileName);
+//		poit.setImageType(getExtension(uploadContentType));
+//		poit.setLocation(postDetails.getSelectedLocationCode());
+//		poit.setModifiedBy(userId);
+//		poit.setModifiedOn(current);
+//		poit.setNegotiable(null);
+//		poit.setPrice(postDetails.getPrice());
+//		poit.setRating(0);
+//		poit.setSubCategory(postDetails.getSubCategory());
+//		poit.setThumbnailName(null);
+//		poit.setThumbnailType(null);
+//		poit.setUserFirstName(user.getFirstName());
 
 		SessionFactory sessionFactory = (SessionFactory) ServletActionContext.getServletContext().getAttribute("sessionFactory");
 		Session dbSession = sessionFactory.openSession();
 
 		dbSession.beginTransaction();
-		dbSession.save(poit);
-		//dbSession.getTransaction().commit();
+		
+		Poit poit = new PostsUtil().createPOIT(postDetails, user, dbSession, uploadContentType, CBuddyConstants.CATEGORY_MOBILE);
+		
+//		dbSession.save(poit);
 
 		dbSession.flush(); //Flushing to retrieve the auto generated post id
 
@@ -380,12 +383,13 @@ public class MobileAction extends ActionSupport implements SessionAware, Servlet
 	}
 	
 	private void populateAdditionalDetailsForPost(MobilePostDetails postDetails, Session dbSession){
+		Utils utils = new Utils();
 		String cityName = LocationUtil.getCityName(dbSession, postDetails.getCity());
 		String locName = LocationUtil.getLocationName(dbSession, postDetails.getCity(), postDetails.getLocation());
 		postDetails.setCity(cityName);
 		postDetails.setLocation(locName);
 		postDetails.setPriceStr(NumberFormatterUtil.formatAmount(postDetails.getPrice()));
-		postDetails.setBrandStr(Utils.getInstance().getMobileBrandDesc(postDetails.getBrand()));
+		postDetails.setBrandStr(utils.getMobileBrandDesc(postDetails.getBrand()));
 		postDetails.setModelStr(MobilePhoneCache.getInstance().getModelName(postDetails.getBrand(), postDetails.getModel()));
 	}
 
@@ -395,12 +399,13 @@ public class MobileAction extends ActionSupport implements SessionAware, Servlet
 			postDetails.setCategory(CBuddyConstants.CATEGORY_MOBILE);
 		}	
 
-		categoryStr = Utils.getInstance().getCategoryDesc(postDetails.getCategory());
-		subCategoryStr = Utils.getInstance().getSubCategoryDesc(postDetails.getCategory(), postDetails.getSubCategory());
+		Utils utils = new Utils();
+		categoryStr = utils.getCategoryDesc(postDetails.getCategory());
+		subCategoryStr = utils.getSubCategoryDesc(postDetails.getCategory(), postDetails.getSubCategory());
 
 		if(postDetails.getSubCategory()==null || postDetails.getSubCategory().equals("") || subCategoryStr.equals("")){
 			postDetails.setSubCategory(CBuddyConstants.SUBCATEGORY_MOBILE_MOBILEPHONES);
-			subCategoryStr = Utils.getInstance().getSubCategoryDesc(postDetails.getCategory(), postDetails.getSubCategory());
+			subCategoryStr = utils.getSubCategoryDesc(postDetails.getCategory(), postDetails.getSubCategory());
 		}
 
 		MobileAdService mobileAdService =  new MobileAdService();

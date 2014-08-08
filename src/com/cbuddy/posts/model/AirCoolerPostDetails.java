@@ -13,7 +13,7 @@ import com.cbuddy.beans.PAirCooler;
 @Table(name = "AIRCOOLER_POSTS")
 
 
-public class AirCoolerPostDetails extends PAirCooler implements Serializable{
+public class AirCoolerPostDetails extends PAirCooler implements Serializable, CommonDetailsForPost{
 
 	private static final long serialVersionUID = 1L;
 
@@ -31,7 +31,22 @@ public class AirCoolerPostDetails extends PAirCooler implements Serializable{
 	private String userEnteredLocationStr;
 	private String selectedLocationCode;
 
+	private String limit;
+	private String offset;
+	private String page="1";
+	
 	private int corpId;
+	
+	private String postStatus;
+
+	@Column(name="POST_STATUS")
+	public String getPostStatus() {
+		return postStatus;
+	}
+
+	public void setPostStatus(String postStatus) {
+		this.postStatus = postStatus;
+	}
 
 	@Transient
 	public String getSubCategory() {
@@ -149,4 +164,29 @@ public class AirCoolerPostDetails extends PAirCooler implements Serializable{
 	public void setYearStr(String yearStr) {
 		this.yearStr = yearStr;
 	}
+	
+	@Transient
+	public String getLimit() {
+		return limit;
+	}
+	public void setLimit(String limit) {
+		this.limit = limit;
+	}
+	
+	@Transient
+	public String getOffset() {
+		return offset;
+	}
+	public void setOffset(String offset) {
+		this.offset = offset;
+	}
+	
+	@Transient
+	public String getPage() {
+		return page;
+	}
+	public void setPage(String page) {
+		this.page = page;
+	}
+
 }

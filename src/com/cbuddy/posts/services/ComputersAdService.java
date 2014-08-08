@@ -14,6 +14,7 @@ import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 
 import com.cbuddy.posts.model.ComputersPostDetails;
+import com.cbuddy.util.CBuddyConstants;
 import com.cbuddy.util.CriteriaUtil;
 import com.cbuddy.util.NumberFormatterUtil;
 
@@ -24,6 +25,7 @@ public class ComputersAdService{
 		Session session = sessionFactory.openSession();
 
 		Criteria criteria = session.createCriteria(ComputersPostDetails.class);
+		criteria.add(Restrictions.eq("postStatus", CBuddyConstants.USER_STATUS_ACTIVE));
 		criteria.addOrder(Order.desc("postId"));
 		criteria.add(Restrictions.eq("subCategory", subCategory));
 		
@@ -58,6 +60,7 @@ public class ComputersAdService{
 			}
 			
 			Criteria criteria = session.createCriteria(ComputersPostDetails.class);
+			criteria.add(Restrictions.eq("postStatus", CBuddyConstants.USER_STATUS_ACTIVE));
 			criteria.addOrder(Order.desc("postId"));
 			criteria.setFirstResult(Integer.parseInt(postDetails.getOffset()));
 			criteria.setMaxResults(Integer.parseInt(postDetails.getLimit()));

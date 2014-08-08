@@ -20,6 +20,7 @@ import com.cbuddy.beans.Pdau;
 import com.cbuddy.beans.Poit;
 import com.cbuddy.posts.model.AutomobilePostDetails;
 import com.cbuddy.posts.services.AutomobileAdService;
+import com.cbuddy.posts.util.PostsUtil;
 import com.cbuddy.user.model.User;
 import com.cbuddy.util.CBuddyConstants;
 import com.cbuddy.util.LocationUtil;
@@ -211,35 +212,38 @@ public class AutomobileAction extends ActionSupport implements SessionAware, Ser
 		}
 
 		//Make an entry in POIT
-		Poit poit = new Poit();
-		poit.setCategory(CBuddyConstants.CATEGORY_AUTOMOBILES);
-		poit.setTitle(postDetails.getTitle());
-		poit.setCity(postDetails.getCity());
-		poit.setContactNo(postDetails.getContactNo());
-		poit.setContactPersonName(postDetails.getContactPersonName());
-		//	poit.setCorpId(user.getCorpId());
-		poit.setCreatedBy(String.valueOf(userId));
-		poit.setCreatedOn(current);
-		poit.setDescription(postDetails.getDescription());
-		poit.setImageFileName(imgFileName);
-		poit.setImageType(getExtension(uploadContentType));
-		poit.setLocation(postDetails.getSelectedLocationCode());
-		poit.setModifiedBy(userId);
-		poit.setModifiedOn(current);
-		poit.setNegotiable(null);
-		poit.setPrice(postDetails.getPrice());
-		poit.setRating(0);
-		poit.setSubCategory(postDetails.getSubCategory());
-		poit.setThumbnailName(null);
-		poit.setThumbnailType(null);
-		poit.setUserFirstName(user.getFirstName());
-
+//		Poit poit = new Poit();
+//		poit.setCategory(CBuddyConstants.CATEGORY_AUTOMOBILES);
+//		poit.setTitle(postDetails.getTitle());
+//		poit.setCity(postDetails.getCity());
+//		poit.setContactNo(postDetails.getContactNo());
+//		poit.setContactPersonName(postDetails.getContactPersonName());
+//		//	poit.setCorpId(user.getCorpId());
+//		poit.setCreatedBy(String.valueOf(userId));
+//		poit.setCreatedOn(current);
+//		poit.setDescription(postDetails.getDescription());
+//		poit.setImageFileName(imgFileName);
+//		poit.setImageType(getExtension(uploadContentType));
+//		poit.setLocation(postDetails.getSelectedLocationCode());
+//		poit.setModifiedBy(userId);
+//		poit.setModifiedOn(current);
+//		poit.setNegotiable(null);
+//		poit.setPrice(postDetails.getPrice());
+//		poit.setRating(0);
+//		poit.setSubCategory(postDetails.getSubCategory());
+//		poit.setThumbnailName(null);
+//		poit.setThumbnailType(null);
+//		poit.setUserFirstName(user.getFirstName());
+//
 		SessionFactory sessionFactory = (SessionFactory) ServletActionContext.getServletContext().getAttribute("sessionFactory");
 		Session dbSession = sessionFactory.openSession();
 
 		dbSession.beginTransaction();
-		dbSession.save(poit);
-		//dbSession.getTransaction().commit();
+		
+		Poit poit = new PostsUtil().createPOIT(postDetails, user, dbSession, uploadContentType, CBuddyConstants.CATEGORY_AUTOMOBILES);
+		
+//		dbSession.save(poit);
+
 
 		dbSession.flush(); //Flushing to retrieve the auto generated post id
 
@@ -305,20 +309,21 @@ public class AutomobileAction extends ActionSupport implements SessionAware, Ser
 		if(postDetails == null){
 			return;
 		}
+		Utils utils = new Utils();
 		String cityName = LocationUtil.getCityName(dbSession, postDetails.getCity());
 		String locName = LocationUtil.getLocationName(dbSession, postDetails.getCity(), postDetails.getLocation());
 		postDetails.setCity(cityName);
 		postDetails.setLocation(locName);
 		postDetails.setPriceStr(NumberFormatterUtil.formatAmount(postDetails.getPrice()));
 		if(postDetails.getFuelType()!=null){
-			postDetails.setFuelTypeStr(Utils.getInstance().getFuelTypeDesc(postDetails.getFuelType()));	
+			postDetails.setFuelTypeStr(utils.getFuelTypeDesc(postDetails.getFuelType()));	
 		}
 		if(postDetails.getSubCategory().equals(CBuddyConstants.SUBCATEGORY_AUTOMOBILES_CARS)){
-			postDetails.setMakeStr(Utils.getInstance().getCarMakeDesc(postDetails.getMake()));
-			postDetails.setModelStr(Utils.getInstance().getCarModelDesc(postDetails.getMake(), postDetails.getAutomobileModel()));
+			postDetails.setMakeStr(utils.getCarMakeDesc(postDetails.getMake()));
+			postDetails.setModelStr(utils.getCarModelDesc(postDetails.getMake(), postDetails.getAutomobileModel()));
 		}else if(postDetails.getSubCategory().equals(CBuddyConstants.SUBCATEGORY_AUTOMOBILES_MOTORCYCLES)){
-			postDetails.setMakeStr(Utils.getInstance().getBikeMakeDesc(postDetails.getMake()));
-			postDetails.setModelStr(Utils.getInstance().getBikeModelDesc(postDetails.getMake(), postDetails.getAutomobileModel()));
+			postDetails.setMakeStr(utils.getBikeMakeDesc(postDetails.getMake()));
+			postDetails.setModelStr(utils.getBikeModelDesc(postDetails.getMake(), postDetails.getAutomobileModel()));
 		}
 	}
 	
@@ -328,12 +333,14 @@ public class AutomobileAction extends ActionSupport implements SessionAware, Ser
 			postDetails.setCategory(CBuddyConstants.CATEGORY_AUTOMOBILES);
 		}	
 
-		categoryStr = Utils.getInstance().getCategoryDesc(postDetails.getCategory());
-		subCategoryStr = Utils.getInstance().getSubCategoryDesc(postDetails.getCategory(), postDetails.getSubCategory());
+		Utils utils = new Utils();
+		
+		categoryStr = utils.getCategoryDesc(postDetails.getCategory());
+		subCategoryStr = utils.getSubCategoryDesc(postDetails.getCategory(), postDetails.getSubCategory());
 
 		if(postDetails.getSubCategory()==null || postDetails.getSubCategory().equals("") || subCategoryStr.equals("")){
 			postDetails.setSubCategory(CBuddyConstants.SUBCATEGORY_AUTOMOBILES_CARS);
-			subCategoryStr = Utils.getInstance().getSubCategoryDesc(postDetails.getCategory(), postDetails.getSubCategory());
+			subCategoryStr = utils.getSubCategoryDesc(postDetails.getCategory(), postDetails.getSubCategory());
 		}
 
 		AutomobileAdService automobileAdService =  new AutomobileAdService();

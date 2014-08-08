@@ -320,7 +320,8 @@ public class OtherPostsAction extends ActionSupport implements SessionAware, Ser
 			postDetails.setCategory(CBuddyConstants.CATEGORY_ELECTRONICS_AND_HOUSEHOLD);
 		}	
 
-		categoryStr = Utils.getInstance().getCategoryDesc(postDetails.getCategory());
+		Utils utils = new Utils();
+		categoryStr = utils.getCategoryDesc(postDetails.getCategory());
 		
 		adList = getAdListByCategory(getModel());
 
@@ -336,6 +337,7 @@ public class OtherPostsAction extends ActionSupport implements SessionAware, Ser
 		List<OtherPostDetails> list = null;
 		try {
 			Criteria criteria = session.createCriteria(OtherPostDetails.class);
+			criteria.add(Restrictions.eq("postStatus", CBuddyConstants.USER_STATUS_ACTIVE));
 			criteria.addOrder(Order.desc("postId"));
 			criteria.setMaxResults(20);
 			criteria.add(Restrictions.eq("subCategory", postDetails.getSubCategory()));

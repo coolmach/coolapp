@@ -23,6 +23,7 @@ public class AutomobileAdService{
 		Session session = sessionFactory.openSession();
 		
 		Criteria criteria = session.createCriteria(AutomobilePostDetails.class);
+		criteria.add(Restrictions.eq("postStatus", CBuddyConstants.USER_STATUS_ACTIVE));
 		criteria.addOrder(Order.desc("postId"));
 		criteria.add(Restrictions.eq("subCategory", subCategory));
 		if(postDetails.getCity() != null){
@@ -63,6 +64,7 @@ public class AutomobileAdService{
 				postDetails.setOffset("0");
 			}
 			Criteria criteria = session.createCriteria(AutomobilePostDetails.class);
+			criteria.add(Restrictions.eq("postStatus", CBuddyConstants.USER_STATUS_ACTIVE));
 			criteria.addOrder(Order.desc("postId"));
 			criteria.setFirstResult(Integer.parseInt(postDetails.getOffset()));
 			criteria.setMaxResults(Integer.parseInt(postDetails.getLimit()));

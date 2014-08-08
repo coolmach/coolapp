@@ -13,7 +13,7 @@ import com.cbuddy.beans.PFurniture;
 @Table(name = "FURNITURE_POSTS")
 
 
-public class FurniturePostDetails extends PFurniture implements Serializable{
+public class FurniturePostDetails extends PFurniture implements Serializable, CommonDetailsForPost{
 
 	private static final long serialVersionUID = 1L;
 
@@ -33,6 +33,17 @@ public class FurniturePostDetails extends PFurniture implements Serializable{
 	private String selectedLocationCode;
 
 	private int corpId;
+	
+	private String postStatus;
+
+	@Column(name="POST_STATUS")
+	public String getPostStatus() {
+		return postStatus;
+	}
+
+	public void setPostStatus(String postStatus) {
+		this.postStatus = postStatus;
+	}
 
 	@Transient
 	public String getCategory() {

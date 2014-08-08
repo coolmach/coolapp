@@ -21,6 +21,7 @@ import com.cbuddy.beans.Pdre;
 import com.cbuddy.beans.Poit;
 import com.cbuddy.posts.model.RealEstatePostDetails;
 import com.cbuddy.posts.services.RealEstateAdService;
+import com.cbuddy.posts.util.PostsUtil;
 import com.cbuddy.user.model.User;
 import com.cbuddy.util.CBuddyConstants;
 import com.cbuddy.util.LocationUtil;
@@ -73,16 +74,16 @@ public class RealEstateAction extends ActionSupport implements SessionAware, Ser
 
 	}
 
-	private String getExtension(String contentType){
-		String extension = contentType;
-		if(contentType != null){
-			int indexSlash = contentType.indexOf("/");
-			if(indexSlash>=0){
-				extension = contentType.substring(indexSlash + 1);
-			}
-		}
-		return extension;
-	}
+//	private String getExtension(String contentType){
+//		String extension = contentType;
+//		if(contentType != null){
+//			int indexSlash = contentType.indexOf("/");
+//			if(indexSlash>=0){
+//				extension = contentType.substring(indexSlash + 1);
+//			}
+//		}
+//		return extension;
+//	}
 
 	private boolean validateMandatoryFields(){
 		String subCategory = postDetails.getSubCategory();
@@ -245,7 +246,7 @@ public class RealEstateAction extends ActionSupport implements SessionAware, Ser
 		User user = (User)session.get("userInfo");
 		Timestamp current = new Timestamp(System.currentTimeMillis());
 		String userId = String.valueOf(user.getUserId());
-		String imgFileName = String.valueOf(System.currentTimeMillis()) + "." + getExtension(uploadContentType) + "";
+		//String imgFileName = String.valueOf(System.currentTimeMillis()) + "." + getExtension(uploadContentType) + "";
 
 		SessionFactory sessionFactory = (SessionFactory) ServletActionContext.getServletContext().getAttribute("sessionFactory");
 		Session dbSession = sessionFactory.openSession();
@@ -273,32 +274,33 @@ public class RealEstateAction extends ActionSupport implements SessionAware, Ser
 		}
 
 		//Make an entry in POIT
-		Poit poit = new Poit();
-		poit.setCategory(CBuddyConstants.CATEGORY_REAL_ESTATE);
-		poit.setTitle(postDetails.getTitle());
-		poit.setCity(postDetails.getCity());
-		poit.setContactNo(postDetails.getContactNo());
-		poit.setContactPersonName(postDetails.getContactPersonName());
-		poit.setCorpId(user.getCorpId());
-		poit.setCreatedBy(String.valueOf(userId));
-		poit.setCreatedOn(current);
-		poit.setDescription(postDetails.getDescription());
-		poit.setImageFileName(imgFileName);
-		poit.setImageType(getExtension(uploadContentType));
-		poit.setLocation(postDetails.getSelectedLocationCode());
-		poit.setModifiedBy(userId);
-		poit.setModifiedOn(current);
-		poit.setNegotiable(null);
-		poit.setPrice(postDetails.getPriceValue());
-		poit.setRating(0);
-		poit.setSubCategory(postDetails.getSubCategory());
-		poit.setThumbnailName(null);
-		poit.setThumbnailType(null);
-		poit.setUserFirstName(user.getFirstName());
+//		Poit poit = new Poit();
+//		poit.setCategory(CBuddyConstants.CATEGORY_REAL_ESTATE);
+//		poit.setTitle(postDetails.getTitle());
+//		poit.setCity(postDetails.getCity());
+//		poit.setContactNo(postDetails.getContactNo());
+//		poit.setContactPersonName(postDetails.getContactPersonName());
+//		poit.setCorpId(user.getCorpId());
+//		poit.setCreatedBy(String.valueOf(userId));
+//		poit.setCreatedOn(current);
+//		poit.setDescription(postDetails.getDescription());
+//		poit.setImageFileName(imgFileName);
+//		poit.setImageType(getExtension(uploadContentType));
+//		poit.setLocation(postDetails.getSelectedLocationCode());
+//		poit.setModifiedBy(userId);
+//		poit.setModifiedOn(current);
+//		poit.setNegotiable(null);
+//		poit.setPrice(postDetails.getPriceValue());
+//		poit.setRating(0);
+//		poit.setSubCategory(postDetails.getSubCategory());
+//		poit.setThumbnailName(null);
+//		poit.setThumbnailType(null);
+//		poit.setUserFirstName(user.getFirstName());
 
 		dbSession.beginTransaction();
-		dbSession.save(poit);
-		//dbSession.getTransaction().commit();
+		//dbSession.save(poit);
+		
+		Poit poit = new PostsUtil().createPOIT(postDetails, user, dbSession, uploadContentType, CBuddyConstants.CATEGORY_REAL_ESTATE);
 
 		dbSession.flush(); //Flushing to retrieve the auto generated post id
 
@@ -348,7 +350,7 @@ public class RealEstateAction extends ActionSupport implements SessionAware, Ser
 		dbSession.save(pdre);
 
 		if(upload != null){
-			writeImage(upload, imgFileName);
+			writeImage(upload, poit.getImageFileName());
 		}
 
 		dbSession.getTransaction().commit();
@@ -381,15 +383,16 @@ public class RealEstateAction extends ActionSupport implements SessionAware, Ser
 	}
 
 	private void populateAdditionalDetailsForPost(RealEstatePostDetails postDetails, Session dbSession){
+		Utils utils = new Utils();
 		String cityName = LocationUtil.getCityName(dbSession, postDetails.getCity());
 		String locName = LocationUtil.getLocationName(dbSession, postDetails.getCity(), postDetails.getLocation());
 		postDetails.setCity(cityName);
 		postDetails.setLocation(locName);
 		postDetails.setPriceValueStr(NumberFormatterUtil.formatAmount(postDetails.getPriceValue()));
 		postDetails.setMaintenanceStr(NumberFormatterUtil.formatAmount(postDetails.getMaintenance()));
-		postDetails.setFacingDirectionStr(Utils.getInstance().getDirectionDesc(postDetails.getFacingDirection()));
-		postDetails.setFloorNumberStr(Utils.getInstance().getFloorNumberDesc(postDetails.getFloorNumber()));
-		postDetails.setFurnishedStr(Utils.getInstance().getFurnishedDesc(postDetails.getFurnished()));
+		postDetails.setFacingDirectionStr(utils.getDirectionDesc(postDetails.getFacingDirection()));
+		postDetails.setFloorNumberStr(utils.getFloorNumberDesc(postDetails.getFloorNumber()));
+		postDetails.setFurnishedStr(utils.getFurnishedDesc(postDetails.getFurnished()));
 		String maritalPreference = postDetails.getMaritalPreference();
 		if(maritalPreference != null){
 			if(maritalPreference.equals("B")){
@@ -431,17 +434,19 @@ public class RealEstateAction extends ActionSupport implements SessionAware, Ser
 	}
 
 	public String getAdListForRealEstate(){
+
+		Utils utils = new Utils();
 		
 		if(postDetails.getCategory()==null || postDetails.getCategory().equals("") || !postDetails.getCategory().equals(CBuddyConstants.CATEGORY_REAL_ESTATE)){
 			postDetails.setCategory(CBuddyConstants.CATEGORY_REAL_ESTATE);
 		}	
 
-		categoryStr = Utils.getInstance().getCategoryDesc(postDetails.getCategory());
-		subCategoryStr = Utils.getInstance().getSubCategoryDesc(postDetails.getCategory(), postDetails.getSubCategory());
+		categoryStr = utils.getCategoryDesc(postDetails.getCategory());
+		subCategoryStr = utils.getSubCategoryDesc(postDetails.getCategory(), postDetails.getSubCategory());
 
 		if(postDetails.getSubCategory()==null || postDetails.getSubCategory().equals("") || subCategoryStr.equals("")){
 			postDetails.setSubCategory(CBuddyConstants.SUBCATEGORY_REAL_ESTATE_APARTMENT_FOR_SALE);
-			subCategoryStr = Utils.getInstance().getSubCategoryDesc(postDetails.getCategory(), postDetails.getSubCategory());
+			subCategoryStr = utils.getSubCategoryDesc(postDetails.getCategory(), postDetails.getSubCategory());
 		}
 
 		RealEstateAdService realEstateAdService =  new RealEstateAdService();

@@ -13,7 +13,7 @@ import com.cbuddy.beans.Pdre;
 @Table(name = "REAL_ESTATE_POSTS")
 
 
-public class RealEstatePostDetails extends Pdre implements Serializable{
+public class RealEstatePostDetails extends Pdre implements Serializable, CommonDetailsForPost{
 
 	private static final long serialVersionUID = 1L;
 
@@ -36,6 +36,19 @@ public class RealEstatePostDetails extends Pdre implements Serializable{
 	private String selectedLocationCode;
 	private String selectedCityCode;
 	private String areaSq;
+	
+	private double price; //Added to make it adhere to CommonDetailsForPost (as Pdre has only 'priceValue' and not 'price');
+	
+	private String postStatus;
+	
+	@Column(name="POST_STATUS")
+	public String getPostStatus() {
+		return postStatus;
+	}
+
+	public void setPostStatus(String postStatus) {
+		this.postStatus = postStatus;
+	}
 
 	@Transient
 	public String getCategory() {
@@ -186,5 +199,13 @@ public class RealEstatePostDetails extends Pdre implements Serializable{
 
 	public void setCorpId(int corpId) {
 		this.corpId = corpId;
+	}
+	
+	@Transient
+	public double getPrice() {
+		return getPriceValue();
+	}
+	public void setPrice(double price) {
+		setPriceValue(price);
 	}
 }

@@ -20,6 +20,7 @@ import com.cbuddy.beans.Pcomp;
 import com.cbuddy.beans.Poit;
 import com.cbuddy.posts.model.ComputersPostDetails;
 import com.cbuddy.posts.services.ComputersAdService;
+import com.cbuddy.posts.util.PostsUtil;
 import com.cbuddy.user.model.User;
 import com.cbuddy.util.CBuddyConstants;
 import com.cbuddy.util.LocationUtil;
@@ -223,35 +224,37 @@ public class ComputersAction extends ActionSupport implements SessionAware, Serv
 		}
 
 		//Make an entry in POIT
-		Poit poit = new Poit();
-		poit.setCategory(CBuddyConstants.CATEGORY_COMPUTERS);
-		poit.setTitle(postDetails.getTitle());
-		poit.setCity(postDetails.getCity());
-		poit.setContactNo(postDetails.getContactNo());
-		poit.setContactPersonName(postDetails.getContactPersonName());
-		poit.setCorpId(user.getCorpId());
-		poit.setCreatedBy(String.valueOf(userId));
-		poit.setCreatedOn(current);
-		poit.setDescription(postDetails.getDescription());
-		poit.setImageFileName(imgFileName);
-		poit.setImageType(getExtension(uploadContentType));
-		poit.setLocation(postDetails.getSelectedLocationCode());
-		poit.setModifiedBy(userId);
-		poit.setModifiedOn(current);
-		poit.setNegotiable(null);
-		poit.setPrice(postDetails.getPrice());
-		poit.setRating(0);
-		poit.setSubCategory(postDetails.getSubCategory());
-		poit.setThumbnailName(null);
-		poit.setThumbnailType(null);
-		poit.setUserFirstName(user.getFirstName());
+//		Poit poit = new Poit();
+//		poit.setCategory(CBuddyConstants.CATEGORY_COMPUTERS);
+//		poit.setTitle(postDetails.getTitle());
+//		poit.setCity(postDetails.getCity());
+//		poit.setContactNo(postDetails.getContactNo());
+//		poit.setContactPersonName(postDetails.getContactPersonName());
+//		poit.setCorpId(user.getCorpId());
+//		poit.setCreatedBy(String.valueOf(userId));
+//		poit.setCreatedOn(current);
+//		poit.setDescription(postDetails.getDescription());
+//		poit.setImageFileName(imgFileName);
+//		poit.setImageType(getExtension(uploadContentType));
+//		poit.setLocation(postDetails.getSelectedLocationCode());
+//		poit.setModifiedBy(userId);
+//		poit.setModifiedOn(current);
+//		poit.setNegotiable(null);
+//		poit.setPrice(postDetails.getPrice());
+//		poit.setRating(0);
+//		poit.setSubCategory(postDetails.getSubCategory());
+//		poit.setThumbnailName(null);
+//		poit.setThumbnailType(null);
+//		poit.setUserFirstName(user.getFirstName());
 
 		SessionFactory sessionFactory = (SessionFactory) ServletActionContext.getServletContext().getAttribute("sessionFactory");
 		Session dbSession = sessionFactory.openSession();
 
 		dbSession.beginTransaction();
-		dbSession.save(poit);
-		//dbSession.getTransaction().commit();
+		
+		Poit poit = new PostsUtil().createPOIT(postDetails, user, dbSession, uploadContentType, CBuddyConstants.CATEGORY_COMPUTERS);
+		
+//		dbSession.save(poit);
 
 		dbSession.flush(); //Flushing to retrieve the auto generated post id
 
@@ -299,12 +302,13 @@ public class ComputersAction extends ActionSupport implements SessionAware, Serv
 	}
 
 	private void populateAdditionalDetailsForPost(ComputersPostDetails postDetails, Session dbSession){
+		Utils utils = new Utils();
 		String cityName = LocationUtil.getCityName(dbSession, postDetails.getCity());
 		String locName = LocationUtil.getLocationName(dbSession, postDetails.getCity(), postDetails.getLocation());
 		postDetails.setCity(cityName);
 		postDetails.setLocation(locName);
 		postDetails.setPriceStr(NumberFormatterUtil.formatAmount(postDetails.getPrice()));
-		postDetails.setMakeStr(Utils.getInstance().getLaptopMakeDesc(postDetails.getMake()));
+		postDetails.setMakeStr(utils.getLaptopMakeDesc(postDetails.getMake()));
 	}
 	
 	private void populateAdditionalDetails(){
@@ -321,12 +325,13 @@ public class ComputersAction extends ActionSupport implements SessionAware, Serv
 			postDetails.setCategory(CBuddyConstants.CATEGORY_COMPUTERS);
 		}	
 
-		categoryStr = Utils.getInstance().getCategoryDesc(postDetails.getCategory());
-		subCategoryStr = Utils.getInstance().getSubCategoryDesc(postDetails.getCategory(), postDetails.getSubCategory());
+		Utils utils = new Utils();
+		categoryStr = utils.getCategoryDesc(postDetails.getCategory());
+		subCategoryStr = utils.getSubCategoryDesc(postDetails.getCategory(), postDetails.getSubCategory());
 
 		if(postDetails.getSubCategory()==null || postDetails.getSubCategory().equals("") || subCategoryStr.equals("")){
 			postDetails.setSubCategory(CBuddyConstants.SUBCATEGORY_COMPUTERS_DESKTOPS);
-			subCategoryStr = Utils.getInstance().getSubCategoryDesc(postDetails.getCategory(), postDetails.getSubCategory());
+			subCategoryStr = utils.getSubCategoryDesc(postDetails.getCategory(), postDetails.getSubCategory());
 		}
  
 		ComputersAdService computersAdService =  new ComputersAdService();

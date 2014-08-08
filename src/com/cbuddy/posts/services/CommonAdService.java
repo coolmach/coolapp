@@ -23,6 +23,7 @@ public class CommonAdService {
 		Session session = sessionFactory.openSession();
 
 		Criteria criteria = session.createCriteria(Poit.class);
+		criteria.add(Restrictions.eq("postStatus", CBuddyConstants.USER_STATUS_ACTIVE));
 		criteria.addOrder(Order.desc("postId"));
 		criteria.add(Restrictions.eq("category", CBuddyConstants.CATEGORY_ELECTRONICS_AND_HOUSEHOLD));
 		
@@ -54,6 +55,7 @@ public class CommonAdService {
 			}
 			
 			Criteria criteria = session.createCriteria(Poit.class);
+			criteria.add(Restrictions.eq("postStatus", CBuddyConstants.USER_STATUS_ACTIVE));
 			criteria.addOrder(Order.desc("postId"));
 			criteria.setFirstResult(Integer.parseInt(postDetails.getOffset()));
 			criteria.setMaxResults(Integer.parseInt(postDetails.getLimit()));

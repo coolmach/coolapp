@@ -13,7 +13,7 @@ import com.cbuddy.beans.PWashingMachine;
 @Table(name = "WASHINGMACHINE_POSTS")
 
 
-public class WashingMachinePostDetails extends PWashingMachine implements Serializable{
+public class WashingMachinePostDetails extends PWashingMachine implements Serializable, CommonDetailsForPost{
 
 	private static final long serialVersionUID = 1L;
 
@@ -36,6 +36,17 @@ public class WashingMachinePostDetails extends PWashingMachine implements Serial
 	private String page="1";
 	
 	private int corpId;
+	
+	private String postStatus;
+
+	@Column(name="POST_STATUS")
+	public String getPostStatus() {
+		return postStatus;
+	}
+
+	public void setPostStatus(String postStatus) {
+		this.postStatus = postStatus;
+	}
 
 	@Transient
 	public String getSubCategory() {

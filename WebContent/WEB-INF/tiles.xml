@@ -89,7 +89,7 @@
     </definition>
     <definition name="/postad_computers.tiles" extends="baseLayout">
         <put-attribute name="title" value="Post Ad" />
-        <put-attribute name="body" value="/pages/computers/postad/PostAd_Computers.jsp" />
+        <put-attribute name="body" value="/pages/computer/postad/PostAd_Computers.jsp" />
     </definition>    
     <definition name="/postad_mobile.tiles" extends="baseLayout">
         <put-attribute name="title" value="Post Ad" />
@@ -107,59 +107,64 @@
     
     <definition name="/adDetails_realestate.tiles" extends="baseLayout">
         <put-attribute name="title" value="Details" />
-        <put-attribute name="body" value="/pages/realestate/addetails/AdDetails_RealEstate.jsp" />
+        <put-attribute name="body" value="/pages/realestate/details/AdDetails_RealEstate.jsp" />
     </definition>
     <definition name="/adDetails_automobile.tiles" extends="baseLayout">
         <put-attribute name="title" value="Details" />
-        <put-attribute name="body" value="/pages/automobile/addetails/AdDetails_Automobile.jsp" />
+        <put-attribute name="body" value="/pages/automobile/details/AdDetails_Automobile.jsp" />
     </definition>
     <definition name="/adDetails_computers.tiles" extends="baseLayout">
         <put-attribute name="title" value="Details" />
-        <put-attribute name="body" value="/pages/computers/addetails/AdDetails_Computers.jsp" />
+        <put-attribute name="body" value="/pages/computer/details/AdDetails_Computers.jsp" />
     </definition>
     <definition name="/adDetails_furniture.tiles" extends="baseLayout">
         <put-attribute name="title" value="Details" />
-        <put-attribute name="body" value="/pages/furniture/addetails/AdDetails_Furniture.jsp" />
+        <put-attribute name="body" value="/pages/furniture/details/AdDetails_Furniture.jsp" />
     </definition>
     <definition name="/adDetails_electronics.tiles" extends="baseLayout">
         <put-attribute name="title" value="Details" />
-        <put-attribute name="body" value="/pages/electronics/addetails/AdDetails_Electronics.jsp" />
+        <put-attribute name="body" value="/pages/electronics/details/AdDetails_Electronics.jsp" />
     </definition>                         
     <definition name="/adDetails_mobile.tiles" extends="baseLayout">
         <put-attribute name="title" value="Details" />
-        <put-attribute name="body" value="/pages/mobile/addetails/AdDetails_Mobile.jsp" />
+        <put-attribute name="body" value="/pages/mobile/details/AdDetails_Mobile.jsp" />
     </definition>
     <definition name="/adDetails_television.tiles" extends="baseLayout">
         <put-attribute name="title" value="Details" />
-        <put-attribute name="body" value="/pages/electronics/addetails/AdDetails_Television.jsp" />
+        <put-attribute name="body" value="/pages/electronics/details/AdDetails_Television.jsp" />
     </definition>
     <definition name="/adDetails_camera.tiles" extends="baseLayout">
         <put-attribute name="title" value="Details" />
-        <put-attribute name="body" value="/pages/electronics/addetails/AdDetails_Camera.jsp" />
+        <put-attribute name="body" value="/pages/electronics/details/AdDetails_Camera.jsp" />
     </definition>
     <definition name="/adDetails_dvd.tiles" extends="baseLayout">
         <put-attribute name="title" value="Details" />
-        <put-attribute name="body" value="/pages/eletronics/addetails/AdDetails_DVD.jsp" />
+        <put-attribute name="body" value="/pages/eletronics/details/AdDetails_DVD.jsp" />
     </definition>
     <definition name="/adDetails_airCooler.tiles" extends="baseLayout">
         <put-attribute name="title" value="Details" />
-        <put-attribute name="body" value="/pages/electronics/addetails/AdDetails_AirCooler.jsp" />
+        <put-attribute name="body" value="/pages/electronics/details/AdDetails_AirCooler.jsp" />
     </definition>
     <definition name="/adDetails_fridge.tiles" extends="baseLayout">
         <put-attribute name="title" value="Details" />
-        <put-attribute name="body" value="/pages/electronics/addetails/AdDetails_Fridge.jsp" />
+        <put-attribute name="body" value="/pages/electronics/details/AdDetails_Fridge.jsp" />
     </definition>
     <definition name="/adDetails_washingMachine.tiles" extends="baseLayout">
         <put-attribute name="title" value="Details" />
-        <put-attribute name="body" value="/pages/electronics/addetails/AdDetails_WashingMachine.jsp" />
+        <put-attribute name="body" value="/pages/electronics/details/AdDetails_WashingMachine.jsp" />
     </definition>
     <definition name="/adDetails_others.tiles" extends="baseLayout">
         <put-attribute name="title" value="Details" />
-        <put-attribute name="body" value="/pages/electronics/addetails/AdDetails_Others.jsp" />
+        <put-attribute name="body" value="/pages/electronics/details/AdDetails_Others.jsp" />
     </definition>
     
      <definition name="/categories.tiles" extends="baseLayout">
         <put-attribute name="title" value="Choose Category" />
         <put-attribute name="body" value="/Categories.jsp" />
     </definition>  
+
+    <definition name="/activation_code.tiles" extends="baseLayout">
+        <put-attribute name="title" value="Activate User" />
+        <put-attribute name="body" value="/ActivationCode.jsp" />
+    </definition>    
 </tiles-definitions>

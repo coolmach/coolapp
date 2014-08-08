@@ -20,6 +20,7 @@ import com.cbuddy.beans.PFurniture;
 import com.cbuddy.beans.Poit;
 import com.cbuddy.posts.model.FurniturePostDetails;
 import com.cbuddy.posts.services.FurnitureAdService;
+import com.cbuddy.posts.util.PostsUtil;
 import com.cbuddy.user.model.User;
 import com.cbuddy.util.CBuddyConstants;
 import com.cbuddy.util.LocationUtil;
@@ -174,37 +175,39 @@ public class FurnitureAction extends ActionSupport implements SessionAware, Serv
 		}
 
 		//Make an entry in POIT
-		Poit poit = new Poit();
-
-		poit.setCategory(CBuddyConstants.CATEGORY_FURNITURE);
-		poit.setSubCategory(findSubCategory(postDetails.getType())); //For future use only.
-
-		poit.setTitle(postDetails.getTitle());
-		poit.setCity(postDetails.getCity());
-		poit.setContactNo(postDetails.getContactNo());
-		poit.setContactPersonName(postDetails.getContactPersonName());
-		poit.setCorpId(user.getCorpId());
-		poit.setCreatedBy(String.valueOf(userId));
-		poit.setCreatedOn(current);
-		poit.setDescription(postDetails.getDescription());
-		poit.setImageFileName(imgFileName);
-		poit.setImageType(getExtension(uploadContentType));
-		poit.setLocation(postDetails.getSelectedLocationCode());
-		poit.setModifiedBy(userId);
-		poit.setModifiedOn(current);
-		poit.setNegotiable(null);
-		poit.setPrice(postDetails.getPrice());
-		poit.setRating(0);
-		poit.setThumbnailName(null);
-		poit.setThumbnailType(null);
-		poit.setUserFirstName(user.getFirstName());
+//		Poit poit = new Poit();
+//
+//		poit.setCategory(CBuddyConstants.CATEGORY_FURNITURE);
+//		poit.setSubCategory(findSubCategory(postDetails.getType())); //For future use only.
+//
+//		poit.setTitle(postDetails.getTitle());
+//		poit.setCity(postDetails.getCity());
+//		poit.setContactNo(postDetails.getContactNo());
+//		poit.setContactPersonName(postDetails.getContactPersonName());
+//		poit.setCorpId(user.getCorpId());
+//		poit.setCreatedBy(String.valueOf(userId));
+//		poit.setCreatedOn(current);
+//		poit.setDescription(postDetails.getDescription());
+//		poit.setImageFileName(imgFileName);
+//		poit.setImageType(getExtension(uploadContentType));
+//		poit.setLocation(postDetails.getSelectedLocationCode());
+//		poit.setModifiedBy(userId);
+//		poit.setModifiedOn(current);
+//		poit.setNegotiable(null);
+//		poit.setPrice(postDetails.getPrice());
+//		poit.setRating(0);
+//		poit.setThumbnailName(null);
+//		poit.setThumbnailType(null);
+//		poit.setUserFirstName(user.getFirstName());
 
 		SessionFactory sessionFactory = (SessionFactory) ServletActionContext.getServletContext().getAttribute("sessionFactory");
 		Session dbSession = sessionFactory.openSession();
 
 		dbSession.beginTransaction();
-		dbSession.save(poit);
-		//dbSession.getTransaction().commit();
+		
+		Poit poit = new PostsUtil().createPOIT(postDetails, user, dbSession, uploadContentType, CBuddyConstants.CATEGORY_FURNITURE);
+		
+//		dbSession.save(poit);
 
 		dbSession.flush(); //Flushing to retrieve the auto generated post id
 
@@ -278,13 +281,14 @@ public class FurnitureAction extends ActionSupport implements SessionAware, Serv
 	private void populateAdditionalDetails(){
 		SessionFactory sessionFactory = (SessionFactory) ServletActionContext.getServletContext().getAttribute("sessionFactory");
 		Session dbSession = sessionFactory.openSession();
+		Utils utils = new Utils();
 		for(FurniturePostDetails postDetails:adList){
 			String cityName = LocationUtil.getCityName(dbSession, postDetails.getCity());
 			String locName = LocationUtil.getLocationName(dbSession, postDetails.getCity(), postDetails.getLocation());
 			postDetails.setCity(cityName);
 			postDetails.setLocation(locName);
 			postDetails.setPriceStr(NumberFormatterUtil.formatAmount(postDetails.getPrice()));
-			postDetails.setFurnitureTypeStr(Utils.getInstance().getFurnitureTypeDesc(postDetails.getType()));
+			postDetails.setFurnitureTypeStr(utils.getFurnitureTypeDesc(postDetails.getType()));
 		}
 	}
 
@@ -294,12 +298,13 @@ public class FurnitureAction extends ActionSupport implements SessionAware, Serv
 			postDetails.setCategory(CBuddyConstants.CATEGORY_FURNITURE);
 		}	
 
-		categoryStr = Utils.getInstance().getCategoryDesc(postDetails.getCategory());
-		subCategoryStr = Utils.getInstance().getSubCategoryDesc(postDetails.getCategory(), postDetails.getSubCategory());
+		Utils utils = new Utils();
+		categoryStr = utils.getCategoryDesc(postDetails.getCategory());
+		subCategoryStr = utils.getSubCategoryDesc(postDetails.getCategory(), postDetails.getSubCategory());
 
 		if(postDetails.getSubCategory()==null || postDetails.getSubCategory().equals("") || subCategoryStr.equals("")){
 			postDetails.setSubCategory(CBuddyConstants.SUBCATEGORY_FURNITURE_COT_WOOD);
-			subCategoryStr = Utils.getInstance().getSubCategoryDesc(postDetails.getCategory(), postDetails.getSubCategory());
+			subCategoryStr = utils.getSubCategoryDesc(postDetails.getCategory(), postDetails.getSubCategory());
 		}
  
 		FurnitureAdService furnitureAdService =  new FurnitureAdService();

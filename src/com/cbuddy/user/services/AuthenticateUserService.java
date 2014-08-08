@@ -8,15 +8,90 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
+import com.cbuddy.beans.DomainMaster;
+import com.cbuddy.beans.Pact;
+import com.cbuddy.beans.Poit;
+import com.cbuddy.beans.Uact;
 import com.cbuddy.beans.Ucred;
 import com.cbuddy.beans.Uprof;
 import com.cbuddy.exception.CBuddyException;
 import com.cbuddy.user.model.User;
 import com.cbuddy.util.CBuddyConstants;
+import com.cbuddy.util.MailUtil;
 import com.cbuddy.util.TextUtil;
+import com.cbuddy.util.Utils;
 
 public class AuthenticateUserService {
 
+	public void activateUser(String activationCode, String personalEmailId) throws CBuddyException{
+		
+		if(activationCode == null || activationCode.trim().equals("")){
+			throw new CBuddyException("Invalid Activation Code");
+		}
+		
+		if(personalEmailId == null || personalEmailId.trim().equals("")){
+			throw new CBuddyException("Invalid Email Id");
+		}
+		
+		SessionFactory sessionFactory = (SessionFactory) ServletActionContext.getServletContext().getAttribute("sessionFactory");
+		Session dbSession = sessionFactory.openSession();
+		dbSession.beginTransaction();
+		
+		Query query = dbSession.createQuery("from Uact where activation_code = :activationCode");
+		query.setParameter("activationCode", activationCode);
+		List<Uact> uacts = (List<Uact>)query.list();
+		
+		if(uacts.size() == 0){
+			throw new CBuddyException("Invalid Activation Code");
+		}
+		
+		Uact uact = uacts.get(0);
+		
+		Query tempQuery = dbSession.createQuery("from Uprof where user_id = :userId");
+		tempQuery.setParameter("userId", uact.getUserId());
+		List<Uprof> uprofs = (List<Uprof>)tempQuery.list();
+		Uprof uprof = uprofs.get(0);
+		
+		if(!uprof.getPersonalEmailId().equals(personalEmailId)){
+			throw new CBuddyException("Invalid Activation Code or Email Id");
+		}
+		
+		if(uprof.getUserStatus().equals(CBuddyConstants.USER_STATUS_ACTIVE)){
+			throw new CBuddyException("User is already active");
+		}
+		
+		Timestamp current = new Timestamp(System.currentTimeMillis());
+		
+		uact.setActivationStatus(CBuddyConstants.USER_STATUS_ACTIVE);
+		uact.setActivationDate(current);
+		dbSession.save(uact);
+		
+		uprof.setUserStatus(CBuddyConstants.USER_STATUS_ACTIVE);
+		uprof.setModifiedOn(current);
+		dbSession.save(uprof);
+		
+		//Activate Posts
+		tempQuery = dbSession.createQuery("from Pact where activation_code = :activationCode");
+		tempQuery.setParameter("activationCode", activationCode);
+		List<Pact> pacts = (List<Pact>)tempQuery.list();
+		if(pacts != null){
+			for(Pact pact:pacts){
+				pact.setActivationStatus(CBuddyConstants.USER_STATUS_ACTIVE);
+				pact.setActivationDate(current);
+				dbSession.save(pact);
+				
+				Query temp2Query = dbSession.createQuery("from Poit where post_id = :postId");
+				temp2Query.setParameter("postId", pact.getPostId());
+				List<Poit> poits = temp2Query.list();
+				Poit poit = poits.get(0);
+				poit.setPostStatus(CBuddyConstants.USER_STATUS_ACTIVE);
+				poit.setModifiedOn(current);
+				dbSession.save(poit);
+			}
+		}
+		dbSession.getTransaction().commit();
+	}
+	
 	@SuppressWarnings("unchecked")
 	public User authenticateUser(String userNameString, String password)
 			throws CBuddyException{
@@ -58,6 +133,7 @@ public class AuthenticateUserService {
 		user.setMobileNo(ucred.getMobileNo());
 		user.setEmailId(ucred.getCorpEmailId());
 		user.setCorpId(uprof.getCorpId());
+		user.setStatus(uprof.getUserStatus());
 		session.close();
 		
 		return user;
@@ -111,7 +187,7 @@ public class AuthenticateUserService {
 		return uprofList.get(0);
 	}
 	
-	public String registerUser(Ucred ucred) throws CBuddyException{
+	public User registerUser(Ucred ucred, String contextPath) throws CBuddyException{
 
 		SessionFactory sessionFactory = (SessionFactory) ServletActionContext.getServletContext().getAttribute("sessionFactory");
 		Session session = sessionFactory.openSession();
@@ -126,6 +202,8 @@ public class AuthenticateUserService {
 		
 		String userName = "SYSTEM";
 		Timestamp now = new Timestamp(System.currentTimeMillis());
+		
+		validateCorporateEmailId(ucred.getCorpId(), ucred.getCorpEmailId(), session);
 		
 		Ucred newUcred = new Ucred();
 		newUcred.setPwd(ucred.getPwd());
@@ -152,13 +230,70 @@ public class AuthenticateUserService {
 		uprof.setModifiedOn(now);
 		uprof.setUserId(newUcred.getUserId());
 		uprof.setPersonalEmailId(ucred.getPersonalEmailId());
+		uprof.setUserStatus(CBuddyConstants.USER_STATUS_PENDING_VERIFICATION);
 		uprof.setMobileNo(ucred.getMobileNo());
 		
 		session.save(uprof);
 		
+		//Create a record for activation
+		Uact uact = new Uact();
+		//Generate Activation Code
+		String activationCode = new Utils().generateActivationCode();
+		uact.setCreatedOn(new Timestamp(System.currentTimeMillis()));
+		uact.setActivationStatus(CBuddyConstants.USER_STATUS_PENDING_VERIFICATION);
+		uact.setRecordId(String.valueOf(uprof.getUserId()));
+		uact.setUserId(uprof.getUserId());
+		uact.setActivationCode(activationCode);
+		
+		session.save(uact);
+		
 		session.getTransaction().commit();
 		
-		return null;
+		User user = new User();
+		user.setUserId(newUcred.getUserId());
+		user.setFirstName(uprof.getFirstName());
+		user.setMobileNo(newUcred.getMobileNo());
+		user.setEmailId(newUcred.getCorpEmailId());
+		user.setCorpId(uprof.getCorpId());
+		user.setStatus(uprof.getUserStatus());
+		user.setActivationCode(activationCode);
 		
+		//Sending activation code through email
+		try{
+			new MailUtil().sendMail(user.getEmailId(), user.getFirstName(), contextPath, activationCode);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		
+		return user;
+	}
+	
+	private void validateCorporateEmailId(int corpId, String corpEmail, Session dbSession) throws CBuddyException{
+		Query query = dbSession.createQuery("from DomainMaster where corpId = :corpId");
+		query.setParameter("corpId", corpId);
+		String domainId = getDomainFromEmailId(corpEmail);
+		if(domainId == null){
+			throw new CBuddyException("Invalid Corporate Email Id");
+		}
+		List<DomainMaster> domains = query.list();
+		boolean isMatchFound = false;
+		for(DomainMaster domain:domains){
+			if(domainId.equals(domain.getDomainId())){
+				isMatchFound = true;
+				break;
+			}
+		}
+		if(isMatchFound == false){
+			throw new CBuddyException("Domain Name not registered in our database. We have logged your request. Please try again tomorrow");
+		}
+	}
+	
+	private String getDomainFromEmailId(String emailId){
+		int index = emailId.indexOf("@");
+		String domain = null;
+		if(index > 0){
+			domain = emailId.substring(index + 1);
+		}
+		return domain;
 	}
 }
