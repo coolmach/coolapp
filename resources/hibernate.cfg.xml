@@ -47,6 +47,7 @@
 		<mapping class="com.cbuddy.beans.Pdau" />
 		<mapping class="com.cbuddy.beans.Pdmo" />
 		<mapping class="com.cbuddy.beans.MobileMaster" />
+		<mapping class="com.cbuddy.beans.DomainMaster" />
 		<mapping class="com.cbuddy.beans.Pcomp" />
 		<mapping class="com.cbuddy.beans.PTelevision" />
 		<mapping class="com.cbuddy.beans.PDVD" />
