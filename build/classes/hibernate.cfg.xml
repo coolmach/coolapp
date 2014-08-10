@@ -34,7 +34,7 @@
 		</property>
 
 		<!-- Echo all executed SQL to stdout -->
-		<property name="show_sql">false</property>
+		<property name="show_sql">true</property>
 
 		<!-- Drop and re-create the database schema on startup -->
 		<property name="hbm2ddl.auto">none</property>
@@ -47,6 +47,7 @@
 		<mapping class="com.cbuddy.beans.Pdau" />
 		<mapping class="com.cbuddy.beans.Pdmo" />
 		<mapping class="com.cbuddy.beans.MobileMaster" />
+		<mapping class="com.cbuddy.beans.DomainMaster" />
 		<mapping class="com.cbuddy.beans.Pcomp" />
 		<mapping class="com.cbuddy.beans.PTelevision" />
 		<mapping class="com.cbuddy.beans.PDVD" />
@@ -61,6 +62,9 @@
 		<mapping class="com.cbuddy.beans.Corp" />		
 		<mapping class="com.cbuddy.beans.Location" />
 		<mapping class="com.cbuddy.beans.Neighborhood" />
+		<mapping class="com.cbuddy.beans.DomainMaster" />
+		<mapping class="com.cbuddy.beans.MasterComment" />
+		<mapping class="com.cbuddy.beans.ChildComment" />
 		<mapping class="com.cbuddy.posts.model.RealEstatePostDetails" />
 		<mapping class="com.cbuddy.posts.model.AutomobilePostDetails" />
 		<mapping class="com.cbuddy.posts.model.ComputersPostDetails" />
@@ -73,6 +77,7 @@
 		<mapping class="com.cbuddy.posts.model.WashingMachinePostDetails" />
 		<mapping class="com.cbuddy.posts.model.FurniturePostDetails" />
 		<mapping class="com.cbuddy.posts.model.OtherPostDetails" />
+
 	</session-factory>
 
 </hibernate-configuration>

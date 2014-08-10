@@ -405,6 +405,9 @@
 			<result name="login" type="tiles">/login.tiles</result>
 			<result name="input" type="tiles">/login.tiles</result>
 			<result name="success" type="tiles">/login.tiles</result>
+		</action>
+		<action name="comments" class="com.cbuddy.common.action.CommentsAction" method="postComment">
+			<result name="success">/ajax_comments.jsp</result>
 		</action>				
 	</package>
 </struts>

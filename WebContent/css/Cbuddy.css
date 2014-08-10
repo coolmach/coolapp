@@ -25,7 +25,7 @@
 }
 
 .highlight_subcat {
-	background-color: #00b0f5;
+	background-color: #FFFFAA;
 }
 
 .selected_filters {
@@ -47,7 +47,7 @@
 
 #subCategory-right .content:hover{text-decoration: underline;}
 
-#breadCrumb{/* margin-top:20px; */ margin-bottom:15px;color:#428bca;font-size:16px;/* margin-left:5%; */}
+#breadCrumb{margin-top:10px;margin-bottom:25px;color:#428bca;font-size:14px;/* margin-left:5%; */}
 
 
 .form-control-radio-label{padding-right:10px;}
