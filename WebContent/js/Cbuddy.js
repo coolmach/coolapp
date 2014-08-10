@@ -621,4 +621,20 @@ $(document).ready(function() {
 		$("#btnSignUp").css("opacity", "unset");
 	}
 
+	$("#post_cmt").off().on('click',function(){
+		//alert($("#comments").val());
+		var data = "&postId=194&comment=ABCBBCBCCBBCCB";
+		$.ajax({
+			type: 'POST',
+			url: ctxPath+"/comments", 
+			data: data,
+			success: function(data, status) {
+//alert(data);
+$('#comments-div').html('');
+$('#comments-div').html(data);
+				
+			}
+		});
+	});
+	
 });

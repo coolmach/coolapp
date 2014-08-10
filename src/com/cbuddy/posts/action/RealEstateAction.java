@@ -16,10 +16,12 @@ import org.apache.struts2.interceptor.SessionAware;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
+import com.cbuddy.beans.MasterComment;
 import com.cbuddy.beans.NameValuePair;
 import com.cbuddy.beans.Pdre;
 import com.cbuddy.beans.Poit;
 import com.cbuddy.posts.model.RealEstatePostDetails;
+import com.cbuddy.posts.services.CommentsService;
 import com.cbuddy.posts.services.RealEstateAdService;
 import com.cbuddy.posts.util.PostsUtil;
 import com.cbuddy.user.model.User;
@@ -35,6 +37,7 @@ public class RealEstateAction extends ActionSupport implements SessionAware, Ser
 
 	private static final long serialVersionUID = 1L;
 
+	private List<MasterComment> cmList = new ArrayList<MasterComment>();
 	RealEstatePostDetails postDetails = new RealEstatePostDetails();
 	private File upload;
 	private String uploadFileName;
@@ -468,6 +471,9 @@ public class RealEstateAction extends ActionSupport implements SessionAware, Ser
 		
 		populateAdditionalDetailsForPost(postDetails, dbSession);
 		
+		CommentsService service = new CommentsService();
+		cmList = service.getComments();
+		
 		return "success";
 	}
 
@@ -558,6 +564,14 @@ public class RealEstateAction extends ActionSupport implements SessionAware, Ser
 
 	public void setCount(int count) {
 		this.count = count;
+	}
+	
+	public List<MasterComment> getCmList() {
+		return cmList;
+	}
+
+	public void setCmList(List<MasterComment> cmList) {
+		this.cmList = cmList;
 	}
 
 }

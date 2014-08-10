@@ -142,4 +142,29 @@
 	</s:form>
 
 </div>
-<div class="col-md-5"></div>
+<div class="col-md-4" >
+<div class="col-md-12 post_title">
+			<div style="float:left;">
+				Comments
+			</div>
+		</div>
+<div class="col-md-12" id="comments-div">
+<s:iterator value="cmList" var="item">
+	    <div style="border-bottom: 1px solid;margin-bottom: 11px;">
+		<div style="background-color: gainsboro;"><s:property value="%{#item.comment}" /></div>
+		<s:property value="%{#item.modifiedDate}" />
+		
+		<s:iterator value="childComment" var="child">
+			<div style="margin-left:12px;">
+				<s:property value="%{#child.comment}" />
+			</div>
+			<div style="margin-left:12px;"><s:property value="%{#item.modifiedDate}" /></div>
+		</s:iterator>
+	</div>
+</s:iterator>
+
+</div>		
+
+<textarea id="comments" class="form-control" rows="3"></textarea>
+ <button id="post_cmt" type="button" class="btn btn-default">Post</button>
+</div>
