@@ -594,7 +594,7 @@ $(document).ready(function() {
 		$("#subCategory_hidden_"+divId).css("display","none");
 		$("#subCategory_hidden_"+divId+ " ul").css("display","none");
 	});
-	
+
 	$(".searchFilter li").mouseenter(function(){
 		$(this).addClass("highlight_subcat");
 	});
@@ -623,16 +623,49 @@ $(document).ready(function() {
 
 	$("#post_cmt").off().on('click',function(){
 		//alert($("#comments").val());
-		var data = "&postId=194&comment=ABCBBCBCCBBCCB";
+		var data = "&postId=194&comment="+$("#comments").val();
 		$.ajax({
 			type: 'POST',
 			url: ctxPath+"/comments", 
 			data: data,
 			success: function(data, status) {
-//alert(data);
-$('#comments-div').html('');
-$('#comments-div').html(data);
-				
+//				alert(data);
+				$("#comments").val('');
+				$('#comments-div').html('');
+				$('#comments-div').html(data);
+
+			}
+		});
+	});
+
+	$("a[id^=post_childCmt]").off().on('click',function(){
+		//alert("cvv");
+		$(this).parent().children("div#childCmt-div").show();
+		
+	});
+	
+	$("button[id^=cmt_close]").off().on('click',function(){
+	//	alert("cvv");
+		$(this).parent().hide();
+		$(this).parent().children('textarea').val('');
+		
+	});
+	
+	$("button[id^=post_child_cmt_]").off().on('click',function(){
+		var id = $(this).attr('id');
+		var comment = $(this).parent().children('textarea').val();
+		var data = "&postId=194&comment="+comment+"&commentId="+id.split('_')[3];
+		//alert(data);
+		$.ajax({
+			type: 'POST',
+			url: ctxPath+"/childcomments", 
+			data: data,
+			success: function(data, status) {
+//				alert(data);
+				$("#comments").val('');
+				$('#comments-div').html('');
+				$('#comments-div').html(data);
+
 			}
 		});
 	});
