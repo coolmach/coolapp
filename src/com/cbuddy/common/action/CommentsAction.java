@@ -30,6 +30,7 @@ public class CommentsAction extends ActionSupport implements SessionAware, Servl
 
 	private String postId;
 	private String comment;
+	private String commentId;
 	
 	//MasterComment cmList = new MasterComment();
 
@@ -75,10 +76,8 @@ public class CommentsAction extends ActionSupport implements SessionAware, Servl
 	public String postComment(){
 		System.out.println("dddd "+postId+comment);
 		
-		CommentsService ser = new CommentsService();
-		cmList = ser.getComments();
-		System.out.println(cmList);
-		/*SessionFactory sessionFactory = (SessionFactory) ServletActionContext.getServletContext().getAttribute("sessionFactory");
+		
+		SessionFactory sessionFactory = (SessionFactory) ServletActionContext.getServletContext().getAttribute("sessionFactory");
 		Session dbSession = sessionFactory.openSession();
 		Transaction tx = null;
 		try {
@@ -92,46 +91,49 @@ public class CommentsAction extends ActionSupport implements SessionAware, Servl
 			cmt.setPostDate(current);
 			cmt.setModifiedDate(current);
 
-			ChildComment cmt1 = new ChildComment();
+			/*ChildComment cmt1 = new ChildComment();
 			cmt1.setComment(comment);
 			cmt1.setPostDate(current);
 			cmt1.setModifiedDate(current);
 
 			cmt.getChildComment().add(cmt1);
-			cmt1.setMastercomment(cmt);
+			cmt1.setMastercomment(cmt);*/
 
 			dbSession.save(cmt);
-			dbSession.save(cmt1);
+			//dbSession.save(cmt1);
 			tx.commit();
-			org.hibernate.Query q = dbSession.createQuery("from MasterComment where postId ='194'");
+			//org.hibernate.Query q = dbSession.createQuery("from MasterComment where postId ='194'");
 		//	q.setParameter("id", "194");
 
-			List<MasterComment> list= q.list();
+			//List<MasterComment> list= q.list();
 			
+			CommentsService ser = new CommentsService();
+			cmList = ser.getComments();
+			System.out.println(cmList);
 			dbSession.close();
-			for(int i=0;i<list.size();i++){
+			/*for(int i=0;i<list.size();i++){
 				List<ChildComment> c =  (List<ChildComment>) list.get(i).getChildComment();
 				System.out.println(list.get(i).getCommentId() + ": "+c.size());
-			}
+			}*/
 			//System.out.println(criteria.s);
 			//MasterComment criteria = (MasterComment) dbSession.get(MasterComment.class,14);
 			//System.out.println(criteria.getChildComment().size());
-			criteria.add(Restrictions.eq("commentId", 14));
-			List<MasterComment> list= criteria.list();
+			//criteria.add(Restrictions.eq("commentId", 14));
+			/*List<MasterComment> list= criteria.list();
 			for(int i=0;i<list.size();i++){
 				ChildComment c = (ChildComment) list.get(i).getChildComment();
 				System.out.println(c.getComment()+" : "+c.getModifiedDate());
-			}
+			}*/
 			
 			
 		}catch(Exception e){
 			e.printStackTrace();
-		}*/
+		}
 		return "success";
 	}
 
 	public String postChildComment(){
-		System.out.println("dddd "+postId+comment);
+		System.out.println("dddd "+postId+comment + commentId);
 		SessionFactory sessionFactory = (SessionFactory) ServletActionContext.getServletContext().getAttribute("sessionFactory");
 		Session dbSession = sessionFactory.openSession();
 		Transaction tx = null;
@@ -140,7 +142,7 @@ public class CommentsAction extends ActionSupport implements SessionAware, Servl
 
 			Timestamp current = new Timestamp(System.currentTimeMillis());
 
-			MasterComment p = (MasterComment) dbSession.load(MasterComment.class, 14);
+			MasterComment p = (MasterComment) dbSession.load(MasterComment.class, Integer.parseInt(commentId));
 			System.out.println(p);
 			ChildComment cmt1 = new ChildComment();
 			cmt1.setComment(comment);
@@ -152,12 +154,23 @@ public class CommentsAction extends ActionSupport implements SessionAware, Servl
 			dbSession.save(cmt1);
 			tx.commit();
 			
+			CommentsService ser = new CommentsService();
+			cmList = ser.getComments();
+			System.out.println(cmList);
 			
 			dbSession.close();
 		}catch(Exception e){
 			e.printStackTrace();
 		}
 		return "success";
+	}
+
+	public String getCommentId() {
+		return commentId;
+	}
+
+	public void setCommentId(String commentId) {
+		this.commentId = commentId;
 	}
 
 	

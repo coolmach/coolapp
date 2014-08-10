@@ -408,6 +408,9 @@
 		</action>
 		<action name="comments" class="com.cbuddy.common.action.CommentsAction" method="postComment">
 			<result name="success">/ajax_comments.jsp</result>
+		</action>
+		<action name="childcomments" class="com.cbuddy.common.action.CommentsAction" method="postChildComment">
+			<result name="success">/ajax_comments.jsp</result>
 		</action>				
 	</package>
 </struts>
