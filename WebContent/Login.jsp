@@ -73,13 +73,13 @@
 					method='post' action="signup" theme="simple">
 					<fieldset>
 						<legend>New to CBuddy? Sign Up!</legend>
-						<div class="form-group">
+						<!--div class="form-group">
 							<label class="col-sm-4 control-label">Name</label>
 							<div class="col-sm-8">
 								<input type="text" class="form-control" id="FirstName"
 									name="FirstName" required="" placeholder="Name">
 							</div>
-						</div>
+						</div-->
 						<div class="form-group">
 							<label class="col-sm-4 control-label">Company</label>
 							<div class="col-sm-8">
@@ -90,10 +90,10 @@
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-sm-4 control-label">Corporate Email</label>
+							<label class="col-sm-4 control-label">Corporate Email Id</label>
 							<div class="col-sm-8">
 								<input class="form-control" id="CorpEmailId" name="CorpEmailId"
-									placeholder="Email" required="" type="email"> <span
+									placeholder="Email" required type="email"> <span
 									class="help-block">* will be used only once for
 									verification</span>
 
@@ -113,7 +113,7 @@
 									class="form-control" id="Pwd" name="Pwd">
 							</div>
 						</div>
-						<div class="form-group">
+						<!--div class="form-group">
 							<label class="col-sm-4 control-label">Re-enter Password</label>
 							<div class="col-sm-8">
 								<input placeholder="Password" required="" type="password"
@@ -126,7 +126,7 @@
 								<input placeholder="Mobile" type="text" class="form-control"
 									id="MobileNo" name="MobileNo">
 							</div>
-						</div>
+						</div-->
 
 						<div class="form-group" style="margin-top: 20px;">
 							<label class="col-sm-4 control-label"></label>
