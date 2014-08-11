@@ -109,4 +109,16 @@
 	</s:form>
 
 </div>
-<div class="col-md-5"></div>
+<div class="col-md-4" >
+<div class="col-md-12 post_title">
+			<div style="float:left;">
+				Comments
+			</div>
+		</div>
+<div class="col-md-12" id="comments-div">
+<%@include file="/ajax_comments.jsp" %>
+</div>		
+
+<textarea id="comments" class="form-control" rows="3"></textarea>
+ <button id="post_cmt" type="button" class="btn btn-default">Post</button>
+</div>

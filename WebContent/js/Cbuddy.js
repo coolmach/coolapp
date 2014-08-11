@@ -622,52 +622,58 @@ $(document).ready(function() {
 	}
 
 	$("#post_cmt").off().on('click',function(){
-		//alert($("#comments").val());
-		var data = "&postId=194&comment="+$("#comments").val();
-		$.ajax({
-			type: 'POST',
-			url: ctxPath+"/comments", 
-			data: data,
-			success: function(data, status) {
-//				alert(data);
-				$("#comments").val('');
-				$('#comments-div').html('');
-				$('#comments-div').html(data);
+		var postId = $("#postId").text();
+		if($("#comments").val()!=""){
+			var data = "&postId="+postId+"&comment="+$("#comments").val();
+			$.ajax({
+				type: 'POST',
+				url: ctxPath+"/comments", 
+				data: data,
+				success: function(data, status) {
+//					alert(data);
+					$("#comments").val('');
+					$('#comments-div').html('');
+					$('#comments-div').html(data);
 
-			}
-		});
+				}
+			});
+		}
 	});
 
-	$("a[id^=post_childCmt]").off().on('click',function(){
+	$(document).on('click', "a[id^=post_childCmt]", function(e) {
 		//alert("cvv");
+		e.preventDefault();
 		$(this).parent().children("div#childCmt-div").show();
-		
+
 	});
-	
-	$("button[id^=cmt_close]").off().on('click',function(){
-	//	alert("cvv");
+
+	$(document).on('click', "button[id^=cmt_close]", function(e) {
+		//	alert("cvv");
 		$(this).parent().hide();
 		$(this).parent().children('textarea').val('');
-		
-	});
-	
-	$("button[id^=post_child_cmt_]").off().on('click',function(){
-		var id = $(this).attr('id');
-		var comment = $(this).parent().children('textarea').val();
-		var data = "&postId=194&comment="+comment+"&commentId="+id.split('_')[3];
-		//alert(data);
-		$.ajax({
-			type: 'POST',
-			url: ctxPath+"/childcomments", 
-			data: data,
-			success: function(data, status) {
-//				alert(data);
-				$("#comments").val('');
-				$('#comments-div').html('');
-				$('#comments-div').html(data);
 
-			}
-		});
 	});
-	
+
+	$(document).on('click', "button[id^=post_child_cmt_]", function(e) {
+		var id = $(this).attr('id');
+		var postId = $("#postId").text();
+		var comment = $(this).parent().children('textarea').val();
+		if(comment!=""){
+			var data = "&postId="+postId+"&comment="+comment+"&commentId="+id.split('_')[3];
+			//alert(data);
+			$.ajax({
+				type: 'POST',
+				url: ctxPath+"/childcomments", 
+				data: data,
+				success: function(data, status) {
+//					alert(data);
+					$("#comments").val('');
+					$('#comments-div').html('');
+					$('#comments-div').html(data);
+
+				}
+			});
+		}
+	});
+
 });

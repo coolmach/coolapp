@@ -1,8 +1,10 @@
 package com.cbuddy.posts.services;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 import org.apache.struts2.ServletActionContext;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -11,61 +13,79 @@ import com.cbuddy.beans.ChildComment;
 import com.cbuddy.beans.MasterComment;
 
 public class CommentsService {
-	
-	public List<MasterComment> getComments(){
-		
+
+	public List<MasterComment> getComments(int postId){
+
 		SessionFactory sessionFactory = (SessionFactory) ServletActionContext.getServletContext().getAttribute("sessionFactory");
 		Session dbSession = sessionFactory.openSession();
 		Transaction tx = null;
 		List<MasterComment> list = null;
 		try {
 			tx = dbSession.beginTransaction();
+			Query q = dbSession.createQuery("from MasterComment where postId = '"+postId+"'");
+			list= q.list();
+			tx.commit();
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally{
+			dbSession.close();
+		}
+		return list;
 
-			/*Timestamp current = new Timestamp(System.currentTimeMillis());
+	}
+
+	public void postComment(int postId, String comment) {
+		SessionFactory sessionFactory = (SessionFactory) ServletActionContext.getServletContext().getAttribute("sessionFactory");
+		Session dbSession = sessionFactory.openSession();
+		Transaction tx = null;
+		try {
+			tx = dbSession.beginTransaction();
+
+			Timestamp current = new Timestamp(System.currentTimeMillis());
 
 			MasterComment cmt = new MasterComment();
-			cmt.setPostId(Integer.parseInt(postId));
+			cmt.setPostId(postId);
 			cmt.setComment(comment);
 			cmt.setPostDate(current);
 			cmt.setModifiedDate(current);
+
+			dbSession.save(cmt);
+			tx.commit();
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally{
+			dbSession.close();
+		}
+
+	}
+	
+	public void postChildComment(int postId, String comment , int commentId) {
+		SessionFactory sessionFactory = (SessionFactory) ServletActionContext.getServletContext().getAttribute("sessionFactory");
+		Session dbSession = sessionFactory.openSession();
+		Transaction tx = null;
+		try {
+			tx = dbSession.beginTransaction();
+
+			Timestamp current = new Timestamp(System.currentTimeMillis());
+
+			MasterComment p = (MasterComment) dbSession.load(MasterComment.class, commentId);
 
 			ChildComment cmt1 = new ChildComment();
 			cmt1.setComment(comment);
 			cmt1.setPostDate(current);
 			cmt1.setModifiedDate(current);
 
-			cmt.getChildComment().add(cmt1);
-			cmt1.setMastercomment(cmt);
-
-			dbSession.save(cmt);
-			dbSession.save(cmt1);*/
+			cmt1.setMastercomment(p);
+			p.getChildComment().add(cmt1);
+			dbSession.save(cmt1);
 			tx.commit();
-			org.hibernate.Query q = dbSession.createQuery("from MasterComment where postId ='194'");
-		//	q.setParameter("id", "194");
-
-			 list= q.list();
-			
-			dbSession.close();
-			for(int i=0;i<list.size();i++){
-				List<ChildComment> c =  (List<ChildComment>) list.get(i).getChildComment();
-				System.out.println(list.get(i).getCommentId() + ": "+c.size());
-			}
-			//System.out.println(criteria.s);
-			//MasterComment criteria = (MasterComment) dbSession.get(MasterComment.class,14);
-			//System.out.println(criteria.getChildComment().size());
-			/*criteria.add(Restrictions.eq("commentId", 14));
-			List<MasterComment> list= criteria.list();
-			for(int i=0;i<list.size();i++){
-				ChildComment c = (ChildComment) list.get(i).getChildComment();
-				System.out.println(c.getComment()+" : "+c.getModifiedDate());
-			}*/
-			
 			
 		}catch(Exception e){
 			e.printStackTrace();
+		}finally{
+			dbSession.close();
 		}
-		return list;
-		
+
 	}
 
 }
