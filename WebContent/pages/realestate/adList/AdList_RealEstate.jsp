@@ -7,6 +7,7 @@
 			<table class="table table-bordered">
 				<tr>
 					<th>Post Details</th>
+					
 					<td colspan="3" style="text-align: right; width: 100%;"></td>
 				</tr>
 				<s:iterator value="adList" status="userStatus">

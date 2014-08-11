@@ -19,6 +19,7 @@
 <script type="text/javascript" src="js/jquery-ui.js"></script>
 <script type="text/javascript" src="js/bootstrap.js"></script>
 <script type="text/javascript" src="js/home.js"></script>
+<script type="text/javascript" src="js/home_plain.js"></script>
 <script type="text/javascript" src="js/common.js"></script>
 <script type="text/javascript" src="js/jquery.validate.js"></script>
 <script src="js/jquery.simplemodal.js"></script>
@@ -29,10 +30,13 @@
 <link rel="stylesheet" href="css/bootstrap-theme.css" type="text/css">
 <link rel="stylesheet" href="css/jasny-bootstrap.min.css" type="text/css">
 <link rel="stylesheet" href="css/home.css" type="text/css">
+<link rel="stylesheet" href="css/home_plain.css" type="text/css">
 <link rel="stylesheet" href="css/MyHome.css" type="text/css">
 <link rel="stylesheet" type="text/css" href="css/postAd.css" />
 <link rel="stylesheet" type="text/css" href="css/jquery.simplemodal.css" />
 <link rel="stylesheet" type="text/css" href="thirdparty/jquery-ui/jquery-ui-1.10.3.custom.min.css" />
+
+<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300" />
 
 </head>
 <body>
@@ -45,6 +49,6 @@
 			</div>
 		</div>
 	</div>
-	    <tiles:insertAttribute name="footer" />
+	<tiles:insertAttribute name="footer" />
 </body>
 </html>

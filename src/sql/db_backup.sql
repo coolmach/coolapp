@@ -13,53 +13,55 @@ use `cbuddydb`;
 Table structure for aircooler_posts
 */
 
-drop table if exists `aircooler_posts`;
+drop view if exists `aircooler_posts`;
 CREATE ALGORITHM=UNDEFINED DEFINER=`shiva`@`localhost` SQL SECURITY DEFINER VIEW `aircooler_posts` AS select `paircooler`.`POST_ID` AS `POST_ID`,`paircooler`.`CITY` AS `CITY`,`paircooler`.`LOCATION` AS `LOCATION`,`paircooler`.`BRAND` AS `BRAND`,`paircooler`.`MODEL` AS `MODEL`,`paircooler`.`YEAR` AS `YEAR`,`paircooler`.`PRICE` AS `PRICE`,`paircooler`.`BILL_AVAILABLE` AS `BILL_AVAILABLE`,`paircooler`.`TONNAGE` AS `TONNAGE`,`paircooler`.`AC_TYPE` AS `AC_TYPE`,`paircooler`.`CREATED_ON` AS `CREATED_ON`,`paircooler`.`CREATED_BY` AS `CREATED_BY`,`paircooler`.`MODIFIED_ON` AS `MODIFIED_ON`,`paircooler`.`MODIFIED_BY` AS `MODIFIED_BY`,`poit`.`TITLE` AS `TITLE`,`poit`.`CONTACT_NO` AS `CONTACT_NO`,`poit`.`CONTACT_PERSON_NAME` AS `CONTACT_PERSON_NAME`,`poit`.`DESCRIPTION` AS `DESCRIPTION`,`poit`.`IMAGE_FILE_NAME` AS `IMAGE_FILE_NAME`,`poit`.`CORP_ID` AS `CORP_ID`,`poit`.`POST_STATUS` AS `post_status` from (`paircooler` join `poit`) where (`poit`.`POST_ID` = `paircooler`.`POST_ID`);
 
 /*
 Table data for cbuddydb.aircooler_posts
 */
 
-INSERT INTO `aircooler_posts` VALUES 
-(160,'BLR','46','Panasonic','25 TW',2007,30000,'Y',1.5,'Window','2014-07-16 02:16:13','6','2014-07-16 02:16:13','6','Panasonic 1 Ton AC available for sale','98431203943','Arunachalam','','1405457173690.null','101',NULL);
-
-/*
-Table structure for automobile_posts
-*/
-
-drop table if exists `automobile_posts`;
+drop view if exists `automobile_posts`;
 CREATE ALGORITHM=UNDEFINED DEFINER=`shiva`@`localhost` SQL SECURITY DEFINER VIEW `automobile_posts` AS select `pdau`.`POST_ID` AS `POST_ID`,`pdau`.`SUB_CATEGORY` AS `SUB_CATEGORY`,`pdau`.`CITY` AS `CITY`,`pdau`.`LOCATION` AS `LOCATION`,`pdau`.`MAKE` AS `MAKE`,`pdau`.`MODEL` AS `MODEL`,`pdau`.`COLOR` AS `COLOR`,`pdau`.`YEAR` AS `YEAR`,`pdau`.`NO_OF_OWNERS` AS `NO_OF_OWNERS`,`pdau`.`FUEL_TYPE` AS `FUEL_TYPE`,`pdau`.`KMS_DONE` AS `KMS_DONE`,`pdau`.`MILEAGE` AS `MILEAGE`,`pdau`.`PRICE` AS `PRICE`,`pdau`.`PRICE_NEGOTIABLE` AS `PRICE_NEGOTIABLE`,`pdau`.`INSURANCE_AVAILABLE` AS `INSURANCE_AVAILABLE`,`pdau`.`REG_NO` AS `REG_NO`,`pdau`.`REG_CITY` AS `REG_CITY`,`pdau`.`REG_STATE` AS `REG_STATE`,`pdau`.`CREATED_ON` AS `CREATED_ON`,`pdau`.`CREATED_BY` AS `CREATED_BY`,`pdau`.`MODIFIED_ON` AS `MODIFIED_ON`,`pdau`.`MODIFIED_BY` AS `MODIFIED_BY`,`poit`.`TITLE` AS `TITLE`,`poit`.`CONTACT_NO` AS `CONTACT_NO`,`poit`.`CONTACT_PERSON_NAME` AS `CONTACT_PERSON_NAME`,`poit`.`DESCRIPTION` AS `DESCRIPTION`,`poit`.`IMAGE_FILE_NAME` AS `IMAGE_FILE_NAME`,`poit`.`CORP_ID` AS `CORP_ID`,`poit`.`POST_STATUS` AS `post_status` from (`pdau` join `poit`) where (`poit`.`POST_ID` = `pdau`.`POST_ID`);
-
-/*
-Table data for cbuddydb.automobile_posts
-*/
-
-INSERT INTO `automobile_posts` VALUES 
-('80','1','CHE',NULL,'MAR','M1','Pearl Gray','2007','0','P','10000','0','0.000',NULL,'N',NULL,NULL,NULL,'2014-06-19 02:43:11','500','2014-06-19 02:43:11','500','Maruti Swift (TN Registration) available for Sale immediately','77777766666','MGR','Hello tHis is description','1403125991736.jpeg','123',NULL),
-('81','1','CHE','C70','MAR','M1','Pearl Gray','2007','0',NULL,'10000','0','30000.000',NULL,NULL,NULL,NULL,NULL,'2014-06-19 02:48:53','500','2014-06-19 02:48:53','500','Maruti Swift (TN Registration) available for Sale immediately','77777766666','MGR','Hello tHis is description','1403126333641.jpeg','123',NULL),
-('82','2','BLR','48','BAJ','M1','Pearl Gray','2007','0',NULL,'10000','0','30000.000',NULL,'N',NULL,NULL,NULL,'2014-06-19 03:06:51','500','2014-06-19 03:06:51','500','Maruti Swift (TN Registration) available for Sale immediately','77777766666','MGR','Hello tHis is description','1403127411595.jpeg','123',NULL),
-('83','2','BLR','21','BAJ','M1','Pearl Gray','2007','0',NULL,'10000','0','40000.000',NULL,'N',NULL,NULL,NULL,'2014-06-19 03:09:39','500','2014-06-19 03:09:39','500','Maruti Swift (TN Registration) available for Sale immediately','77777766666','MGR','Hello tHis is description','1403127579698.jpeg','123',NULL),
-('105','2','BLR','71','HON','M4','Red','2007','0',NULL,'10000','0','25000.000',NULL,NULL,NULL,NULL,NULL,'2014-06-26 00:42:46','3','2014-06-26 00:42:46','3','Honda Activa available for sale','9999933333','Jothi','Hello tHis is description','1403723566326.null','101',NULL),
-('106','1','BLR','46','HYU','M1','Pearl Gray','2007','0',NULL,'10000','0','450000.000',NULL,NULL,NULL,NULL,NULL,'2014-06-26 01:04:25','3','2014-06-26 01:04:25','3','Honda Amaze available for Sale immediately','77777766666','MGR','Hello tHis is description','1403724865967.jpeg','101',NULL),
-('107','2','BLR','46','BAJ','M1','Pearl Gray','2007','1',NULL,'10000','0','30000.000',NULL,NULL,NULL,NULL,NULL,'2014-06-26 01:41:06','3','2014-06-26 01:41:06','3','Honda Shine available for Sale','77777766666','MGR','Hello tHis is description','1403727066622.null','101',NULL),
-('108','2','CHE','C80','BAJ','M1','Pearl Gray','2007','1',NULL,'10000','0','30000.000',NULL,'Y',NULL,NULL,NULL,'2014-06-26 01:42:59','3','2014-06-26 01:42:59','3','Bajaj bike with insurance','77777766666','MGR','Hello tHis is description','1403727179072.jpeg','101',NULL),
-('109','1','CHE','C2','MAR','M1','Pearl Gray','2007','1','D','10000','0','150000.000',NULL,NULL,NULL,NULL,NULL,'2014-06-26 01:59:30','3','2014-06-26 01:59:30','3','Maruti Swift (TN Registration) available for Sale immediately','77777766666','MGR','Hello tHis is description','1403728170073.null','101',NULL),
-('195','2','BLR','103','BAJ','M1','Pearl Gray','2005','1',NULL,'20000','0','25000.000',NULL,'Y',NULL,NULL,NULL,'2014-08-08 03:41:04','22','2014-08-08 03:41:04','22','Pre approv - Honda Shine available for Sale','77777766666','MGR','Hello tHis is description','1407449464775.null','103','PEN'),
-('196','1','BLR','66','MAR','M1','Pearl Gray','2007','1','P','10000','0','150000.000',NULL,NULL,NULL,NULL,NULL,'2014-08-08 04:04:46','23','2014-08-08 04:04:46','23','Maruti Swift (TN Registration) available for Sale immediately','77777766666','MGR','Hello tHis is description','1407450886300.null','100','ACT');
 
 /*
 Table structure for camera_posts
 */
 
-drop table if exists `camera_posts`;
+drop view if exists `camera_posts`;
 CREATE ALGORITHM=UNDEFINED DEFINER=`shiva`@`localhost` SQL SECURITY DEFINER VIEW `camera_posts` AS select `pcamera`.`POST_ID` AS `POST_ID`,`pcamera`.`CITY` AS `CITY`,`pcamera`.`LOCATION` AS `LOCATION`,`pcamera`.`BRAND` AS `BRAND`,`pcamera`.`MODEL` AS `MODEL`,`pcamera`.`YEAR` AS `YEAR`,`pcamera`.`PRICE` AS `PRICE`,`pcamera`.`BILL_AVAILABLE` AS `BILL_AVAILABLE`,`pcamera`.`RESOLUTION` AS `RESOLUTION`,`pcamera`.`ZOOM` AS `ZOOM`,`pcamera`.`CREATED_ON` AS `CREATED_ON`,`pcamera`.`CREATED_BY` AS `CREATED_BY`,`pcamera`.`MODIFIED_ON` AS `MODIFIED_ON`,`pcamera`.`MODIFIED_BY` AS `MODIFIED_BY`,`poit`.`TITLE` AS `TITLE`,`poit`.`CONTACT_NO` AS `CONTACT_NO`,`poit`.`CONTACT_PERSON_NAME` AS `CONTACT_PERSON_NAME`,`poit`.`DESCRIPTION` AS `DESCRIPTION`,`poit`.`IMAGE_FILE_NAME` AS `IMAGE_FILE_NAME`,`poit`.`CORP_ID` AS `CORP_ID`,`poit`.`POST_STATUS` AS `post_status` from (`pcamera` join `poit`) where (`poit`.`POST_ID` = `pcamera`.`POST_ID`);
 
+
+drop table if exists `master_comments`;
+CREATE TABLE `master_comments` (
+  `COMMENT_ID` int(11) NOT NULL auto_increment,
+  `COMMENT` longtext,
+  `MODIFIED_DATE` datetime default NULL,
+  `POST_DATE` datetime default NULL,
+  `POST_ID` int(11) default NULL,
+  PRIMARY KEY  (`COMMENT_ID`),
+  UNIQUE KEY `COMMENT_ID` (`COMMENT_ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=latin1;
+
 /*
-Table data for cbuddydb.camera_posts
+Table data for cbuddydb.master_comments
 */
 
-INSERT INTO `camera_posts` VALUES 
-(156,'BLR','66','Sony','25 TW',2007,30000,'Y','3.2','3.2','2014-07-16 02:00:14','6','2014-07-16 02:00:14','6','Sony Digital Camera available for sale','98431203943','Arunachalam','','1405456214940.null','101',NULL);
+INSERT INTO `master_comments` VALUES 
+(6,'dcdc',NULL,NULL,1),
+(10,'sss',NULL,NULL,2),
+(11,'ABCBBCBCCBBCCB','2014-08-10 00:52:35','2014-08-10 00:52:35',194),
+(14,'ABCBBCBCCBBCCB','2014-08-10 01:24:18','2014-08-10 01:24:18',194),
+(15,'ABCBBCBCCBBCCB','2014-08-10 01:54:45','2014-08-10 01:54:45',194),
+(16,'ABCBBCBCCBBCCB','2014-08-10 01:58:49','2014-08-10 01:58:49',194),
+(17,'ABCBBCBCCBBCCB','2014-08-10 01:59:59','2014-08-10 01:59:59',194),
+(18,'ABCBBCBCCBBCCB','2014-08-10 02:01:50','2014-08-10 02:01:50',194),
+(19,'ABCBBCBCCBBCCB','2014-08-10 02:04:28','2014-08-10 02:04:28',194),
+(20,'ABCBBCBCCBBCCB','2014-08-10 02:05:04','2014-08-10 02:05:04',194),
+(21,'ABCBBCBCCBBCCB','2014-08-10 02:06:11','2014-08-10 02:06:11',194),
+(22,'ABCBBCBCCBBCCB','2014-08-10 02:09:03','2014-08-10 02:09:03',194),
+(23,'ABCBBCBCCBBCCB','2014-08-10 02:09:56','2014-08-10 02:09:56',194);
+
+
 
 /*
 Table structure for child_comments
@@ -75,7 +77,7 @@ CREATE TABLE `child_comments` (
   PRIMARY KEY  (`COMMENT_ID`),
   KEY `FK4CA649F768BC0CC4` (`PARENT_ID`),
   CONSTRAINT `FK4CA649F768BC0CC4` FOREIGN KEY (`PARENT_ID`) REFERENCES `master_comments` (`COMMENT_ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
+) AUTO_INCREMENT=13;
 
 /*
 Table data for cbuddydb.child_comments
@@ -95,11 +97,46 @@ INSERT INTO `child_comments` VALUES
 (11,'ABCBBCBCCBBCCB','2014-08-10 02:09:03','2014-08-10 02:09:03',22),
 (12,'ABCBBCBCCBBCCB','2014-08-10 02:09:56','2014-08-10 02:09:56',23);
 
+
+/*
+Table structure for master_comments_child_comments
+*/
+
+drop table if exists `master_comments_child_comments`;
+CREATE TABLE `master_comments_child_comments` (
+  `Master_Comments_COMMENT_ID` int(11) NOT NULL,
+  `childComment_COMMENT_ID` int(11) NOT NULL,
+  UNIQUE KEY `childComment_COMMENT_ID` (`childComment_COMMENT_ID`),
+  KEY `FKFC24C0C5EB59F8BD` (`Master_Comments_COMMENT_ID`),
+  KEY `FKFC24C0C5DA61FF63` (`childComment_COMMENT_ID`),
+  CONSTRAINT `FKFC24C0C5DA61FF63` FOREIGN KEY (`childComment_COMMENT_ID`) REFERENCES `child_comments` (`COMMENT_ID`),
+  CONSTRAINT `FKFC24C0C5EB59F8BD` FOREIGN KEY (`Master_Comments_COMMENT_ID`) REFERENCES `master_comments` (`COMMENT_ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+/*
+Table data for cbuddydb.master_comments_child_comments
+*/
+
+INSERT INTO `master_comments_child_comments` VALUES 
+(14,1),
+(14,2),
+(14,3),
+(15,4),
+(16,5),
+(17,6),
+(18,7),
+(19,8),
+(20,9),
+(21,10),
+(22,11),
+(23,12);
+
+
 /*
 Table structure for city
 */
 
-drop table if exists `city`;
+drop view if exists `city`;
 CREATE ALGORITHM=UNDEFINED DEFINER=`shiva`@`localhost` SQL SECURITY DEFINER VIEW `city` AS select `city_master`.`STATE_CODE` AS `STATE_CODE`,`city_master`.`CITY_CODE` AS `CITY_CODE`,`city_master`.`CITY_NAME` AS `CITY_NAME`,`city_master`.`created_on` AS `created_on`,`city_master`.`created_by` AS `created_by`,`city_master`.`modified_on` AS `modified_on`,`city_master`.`modified_by` AS `modified_by` from `city_master`;
 
 /*
@@ -219,17 +256,8 @@ INSERT INTO `cocd` VALUES
 Table structure for computers_posts
 */
 
-drop table if exists `computers_posts`;
+drop view if exists `computers_posts`;
 CREATE ALGORITHM=UNDEFINED DEFINER=`shiva`@`localhost` SQL SECURITY DEFINER VIEW `computers_posts` AS select `pcomp`.`post_id` AS `post_id`,`pcomp`.`sub_category` AS `sub_category`,`pcomp`.`city` AS `city`,`pcomp`.`location` AS `location`,`pcomp`.`make` AS `make`,`pcomp`.`model` AS `model`,`pcomp`.`year` AS `year`,`pcomp`.`processor_size` AS `processor_size`,`pcomp`.`hdd_size` AS `hdd_size`,`pcomp`.`price` AS `price`,`pcomp`.`created_on` AS `created_on`,`pcomp`.`created_by` AS `created_by`,`pcomp`.`modified_on` AS `modified_on`,`pcomp`.`modified_by` AS `modified_by`,`poit`.`TITLE` AS `TITLE`,`poit`.`CONTACT_NO` AS `CONTACT_NO`,`poit`.`CONTACT_PERSON_NAME` AS `CONTACT_PERSON_NAME`,`poit`.`DESCRIPTION` AS `DESCRIPTION`,`poit`.`IMAGE_FILE_NAME` AS `IMAGE_FILE_NAME`,`poit`.`CORP_ID` AS `CORP_ID`,`poit`.`POST_STATUS` AS `post_status` from (`pcomp` join `poit`) where (`poit`.`POST_ID` = `pcomp`.`post_id`);
-
-/*
-Table data for cbuddydb.computers_posts
-*/
-
-INSERT INTO `computers_posts` VALUES 
-('114','2','BLR','67','SON',NULL,2007,2,60,'30000.000','2014-07-02 22:54:22','6','2014-07-02 22:54:22','6','256MB RAM available for Sale','77777766666','MGR','Hello tHis is description','1404321862836.null','101',NULL),
-('178','1','BLR','26','HP','Compaq Presario',2007,2,60,'30000.000','2014-07-24 00:00:23','6','2014-07-24 00:00:23','6','Acer Desktop available for Sale','77777766666','MGR','','1406140223502.null','101',NULL),
-('184','3','BLR','102','SON','Galaxy',2007,0,0,'30000.000','2014-08-08 00:37:58','14','2014-08-08 00:37:58','14','Samsung Galaxy available for sale','77777766666','MGR','','1407438478588.null','0',NULL);
 
 /*
 Table structure for contacts
@@ -334,21 +362,8 @@ INSERT INTO `domain_master` VALUES
 Table structure for dvd_posts
 */
 
-drop table if exists `dvd_posts`;
+drop view if exists `dvd_posts`;
 CREATE ALGORITHM=UNDEFINED DEFINER=`shiva`@`localhost` SQL SECURITY DEFINER VIEW `dvd_posts` AS select `pdvd`.`POST_ID` AS `POST_ID`,`pdvd`.`CITY` AS `CITY`,`pdvd`.`LOCATION` AS `LOCATION`,`pdvd`.`BRAND` AS `BRAND`,`pdvd`.`MODEL` AS `MODEL`,`pdvd`.`YEAR` AS `YEAR`,`pdvd`.`PRICE` AS `PRICE`,`pdvd`.`BILL_AVAILABLE` AS `BILL_AVAILABLE`,`pdvd`.`PLAYER_TYPE` AS `PLAYER_TYPE`,`pdvd`.`CREATED_ON` AS `CREATED_ON`,`pdvd`.`CREATED_BY` AS `CREATED_BY`,`pdvd`.`MODIFIED_ON` AS `MODIFIED_ON`,`pdvd`.`MODIFIED_BY` AS `MODIFIED_BY`,`poit`.`TITLE` AS `TITLE`,`poit`.`CONTACT_NO` AS `CONTACT_NO`,`poit`.`CONTACT_PERSON_NAME` AS `CONTACT_PERSON_NAME`,`poit`.`DESCRIPTION` AS `DESCRIPTION`,`poit`.`IMAGE_FILE_NAME` AS `IMAGE_FILE_NAME`,`poit`.`CORP_ID` AS `CORP_ID`,`poit`.`POST_STATUS` AS `post_status` from (`pdvd` join `poit`) where (`poit`.`POST_ID` = `pdvd`.`POST_ID`);
-
-/*
-Table data for cbuddydb.dvd_posts
-*/
-
-INSERT INTO `dvd_posts` VALUES 
-(148,'BLR','54','Philips','',0,30000,'N',NULL,'2014-07-16 01:29:37','6','2014-07-16 01:29:37','6','Philips Blue Ray DVD Player available for Sale in Marathalli','98431203943','Arunachalam','','1405454377456.null','101',NULL),
-(149,'BLR','54','Philips','2010',0,30000,'Y',NULL,'2014-07-16 01:30:15','6','2014-07-16 01:30:15','6','Philips Blue Ray DVD Player available for Sale in Marathalli','98431203943','Arunachalam','','1405454415011.null','101',NULL),
-(150,'CHE','C80','Philips','MODEL',0,30000,'N',NULL,'2014-07-16 01:32:54','6','2014-07-16 01:32:54','6','Philips Blue Ray DVD Player available for Sale in Marathalli','98431203943','Arunachalam','','1405454574265.null','101',NULL),
-(151,'CHE','C80','Philips','INRT32',2010,35000,'Y',NULL,'2014-07-16 01:36:57','6','2014-07-16 01:36:57','6','Philips Blue Ray DVD Player available for Sale in Marathalli','98431203943','Arunachalam','','1405454817414.jpeg','101',NULL),
-(161,'BLR','46','Samsung','sd',2007,30000,'N',NULL,'2014-07-16 23:31:39','6','2014-07-16 23:31:39','6','Philips Blue Ray DVD Player available for Sale in Marathalli','98431203943','Arunachalam','','1405533699594.null','101',NULL),
-(181,'BLR','7','Apple','',2007,30000,'Y','IPOD','2014-07-24 01:44:24','8','2014-07-24 01:44:24','8','iPod available for Sale','98431203943','Arunachalam','','1406146464779.null','123',NULL),
-(198,'CHE','C39','Samsung','',2007,30000,'N','DVD','2014-08-08 04:46:22','26','2014-08-08 04:46:22','26','Pre-approval','98431203943','Arunachalam','','1407453382799.null','103','PEN');
 
 /*
 Table structure for errt
@@ -387,35 +402,15 @@ INSERT INTO `errt` VALUES
 Table structure for fridge_posts
 */
 
-drop table if exists `fridge_posts`;
+drop view if exists `fridge_posts`;
 CREATE ALGORITHM=UNDEFINED DEFINER=`shiva`@`localhost` SQL SECURITY DEFINER VIEW `fridge_posts` AS select `pfridge`.`POST_ID` AS `POST_ID`,`pfridge`.`CITY` AS `CITY`,`pfridge`.`LOCATION` AS `LOCATION`,`pfridge`.`BRAND` AS `BRAND`,`pfridge`.`MODEL` AS `MODEL`,`pfridge`.`YEAR` AS `YEAR`,`pfridge`.`PRICE` AS `PRICE`,`pfridge`.`BILL_AVAILABLE` AS `BILL_AVAILABLE`,`pfridge`.`COLOR` AS `COLOR`,`pfridge`.`CAPACITY` AS `CAPACITY`,`pfridge`.`DOUBLE_DOOR` AS `DOUBLE_DOOR`,`pfridge`.`CREATED_ON` AS `CREATED_ON`,`pfridge`.`CREATED_BY` AS `CREATED_BY`,`pfridge`.`MODIFIED_ON` AS `MODIFIED_ON`,`pfridge`.`MODIFIED_BY` AS `MODIFIED_BY`,`poit`.`TITLE` AS `TITLE`,`poit`.`CONTACT_NO` AS `CONTACT_NO`,`poit`.`CONTACT_PERSON_NAME` AS `CONTACT_PERSON_NAME`,`poit`.`DESCRIPTION` AS `DESCRIPTION`,`poit`.`IMAGE_FILE_NAME` AS `IMAGE_FILE_NAME`,`poit`.`CORP_ID` AS `CORP_ID`,`poit`.`POST_STATUS` AS `post_status` from (`pfridge` join `poit`) where (`poit`.`POST_ID` = `pfridge`.`POST_ID`);
-
-/*
-Table data for cbuddydb.fridge_posts
-*/
-
-INSERT INTO `fridge_posts` VALUES 
-(157,'BLR','46','LG','25 TW',2007,30000,'Y','135',3.2,'Y','2014-07-16 02:02:00','6','2014-07-16 02:02:00','6','LG Fridge (165 l) for sale','98431203943','Arunachalam','','1405456320148.null','101',NULL),
-(158,'BLR','46','LG','25 TW',2007,30000,'N','135',3.2,'N','2014-07-16 02:06:33','6','2014-07-16 02:06:33','6','LG Fridge (165 l) for sale','98431203943','Arunachalam','','1405456593291.null','101',NULL);
 
 /*
 Table structure for furniture_posts
 */
 
-drop table if exists `furniture_posts`;
+drop view if exists `furniture_posts`;
 CREATE ALGORITHM=UNDEFINED DEFINER=`shiva`@`localhost` SQL SECURITY DEFINER VIEW `furniture_posts` AS select `pfurniture`.`POST_ID` AS `POST_ID`,`pfurniture`.`SUB_CATEGORY` AS `SUB_CATEGORY`,`pfurniture`.`CITY` AS `CITY`,`pfurniture`.`LOCATION` AS `LOCATION`,`pfurniture`.`TYPE` AS `TYPE`,`pfurniture`.`YEAR` AS `YEAR`,`pfurniture`.`PRICE` AS `PRICE`,`pfurniture`.`CREATED_ON` AS `CREATED_ON`,`pfurniture`.`CREATED_BY` AS `CREATED_BY`,`pfurniture`.`MODIFIED_ON` AS `MODIFIED_ON`,`pfurniture`.`MODIFIED_BY` AS `MODIFIED_BY`,`poit`.`TITLE` AS `TITLE`,`poit`.`CONTACT_NO` AS `CONTACT_NO`,`poit`.`CONTACT_PERSON_NAME` AS `CONTACT_PERSON_NAME`,`poit`.`DESCRIPTION` AS `DESCRIPTION`,`poit`.`IMAGE_FILE_NAME` AS `IMAGE_FILE_NAME`,`poit`.`CORP_ID` AS `CORP_ID`,`poit`.`POST_STATUS` AS `post_status` from (`pfurniture` join `poit`) where (`poit`.`POST_ID` = `pfurniture`.`POST_ID`);
-
-/*
-Table data for cbuddydb.furniture_posts
-*/
-
-INSERT INTO `furniture_posts` VALUES 
-(163,'1','BLR','68','DINING',2007,15000,'2014-07-18 00:44:18','6','2014-07-18 00:44:18','6','Used Dining Table For Sale','98431203943','Arunachalam','','1405624458066.null','101',NULL),
-(164,'1','BLR','68','DINING',2007,15000,'2014-07-18 00:44:53','6','2014-07-18 00:44:53','6','Used Dining Table For Sale','98431203943','Arunachalam','','1405624493243.null','101',NULL),
-(165,'1','BLR','68','DINING',2007,15000,'2014-07-18 00:46:07','6','2014-07-18 00:46:07','6','Used Dining Table For Sale','98431203943','Arunachalam','','1405624567532.null','101',NULL),
-(166,'1','CHE','C53','TV',2007,15000,'2014-07-18 01:06:57','6','2014-07-18 01:06:57','6','New TV Stand in Nanganallur','98431203943','Arunachalam','','1405625817390.null','101',NULL),
-(188,'1','BLR','96','MATTRESS',2007,15000,'2014-08-08 01:44:15','17','2014-08-08 01:44:15','17','Used Dining Table For Sale','98431203943','Arunachalam','','1407442455872.jpeg','123',NULL),
-(189,'1','BLR','96','MATTRESS',2007,15000,'2014-08-08 01:45:17','17','2014-08-08 01:45:17','17','Used Dining Table For Sale','98431203943','Arunachalam','','1407442517699.jpeg','123',NULL);
 
 /*
 Table structure for imgt
@@ -1026,69 +1021,6 @@ INSERT INTO `location_master` VALUES
 /*
 Table structure for master_comments
 */
-
-drop table if exists `master_comments`;
-CREATE TABLE `master_comments` (
-  `COMMENT_ID` int(11) NOT NULL auto_increment,
-  `COMMENT` longtext,
-  `MODIFIED_DATE` datetime default NULL,
-  `POST_DATE` datetime default NULL,
-  `POST_ID` int(11) default NULL,
-  PRIMARY KEY  (`COMMENT_ID`),
-  UNIQUE KEY `COMMENT_ID` (`COMMENT_ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=latin1;
-
-/*
-Table data for cbuddydb.master_comments
-*/
-
-INSERT INTO `master_comments` VALUES 
-(6,'dcdc',NULL,NULL,1),
-(10,'sss',NULL,NULL,2),
-(11,'ABCBBCBCCBBCCB','2014-08-10 00:52:35','2014-08-10 00:52:35',194),
-(14,'ABCBBCBCCBBCCB','2014-08-10 01:24:18','2014-08-10 01:24:18',194),
-(15,'ABCBBCBCCBBCCB','2014-08-10 01:54:45','2014-08-10 01:54:45',194),
-(16,'ABCBBCBCCBBCCB','2014-08-10 01:58:49','2014-08-10 01:58:49',194),
-(17,'ABCBBCBCCBBCCB','2014-08-10 01:59:59','2014-08-10 01:59:59',194),
-(18,'ABCBBCBCCBBCCB','2014-08-10 02:01:50','2014-08-10 02:01:50',194),
-(19,'ABCBBCBCCBBCCB','2014-08-10 02:04:28','2014-08-10 02:04:28',194),
-(20,'ABCBBCBCCBBCCB','2014-08-10 02:05:04','2014-08-10 02:05:04',194),
-(21,'ABCBBCBCCBBCCB','2014-08-10 02:06:11','2014-08-10 02:06:11',194),
-(22,'ABCBBCBCCBBCCB','2014-08-10 02:09:03','2014-08-10 02:09:03',194),
-(23,'ABCBBCBCCBBCCB','2014-08-10 02:09:56','2014-08-10 02:09:56',194);
-
-/*
-Table structure for master_comments_child_comments
-*/
-
-drop table if exists `master_comments_child_comments`;
-CREATE TABLE `master_comments_child_comments` (
-  `Master_Comments_COMMENT_ID` int(11) NOT NULL,
-  `childComment_COMMENT_ID` int(11) NOT NULL,
-  UNIQUE KEY `childComment_COMMENT_ID` (`childComment_COMMENT_ID`),
-  KEY `FKFC24C0C5EB59F8BD` (`Master_Comments_COMMENT_ID`),
-  KEY `FKFC24C0C5DA61FF63` (`childComment_COMMENT_ID`),
-  CONSTRAINT `FKFC24C0C5DA61FF63` FOREIGN KEY (`childComment_COMMENT_ID`) REFERENCES `child_comments` (`COMMENT_ID`),
-  CONSTRAINT `FKFC24C0C5EB59F8BD` FOREIGN KEY (`Master_Comments_COMMENT_ID`) REFERENCES `master_comments` (`COMMENT_ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
-/*
-Table data for cbuddydb.master_comments_child_comments
-*/
-
-INSERT INTO `master_comments_child_comments` VALUES 
-(14,1),
-(14,2),
-(14,3),
-(15,4),
-(16,5),
-(17,6),
-(18,7),
-(19,8),
-(20,9),
-(21,10),
-(22,11),
-(23,12);
 
 /*
 Table structure for mobile_master
@@ -1932,29 +1864,8 @@ INSERT INTO `mobile_master` VALUES
 Table structure for mobile_posts
 */
 
-drop table if exists `mobile_posts`;
+drop view if exists `mobile_posts`;
 CREATE ALGORITHM=UNDEFINED DEFINER=`shiva`@`localhost` SQL SECURITY DEFINER VIEW `mobile_posts` AS select `pdmo`.`post_id` AS `post_id`,`pdmo`.`sub_category` AS `sub_category`,`pdmo`.`city` AS `city`,`pdmo`.`location` AS `location`,`pdmo`.`brand` AS `brand`,`pdmo`.`model` AS `model`,`pdmo`.`smart_phone` AS `smart_phone`,`pdmo`.`price` AS `price`,`pdmo`.`year` AS `year`,`pdmo`.`touch_screen` AS `touch_screen`,`pdmo`.`dual_sim` AS `dual_sim`,`pdmo`.`screen_size` AS `screen_size`,`pdmo`.`camera_resolution` AS `camera_resolution`,`pdmo`.`color` AS `color`,`pdmo`.`operating_system` AS `operating_system`,`pdmo`.`wi_fi` AS `wi_fi`,`pdmo`.`front_camera` AS `front_camera`,`pdmo`.`fm_radio` AS `fm_radio`,`pdmo`.`processor_speed` AS `processor_speed`,`pdmo`.`memory_size` AS `memory_size`,`pdmo`.`created_on` AS `created_on`,`pdmo`.`created_by` AS `created_by`,`pdmo`.`modified_on` AS `modified_on`,`pdmo`.`modified_by` AS `modified_by`,`poit`.`TITLE` AS `TITLE`,`poit`.`CONTACT_NO` AS `CONTACT_NO`,`poit`.`CONTACT_PERSON_NAME` AS `CONTACT_PERSON_NAME`,`poit`.`DESCRIPTION` AS `DESCRIPTION`,`poit`.`IMAGE_FILE_NAME` AS `IMAGE_FILE_NAME`,`poit`.`CORP_ID` AS `CORP_ID`,`poit`.`POST_STATUS` AS `post_status` from (`pdmo` join `poit`) where (`poit`.`POST_ID` = `pdmo`.`post_id`);
-
-/*
-Table data for cbuddydb.mobile_posts
-*/
-
-INSERT INTO `mobile_posts` VALUES 
-('125','1','BLR','46','NOK','L520',NULL,30000,2007,NULL,NULL,0,0,'Black',NULL,NULL,NULL,NULL,NULL,NULL,'2014-07-09 00:19:15','6','2014-07-09 00:19:15','6','Samsung Galaxy available for sale','77777766666','MGR','','1404845355960.null','101',NULL),
-('126','1','BLR','46','NOK','L520',NULL,30000,2007,NULL,NULL,0,0,'Black',NULL,NULL,NULL,NULL,NULL,NULL,'2014-07-09 00:20:02','6','2014-07-09 00:20:02','6','Samsung Galaxy available for sale','77777766666','MGR','','1404845402861.null','101',NULL),
-('127','1','BLR','C60','SON','L520',NULL,30000,2007,NULL,NULL,0,0,'Black',NULL,NULL,NULL,NULL,NULL,NULL,'2014-07-09 00:22:48','6','2014-07-09 00:22:48','6','Samsung Galaxy available for sale','77777766666','MGR','','1404845568693.null','101',NULL),
-('128','1','CHE','C3','SAM','A1',NULL,30000,2007,NULL,NULL,0,0,'Black',NULL,NULL,NULL,NULL,NULL,NULL,'2014-07-09 00:36:39','6','2014-07-09 00:36:39','6','Samsung Galaxy available for sale','77777766666','MGR','','1404846399537.null','101',NULL),
-('129','1','BLR','143','NOK','L520',NULL,30000,2007,NULL,NULL,0,0,'Black',NULL,NULL,NULL,NULL,NULL,NULL,'2014-07-09 00:45:32','6','2014-07-09 00:45:32','6','Samsung Galaxy available for sale','77777766666','MGR','','1404846932728.null','101',NULL),
-('130','1','BLR','40','OTH','',NULL,30000,2007,NULL,NULL,0,0,'Black',NULL,NULL,NULL,NULL,NULL,NULL,'2014-07-09 00:51:31','6','2014-07-09 00:51:31','6','Samsung Galaxy available for sale','77777766666','MGR','','1404847291898.null','101',NULL),
-('131','1','BLR','40','OTH','test',NULL,30000,2007,NULL,NULL,0,0,'Black',NULL,NULL,NULL,NULL,NULL,NULL,'2014-07-09 00:54:10','6','2014-07-09 00:54:10','6','Samsung Galaxy available for sale','77777766666','MGR','','1404847450463.null','101',NULL),
-('132','1','BLR','84','NOK','L520',NULL,30000,2007,NULL,NULL,0,0,'Black',NULL,NULL,NULL,NULL,NULL,NULL,'2014-07-09 01:00:40','6','2014-07-09 01:00:40','6','Samsung Galaxy available for sale','77777766666','MGR','','1404847840657.null','101',NULL),
-('133','1','BLR','84','SAM','A1',NULL,30000,2007,NULL,NULL,0,0,'Black',NULL,NULL,NULL,NULL,NULL,NULL,'2014-07-09 01:01:32','6','2014-07-09 01:01:32','6','Samsung Galaxy available for sale','77777766666','MGR','','1404847892824.null','101',NULL),
-('134','1','BLR','84','Samsung','A1','Y',30000,2007,'Y',NULL,3.2,3,'Black','Android 3.2','Y','N','Y','2.1','4','2014-07-09 01:03:23','6','2014-07-09 01:03:23','6','Samsung Galaxy available for sale','77777766666','MGR','','1404848003264.null','101',NULL),
-('135','1','BLR','83','Nokia','L520','Y',30000,2007,'Y',NULL,4.5,2,'Black','Windows 8.1','Y','N','Y','2.1','3','2014-07-09 01:26:36','6','2014-07-09 01:26:36','6','Samsung Galaxy available for sale','77777766666','MGR','','1404849396870.jpeg','101',NULL),
-('136','1','BLR','67','LG','BL-40 Chocolate',NULL,13000,2010,'Y','N',0,0,'Red',NULL,NULL,NULL,NULL,NULL,NULL,'2014-07-14 22:42:26','6','2014-07-14 22:42:26','6','Samsung Galaxy available for sale','77777766666','MGR','','1405357946643.jpeg','101',NULL),
-('137','1','CHE','C70','Karbonn','Sound Wave K451+',NULL,17000,2011,'Y','N',0,0,'White',NULL,NULL,NULL,NULL,NULL,NULL,'2014-07-14 22:55:29','6','2014-07-14 22:55:29','6','Samsung Galaxy available for sale','77777766666','MGR','','1405358729774.jpeg','101',NULL),
-('183','1','CHE','C80','Sony','Xperia Arc',NULL,30000,2007,'N','Y',0,0,'Black',NULL,NULL,NULL,NULL,NULL,NULL,'2014-08-07 23:08:17','6','2014-08-07 23:08:17','6','Samsung Galaxy available for sale','77777766666','MGR','','1407433097841.null','101',NULL),
-('197','1','BLR','7','Samsung','Galaxy S Duos 2 S7582',NULL,30000,2007,'Y','Y',0,0,'Black',NULL,NULL,NULL,NULL,NULL,NULL,'2014-08-08 04:18:17','25','2014-08-08 04:18:17','25','Samsung Galaxy available for sale','77777766666','MGR','','1407451697087.null','100','PEN');
 
 /*
 Table structure for mobmast
@@ -2971,7 +2882,7 @@ INSERT INTO `nxt_post_id` VALUES
 Table structure for other_posts
 */
 
-drop table if exists `other_posts`;
+drop view if exists `other_posts`;
 CREATE ALGORITHM=UNDEFINED DEFINER=`shiva`@`localhost` SQL SECURITY DEFINER VIEW `other_posts` AS select `pothers`.`POST_ID` AS `POST_ID`,`pothers`.`CATEGORY` AS `CATEGORY`,`pothers`.`SUB_CATEGORY` AS `SUB_CATEGORY`,`pothers`.`PRODUCT_TYPE` AS `PRODUCT_TYPE`,`pothers`.`CITY` AS `CITY`,`pothers`.`LOCATION` AS `LOCATION`,`pothers`.`BRAND` AS `BRAND`,`pothers`.`MODEL` AS `MODEL`,`pothers`.`YEAR` AS `YEAR`,`pothers`.`PRICE` AS `PRICE`,`pothers`.`BILL_AVAILABLE` AS `BILL_AVAILABLE`,`pothers`.`CREATED_ON` AS `CREATED_ON`,`pothers`.`CREATED_BY` AS `CREATED_BY`,`pothers`.`MODIFIED_ON` AS `MODIFIED_ON`,`pothers`.`MODIFIED_BY` AS `MODIFIED_BY`,`poit`.`TITLE` AS `TITLE`,`poit`.`CONTACT_NO` AS `CONTACT_NO`,`poit`.`CONTACT_PERSON_NAME` AS `CONTACT_PERSON_NAME`,`poit`.`DESCRIPTION` AS `DESCRIPTION`,`poit`.`IMAGE_FILE_NAME` AS `IMAGE_FILE_NAME`,`poit`.`CORP_ID` AS `CORP_ID` from (`pothers` join `poit`) where (`poit`.`POST_ID` = `pothers`.`POST_ID`);
 
 /*
