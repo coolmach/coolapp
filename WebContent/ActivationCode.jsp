@@ -5,12 +5,14 @@
 #subCategory{height:25px;width:205px;}
 </style>
 <div class="container" style="margin: 10%;">
+	<div class="row" style="margin-left:20%;">
+		<s:fielderror />
+	</div>
 	<div class="row">
 		<div class="col-md-4 " id="signInSection" style="margin-left:19.9999%;margin-top:2%;">
 			<div class="panel panel-default">
 				<div class="panel-heading">
-					<strong>Personal Email Id</strong>
-					<s:fielderror />
+					<strong>Activate - Confirm Personal Email Id</strong>
 				</div>
 				<div class="panel-body">
 					<form class="form-horizontal" action="activateContinue" method="post">

@@ -4,14 +4,18 @@
 #category{height:25px;width:205px;}
 #subCategory{height:25px;width:205px;}
 </style>
-<div class="container" style="margin: 10%;">
+<div class="container" style="margin-left:10%; margin-bottom:2%;">
+	<div class="row" style="color:#FF0000; margin-top:20px;">
+		<s:if test='#session.userInfo != null && #session.userInfo.status == "PEN"'>
+			You can now proceed to post an ad. It would be activated once you click on the activation link mailed to your personal email id.
+		</s:if>
+	</div>
 	<div class="row">
 		<div class="col-md-5 " id="signInSection" style="margin-left:19.9999%;margin-top:5%;">
 			<div class="panel panel-default">
 				<div class="panel-heading">
 					<strong>Post your Ad</strong>
 				</div>
-				
 				<div class="panel-body">
 					<form class="form-horizontal" role="form" action="postAdContinue" id="categoryForm" method="get">
 						<div class="form-group">

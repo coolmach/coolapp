@@ -4,7 +4,7 @@ import org.apache.log4j.Logger;
 
 public class LogUtil {
 
-	private static Logger instance = Logger.getLogger("CBUDDY_LOGGER");
+	private static Logger instance = Logger.getLogger("A1");
 	private LogUtil(){
 
 	}

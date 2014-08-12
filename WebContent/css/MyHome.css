@@ -137,8 +137,9 @@
 
 #top_menu {
     background: none repeat scroll 0 0 #fff;
-    border-bottom: 2px solid #0099cc;
-    box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.31);
+    border-top: 1px solid #0099cc;
+    border-bottom: 1px solid #0099cc;
+    /*box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.31);*/
     clear: both;
     height: 35px;
     position: relative;
@@ -149,7 +150,8 @@
 .menu_icon_holder {
     display: block;
     height: 35px;
-    margin: 0 auto;
+    /*margin: 0 auto;*/
+    margin-left:10%;
     width: 990px;
 }
 
@@ -176,7 +178,7 @@
     font-size: 12px;
     outline: 0 none;
     text-decoration: none;
-    text-shadow:0px 2px 6px rgba(152, 177, 148, 0.65);
+    /*text-shadow:0px 2px 6px rgba(152, 177, 148, 0.65);*/
 }
 
 #menu li a:hover {

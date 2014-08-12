@@ -5,6 +5,7 @@ public class CBuddyConstants {
 	public static final int NON_EXISTENT_USER_ID = 1001;
 	public static final int EXISTENT_USER_ID = 1003;
 	public static final int INVALID_PASSWORD = 1002;
+	public static final int DOMAIN_NOT_REGISTERED = 1004;
 
 	public static final String CATEGORY_REAL_ESTATE = "REAL";
 	public static final String CATEGORY_AUTOMOBILES = "AUTO";

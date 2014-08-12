@@ -1,5 +1,6 @@
 package com.cbuddy.util;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -35,9 +36,19 @@ public class DummyAction extends ActionSupport implements ServletRequestAware{
 		query.setParameter("emailId", emailId);
 		try{
 			List<Ucred> ucreds = (List<Ucred>)query.list();
-			Ucred ucred = ucreds.get(0);
-			ucred.setCorpEmailId(generateEmailId());
-			dbSession.save(ucred);
+			if(ucreds.size()>0){
+				Ucred ucred = ucreds.get(0);
+				ucred.setCorpEmailId(generateEmailId(ucred.getCorpEmailId()));
+				ucred.setModifiedBy("API");
+				ucred.setModifiedOn(new Timestamp(System.currentTimeMillis()));
+				
+				dbSession.beginTransaction();
+				
+				dbSession.save(ucred);
+				
+				dbSession.getTransaction().commit();
+			}
+			
 		}catch(Exception e){
 			e.printStackTrace();
 		}
@@ -53,17 +64,27 @@ public class DummyAction extends ActionSupport implements ServletRequestAware{
 		query.setParameter("emailId", emailId);
 		try{
 			List<Uprof> uprofs = (List<Uprof>)query.list();
-			Uprof uprof = uprofs.get(0);
-			uprof.setPersonalEmailId(generateEmailId());
-			dbSession.save(uprof);
+			if(uprofs.size()>0){
+				Uprof uprof = uprofs.get(0);
+				uprof.setPersonalEmailId(generateEmailId(uprof.getPersonalEmailId()));
+				uprof.setModifiedBy("API");
+				uprof.setModifiedOn(new Timestamp(System.currentTimeMillis()));
+				
+				dbSession.beginTransaction();
+				
+				dbSession.save(uprof);
+				
+				dbSession.getTransaction().commit();
+			}
 		}catch(Exception e){
 			e.printStackTrace();
 		}
 		return Action.SUCCESS;
 	}
 
-	private String generateEmailId(){
+	private String generateEmailId(String originalEmailId){
 		String currentTime = String.valueOf(System.currentTimeMillis()).substring(0,10);
-		return currentTime + "@test.com";
+		String mailAccountName = originalEmailId.substring(0, originalEmailId.indexOf("@"));
+		return originalEmailId.replace(mailAccountName, mailAccountName + "_" + currentTime);
 	}
 }

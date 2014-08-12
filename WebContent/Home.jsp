@@ -80,7 +80,7 @@
 			</div>
 		</div>
 		<div class="col-sm-1" style="margin-top:7px;margin-left:20px;">
-			<button class="mainButton">Post Free Ad</button>
+			<a href='<s:url action="postAdStart"/>'><button class="mainButton">Post Free Ad</button></a>
 		</div>		
 	</div>
 	<div id="searchBoxRow" class="row">

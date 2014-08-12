@@ -1,6 +1,7 @@
 package com.cbuddy.user.action;
 
 import java.util.Map;
+import java.util.logging.Logger;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -133,17 +134,28 @@ public class LoginAction extends ActionSupport implements SessionAware,ServletRe
 		}
 	}
 
+	private String getFullURL(HttpServletRequest request){
+		StringBuffer requestURL = request.getRequestURL();
+		//request.getRequestURL() = "http://localhost:8080/Virat/signup" - We have to remove the last token 'signup'
+		
+		return requestURL.substring(0, requestURL.lastIndexOf("/"));
+	}
+	
 	public String signUp(){
 
-		LogUtil.getInstance().info("LoginAction - Signup()");
+		LogUtil.getInstance().info(">>> LoginAction - Signup()");
 		try{
 
 			if(!selectedCorpName.equals(corpName)){
-				return Action.INPUT;
+				addFieldError("CorpEmailId", "Invalid Company Selected");
+				return Action.ERROR;
 			}
 
 			AuthenticateUserService auService = new AuthenticateUserService();
-			User u = auService.registerUser(getModel(), request.getContextPath());
+			
+			LogUtil.getInstance().info(">>> getFullURL(): " + getFullURL(request));
+			
+			User u = auService.registerUser(getModel(), getFullURL(request));
 
 			session.put("userInfo", u);
 			session.put("userLoggedIn", "Y");
@@ -156,6 +168,9 @@ public class LoginAction extends ActionSupport implements SessionAware,ServletRe
 			case CBuddyConstants.EXISTENT_USER_ID:
 				addFieldError("CorpEmailId",e.getMessage());
 				break;
+			case CBuddyConstants.DOMAIN_NOT_REGISTERED:
+				addFieldError("DomainNotRegistered", e.getMessage());
+				break;
 			default:
 				addFieldError("CorpEmailId", e.getMessage());
 				break;
@@ -163,15 +178,21 @@ public class LoginAction extends ActionSupport implements SessionAware,ServletRe
 
 			isSignUpErrorExists="true";
 
-			return "error";
+			return Action.ERROR;
 		}
 
-		return "success";
+		return Action.SUCCESS;
 	}
 
 	public String activateUser(){
 		try{
-			new AuthenticateUserService().activateUser(activationCode, email);
+			
+			User u = new AuthenticateUserService().activateUser(activationCode, email);
+			
+			session.put("userInfo", u);
+			session.put("userLoggedIn", "Y");
+			session.put("username", u.getFirstName());
+			
 		}catch(CBuddyException e){
 			addFieldError("email", e.getMessage());
 			return Action.INPUT;

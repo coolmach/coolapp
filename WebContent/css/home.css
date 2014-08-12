@@ -30,9 +30,10 @@
 .header_responseMessage {
 	color: #FF0000;
 	/* margin-top: 70px; */
-	padding: 10px;
+	/* padding: 10px; */
 	text-align: center;
-	font-size: 20px;
+	font-size: 16px;
+	font-family:Calibri;
 }
 
 .footer_2 {
@@ -284,10 +285,11 @@ table {
 }
 
 #my {
-	box-shadow: 16px 3px 10px -7px #888888, -10px 0 20px -7px #888888;
-	/* margin-left: 15%;
-	margin-top: 5%;
-	margin-bottom: 2%; */
+	/*box-shadow: 16px 3px 10px -7px #888888, -10px 0 20px -7px #888888;*/
+	margin-left: 15%;
+	margin-top: 20px;
+	border:1px solid #CCCCCC;
+	/* margin-bottom: 2%; */
 }
 
 .imgspace {
@@ -360,10 +362,12 @@ html,body {
 }
 
 .errorMessage {
-	margin: 0px;
+	/*margin: 0px;
 	padding: 5px;
 	list-style: none;
 	float: left;
+	*/
+	font-weight:normal;
 }
 
 .content2 h3 {

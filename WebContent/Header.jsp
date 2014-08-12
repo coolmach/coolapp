@@ -9,7 +9,20 @@
 			<!--span class="logoText">cBuddy<span class="logoTextSmall">.in</span></span-->
 		</div>
 		<div class="col-sm-2" style="padding-top:30px;color:#0099CC;margin-left:55%;"> 
-			<span style="margin-right:10px;"><a href="#"> Why cBuddy?</a></span> | <span style="margin-left:10px"><a href="<s:url action="mylogin"/>">Sign In</a></span>
+			<span style="font-size:12px;">
+				<s:if test="%{#session.userLoggedIn == null}">
+					<span style="margin-right:10px;font-size:12px;"><a href="#"> Why cBuddy?</a></span> | 
+                	<span style="margin-left:10px;"><a href="<s:url action="mylogin"/>">Sign In</a></span>
+                </s:if>
+				<s:else>
+					<span style="margin-right:10px;font-size:12px;">
+						<a href="
+							<s:url action="mydashboard">
+								<s:param name="userId"><s:property value="#session.userInfo.userId"/></s:param>
+							</s:url>">Dashboard</a></span> | 
+					<span style="margin-left:10px;"><a href="<s:url action="logout"/>">Sign Out</a></span>
+				</s:else>
+			</span>
 		</div>
 	</div>
 	<div id="top_menu">

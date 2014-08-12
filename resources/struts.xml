@@ -60,7 +60,10 @@
 		     <!-- <result name="success" type="redirect">mydashboard</result> -->
 		</action>
 		<action name="mydashboard" class="com.cbuddy.user.action.UserAction" method="mydashboard">
+			 <interceptor-ref name="secureStack"></interceptor-ref>
 		     <result name="success" type="tiles">/userdashboard.tiles</result>
+		     <result name="login" type="tiles">/home.tiles</result>
+		     <result name="error" type="tiles">/home.tiles</result>
 		</action>
 		<action name="login" class="com.cbuddy.user.action.LoginAction">
 			<result name="success" type="tiles">/userdashboard.tiles</result>
