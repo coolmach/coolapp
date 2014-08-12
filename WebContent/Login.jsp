@@ -7,7 +7,7 @@
 		<div class="header_responseMessage">
 			<s:property value="responseMsg" />
 		</div>
-
+		
 		<div class="col-md-6 " id="signInSection"
 			style="margin-left: 24%; margin-top: 5%;">
 			
@@ -18,9 +18,9 @@
 				</div>
 
 				<div class="panel-body">
-				
 					<!--s:form cssClass="form-horizontal" role="form" action="login" theme="simple"-->
-					<s:form cssClass="form-horizontal" role="form" action="postAdLogin" theme="simple">
+					<s:form cssClass="form-horizontal" role="form" action="postAdLogin" theme="simple" id="loginForm">
+						<input type="hidden" name="actionType" id="actionType" value="LOGIN">
 						<div class="form-group">
 							<label for="inputEmail3" class="col-sm-3 control-label">
 								Email</label>
@@ -64,87 +64,76 @@
 		</div>
 
 		<div class="col-md-7 " id="signUpSection"
-			style="border-left: 1px solid #eeeeee; margin-left: 24%; display: none;">
-			<div class="col-md-12 " id="divCheckPasswordMatch">
-				<s:fielderror />
-			</div>
-			<div class="col-md-12 ">
-				<s:form cssClass="form-horizontal" role="form" id="registration"
-					method='post' action="signup" theme="simple">
-					<fieldset>
-						<legend>New to CBuddy? Sign Up!</legend>
-						<!--div class="form-group">
-							<label class="col-sm-4 control-label">Name</label>
-							<div class="col-sm-8">
-								<input type="text" class="form-control" id="FirstName"
-									name="FirstName" required="" placeholder="Name">
-							</div>
-						</div-->
+			style="margin-left: 24%; display: none;">
+			<div class="col-md-12 " id="divCheckPasswordMatch"></div>
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<span style="font-size:14px;font-weight:bold;">New User Registration</span>
+				</div>
+				<div id="errorSection" style="padding:10px;font-weight:normal;padding-bottom:10px;">
+					<s:fielderror />
+				</div>
+				<div class="panel-body">
+					<s:form cssClass="form-horizontal" role="form" action="signup" theme="simple" id="registrationForm">
+						<input type="hidden" name="actionType" id="actionType" value="REGISTER">
 						<div class="form-group">
 							<label class="col-sm-4 control-label">Company</label>
 							<div class="col-sm-8">
-								<input class="form-control" id="corpName" name="corpName"
-									placeholder="Company Name" required> <input
-									type="hidden" name="corpId" id="corpId"> <input
-									type="hidden" name="selectedCorpName" id="selectedCorpName">
+								<input class="form-control" id="corpName" name="corpName" placeholder="Company Name" required value='<s:property value="%{corpName}" />'> 
+								<input type="hidden" name="corpId" id="corpId" value='<s:property value="%{corpId}" />'> 
+								<input type="hidden" name="selectedCorpName" id="selectedCorpName"  value='<s:property value="%{selectedCorpName}" />'>
 							</div>
 						</div>
 						<div class="form-group">
 							<label class="col-sm-4 control-label">Corporate Email Id</label>
 							<div class="col-sm-8">
-								<input class="form-control" id="CorpEmailId" name="CorpEmailId"
-									placeholder="Email" required type="email"> <span
-									class="help-block">* will be used only once for
-									verification</span>
+								<input class="form-control" id="CorpEmailId" name="CorpEmailId" placeholder="Email" required type="email" value='<s:property value="%{CorpEmailId}" />' > 
+								<span class="help-block">* will be used only once for verification</span>
 
 							</div>
 						</div>
 						<div class="form-group">
 							<label class="col-sm-4 control-label">Personal Email</label>
 							<div class="col-sm-8">
-								<input class="form-control" id="PersonalEmailId" name="PersonalEmailId"
-									placeholder="Personal Email Id" required="" type="email">
+								<input class="form-control" id="PersonalEmailId" name="PersonalEmailId" placeholder="Personal Email Id" required type="email"  value='<s:property value="%{PersonalEmailId}" />'>
 							</div>
 						</div>
 						<div class="form-group">
 							<label class="col-sm-4 control-label">Password</label>
 							<div class="col-sm-8">
-								<input placeholder="Password" required="" type="password"
+								<input placeholder="Password" required type="password"
 									class="form-control" id="Pwd" name="Pwd">
 							</div>
 						</div>
-						<!--div class="form-group">
-							<label class="col-sm-4 control-label">Re-enter Password</label>
-							<div class="col-sm-8">
-								<input placeholder="Password" required="" type="password"
-									class="form-control" id="Pwd1" name="password1">
-							</div>
-						</div>
 						<div class="form-group">
-							<label class="col-sm-4 control-label">Mobile</label>
-							<div class="col-sm-8">
-								<input placeholder="Mobile" type="text" class="form-control"
-									id="MobileNo" name="MobileNo">
-							</div>
-						</div-->
-
-						<div class="form-group" style="margin-top: 20px;">
-							<label class="col-sm-4 control-label"></label>
+							<label class="col-sm-4 control-label">&nbsp;</label>
 							<div class="col-sm-8">
 								<button id="btnSignUp" type="submit" class="btn btn-success">Submit</button>
-								<label> <a style="margin-left: 50px;" class="smallLink"
-									href="#" onClick="showSignInForm()">Already Registerd?Login</a>
-								</label>
 							</div>
 						</div>
-					</fieldset>
-				</s:form>
-			</div>
+						<div class="form-group last">
+							<label class="col-sm-4 control-label">&nbsp;</label>
+							<div class="col-sm-8">
+								<label> <a style="margin-left:90px;" class="smallLink"
+									href="#" onClick="showSignInForm()">Already Registered?Login</a>
+								</label>
+							</div>
+						</div>														
+					</s:form>
+				</div>
+			</div>			
 		</div>
 	</div>
 </div>
 <script>
 	$(document).ready(function(){
+		var action = '<s:property value="%{actionType}" />';
+		if(action == "LOGIN"){
+			showSignInForm();
+		}else if(action == "REGISTER"){
+			showRegistrationForm();
+		}
+		
 		$("#corpName").autocomplete({
 		    source: function(request, response) {
 			    $.ajax({
@@ -176,6 +165,11 @@
 	});
 </script>
 <script>
+	function get(name){
+	   if(name=(new RegExp('[?&]'+encodeURIComponent(name)+'=([^&]*)')).exec(location.search))
+	      return decodeURIComponent(name[1]);
+	}
+
 	function showRegistrationForm(){
 		$("#signUpSection").show();
 		$("#signInSection").hide();		

@@ -21,6 +21,14 @@ public class LoginAction extends ActionSupport implements SessionAware,ServletRe
 
 	private String username;
 	private String password;
+	private String actionType; //Login/Register
+	public String getActionType() {
+		return actionType;
+	}
+	public void setActionType(String actionType) {
+		this.actionType = actionType;
+	}
+
 	private String isLoginErrorExists="false";
 	private String isSignUpErrorExists="false";
 	private boolean isValidUser = false;
@@ -37,7 +45,7 @@ public class LoginAction extends ActionSupport implements SessionAware,ServletRe
 	}
 
 	private String corpName; //In Sign Up screen, it corresponds to the value in Company Name text box at the time of form submission. This value can be modified by the user later even after selection from auto suggest.
-	
+
 	private String responseMsg;
 
 	Ucred ucred = new Ucred();
@@ -104,7 +112,7 @@ public class LoginAction extends ActionSupport implements SessionAware,ServletRe
 			}catch(CBuddyException e){
 				System.out.println(e.getErrorCode());
 				switch(e.getErrorCode()){
-				
+
 				case CBuddyConstants.NON_EXISTENT_USER_ID:
 					//Email Id / Mobile number does not exist
 					addFieldError("username", "Invalid user credentials");
@@ -126,7 +134,7 @@ public class LoginAction extends ActionSupport implements SessionAware,ServletRe
 	}
 
 	public String signUp(){
-		
+
 		LogUtil.getInstance().info("LoginAction - Signup()");
 		try{
 
@@ -136,7 +144,7 @@ public class LoginAction extends ActionSupport implements SessionAware,ServletRe
 
 			AuthenticateUserService auService = new AuthenticateUserService();
 			User u = auService.registerUser(getModel(), request.getContextPath());
-			
+
 			session.put("userInfo", u);
 			session.put("userLoggedIn", "Y");
 			session.put("username", u.getFirstName());
@@ -147,8 +155,12 @@ public class LoginAction extends ActionSupport implements SessionAware,ServletRe
 			switch(e.getErrorCode()){
 			case CBuddyConstants.EXISTENT_USER_ID:
 				addFieldError("CorpEmailId",e.getMessage());
-				break;	
+				break;
+			default:
+				addFieldError("CorpEmailId", e.getMessage());
+				break;
 			}
+
 			isSignUpErrorExists="true";
 
 			return "error";
@@ -166,8 +178,8 @@ public class LoginAction extends ActionSupport implements SessionAware,ServletRe
 		}
 		return Action.SUCCESS;
 	}
-	
-	
+
+
 	public String myLogin(){
 		return "success";
 	}
