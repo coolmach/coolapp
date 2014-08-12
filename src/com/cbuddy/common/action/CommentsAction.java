@@ -32,6 +32,7 @@ public class CommentsAction extends ActionSupport implements SessionAware, Servl
 	public String postComment(){
 
 		CommentsService ser = new CommentsService();
+		System.out.println(postId);
 		ser.postComment(Integer.parseInt(postId),comment);
 		cmList = ser.getComments(Integer.parseInt(postId));
 

@@ -16,10 +16,12 @@ import org.apache.struts2.interceptor.SessionAware;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
+import com.cbuddy.beans.MasterComment;
 import com.cbuddy.beans.Pdau;
 import com.cbuddy.beans.Poit;
 import com.cbuddy.posts.model.AutomobilePostDetails;
 import com.cbuddy.posts.services.AutomobileAdService;
+import com.cbuddy.posts.services.CommentsService;
 import com.cbuddy.posts.util.PostsUtil;
 import com.cbuddy.user.model.User;
 import com.cbuddy.util.CBuddyConstants;
@@ -33,7 +35,7 @@ import com.opensymphony.xwork2.ModelDriven;
 public class AutomobileAction extends ActionSupport implements SessionAware, ServletRequestAware, ModelDriven<AutomobilePostDetails>{
 
 	private static final long serialVersionUID = 1L;
-
+	private List<MasterComment> cmList = new ArrayList<MasterComment>();
 	AutomobilePostDetails postDetails = new AutomobilePostDetails();
 	private File upload;
 	private String uploadFileName;
@@ -362,6 +364,9 @@ public class AutomobileAction extends ActionSupport implements SessionAware, Ser
 		
 		populateAdditionalDetailsForPost(postDetails, dbSession);
 		
+		CommentsService service = new CommentsService();
+		cmList = service.getComments(postDetails.getPostId());
+		
 		return "success";
 	}
 
@@ -436,5 +441,13 @@ public class AutomobileAction extends ActionSupport implements SessionAware, Ser
 
 	public void setCount(int count) {
 		this.count = count;
+	}
+	
+	public List<MasterComment> getCmList() {
+		return cmList;
+	}
+
+	public void setCmList(List<MasterComment> cmList) {
+		this.cmList = cmList;
 	}
 }

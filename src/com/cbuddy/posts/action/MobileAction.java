@@ -19,11 +19,13 @@ import org.hibernate.SessionFactory;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import com.cbuddy.beans.MasterComment;
 import com.cbuddy.beans.MobileMaster;
 import com.cbuddy.beans.Pdmo;
 import com.cbuddy.beans.Poit;
 import com.cbuddy.posts.cache.MobilePhoneCache;
 import com.cbuddy.posts.model.MobilePostDetails;
+import com.cbuddy.posts.services.CommentsService;
 import com.cbuddy.posts.services.MobileAdService;
 import com.cbuddy.posts.util.PostsUtil;
 import com.cbuddy.user.model.User;
@@ -39,7 +41,7 @@ import com.opensymphony.xwork2.ModelDriven;
 public class MobileAction extends ActionSupport implements SessionAware, ServletRequestAware, ModelDriven<MobilePostDetails>{
 
 	private static final long serialVersionUID = 1L;
-
+	private List<MasterComment> cmList = new ArrayList<MasterComment>();
 	MobilePostDetails postDetails = new MobilePostDetails();
 	private File upload;
 	private String uploadFileName;
@@ -447,6 +449,9 @@ public class MobileAction extends ActionSupport implements SessionAware, Servlet
 		
 		populateAdditionalDetailsForPost(postDetails, dbSession);
 		
+		CommentsService service = new CommentsService();
+		cmList = service.getComments(postDetails.getPostId());
+		
 		return "success";
 	}
 
@@ -544,6 +549,14 @@ public class MobileAction extends ActionSupport implements SessionAware, Servlet
 
 	public void setCount(int count) {
 		this.count = count;
+	}
+	
+	public List<MasterComment> getCmList() {
+		return cmList;
+	}
+
+	public void setCmList(List<MasterComment> cmList) {
+		this.cmList = cmList;
 	}
 
 }

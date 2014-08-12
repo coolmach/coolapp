@@ -625,6 +625,7 @@ $(document).ready(function() {
 		var postId = $("#postId").text();
 		if($("#comments").val()!=""){
 			var data = "&postId="+postId+"&comment="+$("#comments").val();
+			//alert(data);
 			$.ajax({
 				type: 'POST',
 				url: ctxPath+"/comments", 
