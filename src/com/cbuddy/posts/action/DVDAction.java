@@ -20,9 +20,11 @@ import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 
+import com.cbuddy.beans.MasterComment;
 import com.cbuddy.beans.PDVD;
 import com.cbuddy.beans.Poit;
 import com.cbuddy.posts.model.DVDPostDetails;
+import com.cbuddy.posts.services.CommentsService;
 import com.cbuddy.posts.services.DVDAdService;
 import com.cbuddy.posts.util.PostsUtil;
 import com.cbuddy.user.model.User;
@@ -38,7 +40,7 @@ import com.opensymphony.xwork2.ModelDriven;
 public class DVDAction extends ActionSupport implements SessionAware, ServletRequestAware, ModelDriven<DVDPostDetails>{
 
 	private static final long serialVersionUID = 1L;
-
+	private List<MasterComment> cmList = new ArrayList<MasterComment>();
 	DVDPostDetails postDetails = new DVDPostDetails();
 	private File upload;
 	private String uploadFileName;
@@ -315,6 +317,9 @@ public class DVDAction extends ActionSupport implements SessionAware, ServletReq
 		
 		populateAdditionalDetailsForPost(postDetails, dbSession);
 		
+		CommentsService service = new CommentsService();
+		cmList = service.getComments(postDetails.getPostId());
+		
 		return "success";
 	}
 
@@ -456,5 +461,13 @@ public class DVDAction extends ActionSupport implements SessionAware, ServletReq
 
 	public void setCount(int count) {
 		this.count = count;
+	}
+	
+	public List<MasterComment> getCmList() {
+		return cmList;
+	}
+
+	public void setCmList(List<MasterComment> cmList) {
+		this.cmList = cmList;
 	}
 }

@@ -472,7 +472,7 @@ public class RealEstateAction extends ActionSupport implements SessionAware, Ser
 		populateAdditionalDetailsForPost(postDetails, dbSession);
 		
 		CommentsService service = new CommentsService();
-		cmList = service.getComments();
+		cmList = service.getComments(postDetails.getPostId());
 		
 		return "success";
 	}

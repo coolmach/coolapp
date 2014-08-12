@@ -1,4 +1,5 @@
 <%@ taglib prefix="s" uri="/struts-tags"%>
+<span id="postId" class="hidden"><s:property value="postDetails.postId"/></span>
 
 <s:if test="subCategory == 1">
 	<%@include file="AdDetails_RealEstate_Apartment_For_Sale.jsp" %>

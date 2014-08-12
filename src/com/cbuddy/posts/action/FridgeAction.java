@@ -16,9 +16,11 @@ import org.apache.struts2.interceptor.SessionAware;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
+import com.cbuddy.beans.MasterComment;
 import com.cbuddy.beans.PFridge;
 import com.cbuddy.beans.Poit;
 import com.cbuddy.posts.model.FridgePostDetails;
+import com.cbuddy.posts.services.CommentsService;
 import com.cbuddy.posts.services.FridgeAdService;
 import com.cbuddy.posts.util.PostsUtil;
 import com.cbuddy.user.model.User;
@@ -33,7 +35,7 @@ import com.opensymphony.xwork2.ModelDriven;
 public class FridgeAction extends ActionSupport implements SessionAware, ServletRequestAware, ModelDriven<FridgePostDetails>{
 
 	private static final long serialVersionUID = 1L;
-
+	private List<MasterComment> cmList = new ArrayList<MasterComment>();
 	FridgePostDetails postDetails = new FridgePostDetails();
 	private File upload;
 	private String uploadFileName;
@@ -325,6 +327,9 @@ public class FridgeAction extends ActionSupport implements SessionAware, Servlet
 		
 		populateAdditionalDetailsForPost(postDetails, dbSession);
 		
+		CommentsService service = new CommentsService();
+		cmList = service.getComments(postDetails.getPostId());
+		
 		return "success";
 	}
 	public String getAdListForCriteria(){
@@ -421,6 +426,14 @@ public class FridgeAction extends ActionSupport implements SessionAware, Servlet
 
 	public void setCount(int count) {
 		this.count = count;
+	}
+	
+	public List<MasterComment> getCmList() {
+		return cmList;
+	}
+
+	public void setCmList(List<MasterComment> cmList) {
+		this.cmList = cmList;
 	}
 }
 
