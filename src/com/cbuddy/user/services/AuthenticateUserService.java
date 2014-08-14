@@ -1,3 +1,5 @@
+
+
 package com.cbuddy.user.services;
 
 import java.sql.Timestamp;
@@ -17,13 +19,34 @@ import com.cbuddy.beans.Uprof;
 import com.cbuddy.exception.CBuddyException;
 import com.cbuddy.user.model.User;
 import com.cbuddy.util.CBuddyConstants;
+import com.cbuddy.util.EncryptionUtil;
 import com.cbuddy.util.MailUtil;
 import com.cbuddy.util.TextUtil;
 import com.cbuddy.util.Utils;
 
 public class AuthenticateUserService {
 
-	public User activateUser(String activationCode, String personalEmailId) throws CBuddyException{
+	public User activateUser(String encryptedParams) throws CBuddyException{
+		String activationCode = null;
+		String personalEmailId = null;
+
+		try{
+			String decryptedString = EncryptionUtil.decrypt(encryptedParams);
+
+			/* decryptedString contain activationCode and personal email id in the format:
+			 * 	"activationCode=XYZ123&email=abc@gmail.com"
+			 */
+			String[] tokens = decryptedString.split("&");
+			for(String token:tokens){
+				if(token.indexOf("activationCode") == 0){
+					activationCode = token.substring(token.indexOf("=") + 1);
+				}else if(token.indexOf("email") == 0){
+					personalEmailId = token.substring(token.indexOf("=") + 1);
+				}
+			}
+		}catch(Exception e){
+			throw new CBuddyException("Invalid Activation Code");
+		}
 
 		if(activationCode == null || activationCode.trim().equals("")){
 			throw new CBuddyException("Invalid Activation Code");
@@ -90,12 +113,12 @@ public class AuthenticateUserService {
 			}
 		}
 		dbSession.getTransaction().commit();
-		
+
 		//Get Ucred information, for Corp Email Id
 		tempQuery = dbSession.createQuery("from Ucred where user_id = :userId");
 		tempQuery.setParameter("userId", uprof.getUserId());
 		Ucred ucred = (Ucred)tempQuery.uniqueResult();
-	
+
 		User user = new User();
 		user.setCorpId(uprof.getCorpId());
 		user.setEmailId(ucred.getCorpEmailId());
@@ -103,7 +126,7 @@ public class AuthenticateUserService {
 		user.setMobileNo(uprof.getMobileNo());
 		user.setStatus(uprof.getUserStatus());
 		user.setUserId(uprof.getUserId());
-		
+
 		return user;
 	}
 
@@ -116,7 +139,7 @@ public class AuthenticateUserService {
 
 		Ucred ucred = null;
 		Uprof uprof = null;
-		
+
 		//Check if the value entered by the user in 'User Name' field is his email id or mobile number.
 		if(TextUtil.isNumeric(userNameString)){
 			//Mobile number
@@ -133,8 +156,12 @@ public class AuthenticateUserService {
 			throw new CBuddyException("Invalid User Name or Email Id", CBuddyConstants.NON_EXISTENT_USER_ID);
 		}
 
+		if(uprof.getUserStatus().equals(CBuddyConstants.USER_STATUS_PENDING_VERIFICATION)){
+			throw new CBuddyException("User not yet active", CBuddyConstants.USER_PENDING_FOR_ACTIVATION);
+		}
+
 		ucred = getUserCredentials(uprof.getUserId(), session);
-		
+
 		if(!ucred.getPwd().equals(password)){
 			logUnsuccessfulAttempt(ucred.getUserId(), ucred, session);
 			throw new CBuddyException("Invalid Password", CBuddyConstants.INVALID_PASSWORD);
@@ -271,20 +298,43 @@ public class AuthenticateUserService {
 		user.setStatus(uprof.getUserStatus());
 		user.setActivationCode(activationCode);
 
+		sendActivationMail(contextPath, newUcred.getCorpEmailId(), user.getEmailId(), activationCode, user.getFirstName());
+
+		return user;
+	}
+	
+	public void resendActivationCode(String personalMailId){
+		//Get User Id from Uprof
+		SessionFactory sessionFactory = (SessionFactory) ServletActionContext.getServletContext().getAttribute("sessionFactory");
+		Session dbSession = sessionFactory.openSession();
+		
+		Query query = dbSession.createQuery("from Uprof where personal_mail_id = :personalMailId");
+		query.setParameter("personal_mail_id", personalMailId);
+		Uprof uprof = (Uprof)query.uniqueResult();
+		int userId = uprof.getUserId();
+		
+		//Get record from UACT
+		query = dbSession.createQuery("from Uact where user_id = :userId");
+		query.setParameter("user_id", userId);
+		Uact uact = (Uact)query.uniqueResult();
+		
+		//Get Activation Code
+		String activationCode
+	}
+
+	private void sendActivationMail(String contextPath, String companyMailId, String personalMailId, String activationCode, String userName){
 		//Sending activation code through email
 		String messageText = "Warm Regards from cBuddy team!" + "\n\n";
-		messageText = messageText + "Company Email Id: " + user.getEmailId() + "\n\n";
+		messageText = messageText + "Company Email Id: " + companyMailId + "\n\n";
 		messageText = messageText + "Please click on the following link for activating your cBuddy account:" + "\n\n";
-		messageText = messageText + contextPath + "/activate?activationCode=" + activationCode;
+		messageText = messageText + contextPath + "/activate?param=" + EncryptionUtil.encrypt("activationCode=" + activationCode + "&email=" + personalMailId);
 		try{
 			//TODO (Temp Change done for ALPHA TESTING): Don't send mail to personal mail id. Send it to official mail id.
-			new MailUtil().sendMail(uprof.getPersonalEmailId(), user.getFirstName(), messageText, contextPath, activationCode);
+			new MailUtil().sendMail(personalMailId, userName, messageText, contextPath, activationCode);
 			//new MailUtil().sendMail(user.getEmailId(), user.getFirstName(), contextPath, activationCode);
 		}catch(Exception e){
 			e.printStackTrace();
 		}
-
-		return user;
 	}
 
 	private void validateCorporateEmailId(int corpId, String corpEmail, Session dbSession) throws CBuddyException{
@@ -316,7 +366,7 @@ public class AuthenticateUserService {
 	}
 
 	private void validatePersonalEmailId(String emailId, Session dbSession)
-	throws CBuddyException{
+			throws CBuddyException{
 		//Check for duplicate
 		Query query = dbSession.createQuery("from Uprof where personal_email_id = :emailId");
 		query.setParameter("emailId", emailId);

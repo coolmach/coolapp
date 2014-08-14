@@ -163,8 +163,12 @@
         <put-attribute name="body" value="/Categories.jsp" />
     </definition>  
 
-    <definition name="/activation_code.tiles" extends="baseLayout">
+    <!--definition name="/activation_code.tiles" extends="baseLayout">
         <put-attribute name="title" value="Activate User" />
         <put-attribute name="body" value="/ActivationCode.jsp" />
-    </definition>    
+    </definition-->   
+    <definition name="/signupSuccess.tiles" extends="baseLayout">
+        <put-attribute name="title" value="Sign Up" />
+        <put-attribute name="body" value="/signupSuccess.jsp" />
+    </definition>        
 </tiles-definitions>

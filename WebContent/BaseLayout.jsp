@@ -35,8 +35,9 @@
 <link rel="stylesheet" type="text/css" href="css/postAd.css" />
 <link rel="stylesheet" type="text/css" href="css/jquery.simplemodal.css" />
 <link rel="stylesheet" type="text/css" href="thirdparty/jquery-ui/jquery-ui-1.10.3.custom.min.css" />
-
 <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300" />
+
+<link rel="shortcut icon" href="images/common/favicon.png" type="image/png">
 
 </head>
 <body>

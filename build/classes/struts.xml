@@ -56,8 +56,9 @@
 		<action name="signup" class="com.cbuddy.user.action.LoginAction" method="signUp">
 		    <result name="error" type="tiles">/login.tiles</result>
 		    <result name="input" type="tiles">/login.tiles</result>
-		    <result name="success" type="tiles">/categories.tiles</result>
-		     <!-- <result name="success" type="redirect">mydashboard</result> -->
+		    <result name="proceedToPostAd" type="tiles">/categories.tiles</result>
+		    <!-- result name="proceedToSignupConfirmation" type="redirect">mydashboard</result-->
+		    <result name="proceedToSignupConfirmation" type="tiles">/signupSuccess.tiles</result>
 		</action>
 		<action name="mydashboard" class="com.cbuddy.user.action.UserAction" method="mydashboard">
 			 <interceptor-ref name="secureStack"></interceptor-ref>
@@ -67,12 +68,14 @@
 		</action>
 		<action name="login" class="com.cbuddy.user.action.LoginAction">
 			<result name="success" type="tiles">/userdashboard.tiles</result>
+			<result name="activationPending" type="tiles">/signupSuccess.tiles</result>
 			<!-- result name="success" type="tiles">/categories.tiles</result-->
 			<result name="input" type="tiles">/login.tiles</result>
 		</action>
 		<action name="postAdLogin" class="com.cbuddy.user.action.LoginAction">
 			<result name="success" type="tiles">/categories.tiles</result>
 			<result name="input" type="tiles">/login.tiles</result>
+			<result name="activationPending" type="tiles">/signupSuccess.tiles</result>
 		</action>			
 		<action name="logout" class="com.cbuddy.user.action.LogOutAction" method="logout"> 
 			<result name="success" type="tiles">/home.tiles</result> 
@@ -390,11 +393,11 @@
 			<result name="login" type="tiles">/login.tiles</result>
 			<result name="success" type="tiles">/adDetails_others.tiles</result>
 		</action>
-		<action name="activate">
+		<!--action name="activate">
 			<result name="login" type="tiles">/login.tiles</result>
 			<result name="success" type="tiles">/activation_code.tiles</result>
-		</action>
-		<action name="activateContinue" class="com.cbuddy.user.action.LoginAction" method="activateUser">
+		</action-->
+		<action name="activate" class="com.cbuddy.user.action.LoginAction" method="activateUser">
 			<result name="login" type="tiles">/login.tiles</result>
 			<result name="input" type="tiles">/activation_code.tiles</result>
 			<result name="success" type="tiles">/userdashboard.tiles</result>

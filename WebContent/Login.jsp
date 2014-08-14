@@ -111,6 +111,7 @@
 							<label class="col-sm-4 control-label">&nbsp;</label>
 							<div class="col-sm-8">
 								<button id="btnSignUp" type="submit" class="btn btn-success">Submit</button>
+								<button type="reset" class="btn btn-default btn-sm" >Reset</button>
 							</div>
 						</div>
 						<div class="form-group last">
@@ -162,7 +163,7 @@
 				$("#corpName").val(ui.item.label);
 				$("#selectedCorpName").val(ui.item.label);
 			},
-		    minLength: 2
+		    minLength: 1
 		 });
 	});
 </script>

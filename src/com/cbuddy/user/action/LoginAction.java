@@ -1,7 +1,6 @@
 package com.cbuddy.user.action;
 
 import java.util.Map;
-import java.util.logging.Logger;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -20,22 +19,16 @@ import com.opensymphony.xwork2.ModelDriven;
 
 public class LoginAction extends ActionSupport implements SessionAware,ServletRequestAware,ModelDriven<Ucred>{
 
+	private static final long serialVersionUID = 6843895148367665639L;
+
 	private String username;
 	private String password;
-	private String actionType; //Login/Register
-	public String getActionType() {
-		return actionType;
-	}
-	public void setActionType(String actionType) {
-		this.actionType = actionType;
-	}
-
+	
 	private String isLoginErrorExists="false";
 	private String isSignUpErrorExists="false";
 	private boolean isValidUser = false;
 
-	private String email; //For activating user
-	private String activationCode; //For activating user
+	private String param; //Encrypted string containing 'Activation Code' and 'Personal Email Id'. Will be fired from the Activation URL sent through email to the user 
 
 	private String selectedCorpName; //In Sign Up screen, it corresponds to the value SELECTED by user in autosuggest list. This value cannot be modified after selection.
 	public String getSelectedCorpName() {
@@ -108,8 +101,9 @@ public class LoginAction extends ActionSupport implements SessionAware,ServletRe
 				session.put("userInfo", u);
 				session.put("userLoggedIn", "Y");
 				session.put("username", u.getFirstName());
-
-				return "success";
+				session.remove("LOGIN_FAILED"); //Resetting the flag set by Login Interceptor
+				
+				return Action.SUCCESS;
 			}catch(CBuddyException e){
 				System.out.println(e.getErrorCode());
 				switch(e.getErrorCode()){
@@ -126,10 +120,13 @@ public class LoginAction extends ActionSupport implements SessionAware,ServletRe
 					//Invalid password
 					addFieldError("password", "Invalid Password");
 					break;
+				case CBuddyConstants.USER_PENDING_FOR_ACTIVATION:
+					//User not active
+					return "activationPending";
 				}
 				isLoginErrorExists="true";
 
-				return "input";
+				return Action.INPUT;
 			}
 		}
 	}
@@ -180,14 +177,28 @@ public class LoginAction extends ActionSupport implements SessionAware,ServletRe
 
 			return Action.ERROR;
 		}
-
-		return Action.SUCCESS;
+		
+		if(session.get("LOGIN_FAILED") != null && session.get("LOGIN_FAILED").equals("Y")){
+			/* LOGIN_FAILED flag is set by Login Interceptor.
+			 * If the control comes here it means that the user has tried to click Post Ad and the Login Interceptor has
+			 * taken the user to the register/login page. The user being new would have clicked on register flow and
+			 * have come here.
+			 * In this case we should continue the original action - "post ad".
+			 */
+			session.remove("LOGIN_FAILED");
+			return "proceedToPostAd";
+		}else{
+			/* User has clicked on Sign In in the home page and wants to register.
+			 * Take him to sign up confirmation page.
+			 */
+			return "proceedToSignupConfirmation";
+		}
 	}
 
 	public String activateUser(){
 		try{
 			
-			User u = new AuthenticateUserService().activateUser(activationCode, email);
+			User u = new AuthenticateUserService().activateUser(param);
 			
 			session.put("userInfo", u);
 			session.put("userLoggedIn", "Y");
@@ -200,7 +211,10 @@ public class LoginAction extends ActionSupport implements SessionAware,ServletRe
 		return Action.SUCCESS;
 	}
 
-
+	public String resendActivationCode(){
+		new AuthenticateUserService().resendActivationCode(username);
+	}
+	
 	public String myLogin(){
 		return "success";
 	}
@@ -236,16 +250,10 @@ public class LoginAction extends ActionSupport implements SessionAware,ServletRe
 	public void setResponseMsg(String responseMsg) {
 		this.responseMsg = responseMsg;
 	}
-	public String getEmail() {
-		return email;
+	public String getParam() {
+		return param;
 	}
-	public void setEmail(String email) {
-		this.email = email;
-	}
-	public String getActivationCode() {
-		return activationCode;
-	}
-	public void setActivationCode(String activationCode) {
-		this.activationCode = activationCode;
+	public void setParam(String param) {
+		this.param = param;
 	}
 }
