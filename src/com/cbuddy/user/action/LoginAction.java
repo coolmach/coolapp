@@ -212,7 +212,9 @@ public class LoginAction extends ActionSupport implements SessionAware,ServletRe
 	}
 
 	public String resendActivationCode(){
-		new AuthenticateUserService().resendActivationCode(username);
+		new AuthenticateUserService().resendActivationCode(username, getFullURL(request));
+		responseMsg = "Activation code has been successfully sent to your email id. Please login and click on the activation link.";
+		return Action.SUCCESS;
 	}
 	
 	public String myLogin(){

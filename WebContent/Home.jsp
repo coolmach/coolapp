@@ -69,7 +69,9 @@
 			</a>
 		</div>
 	</div> --%>
-	
+	<div class="header_responseMessage">
+		<s:property value="responseMsg" />
+	</div> 
 	 <div id="messageRow" class="row">
 		<div class="col-sm-9">
 			<div id="mainHeading" class="col-sm-12">

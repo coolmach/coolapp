@@ -303,23 +303,34 @@ public class AuthenticateUserService {
 		return user;
 	}
 	
-	public void resendActivationCode(String personalMailId){
+	public void resendActivationCode(String personalMailId, String contextPath){
 		//Get User Id from Uprof
 		SessionFactory sessionFactory = (SessionFactory) ServletActionContext.getServletContext().getAttribute("sessionFactory");
 		Session dbSession = sessionFactory.openSession();
 		
-		Query query = dbSession.createQuery("from Uprof where personal_mail_id = :personalMailId");
-		query.setParameter("personal_mail_id", personalMailId);
+		Query query = dbSession.createQuery("from Uprof where personal_email_id = :personalMailId");
+		query.setParameter("personalMailId", personalMailId);
 		Uprof uprof = (Uprof)query.uniqueResult();
 		int userId = uprof.getUserId();
 		
 		//Get record from UACT
 		query = dbSession.createQuery("from Uact where user_id = :userId");
-		query.setParameter("user_id", userId);
+		query.setParameter("userId", userId);
 		Uact uact = (Uact)query.uniqueResult();
 		
+		//Get record from UCRED
+		query = dbSession.createQuery("from Ucred where user_id = :userId");
+		query.setParameter("userId", userId);
+		Ucred ucred = (Ucred)query.uniqueResult();
+		
 		//Get Activation Code
-		String activationCode
+		String activationCode = uact.getActivationCode();
+		sendActivationMail(contextPath, ucred.getCorpEmailId(), uprof.getPersonalEmailId(), activationCode, uprof.getFirstName());
+		
+		uact.setResentOn(new Timestamp(System.currentTimeMillis()));
+		dbSession.beginTransaction();
+		dbSession.save(uact);
+		dbSession.getTransaction().commit();
 	}
 
 	private void sendActivationMail(String contextPath, String companyMailId, String personalMailId, String activationCode, String userName){

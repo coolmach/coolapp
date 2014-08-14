@@ -17,6 +17,8 @@ public class Uact {
 	private int noOfAttempts;
 	private String lastAttemptIP;
 	private Timestamp createdOn;
+	private Timestamp resentOn;
+	private String resentFromIP;
 	
 	@Id
 	@Column(name="RECORD_ID")
@@ -81,6 +83,22 @@ public class Uact {
 	}
 	public void setCreatedOn(Timestamp createdOn) {
 		this.createdOn = createdOn;
+	}
+	
+	@Column(name="RESENT_ON")
+	public Timestamp getResentOn() {
+		return resentOn;
+	}
+	public void setResentOn(Timestamp resentOn) {
+		this.resentOn = resentOn;
+	}
+	
+	@Column(name="RESENT_FROM_IP")
+	public String getResentFromIP() {
+		return resentFromIP;
+	}
+	public void setResentFromIP(String resentFromIP) {
+		this.resentFromIP = resentFromIP;
 	}
 
 

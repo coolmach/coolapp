@@ -17,13 +17,20 @@
 						<div class="col-md-9">
 							<ul>
 								<s:if test="model.corpEmailId == null">
+									<s:url action="resendActivationCode" var="url_A" escapeAmp="false"><s:param name="username"><s:property value="username"/></s:param></s:url>
 									<li style="list-style-type:disc;padding:5px;">An activation link has been sent to your personal email Id.</li>
+									<li style="list-style-type:disc;padding:5px;">Please click on the same to activate your account.</li>
+									<li style="list-style-type:disc;padding:5px;">In case you have not received the email, click <a href="<s:property value="#url_A"/>">here to re-send</a></li>
 								</s:if>
 								<s:else>
+									<s:url action="resendActivationCode" var="url_A" escapeAmp="false"><s:param name="username"><s:property value="model.corpEmailId"/></s:param></s:url>
 									<li style="list-style-type:disc;padding:5px;">An activation link has been sent to '<s:property value="model.corpEmailId"/>'.</li>
+									<li style="list-style-type:disc;padding:5px;">Please click on the same to activate your account.</li>
+									<li style="list-style-type:disc;padding:5px;">In case you have not received the email, click 
+										<a href="<s:property value="#url_A"/>">here to re-send</a> it.
+									</li>
 								</s:else>
-								<li style="list-style-type:disc;padding:5px;">Please click on the same to activate your account.</li>
-								<li style="list-style-type:disc;padding:5px;">In case you have not received the email, click <a href="#">here to re-send</a></li>
+								
 							</ul>
 						</div>
 					</div>

@@ -19,7 +19,6 @@
 			<div class="panel panel-default">
 				<div class="panel-heading">
 					<strong>Login</strong>
-					<s:fielderror />
 				</div>
 
 				<div class="panel-body">
