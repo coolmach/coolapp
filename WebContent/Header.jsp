@@ -31,32 +31,32 @@
                   <li><s:url action="realestate" var="urlTag" escapeAmp="false">
 					<s:param name="category">REAL</s:param>
 					<s:param name="subCategory">1</s:param>
-				     </s:url> <a href="<s:property value="#urlTag" />">REAL ESTATE</a>
+				     </s:url> <a href="<s:property value="#urlTag" />">Real Estate</a>
 				</li>
                   <li><s:url action="automobile" var="urlTag" escapeAmp="false">
 					<s:param name="category">AUTO</s:param>
 					<s:param name="subCategory">1</s:param>
-				     </s:url> <a href="<s:property value="#urlTag" />">AUTOMOBILES</a>
+				     </s:url> <a href="<s:property value="#urlTag" />">Automobiles</a>
 				</li>
 				<li><s:url action="electronics" var="urlTag" escapeAmp="false">
 					<s:param name="category">ELEC</s:param>
 					<s:param name="subCategory">0</s:param>
-				     </s:url> <a href="<s:property value="#urlTag" />">ELECTRONICS & HOUSEHOLD</a>
+				     </s:url> <a href="<s:property value="#urlTag" />">Home Appliances</a>
 				</li>
 				<li><s:url action="computers" var="urlTag" escapeAmp="false">
 					<s:param name="category">COMP</s:param>
 					<s:param name="subCategory">1</s:param>
-				     </s:url> <a href="<s:property value="#urlTag" />">LAPTOPS & COMPUTERS</a>
+				     </s:url> <a href="<s:property value="#urlTag" />">Computers</a>
 				</li>
 				<li><s:url action="mobile" var="urlTag" escapeAmp="false">
 					<s:param name="category">MOBILE</s:param>
 					<s:param name="subCategory">1</s:param>
-				     </s:url> <a href="<s:property value="#urlTag" />">MOBILE PHONES</a>
+				     </s:url> <a href="<s:property value="#urlTag" />">Mobile Phones</a>
 				</li>
 				<li><s:url action="furniture" var="urlTag" escapeAmp="false">
 					<s:param name="category">FURN</s:param>
 					<s:param name="subCategory">1</s:param>
-				     </s:url> <a href="<s:property value="#urlTag" />">FURNITURE</a>
+				     </s:url> <a href="<s:property value="#urlTag" />">Furniture</a>
 				</li>
 				<li>|</li>
 				<li><a style="padding:0;" class="myButton" id="post_ad"

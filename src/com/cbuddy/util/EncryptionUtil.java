@@ -18,7 +18,7 @@ public class EncryptionUtil {
 	public static String encrypt(String plainText){
 		try{
 			Cipher cipher = getCipher(Cipher.ENCRYPT_MODE);
-			final byte[] plainTextBytes = plainText.getBytes("utf-8");
+			final byte[] plainTextBytes = plainText.getBytes("UTF-8");
 			final byte[] cipherText = cipher.doFinal(plainTextBytes);
 			final String encodedCipherText = new String(Base64.encodeBase64(cipherText), "UTF-8");
 			return encodedCipherText;

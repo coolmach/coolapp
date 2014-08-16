@@ -7,7 +7,8 @@ public class User {
 	private String password;
 	private String firstName;
 	private String mobileNo;
-	private String emailId;
+	private String corpEmailId;
+	private String personalEmailId;
 	private int corpId;
 	private String status;
 	private String activationCode; //used for storing the activation code generated for user activation, in order to be used for making entries for the posts too in post_activation_table.
@@ -42,11 +43,11 @@ public class User {
 	public void setMobileNo(String mobileNo) {
 		this.mobileNo = mobileNo;
 	}
-	public String getEmailId() {
-		return emailId;
+	public String getCorpEmailId() {
+		return corpEmailId;
 	}
-	public void setEmailId(String emailId) {
-		this.emailId = emailId;
+	public void setCorpEmailId(String emailId) {
+		this.corpEmailId = emailId;
 	}
 	public int getCorpId() {
 		return corpId;
@@ -59,6 +60,12 @@ public class User {
 	}
 	public void setActivationCode(String activationCode) {
 		this.activationCode = activationCode;
+	}
+	public String getPersonalEmailId() {
+		return personalEmailId;
+	}
+	public void setPersonalEmailId(String personalEmailId) {
+		this.personalEmailId = personalEmailId;
 	}
 	
 

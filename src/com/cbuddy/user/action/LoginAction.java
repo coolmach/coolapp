@@ -1,14 +1,22 @@
 package com.cbuddy.user.action;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.interceptor.ServletRequestAware;
 import org.apache.struts2.interceptor.SessionAware;
+import org.hibernate.Query;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 
+import com.cbuddy.beans.Poit;
 import com.cbuddy.beans.Ucred;
 import com.cbuddy.exception.CBuddyException;
+import com.cbuddy.posts.util.PostsUtil;
 import com.cbuddy.user.model.User;
 import com.cbuddy.user.services.AuthenticateUserService;
 import com.cbuddy.util.CBuddyConstants;
@@ -20,10 +28,10 @@ import com.opensymphony.xwork2.ModelDriven;
 public class LoginAction extends ActionSupport implements SessionAware,ServletRequestAware,ModelDriven<Ucred>{
 
 	private static final long serialVersionUID = 6843895148367665639L;
-
+	private List<Poit> adList = new ArrayList<Poit>();
 	private String username;
 	private String password;
-	
+
 	private String isLoginErrorExists="false";
 	private String isSignUpErrorExists="false";
 	private boolean isValidUser = false;
@@ -102,7 +110,7 @@ public class LoginAction extends ActionSupport implements SessionAware,ServletRe
 				session.put("userLoggedIn", "Y");
 				session.put("username", u.getFirstName());
 				session.remove("LOGIN_FAILED"); //Resetting the flag set by Login Interceptor
-				
+
 				return Action.SUCCESS;
 			}catch(CBuddyException e){
 				System.out.println(e.getErrorCode());
@@ -134,10 +142,10 @@ public class LoginAction extends ActionSupport implements SessionAware,ServletRe
 	private String getFullURL(HttpServletRequest request){
 		StringBuffer requestURL = request.getRequestURL();
 		//request.getRequestURL() = "http://localhost:8080/Virat/signup" - We have to remove the last token 'signup'
-		
+
 		return requestURL.substring(0, requestURL.lastIndexOf("/"));
 	}
-	
+
 	public String signUp(){
 
 		LogUtil.getInstance().info(">>> LoginAction - Signup()");
@@ -149,9 +157,9 @@ public class LoginAction extends ActionSupport implements SessionAware,ServletRe
 			}
 
 			AuthenticateUserService auService = new AuthenticateUserService();
-			
+
 			LogUtil.getInstance().info(">>> getFullURL(): " + getFullURL(request));
-			
+
 			User u = auService.registerUser(getModel(), getFullURL(request));
 
 			session.put("userInfo", u);
@@ -177,7 +185,7 @@ public class LoginAction extends ActionSupport implements SessionAware,ServletRe
 
 			return Action.ERROR;
 		}
-		
+
 		if(session.get("LOGIN_FAILED") != null && session.get("LOGIN_FAILED").equals("Y")){
 			/* LOGIN_FAILED flag is set by Login Interceptor.
 			 * If the control comes here it means that the user has tried to click Post Ad and the Login Interceptor has
@@ -197,13 +205,24 @@ public class LoginAction extends ActionSupport implements SessionAware,ServletRe
 
 	public String activateUser(){
 		try{
-			
+
 			User u = new AuthenticateUserService().activateUser(param);
+
+			SessionFactory sessionFactory = (SessionFactory) ServletActionContext.getServletContext().getAttribute("sessionFactory");
+			Session dbSession = sessionFactory.openSession();
+			
+			Query query = dbSession.createQuery("from Poit where created_by = :userId");
+			query.setParameter("userId", u.getUserId());
+			adList = (List<Poit>)query.list();
+			
+			if(adList != null && adList.size()>0){
+				new PostsUtil().populateAdditionalDetailsForPoit(dbSession, adList);	
+			}
 			
 			session.put("userInfo", u);
 			session.put("userLoggedIn", "Y");
 			session.put("username", u.getFirstName());
-			
+
 		}catch(CBuddyException e){
 			addFieldError("email", e.getMessage());
 			return Action.INPUT;
@@ -212,11 +231,16 @@ public class LoginAction extends ActionSupport implements SessionAware,ServletRe
 	}
 
 	public String resendActivationCode(){
-		new AuthenticateUserService().resendActivationCode(username, getFullURL(request));
-		responseMsg = "Activation code has been successfully sent to your email id. Please login and click on the activation link.";
+		try{
+			new AuthenticateUserService().resendActivationCode(username, getFullURL(request));
+			responseMsg = "Activation code has been successfully sent to your email id. Please login and click on the activation link.";
+		}catch(CBuddyException e){
+			addFieldError("email", e.getMessage());
+			return Action.INPUT;
+		}
 		return Action.SUCCESS;
 	}
-	
+
 	public String myLogin(){
 		return "success";
 	}
@@ -257,5 +281,11 @@ public class LoginAction extends ActionSupport implements SessionAware,ServletRe
 	}
 	public void setParam(String param) {
 		this.param = param;
+	}
+	public List<Poit> getAdList() {
+		return adList;
+	}
+	public void setAdList(List<Poit> adList) {
+		this.adList = adList;
 	}
 }

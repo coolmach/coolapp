@@ -329,7 +329,7 @@ li {
 }
 .list1 li:before {
     color: #25a5aa;
-    content: "";
+    content: "ï„�";
     font: 14px/20px FontAwesome;
     left: 0;
     position: absolute;
@@ -409,7 +409,7 @@ input[type="radio"], input[type="checkbox"] {
     position: relative;
 }
 .item_img a:after {
-    content: "";
+    content: "ï…�";
     font-family: FontAwesome;
     height: 0;
     left: 0;
@@ -723,19 +723,19 @@ input[type="radio"], input[type="checkbox"] {
     width: 45px;
 }
 .top_links .link1:before {
-    content: "";
+    content: "ïƒ³";
 }
 .top_links .link2:before {
-    content: "";
+    content: "ï‚±";
 }
 .top_links .link3:before {
-    content: "";
+    content: "ï‚¬";
 }
 .top_links .link4:before {
-    content: "";
+    content: "ïƒ–";
 }
 .top_links .link5:before {
-    content: "";
+    content: "ïƒ€";
 }
 .top_links a:hover:before {
     background: none repeat scroll 0 0 #fff;
@@ -976,13 +976,13 @@ input[type="radio"], input[type="checkbox"] {
     width: 45px;
 }
 .solutions .item_num0 h4:before {
-    content: "";
+    content: "ïƒ£";
 }
 .solutions .item_num1 h4:before {
-    content: "";
+    content: "ï„ˆ";
 }
 .solutions .item_num2 h4:before {
-    content: "";
+    content: "ïƒƒ";
 }
 .why_choose_us.moduletable {
     text-align: center;
@@ -1452,3 +1452,7 @@ blockquote small {
 .siteName {
     display: none;
 }
+
+#content{min-height:420px;}
+
+#menu li a{color:#0099CC;}

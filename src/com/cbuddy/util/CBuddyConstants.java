@@ -7,6 +7,7 @@ public class CBuddyConstants {
 	public static final int EXISTENT_USER_ID = 1003;
 	public static final int DOMAIN_NOT_REGISTERED = 1004;
 	public static final int USER_PENDING_FOR_ACTIVATION = 1005;
+	public static final int USER_ALREADY_ACTIVE = 1006;
 
 	public static final String CATEGORY_REAL_ESTATE = "REAL";
 	public static final String CATEGORY_AUTOMOBILES = "AUTO";

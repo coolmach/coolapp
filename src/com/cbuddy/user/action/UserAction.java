@@ -11,8 +11,8 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
 import com.cbuddy.beans.Poit;
+import com.cbuddy.posts.util.PostsUtil;
 import com.cbuddy.user.model.User;
-import com.cbuddy.util.LocationUtil;
 import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.ActionSupport;
 
@@ -53,24 +53,9 @@ public class UserAction extends ActionSupport implements SessionAware{
 		query.setParameter("userId", userId);
 		adList = (List<Poit>)query.list();
 		
-		populateAdditionalDetails();
+		new PostsUtil().populateAdditionalDetailsForPoit(dbSession, adList);
 		
 		return Action.SUCCESS;
-	}
-
-	private void populateAdditionalDetails(){
-		SessionFactory sessionFactory = (SessionFactory) ServletActionContext.getServletContext().getAttribute("sessionFactory");
-		Session dbSession = sessionFactory.openSession();
-		for(Poit postDetails:adList){
-			String cityName = LocationUtil.getCityName(dbSession, postDetails.getCity());
-			String locName = LocationUtil.getLocationName(dbSession, postDetails.getCity(), postDetails.getLocation());
-			postDetails.setCity(cityName);
-			postDetails.setLocation(locName);
-			//.setPriceStr(NumberFormatterUtil.formatAmount(postDetails.getPrice()));
-			if(postDetails.getDescription().length() > 80){
-				postDetails.setDescription(postDetails.getDescription().substring(0,80) + "...");
-			}
-		}
 	}
 	
 	public String getUserId() {

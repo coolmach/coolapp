@@ -1,6 +1,7 @@
 package com.cbuddy.posts.util;
 
 import java.sql.Timestamp;
+import java.util.List;
 
 import org.hibernate.Session;
 
@@ -9,6 +10,7 @@ import com.cbuddy.beans.Poit;
 import com.cbuddy.posts.model.CommonDetailsForPost;
 import com.cbuddy.user.model.User;
 import com.cbuddy.util.CBuddyConstants;
+import com.cbuddy.util.LocationUtil;
 
 public class PostsUtil {
 	public Poit createPOIT(CommonDetailsForPost postDetails, User user, Session dbSession, String uploadContentType, String category){
@@ -72,5 +74,18 @@ public class PostsUtil {
 		pact.setActivationCode(user.getActivationCode());
 
 		dbSession.save(pact);
+	}
+	
+	public void populateAdditionalDetailsForPoit(Session dbSession, List<Poit> adList){
+		for(Poit postDetails:adList){
+			String cityName = LocationUtil.getCityName(dbSession, postDetails.getCity());
+			String locName = LocationUtil.getLocationName(dbSession, postDetails.getCity(), postDetails.getLocation());
+			postDetails.setCity(cityName);
+			postDetails.setLocation(locName);
+			//.setPriceStr(NumberFormatterUtil.formatAmount(postDetails.getPrice()));
+			if(postDetails.getDescription().length() > 80){
+				postDetails.setDescription(postDetails.getDescription().substring(0,80) + "...");
+			}
+		}
 	}
 }

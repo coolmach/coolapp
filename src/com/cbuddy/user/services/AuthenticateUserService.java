@@ -121,7 +121,8 @@ public class AuthenticateUserService {
 
 		User user = new User();
 		user.setCorpId(uprof.getCorpId());
-		user.setEmailId(ucred.getCorpEmailId());
+		user.setCorpEmailId(ucred.getCorpEmailId());
+		user.setPersonalEmailId(uprof.getPersonalEmailId());
 		user.setFirstName(uprof.getFirstName());
 		user.setMobileNo(uprof.getMobileNo());
 		user.setStatus(uprof.getUserStatus());
@@ -176,7 +177,8 @@ public class AuthenticateUserService {
 		System.out.println(uprof.getFirstName());
 		user.setFirstName(uprof.getFirstName());
 		user.setMobileNo(ucred.getMobileNo());
-		user.setEmailId(ucred.getCorpEmailId());
+		user.setCorpEmailId(ucred.getCorpEmailId());
+		user.setPersonalEmailId(uprof.getPersonalEmailId());
 		user.setCorpId(uprof.getCorpId());
 		user.setStatus(uprof.getUserStatus());
 		session.close();
@@ -293,17 +295,19 @@ public class AuthenticateUserService {
 		user.setUserId(newUcred.getUserId());
 		user.setFirstName(uprof.getFirstName());
 		user.setMobileNo(newUcred.getMobileNo());
-		user.setEmailId(newUcred.getCorpEmailId());
+		user.setCorpEmailId(newUcred.getCorpEmailId());
+		user.setPersonalEmailId(uprof.getPersonalEmailId());
 		user.setCorpId(uprof.getCorpId());
 		user.setStatus(uprof.getUserStatus());
 		user.setActivationCode(activationCode);
 
-		sendActivationMail(contextPath, newUcred.getCorpEmailId(), user.getEmailId(), activationCode, user.getFirstName());
+		sendActivationMail(contextPath, newUcred.getCorpEmailId(), uprof.getPersonalEmailId(), activationCode, user.getFirstName());
 
 		return user;
 	}
 	
-	public void resendActivationCode(String personalMailId, String contextPath){
+	public void resendActivationCode(String personalMailId, String contextPath)
+	throws CBuddyException{
 		//Get User Id from Uprof
 		SessionFactory sessionFactory = (SessionFactory) ServletActionContext.getServletContext().getAttribute("sessionFactory");
 		Session dbSession = sessionFactory.openSession();
@@ -311,12 +315,25 @@ public class AuthenticateUserService {
 		Query query = dbSession.createQuery("from Uprof where personal_email_id = :personalMailId");
 		query.setParameter("personalMailId", personalMailId);
 		Uprof uprof = (Uprof)query.uniqueResult();
+		
+		if(uprof == null){
+			throw new CBuddyException("Invalid user", CBuddyConstants.NON_EXISTENT_USER_ID);
+		}
+		
 		int userId = uprof.getUserId();
 		
 		//Get record from UACT
 		query = dbSession.createQuery("from Uact where user_id = :userId");
 		query.setParameter("userId", userId);
 		Uact uact = (Uact)query.uniqueResult();
+		
+		if(uact == null){
+			throw new CBuddyException("Activation code has not been sent for this user", CBuddyConstants.NON_EXISTENT_USER_ID);
+		}
+		
+		if(uact.getActivationStatus().equals(CBuddyConstants.USER_STATUS_ACTIVE)){
+			throw new CBuddyException("User is already active", CBuddyConstants.USER_ALREADY_ACTIVE);
+		}
 		
 		//Get record from UCRED
 		query = dbSession.createQuery("from Ucred where user_id = :userId");
@@ -338,7 +355,9 @@ public class AuthenticateUserService {
 		String messageText = "Warm Regards from cBuddy team!" + "\n\n";
 		messageText = messageText + "Company Email Id: " + companyMailId + "\n\n";
 		messageText = messageText + "Please click on the following link for activating your cBuddy account:" + "\n\n";
-		messageText = messageText + contextPath + "/activate?param=" + EncryptionUtil.encrypt("activationCode=" + activationCode + "&email=" + personalMailId);
+		String encryptedParameters = EncryptionUtil.encrypt("activationCode=" + activationCode + "&email=" + personalMailId);
+		encryptedParameters = encryptedParameters.replace("+", "%2B"); //else when request is fired from browser, the plus sign will be considered as a space in request.getParameter() function.
+		messageText = messageText + contextPath + "/activate?param=" + encryptedParameters;
 		try{
 			//TODO (Temp Change done for ALPHA TESTING): Don't send mail to personal mail id. Send it to official mail id.
 			new MailUtil().sendMail(personalMailId, userName, messageText, contextPath, activationCode);
