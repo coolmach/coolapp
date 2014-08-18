@@ -8,7 +8,9 @@
 				<tr>
 					<th>Post Details</th>
 					
-					<td colspan="3" style="text-align: right; width: 100%;"></td>
+					<td colspan="3" style="text-align: right; width: 100%;"><input style="border:none;" id="page_info" type="text" readonly="readonly"
+			value="Showing Page <s:property value="%{(count>0)?page:0}"/> of <s:property 
+			value="%{(count<=10 && count>0)?1:(((count%10)==0)?count/10:((count/10))+1)}"/>" /></td>
 				</tr>
 				<s:iterator value="adList" status="userStatus">
 

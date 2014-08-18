@@ -1,7 +1,7 @@
 <div class=" header_2">
 
 	<%@include file="/BreadCrumb.jsp" %>
-	
+	<s:if test="adList.size() > 0">
 	<div class="col-md-12 filter_cat">
 	  <div id="clear_all_f" class="pull-left pointer" style="text-decoration: underline;color:#4f00fc">clear all</div>
 		<!-- <div class="form-group pull-left searchFilter" id="sub-main" style="margin-left:4.5%;">
@@ -326,7 +326,7 @@
 		 </form> 
 	</div>
 	<div class="col-md-11 selected_filters" style="display:none;" id="filterValueBar"></div>
-	
+	</s:if>
 	<%@include file="/Pagination.jsp" %>
 	 
 </div>

@@ -138,7 +138,7 @@ function applyFilters(){
 				pC = (Math.floor(pC))+1;
 			}
 
-			$( ".pager li" ).eq(1).html( '<input id="page_info" type="text" readonly="readonly" value="Showing Page '+ (pC==0?pC:1) +' of '+pC+'" >' );
+			$( ".pager li" ).eq(1).html( '<input class="hidden" id="page_info" type="text" readonly="readonly" value="Showing Page '+ (pC==0?pC:1) +' of '+pC+'" >' );
 
 
 			if(pC<=1)

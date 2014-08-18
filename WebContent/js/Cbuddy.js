@@ -137,7 +137,7 @@ $(document).ready(function() {
 				$('.data').html('');
 				$('.data').html(data);
 				$('#page_info').remove();
-				$( ".pager li" ).eq(1).html( '<input id="page_info" type="text" readonly="readonly" value="Showing Page '+(page-1) +' of '+pageCount+'" >' );
+				$( ".pager li" ).eq(1).html( '<input class="hidden" id="page_info" type="text" readonly="readonly" value="Showing Page '+(page-1) +' of '+pageCount+'" >' );
 
 				if(offset == 0){
 					$( ".pager li" ).eq(0).addClass('hidden');
@@ -184,7 +184,7 @@ $(document).ready(function() {
 				$('.data').html('');
 				$('.data').html(data);
 				$('#page_info').remove();
-				$( ".pager li" ).eq(1).html( '<input id="page_info" type="text" readonly="readonly" value="Showing Page '+(page+1) +' of '+pageCount+'" >' );
+				$( ".pager li" ).eq(1).html( '<input class="hidden" id="page_info" type="text" readonly="readonly" value="Showing Page '+(page+1) +' of '+pageCount+'" >' );
 				var pC = parseInt($('#pagecount').val())/10;
 				if(pC % 1 != 0){
 					pC = ((Math.floor(pC))+1)*10;
@@ -248,7 +248,7 @@ $(document).ready(function() {
 				if(pC % 1 != 0){
 					pC = (Math.floor(pC))+1;
 				}
-				$( ".pager li" ).eq(1).html( '<input id="page_info" type="text" readonly="readonly" value="Showing Page '+ (pC==0?pC:1) +' of '+pC+'" >' );
+				$( ".pager li" ).eq(1).html( '<input class="hidden" id="page_info" type="text" readonly="readonly" value="Showing Page '+ (pC==0?pC:1) +' of '+pC+'" >' );
 
 				if(pC<=1)
 				{
@@ -321,7 +321,7 @@ $(document).ready(function() {
 					pC = (Math.floor(pC))+1;
 				}
 
-				$( ".pager li" ).eq(1).html( '<input id="page_info" type="text" readonly="readonly" value="Showing Page '+ (pC==0?pC:1) +' of '+pC+'" >' );
+				$( ".pager li" ).eq(1).html( '<input class="hidden" id="page_info" type="text" readonly="readonly" value="Showing Page '+ (pC==0?pC:1) +' of '+pC+'" >' );
 
 
 				if(pC<=1)
@@ -387,8 +387,14 @@ $(document).ready(function() {
 				if(pC % 1 != 0){
 					pC = (Math.floor(pC))+1;
 				}
-				$( ".pager li" ).eq(1).html( '<input id="page_info" type="text" readonly="readonly" value="Showing Page '+ (pC==0?pC:1) +' of '+pC+'" >' );
-
+				
+				if(pC==0){
+					$('.filter_cat').addClass('hidden');
+				}else{
+					$('.filter_cat').removeClass('hidden');
+				}
+				$( ".pager li" ).eq(1).html( '<input class="hidden" id="page_info" type="text" readonly="readonly" value="Showing Page '+ (pC==0?pC:1) +' of '+pC+'" >' );
+				
 				if(pC<=1)
 				{
 					$( ".pager li" ).eq(2).addClass('hidden');
