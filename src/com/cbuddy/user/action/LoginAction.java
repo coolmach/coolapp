@@ -106,11 +106,20 @@ public class LoginAction extends ActionSupport implements SessionAware,ServletRe
 			User u = null;
 			try{
 				u = new AuthenticateUserService().authenticateUser(username, password);
+				
+				populateUserPosts(u);
+				
 				session.put("userInfo", u);
 				session.put("userLoggedIn", "Y");
 				session.put("username", u.getFirstName());
-				session.remove("LOGIN_FAILED"); //Resetting the flag set by Login Interceptor
-
+				if(session.get("LOGIN_FAILED") != null){
+					//Called from LoginInterceptor - Post Ad
+					session.remove("LOGIN_FAILED"); //Resetting the flag set by Login Interceptor
+					return "proceedToPostAd";
+				}
+				
+				//Get Posts for the user
+				
 				return Action.SUCCESS;
 			}catch(CBuddyException e){
 				System.out.println(e.getErrorCode());
@@ -130,7 +139,7 @@ public class LoginAction extends ActionSupport implements SessionAware,ServletRe
 					break;
 				case CBuddyConstants.USER_PENDING_FOR_ACTIVATION:
 					//User not active
-					return "activationPending";
+					return Action.SUCCESS;
 				}
 				isLoginErrorExists="true";
 
@@ -166,7 +175,7 @@ public class LoginAction extends ActionSupport implements SessionAware,ServletRe
 			session.put("userLoggedIn", "Y");
 			session.put("username", u.getFirstName());
 
-			responseMsg = "You have been successfully become a cBuddy " + getModel().getFirstName();
+			responseMsg = "An activation link has been sent to '" + u.getCorpEmailId() + "'. Please click on the link to activate your account.";
 
 		}catch(CBuddyException e){
 			switch(e.getErrorCode()){
@@ -203,21 +212,25 @@ public class LoginAction extends ActionSupport implements SessionAware,ServletRe
 		}
 	}
 
+	private void populateUserPosts(User u){
+		SessionFactory sessionFactory = (SessionFactory) ServletActionContext.getServletContext().getAttribute("sessionFactory");
+		Session dbSession = sessionFactory.openSession();
+		
+		Query query = dbSession.createQuery("from Poit where created_by = :userId");
+		query.setParameter("userId", u.getUserId());
+		adList = (List<Poit>)query.list();
+		
+		if(adList != null && adList.size()>0){
+			new PostsUtil().populateAdditionalDetailsForPoit(dbSession, adList);	
+		}
+	}
+	
 	public String activateUser(){
 		try{
 
 			User u = new AuthenticateUserService().activateUser(param);
 
-			SessionFactory sessionFactory = (SessionFactory) ServletActionContext.getServletContext().getAttribute("sessionFactory");
-			Session dbSession = sessionFactory.openSession();
-			
-			Query query = dbSession.createQuery("from Poit where created_by = :userId");
-			query.setParameter("userId", u.getUserId());
-			adList = (List<Poit>)query.list();
-			
-			if(adList != null && adList.size()>0){
-				new PostsUtil().populateAdditionalDetailsForPoit(dbSession, adList);	
-			}
+			populateUserPosts(u);
 			
 			session.put("userInfo", u);
 			session.put("userLoggedIn", "Y");
@@ -227,6 +240,7 @@ public class LoginAction extends ActionSupport implements SessionAware,ServletRe
 			addFieldError("email", e.getMessage());
 			return Action.INPUT;
 		}
+		responseMsg = "Your have successfully activated your cBuddy account!";
 		return Action.SUCCESS;
 	}
 
@@ -236,6 +250,17 @@ public class LoginAction extends ActionSupport implements SessionAware,ServletRe
 			responseMsg = "Activation code has been successfully sent to your email id. Please login and click on the activation link.";
 		}catch(CBuddyException e){
 			addFieldError("email", e.getMessage());
+			return Action.INPUT;
+		}
+		return Action.SUCCESS;
+	}
+	
+	public String forgotPwd(){
+		try{
+			new AuthenticateUserService().forgotPwd(getModel(), getFullURL(request));
+			responseMsg = "New Password has been successfully sent to your email id. Please login and click on the activation link.";
+		}catch(CBuddyException e){
+			addFieldError("PersonalEmailId", e.getMessage());
 			return Action.INPUT;
 		}
 		return Action.SUCCESS;

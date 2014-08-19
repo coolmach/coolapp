@@ -23,7 +23,7 @@
 
 				<div class="panel-body">
 					<!--s:form cssClass="form-horizontal" role="form" action="login" theme="simple"-->
-					<s:form cssClass="form-horizontal" role="form" action="postAdLogin" theme="simple" id="loginForm">
+					<s:form cssClass="form-horizontal" role="form" action="signIn" theme="simple" id="loginForm">
 						<input type="hidden" name="actionType" id="actionType" value="LOGIN">
 						<div class="form-group">
 							<label for="inputEmail3" class="col-sm-3 control-label">
@@ -44,7 +44,8 @@
 						<div class="form-group">
 							<div class="col-sm-offset-3 col-sm-9">
 								<div class="checkbox">
-									<label> <input type="checkbox"> Remember me </label> 
+									<label> <input type="checkbox"> Remember me </label>
+									&nbsp;&nbsp;&nbsp; <a href="<s:url action="forgotPwd"/>">Forgot Password?</a> 
 								</div>
 							</div>
 						</div>

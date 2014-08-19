@@ -6,11 +6,11 @@
 	<div class="row col-md-11" style="margin-top:10px;">
 		<div class="col-md-8" style="border:1px solid #DDDDDD; ">
 			<div class="row">
-				<s:if test="#session.userInfo.status.equals('PEN')">
+				<s:if test="#session.userInfo.status == 'PEN'">
 					<div class="col-md-12" id="welcomeBanner" style="padding-left:15px;">
 						<s:url action="resendActivationCode" var="url_A" escapeAmp="false"><s:param name="username"><s:property value="#session.userInfo.personalEmailId"/></s:param></s:url>
 						<ul>
-							<li>You are yet to activate your cBuddy account</li>
+							<li><span style="font-size:16px;">You are yet to activate your cBuddy account</span></li>
 							<li>Please click on the link sent to your email id <span style="color:red">'<s:property value="#session.userInfo.corpEmailId"/>'</span> to activate your cBuddy account and make your posts available to other users.</li>
 							<li>Click <a href="<s:property value="#url_A"/>">here</a> to resend the activation link to your email id.
 						</ul>
@@ -20,7 +20,7 @@
 					<div class="col-md-12" id="welcomeBanner" style="padding-left:15px;">
 						<s:url action="resendActivationCode" var="url_A" escapeAmp="false"><s:param name="username"><s:property value="#session.userInfo.personalEmailId"/></s:param></s:url>
 						<ul>
-							<li>Welcome to cBuddy!</li>
+							<li><span style="font-size:16px;">Welcome to cBuddy!</span></li>
 							<li>cBuddy is an exclusive portal for professionals like you. It is a place where professionals meet, discuss and buy/sell things</li>
 							<li>Get Started. Click on the 'Post Ad' button below for posting an Ad</li>
 						</ul>

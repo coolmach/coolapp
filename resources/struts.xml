@@ -57,8 +57,9 @@
 		    <result name="error" type="tiles">/login.tiles</result>
 		    <result name="input" type="tiles">/login.tiles</result>
 		    <result name="proceedToPostAd" type="tiles">/categories.tiles</result>
-		    <!-- result name="proceedToSignupConfirmation" type="redirect">mydashboard</result-->
-		    <result name="proceedToSignupConfirmation" type="tiles">/signupSuccess.tiles</result>
+		    <result name="success" type="tiles">/userdashboard.tiles</result>
+		    <result name="proceedToSignupConfirmation" type="tiles">/userdashboard.tiles</result>
+		    <!--result name="proceedToSignupConfirmation" type="tiles">/signupSuccess.tiles</result-->
 		</action>
 		<action name="mydashboard" class="com.cbuddy.user.action.UserAction" method="mydashboard">
 			 <interceptor-ref name="secureStack"></interceptor-ref>
@@ -72,10 +73,12 @@
 			<!-- result name="success" type="tiles">/categories.tiles</result-->
 			<result name="input" type="tiles">/login.tiles</result>
 		</action>
-		<action name="postAdLogin" class="com.cbuddy.user.action.LoginAction">
-			<result name="success" type="tiles">/categories.tiles</result>
+		<action name="signIn" class="com.cbuddy.user.action.LoginAction">
+			<result name="success" type="tiles">/userdashboard.tiles</result>
 			<result name="input" type="tiles">/login.tiles</result>
-			<result name="activationPending" type="tiles">/signupSuccess.tiles</result>
+			<result name="proceedToPostAd" type="tiles">/categories.tiles</result>
+			<!--result name="activationPending" type="tiles">/signupSuccess.tiles</result-->
+			<result name="redirect" type="redirect">${savedUrl}</result>
 		</action>			
 		<action name="logout" class="com.cbuddy.user.action.LogOutAction" method="logout"> 
 			<result name="success" type="tiles">/home.tiles</result> 
@@ -422,6 +425,16 @@
 		</action>
 		<action name="childcomments" class="com.cbuddy.common.action.CommentsAction" method="postChildComment">
 			<result name="success">/ajax_comments.jsp</result>
-		</action>				
+		</action>
+		<action name="forgotPwd">
+			<result name="login" type="tiles">/login.tiles</result>
+			<result name="input" type="tiles">/login.tiles</result>
+			<result name="success" type="tiles">/forgotPassword.tiles</result>
+		</action>		
+		<action name="forgotPwdConfirm" class="com.cbuddy.user.action.LoginAction" method="forgotPwd">
+			<result name="login" type="tiles">/forgotPassword.tiles</result>
+			<result name="input" type="tiles">/forgotPassword.tiles</result>
+			<result name="success" type="tiles">/login.tiles</result>
+		</action>
 	</package>
 </struts>

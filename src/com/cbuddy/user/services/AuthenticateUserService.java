@@ -157,10 +157,6 @@ public class AuthenticateUserService {
 			throw new CBuddyException("Invalid User Name or Email Id", CBuddyConstants.NON_EXISTENT_USER_ID);
 		}
 
-		if(uprof.getUserStatus().equals(CBuddyConstants.USER_STATUS_PENDING_VERIFICATION)){
-			throw new CBuddyException("User not yet active", CBuddyConstants.USER_PENDING_FOR_ACTIVATION);
-		}
-
 		ucred = getUserCredentials(uprof.getUserId(), session);
 
 		if(!ucred.getPwd().equals(password)){
@@ -301,66 +297,124 @@ public class AuthenticateUserService {
 		user.setStatus(uprof.getUserStatus());
 		user.setActivationCode(activationCode);
 
-		sendActivationMail(contextPath, newUcred.getCorpEmailId(), uprof.getPersonalEmailId(), activationCode, user.getFirstName());
+		//Send Activation Code
+		String messageText = prepareActivationMessage(newUcred.getCorpEmailId(), uprof.getPersonalEmailId(), activationCode, contextPath);
+		sendMail(contextPath, messageText, uprof.getPersonalEmailId(), user.getFirstName());
 
 		return user;
 	}
-	
+
 	public void resendActivationCode(String personalMailId, String contextPath)
-	throws CBuddyException{
+			throws CBuddyException{
 		//Get User Id from Uprof
 		SessionFactory sessionFactory = (SessionFactory) ServletActionContext.getServletContext().getAttribute("sessionFactory");
 		Session dbSession = sessionFactory.openSession();
-		
+
 		Query query = dbSession.createQuery("from Uprof where personal_email_id = :personalMailId");
 		query.setParameter("personalMailId", personalMailId);
 		Uprof uprof = (Uprof)query.uniqueResult();
-		
+
 		if(uprof == null){
 			throw new CBuddyException("Invalid user", CBuddyConstants.NON_EXISTENT_USER_ID);
 		}
-		
+
 		int userId = uprof.getUserId();
-		
+
 		//Get record from UACT
 		query = dbSession.createQuery("from Uact where user_id = :userId");
 		query.setParameter("userId", userId);
 		Uact uact = (Uact)query.uniqueResult();
-		
+
 		if(uact == null){
 			throw new CBuddyException("Activation code has not been sent for this user", CBuddyConstants.NON_EXISTENT_USER_ID);
 		}
-		
+
 		if(uact.getActivationStatus().equals(CBuddyConstants.USER_STATUS_ACTIVE)){
 			throw new CBuddyException("User is already active", CBuddyConstants.USER_ALREADY_ACTIVE);
 		}
-		
+
 		//Get record from UCRED
 		query = dbSession.createQuery("from Ucred where user_id = :userId");
 		query.setParameter("userId", userId);
 		Ucred ucred = (Ucred)query.uniqueResult();
-		
+
 		//Get Activation Code
 		String activationCode = uact.getActivationCode();
-		sendActivationMail(contextPath, ucred.getCorpEmailId(), uprof.getPersonalEmailId(), activationCode, uprof.getFirstName());
 		
+		//Send Activation Code
+		String messageText = prepareActivationMessage(ucred.getCorpEmailId(), personalMailId, activationCode, contextPath);
+		sendMail(contextPath, messageText, uprof.getPersonalEmailId(), uprof.getFirstName());
+
 		uact.setResentOn(new Timestamp(System.currentTimeMillis()));
 		dbSession.beginTransaction();
 		dbSession.save(uact);
 		dbSession.getTransaction().commit();
 	}
 
-	private void sendActivationMail(String contextPath, String companyMailId, String personalMailId, String activationCode, String userName){
-		//Sending activation code through email
+	public void forgotPwd(Ucred ucredFromAction, String contextPath)
+			throws CBuddyException{
+		SessionFactory sessionFactory = (SessionFactory) ServletActionContext.getServletContext().getAttribute("sessionFactory");
+		Session dbSession = sessionFactory.openSession();
+
+		//Get User Id from Uprof
+		Query query = dbSession.createQuery("from Uprof where personal_email_id = :personalMailId");
+		query.setParameter("personalMailId", ucredFromAction.getPersonalEmailId());
+		Uprof uprof = (Uprof)query.uniqueResult();
+
+		if(uprof == null){
+			throw new CBuddyException("Invalid user", CBuddyConstants.NON_EXISTENT_USER_ID);
+		}
+
+		int userId = uprof.getUserId();
+
+		//Get record from UCRED
+		query = dbSession.createQuery("from Ucred where user_id = :userId");
+		query.setParameter("userId", userId);
+		Ucred ucredFromDB = (Ucred)query.uniqueResult();
+
+		if(ucredFromDB == null){
+			throw new CBuddyException("Invalid user", CBuddyConstants.NON_EXISTENT_USER_ID);
+		}
+
+		if(!ucredFromDB.getCorpEmailId().equals(ucredFromAction.getCorpEmailId())){
+			throw new CBuddyException("Email Ids to not match", CBuddyConstants.NON_EXISTENT_USER_ID);
+		}
+
+		//Generate new Password (Logic for generating activation code can be reused here)
+		String newPwd = new Utils().generateActivationCode();
+		String messageText = prepareForgotPwdMessage(newPwd, contextPath);
+
+		//Send New Password
+		sendMail(contextPath, messageText,  uprof.getPersonalEmailId(), uprof.getFirstName());
+		
+		ucredFromDB.setPwd(newPwd);
+		ucredFromDB.setModifiedOn(new Timestamp(System.currentTimeMillis()));
+		
+		dbSession.beginTransaction();
+		dbSession.save(ucredFromDB);
+		dbSession.getTransaction().commit();
+	}
+	
+	private String prepareForgotPwdMessage(String newPwd, String contextPath){
+		String messageText = "Your new password is " + newPwd;
+		return messageText;
+	}
+
+	private String prepareActivationMessage(String companyMailId, String personalMailId, String activationCode, String contextPath){
 		String messageText = "Warm Regards from cBuddy team!" + "\n\n";
 		messageText = messageText + "Company Email Id: " + companyMailId + "\n\n";
 		messageText = messageText + "Please click on the following link for activating your cBuddy account:" + "\n\n";
 		String encryptedParameters = EncryptionUtil.encrypt("activationCode=" + activationCode + "&email=" + personalMailId);
 		encryptedParameters = encryptedParameters.replace("+", "%2B"); //else when request is fired from browser, the plus sign will be considered as a space in request.getParameter() function.
 		messageText = messageText + contextPath + "/activate?param=" + encryptedParameters;
+		return messageText;
+	}
+	
+	private void sendMail(String contextPath, String messageText, String personalMailId, String userName){
+		//Sending activation code through email
 		try{
 			//TODO (Temp Change done for ALPHA TESTING): Don't send mail to personal mail id. Send it to official mail id.
-			new MailUtil().sendMail(personalMailId, userName, messageText, contextPath, activationCode);
+			new MailUtil().sendMail(contextPath, messageText, personalMailId, userName);
 			//new MailUtil().sendMail(user.getEmailId(), user.getFirstName(), contextPath, activationCode);
 		}catch(Exception e){
 			e.printStackTrace();

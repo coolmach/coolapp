@@ -11,7 +11,7 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
  
 public class MailUtil {
-	public void sendMail(String toId, String firstName, String messageText, String applicationContextRoot, String activationCode){
+	public void sendMail(String applicationContextRoot, String messageText, String toId, String firstName){
 		LogUtil.getInstance().info(">>> MailUtil.sendMail()");
 		LogUtil.getInstance().info(">>> messageText: " + messageText);
 		LogUtil.getInstance().info(">>> applicationContextRoot: " + applicationContextRoot);
