@@ -3,6 +3,7 @@ package com.cbuddy.interceptors;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.interceptor.ServletRequestAware;
@@ -20,6 +21,12 @@ public class LoginInterceptor extends AbstractInterceptor implements ServletRequ
 
 	private String originalURL;
 
+	private String savedUrl="signIn";
+	
+	public String getSavedUrl(){
+	    return savedUrl;
+	}
+	
 	public void init() {
 		System.out.println("LoginInterceptor.init()");
 	}
@@ -34,20 +41,31 @@ public class LoginInterceptor extends AbstractInterceptor implements ServletRequ
 		this.request = request;
 
 	}
+	
+	public HttpServletRequest getServletRequest() {
+		return this.request;
+	}
 
 	public String intercept(ActionInvocation invocation) throws Exception {
 
 		Map<String,Object> session = invocation.getInvocationContext().getSession(); 
 		User user = (User) session.get("userInfo");
-		System.out.println("LoginInterceptor.intercept()"+user);
+
 		if(user == null){
 			session.put("LOGIN_FAILED", "Y");
+			HttpServletRequest request = ServletActionContext.getRequest();
+			String queryString = request.getQueryString();
+			String path = request.getRequestURI().substring(request.getContextPath().length());
+			session.put("savedUrl", path+(queryString==null?"":("?"+queryString))); 
+			savedUrl = path+(queryString==null?"":("?"+queryString));
 			return ActionSupport.LOGIN;
+		}else{
+			return invocation.invoke();
 		}
-		return invocation.invoke();
+		
 	}
 
-	public final String interceptlll(final ActionInvocation invocation) throws Exception {
+	/*public final String interceptlll(final ActionInvocation invocation) throws Exception {
 		// before save original url
 		Map session = invocation.getInvocationContext().getSession();
 		Object action = invocation.getAction();
@@ -82,12 +100,8 @@ public class LoginInterceptor extends AbstractInterceptor implements ServletRequ
 		return originalURL;
 	}
 
-	public HttpServletRequest getServletRequest() {
-		return this.request;
-	}
-
 	public void setOriginalURL(String originalURL) {
 		this.originalURL = originalURL;
-	}
+	}*/
 
 }

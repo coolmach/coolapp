@@ -32,6 +32,11 @@ public class LoginAction extends ActionSupport implements SessionAware,ServletRe
 	private String username;
 	private String password;
 
+	private String savedUrl="";
+
+	public String getSavedUrl(){
+		return savedUrl;
+	}
 	private String isLoginErrorExists="false";
 	private String isSignUpErrorExists="false";
 	private boolean isValidUser = false;
@@ -85,18 +90,7 @@ public class LoginAction extends ActionSupport implements SessionAware,ServletRe
 		this.isSignUpErrorExists = isSignUpErrorExists;
 	}
 
-	/*public void validate(){
-		System.out.println("LoginAction.validate()");
-		if (userName == null || userName.trim().equals("")){
-			addFieldError("userName","Username is required");
-			setValid("false");
-		}else if (password == null || password.trim().equals("")){
-			addFieldError("password","Password is required");
-			setValid("false");
-		}
-	}*/
-
-	public String execute(){
+	public String signInUser(){
 
 		clearErrors();
 		User user =  (User) session.get("userInfo");
@@ -106,20 +100,21 @@ public class LoginAction extends ActionSupport implements SessionAware,ServletRe
 			User u = null;
 			try{
 				u = new AuthenticateUserService().authenticateUser(username, password);
-				
+
 				populateUserPosts(u);
-				
+
 				session.put("userInfo", u);
 				session.put("userLoggedIn", "Y");
 				session.put("username", u.getFirstName());
 				if(session.get("LOGIN_FAILED") != null){
 					//Called from LoginInterceptor - Post Ad
 					session.remove("LOGIN_FAILED"); //Resetting the flag set by Login Interceptor
-					return "proceedToPostAd";
 				}
-				
-				//Get Posts for the user
-				
+
+				savedUrl = (String) session.get("savedUrl");
+				if(session.get("savedUrl")!=null)
+					return "redirect";
+
 				return Action.SUCCESS;
 			}catch(CBuddyException e){
 				System.out.println(e.getErrorCode());
@@ -215,23 +210,23 @@ public class LoginAction extends ActionSupport implements SessionAware,ServletRe
 	private void populateUserPosts(User u){
 		SessionFactory sessionFactory = (SessionFactory) ServletActionContext.getServletContext().getAttribute("sessionFactory");
 		Session dbSession = sessionFactory.openSession();
-		
+
 		Query query = dbSession.createQuery("from Poit where created_by = :userId");
 		query.setParameter("userId", u.getUserId());
 		adList = (List<Poit>)query.list();
-		
+
 		if(adList != null && adList.size()>0){
 			new PostsUtil().populateAdditionalDetailsForPoit(dbSession, adList);	
 		}
 	}
-	
+
 	public String activateUser(){
 		try{
 
 			User u = new AuthenticateUserService().activateUser(param);
 
 			populateUserPosts(u);
-			
+
 			session.put("userInfo", u);
 			session.put("userLoggedIn", "Y");
 			session.put("username", u.getFirstName());
@@ -254,7 +249,7 @@ public class LoginAction extends ActionSupport implements SessionAware,ServletRe
 		}
 		return Action.SUCCESS;
 	}
-	
+
 	public String forgotPwd(){
 		try{
 			new AuthenticateUserService().forgotPwd(getModel(), getFullURL(request));

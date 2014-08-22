@@ -22,6 +22,7 @@ public class LogOutAction extends ActionSupport implements SessionAware{
 		session.remove("userInfo");
 		session.remove("userLoggedIn");
 		session.remove("username");
+		session.remove("savedUrl");
 
 		return "success";
 	}
