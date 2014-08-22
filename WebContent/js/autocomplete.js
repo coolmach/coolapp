@@ -27,7 +27,7 @@
 			$("#selectedLocationStr").val(ui.item.label);
 			$("#selectedCityCode").val($("input[name=city]:checked").val());
 		},
-		minLength: 2
+		minLength: 1
 	});
 	
 	$("#userEnteredModelStr").autocomplete({
@@ -58,5 +58,5 @@
 			$("#selectedModelStr").val(ui.item.label);
 			$("#selectedBrand").val($("#brand").val());
 		},
-		minLength: 2
+		minLength: 1
 	});

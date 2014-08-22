@@ -78,7 +78,7 @@
         <put-attribute name="body" value="/pages/automobile/Automobile.jsp" />
     </definition> 
     
-    
+    <!-- OLD ENTRIES - START -->
     <definition name="/postad_real_estate.tiles" extends="baseLayout">
         <put-attribute name="title" value="Post Ad" />
         <put-attribute name="body" value="/pages/realestate/postad/PostAd_RealEstate.jsp" />
@@ -103,7 +103,7 @@
         <put-attribute name="title" value="Post Ad" />
         <put-attribute name="body" value="/pages/furniture/postad/PostAd_Furniture.jsp" />
     </definition>
-   
+   <!-- OLD ENTRIES - END -->
     
     <definition name="/adDetails_realestate.tiles" extends="baseLayout">
         <put-attribute name="title" value="Details" />
@@ -174,5 +174,13 @@
     <definition name="/forgotPassword.tiles" extends="baseLayout">
         <put-attribute name="title" value="Forgot Password" />
         <put-attribute name="body" value="/forgotPassword.jsp" />
-    </definition>         
+    </definition>   
+    
+	<!-- NEW ENTRIES FOR POST AD - START -->
+    <definition name="/postAd_RealEstate.tiles" extends="baseLayout">
+        <put-attribute name="title" value="Post Ad" />
+        <put-attribute name="body" value="/pages/realestate/postad/PostAd_RealEstate.jsp" />
+    </definition> 
+    <!-- NEW ENTRIES FOR POST AD - END -->
+          
 </tiles-definitions>

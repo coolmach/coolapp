@@ -100,8 +100,8 @@
 .logo{font-family:TimeBurner;font-size:22px;font-weight:bold;color:#FFFFFF;text-decoration:none}
 .logo hover{text-decoration:none;}
 
-.dropDown{height:25px;width:150px;}
-
+.dropDown{height:30px;width:195px;}
+.dropDownSmall{height:30px;width:70px;}
 
 #electronicsSubCategorySection{margin-bottom:4%;width:120%;margin-left:-15px;}
 #electronicsSubCategorySection a{text-decoration:underline;color:#428bca}

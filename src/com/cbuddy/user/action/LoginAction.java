@@ -258,7 +258,7 @@ public class LoginAction extends ActionSupport implements SessionAware,ServletRe
 	public String forgotPwd(){
 		try{
 			new AuthenticateUserService().forgotPwd(getModel(), getFullURL(request));
-			responseMsg = "New Password has been successfully sent to your email id. Please login and click on the activation link.";
+			responseMsg = "New Password has been successfully sent to your email id.";
 		}catch(CBuddyException e){
 			addFieldError("PersonalEmailId", e.getMessage());
 			return Action.INPUT;
