@@ -43,7 +43,7 @@ public class PostsUtil {
 		poit.setPostStatus(user.getStatus());
 
 		dbSession.save(poit);
-		
+
 		if(poit.getPostStatus() == CBuddyConstants.USER_STATUS_PENDING_VERIFICATION){
 			updatePostsToBeActivated(user, poit.getPostId(), dbSession);
 		}
@@ -75,16 +75,18 @@ public class PostsUtil {
 
 		dbSession.save(pact);
 	}
-	
+
 	public void populateAdditionalDetailsForPoit(Session dbSession, List<Poit> adList){
-		for(Poit postDetails:adList){
-			String cityName = LocationUtil.getCityName(dbSession, postDetails.getCity());
-			String locName = LocationUtil.getLocationName(dbSession, postDetails.getCity(), postDetails.getLocation());
-			postDetails.setCity(cityName);
-			postDetails.setLocation(locName);
-			//.setPriceStr(NumberFormatterUtil.formatAmount(postDetails.getPrice()));
-			if(postDetails.getDescription().length() > 80){
-				postDetails.setDescription(postDetails.getDescription().substring(0,80) + "...");
+		if(adList != null){
+			for(Poit postDetails:adList){
+				String cityName = LocationUtil.getCityName(dbSession, postDetails.getCity());
+				String locName = LocationUtil.getLocationName(dbSession, postDetails.getCity(), postDetails.getLocation());
+				postDetails.setCity(cityName);
+				postDetails.setLocation(locName);
+				//.setPriceStr(NumberFormatterUtil.formatAmount(postDetails.getPrice()));
+				if(postDetails.getDescription()!=null && postDetails.getDescription().length() > 80){
+					postDetails.setDescription(postDetails.getDescription().substring(0,80) + "...");
+				}
 			}
 		}
 	}

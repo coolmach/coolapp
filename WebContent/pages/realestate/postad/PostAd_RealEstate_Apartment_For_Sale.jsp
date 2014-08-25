@@ -1,178 +1,132 @@
 <%@ taglib prefix="s" uri="/struts-tags"%>
-<link rel="stylesheet" type="text/css" href="css/Cbuddy.css"/>
-<script>
-	function toggle(newOrResale){
-		if(newOrResale == "New"){
-			$("#ageBlock").hide();
-			$("#completionBlock").hide();
-			$("#readyToOccupyParametersBlock").show();
-			$("#readyToOccupy_Y").attr("checked", true);
-			$("#readyToOccupy_N").attr("checked", false);
-			
-		}else{
-			$("#readyToOccupyParametersBlock").hide();
-			$("#completionDateBlock").hide();
-			$("#ageBlock").show();
-		}
-	}
-	function toggleNew(isReadyToOccupy){
-		if(isReadyToOccupy == "No"){
-			$("#completionDateBlock").show();
-		}else{
-			$("#completionDateBlock").hide();
-		}
-	}
-</script>
-<div class=" header_2">
-	<div class=""></div>
-	<!--div class="col-md-11">
-		<a class="grey_link" href="<s:url action=""  />"></a>
-		<s:property value="category" />
-	</div-->
-</div>
-<div class="col-md-8" id="my">
-	<s:form cssClass="form-horizontal post" action="real_estate_postAd.action" enctype="multipart/form-data">
-		<input type="hidden" name="category" value="REAL"/>
-		<input type="hidden" name="subCategory" value="1"/>
-		<div class="col-md-12 post_title">
-			<div style="float:left;">
-				Apartment for Sale
-			</div>
-			<span class="error"><s:fielderror fieldName="errorMsg"/></span>
-		</div>
-	   <div class="col-md-8">
+	<!-- Apartment for Sale - START -->
+	<div id="APARTMENT_FOR_SALE">
+		<input type="hidden" id="subCategory" name="subCategory" value="1">
+		<div>
 			<div class="form-group">
-				<label for="title" class="col-sm-4 control-label">Title<span class="mandatory">*</span></label>
-				<div class="col-sm-8">
-					<input type="text" class="form-control" maxlength="200" id="Title" name="Title" value="<s:property value='title'/>" required>
-				</div>
-			</div>
-			<%@include file="/locationStrip.jsp" %>
-			<div class="form-group">
-				<label for="rent" class="col-sm-4 control-label">New/Re-sale</label>
+				<label class="col-sm-5 control-label">New/Re-sale<span class="mandatory">*</span></label>
 				<div class="col-sm-6 radioStrip">
-					<input type="radio" id="newOrResale_N" name="NewOrResale" value="N" checked onClick="toggle('New')"><span class="radioText">New</span>
-					<input type="radio" id="newOrResale_R" name="NewOrResale" value="R" onClick="toggle('Resale')"><span class="radioText">Re-sale</span>
+					<s:radio label="Choose New or Resale" theme="simple" name="NewOrResale" id="NewOrResale" list="#{'N':'New','R':'Resale'}" value="postDetails.NewOrResale" />
 				</div>
-			</div>	
-			<div class="form-group" id="readyToOccupyParametersBlock">
-				<label for="rent" class="col-sm-4 control-label">Ready To Occupy</label>
-				<div class="col-sm-6 radioStrip">
-					<input type="radio" id="readyToOccupy_Y" name="ReadyToOccupy" value="Y" checked onClick="toggleNew('Yes')"><span class="radioText">Yes</span>
-					<input type="radio" id="readyToOccupy_N" name="ReadyToOccupy" value="N" onClick="toggleNew('No')"><span class="radioText">No</span>
-				</div>
-			</div>				
-			<div class="form-group" id="ageBlock" style="display:none;">
-				<label for="ageValue" class="col-sm-4 control-label">&nbsp;</label>
-				<div class="col-sm-6">
-					<input type="text" class="form-control" maxlength="2" name="AgeValue" id="AgeValue" placeholder="Age (in years)">
-				</div>
-			</div>
-			<div class="form-group" id="completionDateBlock" style="display:none;">
-				<label for="expectedCompletionDate" class="col-sm-4 control-label">&nbsp;</label>
-				<div class="col-sm-6"> 
-					<input type="text" class="form-control" maxlength="12" name="ExpectedCompletionDate" id="ExpectedCompletionDate" placeholder="Expected Completion Date">
+			</div>		
+			<div class="form-group">
+				<label class="col-sm-5 control-label">No. of Bedrooms<span class="mandatory">*</span></label>
+				<div class="col-sm-2">
+					<s:select class="dropDown" style="height:30px;width:80px;" id="Bedrooms" name="Bedrooms" theme="simple"
+						headerKey="-1" headerValue="Select"
+						list="#{'1':'1', '2':'2', '2.5':'2.5', '3':'3', '4':'4'}"
+						value="Bedrooms" />			
 				</div>
 			</div>
 			<div class="form-group">
-				<label for="area" class="col-sm-4 control-label">Total Area (sq. ft)<span class="mandatory">*</span></label>
+				<label class="col-sm-5 control-label">Total Area (sq. ft)<span class="mandatory">*</span></label>
+				<div class="col-sm-4">
+					<s:if test="Area == ''">
+						<input type="text" class="form-control" maxlength="5" name="Area" id="Area" required>
+					</s:if>
+					<s:else>
+						<input type="text" class="form-control" maxlength="5" name="Area" id="Area" value='<s:property value="Area"/>' required>
+					</s:else> 
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-5 control-label">Price<span class="mandatory">*</span></label>
 				<div class="col-sm-3">
-					<input type="text" class="form-control" maxlength="5" name="Area" id="Area" value="1200" required> 
-				</div>
-				<label for="bedrooms" class="col-sm-3 control-label">Bedrooms<span class="mandatory">*</span></label>
-				<div class="col-sm-2">
-					<input type="text" class="form-control" maxlength="1" name="Bedrooms" id="Bedrooms" value="2" required>
+					<s:if test="PriceValue == ''">
+						<input type="text" class="form-control" maxlength="8" name="PriceValue" id="PriceValue" required>
+					</s:if>
+					<s:else>
+						<input type="text" class="form-control" maxlength="8" name="PriceValue" id="PriceValue" value='<s:property value="PriceValueStr"/>' required>
+					</s:else>
+					
 				</div>
 			</div>
 			<div class="form-group">
-				<label for="priceValue" class="col-sm-4 control-label">Price<span class="mandatory">*</span></label>
+				<label class="col-sm-5 control-label">Contact Person Name<span class="mandatory">*</span></label>
 				<div class="col-sm-6">
-					<input type="text" class="form-control" maxlength="9" name="PriceValue" id="PriceValue" value="3000000" required>
+					<input type="text" class="form-control" maxlength="30" name="ContactPersonName" value='<s:property value="ContactPersonName"/>' required>
 				</div>
 			</div>
 			<div class="form-group">
-				<label for="facingDirection" class="col-sm-4 control-label">Facing Direction</label>
-				<div class="col-sm-2" style="padding-top:6px;">
-					<select class="dropDown" name="FacingDirection" id="FacingDirection">
-						<option value="N">North</option>
-						<option value="S">South</option>
-						<option value="E">East</option>
-						<option value="W">West</option>
-					</select>
+				<label class="col-sm-5 control-label">Contact Number<span class="mandatory">*</span></label>
+				<div class="col-sm-6">
+					<input type="text" class="form-control" maxlength="15" name="ContactNo" value='<s:property value="ContactNo"/>' required>
 				</div>
-				<label for="floorNumber" class="col-sm-4 control-label">Floor No<span class="mandatory">*</span></label>
+			</div>
+			<div class="form-group">
+				<label for="description" class="col-sm-5 control-label">Other Features</label>
+				<div class="col-sm-7">
+					<textarea class="form-control" rows="2" maxlength="256" name="Description" id="Description"> <s:property value="Description"/> </textarea>
+				</div>
+			</div>										
+		</div>
+		
+		<div class="row col-md-12" style="background-color:rgb(240,230,175); margin-left:0px; margin-bottom:10px; padding:10px; text-align:center;">
+			<h5 style="color:rgb(127,127,127); font-size:14px;">
+				<!-- a href="javascript:animatedcollapse.toggle('accordion_1')"></a-->
+				<a class="heading_link" data-toggle="collapse" data-parent="#accordion" href="#collapse_section_1">
+          			Additional Details
+          			<span class="glyphicon glyphicon-chevron-down"></span>
+            	</a>
+			</h5>
+		</div>
+		<div id="collapse_section_1" class="collapse" style="border:1px solid rgb(240,230,175);">
+			<div class="form-group">
+				<label for="builderName" class="col-sm-5 control-label">Builder Name</label>
+				<div class="col-sm-6">
+					<input type="text" class="form-control" maxlength="50" name="BuilderName" id="BuilderName" value="<s:property value='BuilderName'/>">
+				</div>
+			</div>					
+			<div class="form-group" id="readyToOccupyParametersBlock">
+				<label class="col-sm-5 control-label">Ready To Occupy</label>
+				<div class="col-sm-6 radioStrip">
+					<s:radio label="Choose Ready To Occupy" theme="simple" name="ReadyToOccupy" id="ReadyToOccupy" list="#{'Y':'Yes','N':'No'}" value="postDetails.ReadyToOccupy" />
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-5 control-label">Floor No (G-Ground Floor)</label>
 				<div class="col-sm-2">
-					<input type="text" class="form-control" maxlength="2" name="FloorNumber" id="FloorNumber" value="G" required>
+					<input type="text" class="form-control" maxlength="2" name="FloorNumber" id="FloorNumber" value='<s:property value="FloorNumber"/>'>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-5 control-label">Facing Direction</label>
+				<div class="col-sm-2">
+					<s:select class="dropDown" style="height:30px;width:100px;" id="FacingDirection" name="FacingDirection" theme="simple"
+						headerKey="-1" headerValue="Select"
+						list="#{'E':'East', 'W':'West', 'N':'North', 'S':'South'}"
+						value="FacingDirection" />
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-5 control-label">Approval Authority</label>
+				<div class="col-sm-5">
+					<s:select class="dropDown" style="height:30px;width:175px;" id="ApprovalAuthority" name="ApprovalAuthority" theme="simple"
+						headerKey="-1" headerValue="Select"
+						list="#{'BDA':'BDA', 'BMRDA':'BMRDA', 'DC':'District Commissioner', 'BBMP':'BBMP', 'Others':'Others'}"
+						value="ApprovalAuthority" />					
 				</div>
 			</div>			
 			<div class="form-group">
-				<label for="approvalAuthority" class="col-sm-4 control-label">Approval Authority</label>
-				<div class="col-sm-6">
-					<input type="text" class="form-control" maxlength="30" name="ApprovalAuthority" id="ApprovalAuthority" value="BDA">
+				<label class="col-sm-5 control-label">Amenities</label>
+				<div class="col-sm-6" style="padding-top:10px;">
+					<s:checkbox name="powerBackup" fieldValue="true" value="powerBackup" label="Power Backup" theme="simple"/><span class="checkBoxText">Power Backup </span><BR>
+					<s:checkbox name="gym" fieldValue="true" value="gym" label="Gym" theme="simple"/><span class="checkBoxText">Gym </span><BR>
+					<s:checkbox name="carParking" fieldValue="true" value="carParking" label="Car Parking" theme="simple"/><span class="checkBoxText">Car Parking</span><BR>
+					<s:checkbox name="childrenPlayArea" fieldValue="true" value="childrenPlayArea" label="Children Park" theme="simple"/><span class="checkBoxText">Children Park</span><BR>
+					<s:checkbox name="clubHouse" fieldValue="true" value="clubHouse" label="Club House" theme="simple"/><span class="checkBoxText">Club House </span><BR>
+					<s:checkbox name="swimmingPool" fieldValue="true" value="swimmingPool" label="Swimming Pool" theme="simple"/><span class="checkBoxText">Swimming Pool</span><BR>
 				</div>
-			</div>
-			<div class="form-group">
-				<label for="builderName" class="col-sm-4 control-label">Builder Name</label>
-				<div class="col-sm-6">
-					<input type="text" class="form-control" maxlength="50" name="BuilderName" id="BuilderName" value="MGR">
-				</div>
-			</div>
-			<div class="form-group">
-				<label for="description" class="col-sm-4 control-label">Remarks</label>
-				<div class="col-sm-8">
-					<textarea class="form-control" rows="3" maxlength="256" name="Description" id="Description">Hello tHis is description</textarea>
-				</div>
-			</div>
-			<div class="form-group">
-				<div class="col-sm-offset-2 col-sm-5">
-					<button type="submit" class="btn btn-primary pull-right" onClick="history.go(-1);">Back</button>
-				</div>
-				<div class="col-sm-offset-0 col-sm-3">
-					<button type="submit" class="btn btn-primary pull-right">Post Ad</button>
-				</div>
-			</div>
+			</div>									
 		</div>
-		<div class="col-md-4">
-			<div class="fileinput fileinput-new" data-provides="fileinput">
-			  <div class="fileinput-preview thumbnail" data-trigger="fileinput" style="width: 200px; height: 150px;"></div>
-			  <div>
-			    <span class="btn btn-default btn-file"><span class="fileinput-new">Select image</span><span class="fileinput-exists">Change</span>
-			    <input type="file" name="upload" id="upload"></span>
-			    <a href="#" class="btn btn-default fileinput-exists" data-dismiss="fileinput">Remove</a>
-			  </div>
+		<div style="margin-top:15px;"></div>
+		<div class="form-group" style="margin-top:25px;">
+			<div class="col-sm-offset-2 col-sm-5">
+				<button type="submit" class="btn btn-primary pull-right" onClick="history.go(-1);">Back</button>
 			</div>
-			<div class="form-group">
-				<div class="col-sm-8">
-					<label for="" class="col-sm-6 control-label" style="text-align:left;">Contact Details<span class="mandatory">*</span></label>
-				</div>
+			<div class="col-sm-offset-1 col-sm-3">
+				<button type="submit" class="btn btn-primary pull-right">Post Ad</button>
 			</div>
-			<div class="form-group">
-				<div class="col-sm-6">
-					<input type="text" class="form-control" maxlength="30" name="ContactPersonName" placeholder="Contact Person Name" value="MGR" required>
-				</div>
-			</div>
-			<div class="form-group">
-				<div class="col-sm-6">
-					<input type="text" class="form-control" maxlength="15" name="ContactNo" placeholder="Contact Number" value="77777766666" required>
-				</div>
-			</div>
-			<div class="form-group">
-				<div class="col-sm-8">
-					<label for="" class="col-sm-6 control-label" style="text-align:left;">Amenities</label>
-				</div>
-			</div>
-			<div class="form-group">
-				<div class="col-sm-6">
-					<input type="checkbox" name="powerBackup" value="Y"><span class="checkBoxText">Power Backup</span><BR>
-					<input type="checkbox" name="gym" value="Y"><span class="checkBoxText">Gym </span><BR>
-					<input type="checkbox" name="carParking" value="Y"><span class="checkBoxText">Car Parking</span><BR>
-					<input type="checkbox" name="childrenPlayArea" value="Y"><span class="checkBoxText">Children Park</span><BR>
-					<input type="checkbox" name="clubHouse" value="Y"><span class="checkBoxText">Club House</span><BR>
-					<input type="checkbox" name="swimmingPool" value="Y"><span class="checkBoxText">Swimming Pool </span><BR>
-				</div>
-			</div>	
-		</div>
-	</s:form>
-
-</div>
-<div class="col-md-5"></div>
+		</div>		
+	</div>
+	<!-- Apartment for Sale - END -->

@@ -1,4 +1,4 @@
-
+$(document).ready(function(){
 	$("#userEnteredLocationStr").autocomplete({
 		source: function(request, response) {
 			$.ajax({
@@ -60,3 +60,4 @@
 		},
 		minLength: 1
 	});
+});

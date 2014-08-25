@@ -46,6 +46,8 @@ public class RealEstateAction extends ActionSupport implements SessionAware, Ser
 	private String categoryStr;
 	private String subCategoryStr;
 
+	private String propertyType;
+	
 	private String responseMsg;
 
 	private List<RealEstatePostDetails> adList = new ArrayList<RealEstatePostDetails>();
@@ -126,30 +128,30 @@ public class RealEstateAction extends ActionSupport implements SessionAware, Ser
 				addFieldError("errorMsg", "Please enter number of bedrooms");
 				return false;
 			}
-			if(postDetails.getFacingDirection().equals("")){
-				addFieldError("errorMsg", "Please enter Facing Direction");
-				return false;
-			}
-			if(postDetails.getFloorNumber().equals("")){
-				addFieldError("errorMsg", "Please enter Floor number");
-				return false;
-			}
+//			if(postDetails.getFacingDirection().equals("")){
+//				addFieldError("errorMsg", "Please enter Facing Direction");
+//				return false;
+//			}
+//			if(postDetails.getFloorNumber().equals("")){
+//				addFieldError("errorMsg", "Please enter Floor number");
+//				return false;
+//			}
 		}
 
-		if(subCategory.equals(CBuddyConstants.SUBCATEGORY_REAL_ESTATE_APARTMENT_FOR_SALE)){
-			String newOrResale = postDetails.getNewOrResale();
-			if(newOrResale.equals("")){
-				addFieldError("errorMsg", "Please select if it is a new property or for resale");
-				return false;
-			}else{
-				if(newOrResale.equals(CBuddyConstants.NEW_OR_RESALE_RESALE)){
-					if(postDetails.getAgeValue() == 0){
-						addFieldError("errorMsg", "Please enter the age of the property");
-						return false;
-					}
-				}
-			}
-		}
+//		if(subCategory.equals(CBuddyConstants.SUBCATEGORY_REAL_ESTATE_APARTMENT_FOR_SALE)){
+//			String newOrResale = postDetails.getNewOrResale();
+//			if(newOrResale.equals("")){
+//				addFieldError("errorMsg", "Please select if it is a new property or for resale");
+//				return false;
+//			}else{
+//				if(newOrResale.equals(CBuddyConstants.NEW_OR_RESALE_RESALE)){
+//					if(postDetails.getAgeValue() == 0){
+//						addFieldError("errorMsg", "Please enter the age of the property");
+//						return false;
+//					}
+//				}
+//			}
+//		}
 
 		return true;
 	}
@@ -220,16 +222,16 @@ public class RealEstateAction extends ActionSupport implements SessionAware, Ser
 			addFieldError("errorMsg", "Invalid Maintenance");
 			return false;
 		}
-		temp = postDetails.getFacingDirection();
-		if(temp!=null && temp.length()>1){
-			addFieldError("errorMsg", "Invalid Facing Direction");
-			return false;
-		}
-		temp = postDetails.getFloorNumber();
-		if(temp!=null && temp.length()>2){
-			addFieldError("errorMsg", "Invalid Floor Number");
-			return false;
-		}
+//		temp = postDetails.getFacingDirection();
+//		if(temp!=null && temp.length()>1){
+//			addFieldError("errorMsg", "Invalid Facing Direction");
+//			return false;
+//		}
+//		temp = postDetails.getFloorNumber();
+//		if(temp!=null && temp.length()>2){
+//			addFieldError("errorMsg", "Invalid Floor Number");
+//			return false;
+//		}
 		temp = postDetails.getDescription();
 		if(temp!=null && temp.length()>256){
 			addFieldError("errorMsg", "Invalid Description");
@@ -318,10 +320,10 @@ public class RealEstateAction extends ActionSupport implements SessionAware, Ser
 		pdre.setArea(postDetails.getArea());
 		pdre.setBedrooms(postDetails.getBedrooms());
 		pdre.setBuilderName(postDetails.getBuilderName());
-		pdre.setCarParking(postDetails.getCarParking());
+		pdre.setCarParking(postDetails.getCarParking()!=null && (postDetails.getCarParking().equals("true") || postDetails.getCarParking().equals("Y"))?"Y":null);
 		pdre.setChildrenPlayArea(postDetails.getChildrenPlayArea());
 		pdre.setCity(postDetails.getCity());
-		pdre.setClubHouse(postDetails.getClubHouse());
+		pdre.setClubHouse(postDetails.getClubHouse()!=null && postDetails.getClubHouse().equals("true")?"Y":null);
 		pdre.setCreatedBy(userId);
 		pdre.setCreatedOn(current);
 		pdre.setFacingDirection(postDetails.getFacingDirection());
@@ -330,7 +332,7 @@ public class RealEstateAction extends ActionSupport implements SessionAware, Ser
 		pdre.setFood(postDetails.getFood());
 		pdre.setFurnished(postDetails.getFurnished());
 		pdre.setGender(postDetails.getGender());
-		pdre.setGym(postDetails.getGym());
+		pdre.setGym(postDetails.getGym()!=null && postDetails.getGym().equals("true")?"Y":null);
 		//pdre.setImageFileName(this.uploadFileName);
 		pdre.setLocation(postDetails.getSelectedLocationCode());
 		pdre.setMaintenance(postDetails.getMaintenance());
@@ -345,10 +347,10 @@ public class RealEstateAction extends ActionSupport implements SessionAware, Ser
 		pdre.setRegionalPreference(postDetails.getRegionalPreference());
 		pdre.setSharing(postDetails.getSharing());
 		pdre.setSubCategory(postDetails.getSubCategory());
-		pdre.setSwimmingPool(postDetails.getSwimmingPool());
-		pdre.setTv(postDetails.getTv());
-		pdre.setWifi(postDetails.getWifi());
-		pdre.setPowerBackup(postDetails.getPowerBackup());
+		pdre.setSwimmingPool(postDetails.getSwimmingPool()!=null && postDetails.getSwimmingPool().equals("true")?"Y":null);
+		pdre.setTv(postDetails.getTv()!=null && postDetails.getTv().equals("true")?"Y":null);
+		pdre.setWifi(postDetails.getWifi()!=null && postDetails.getWifi().equals("true")?"Y":null);
+		pdre.setPowerBackup(postDetails.getPowerBackup()!=null && postDetails.getPowerBackup().equals("true")?"Y":null);
 
 		dbSession.save(pdre);
 
@@ -386,6 +388,9 @@ public class RealEstateAction extends ActionSupport implements SessionAware, Ser
 	}
 
 	private void populateAdditionalDetailsForPost(RealEstatePostDetails postDetails, Session dbSession){
+		if(postDetails == null){
+			return;
+		}
 		Utils utils = new Utils();
 		String cityName = LocationUtil.getCityName(dbSession, postDetails.getCity());
 		String locName = LocationUtil.getLocationName(dbSession, postDetails.getCity(), postDetails.getLocation());
@@ -471,12 +476,36 @@ public class RealEstateAction extends ActionSupport implements SessionAware, Ser
 		
 		populateAdditionalDetailsForPost(postDetails, dbSession);
 		
-		CommentsService service = new CommentsService();
-		cmList = service.getComments(postDetails.getPostId());
+		if(postDetails != null){
+			CommentsService service = new CommentsService();
+			cmList = service.getComments(postDetails.getPostId());
+		}
 		
 		return "success";
 	}
 
+	public String getRelevantPage(){
+		String subCategory = postDetails.getSubCategory();
+		String output = "ApartmentForRent";
+		if(subCategory.equals(CBuddyConstants.SUBCATEGORY_REAL_ESTATE_APARTMENT_FOR_SALE)){
+			output = "ApartmentForSale";
+		}else if(subCategory.equals(CBuddyConstants.SUBCATEGORY_REAL_ESTATE_APARTMENT_FOR_RENT)){
+			output = "ApartmentForRent";
+		}else if(subCategory.equals(CBuddyConstants.SUBCATEGORY_REAL_ESTATE_IND_HOUSE_FOR_SALE)){
+			output = "IndependentHouseForSale";
+		}else if(subCategory.equals(CBuddyConstants.SUBCATEGORY_REAL_ESTATE_IND_HOUSE_FOR_RENT)){
+			output = "IndependentHouseForRent";
+		}else if(subCategory.equals(CBuddyConstants.SUBCATEGORY_REAL_ESTATE_PG_ACCOMODATION)){
+			output = "PGAccommodation";
+		}else if(subCategory.equals(CBuddyConstants.SUBCATEGORY_REAL_ESTATE_LAND_SALE)){
+			output = "LandForSale";
+		}else if(subCategory.equals(CBuddyConstants.SUBCATEGORY_REAL_ESTATE_ROOMMATE_REQUIRED)){
+			output = "RoommateRequired";
+		}
+		return output;
+	}
+	
+	
 	@Override
 	public RealEstatePostDetails getModel() {
 		return postDetails;
@@ -572,6 +601,14 @@ public class RealEstateAction extends ActionSupport implements SessionAware, Ser
 
 	public void setCmList(List<MasterComment> cmList) {
 		this.cmList = cmList;
+	}
+
+	public String getPropertyType() {
+		return propertyType;
+	}
+
+	public void setPropertyType(String propertyType) {
+		this.propertyType = propertyType;
 	}
 
 }

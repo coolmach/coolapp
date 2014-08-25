@@ -101,7 +101,7 @@
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-sm-4 control-label">Password<span class="mandatory">*</span></label>
+							<label class="col-sm-4 control-label">Choose a CBuddy Password<span class="mandatory">*</span></label>
 							<div class="col-sm-8">
 								<input placeholder="Password" required type="password"
 									class="form-control" id="Pwd" name="Pwd">
