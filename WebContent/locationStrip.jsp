@@ -7,7 +7,7 @@
 	<div class="form-group">
 		<label for="location" class="col-sm-5 control-label">City</label>
 		<div class="col-sm-7" style="padding-top:7px;">
-			<s:radio label="Choose City" theme="simple" name="city" id="city" list="#{'BLR':'Bangalore','CHE':'Chennai'}" value="postDetails.city" />
+			<s:radio label="Choose City" theme="simple" name="city" id="city" list="#{'BLR':'Bangalore','CHE':'Chennai'}" value="postDetails.city" onclick="populateApprovalAuthority(this.value)" />
 		</div>
 	</div>			
 	<div class="form-group">

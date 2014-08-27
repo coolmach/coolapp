@@ -124,7 +124,7 @@ public class RealEstateAction extends ActionSupport implements SessionAware, Ser
 				addFieldError("errorMsg", "Please enter Area");
 				return false;
 			}
-			if(postDetails.getBedrooms()==0){
+			if(postDetails.getBedrooms()==null || postDetails.getBedrooms().trim().equals("")){
 				addFieldError("errorMsg", "Please enter number of bedrooms");
 				return false;
 			}
@@ -188,8 +188,8 @@ public class RealEstateAction extends ActionSupport implements SessionAware, Ser
 			addFieldError("errorMsg", "Invalid Area");
 			return false;
 		}
-		tempInt = postDetails.getBedrooms();
-		if(tempInt > 10){
+		temp = postDetails.getBedrooms();
+		if(temp!=null && temp.length() > 4){
 			addFieldError("errorMsg", "Invalid number of Bedrooms");
 			return false;
 		}
@@ -321,7 +321,7 @@ public class RealEstateAction extends ActionSupport implements SessionAware, Ser
 		pdre.setBedrooms(postDetails.getBedrooms());
 		pdre.setBuilderName(postDetails.getBuilderName());
 		pdre.setCarParking(postDetails.getCarParking()!=null && (postDetails.getCarParking().equals("true") || postDetails.getCarParking().equals("Y"))?"Y":null);
-		pdre.setChildrenPlayArea(postDetails.getChildrenPlayArea());
+		pdre.setChildrenPlayArea(postDetails.getChildrenPlayArea()!=null && (postDetails.getChildrenPlayArea().equals("true") || postDetails.getChildrenPlayArea().equals("Y"))?"Y":null);
 		pdre.setCity(postDetails.getCity());
 		pdre.setClubHouse(postDetails.getClubHouse()!=null && postDetails.getClubHouse().equals("true")?"Y":null);
 		pdre.setCreatedBy(userId);

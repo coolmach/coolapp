@@ -23,10 +23,37 @@
 				alert('error: ' + error.responseText);
 			}
 		});
-
 	}
 </script>
-
+<script>
+function populateApprovalAuthority(city){
+	$("#ApprovalAuthority").html("");
+	if(city == 'CHE'){
+		$("#ApprovalAuthority").append("<option value='-1'>Select</option>");
+		$("#ApprovalAuthority").append("<option value='CMDA'>CMDA</option>");
+		$("#ApprovalAuthority").append("<option value='NONE'>No Approval</option>");
+		$("#ApprovalAuthority").append("<option value='OTH'>Others</option>");
+	}else if(city == 'BLR'){
+		$("#ApprovalAuthority").append("<option value='-1'>Select</option>");
+		$("#ApprovalAuthority").append("<option value='DC'>District Commissioner</option>");
+		$("#ApprovalAuthority").append("<option value='BDA'>BDA</option>");
+		$("#ApprovalAuthority").append("<option value='BMRDA'>BMRDA</option>");
+		$("#ApprovalAuthority").append("<option value='BBMP'>BBMP</option>");
+		$("#ApprovalAuthority").append("<option value='NONE'>No Approval</option>");
+		$("#ApprovalAuthority").append("<option value='OTH'>Others</option>");		
+	}else{
+		$("#ApprovalAuthority").append("<option value='-1'>Select</option>");
+		$("#ApprovalAuthority").append("<option value='NONE'>No Approval</option>");
+		$("#ApprovalAuthority").append("<option value='OTH'>Others</option>");
+	}
+}
+function addOption(selectbox, text, value){
+	var optn = document.createElement("OPTION");
+	optn.text = text;
+	optn.value = value;
+	selectbox.options.add(optn);
+}
+</script>
 <span class="error" style="margin-left:15%;margin-top:1%;"><s:fielderror fieldName="errorMsg"/></span>
 
 <s:form cssClass="form-horizontal post" action="real_estate_postAd.action" enctype="multipart/form-data">

@@ -33,7 +33,7 @@ public class Pdre {
 	private String maritalPreference;
 	private String foodPreference;
 	private String regionalPreference;
-	private int bedrooms;
+	private String bedrooms;
 	private int ageValue;
 	private String ageUnit;
 	private String furnished;
@@ -188,10 +188,10 @@ public class Pdre {
 	}
 
 	@Column(name="BEDROOMS")
-	public int getBedrooms(){
+	public String getBedrooms(){
 		return this.bedrooms;
 	}
-	public void setBedrooms(int Bedrooms){
+	public void setBedrooms(String Bedrooms){
 		this.bedrooms = Bedrooms;
 	}
 

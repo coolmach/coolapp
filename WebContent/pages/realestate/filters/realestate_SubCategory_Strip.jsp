@@ -7,7 +7,7 @@
                  <span class="glyphicon glyphicon-chevron-down"></span>
             </a>
         </div>
-		<ul class="list-unstyled collapse in"" id="collapse_ul" style="padding:10px;">
+		<ul class="list-unstyled collapse in" id="collapse_ul" style="padding:10px;">
 		    <li value="2"><span class="content">Apartment For Rent</span></li>
 			<li value="1"><span class="content">Apartment For Sale</span></li>
 			<li value="4"><span class="content">Independent House For Rent</span></li>

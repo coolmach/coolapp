@@ -1,4 +1,83 @@
 <%@ taglib prefix="s" uri="/struts-tags"%>
+
+<script>
+	$(document).ready(function(){
+		if($('#cityBLR').is(':checked')){
+			populateApprovalAuthority("BLR");			
+		}else if($('#radio_button').is(':checked')){
+			populateApprovalAuthority("CHE");
+		}else{
+			populateApprovalAuthority("OTHERS");
+		}
+	});
+	
+	$(document).ready(function(){
+		if(isAnyAdditionalDetailPopulated()){
+			//Some details are present in additional details section. Hence EXPAND this section
+			$("#collapse_section_1").addClass("in");
+		}else{
+			//No details are present in additional details section. Hence COLLAPSE this section
+			$("#collapse_section_1").removeClass("in");
+		}
+	});
+	
+	function isAnyAdditionalDetailPopulated(){
+		output = false;
+		if(isTextFieldPopulated("BuilderName") || isTextFieldPopulated("FloorNumber")){
+			output = true;
+		}
+		//alert("1 - " + output);
+		if(isRadioButtonSelected()){
+			output = true;
+		}
+		//alert("2 - : " + output);
+		if(isDropDownSelected("FacingDirection") || isDropDownSelected("ApprovalAuthority")){
+			output = true;
+		}
+		//alert("3 - " + output);
+		if(isCheckBoxSelected()){
+			output = true;
+		}
+		//alert("4 - " + output);
+		//alert("Returning " + output);
+		return output;
+	}
+	
+	function isTextFieldPopulated(fieldName){
+		if($("#" + fieldName).val().length === 0){
+			return false;
+		}else{
+			return true;
+		}
+	}
+	
+	function isDropDownSelected(fieldName){
+		if($("#" + fieldName).val() === "-1"){
+			return false;
+		}else{
+			return true;
+		}
+	}
+	
+	function isRadioButtonSelected(){
+		if($('#ReadyToOccupyY').is(':checked') || $('#ReadyToOccupyN').is(':checked')) {
+			return true;
+		}else{
+			return false;
+		}
+	}
+	
+	function isCheckBoxSelected(){
+		if($('#powerBackup').is(':checked') || $('#gym').is(':checked') || $('#carParking').is(':checked')
+				 || $('#childrenPlayArea').is(':checked') || $('#clubHouse').is(':checked') || $('#swimmingPool').is(':checked')) {
+			return true;
+		}else{
+			return false;
+		}
+	}
+	
+</script>
+
 	<!-- Apartment for Sale - START -->
 	<div id="APARTMENT_FOR_SALE">
 		<input type="hidden" id="subCategory" name="subCategory" value="1">
@@ -36,7 +115,7 @@
 						<input type="text" class="form-control" maxlength="8" name="PriceValue" id="PriceValue" required>
 					</s:if>
 					<s:else>
-						<input type="text" class="form-control" maxlength="8" name="PriceValue" id="PriceValue" value='<s:property value="PriceValueStr"/>' required>
+						<input type="text" class="form-control" maxlength="8" name="PriceValue" id="PriceValue" value='<s:property value="PriceValue"/>' required>
 					</s:else>
 					
 				</div>
@@ -103,19 +182,19 @@
 				<div class="col-sm-5">
 					<s:select class="dropDown" style="height:30px;width:175px;" id="ApprovalAuthority" name="ApprovalAuthority" theme="simple"
 						headerKey="-1" headerValue="Select"
-						list="#{'BDA':'BDA', 'BMRDA':'BMRDA', 'DC':'District Commissioner', 'BBMP':'BBMP', 'Others':'Others'}"
+						list="#{'-1':'Select City'}"
 						value="ApprovalAuthority" />					
 				</div>
 			</div>			
 			<div class="form-group">
 				<label class="col-sm-5 control-label">Amenities</label>
 				<div class="col-sm-6" style="padding-top:10px;">
-					<s:checkbox name="powerBackup" fieldValue="true" value="powerBackup" label="Power Backup" theme="simple"/><span class="checkBoxText">Power Backup </span><BR>
-					<s:checkbox name="gym" fieldValue="true" value="gym" label="Gym" theme="simple"/><span class="checkBoxText">Gym </span><BR>
-					<s:checkbox name="carParking" fieldValue="true" value="carParking" label="Car Parking" theme="simple"/><span class="checkBoxText">Car Parking</span><BR>
-					<s:checkbox name="childrenPlayArea" fieldValue="true" value="childrenPlayArea" label="Children Park" theme="simple"/><span class="checkBoxText">Children Park</span><BR>
-					<s:checkbox name="clubHouse" fieldValue="true" value="clubHouse" label="Club House" theme="simple"/><span class="checkBoxText">Club House </span><BR>
-					<s:checkbox name="swimmingPool" fieldValue="true" value="swimmingPool" label="Swimming Pool" theme="simple"/><span class="checkBoxText">Swimming Pool</span><BR>
+					<s:checkbox id="powerBackup" name="powerBackup" fieldValue="true" value="powerBackup" label="Power Backup" theme="simple"/><span class="checkBoxText">Power Backup </span><BR>
+					<s:checkbox id="gym" name="gym" fieldValue="true" value="gym" label="Gym" theme="simple"/><span class="checkBoxText">Gym </span><BR>
+					<s:checkbox id="carParking" name="carParking" fieldValue="true" value="carParking" label="Car Parking" theme="simple"/><span class="checkBoxText">Car Parking</span><BR>
+					<s:checkbox id="childrenPlayArea" name="childrenPlayArea" fieldValue="true" value="childrenPlayArea" label="Children Park" theme="simple"/><span class="checkBoxText">Children Park</span><BR>
+					<s:checkbox id="clubHouse" name="clubHouse" fieldValue="true" value="clubHouse" label="Club House" theme="simple"/><span class="checkBoxText">Club House </span><BR>
+					<s:checkbox id="swimmingPool" name="swimmingPool" fieldValue="true" value="swimmingPool" label="Swimming Pool" theme="simple"/><span class="checkBoxText">Swimming Pool</span><BR>
 				</div>
 			</div>									
 		</div>
