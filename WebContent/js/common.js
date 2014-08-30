@@ -224,3 +224,9 @@ function applyFilters(){
 	function submitForm(){
 		$("#categoryForm").submit();
 	}
+
+	
+	function doubleToString(double_input){
+		return  double_input.toString();
+	}
+	

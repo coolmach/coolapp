@@ -21,6 +21,7 @@
 <script type="text/javascript" src="js/home_plain.js"></script>
 <script type="text/javascript" src="js/common.js"></script>
 <script type="text/javascript" src="js/jquery.validate.js"></script>
+<script type="text/javascript" src="js/ToWords.js"></script>
 <script src="js/jquery.simplemodal.js"></script>
 <script type="text/javascript" src="js/Cbuddy.js"></script>
 

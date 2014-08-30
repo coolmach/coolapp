@@ -429,7 +429,7 @@
 			<result name="ApartmentForRent">/pages/realestate/postad/PostAd_RealEstate_Apartment_For_Rent.jsp</result>
 			<result name="ApartmentForSale">/pages/realestate/postad/PostAd_RealEstate_Apartment_For_Sale.jsp</result>
 			<result name="IndependentHouseForRent">/pages/realestate/postad/PostAd_RealEstate_Ind_House_For_Rent.jsp</result>
-			<result name="IndependentHouseForSale">/pages/realestate/postad/PostAd_RealEstate_Ind_House_For_Rent.jsp</result>
+			<result name="IndependentHouseForSale">/pages/realestate/postad/PostAd_RealEstate_Ind_House_For_Sale.jsp</result>
 			<result name="PGAccommodation">/pages/realestate/postad/PostAd_RealEstate_PG_Accommodation.jsp</result>
 			<result name="LandForSale">/pages/realestate/postad/PostAd_RealEstate_Land_For_Sale.jsp</result>
 			<result name="RoommateRequired">/pages/realestate/postad/PostAd_RealEstate_Roommate_Required.jsp</result>

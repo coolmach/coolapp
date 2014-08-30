@@ -38,6 +38,8 @@ public class Pdre {
 	private String ageUnit;
 	private String furnished;
 	private String floorNumber;
+	private double deposit;
+	private String depositStr;
 	private double maintenance;
 	private String maintenanceStr;
 	private String approvalAuthority;
@@ -227,6 +229,14 @@ public class Pdre {
 		this.floorNumber = FloorNumber;
 	}
 
+	@Column(name="DEPOSIT")
+	public double getDeposit(){
+		return this.deposit;
+	}
+	public void setDeposit(double Deposit){
+		this.deposit = Deposit;
+	}
+	
 	@Column(name="MAINTENANCE")
 	public double getMaintenance(){
 		return this.maintenance;
@@ -433,6 +443,14 @@ public class Pdre {
 	}
 	public void setMaintenanceStr(String maintenanceStr) {
 		this.maintenanceStr = maintenanceStr;
+	}
+	
+	@Transient
+	public String getDepositStr() {
+		return depositStr;
+	}
+	public void setDepositStr(String depositStr) {
+		this.depositStr = depositStr;
 	}
 	
 	@Column(name="POWER_BACKUP")

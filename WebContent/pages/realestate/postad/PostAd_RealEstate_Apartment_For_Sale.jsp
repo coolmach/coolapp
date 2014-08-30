@@ -2,16 +2,6 @@
 
 <script>
 	$(document).ready(function(){
-		if($('#cityBLR').is(':checked')){
-			populateApprovalAuthority("BLR");			
-		}else if($('#radio_button').is(':checked')){
-			populateApprovalAuthority("CHE");
-		}else{
-			populateApprovalAuthority("OTHERS");
-		}
-	});
-	
-	$(document).ready(function(){
 		if(isAnyAdditionalDetailPopulated()){
 			//Some details are present in additional details section. Hence EXPAND this section
 			$("#collapse_section_1").addClass("in");
@@ -20,6 +10,11 @@
 			$("#collapse_section_1").removeClass("in");
 		}
 	});
+	
+	function getAmountInWords(s){
+		output = amountToWords(s);
+		document.getElementById("amtInWords").innerHTML = output;
+	}
 	
 	function isAnyAdditionalDetailPopulated(){
 		output = false;
@@ -117,9 +112,9 @@
 					<s:else>
 						<input type="text" class="form-control" maxlength="8" name="PriceValue" id="PriceValue" value='<s:property value="PriceValue"/>' required>
 					</s:else>
-					
+					<!--div id="amtInWords" style="margin-left:10px; font-size:12px; color:#AAAAAA;"></div-->
 				</div>
-			</div>
+			</div>			
 			<div class="form-group">
 				<label class="col-sm-5 control-label">Contact Person Name<span class="mandatory">*</span></label>
 				<div class="col-sm-6">

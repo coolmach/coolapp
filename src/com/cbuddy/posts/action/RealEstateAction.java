@@ -106,11 +106,11 @@ public class RealEstateAction extends ActionSupport implements SessionAware, Ser
 			addFieldError("errorMsg", "Please enter Contact Person Name");
 			return false;
 		}
-		if(postDetails.getCity().equals("")){
+		if(postDetails.getCity()==null || postDetails.getCity().equals("")){
 			addFieldError("errorMsg", "Please enter City");
 			return false;
 		}
-		if(postDetails.getSelectedLocationCode().equals("")){
+		if(postDetails.getSelectedLocationCode()==null || postDetails.getSelectedLocationCode().equals("")){
 			addFieldError("errorMsg", "Please enter Location");
 			return false;
 		}
@@ -124,8 +124,8 @@ public class RealEstateAction extends ActionSupport implements SessionAware, Ser
 				addFieldError("errorMsg", "Please enter Area");
 				return false;
 			}
-			if(postDetails.getBedrooms()==null || postDetails.getBedrooms().trim().equals("")){
-				addFieldError("errorMsg", "Please enter number of bedrooms");
+			if(postDetails.getBedrooms()==null || postDetails.getBedrooms().trim().equals("-1")){
+				addFieldError("errorMsg", "Please specify Number Of Bedrooms");
 				return false;
 			}
 //			if(postDetails.getFacingDirection().equals("")){
@@ -138,6 +138,22 @@ public class RealEstateAction extends ActionSupport implements SessionAware, Ser
 //			}
 		}
 
+		if(subCategory.equals(CBuddyConstants.SUBCATEGORY_REAL_ESTATE_IND_HOUSE_FOR_SALE) ||
+				subCategory.equals(CBuddyConstants.SUBCATEGORY_REAL_ESTATE_APARTMENT_FOR_SALE)){
+			if(postDetails.getNewOrResale() == null || postDetails.getNewOrResale().trim().equals("")){
+				addFieldError("errorMsg", "Please select New or Resale");
+				return false;
+			}
+		}
+		
+		if(subCategory.equals(CBuddyConstants.SUBCATEGORY_REAL_ESTATE_PG_ACCOMODATION) ||
+				subCategory.equals(CBuddyConstants.SUBCATEGORY_REAL_ESTATE_ROOMMATE_REQUIRED)){
+			if(postDetails.getGender()==null || postDetails.getGender().trim().equals("")){
+				addFieldError("errorMsg", "Please choose the Gender");
+				return false;
+			}
+		}
+		
 //		if(subCategory.equals(CBuddyConstants.SUBCATEGORY_REAL_ESTATE_APARTMENT_FOR_SALE)){
 //			String newOrResale = postDetails.getNewOrResale();
 //			if(newOrResale.equals("")){
@@ -220,6 +236,11 @@ public class RealEstateAction extends ActionSupport implements SessionAware, Ser
 		tempD = postDetails.getMaintenance();
 		if(tempD > 100000000){
 			addFieldError("errorMsg", "Invalid Maintenance");
+			return false;
+		}
+		tempD = postDetails.getDeposit();
+		if(tempD > 100000000){
+			addFieldError("errorMsg", "Invalid Deposit");
 			return false;
 		}
 //		temp = postDetails.getFacingDirection();
@@ -336,6 +357,7 @@ public class RealEstateAction extends ActionSupport implements SessionAware, Ser
 		//pdre.setImageFileName(this.uploadFileName);
 		pdre.setLocation(postDetails.getSelectedLocationCode());
 		pdre.setMaintenance(postDetails.getMaintenance());
+		pdre.setDeposit(postDetails.getDeposit());
 		pdre.setMaritalPreference(postDetails.getMaritalPreference());
 		pdre.setModifiedBy(userId);
 		pdre.setModifiedOn(current);
@@ -380,6 +402,9 @@ public class RealEstateAction extends ActionSupport implements SessionAware, Ser
 	}
 
 	private void populateAdditionalDetails(){
+		if(adList == null){
+			return;
+		}
 		SessionFactory sessionFactory = (SessionFactory) ServletActionContext.getServletContext().getAttribute("sessionFactory");
 		Session dbSession = sessionFactory.openSession();
 		for(RealEstatePostDetails postDetails:adList){
@@ -398,6 +423,7 @@ public class RealEstateAction extends ActionSupport implements SessionAware, Ser
 		postDetails.setLocation(locName);
 		postDetails.setPriceValueStr(NumberFormatterUtil.formatAmount(postDetails.getPriceValue()));
 		postDetails.setMaintenanceStr(NumberFormatterUtil.formatAmount(postDetails.getMaintenance()));
+		postDetails.setDepositStr(NumberFormatterUtil.formatAmount(postDetails.getDeposit()));
 		postDetails.setFacingDirectionStr(utils.getDirectionDesc(postDetails.getFacingDirection()));
 		postDetails.setFloorNumberStr(utils.getFloorNumberDesc(postDetails.getFloorNumber()));
 		postDetails.setFurnishedStr(utils.getFurnishedDesc(postDetails.getFurnished()));
@@ -420,7 +446,9 @@ public class RealEstateAction extends ActionSupport implements SessionAware, Ser
 		if(postDetails.getNewOrResale()!= null){
 			if(postDetails.getNewOrResale().equals("N")){
 				//New
-				if(postDetails.getReadyToOccupy().equals("Y")){
+				if(postDetails.getReadyToOccupy() == null || postDetails.getReadyToOccupy().trim().equals("")){
+					temp = "New";
+				}else if(postDetails.getReadyToOccupy().equals("Y")){
 					temp = "New - Ready to Move";
 				}else{
 					if(postDetails.getExpectedCompletionDate()!=null){
@@ -444,6 +472,10 @@ public class RealEstateAction extends ActionSupport implements SessionAware, Ser
 	public String getAdListForRealEstate(){
 
 		Utils utils = new Utils();
+		
+		if(postDetails == null){
+			return null;
+		}
 		
 		if(postDetails.getCategory()==null || postDetails.getCategory().equals("") || !postDetails.getCategory().equals(CBuddyConstants.CATEGORY_REAL_ESTATE)){
 			postDetails.setCategory(CBuddyConstants.CATEGORY_REAL_ESTATE);

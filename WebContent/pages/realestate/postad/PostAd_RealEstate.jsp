@@ -13,17 +13,25 @@
 			type: "POST",
 			data: {subCategory:$("#propertyType").val()},
 			success: function(data) {
-				returnedData = data;
-				if(returnedData.indexOf("Password") >= 0){
-					window.location.assign("http://www.w3schools.com")
-				}
 				$("#postContent").html(data);
 			},
 			error: function (error) {
 				alert('error: ' + error.responseText);
 			}
 		});
+		$("#propertyType").prop("disabled", true);
+		$("#propertyType").css("background-color", "#FAFAFA");
+		$("#changePropertyType").show();
 	}
+	$(document).ready(function(){
+		if($("#cityBLR").val() !== ""){
+			populateApprovalAuthority($("#cityBLR").val());
+		}else if($("#cityCHE").val() !== ""){
+			populateApprovalAuthority($("#cityCHE").val());
+		}
+		var x = "<s:property value='ApprovalAuthority'/>";
+		$("#ApprovalAuthority").val(x);
+	});
 </script>
 <script>
 function populateApprovalAuthority(city){
@@ -53,6 +61,30 @@ function addOption(selectbox, text, value){
 	optn.value = value;
 	selectbox.options.add(optn);
 }
+function enablePropertyType(){
+	$("#propertyType").prop("disabled", false);
+	$("#propertyType option[value='-1']").remove();
+	$("#propertyType").css("background-color", "#FFFFFF");
+	$("#changePropertyType").hide();
+	return false;
+}
+function deactivatePropertyType(){
+	$("#propertyType").prop("disabled", true);
+	$("#propertyType option[value='-1']").remove();
+	$("#propertyType").css("background-color", "#FAFAFA");
+	$("#changePropertyType").show();
+	return false;
+}
+$(document).ready(function(){
+	$("#changePropertyType").hide();
+	isLoaded = "<s:property value="subCategory" />";
+	if (isLoaded == "") {
+
+	}else{
+		deactivatePropertyType();
+	}
+});
+
 </script>
 <span class="error" style="margin-left:15%;margin-top:1%;"><s:fielderror fieldName="errorMsg"/></span>
 
@@ -61,21 +93,23 @@ function addOption(selectbox, text, value){
 	<input type="hidden" name="category" value="REAL"/>
 	<div class="col-md-8">
 		<div class="form-group">
+			<label class="col-sm-5 control-label">Property Type</label>
+			<div class="col-sm-7" style="padding-top:6px;">
+				<s:select class="dropDown" style="height:30px;width:190px;" id="propertyType" name="propertyType" theme="simple" onChange="displayPostAdSection()"
+						headerKey="-1" headerValue="Select"
+						list="#{'2':'Apartment For Rent', '4':'Independent House For Rent', '7':'Roommate Required', '1':'Apartment For Sale', '3':'Independent House For Sale', '5':'PG Accommodation', '6':'Plot for Sale'}"
+						value="subCategory" />
+				<span id="changePropertyType"><a href="#" onclick="return enablePropertyType()">Change</a></span>
+			</div>
+		</div>	
+		<div class="form-group">
 			<label for="title" class="col-sm-5 control-label">Title<span class="mandatory">*</span></label>
 			<div class="col-sm-7">
 				<input type="text" class="form-control" maxlength="200" id="Title" name="Title" value="<s:property value='title'/>" required>
 			</div>
 		</div>
 		<%@include file="/locationStrip.jsp" %>
-		<div class="form-group">
-			<label class="col-sm-5 control-label">Property Type</label>
-			<div class="col-sm-7" style="padding-top:6px;">
-				<s:select class="dropDown" style="height:30px;width:190px;" id="propertyType" name="propertyType" theme="simple" onChange="displayPostAdSection()"
-						headerKey="-1" headerValue="Select"
-						list="#{'2':'Apartment For Rent', '3':'Independent House For Rent', '6':'Roommate Required', '1':'Apartment For Sale', '4':'Independent House For Sale', '5':'PG Accommodation'}"
-						value="propertyType" />
-			</div>
-		</div>
+
 		<div id="postContent">
 			<s:if test="#action.postDetails.subCategory == 1">
 				<%@ include file="PostAd_RealEstate_Apartment_For_Sale.jsp" %>
