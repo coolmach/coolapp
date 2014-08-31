@@ -88,7 +88,7 @@ $(document).ready(function(){
 </script>
 <span class="error" style="margin-left:15%;margin-top:1%;"><s:fielderror fieldName="errorMsg"/></span>
 
-<s:form cssClass="form-horizontal post" action="real_estate_postAd.action" enctype="multipart/form-data">
+<s:form cssClass="form-horizontal post" id="postContentForm" action="real_estate_postAd.action" enctype="multipart/form-data">
 <div class="row col-md-10" id="my">
 	<input type="hidden" name="category" value="REAL"/>
 	<div class="col-md-8">

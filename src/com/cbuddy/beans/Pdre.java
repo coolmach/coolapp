@@ -34,6 +34,7 @@ public class Pdre {
 	private String foodPreference;
 	private String regionalPreference;
 	private String bedrooms;
+	private int bathrooms;
 	private int ageValue;
 	private String ageUnit;
 	private String furnished;
@@ -485,4 +486,11 @@ public class Pdre {
 		this.page = page;
 	}
 	
+	@Column(name="BATHROOMS")
+	public int getBathrooms() {
+		return bathrooms;
+	}
+	public void setBathrooms(int bathrooms) {
+		this.bathrooms = bathrooms;
+	}	
 }

@@ -24,6 +24,8 @@ public class TelevisionPostDetails extends PTelevision implements Serializable, 
 	private String ContactPersonName;
 	private String ImageFileName;
 	private String category;
+	private String negotiable;
+	
 	private String subCategory;
 	private String yearStr;
 	private String priceStr;
@@ -159,5 +161,14 @@ public class TelevisionPostDetails extends PTelevision implements Serializable, 
 
 	public void setYearStr(String yearStr) {
 		this.yearStr = yearStr;
+	}
+	
+	@Column(name="NEGOTIABLE")
+	public String getNegotiable() {
+		return negotiable;
+	}
+
+	public void setNegotiable(String negotiable) {
+		this.negotiable = negotiable;
 	}
 }

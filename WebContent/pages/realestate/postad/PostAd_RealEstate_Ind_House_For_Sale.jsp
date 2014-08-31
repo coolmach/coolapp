@@ -21,7 +21,7 @@
 			output = true;
 		}
 		//alert("2 - : " + output);
-		if(isDropDownSelected("FacingDirection") || isDropDownSelected("ApprovalAuthority")){
+		if(isDropDownSelected("FacingDirection") || isDropDownSelected("ApprovalAuthority") || isDropDownSelected("Bathrooms")){
 			output = true;
 		}
 		//alert("4 - " + output);
@@ -139,6 +139,15 @@
 					<s:radio label="Choose Ready To Occupy" theme="simple" name="ReadyToOccupy" id="ReadyToOccupy" list="#{'Y':'Yes','N':'No'}" value="postDetails.ReadyToOccupy" />
 				</div>
 			</div>
+			<div class="form-group">
+				<label class="col-sm-5 control-label">No. of Bathrooms</label>
+				<div class="col-sm-2">
+					<s:select class="dropDown" style="height:30px;width:80px;" id="Bathrooms" name="Bathrooms" theme="simple"
+						headerKey="-1" headerValue="Select"
+						list="#{'1':'1', '2':'2', '3':'3', '4':'4'}"
+						value="Bathrooms" />			
+				</div>
+			</div>			
 			<div class="form-group">
 				<label class="col-sm-5 control-label">Floor No (G-Ground Floor)</label>
 				<div class="col-sm-2">

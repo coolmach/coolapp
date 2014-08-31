@@ -24,6 +24,7 @@ public class AutomobilePostDetails extends Pdau implements Serializable, CommonD
 	private String ContactPersonName;
 	private String ImageFileName;
 	private String category;
+	private String negotiable;
 
 	private String priceStr;
 	private String fuelTypeStr;
@@ -181,4 +182,12 @@ public class AutomobilePostDetails extends Pdau implements Serializable, CommonD
 		this.corpId = corpId;
 	}
 
+	@Column(name="NEGOTIABLE")
+	public String getNegotiable() {
+		return negotiable;
+	}
+
+	public void setNegotiable(String negotiable) {
+		this.negotiable = negotiable;
+	}
 }

@@ -24,7 +24,8 @@ public class FurniturePostDetails extends PFurniture implements Serializable, Co
 	private String ContactPersonName;
 	private String ImageFileName;
 	private String category;
-
+	private String negotiable;
+	
 	private String yearStr;
 	private String priceStr;
 	private String furnitureTypeStr;
@@ -160,5 +161,14 @@ public class FurniturePostDetails extends PFurniture implements Serializable, Co
 
 	public void setFurnitureTypeStr(String furnitureTypeStr) {
 		this.furnitureTypeStr = furnitureTypeStr;
+	}
+	
+	@Column(name="NEGOTIABLE")
+	public String getNegotiable() {
+		return negotiable;
+	}
+
+	public void setNegotiable(String negotiable) {
+		this.negotiable = negotiable;
 	}
 }

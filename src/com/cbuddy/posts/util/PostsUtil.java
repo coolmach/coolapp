@@ -41,6 +41,7 @@ public class PostsUtil {
 		poit.setThumbnailType(null);
 		poit.setUserFirstName(user.getFirstName());
 		poit.setPostStatus(user.getStatus());
+		poit.setNegotiable(postDetails.getNegotiable()!=null && postDetails.getNegotiable().equals("true")?"Y":null);
 
 		dbSession.save(poit);
 

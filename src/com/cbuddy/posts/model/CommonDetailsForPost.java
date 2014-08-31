@@ -9,4 +9,5 @@ public interface CommonDetailsForPost {
 	public String getSelectedLocationCode();
 	public double getPrice();
 	public String getSubCategory();
+	public String getNegotiable();
 }

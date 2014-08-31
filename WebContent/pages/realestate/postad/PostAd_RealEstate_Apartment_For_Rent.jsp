@@ -22,7 +22,7 @@
 			output = true;
 		}
 		//alert("2 - : " + output);
-		if(isDropDownSelected("FacingDirection")){
+		if(isDropDownSelected("FacingDirection") || isDropDownSelected("Bathrooms")){
 			output = true;
 		}
 		//alert("3 - " + output);
@@ -103,7 +103,7 @@
 					<s:else>
 						<input type="text" class="form-control" maxlength="6" name="PriceValue" id="PriceValue" value='<s:property value="PriceValue"/>' required>
 					</s:else>
-					
+					<s:checkbox id="negotiable" name="negotiable" fieldValue="true" value="negotiable" label="Negotiable" theme="simple"/><span class="checkBoxText">Negotiable</span><BR>
 				</div>
 			</div>
 			<div class="form-group">
@@ -158,6 +158,15 @@
 					</s:else>
 				</div>
 			</div>
+			<div class="form-group">
+				<label class="col-sm-5 control-label">No. of Bathrooms</label>
+				<div class="col-sm-2">
+					<s:select class="dropDown" style="height:30px;width:80px;" id="Bathrooms" name="Bathrooms" theme="simple"
+						headerKey="-1" headerValue="Select"
+						list="#{'1':'1', '2':'2', '3':'3', '4':'4'}"
+						value="Bathrooms" />			
+				</div>
+			</div>			
 			<div class="form-group">
 				<label class="col-sm-5 control-label">Floor No (G-Ground Floor)</label>
 				<div class="col-sm-2">

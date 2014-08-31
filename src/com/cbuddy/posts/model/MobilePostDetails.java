@@ -24,6 +24,7 @@ public class MobilePostDetails extends Pdmo implements Serializable, CommonDetai
 	private String ContactPersonName;
 	private String ImageFileName;
 	private String category;
+	private String negotiable;
 
 	private String priceStr;
 	private String brandStr;
@@ -229,5 +230,14 @@ public class MobilePostDetails extends Pdmo implements Serializable, CommonDetai
 
 	public void setYearStr(String yearStr) {
 		this.yearStr = yearStr;
+	}
+	
+	@Column(name="NEGOTIABLE")
+	public String getNegotiable() {
+		return negotiable;
+	}
+
+	public void setNegotiable(String negotiable) {
+		this.negotiable = negotiable;
 	}
 }

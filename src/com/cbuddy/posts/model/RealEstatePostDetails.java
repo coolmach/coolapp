@@ -25,6 +25,8 @@ public class RealEstatePostDetails extends Pdre implements Serializable, CommonD
 	private String ImageFileName;
 	private String category;
 	private int corpId;
+	private String negotiable;
+	
 	//private String subcategory;
 	private String priceValueStr;
 	private String newOrResaleStr;
@@ -207,5 +209,14 @@ public class RealEstatePostDetails extends Pdre implements Serializable, CommonD
 	}
 	public void setPrice(double price) {
 		setPriceValue(price);
+	}
+
+	@Column(name="NEGOTIABLE")
+	public String getNegotiable() {
+		return negotiable;
+	}
+
+	public void setNegotiable(String negotiable) {
+		this.negotiable = negotiable;
 	}
 }

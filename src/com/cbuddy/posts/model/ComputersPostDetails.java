@@ -24,7 +24,8 @@ public class ComputersPostDetails extends Pcomp implements Serializable, CommonD
 	private String ContactPersonName;
 	private String ImageFileName;
 	private String category;
-
+	private String negotiable;
+	
 	private String priceStr;
 	private String makeStr;
 	private String selectedLocationStr;
@@ -191,5 +192,12 @@ public class ComputersPostDetails extends Pcomp implements Serializable, CommonD
 		this.hddSizeStr = hddSizeStr;
 	}
 
+	@Column(name="NEGOTIABLE")
+	public String getNegotiable() {
+		return negotiable;
+	}
 
+	public void setNegotiable(String negotiable) {
+		this.negotiable = negotiable;
+	}
 }

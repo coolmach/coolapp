@@ -209,6 +209,13 @@ public class RealEstateAction extends ActionSupport implements SessionAware, Ser
 			addFieldError("errorMsg", "Invalid number of Bedrooms");
 			return false;
 		}
+		
+		tempInt = postDetails.getBathrooms();
+		if(tempInt > 5){
+			addFieldError("errorMsg", "Invalid number of Bathrooms");
+			return false;
+		}
+		
 		temp = postDetails.getMaritalPreference();
 		if(temp!=null && temp.length()>1){
 			addFieldError("errorMsg", "Invalid Family Preference");
@@ -340,6 +347,7 @@ public class RealEstateAction extends ActionSupport implements SessionAware, Ser
 		pdre.setReadyToOccupy(postDetails.getReadyToOccupy());
 		pdre.setArea(postDetails.getArea());
 		pdre.setBedrooms(postDetails.getBedrooms());
+		pdre.setBathrooms(postDetails.getBathrooms());
 		pdre.setBuilderName(postDetails.getBuilderName());
 		pdre.setCarParking(postDetails.getCarParking()!=null && (postDetails.getCarParking().equals("true") || postDetails.getCarParking().equals("Y"))?"Y":null);
 		pdre.setChildrenPlayArea(postDetails.getChildrenPlayArea()!=null && (postDetails.getChildrenPlayArea().equals("true") || postDetails.getChildrenPlayArea().equals("Y"))?"Y":null);
