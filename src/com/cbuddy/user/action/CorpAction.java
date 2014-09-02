@@ -9,6 +9,7 @@ import org.apache.struts2.interceptor.ServletRequestAware;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import com.cbuddy.beans.Corp;
@@ -22,7 +23,7 @@ public class CorpAction extends ActionSupport implements ServletRequestAware{
 	private String corpSearchString;
 	private JSONArray jsonArray;
 
-	public String autoPopulateCorporates(){
+	public String autoPopulateCorporates() throws JSONException{
 		String output = "success";
 		SessionFactory sessionFactory = (SessionFactory) ServletActionContext.getServletContext().getAttribute("sessionFactory");
 		Session dbSession = sessionFactory.openSession();

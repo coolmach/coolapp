@@ -17,6 +17,7 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import com.cbuddy.beans.MasterComment;
@@ -419,7 +420,7 @@ public class MobileAction extends ActionSupport implements SessionAware, Servlet
 		return "success";
 	}
 
-	public String autoPopulateMobileModels(){
+	public String autoPopulateMobileModels() throws JSONException{
 		String output = "success";
 		SessionFactory sessionFactory = (SessionFactory) ServletActionContext.getServletContext().getAttribute("sessionFactory");
 		Session dbSession = sessionFactory.openSession();

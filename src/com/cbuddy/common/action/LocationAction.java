@@ -15,6 +15,7 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import com.cbuddy.beans.Location;
@@ -38,7 +39,7 @@ public class LocationAction extends ActionSupport implements SessionAware, Servl
 	private HttpServletRequest request = null;
 	private Map<String,Object> session;
 
-	public String getLocations(){
+	public String getLocations() throws JSONException{
 		System.out.println("LocationAction.getLocations() - ENTER");
 		LogUtil.getInstance().info(">>> LocationAction.getLocations() - ENTER");
 		String city = request.getParameter("city");
