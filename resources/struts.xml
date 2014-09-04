@@ -456,5 +456,8 @@
 		<action name="socialAuthSuccessAction" class="com.cbuddy.common.action.SocialAuthSuccessAction">
 			<result name="success">/authSuccess.jsp</result>
 		</action> 
+		<action name="loadMobileModels" class="com.cbuddy.posts.action.MobileAction" method="getMobileModels">
+			<result name="success">/mobileModels.jsp</result>
+		</action> 
 	</package>
 </struts>

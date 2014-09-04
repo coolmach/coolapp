@@ -85,6 +85,7 @@ $(document).ready(function() {
 		$("#amt-main").show();
 		$("#os-main").show();
 		$("#sims-main").show();
+		$("#mobilemodel-main").hide();
 
 	}else if(cat == 'FURN'){
 		path="/furnitureFilter";
@@ -202,6 +203,7 @@ $(document).ready(function() {
 		});
 	});
 
+	var checkedBoxCount =1;
 	//*************************if user click to cancel a selected filter****************************************
 	$('.selected_filters').off().on('click', function(event) {
 		var pageNo = $('#page_info').val();
@@ -216,14 +218,40 @@ $(document).ready(function() {
 		var text = $(this).find('#'+id);
 		data = data + '&subCategory='+subCat+'&category='+cat;
 
+		
 		$("input[class^=check_]:checked").each(function(){
+			
 			var sub = $(this).attr('name');
 			if(text.text() == $(this).parent().children('span.content').text()){
 				$(this).attr("checked",false);
 			}else{
 				data = data + '&'+sub+'='+$(this).val();
 			}
+			
 		});
+		
+		var c=0;
+		//if only one brand is selected reload models
+		var brand = "";
+		$("input[class^=check_]:checked").each(function(){
+			brand=$(this).val();
+			c++;
+		});
+		if(c==1){
+			$.ajax({
+				url:ctxPath + "/loadMobileModels",
+				type: "POST",
+				data: "&brandNew="+brand,
+				success: function(data) {
+					$('#mobilemodel-main').html('');
+					$('#mobilemodel-main').html(data);
+					$('#mobilemodel-main').show();
+					//alert(data);
+				}
+			});
+		}
+		
+		
 
 		if (typeof $("input[name=city]:checked", "#cityForm").val() != "undefined") {
 			data = data + "&city=" + $("input[name=city]:checked", "#cityForm").val();
@@ -269,14 +297,40 @@ $(document).ready(function() {
 		}
 	});
 
+	
 	//*****************************if user clicks on checkboxes******************************************
-	$('input[class^=check_]').off().on('click',function(event) {
+	$(document).on('click', 'input[class^=check_]',function(event) {
 
 		subCat = $('#sub').text();
 		cat = $('#cat').text();
 		$('#clear_all_f').show();
 		$("#filterValueBar").show();
 
+		if($(this).attr('name')=='brand'){
+
+			$(this).parent().children(':checked').each(function() {
+				if(checkedBoxCount>1){
+					checkedBoxCount=1;
+					$('#mobilemodel-main').html('');
+					$('#mobilemodel-main').hide();
+				}else{
+					$.ajax({
+						url:ctxPath + "/loadMobileModels",
+						type: "POST",
+						data: "&brandNew="+$(this).val(),
+						success: function(data) {
+							$('#mobilemodel-main').html('');
+							$('#mobilemodel-main').html(data);
+							$('#mobilemodel-main').show();
+							//alert(data);
+						}
+					});
+				}
+				checkedBoxCount++;
+			});
+
+
+		}
 		var data="";
 		data = data + '&subCategory='+subCat+'&category='+cat;
 		var str="";
@@ -387,14 +441,14 @@ $(document).ready(function() {
 				if(pC % 1 != 0){
 					pC = (Math.floor(pC))+1;
 				}
-				
+
 				if(pC==0){
 					$('.filter_cat').addClass('hidden');
 				}else{
 					$('.filter_cat').removeClass('hidden');
 				}
 				$( ".pager li" ).eq(1).html( '<input class="hidden" id="page_info" type="text" readonly="readonly" value="Showing Page '+ (pC==0?pC:1) +' of '+pC+'" >' );
-				
+
 				if(pC<=1)
 				{
 					$( ".pager li" ).eq(2).addClass('hidden');
@@ -601,11 +655,11 @@ $(document).ready(function() {
 		$("#subCategory_hidden_"+divId+ " ul").css("display","none");
 	});
 
-	$(".searchFilter li").mouseenter(function(){
+	$(".searchFilter").on("mouseover", "li", function() {
 		$(this).addClass("highlight_subcat");
 	});
 
-	$(".searchFilter li").mouseleave(function(){
+	$(".searchFilter").on("mouseleave", "li",function(){
 		$(this).removeClass("highlight_subcat");
 	});
 

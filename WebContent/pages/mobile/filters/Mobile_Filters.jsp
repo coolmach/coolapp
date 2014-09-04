@@ -22,7 +22,7 @@
 				</ul>
 			</div>
 		</div> -->
-		<form class="form-inline" id="cars">
+		<form class="form-inline" id="mobile">
 			<div class=" pull-left hidden-subcat searchFilter" id="brand-main">
 				<div id="brand" class="inputstyle pointer form-control">
 					Make <span
@@ -32,25 +32,76 @@
 					style="display: none;">
 					<ul class="list-unstyled">
 						<li><input type="checkbox" class="check_brand" name="brand"
-							value="SON" /><span class="content">Sony</span>
+							value="Sony" /><span class="content">Sony</span>
 						</li>
 						<li><input type="checkbox" class="check_brand" name="brand"
-							value="NOK" /><span class="content">Nokia</span>
+							value="Nokia" /><span class="content">Nokia</span>
 						</li>
 						<li><input type="checkbox" class="check_brand" name="brand"
-							value="SAM" /><span class="content">Samsung</span>
+							value="Samsung" /><span class="content">Samsung</span>
 						</li>
 						<li><input type="checkbox" class="check_brand" name="brand"
-							value="APP" /><span class="content">Apple</span>
+							value="Micromax" /><span class="content">Micromax</span>
 						</li>
 						<li><input type="checkbox" class="check_brand" name="brand"
-							value="OTH" /><span class="content">Others</span>
+							value="Apple" /><span class="content">Apple</span>
+						</li>
+						<li><input type="checkbox" class="check_brand" name="brand"
+							value="LG" /><span class="content">LG</span>
+						</li><li><input type="checkbox" class="check_brand" name="brand"
+							value="Motorola" /><span class="content">Motorola</span>
+						</li><li><input type="checkbox" class="check_brand" name="brand"
+							value="Videocon" /><span class="content">Videocon</span>
+						</li><li><input type="checkbox" class="check_brand" name="brand"
+							value="HTC" /><span class="content">HTC</span>
+						</li><li><input type="checkbox" class="check_brand" name="brand"
+							value="Lenovo" /><span class="content">Lenovo</span>
+						</li><li><input type="checkbox" class="check_brand" name="brand"
+							value="Blackberry" /><span class="content">Blackberry</span>
+						</li><li><input type="checkbox" class="check_brand" name="brand"
+							value="MTS" /><span class="content">MTS</span>
+						</li><li><input type="checkbox" class="check_brand" name="brand"
+							value="Tata" /><span class="content">Tata</span>
+						</li><li><input type="checkbox" class="check_brand" name="brand"
+							value="Spice" /><span class="content">Spice</span>
+						</li><li><input type="checkbox" class="check_brand" name="brand"
+							value="Acer" /><span class="content">Acer</span>
+						</li><li><input type="checkbox" class="check_brand" name="brand"
+							value="Acer" /><span class="content">Acer</span>
+						</li><li><input type="checkbox" class="check_brand" name="brand"
+							value="Xolo" /><span class="content">Xolo</span>
+						</li><li><input type="checkbox" class="check_brand" name="brand"
+							value="Karbonn" /><span class="content">Karbonn</span>
+						</li><li><input type="checkbox" class="check_brand" name="brand"
+							value="Intex" /><span class="content">Intex</span>
+						</li><li><input type="checkbox" class="check_brand" name="brand"
+							value="Fly" /><span class="content">Fly</span>
+						</li><li><input type="checkbox" class="check_brand" name="brand"
+							value="Lava" /><span class="content">Lava</span>
+						</li><li><input type="checkbox" class="check_brand" name="brand"
+							value="Maxx" /><span class="content">Maxx</span>
+						</li><li><input type="checkbox" class="check_brand" name="brand"
+							value="Others" /><span class="content">Others</span>
 						</li>
 					</ul>
 					<a href="#" class="clear blue_link">clear filters</a>
 				</div>
 			</div>
-
+			 <div class=" pull-left hidden-subcat searchFilter" id="mobilemodel-main">
+			<%@include file="/mobileModels.jsp"%>
+			</div>
+            <!-- <div class=" pull-left  searchFilter" id="mobilemodel-main">
+				<div id="mobilemodel" class="inputstyle pointer form-control">
+					Model <span class="glyphicon glyphicon glyphicon-chevron-down form-control-show"></span>
+				</div>
+				<div id="subCategory_hidden_mobilemodel" class="subCategory_hidden_bck" style="display: none;">
+					<ul class="list-unstyled">
+						<li><input type="checkbox" class="check_automobileModel" name="automobileModel" value="M1"/><span class="content">Model 1</span></li>
+						<li><input type="checkbox" class="check_automobileModel" name="automobileModel" value="M2"/><span class="content">Model 2</span></li>
+						<li><input type="checkbox" class="check_automobileModel" name="automobileModel" value="M3"/><span class="content">Model 3</span></li>
+					</ul>
+				</div>
+			</div> -->
 			<div class=" pull-left hidden-subcat searchFilter" id="year-main">
 				<div id="year" class="inputstyle pointer form-control">
 					Year <span class="glyphicon glyphicon glyphicon-chevron-down form-control-show"></span>
