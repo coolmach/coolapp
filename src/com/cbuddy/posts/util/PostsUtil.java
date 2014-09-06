@@ -1,8 +1,10 @@
 package com.cbuddy.posts.util;
 
+import java.io.File;
 import java.sql.Timestamp;
 import java.util.List;
 
+import org.apache.commons.io.FileUtils;
 import org.hibernate.Session;
 
 import com.cbuddy.beans.Pact;
@@ -13,10 +15,11 @@ import com.cbuddy.util.CBuddyConstants;
 import com.cbuddy.util.LocationUtil;
 
 public class PostsUtil {
-	public Poit createPOIT(CommonDetailsForPost postDetails, User user, Session dbSession, String uploadContentType, String category){
+	
+	public Poit createPOIT(CommonDetailsForPost postDetails, User user, Session dbSession, String uploadContentType[], String category){
 		String userId = String.valueOf(user.getUserId());
 		Timestamp current = new Timestamp(System.currentTimeMillis());
-		String imgFileName = String.valueOf(System.currentTimeMillis()) + "." + getExtension(uploadContentType) + "";
+		String imgFileName = String.valueOf(System.currentTimeMillis()) + "." + getExtension(uploadContentType[0]) + "";
 
 		Poit poit = new Poit();
 		poit.setCategory(category);
@@ -29,7 +32,7 @@ public class PostsUtil {
 		poit.setCreatedOn(current);
 		poit.setDescription(postDetails.getDescription());
 		poit.setImageFileName(imgFileName);
-		poit.setImageType(getExtension(uploadContentType));
+		poit.setImageType(getExtension(uploadContentType[0]));
 		poit.setLocation(postDetails.getSelectedLocationCode());
 		poit.setModifiedBy(userId);
 		poit.setModifiedOn(current);
@@ -43,6 +46,8 @@ public class PostsUtil {
 		poit.setPostStatus(user.getStatus());
 		poit.setNegotiable(postDetails.getNegotiable()!=null && postDetails.getNegotiable().equals("true")?"Y":null);
 
+		poit.setNoOfImages(uploadContentType.length);
+		
 		dbSession.save(poit);
 
 		if(poit.getPostStatus() == CBuddyConstants.USER_STATUS_PENDING_VERIFICATION){
@@ -89,6 +94,25 @@ public class PostsUtil {
 					postDetails.setDescription(postDetails.getDescription().substring(0,80) + "...");
 				}
 			}
+		}
+	}
+
+	public void writeImage(File[] inputFiles, String outputFileName){
+		String filePath = "C:\\Shiva\\";
+		//String filePath = request.getSession().getServletContext().getRealPath("");
+		File outputFile = null;
+
+		try {
+			for(int index=0; index<inputFiles.length; index++){
+				File file = inputFiles[index];
+				if(index>0){
+					outputFileName = outputFileName.replace(".", "_" + index + "."); //Adding _1, _2, etc. to file name - Test_1.jpg, Test_2.jpg. First file will be just Test.jpg
+				}
+				outputFile = new File(filePath + "/images/posts", outputFileName);
+				FileUtils.copyFile(file, outputFile);	
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 	}
 }

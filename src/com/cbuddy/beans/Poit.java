@@ -35,6 +35,7 @@ public class Poit {
 	private String limit;
 	private String offset;
 	private String page="1";
+	private int noOfImages;
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)	
@@ -244,5 +245,14 @@ public class Poit {
 	}
 	public void setPostStatus(String postStatus) {
 		this.postStatus = postStatus;
+	}
+	
+	@Column(name="NO_OF_IMAGES")
+	public int getNoOfImages(){
+		return noOfImages;
+	}
+	
+	public void setNoOfImages(int n){
+		this.noOfImages = n;
 	}
 }

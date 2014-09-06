@@ -433,6 +433,21 @@
 			<result name="PGAccommodation">/pages/realestate/postad/PostAd_RealEstate_PG_Accommodation.jsp</result>
 			<result name="LandForSale">/pages/realestate/postad/PostAd_RealEstate_Land_For_Sale.jsp</result>
 			<result name="RoommateRequired">/pages/realestate/postad/PostAd_RealEstate_Roommate_Required.jsp</result>
-		</action>		
+		</action>
+		<action name="upload" class="com.cbuddy.common.action.DummyFileUploadAction"
+			method="uplaod">
+			<result name="success">/Uplaod.jsp</result>
+		</action>
+
+		<action name="dummyUpload" class="com.cbuddy.common.action.DummyFileUploadAction">
+			<interceptor-ref name="defaultStack">
+				<param name="fileUpload.allowedTypes">image/jpeg,image/gif,image/png</param>
+			</interceptor-ref>
+			<result name="success">/success.jsp</result>
+			<result name="input">/Uplaod.jsp</result>
+		</action>
+
+		
+						
 	</package>
 </struts>

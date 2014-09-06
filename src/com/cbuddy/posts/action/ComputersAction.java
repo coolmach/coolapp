@@ -37,9 +37,9 @@ public class ComputersAction extends ActionSupport implements SessionAware, Serv
 	private static final long serialVersionUID = 1L;
 	private List<MasterComment> cmList = new ArrayList<MasterComment>();
 	ComputersPostDetails postDetails = new ComputersPostDetails();
-	private File upload;
-	private String uploadFileName;
-	private String uploadContentType;
+	private File[] upload;
+	private String[] uploadFileName;
+	private String[] uploadContentType;
 
 	private String categoryStr;
 	private String subCategoryStr;
@@ -216,7 +216,7 @@ public class ComputersAction extends ActionSupport implements SessionAware, Serv
 		User user = (User)session.get("userInfo");
 		Timestamp current = new Timestamp(System.currentTimeMillis());
 		String userId = String.valueOf(user.getUserId());
-		String imgFileName = String.valueOf(System.currentTimeMillis()) + "." + getExtension(uploadContentType) + "";
+		String imgFileName = String.valueOf(System.currentTimeMillis()) + "." + getExtension(uploadContentType[0]) + "";
 
 		//Checking if user has manually tampered location after selecting from auto suggest list
 		if(postDetails.getUserEnteredLocationStr() != null && postDetails.getSelectedLocationStr()!=null){
@@ -254,7 +254,9 @@ public class ComputersAction extends ActionSupport implements SessionAware, Serv
 
 		dbSession.beginTransaction();
 		
-		Poit poit = new PostsUtil().createPOIT(postDetails, user, dbSession, uploadContentType, CBuddyConstants.CATEGORY_COMPUTERS);
+		PostsUtil postsUtil = new PostsUtil();
+		
+		Poit poit = postsUtil.createPOIT(postDetails, user, dbSession, uploadContentType, CBuddyConstants.CATEGORY_COMPUTERS);
 		
 //		dbSession.save(poit);
 
@@ -280,7 +282,7 @@ public class ComputersAction extends ActionSupport implements SessionAware, Serv
 		dbSession.save(pcomp);
 
 		if(upload != null){
-			writeImage(upload, imgFileName);
+			postsUtil.writeImage(upload, imgFileName);
 		}
 
 		dbSession.getTransaction().commit();
@@ -366,27 +368,27 @@ public class ComputersAction extends ActionSupport implements SessionAware, Serv
 		return postDetails;
 	}
 
-	public File getUpload() {
+	public File[] getUpload() {
 		return upload;
 	}
 
-	public void setUpload(File upload) {
+	public void setUpload(File[] upload) {
 		this.upload = upload;
 	}
 
-	public String getUploadFileName() {
+	public String[] getUploadFileName() {
 		return uploadFileName;
 	}
 
-	public void setUploadFileName(String uploadFileName) {
+	public void setUploadFileName(String[] uploadFileName) {
 		this.uploadFileName = uploadFileName;
 	}
 
-	public String getUploadContentType() {
+	public String[] getUploadContentType() {
 		return uploadContentType;
 	}
 
-	public void setUploadContentType(String uploadContentType) {
+	public void setUploadContentType(String[] uploadContentType) {
 		this.uploadContentType = uploadContentType;
 	}
 

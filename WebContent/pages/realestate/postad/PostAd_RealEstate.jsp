@@ -89,9 +89,9 @@ $(document).ready(function(){
 <span class="error" style="margin-left:15%;margin-top:1%;"><s:fielderror fieldName="errorMsg"/></span>
 
 <s:form cssClass="form-horizontal post" id="postContentForm" action="real_estate_postAd.action" enctype="multipart/form-data">
-<div class="row col-md-10" id="my">
+<div class="row" id="my">
 	<input type="hidden" name="category" value="REAL"/>
-	<div class="col-md-8">
+	<div class="col-md-12">
 		<div class="form-group">
 			<label class="col-sm-5 control-label">Property Type</label>
 			<div class="col-sm-7" style="padding-top:6px;">
@@ -109,7 +109,20 @@ $(document).ready(function(){
 			</div>
 		</div>
 		<%@include file="/locationStrip.jsp" %>
-
+		<div class="form-group">
+			<label for="title" class="col-sm-5 control-label">Image</label>
+			<div class="col-sm-7">
+				<div class="fileinput fileinput-new" data-provides="fileinput">
+					<div class="fileinput-preview thumbnail" data-trigger="fileinput" style="width: 162px; height: 120px;"></div>
+					<div>
+						<span class="btn btn-default btn-file"><span class="fileinput-new">Select image</span><span class="fileinput-exists">Change</span>
+							<input type="file" name="upload" id="upload"/>
+						</span>
+						<a href="#" class="btn btn-default fileinput-exists" data-dismiss="fileinput">Remove</a>
+				  	</div>
+				</div>
+			</div>	
+		</div>
 		<div id="postContent">
 			<s:if test="#action.postDetails.subCategory == 1">
 				<%@ include file="PostAd_RealEstate_Apartment_For_Sale.jsp" %>
@@ -134,17 +147,8 @@ $(document).ready(function(){
 			</s:elseif>
 		</div>
 	</div>
-	<div class="col-md-4">
-		<div class="fileinput fileinput-new" data-provides="fileinput">
-			<div class="fileinput-preview thumbnail" data-trigger="fileinput" style="width: 162px; height: 120px;"></div>
-			<div>
-				<span class="btn btn-default btn-file"><span class="fileinput-new">Select image</span><span class="fileinput-exists">Change</span>
-				<input type="file" name="upload" id="upload"></span>
-				<a href="#" class="btn btn-default fileinput-exists" data-dismiss="fileinput">Remove</a>
-		  	</div>
-		</div>	
-	</div>
+
 </div>
 </s:form>
  
-<div class="col-md-5"></div>
+

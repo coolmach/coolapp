@@ -445,6 +445,9 @@
 			</interceptor-ref>
 			<result name="success">/success.jsp</result>
 			<result name="input">/Uplaod.jsp</result>
-		</action>		
+		</action>
+
+		
+						
 	</package>
 </struts>

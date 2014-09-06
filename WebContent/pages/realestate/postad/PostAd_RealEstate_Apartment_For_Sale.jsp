@@ -126,12 +126,6 @@
 				<div class="col-sm-6">
 					<input type="text" class="form-control" maxlength="15" name="ContactNo" value='<s:property value="ContactNo"/>' required>
 				</div>
-			</div>
-			<div class="form-group">
-				<label for="description" class="col-sm-5 control-label">Other Features</label>
-				<div class="col-sm-7">
-					<textarea class="form-control" rows="2" maxlength="256" name="Description" id="Description"> <s:property value="Description"/> </textarea>
-				</div>
 			</div>										
 		</div>
 		
@@ -200,7 +194,13 @@
 					<s:checkbox id="clubHouse" name="clubHouse" fieldValue="true" value="clubHouse" label="Club House" theme="simple"/><span class="checkBoxText">Club House </span><BR>
 					<s:checkbox id="swimmingPool" name="swimmingPool" fieldValue="true" value="swimmingPool" label="Swimming Pool" theme="simple"/><span class="checkBoxText">Swimming Pool</span><BR>
 				</div>
-			</div>									
+			</div>
+			<div class="form-group">
+				<label for="description" class="col-sm-5 control-label">Other Features</label>
+				<div class="col-sm-7">
+					<textarea class="form-control" rows="4" maxlength="256" name="Description" id="Description"> <s:property value="Description"/> </textarea>
+				</div>
+			</div>										
 		</div>
 		<div style="margin-top:15px;"></div>
 		<div class="form-group" style="margin-top:25px;">
