@@ -13,10 +13,15 @@ import org.apache.commons.io.FileUtils;
 import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.interceptor.ServletRequestAware;
 import org.apache.struts2.interceptor.SessionAware;
+import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Order;
+import org.hibernate.criterion.Projections;
+import org.hibernate.criterion.Restrictions;
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import com.cbuddy.beans.MasterComment;
@@ -406,22 +411,22 @@ public class MobileAction extends ActionSupport implements SessionAware, Servlet
 		Utils utils = new Utils();
 		categoryStr = utils.getCategoryDesc(postDetails.getCategory());
 		subCategoryStr = utils.getSubCategoryDesc(postDetails.getCategory(), postDetails.getSubCategory());
-
+System.out.println(categoryStr+ " : "+subCategoryStr);
 		if(postDetails.getSubCategory()==null || postDetails.getSubCategory().equals("") || subCategoryStr.equals("")){
 			postDetails.setSubCategory(CBuddyConstants.SUBCATEGORY_MOBILE_MOBILEPHONES);
 			subCategoryStr = utils.getSubCategoryDesc(postDetails.getCategory(), postDetails.getSubCategory());
 		}
-
+System.out.println(postDetails.getSubCategory());
 		MobileAdService mobileAdService =  new MobileAdService();
 		count = mobileAdService.getAdListCount(getModel(), postDetails.getSubCategory());
 		adList = mobileAdService.getAdListByCategory(getModel(), postDetails.getSubCategory());
-		
+		System.out.println("MobileAction.getAdListForMobile()"+adList.size());
 		populateAdditionalDetails();
 
 		return "success";
 	}
 
-	public String autoPopulateMobileModels(){
+	public String autoPopulateMobileModels() throws JSONException{
 		String output = "success";
 		SessionFactory sessionFactory = (SessionFactory) ServletActionContext.getServletContext().getAttribute("sessionFactory");
 		Session dbSession = sessionFactory.openSession();
@@ -441,6 +446,30 @@ public class MobileAction extends ActionSupport implements SessionAware, Servlet
 		return output;
 	}
 
+	private List mobileModelsList= new ArrayList();
+	public List getMobileModelsList() {
+		return mobileModelsList;
+	}
+
+	public void setMobileModelsList(List mobileModelsList) {
+		this.mobileModelsList = mobileModelsList;
+	}
+
+	public String getMobileModels(){
+		System.out.println(brandNew);
+		SessionFactory sessionFactory = (SessionFactory) ServletActionContext.getServletContext().getAttribute("sessionFactory");
+		Session dbSession = sessionFactory.openSession();
+		dbSession.beginTransaction();
+		Criteria criteria = dbSession.createCriteria( MobileMaster.class );
+		criteria.addOrder(Order.desc("model"));
+		criteria.add(Restrictions.eq("brand", brandNew));
+		
+		mobileModelsList =criteria.list();
+		
+		dbSession.close();
+		return "success";
+	}
+	
 	public String getAdDetails(){
 
 		MobileAdService adService = new MobileAdService();
