@@ -2,10 +2,6 @@
 <link rel="stylesheet" type="text/css" href="css/Cbuddy.css"/>
 <div class=" header_2">
 	<div class=""></div>
-	<!--div class="col-md-11">
-		<a class="grey_link" href="<s:url action=""  />"></a>
-		<s:property value="category" />
-	</div-->
 </div>
 <div class="col-md-8" id="my">
 	<s:form cssClass="form-horizontal post" action="automobile_postAd" enctype="multipart/form-data">

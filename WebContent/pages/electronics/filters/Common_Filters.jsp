@@ -4,21 +4,7 @@
 <s:if test="adList.size() > 0">
 	<div class="col-md-12 filter_cat" >
 	  <div id="clear_all_f" class="pull-left pointer" style="text-decoration: underline;color:#4f00fc">clear all</div>
-	<!-- 	<div class="form-group pull-left searchFilter" id="sub-main" style="margin-left:4.5%;">
-			<div id="subCategory" class="inputstyle pointer form-control">
-				Type<span
-					class="glyphicon glyphicon glyphicon-chevron-down form-control-show"></span>
-			</div>
-			
-			<div id="subCategory_hidden_sub" class="subCategory_hidden_bck" style="display: none;">
-				<ul class="list-unstyled">
-					<li value="1"><span class="content">Desktops</span></li>
-					<li value="2"><span class="content">Laptops</span></li>
-					<li value="3"><span class="content">Tabs</span></li>
-				</ul>
-			</div>
-		</div> -->
-		
+	
 	 <form class="form-inline" id="cars"> 
 			<!-- <div class=" pull-left hidden-subcat searchFilter" id="make-main">
 				<div id="make" class="inputstyle pointer form-control">

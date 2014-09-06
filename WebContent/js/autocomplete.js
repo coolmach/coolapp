@@ -1,8 +1,9 @@
 $(document).ready(function(){
+	var ctxPath = $('#context_path').val().trim();
 	$("#userEnteredLocationStr").autocomplete({
 		source: function(request, response) {
 			$.ajax({
-				url: "Virat" + "/getLocation?",
+				url: ctxPath + "/getLocation?",
 				//url:$('#contextPath').text() + "getLocation",
 				type: "POST",
 				dataType: "json",
@@ -33,7 +34,7 @@ $(document).ready(function(){
 	$("#userEnteredModelStr").autocomplete({
 		source: function(request, response) {
 			$.ajax({
-				url: "Virat" + "/autoSuggestMobile?",
+				url: ctxPath + "/autoSuggestMobile?",
 				//url:$('#contextPath').text() + "getLocation",
 				type: "POST",
 				dataType: "json",

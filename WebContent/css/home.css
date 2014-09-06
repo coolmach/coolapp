@@ -33,7 +33,7 @@
 	padding: 10px;
 	text-align: center;
 	font-size: 18px;
-	font-family:Calibri;
+	font-family: Calibri;
 }
 
 .footer_2 {
@@ -288,9 +288,9 @@ table {
 	/*box-shadow: 16px 3px 10px -7px #888888, -10px 0 20px -7px #888888;*/
 	margin-left: 10%;
 	/*margin-top: 25px;*/
-	border:1px solid #CCCCCC;
-	padding:15px;
-	padding-top:25px;
+	border: 1px solid #CCCCCC;
+	padding: 15px;
+	padding-top: 25px;
 	/* margin-bottom: 2%; */
 }
 
@@ -363,13 +363,12 @@ html,body {
 	margin-bottom: 2px;
 }
 
-.errorMessage {
-	/*margin: 0px;
+.errorMessage { /*margin: 0px;
 	padding: 5px;
 	list-style: none;
 	float: left;
 	*/
-	font-weight:normal;
+	font-weight: normal;
 }
 
 .content2 h3 {
@@ -557,11 +556,39 @@ html,body {
 	color: #00b0f5;
 	text-decoration: none;
 	font-size: 16px;
-    padding-bottom: 5px;
-    margin-left:10px;
+	padding-bottom: 5px;
+	margin-left: 10px;
 }
 
-.cbuddy_link{
-    color: #00b0f5;
-    text-decoration: underline;
+.cbuddy_link {
+	color: #00b0f5;
+	text-decoration: underline;
+}
+
+.postAdMainSection {
+	margin-left: 15%;
+	box-shadow: 2px 5px 5px 5px #888888;
+	border: 1px solid #AAAAAA;
+}
+
+.post_title {
+	margin-bottom: 10px;
+	border-bottom: 1px solid #CCCCCC;
+	color: #0099CC;
+	font-size: 20px;
+	padding: 5px;
+}
+
+.radioStrip {
+	padding: 5px;
+	margin-left: 10px;
+}
+
+.radioText {
+	margin-left: 5px;
+	margin-right: 10px;
+}
+
+form {
+	font-size: 12px;
 }

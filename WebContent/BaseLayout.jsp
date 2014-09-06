@@ -16,14 +16,12 @@
 <script type="text/javascript" src="thirdparty/jquery-ui/jquery-ui-1.10.3.custom.min.js"></script>
 <script type="text/javascript" src="js/autocomplete.js"></script>
 <script type="text/javascript" src="js/jasny-bootstrap.min.js"></script>
-<script type="text/javascript" src="js/bootstrap.js"></script>
-<script type="text/javascript" src="js/home.js"></script>
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
 <script type="text/javascript" src="js/home_plain.js"></script>
 <script type="text/javascript" src="js/common.js"></script>
 <script type="text/javascript" src="thirdparty/jquery-validate/jquery.validate.js"></script>
 <script type="text/javascript" src="thirdparty/jquery-validate/additional-methods.js"></script>
 <script type="text/javascript" src="js/ToWords.js"></script>
-<script src="js/jquery.simplemodal.js"></script>
 <script type="text/javascript" src="js/Cbuddy.js"></script>
 
 <link rel="stylesheet" href="css/Cbuddy.css" type="text/css">
@@ -33,8 +31,6 @@
 <link rel="stylesheet" href="css/home.css" type="text/css">
 <link rel="stylesheet" href="css/home_plain.css" type="text/css">
 <link rel="stylesheet" href="css/MyHome.css" type="text/css">
-<link rel="stylesheet" type="text/css" href="css/postAd.css" />
-<link rel="stylesheet" type="text/css" href="css/jquery.simplemodal.css" />
 <link rel="stylesheet" type="text/css" href="thirdparty/jquery-ui/jquery-ui-1.10.3.custom.min.css" />
 <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300" />
 

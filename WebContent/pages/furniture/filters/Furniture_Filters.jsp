@@ -6,25 +6,6 @@
 	  <div id="clear_all_f" class="pull-left pointer" style="text-decoration: underline;color:#4f00fc">clear all</div>
  
 	 <form class="form-inline" id="airCooler"> 
-			<!-- <div class=" pull-left hidden-subcat searchFilter" id="type-main">
-				<div id="brand" class="inputstyle pointer form-control">
-					Type<span class="glyphicon glyphicon glyphicon-chevron-down form-control-show"></span>
-				</div>
-				<div id="subCategory_hidden_type" class="subCategory_hidden_bck">
-					<ul class="list-unstyled">
-						<li><input type="checkbox" class="check_type" name="type" value="COT_WOOD"/><span class="content">Cot - Wooden</span></li>
-						<li><input type="checkbox" class="check_type" name="type" value="COT_STEEL"/><span class="content">Cot - Steel</span></li>
-						<li><input type="checkbox" class="check_type" name="type" value="MATTRESS"/><span class="content">Mattress</span></li>
-						<li><input type="checkbox" class="check_type" name="type" value="DINING"/><span class="content">Dining Table</span></li>
-						<li><input type="checkbox" class="check_type" name="type" value="SHOE"/><span class="content">Shoe Rack</span></li>
-						<li><input type="checkbox" class="check_type" name="type" value="TV"/><span class="content">TV Stand</span></li>
-						<li><input type="checkbox" class="check_type" name="type" value="TABLE"/><span class="content">Table</span></li>
-						<li><input type="checkbox" class="check_type" name="type" value="CHAIR_WOOD"/><span class="content">Chair - Wood</span></li>
-						<li><input type="checkbox" class="check_type" name="type" value="CHAIR_PLASTIC"/><span class="content">Chair - Plastic</span></li>
-						<li><input type="checkbox" class="check_type" name="type" value="OTHERS"/><span class="content">Others</span></li>
-					</ul>
-				</div>
-			</div> -->
 			<div class=" pull-left hidden-subcat searchFilter" id="amt-main">
 				<div id="amt" class="inputstyle pointer form-control">
 					Price<span class="glyphicon glyphicon glyphicon-chevron-down form-control-show"></span>

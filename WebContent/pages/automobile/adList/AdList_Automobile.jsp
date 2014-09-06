@@ -24,9 +24,7 @@
 									<s:property value="title" />
 								</a>
 
-						</p> <%-- <s:iterator begin="1" end="rating">
-							<img class="rating_stars" src="images/star.jpg">
-						</s:iterator>  <br /> --%>
+						</p> 
 						<span class="postField"><s:property value="city" /></span> <span class="separator">|</span>
 						<span class="postField"><s:property value="location" /></span>
 						<br>

@@ -4,25 +4,6 @@
 	<s:if test="adList.size() > 0">
 	<div class="col-md-12 filter_cat">
 	  <div id="clear_all_f" class="pull-left pointer" style="text-decoration: underline;color:#4f00fc">clear all</div>
-		<!-- <div class="form-group pull-left searchFilter" id="sub-main" style="margin-left:4.5%;">
-			<div id="subCategory" class="inputstyle pointer form-control">
-				<span class="content">Type</span><span
-					class="glyphicon glyphicon glyphicon-chevron-down form-control-show"></span>
-			</div>
-			
-			<div id="subCategory_hidden_sub" class="subCategory_hidden_bck" style="display: none;">
-				<ul class="list-unstyled">
-					<li value="2"><span class="content">Apartment For Rent</span></li>
-					<li value="1"><span class="content">Apartment For Sale</span></li>
-					<li value="4"><span class="content">Independent House For Rent</span></li>
-					<li value="3"><span class="content">Independent House For Sale</span></li>
-					<li value="6"><span class="content">Plot For Sale</span></li>
-					<li value="5"><span class="content">PG Accommodation</span></li>
-					<li value="7"><span class="content">Roommate Required</span></li>
-				</ul>
-				<a href="#" class="clear blue_link">clear filters</a>
-			</div>
-		</div> -->
 		
 	 	<form class="form-inline" id="apartment-rent"> 
 			<div class=" pull-left hidden-subcat searchFilter" id="area-main">
