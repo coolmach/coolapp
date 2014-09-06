@@ -445,14 +445,7 @@
 			</interceptor-ref>
 			<result name="success">/success.jsp</result>
 			<result name="input">/Uplaod.jsp</result>
-<<<<<<< HEAD
 		</action>
-
-		
-						
-=======
-		</action>		
-		
 		 <action name="socialAuth"
 			class="com.cbuddy.common.action.SocialAuthenticationAction">
 			<result name="home">/authSuccess.jsp</result>
@@ -465,6 +458,5 @@
 		<action name="loadMobileModels" class="com.cbuddy.posts.action.MobileAction" method="getMobileModels">
 			<result name="success">/mobileModels.jsp</result>
 		</action> 
->>>>>>> 4a63905a0a3e3edba19a07be98a3e4835367fc0b
 	</package>
 </struts>
