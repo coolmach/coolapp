@@ -1935,7 +1935,13 @@ blockquote small {
 	color: #0099CC;
 }
 
-.searchFilter ul {
+/* .searchFilter ul {
 	max-height:250px;
 	overflow-y:scroll; 
+} */
+
+.scrollable-menu {
+    height: auto;
+    max-height: 200px;
+    overflow-x: hidden;
 }

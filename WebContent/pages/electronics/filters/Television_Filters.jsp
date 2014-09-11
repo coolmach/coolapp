@@ -10,7 +10,7 @@
 					Make<span class="glyphicon glyphicon glyphicon-chevron-down form-control-show"></span>
 				</div>
 				<div id="subCategory_hidden_make" class="subCategory_hidden_bck" style="display: none;">
-					<ul class="list-unstyled">
+					<ul class="dropdown-menu scrollable-menu" role="menu">
 						<li><input type="checkbox" class="check_make" name="make" value="Sony"/><span class="content">Sony</span></li>
 						<li><input type="checkbox" class="check_make" name="make" value="Samsung"/><span class="content">Samsung</span></li>
 						<li><input type="checkbox" class="check_make" name="make" value="Videocon"/><span class="content">Videocon</span></li>
@@ -27,7 +27,7 @@
 					Screen Type<span class="glyphicon glyphicon glyphicon-chevron-down form-control-show"></span>
 				</div>
 				<div id="subCategory_hidden_screenType" class="subCategory_hidden_bck" style="display: none;">
-					<ul class="list-unstyled">
+					<ul class="dropdown-menu scrollable-menu" role="menu">
 						<li><input type="checkbox" class="check_screenType" name="screenType" value="LCD" /><span class="content">LCD TV</span></li>
 						<li><input type="checkbox" class="check_screenType" name="screenType" value="LED" /><span class="content">LED TV</span></li>
 						<li><input type="checkbox" class="check_screenType" name="screenType" value="CRT" /><span class="content">Normal (CRT) TV</span></li>
@@ -40,7 +40,7 @@
 						class="glyphicon glyphicon glyphicon-chevron-down form-control-show"></span>
 				</div>
 				<div id="subCategory_hidden_year" class="subCategory_hidden_bck" style="display: none;">
-					<ul class="list-unstyled">
+					<ul class="dropdown-menu scrollable-menu" role="menu">
 						<li><input type="checkbox" class="check_year" name="yearStr" value="2005" /><span class="content">2005</span></li>
 						<li><input type="checkbox" class="check_year" name="yearStr" value="2006" /><span class="content">2006</span></li>
 						<li><input type="checkbox" class="check_year" name="yearStr" value="2007" /><span class="content">2007</span></li>
@@ -59,7 +59,7 @@
 					Price<span class="glyphicon glyphicon glyphicon-chevron-down form-control-show"></span>
 				</div>
 				<div id="subCategory_hidden_amt" class="subCategory_hidden_bck" style="display: none;">
-					<ul class="list-unstyled">
+					<ul class="dropdown-menu scrollable-menu" role="menu">
 					    <li><input type="checkbox" class="check_amt" name="amt" value="<15000" /><span class="content"><15,000</span>
 						</li>
 						<li><input type="checkbox" class="check_amt" name="amt" value="15000-30000" /><span class="content">15,000-30,000</span>
