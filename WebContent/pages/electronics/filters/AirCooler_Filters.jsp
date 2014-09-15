@@ -10,7 +10,7 @@
 					Brand<span class="glyphicon glyphicon glyphicon-chevron-down form-control-show"></span>
 				</div>
 				<div id="subCategory_hidden_brand" class="subCategory_hidden_bck" style="display: none;">
-					<ul class="list-unstyled">
+					<ul class="dropdown-menu scrollable-menu" role="menu">
 						<li><input type="checkbox" class="check_brand" name="brand" value="Sony"/><span class="content">Sony</span></li>
 						<li><input type="checkbox" class="check_brand" name="brand" value="Samsung"/><span class="content">Samsung</span></li>
 						<li><input type="checkbox" class="check_brand" name="brand" value="Videocon"/><span class="content">Videocon</span></li>
@@ -27,7 +27,7 @@
 					AC Type<span class="glyphicon glyphicon glyphicon-chevron-down form-control-show"></span>
 				</div>
 				<div id="subCategory_hidden_acType" class="subCategory_hidden_bck" style="display: none;">
-					<ul class="list-unstyled">
+					<ul class="dropdown-menu scrollable-menu" role="menu">
 						<li><input type="checkbox" class="check_acType" name="acType" value="Split" /><span class="content">Split AC</span></li>
 						<li><input type="checkbox" class="check_acType" name="acType" value="Window" /><span class="content">Window AC</span></li>
 					</ul>
@@ -39,7 +39,7 @@
 						class="glyphicon glyphicon glyphicon-chevron-down form-control-show"></span>
 				</div>
 				<div id="subCategory_hidden_year" class="subCategory_hidden_bck" style="display: none;">
-					<ul class="list-unstyled">
+					<ul class="dropdown-menu scrollable-menu" role="menu">
 						<li><input type="checkbox" class="check_year" name="yearStr" value="2005" /><span class="content">2005</span></li>
 						<li><input type="checkbox" class="check_year" name="yearStr" value="2006" /><span class="content">2006</span></li>
 						<li><input type="checkbox" class="check_year" name="yearStr" value="2007" /><span class="content">2007</span></li>
@@ -58,7 +58,7 @@
 					Price<span class="glyphicon glyphicon glyphicon-chevron-down form-control-show"></span>
 				</div>
 				<div id="subCategory_hidden_amt" class="subCategory_hidden_bck" style="display: none;">
-					<ul class="list-unstyled">
+					<ul class="dropdown-menu scrollable-menu" role="menu">
 					    <li><input type="checkbox" class="check_amt" name="amt" value="<15000" /><span class="content"><15,000</span>
 						</li>
 						<li><input type="checkbox" class="check_amt" name="amt" value="15000-30000" /><span class="content">15,000-30,000</span>

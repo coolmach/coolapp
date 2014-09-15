@@ -13,7 +13,7 @@
 				</div>
 				<div id="subCategory_hidden_brand" class="subCategory_hidden_bck"
 					style="display: none;">
-					<ul class="list-unstyled">
+					<ul class="dropdown-menu scrollable-menu" role="menu">
 						<li><input type="checkbox" class="check_brand" name="brand"
 							value="Sony" /><span class="content">Sony</span>
 						</li>
@@ -78,7 +78,7 @@
 					Model <span class="glyphicon glyphicon glyphicon-chevron-down form-control-show"></span>
 				</div>
 				<div id="subCategory_hidden_mobilemodel" class="subCategory_hidden_bck" style="display: none;">
-					<ul class="list-unstyled">
+					<ul class="dropdown-menu scrollable-menu" role="menu">
 						<li><input type="checkbox" class="check_automobileModel" name="automobileModel" value="M1"/><span class="content">Model 1</span></li>
 						<li><input type="checkbox" class="check_automobileModel" name="automobileModel" value="M2"/><span class="content">Model 2</span></li>
 						<li><input type="checkbox" class="check_automobileModel" name="automobileModel" value="M3"/><span class="content">Model 3</span></li>
@@ -90,7 +90,7 @@
 					Year <span class="glyphicon glyphicon glyphicon-chevron-down form-control-show"></span>
 				</div>
 				<div id="subCategory_hidden_year" class="subCategory_hidden_bck" style="display: none;">
-					<ul class="list-unstyled">
+					<ul class="dropdown-menu scrollable-menu" role="menu">
 						<li><input type="checkbox" class="check_year" name="yearStr" value="2005" /><span class="content">2005</span></li>
 						<li><input type="checkbox" class="check_year" name="yearStr" value="2006" /><span class="content">2006</span></li>
 						<li><input type="checkbox" class="check_year" name="yearStr" value="2007" /><span class="content">2007</span></li>
@@ -111,7 +111,7 @@
 				</div>
 				<div id="subCategory_hidden_amt" class="subCategory_hidden_bck"
 					style="display: none;">
-					<ul class="list-unstyled">
+					<ul class="dropdown-menu scrollable-menu" role="menu">
 					   <li><input type="checkbox" class="check_amt" name="amt" value="<5,000" /><span class="content"><5,000</span>
 						</li>
 						<li><input type="checkbox" class="check_amt" name="amt" value="5,000-10,000" /><span class="content">5,000-10,000</span>
@@ -128,7 +128,7 @@
 				</div>
 				<div id="subCategory_hidden_os" class="subCategory_hidden_bck"
 					style="display: none;">
-					<ul class="list-unstyled">
+					<ul class="dropdown-menu scrollable-menu" role="menu">
 					   <li><input type="checkbox" class="check_os" name="operatingSystem" value="Android" /><span class="content">Android</span>
 						</li>
 						<li><input type="checkbox" class="check_os" name="operatingSystem" value="Apple-iOS" /><span class="content">Apple-iOS</span>
@@ -150,7 +150,7 @@
 				</div>
 				<div id="subCategory_hidden_sims" class="subCategory_hidden_bck"
 					style="display: none;">
-					<ul class="list-unstyled">
+					<ul class="dropdown-menu scrollable-menu" role="menu">
 						<li><input type="checkbox" class="check_sims" name="sims" value="D" /><span class="content">Dual</span>
 						</li>
 						<li><input type="checkbox" class="check_sims" name="sims" value="S" /><span class="content">Single</span>
@@ -166,7 +166,7 @@
 				</div>
 				<div id="subCategory_hidden_type" class="subCategory_hidden_bck"
 					style="display: none;">
-					<ul class="list-unstyled">
+					<ul class="dropdown-menu scrollable-menu" role="menu">
 						<li><input type="checkbox" class="check_type" name="type" value="Bluetooth Headset" /><span class="content">Bluetooth Headset</span>
 						</li>
 						<li><input type="checkbox" class="check_type" name="type" value="Case/Cover" /><span class="content">Case/Cover</span>

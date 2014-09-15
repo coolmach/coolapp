@@ -12,7 +12,7 @@
 				</div>
 				<div id="subCategory_hidden_area" class="subCategory_hidden_bck"
 					style="display: none;">
-					<ul class="list-unstyled">
+					<ul class="dropdown-menu scrollable-menu" role="menu">
 						<li><input type="checkbox" class="check_area" name="areaStr" value="<1000 sq.ft" /><span class="content"><1000 sq.ft</span>
 						</li>
 						<li><input type="checkbox" class="check_area" name="areaStr" value="1000 sq.ft-1200 sq.ft" /><span class="content">1000 sq.ft-1200 sq.ft</span>
@@ -30,7 +30,7 @@
 				</div>
 				<div id="subCategory_hidden_bhk" class="subCategory_hidden_bck"
 					style="display: none;">
-					<ul class="list-unstyled">
+					<ul class="dropdown-menu scrollable-menu" role="menu">
 						<li><input type="checkbox" class="check_bhk" name="bhk" value="1 BHK" /><span class="content">1 BHK</span>
 						</li>
 						<li><input type="checkbox" class="check_bhk" name="bhk" value="2 BHK" /><span class="content">2 BHK</span>
@@ -49,7 +49,7 @@
 				</div>
 				<div id="subCategory_hidden_rent" class="subCategory_hidden_bck"
 					style="display: none;">
-					<ul class="list-unstyled">
+					<ul class="dropdown-menu scrollable-menu" role="menu">
 						<li><input type="checkbox" class="check_rent" name="rent" value="<10,000" /><span class="content"><10,000</span>
 						</li>
 						<li><input type="checkbox" class="check_rent" name="rent" value="10,000-14,000" /><span class="content">10,000-14,000</span>
@@ -67,7 +67,7 @@
 				</div>
 				<div id="subCategory_hidden_dir" class="subCategory_hidden_bck"
 					style="display: none;">
-					<ul class="list-unstyled">
+					<ul class="dropdown-menu scrollable-menu" role="menu">
 						<li><input type="checkbox" class="check_dir" name="facingDirection" value="E" /><span class="content">East</span>
 						</li>
 						<li><input type="checkbox" class="check_dir" name="facingDirection" value="W" /><span class="content">West</span>
@@ -88,7 +88,7 @@
 				</div>
 				<div id="subCategory_hidden_pref" class="subCategory_hidden_bck"
 					style="display: none;">
-					<ul class="list-unstyled">
+					<ul class="dropdown-menu scrollable-menu" role="menu">
 						<li><input type="checkbox" class="check_pref" name="maritalPreference" value="B" /><span class="content">Bachelors</span>
 						</li>
 						<li><input type="checkbox" class="check_pref" name="maritalPreference" value="F" /><span class="content">Family</span>
@@ -104,7 +104,7 @@
 				</div>
 				<div id="subCategory_hidden_park" class="subCategory_hidden_bck"
 					style="display: none;">
-					<ul class="list-unstyled">
+					<ul class="dropdown-menu scrollable-menu" role="menu">
 						<li><input type="checkbox" class="check_park" name="carParking" value="Y" /><span class="content">Yes</span>
 						</li>
 						<li><input type="checkbox" class="check_park" name="carParking" value="N" /><span class="content">No</span>
@@ -121,7 +121,7 @@
 				</div>
 				<div id="subCategory_hidden_amt" class="subCategory_hidden_bck"
 					style="display: none;">
-					<ul class="list-unstyled">
+					<ul class="dropdown-menu scrollable-menu" role="menu">
 					    <li><input type="checkbox" class="check_amt" name="amt" value="<10,000" /><span class="content"><10,000</span>
 						</li>
 						<li><input type="checkbox" class="check_amt" name="amt" value="10,000-15,000" /><span class="content"><10,000-15000</span>
@@ -139,7 +139,7 @@
 				</div>
 				<div id="subCategory_hidden_approval" class="subCategory_hidden_bck"
 					style="display: none;">
-					<ul class="list-unstyled">
+					<ul class="dropdown-menu scrollable-menu" role="menu">
 						<li><input type="checkbox" class="check_approval" name="approvalAuthority" value="BDA" /><span class="content">BDA</span>
 						</li>
 						<li><input type="checkbox" class="check_approval" name="approvalAuthority" value="BMRDA" /><span class="content">BMRDA</span>
@@ -160,7 +160,7 @@
 				</div>
 				<div id="subCategory_hidden_ownership" class="subCategory_hidden_bck"
 					style="display: none;">
-					<ul class="list-unstyled">
+					<ul class="dropdown-menu scrollable-menu" role="menu">
 						<li><input type="checkbox" class="check_ownership" name="newOrResale" value="New" /><span class="content">New</span>
 						</li>
 						<li><input type="checkbox" class="check_ownership" name="newOrResale" value="ReSale" /><span class="content">ReSale</span>
@@ -176,7 +176,7 @@
 				</div>
 				<div id="subCategory_hidden_amenities" class="subCategory_hidden_bck"
 					style="display: none;">
-					<ul class="list-unstyled">
+					<ul class="dropdown-menu scrollable-menu" role="menu">
 						<li><input type="checkbox" class="check_amenities" name="gym" value="Y" /><span class="content">Gym</span>
 						</li>
 						<li><input type="checkbox" class="check_amenities" name="carParking" value="Y" /><span class="content">Car Parking</span>
@@ -199,7 +199,7 @@
 				</div>
 				<div id="subCategory_hidden_amenitiesPg" class="subCategory_hidden_bck"
 					style="display: none;">
-					<ul class="list-unstyled">
+					<ul class="dropdown-menu scrollable-menu" role="menu">
 						<li><input type="checkbox" class="check_amenities_pg" name="wifi" value="Y" /><span class="content">WiFi</span>
 						</li>
 						<li><input type="checkbox" class="check_amenities_pg" name="tv" value="Y" /><span class="content">TV/DTH</span>
@@ -216,7 +216,7 @@
 				</div>
 				<div id="subCategory_hidden_food" class="subCategory_hidden_bck"
 					style="display: none;">
-					<ul class="list-unstyled">
+					<ul class="dropdown-menu scrollable-menu" role="menu">
 						<li><input type="checkbox" class="check_food" name="food" value="Veg" /><span class="content">Veg</span>
 						</li>
 						<li><input type="checkbox" class="check_food" name="food" value="Non Veg" /><span class="content">Non Veg</span>
@@ -233,7 +233,7 @@
 				</div>
 				<div id="subCategory_hidden_share" class="subCategory_hidden_bck"
 					style="display: none;">
-					<ul class="list-unstyled">
+					<ul class="dropdown-menu scrollable-menu" role="menu">
 						<li><input type="checkbox" class="check_share" name="share" value="<3000" /><span class="content"><3000</span>
 						</li>
 						<li><input type="checkbox" class="check_share" name="share"" value="3000-6000" /><span class="content">3000-6000</span>
@@ -252,7 +252,7 @@
 				</div>
 				<div id="subCategory_hidden_furnished" class="subCategory_hidden_bck"
 					style="display: none;">
-					<ul class="list-unstyled">
+					<ul class="dropdown-menu scrollable-menu" role="menu">
 						<li><input type="checkbox" class="check_furnished" name="furnished" value="Y" /><span class="content">Yes</span>
 						</li>
 						<li><input type="checkbox" class="check_furnished" name="furnished" value="N" /><span class="content">No</span>
@@ -269,7 +269,7 @@
 				</div>
 				<div id="subCategory_hidden_gender" class="subCategory_hidden_bck"
 					style="display: none;">
-					<ul class="list-unstyled">
+					<ul class="dropdown-menu scrollable-menu" role="menu">
 						<li><input type="checkbox" class="check_gender" name="gender" value="Male" /><span class="content">Male</span>
 						</li>
 						<li><input type="checkbox" class="check_gender" name="gender" value="Female" /><span class="content">Female</span>
@@ -286,7 +286,7 @@
 				</div>
 				<div id="subCategory_hidden_region" class="subCategory_hidden_bck"
 					style="display: none;">
-					<ul class="list-unstyled">
+					<ul class="dropdown-menu scrollable-menu" role="menu">
 						<li><input type="checkbox" class="check_region" name="regionalPreference" value="Hindi" /><span class="content">Hindi</span>
 						</li>
 						<li><input type="checkbox" class="check_region" name="regionalPreference" value="Kannada" /><span class="content">Kannada</span>

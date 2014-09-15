@@ -27,8 +27,8 @@
 <script type="text/javascript" src="js/Cbuddy.js"></script>
 
 <link rel="stylesheet" href="css/Cbuddy.css" type="text/css">
-<link rel="stylesheet" href="css/bootstrap.css" type="text/css">
-<link rel="stylesheet" href="css/bootstrap-theme.css" type="text/css">
+<link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
+<link rel="stylesheet" href="css/bootstrap-theme.min.css" type="text/css">
 <link rel="stylesheet" href="css/jasny-bootstrap.min.css" type="text/css">
 <link rel="stylesheet" href="css/home.css" type="text/css">
 <link rel="stylesheet" href="css/home_plain.css" type="text/css">

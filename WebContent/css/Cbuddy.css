@@ -1935,7 +1935,40 @@ blockquote small {
 	color: #0099CC;
 }
 
-.searchFilter ul {
+/* .searchFilter ul {
 	max-height:250px;
 	overflow-y:scroll; 
+} */
+
+.scrollable-menu {
+    height: auto;
+    max-height: 200px;
+    overflow-x: hidden;
+}
+
+.table-bordered > thead > tr > th,
+.table-bordered > tbody > tr > th,
+.table-bordered > tfoot > tr > th,
+.table-bordered > thead > tr > td,
+.table-bordered > tbody > tr > td,
+.table-bordered > tfoot > tr > td {
+   border: none !important; 
+}
+
+.table > thead > tr > th, 
+.table > tbody > tr > th, 
+.table > tfoot > tr > th, 
+.table > thead > tr > td, 
+.table > tbody > tr > td, 
+.table > tfoot > tr > td {
+    border-top: 1px solid #ddd !important;	
+}
+
+.form-control {
+    border-radius: 2px !important;
+}
+
+.glyphicon {
+	top: 0px !important;
+    font-size:10px !important;
 }

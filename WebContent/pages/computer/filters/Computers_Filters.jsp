@@ -10,7 +10,7 @@
 					Make <span class="glyphicon glyphicon glyphicon-chevron-down form-control-show"></span>
 				</div>
 				<div id="subCategory_hidden_make" class="subCategory_hidden_bck" style="display: none;">
-					<ul class="list-unstyled">
+					<ul class="dropdown-menu scrollable-menu" role="menu">
 						<li><input type="checkbox" class="check_make" name="make" value="SON"/><span class="content">Sony</span></li>
 						<li><input type="checkbox" class="check_make" name="make" value="ACE"/><span class="content">Acer</span></li>
 						<li><input type="checkbox" class="check_make" name="make" value="DELL"/><span class="content">Dell</span></li>
@@ -30,7 +30,7 @@
 					Year <span class="glyphicon glyphicon glyphicon-chevron-down form-control-show"></span>
 				</div>
 				<div id="subCategory_hidden_year" class="subCategory_hidden_bck" style="display: none;">
-					<ul class="list-unstyled">
+					<ul class="dropdown-menu scrollable-menu" role="menu">
 						<li><input type="checkbox" class="check_year" name="yearStr" value="2005" /><span class="content">2005</span></li>
 						<li><input type="checkbox" class="check_year" name="yearStr" value="2006" /><span class="content">2006</span></li>
 						<li><input type="checkbox" class="check_year" name="yearStr" value="2007" /><span class="content">2007</span></li>
@@ -50,7 +50,7 @@
 					Model <span class="glyphicon glyphicon glyphicon-chevron-down form-control-show"></span>
 				</div>
 				<div id="subCategory_hidden_model" class="subCategory_hidden_bck" style="display: none;">
-					<ul class="list-unstyled">
+					<ul class="dropdown-menu scrollable-menu" role="menu">
 						<li><input type="checkbox" class="check_model" name="model" value="IPAD" /><span class="content">iPad</span></li>
 						<li><input type="checkbox" class="check_model" name="model" value="GALAXY" /><span class="content">Galaxy</span></li>
 						<li><input type="checkbox" class="check_model" name="model" value="OTHERS" /><span class="content">Others</span></li>
@@ -63,7 +63,7 @@
 					RAM <span class="glyphicon glyphicon glyphicon-chevron-down form-control-show"></span>
 				</div>
 				<div id="subCategory_hidden_processorSize" class="subCategory_hidden_bck" style="display: none;">
-					<ul class="list-unstyled">
+					<ul class="dropdown-menu scrollable-menu" role="menu">
 						<li><input type="checkbox" class="check_processorSize" name="processorSizeStr" value="<2" /><span class="content"><2 GB</span></li>
 						<li><input type="checkbox" class="check_processorSize" name="processorSizeStr" value="2-4" /><span class="content">2 GB - 4 GB</span></li>
 						<li><input type="checkbox" class="check_processorSize" name="processorSizeStr" value=">4" /><span class="content">> 4 GB</span></li>
@@ -76,7 +76,7 @@
 					HDD Size<span class="glyphicon glyphicon glyphicon-chevron-down form-control-show"></span>
 				</div>
 				<div id="subCategory_hidden_hddSize" class="subCategory_hidden_bck" style="display: none;">
-					<ul class="list-unstyled">
+					<ul class="dropdown-menu scrollable-menu" role="menu">
 						<li><input type="checkbox" class="check_hddSize" name="hddSizeStr" value="<20" /><span class="content">< 20 GB</span></li>
 						<li><input type="checkbox" class="check_hddSize" name="hddSizeStr" value="20-40" /><span class="content">20 GB - 40 GB</span></li>
 						<li><input type="checkbox" class="check_hddSize" name="hddSizeStr" value=">40" /><span class="content">> 40 GB</span></li>
@@ -90,7 +90,7 @@
 				</div>
 				<div id="subCategory_hidden_amt" class="subCategory_hidden_bck"
 					style="display: none;">
-					<ul class="list-unstyled">
+					<ul class="dropdown-menu scrollable-menu" role="menu">
 					    <li><input type="checkbox" class="check_amt" name="amt" value="<15000" /><span class="content"><15,000</span>
 						</li>
 						<li><input type="checkbox" class="check_amt" name="amt" value="15000-30000" /><span class="content">15,000-30,000</span>
