@@ -22,6 +22,7 @@ import org.hibernate.criterion.Restrictions;
 import com.cbuddy.beans.MasterComment;
 import com.cbuddy.beans.PDVD;
 import com.cbuddy.beans.Poit;
+import com.cbuddy.exception.CBuddyException;
 import com.cbuddy.posts.model.DVDPostDetails;
 import com.cbuddy.posts.services.CommentsService;
 import com.cbuddy.posts.services.DVDAdService;
@@ -49,6 +50,8 @@ public class DVDAction extends ActionSupport implements SessionAware, ServletReq
 	private String subCategoryStr;
 	private int count;
 
+	private String sprice; // Price entered by user on the screen
+	
 	private String responseMsg;
 
 	private List<DVDPostDetails> adList = new ArrayList<DVDPostDetails>();
@@ -192,6 +195,16 @@ public class DVDAction extends ActionSupport implements SessionAware, ServletReq
 	}
 
 	public String postAd(){
+		
+		double price = 0;
+		try{
+			price = NumberFormatterUtil.convertStrToAmount(sprice);
+			postDetails.setPrice(price);
+		}catch(CBuddyException e){
+			addFieldError("errorMsg", "Invalid Amount");
+			return Action.INPUT;
+		}
+		
 		if(!validateMandatoryFields()){
 			return Action.INPUT;
 		}
@@ -457,5 +470,13 @@ public class DVDAction extends ActionSupport implements SessionAware, ServletReq
 
 	public void setCmList(List<MasterComment> cmList) {
 		this.cmList = cmList;
+	}
+
+	public String getSprice() {
+		return sprice;
+	}
+
+	public void setSprice(String sprice) {
+		this.sprice = sprice;
 	}
 }

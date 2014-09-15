@@ -9,7 +9,6 @@ import java.util.Map;
 import javax.persistence.Transient;
 import javax.servlet.http.HttpServletRequest;
 
-import org.apache.commons.io.FileUtils;
 import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.interceptor.ServletRequestAware;
 import org.apache.struts2.interceptor.SessionAware;
@@ -20,6 +19,7 @@ import com.cbuddy.beans.MasterComment;
 import com.cbuddy.beans.NameValuePair;
 import com.cbuddy.beans.Pdre;
 import com.cbuddy.beans.Poit;
+import com.cbuddy.exception.CBuddyException;
 import com.cbuddy.posts.model.RealEstatePostDetails;
 import com.cbuddy.posts.services.CommentsService;
 import com.cbuddy.posts.services.RealEstateAdService;
@@ -47,6 +47,8 @@ public class RealEstateAction extends ActionSupport implements SessionAware, Ser
 	private String subCategoryStr;
 
 	private String propertyType;
+	
+	private String sprice; // Price entered by user on the screen
 	
 	private String responseMsg;
 
@@ -269,6 +271,17 @@ public class RealEstateAction extends ActionSupport implements SessionAware, Ser
 	}
 
 	public String postAd(){
+		
+		double price = 0;
+		try{
+			price = NumberFormatterUtil.convertStrToAmount(sprice);
+			postDetails.setPrice(price);
+			postDetails.setPriceValue(price);
+		}catch(CBuddyException e){
+			addFieldError("errorMsg", "Invalid Amount");
+			return Action.INPUT;
+		}
+		
 		if(!validateMandatoryFields()){
 			return Action.INPUT;
 		}
@@ -638,6 +651,15 @@ public class RealEstateAction extends ActionSupport implements SessionAware, Ser
 
 	public void setPropertyType(String propertyType) {
 		this.propertyType = propertyType;
+	}
+
+	@Transient
+	public String getSprice() {
+		return sprice;
+	}
+
+	public void setSprice(String sprice) {
+		this.sprice = sprice;
 	}
 
 }

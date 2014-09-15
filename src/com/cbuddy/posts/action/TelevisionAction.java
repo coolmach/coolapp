@@ -19,6 +19,7 @@ import org.hibernate.SessionFactory;
 import com.cbuddy.beans.MasterComment;
 import com.cbuddy.beans.PTelevision;
 import com.cbuddy.beans.Poit;
+import com.cbuddy.exception.CBuddyException;
 import com.cbuddy.posts.model.TelevisionPostDetails;
 import com.cbuddy.posts.services.CommentsService;
 import com.cbuddy.posts.services.TelevisionAdService;
@@ -41,6 +42,8 @@ public class TelevisionAction extends ActionSupport implements SessionAware, Ser
 	private String[] uploadFileName;
 	private String[] uploadContentType;
 
+	private String sprice; // Price entered by user on the screen
+	
 	private String categoryStr;
 	private String subCategoryStr;
 	private int count;
@@ -209,6 +212,16 @@ public class TelevisionAction extends ActionSupport implements SessionAware, Ser
 	}
 
 	public String postAd(){
+		
+		double price = 0;
+		try{
+			price = NumberFormatterUtil.convertStrToAmount(sprice);
+			postDetails.setPrice(price);
+		}catch(CBuddyException e){
+			addFieldError("errorMsg", "Invalid Amount");
+			return Action.INPUT;
+		}
+		
 		if(!validateMandatoryFields()){
 			return Action.INPUT;
 		}
@@ -446,5 +459,13 @@ public class TelevisionAction extends ActionSupport implements SessionAware, Ser
 
 	public void setCmList(List<MasterComment> cmList) {
 		this.cmList = cmList;
+	}
+
+	public String getSprice() {
+		return sprice;
+	}
+
+	public void setSprice(String sprice) {
+		this.sprice = sprice;
 	}
 }

@@ -336,7 +336,8 @@ html,body {
 }
 
 .post .form-group {
-	width: 470px !important;
+	/*width: 470px !important;*/
+	width: 670px !important;
 }
 
 .pointer {

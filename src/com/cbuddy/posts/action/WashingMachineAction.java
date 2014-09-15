@@ -18,6 +18,7 @@ import org.hibernate.SessionFactory;
 import com.cbuddy.beans.MasterComment;
 import com.cbuddy.beans.PWashingMachine;
 import com.cbuddy.beans.Poit;
+import com.cbuddy.exception.CBuddyException;
 import com.cbuddy.posts.model.WashingMachinePostDetails;
 import com.cbuddy.posts.services.CommentsService;
 import com.cbuddy.posts.services.WashingMachineAdService;
@@ -43,6 +44,8 @@ public class WashingMachineAction extends ActionSupport implements SessionAware,
 	private String categoryStr;
 	private String subCategoryStr;
 	private int count;
+	
+	private String sprice; // Price entered by user on the screen
 
 	private String responseMsg;
 
@@ -178,6 +181,16 @@ public class WashingMachineAction extends ActionSupport implements SessionAware,
 	}
 
 	public String postAd(){
+		
+		double price = 0;
+		try{
+			price = NumberFormatterUtil.convertStrToAmount(sprice);
+			postDetails.setPrice(price);
+		}catch(CBuddyException e){
+			addFieldError("errorMsg", "Invalid Amount");
+			return Action.INPUT;
+		}
+		
 		if(!validateMandatoryFields()){
 			return Action.INPUT;
 		}
@@ -398,5 +411,13 @@ public class WashingMachineAction extends ActionSupport implements SessionAware,
 
 	public void setCmList(List<MasterComment> cmList) {
 		this.cmList = cmList;
+	}
+
+	public String getSprice() {
+		return sprice;
+	}
+
+	public void setSprice(String sprice) {
+		this.sprice = sprice;
 	}
 }

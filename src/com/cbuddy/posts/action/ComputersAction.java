@@ -19,6 +19,7 @@ import org.hibernate.SessionFactory;
 import com.cbuddy.beans.MasterComment;
 import com.cbuddy.beans.Pcomp;
 import com.cbuddy.beans.Poit;
+import com.cbuddy.exception.CBuddyException;
 import com.cbuddy.posts.model.ComputersPostDetails;
 import com.cbuddy.posts.services.CommentsService;
 import com.cbuddy.posts.services.ComputersAdService;
@@ -44,6 +45,8 @@ public class ComputersAction extends ActionSupport implements SessionAware, Serv
 	private String categoryStr;
 	private String subCategoryStr;
 
+	private String sprice; // Price entered by user on the screen
+	
 	private String responseMsg;
 
 	private List<ComputersPostDetails> adList = new ArrayList<ComputersPostDetails>();
@@ -206,6 +209,16 @@ public class ComputersAction extends ActionSupport implements SessionAware, Serv
 	}
 
 	public String postAd(){
+		
+		double price = 0;
+		try{
+			price = NumberFormatterUtil.convertStrToAmount(sprice);
+			postDetails.setPrice(price);
+		}catch(CBuddyException e){
+			addFieldError("errorMsg", "Invalid Amount");
+			return Action.INPUT;
+		}
+		
 		if(!validateMandatoryFields()){
 			return Action.INPUT;
 		}
@@ -440,5 +453,13 @@ public class ComputersAction extends ActionSupport implements SessionAware, Serv
 
 	public void setCmList(List<MasterComment> cmList) {
 		this.cmList = cmList;
+	}
+
+	public String getSprice() {
+		return sprice;
+	}
+
+	public void setSprice(String sprice) {
+		this.sprice = sprice;
 	}
 }

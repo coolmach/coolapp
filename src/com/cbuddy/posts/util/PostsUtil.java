@@ -19,20 +19,32 @@ public class PostsUtil {
 	public Poit createPOIT(CommonDetailsForPost postDetails, User user, Session dbSession, String uploadContentType[], String category){
 		String userId = String.valueOf(user.getUserId());
 		Timestamp current = new Timestamp(System.currentTimeMillis());
-		String imgFileName = String.valueOf(System.currentTimeMillis()) + "." + getExtension(uploadContentType[0]) + "";
+		String imgFileName = null;
+		String imgType = null;
+		int noOfImages = 0;
+		if(uploadContentType != null && uploadContentType.length>0){
+			imgFileName = String.valueOf(System.currentTimeMillis()) + "." + getExtension(uploadContentType[0]) + "";
+			imgType = getExtension(uploadContentType[0]);
+			noOfImages = uploadContentType.length;
+		}
 
+		String contactNumber = postDetails.getContactNo();
+		if(contactNumber != null){
+			contactNumber = contactNumber.replace("  ", " ");
+		}
+		
 		Poit poit = new Poit();
 		poit.setCategory(category);
 		poit.setTitle(postDetails.getTitle());
 		poit.setCity(postDetails.getCity());
-		poit.setContactNo(postDetails.getContactNo());
+		poit.setContactNo(contactNumber);
 		poit.setContactPersonName(postDetails.getContactPersonName());
 		poit.setCorpId(user.getCorpId());
 		poit.setCreatedBy(userId);
 		poit.setCreatedOn(current);
 		poit.setDescription(postDetails.getDescription());
 		poit.setImageFileName(imgFileName);
-		poit.setImageType(getExtension(uploadContentType[0]));
+		poit.setImageType(imgType);
 		poit.setLocation(postDetails.getSelectedLocationCode());
 		poit.setModifiedBy(userId);
 		poit.setModifiedOn(current);
@@ -46,7 +58,7 @@ public class PostsUtil {
 		poit.setPostStatus(user.getStatus());
 		poit.setNegotiable(postDetails.getNegotiable()!=null && postDetails.getNegotiable().equals("true")?"Y":null);
 
-		poit.setNoOfImages(uploadContentType.length);
+		poit.setNoOfImages(noOfImages);
 		
 		dbSession.save(poit);
 
@@ -103,12 +115,14 @@ public class PostsUtil {
 		File outputFile = null;
 
 		try {
+			String tempFileName = "";
 			for(int index=0; index<inputFiles.length; index++){
+				tempFileName = outputFileName;
 				File file = inputFiles[index];
 				if(index>0){
-					outputFileName = outputFileName.replace(".", "_" + index + "."); //Adding _1, _2, etc. to file name - Test_1.jpg, Test_2.jpg. First file will be just Test.jpg
+					tempFileName = tempFileName.replace(".", "_" + index + "."); //Adding _1, _2, etc. to file name - Test_1.jpg, Test_2.jpg. First file will be just Test.jpg
 				}
-				outputFile = new File(filePath + "/images/posts", outputFileName);
+				outputFile = new File(filePath + "/images/posts", tempFileName);
 				FileUtils.copyFile(file, outputFile);	
 			}
 		} catch (Exception e) {

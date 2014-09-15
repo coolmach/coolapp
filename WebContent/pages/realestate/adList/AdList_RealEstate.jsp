@@ -29,7 +29,7 @@
 									<s:property value="title" />
 								</a>
 							</p> 
-							
+								
 							<%-- <s:iterator begin="1" end="rating">
 							<img class="rating_stars" src="images/star.jpg">
 						</s:iterator>  <br /> --%> <span class="postField"><s:property

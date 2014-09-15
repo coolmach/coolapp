@@ -1,4 +1,4 @@
-<%@ page contentType="text/html; charset=UTF-8"%>
+<%--<%@ page contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
 
 	<div id="headerRow" class="row">
@@ -70,6 +70,8 @@
 
     <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
+--%>
+
 
 <%-- <nav class="navbar navbar-custom navbar-fixed-top" role="navigation" style="background-color:#0099cc;">
    
@@ -210,3 +212,83 @@
         </div>
     </div>
 </div> --%>
+
+
+
+<%@ taglib prefix="s" uri="/struts-tags"%>
+<!DOCTYPE html>
+<link rel="stylesheet" href="css/bootstrap.css">
+<style>
+	body{margin:0px;padding:0px;}
+
+	* {
+	  -webkit-border-radius: 0 !important;
+		 -moz-border-radius: 0 !important;
+			  border-radius: 0 !important;
+	}
+
+	#mainHeading{
+		font-family:'Open Sans Condensed', 'Arial Narrow', Arial, sans-serif;
+		color: #999999;
+		font-size: 46px;
+		line-height: 1.1em;
+		margin: 0 0 50px 0;
+		padding: 0;
+		position: relative;
+	}
+
+	#subHeading{
+		font-family:'Open Sans Condensed', 'Arial Narrow', Arial, sans-serif;
+		color: #aaaaaa;
+		font-size: 35px;
+		line-height: 1.1em;
+		margin: 0 0 50px 0;
+		padding: 0;
+		position: relative;
+	}
+
+	.smallIcon img{width:15px;height:15px;}
+	.smallIcon{font-size:12px;margin-right:5px;}
+	.smallIcon{
+		display: block;
+		height: 14px;
+		float: left;
+		font: normal 10px 'Oswald',Arial,sans-serif;
+		text-transform: uppercase;
+		color: #BBBBBB;
+		text-decoration: none;
+		margin-right: 12px;
+		padding: 0 0 0 17px;
+	}
+
+	#headerRow{border-bottom:1px solid #CCCCCC; padding-bottom:5px;padding-top:20px;}
+	#headerRow{height:8%; overflow:hidden; width:100%;}
+	#footerRow{padding-top:15px; border-top:1px solid #0099CC;padding-bottom:10px;}
+	#footer{height:15%;overflow:hidden; width:100%; padding-top:15px; padding-bottom:10px; border-top:1px solid #CCCCCC; }
+
+</style>
+<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300" />
+<div id="headerRow" class="row">
+	<div class="col-sm-1" id="imageSection" style="margin-left:9.5%;">
+		<a href="<s:url action=""/>">
+			<img src="images/common/Logo-Blue.jpg" width="170" height="39.66">
+		</a>
+	</div>
+	<div class="col-sm-3" style="padding-top:30px;color:#0099CC;margin-left:53%;"> 
+		<span style="font-size:12px;">
+			<s:if test="%{#session.userLoggedIn == null}">
+               	<span style="margin-left:5px; margin-right:5px;"><a href="<s:url action="mylogin"/>">Sign In</a></span> |
+               	<span style="margin-left:5px;"><a href="<s:url action="forgotPwd"/>">Forgot Password</a></span>
+               </s:if>
+			<s:else>
+				<span style="margin-right:10px;font-size:12px;">
+					<a href="
+						<s:url action="mydashboard">
+							<s:param name="userId"><s:property value="#session.userInfo.userId"/></s:param>
+						</s:url>">Dashboard</a></span> | 
+				<span style="margin-left:5px; margin-right:5px;"><a href="<s:url action="logout"/>">Sign Out</a></span> |
+				<span style="margin-left:5px;"><a href="<s:url action="changePwd"/>">Change Password</a></span> 
+			</s:else>
+		</span>
+	</div>
+</div>

@@ -75,7 +75,7 @@
 		<input type="hidden" id="subCategory" name="subCategory" value="2">
 		<div>
 			<div class="form-group">
-				<label class="col-sm-5 control-label">No. of Bedrooms<span class="mandatory">*</span></label>
+				<label class="col-sm-3 control-label">No. of Bedrooms<span class="mandatory">*</span></label>
 				<div class="col-sm-2">
 					<s:select class="dropDown" style="height:30px;width:80px;" id="Bedrooms" name="Bedrooms" theme="simple"
 						headerKey="-1" headerValue="Select"
@@ -84,7 +84,7 @@
 				</div>
 			</div>
 			<div class="form-group">
-				<label class="col-sm-5 control-label">Total Area (sq. ft)<span class="mandatory">*</span></label>
+				<label class="col-sm-3 control-label">Total Area (sq. ft)<span class="mandatory">*</span></label>
 				<div class="col-sm-4">
 					<s:if test="Area == ''">
 						<input type="text" class="form-control" maxlength="5" name="Area" id="Area" required>
@@ -95,7 +95,7 @@
 				</div>
 			</div>
 			<div class="form-group">
-				<label class="col-sm-5 control-label">Rent<span class="mandatory">*</span></label>
+				<label class="col-sm-3 control-label">Rent<span class="mandatory">*</span></label>
 				<div class="col-sm-3">
 					<s:if test="PriceValue == ''">
 						<input type="text" class="form-control" maxlength="6" name="PriceValue" id="PriceValue" required>
@@ -107,37 +107,37 @@
 				</div>
 			</div>
 			<div class="form-group">
-				<label class="col-sm-5 control-label">Contact Person Name<span class="mandatory">*</span></label>
+				<label class="col-sm-3 control-label">Contact Person Name<span class="mandatory">*</span></label>
 				<div class="col-sm-6">
 					<input type="text" class="form-control" maxlength="30" name="ContactPersonName" value='<s:property value="ContactPersonName"/>' required>
 				</div>
 			</div>
 			<div class="form-group">
-				<label class="col-sm-5 control-label">Contact Number<span class="mandatory">*</span></label>
+				<label class="col-sm-3 control-label">Contact Number<span class="mandatory">*</span></label>
 				<div class="col-sm-6">
 					<input type="text" class="form-control" maxlength="15" name="ContactNo" value='<s:property value="ContactNo"/>' required>
 				</div>
 			</div>
 			<div class="form-group">
-				<label for="description" class="col-sm-5 control-label">Other Features</label>
+				<label for="description" class="col-sm-3 control-label">Other Features</label>
 				<div class="col-sm-7">
 					<textarea class="form-control" rows="2" maxlength="256" name="Description" id="Description"> <s:property value="Description"/> </textarea>
 				</div>
 			</div>										
 		</div>
 		
-		<div class="row col-md-12" style="background-color:rgb(240,230,175); margin-left:0px; margin-bottom:10px; padding:10px; text-align:center;">
+		<div class="row col-md-12" style="margin-left:0px; margin-bottom:10px; padding:10px; text-align:center;">
 			<h5 style="color:rgb(127,127,127); font-size:14px;">
 				<!-- a href="javascript:animatedcollapse.toggle('accordion_1')"></a-->
 				<a class="heading_link" data-toggle="collapse" data-parent="#accordion" href="#collapse_section_2">
-          			Additional Details
+          			<span class="glyphicon glyphicon-info-sign" style="color:rgb(255,201,14); font-size:16px; margin-right:10px;"></span>Click here to fill Additional Details
           			<span class="glyphicon glyphicon-chevron-down"></span>
             	</a>
 			</h5>
 		</div>
-		<div id="collapse_section_2" class="collapse" style="border:1px solid rgb(240,230,175);">
+		<div id="collapse_section_2" class="collapse">
 			<div class="form-group">
-				<label for="priceValue" class="col-sm-5 control-label">Maintenance</label>
+				<label for="priceValue" class="col-sm-3 control-label">Maintenance</label>
 				<div class="col-sm-3">
 					<s:if test="Maintenance== ''">
 						<input type="text" class="form-control" maxlength="5" name="Maintenance" id="Maintenance" value=''>
@@ -148,7 +148,7 @@
 				</div>
 			</div>
 			<div class="form-group">
-				<label for="priceValue" class="col-sm-5 control-label">Security Deposit</label>
+				<label for="priceValue" class="col-sm-3 control-label">Security Deposit</label>
 				<div class="col-sm-3">
 					<s:if test="Deposit== ''">
 						<input type="text" class="form-control" maxlength="6" name="Deposit" id="Deposit" value=''>
@@ -159,7 +159,7 @@
 				</div>
 			</div>
 			<div class="form-group">
-				<label class="col-sm-5 control-label">No. of Bathrooms</label>
+				<label class="col-sm-3 control-label">No. of Bathrooms</label>
 				<div class="col-sm-2">
 					<s:select class="dropDown" style="height:30px;width:80px;" id="Bathrooms" name="Bathrooms" theme="simple"
 						headerKey="-1" headerValue="Select"
@@ -168,19 +168,19 @@
 				</div>
 			</div>			
 			<div class="form-group">
-				<label class="col-sm-5 control-label">Floor No (G-Ground Floor)</label>
+				<label class="col-sm-3 control-label">Floor No (G-Ground Floor)</label>
 				<div class="col-sm-2">
 					<input type="text" class="form-control" maxlength="2" name="FloorNumber" id="FloorNumber" value='<s:property value="FloorNumber"/>'>
 				</div>
 			</div>
 			<div class="form-group">
-				<label for="furnished" class="col-sm-5 control-label">Furnished</label>
+				<label for="furnished" class="col-sm-3 control-label">Furnished</label>
 				<div class="col-sm-6">
 					<s:radio label="Choose Furnishing Type" theme="simple" name="furnished" id="furnished" list="#{'N':'No','P':'Partial','F':'Full'}" value="postDetails.furnished" />
 				</div>
 			</div>			
 			<div class="form-group">
-				<label class="col-sm-5 control-label">Facing Direction</label>
+				<label class="col-sm-3 control-label">Facing Direction</label>
 				<div class="col-sm-2">
 					<s:select class="dropDown" style="height:30px;width:100px;" id="FacingDirection" name="FacingDirection" theme="simple"
 						headerKey="-1" headerValue="Select"
@@ -189,13 +189,13 @@
 				</div>
 			</div>
 			<div class="form-group">
-				<label for="maritalPreference" class="col-sm-5 control-label">Preference</label>
+				<label for="maritalPreference" class="col-sm-3 control-label">Preference</label>
 				<div class="col-sm-7">
 					<s:radio label="Choose Preference" theme="simple" name="maritalPreference" id="maritalPreference" list="#{'B':'Bachelors','F':'Family','N':'Any'}" value="postDetails.maritalPreference" />
 				</div>
 			</div>
 			<div class="form-group">
-				<label class="col-sm-5 control-label">Amenities</label>
+				<label class="col-sm-3 control-label">Amenities</label>
 				<div class="col-sm-6" style="padding-top:10px;">
 					<s:checkbox id="powerBackup" name="powerBackup" fieldValue="true" value="powerBackup" label="Power Backup" theme="simple"/><span class="checkBoxText">Power Backup </span><BR>
 					<s:checkbox id="gym" name="gym" fieldValue="true" value="gym" label="Gym" theme="simple"/><span class="checkBoxText">Gym </span><BR>
