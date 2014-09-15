@@ -146,7 +146,7 @@ ul#actions{
 
 <%@ taglib prefix="s" uri="/struts-tags"%>
 <!DOCTYPE html>
-<link rel="stylesheet" href="css/bootstrap.css">
+<link rel="stylesheet" href="css/bootstrap.min.css">
 <style>
 	body{margin:0px;padding:0px;}
 
