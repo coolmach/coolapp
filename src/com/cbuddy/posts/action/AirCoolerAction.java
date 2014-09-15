@@ -9,8 +9,6 @@ import java.util.Map;
 import javax.persistence.Transient;
 import javax.servlet.http.HttpServletRequest;
 
-import org.apache.commons.io.FileUtils;
-import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.interceptor.ServletRequestAware;
 import org.apache.struts2.interceptor.SessionAware;
 import org.hibernate.Session;
@@ -26,6 +24,7 @@ import com.cbuddy.posts.services.CommentsService;
 import com.cbuddy.posts.util.PostsUtil;
 import com.cbuddy.user.model.User;
 import com.cbuddy.util.CBuddyConstants;
+import com.cbuddy.util.CbuddySessionFactory;
 import com.cbuddy.util.LocationUtil;
 import com.cbuddy.util.NumberFormatterUtil;
 import com.cbuddy.util.Utils;
@@ -253,7 +252,7 @@ public class AirCoolerAction extends ActionSupport implements SessionAware, Serv
 //		poit.setThumbnailType(null);
 //		poit.setUserFirstName(user.getFirstName());
 
-		SessionFactory sessionFactory = (SessionFactory) ServletActionContext.getServletContext().getAttribute("sessionFactory");
+		SessionFactory sessionFactory = CbuddySessionFactory.getSessionFactory();
 		Session dbSession = sessionFactory.openSession();
 
 		dbSession.beginTransaction();
@@ -296,7 +295,7 @@ public class AirCoolerAction extends ActionSupport implements SessionAware, Serv
 	}
 
 	private void populateAdditionalDetails(){
-		SessionFactory sessionFactory = (SessionFactory) ServletActionContext.getServletContext().getAttribute("sessionFactory");
+		SessionFactory sessionFactory = CbuddySessionFactory.getSessionFactory();
 		Session dbSession = sessionFactory.openSession();
 		for(AirCoolerPostDetails postDetails:adList){
 			populateAdditionalDetailsForPost(postDetails, dbSession);
@@ -316,7 +315,7 @@ public class AirCoolerAction extends ActionSupport implements SessionAware, Serv
 		AirCoolerAdService adService = new AirCoolerAdService();
 		postDetails = adService.getAdDetailsForAirCooler(getModel());
 
-		SessionFactory sessionFactory = (SessionFactory) ServletActionContext.getServletContext().getAttribute("sessionFactory");
+		SessionFactory sessionFactory = CbuddySessionFactory.getSessionFactory();
 		Session dbSession = sessionFactory.openSession();
 		
 		populateAdditionalDetailsForPost(postDetails, dbSession);

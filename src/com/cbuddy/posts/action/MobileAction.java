@@ -10,7 +10,6 @@ import javax.persistence.Transient;
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.io.FileUtils;
-import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.interceptor.ServletRequestAware;
 import org.apache.struts2.interceptor.SessionAware;
 import org.hibernate.Criteria;
@@ -18,7 +17,6 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Order;
-import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -37,6 +35,7 @@ import com.cbuddy.posts.util.PostsUtil;
 import com.cbuddy.user.model.User;
 import com.cbuddy.util.AutoSuggestMobileService;
 import com.cbuddy.util.CBuddyConstants;
+import com.cbuddy.util.CbuddySessionFactory;
 import com.cbuddy.util.LocationUtil;
 import com.cbuddy.util.NumberFormatterUtil;
 import com.cbuddy.util.Utils;
@@ -304,7 +303,7 @@ public class MobileAction extends ActionSupport implements SessionAware, Servlet
 //		poit.setThumbnailType(null);
 //		poit.setUserFirstName(user.getFirstName());
 
-		SessionFactory sessionFactory = (SessionFactory) ServletActionContext.getServletContext().getAttribute("sessionFactory");
+		SessionFactory sessionFactory = CbuddySessionFactory.getSessionFactory();
 		Session dbSession = sessionFactory.openSession();
 
 		dbSession.beginTransaction();
@@ -397,7 +396,7 @@ public class MobileAction extends ActionSupport implements SessionAware, Servlet
 	}
 
 	private void populateAdditionalDetails(){
-		SessionFactory sessionFactory = (SessionFactory) ServletActionContext.getServletContext().getAttribute("sessionFactory");
+		SessionFactory sessionFactory = CbuddySessionFactory.getSessionFactory();
 		Session dbSession = sessionFactory.openSession();
 		for(MobilePostDetails postDetails:adList){
 			populateAdditionalDetailsForPost(postDetails, dbSession);
@@ -441,7 +440,7 @@ System.out.println(postDetails.getSubCategory());
 
 	public String autoPopulateMobileModels() throws JSONException{
 		String output = "success";
-		SessionFactory sessionFactory = (SessionFactory) ServletActionContext.getServletContext().getAttribute("sessionFactory");
+		SessionFactory sessionFactory = CbuddySessionFactory.getSessionFactory();
 		Session dbSession = sessionFactory.openSession();
 		List<MobileMaster> corpList = new AutoSuggestMobileService().autopopulateModels(dbSession, modelSearchStr, brandNew);
 
@@ -470,7 +469,7 @@ System.out.println(postDetails.getSubCategory());
 
 	public String getMobileModels(){
 		System.out.println(brandNew);
-		SessionFactory sessionFactory = (SessionFactory) ServletActionContext.getServletContext().getAttribute("sessionFactory");
+		SessionFactory sessionFactory = CbuddySessionFactory.getSessionFactory();
 		Session dbSession = sessionFactory.openSession();
 		dbSession.beginTransaction();
 		Criteria criteria = dbSession.createCriteria( MobileMaster.class );
@@ -488,7 +487,7 @@ System.out.println(postDetails.getSubCategory());
 		MobileAdService adService = new MobileAdService();
 		postDetails = adService.getAdDetailsForMobile(getModel());
 
-		SessionFactory sessionFactory = (SessionFactory) ServletActionContext.getServletContext().getAttribute("sessionFactory");
+		SessionFactory sessionFactory = CbuddySessionFactory.getSessionFactory();
 		Session dbSession = sessionFactory.openSession();
 		
 		populateAdditionalDetailsForPost(postDetails, dbSession);

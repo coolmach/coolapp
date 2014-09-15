@@ -3,7 +3,7 @@ package com.cbuddy.common.action;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
- 
+
 import com.opensymphony.xwork2.ActionSupport;
  
 public class DummyActionForFileUpload extends ActionSupport{

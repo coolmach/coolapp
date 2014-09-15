@@ -3,7 +3,6 @@ package com.cbuddy.posts.services;
 import java.sql.Timestamp;
 import java.util.List;
 
-import org.apache.struts2.ServletActionContext;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -11,12 +10,13 @@ import org.hibernate.Transaction;
 
 import com.cbuddy.beans.ChildComment;
 import com.cbuddy.beans.MasterComment;
+import com.cbuddy.util.CbuddySessionFactory;
 
 public class CommentsService {
 
 	public List<MasterComment> getComments(int postId){
 
-		SessionFactory sessionFactory = (SessionFactory) ServletActionContext.getServletContext().getAttribute("sessionFactory");
+		SessionFactory sessionFactory = CbuddySessionFactory.getSessionFactory();
 		Session dbSession = sessionFactory.openSession();
 		Transaction tx = null;
 		List<MasterComment> list = null;
@@ -35,7 +35,7 @@ public class CommentsService {
 	}
 
 	public void postComment(int postId, String comment) {
-		SessionFactory sessionFactory = (SessionFactory) ServletActionContext.getServletContext().getAttribute("sessionFactory");
+		SessionFactory sessionFactory = CbuddySessionFactory.getSessionFactory();
 		Session dbSession = sessionFactory.openSession();
 		Transaction tx = null;
 		try {
@@ -60,7 +60,7 @@ public class CommentsService {
 	}
 	
 	public void postChildComment(int postId, String comment , int commentId) {
-		SessionFactory sessionFactory = (SessionFactory) ServletActionContext.getServletContext().getAttribute("sessionFactory");
+		SessionFactory sessionFactory = CbuddySessionFactory.getSessionFactory();
 		Session dbSession = sessionFactory.openSession();
 		Transaction tx = null;
 		try {

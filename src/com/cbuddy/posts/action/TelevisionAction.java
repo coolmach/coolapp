@@ -10,7 +10,6 @@ import javax.persistence.Transient;
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.io.FileUtils;
-import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.interceptor.ServletRequestAware;
 import org.apache.struts2.interceptor.SessionAware;
 import org.hibernate.Session;
@@ -26,6 +25,7 @@ import com.cbuddy.posts.services.TelevisionAdService;
 import com.cbuddy.posts.util.PostsUtil;
 import com.cbuddy.user.model.User;
 import com.cbuddy.util.CBuddyConstants;
+import com.cbuddy.util.CbuddySessionFactory;
 import com.cbuddy.util.LocationUtil;
 import com.cbuddy.util.NumberFormatterUtil;
 import com.cbuddy.util.Utils;
@@ -267,7 +267,7 @@ public class TelevisionAction extends ActionSupport implements SessionAware, Ser
 //		poit.setThumbnailType(null);
 //		poit.setUserFirstName(user.getFirstName());
 
-		SessionFactory sessionFactory = (SessionFactory) ServletActionContext.getServletContext().getAttribute("sessionFactory");
+		SessionFactory sessionFactory = CbuddySessionFactory.getSessionFactory();
 		Session dbSession = sessionFactory.openSession();
 
 		dbSession.beginTransaction();
@@ -328,7 +328,7 @@ public class TelevisionAction extends ActionSupport implements SessionAware, Ser
 	}
 
 	private void populateAdditionalDetails(){
-		SessionFactory sessionFactory = (SessionFactory) ServletActionContext.getServletContext().getAttribute("sessionFactory");
+		SessionFactory sessionFactory = CbuddySessionFactory.getSessionFactory();
 		Session dbSession = sessionFactory.openSession();
 		for(TelevisionPostDetails postDetails:adList){
 			populateAdditionalDetailsForPost(postDetails, dbSession);
@@ -372,7 +372,7 @@ public class TelevisionAction extends ActionSupport implements SessionAware, Ser
 		TelevisionAdService adService = new TelevisionAdService();
 		postDetails = adService.getAdDetailsForTelevision(getModel());
 
-		SessionFactory sessionFactory = (SessionFactory) ServletActionContext.getServletContext().getAttribute("sessionFactory");
+		SessionFactory sessionFactory = CbuddySessionFactory.getSessionFactory();
 		Session dbSession = sessionFactory.openSession();
 
 		populateAdditionalDetailsForPost(postDetails, dbSession);

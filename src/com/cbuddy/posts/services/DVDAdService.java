@@ -2,7 +2,6 @@ package com.cbuddy.posts.services;
 
 import java.util.List;
 
-import org.apache.struts2.ServletActionContext;
 import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
@@ -13,19 +12,20 @@ import org.hibernate.criterion.Restrictions;
 
 import com.cbuddy.posts.model.DVDPostDetails;
 import com.cbuddy.util.CBuddyConstants;
+import com.cbuddy.util.CbuddySessionFactory;
 import com.cbuddy.util.CriteriaUtil;
 
 public class DVDAdService{
 
 	public DVDPostDetails getAdDetailsForDVD(DVDPostDetails postDetails){
-		SessionFactory sessionFactory = (SessionFactory) ServletActionContext.getServletContext().getAttribute("sessionFactory");
+		SessionFactory sessionFactory = CbuddySessionFactory.getSessionFactory();
 		Session session = sessionFactory.openSession();
 		DVDPostDetails adDetails = (DVDPostDetails)session.get(DVDPostDetails.class, new Integer(postDetails.getPostIdStr()));
 		return adDetails;
 	}
 	
 	public int getAdListCount(DVDPostDetails postDetails){
-		SessionFactory sessionFactory = (SessionFactory) ServletActionContext.getServletContext().getAttribute("sessionFactory");
+		SessionFactory sessionFactory = CbuddySessionFactory.getSessionFactory();
 		Session session = sessionFactory.openSession();
 
 		Criteria criteria = session.createCriteria(DVDPostDetails.class);
@@ -47,7 +47,7 @@ public class DVDAdService{
 	}
 
 	public List<DVDPostDetails> getAdListByCategory(DVDPostDetails postDetails){
-		SessionFactory sessionFactory = (SessionFactory) ServletActionContext.getServletContext().getAttribute("sessionFactory");
+		SessionFactory sessionFactory = CbuddySessionFactory.getSessionFactory();
 		Session session = sessionFactory.openSession();
 
 		List<DVDPostDetails> list = null;

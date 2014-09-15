@@ -8,7 +8,6 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.interceptor.ServletRequestAware;
 import org.apache.struts2.interceptor.SessionAware;
 import org.hibernate.Query;
@@ -22,6 +21,7 @@ import com.cbuddy.beans.Location;
 import com.cbuddy.beans.NameValuePair;
 import com.cbuddy.beans.Neighborhood;
 import com.cbuddy.util.AutoSuggestLocationService;
+import com.cbuddy.util.CbuddySessionFactory;
 import com.cbuddy.util.LocationUtil;
 import com.cbuddy.util.LogUtil;
 import com.opensymphony.xwork2.Action;
@@ -49,7 +49,7 @@ public class LocationAction extends ActionSupport implements SessionAware, Servl
 		if(city==null)
 			city="BLR";
 		
-		SessionFactory sessionFactory = (SessionFactory) ServletActionContext.getServletContext().getAttribute("sessionFactory");
+		SessionFactory sessionFactory = CbuddySessionFactory.getSessionFactory();
 		Session dbSession = sessionFactory.openSession();
 		
 		AutoSuggestLocationService service = new AutoSuggestLocationService();
@@ -79,7 +79,7 @@ public class LocationAction extends ActionSupport implements SessionAware, Servl
 	public String getNeighborhood(){
 		String city = request.getParameter("city");
 		String locCode = request.getParameter("location");
-		SessionFactory sessionFactory = (SessionFactory) ServletActionContext.getServletContext().getAttribute("sessionFactory");
+		SessionFactory sessionFactory = CbuddySessionFactory.getSessionFactory();
 		Session dbSession = sessionFactory.openSession();
 		String locName = LocationUtil.getLocationName(dbSession, city, locCode);
 		selectedLocation = new NameValuePair(locCode, locName);

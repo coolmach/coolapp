@@ -3,7 +3,6 @@ package com.cbuddy.posts.services;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.struts2.ServletActionContext;
 import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
@@ -14,12 +13,13 @@ import org.hibernate.criterion.Restrictions;
 
 import com.cbuddy.posts.model.AutomobilePostDetails;
 import com.cbuddy.util.CBuddyConstants;
+import com.cbuddy.util.CbuddySessionFactory;
 import com.cbuddy.util.CriteriaUtil;
 
 public class AutomobileAdService{
 	
 	public int getAdListCount(AutomobilePostDetails postDetails, String subCategory){
-		SessionFactory sessionFactory = (SessionFactory) ServletActionContext.getServletContext().getAttribute("sessionFactory");
+		SessionFactory sessionFactory = CbuddySessionFactory.getSessionFactory();
 		Session session = sessionFactory.openSession();
 		
 		Criteria criteria = session.createCriteria(AutomobilePostDetails.class);
@@ -41,7 +41,7 @@ public class AutomobileAdService{
 	}
 	
 	public AutomobilePostDetails getAdDetails(AutomobilePostDetails postDetails){
-		SessionFactory sessionFactory = (SessionFactory) ServletActionContext.getServletContext().getAttribute("sessionFactory");
+		SessionFactory sessionFactory = CbuddySessionFactory.getSessionFactory();
 		Session session = sessionFactory.openSession();
 		AutomobilePostDetails adDetails = (AutomobilePostDetails)session.get(AutomobilePostDetails.class, new Integer(postDetails.getPostIdStr()));
 		return adDetails;
@@ -51,7 +51,7 @@ public class AutomobileAdService{
 	@SuppressWarnings("unchecked")
 	public List<AutomobilePostDetails> getAdListByCategory(AutomobilePostDetails postDetails, String subCategory){
 
-		SessionFactory sessionFactory = (SessionFactory) ServletActionContext.getServletContext().getAttribute("sessionFactory");
+		SessionFactory sessionFactory = CbuddySessionFactory.getSessionFactory();
 		Session session = sessionFactory.openSession();
 		
 		List<AutomobilePostDetails> list = null;

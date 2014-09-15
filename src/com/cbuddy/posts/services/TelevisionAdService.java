@@ -2,7 +2,6 @@ package com.cbuddy.posts.services;
 
 import java.util.List;
 
-import org.apache.struts2.ServletActionContext;
 import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
@@ -13,6 +12,7 @@ import org.hibernate.criterion.Restrictions;
 
 import com.cbuddy.posts.model.TelevisionPostDetails;
 import com.cbuddy.util.CBuddyConstants;
+import com.cbuddy.util.CbuddySessionFactory;
 import com.cbuddy.util.CriteriaUtil;
 
 
@@ -20,14 +20,14 @@ import com.cbuddy.util.CriteriaUtil;
 public class TelevisionAdService{
 
 	public TelevisionPostDetails getAdDetailsForTelevision(TelevisionPostDetails postDetails){
-		SessionFactory sessionFactory = (SessionFactory) ServletActionContext.getServletContext().getAttribute("sessionFactory");
+		SessionFactory sessionFactory = CbuddySessionFactory.getSessionFactory();
 		Session session = sessionFactory.openSession();
 		TelevisionPostDetails adDetails = (TelevisionPostDetails)session.get(TelevisionPostDetails.class, new Integer(postDetails.getPostIdStr()));
 		return adDetails;
 	}
 
 	public int getAdListCount(TelevisionPostDetails postDetails){
-		SessionFactory sessionFactory = (SessionFactory) ServletActionContext.getServletContext().getAttribute("sessionFactory");
+		SessionFactory sessionFactory = CbuddySessionFactory.getSessionFactory();
 		Session session = sessionFactory.openSession();
 
 		Criteria criteria = session.createCriteria(TelevisionPostDetails.class);
@@ -49,7 +49,7 @@ public class TelevisionAdService{
 	}
 
 	public List<TelevisionPostDetails> getAdListByCategory(TelevisionPostDetails postDetails){
-		SessionFactory sessionFactory = (SessionFactory) ServletActionContext.getServletContext().getAttribute("sessionFactory");
+		SessionFactory sessionFactory = CbuddySessionFactory.getSessionFactory();
 		Session session = sessionFactory.openSession();
 
 		List<TelevisionPostDetails> list = null;

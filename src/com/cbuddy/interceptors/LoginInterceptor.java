@@ -3,14 +3,11 @@ package com.cbuddy.interceptors;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.interceptor.ServletRequestAware;
 
-import com.cbuddy.user.action.LoginAction;
 import com.cbuddy.user.model.User;
-import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.ActionInvocation;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.interceptor.AbstractInterceptor;

@@ -9,7 +9,6 @@ import java.util.Map;
 import javax.persistence.Transient;
 import javax.servlet.http.HttpServletRequest;
 
-import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.interceptor.ServletRequestAware;
 import org.apache.struts2.interceptor.SessionAware;
 import org.hibernate.Session;
@@ -26,6 +25,7 @@ import com.cbuddy.posts.services.RealEstateAdService;
 import com.cbuddy.posts.util.PostsUtil;
 import com.cbuddy.user.model.User;
 import com.cbuddy.util.CBuddyConstants;
+import com.cbuddy.util.CbuddySessionFactory;
 import com.cbuddy.util.LocationUtil;
 import com.cbuddy.util.NumberFormatterUtil;
 import com.cbuddy.util.Utils;
@@ -294,7 +294,7 @@ public class RealEstateAction extends ActionSupport implements SessionAware, Ser
 		String userId = String.valueOf(user.getUserId());
 		//String imgFileName = String.valueOf(System.currentTimeMillis()) + "." + getExtension(uploadContentType) + "";
 
-		SessionFactory sessionFactory = (SessionFactory) ServletActionContext.getServletContext().getAttribute("sessionFactory");
+		SessionFactory sessionFactory = CbuddySessionFactory.getSessionFactory();
 		Session dbSession = sessionFactory.openSession();
 
 		//Checking if user has manually tampered location after selecting from auto suggest list
@@ -415,7 +415,7 @@ public class RealEstateAction extends ActionSupport implements SessionAware, Ser
 		if(adList == null){
 			return;
 		}
-		SessionFactory sessionFactory = (SessionFactory) ServletActionContext.getServletContext().getAttribute("sessionFactory");
+		SessionFactory sessionFactory = CbuddySessionFactory.getSessionFactory();
 		Session dbSession = sessionFactory.openSession();
 		for(RealEstatePostDetails postDetails:adList){
 			populateAdditionalDetailsForPost(postDetails, dbSession);
@@ -513,7 +513,7 @@ public class RealEstateAction extends ActionSupport implements SessionAware, Ser
 		RealEstateAdService adService = new RealEstateAdService();
 		postDetails = adService.getAdDetailsForRealEstate(getModel());
 
-		SessionFactory sessionFactory = (SessionFactory) ServletActionContext.getServletContext().getAttribute("sessionFactory");
+		SessionFactory sessionFactory = CbuddySessionFactory.getSessionFactory();
 		Session dbSession = sessionFactory.openSession();
 		
 		populateAdditionalDetailsForPost(postDetails, dbSession);

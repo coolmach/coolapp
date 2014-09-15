@@ -9,7 +9,6 @@ import java.util.Map;
 import javax.persistence.Transient;
 import javax.servlet.http.HttpServletRequest;
 
-import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.interceptor.ServletRequestAware;
 import org.apache.struts2.interceptor.SessionAware;
 import org.hibernate.Criteria;
@@ -29,6 +28,7 @@ import com.cbuddy.posts.services.DVDAdService;
 import com.cbuddy.posts.util.PostsUtil;
 import com.cbuddy.user.model.User;
 import com.cbuddy.util.CBuddyConstants;
+import com.cbuddy.util.CbuddySessionFactory;
 import com.cbuddy.util.CriteriaUtil;
 import com.cbuddy.util.LocationUtil;
 import com.cbuddy.util.NumberFormatterUtil;
@@ -250,7 +250,7 @@ public class DVDAction extends ActionSupport implements SessionAware, ServletReq
 //		poit.setThumbnailType(null);
 //		poit.setUserFirstName(user.getFirstName());
 
-		SessionFactory sessionFactory = (SessionFactory) ServletActionContext.getServletContext().getAttribute("sessionFactory");
+		SessionFactory sessionFactory = CbuddySessionFactory.getSessionFactory();
 		Session dbSession = sessionFactory.openSession();
 
 		dbSession.beginTransaction();
@@ -293,7 +293,7 @@ public class DVDAction extends ActionSupport implements SessionAware, ServletReq
 	}
 
 	private void populateAdditionalDetails(){
-		SessionFactory sessionFactory = (SessionFactory) ServletActionContext.getServletContext().getAttribute("sessionFactory");
+		SessionFactory sessionFactory = CbuddySessionFactory.getSessionFactory();
 		Session dbSession = sessionFactory.openSession();
 		for(DVDPostDetails postDetails:adList){
 			populateAdditionalDetailsForPost(postDetails, dbSession);
@@ -313,7 +313,7 @@ public class DVDAction extends ActionSupport implements SessionAware, ServletReq
 		DVDAdService adService = new DVDAdService();
 		postDetails = adService.getAdDetailsForDVD(getModel());
 
-		SessionFactory sessionFactory = (SessionFactory) ServletActionContext.getServletContext().getAttribute("sessionFactory");
+		SessionFactory sessionFactory = CbuddySessionFactory.getSessionFactory();
 		Session dbSession = sessionFactory.openSession();
 		
 		populateAdditionalDetailsForPost(postDetails, dbSession);
@@ -352,7 +352,7 @@ public class DVDAction extends ActionSupport implements SessionAware, ServletReq
 	}
 	
 	private List<DVDPostDetails> getAdListByCategory(DVDPostDetails postDetails){
-		SessionFactory sessionFactory = (SessionFactory) ServletActionContext.getServletContext().getAttribute("sessionFactory");
+		SessionFactory sessionFactory = CbuddySessionFactory.getSessionFactory();
 		Session session = sessionFactory.openSession();
 
 		List<DVDPostDetails> list = null;

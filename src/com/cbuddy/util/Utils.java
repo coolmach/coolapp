@@ -2,10 +2,6 @@ package com.cbuddy.util;
 
 import java.util.HashMap;
 
-import org.hibernate.Session;
-
-import com.cbuddy.beans.Poit;
-
 
 public class Utils {
 	private static HashMap<String, String> categoryDescMap = new HashMap<String, String>(); 

@@ -80,7 +80,7 @@ public class HomeAction extends ActionSupport implements SessionAware, ServletRe
 	}
 	
 	private void populateAdditionalDetails(){
-		SessionFactory sessionFactory = (SessionFactory) ServletActionContext.getServletContext().getAttribute("sessionFactory");
+		SessionFactory sessionFactory = CbuddySessionFactory.getSessionFactory();
 		Session dbSession = sessionFactory.openSession();
 		for(RealEstatePostDetails postDetails:adList){
 			String cityName = LocationUtil.getCityName(dbSession, postDetails.getCity());

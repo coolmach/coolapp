@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.interceptor.SessionAware;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -13,6 +12,7 @@ import org.hibernate.SessionFactory;
 import com.cbuddy.beans.Poit;
 import com.cbuddy.posts.util.PostsUtil;
 import com.cbuddy.user.model.User;
+import com.cbuddy.util.CbuddySessionFactory;
 import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.ActionSupport;
 
@@ -46,7 +46,7 @@ public class UserAction extends ActionSupport implements SessionAware{
 			return Action.ERROR;
 		}
 		
-		SessionFactory sessionFactory = (SessionFactory) ServletActionContext.getServletContext().getAttribute("sessionFactory");
+		SessionFactory sessionFactory = CbuddySessionFactory.getSessionFactory();
 		Session dbSession = sessionFactory.openSession();
 		
 		Query query = dbSession.createQuery("from Poit where created_by = :userId");
