@@ -343,7 +343,10 @@
 }
 
 #filterValueBar {
-	margin-left: 1%;
+	margin-left: 1.3%;
+	width:64%;
+	font-size:12px;
+	margin-bottom:5px;
 }
 
 .clearfix {
@@ -1972,3 +1975,5 @@ blockquote small {
 	top: 0px !important;
     font-size:10px !important;
 }
+
+.content{padding-left:5px;}

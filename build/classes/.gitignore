@@ -1,7 +1,2 @@
 /com
-/hibernate.cfg.xml
-/log4j.properties
-/oauth_consumer.properties
-/sql
-/struts.xml
 /MultipleFilesUploadAction.class

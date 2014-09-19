@@ -35,7 +35,9 @@
 			<div class="form-group">
 				<label class="col-sm-3 control-label">Price<span class="mandatory">*</span></label>
 				<div class="col-sm-3">
-					<input type="text" class="form-control" maxlength="12" name="sprice" id="sprice" value='<s:property value="sprice"/>' required data-validate-type="amount" data-validate-errMessage="Please enter valid Price" data-infoTip="Please enter Price">
+					<input type="text" class="form-control" maxlength="12" name="sprice" id="sprice" value='<s:property value="sprice"/>' 
+					required data-validate-type="amount" data-validate-errMessage="Please enter valid Price" data-infoTip="Please enter Price"
+					data-minVal="100000" data-maxVal="500000000">
 					<s:checkbox id="negotiable" name="negotiable" fieldValue="true" value="negotiable" label="Negotiable" theme="simple"/><span class="checkBoxText">Negotiable</span><BR>
 					<div class="fieldTip" id="spriceTip"></div>
 					<div class="fieldTip" id="sprice_Error"></div>

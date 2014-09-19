@@ -21,6 +21,13 @@ function validateForm(){
 			return false;
 		}
 	});
+	$('input[data-validate-type="postTitle"]').each(function(){
+		fieldName = $(this).attr("id");
+		errorResponse = $(this).attr("data-validate-errMessage");
+		if(validateTitleField(fieldName, errorDetail) == false){
+			return false;
+		}
+	});
 	$('input[data-validate-type="phoneNumber"]').each(function(){
 		fieldName = $(this).attr("id");
 		errorResponse = $(this).attr("data-validate-errMessage");
@@ -104,7 +111,12 @@ function validateNumericField(fieldName, errorDetail){
 }
 function validateAmountField(fieldName, errorDetail){
 	fieldValue = $("#" + fieldName).val();
-	result = isValidAmount(fieldValue); 
+	result = isValidAmount(fieldValue);
+	if(result == true){
+		minVal = $("#" + fieldName).attr("data-minVal");
+		maxVal = $("#" + fieldName).attr("data-maxVal");
+		result = checkAmountRange(fieldValue, minVal, maxVal);
+	}
 	showOrHideErrorTip(result, fieldName, errorDetail);
 	return result;
 }
@@ -225,6 +237,25 @@ function convertToAmountFormat(amountInput){
 	return output;
 }
 
+function checkAmountRange(amountStr, minAmountStr, maxAmountStr){
+	amountStr = amountStr.replace(/,/g, "");
+	amount = parseFloat(amountStr);
+	
+	if(isValidNumber(minAmountStr) == false){
+		return false;
+	}
+	
+	if(isValidNumber(maxAmountStr) == false){
+		return false;
+	}
+	
+	min = parseFloat(minAmountStr);
+	max = parseFloat(maxAmountStr);
+	
+	if(amount < min || amount > max){
+		return false;
+	}
+}
 
 function isValidPhoneNumber(phoneNumber){
 	if(phoneNumber == ""){
@@ -266,6 +297,10 @@ function isValidTitle(titleText){
 		return true;
 	}
 	if(titleText.length < 10){
+		return false;
+	}
+	//At least two words should be entered
+	if(titleText.indexOf(" ") < 0){
 		return false;
 	}
 	return true;
