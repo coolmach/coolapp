@@ -5,7 +5,6 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.interceptor.ServletRequestAware;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -30,7 +29,7 @@ public class DummyAction extends ActionSupport implements ServletRequestAware{
 	public String updateCorpEmailId(){
 		String emailId = request.getParameter("emailId");
 
-		SessionFactory sessionFactory = (SessionFactory) ServletActionContext.getServletContext().getAttribute("sessionFactory");
+		SessionFactory sessionFactory = CbuddySessionFactory.getSessionFactory();
 		Session dbSession = sessionFactory.openSession();
 		Query query = dbSession.createQuery("from Ucred where corp_email_id = :emailId");
 		query.setParameter("emailId", emailId);
@@ -58,7 +57,7 @@ public class DummyAction extends ActionSupport implements ServletRequestAware{
 	public String updatePersonalEmailId(){
 		String emailId = request.getParameter("emailId");
 
-		SessionFactory sessionFactory = (SessionFactory) ServletActionContext.getServletContext().getAttribute("sessionFactory");
+		SessionFactory sessionFactory = CbuddySessionFactory.getSessionFactory();
 		Session dbSession = sessionFactory.openSession();
 		Query query = dbSession.createQuery("from Uprof where personal_email_id = :emailId");
 		query.setParameter("emailId", emailId);

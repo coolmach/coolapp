@@ -2,7 +2,6 @@ package com.cbuddy.posts.services;
 
 import java.util.List;
 
-import org.apache.struts2.ServletActionContext;
 import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
@@ -13,12 +12,13 @@ import org.hibernate.criterion.Restrictions;
 
 import com.cbuddy.posts.model.FurniturePostDetails;
 import com.cbuddy.util.CBuddyConstants;
+import com.cbuddy.util.CbuddySessionFactory;
 import com.cbuddy.util.CriteriaUtil;
 
 public class FurnitureAdService {
 	
 	public int getAdListCount(FurniturePostDetails postDetails, String subCategory){
-		SessionFactory sessionFactory = (SessionFactory) ServletActionContext.getServletContext().getAttribute("sessionFactory");
+		SessionFactory sessionFactory = CbuddySessionFactory.getSessionFactory();
 		Session session = sessionFactory.openSession();
 		
 		Criteria criteria = session.createCriteria(FurniturePostDetails.class);
@@ -40,7 +40,7 @@ public class FurnitureAdService {
 	}
 	
 	public List<FurniturePostDetails> getAdListByCategory(FurniturePostDetails postDetails, String subCategory){
-		SessionFactory sessionFactory = (SessionFactory) ServletActionContext.getServletContext().getAttribute("sessionFactory");
+		SessionFactory sessionFactory = CbuddySessionFactory.getSessionFactory();
 		Session session = sessionFactory.openSession();
 
 		List<FurniturePostDetails> list = null;

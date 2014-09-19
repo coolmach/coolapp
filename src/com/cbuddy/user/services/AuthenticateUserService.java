@@ -5,7 +5,6 @@ package com.cbuddy.user.services;
 import java.sql.Timestamp;
 import java.util.List;
 
-import org.apache.struts2.ServletActionContext;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -19,6 +18,7 @@ import com.cbuddy.beans.Uprof;
 import com.cbuddy.exception.CBuddyException;
 import com.cbuddy.user.model.User;
 import com.cbuddy.util.CBuddyConstants;
+import com.cbuddy.util.CbuddySessionFactory;
 import com.cbuddy.util.EncryptionUtil;
 import com.cbuddy.util.MailUtil;
 import com.cbuddy.util.TextUtil;
@@ -56,7 +56,7 @@ public class AuthenticateUserService {
 			throw new CBuddyException("Invalid Email Id");
 		}
 
-		SessionFactory sessionFactory = (SessionFactory) ServletActionContext.getServletContext().getAttribute("sessionFactory");
+		SessionFactory sessionFactory = CbuddySessionFactory.getSessionFactory();
 		Session dbSession = sessionFactory.openSession();
 		dbSession.beginTransaction();
 
@@ -134,7 +134,7 @@ public class AuthenticateUserService {
 	public User authenticateUser(String userNameString, String password)
 			throws CBuddyException{
 
-		SessionFactory sessionFactory = (SessionFactory) ServletActionContext.getServletContext().getAttribute("sessionFactory");
+		SessionFactory sessionFactory = CbuddySessionFactory.getSessionFactory();
 		Session session = sessionFactory.openSession();
 		session.beginTransaction();
 
@@ -232,7 +232,7 @@ public class AuthenticateUserService {
 
 	public User registerUser(Ucred ucred, String contextPath) throws CBuddyException{
 
-		SessionFactory sessionFactory = (SessionFactory) ServletActionContext.getServletContext().getAttribute("sessionFactory");
+		SessionFactory sessionFactory = CbuddySessionFactory.getSessionFactory();
 		Session session = sessionFactory.openSession();
 		session.beginTransaction();
 
@@ -307,7 +307,7 @@ public class AuthenticateUserService {
 	public void resendActivationCode(String personalMailId, String contextPath)
 			throws CBuddyException{
 		//Get User Id from Uprof
-		SessionFactory sessionFactory = (SessionFactory) ServletActionContext.getServletContext().getAttribute("sessionFactory");
+		SessionFactory sessionFactory = CbuddySessionFactory.getSessionFactory();
 		Session dbSession = sessionFactory.openSession();
 
 		Query query = dbSession.createQuery("from Uprof where personal_email_id = :personalMailId");
@@ -353,7 +353,7 @@ public class AuthenticateUserService {
 
 	public void forgotPwd(Ucred ucredFromAction, String contextPath)
 			throws CBuddyException{
-		SessionFactory sessionFactory = (SessionFactory) ServletActionContext.getServletContext().getAttribute("sessionFactory");
+		SessionFactory sessionFactory = CbuddySessionFactory.getSessionFactory();
 		Session dbSession = sessionFactory.openSession();
 
 		//Get User Id from Uprof

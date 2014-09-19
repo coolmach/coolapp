@@ -2,7 +2,6 @@ package com.cbuddy.posts.services;
 
 import java.util.List;
 
-import org.apache.struts2.ServletActionContext;
 import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
@@ -13,19 +12,20 @@ import org.hibernate.criterion.Restrictions;
 
 import com.cbuddy.posts.model.CameraPostDetails;
 import com.cbuddy.util.CBuddyConstants;
+import com.cbuddy.util.CbuddySessionFactory;
 import com.cbuddy.util.CriteriaUtil;
 
 public class CameraAdService{
 
 	public CameraPostDetails getAdDetailsForCamera(CameraPostDetails postDetails){
-		SessionFactory sessionFactory = (SessionFactory) ServletActionContext.getServletContext().getAttribute("sessionFactory");
+		SessionFactory sessionFactory = CbuddySessionFactory.getSessionFactory();
 		Session session = sessionFactory.openSession();
 		CameraPostDetails adDetails = (CameraPostDetails)session.get(CameraPostDetails.class, new Integer(postDetails.getPostIdStr()));
 		return adDetails;
 	}
 	
 	public int getAdListCount(CameraPostDetails postDetails){
-		SessionFactory sessionFactory = (SessionFactory) ServletActionContext.getServletContext().getAttribute("sessionFactory");
+		SessionFactory sessionFactory = CbuddySessionFactory.getSessionFactory();
 		Session session = sessionFactory.openSession();
 
 		Criteria criteria = session.createCriteria(CameraPostDetails.class);
@@ -47,7 +47,7 @@ public class CameraAdService{
 	}
 
 	public List<CameraPostDetails> getAdListByCategory(CameraPostDetails postDetails){
-		SessionFactory sessionFactory = (SessionFactory) ServletActionContext.getServletContext().getAttribute("sessionFactory");
+		SessionFactory sessionFactory = CbuddySessionFactory.getSessionFactory();
 		Session session = sessionFactory.openSession();
 
 		List<CameraPostDetails> list = null;

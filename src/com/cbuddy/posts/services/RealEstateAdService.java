@@ -3,7 +3,6 @@ package com.cbuddy.posts.services;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.struts2.ServletActionContext;
 import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
@@ -17,6 +16,7 @@ import org.hibernate.criterion.Restrictions;
 import com.cbuddy.beans.Pdre;
 import com.cbuddy.posts.model.RealEstatePostDetails;
 import com.cbuddy.util.CBuddyConstants;
+import com.cbuddy.util.CbuddySessionFactory;
 import com.cbuddy.util.CriteriaUtil;
 import com.cbuddy.util.NumberFormatterUtil;
 
@@ -24,7 +24,7 @@ public class RealEstateAdService{
 
 	
 	public int getAdListCount(RealEstatePostDetails postDetails, String subCategory){
-		SessionFactory sessionFactory = (SessionFactory) ServletActionContext.getServletContext().getAttribute("sessionFactory");
+		SessionFactory sessionFactory = CbuddySessionFactory.getSessionFactory();
 		Session session = sessionFactory.openSession();
 		
 		Criteria criteria = session.createCriteria(RealEstatePostDetails.class);
@@ -49,7 +49,7 @@ public class RealEstateAdService{
 	@SuppressWarnings("unchecked")
 	public List<RealEstatePostDetails> getAdListByCategory(RealEstatePostDetails postDetails, String subCategory){
 
-		SessionFactory sessionFactory = (SessionFactory) ServletActionContext.getServletContext().getAttribute("sessionFactory");
+		SessionFactory sessionFactory = CbuddySessionFactory.getSessionFactory();
 		Session session = sessionFactory.openSession();
 
 		List<RealEstatePostDetails> list = null;
@@ -448,7 +448,7 @@ public class RealEstateAdService{
 	}
 
 	public RealEstatePostDetails getAdDetailsForRealEstate(RealEstatePostDetails postDetails){
-		SessionFactory sessionFactory = (SessionFactory) ServletActionContext.getServletContext().getAttribute("sessionFactory");
+		SessionFactory sessionFactory = CbuddySessionFactory.getSessionFactory();
 		Session session = sessionFactory.openSession();
 		RealEstatePostDetails adDetails = (RealEstatePostDetails)session.get(RealEstatePostDetails.class, new Integer(postDetails.getPostIdStr()));
 		return adDetails;

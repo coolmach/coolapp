@@ -5,9 +5,9 @@ import javax.servlet.ServletContextListener;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.cfg.AnnotationConfiguration;
 
 import com.cbuddy.posts.cache.MobilePhoneCache;
+import com.cbuddy.util.CbuddySessionFactory;
 import com.cbuddy.util.CorporateIndexCreator;
 import com.cbuddy.util.LogUtil;
 import com.cbuddy.util.MobileIndexCreator;
@@ -26,11 +26,10 @@ public class TablesCreatorListener implements ServletContextListener{
 	@Override
 	public void contextInitialized(ServletContextEvent event) {
 		System.out.println("TablesCreatorListner.contextInitialized(): Start");
-		factory = new AnnotationConfiguration().configure().buildSessionFactory();
-		System.out.println("TablesCreatorListner.contextInitialized(): " + factory);
-		event.getServletContext().setAttribute("sessionFactory", factory);
-		
+		factory = CbuddySessionFactory.getSessionFactory();
+		System.out.println("TablesCreatorListener.contextInitialized()"+factory);
 		Session dbSession = factory.openSession();
+		
 		CorporateIndexCreator.getInstance().indexCorporates(dbSession);
 		System.out.println(">>> Corporate Indexes created successfully");
 		LogUtil.getInstance().info(">>> Corporate Indexes created successfully");

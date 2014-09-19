@@ -2,7 +2,6 @@ package com.cbuddy.posts.services;
 
 import java.util.List;
 
-import org.apache.struts2.ServletActionContext;
 import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
@@ -13,19 +12,20 @@ import org.hibernate.criterion.Restrictions;
 
 import com.cbuddy.posts.model.FridgePostDetails;
 import com.cbuddy.util.CBuddyConstants;
+import com.cbuddy.util.CbuddySessionFactory;
 import com.cbuddy.util.CriteriaUtil;
 
 public class FridgeAdService{
 
 	public FridgePostDetails getAdDetailsForFridge(FridgePostDetails postDetails){
-		SessionFactory sessionFactory = (SessionFactory) ServletActionContext.getServletContext().getAttribute("sessionFactory");
+		SessionFactory sessionFactory = CbuddySessionFactory.getSessionFactory();
 		Session session = sessionFactory.openSession();
 		FridgePostDetails adDetails = (FridgePostDetails)session.get(FridgePostDetails.class, new Integer(postDetails.getPostIdStr()));
 		return adDetails;
 	}
 	
 	public int getAdListCount(FridgePostDetails postDetails){
-		SessionFactory sessionFactory = (SessionFactory) ServletActionContext.getServletContext().getAttribute("sessionFactory");
+		SessionFactory sessionFactory = CbuddySessionFactory.getSessionFactory();
 		Session session = sessionFactory.openSession();
 
 		Criteria criteria = session.createCriteria(FridgePostDetails.class);
@@ -47,7 +47,7 @@ public class FridgeAdService{
 	}
 
 	public List<FridgePostDetails> getAdListByCategory(FridgePostDetails postDetails){
-		SessionFactory sessionFactory = (SessionFactory) ServletActionContext.getServletContext().getAttribute("sessionFactory");
+		SessionFactory sessionFactory = CbuddySessionFactory.getSessionFactory();
 		Session session = sessionFactory.openSession();
 
 		List<FridgePostDetails> list = null;

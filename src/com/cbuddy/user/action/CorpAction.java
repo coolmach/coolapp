@@ -4,7 +4,6 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.interceptor.ServletRequestAware;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -14,6 +13,7 @@ import org.json.JSONObject;
 
 import com.cbuddy.beans.Corp;
 import com.cbuddy.util.AutoSuggestCorporateService;
+import com.cbuddy.util.CbuddySessionFactory;
 import com.opensymphony.xwork2.ActionSupport;
 
 public class CorpAction extends ActionSupport implements ServletRequestAware{
@@ -25,7 +25,7 @@ public class CorpAction extends ActionSupport implements ServletRequestAware{
 
 	public String autoPopulateCorporates() throws JSONException{
 		String output = "success";
-		SessionFactory sessionFactory = (SessionFactory) ServletActionContext.getServletContext().getAttribute("sessionFactory");
+		SessionFactory sessionFactory = CbuddySessionFactory.getSessionFactory();
 		Session dbSession = sessionFactory.openSession();
 		List<Corp> corpList = new AutoSuggestCorporateService().getList(dbSession, corpSearchString);
 

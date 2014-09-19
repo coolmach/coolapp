@@ -1,20 +1,14 @@
 package com.cbuddy.common.action;
 
-import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.interceptor.ServletRequestAware;
 import org.apache.struts2.interceptor.SessionAware;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
 
-import com.cbuddy.beans.ChildComment;
 import com.cbuddy.beans.MasterComment;
 import com.cbuddy.posts.services.CommentsService;
 import com.opensymphony.xwork2.ActionSupport;

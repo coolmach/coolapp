@@ -3,7 +3,6 @@ package com.cbuddy.beans;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;

@@ -7,7 +7,6 @@ import java.util.Map;
 import javax.persistence.Transient;
 import javax.servlet.http.HttpServletRequest;
 
-import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.interceptor.ServletRequestAware;
 import org.apache.struts2.interceptor.SessionAware;
 import org.hibernate.Session;
@@ -17,6 +16,7 @@ import com.cbuddy.beans.Poit;
 import com.cbuddy.posts.model.CommonPostDetails;
 import com.cbuddy.posts.services.CommonAdService;
 import com.cbuddy.util.CBuddyConstants;
+import com.cbuddy.util.CbuddySessionFactory;
 import com.cbuddy.util.LocationUtil;
 import com.cbuddy.util.Utils;
 import com.opensymphony.xwork2.ActionSupport;
@@ -56,7 +56,7 @@ public class CommonPostsAction extends ActionSupport implements SessionAware, Se
 	}
 
 	private void populateAdditionalDetails(){
-		SessionFactory sessionFactory = (SessionFactory) ServletActionContext.getServletContext().getAttribute("sessionFactory");
+		SessionFactory sessionFactory = CbuddySessionFactory.getSessionFactory();
 		Session dbSession = sessionFactory.openSession();
 		for(Poit postDetails:adList){
 			String cityName = LocationUtil.getCityName(dbSession, postDetails.getCity());

@@ -2,7 +2,6 @@ package com.cbuddy.posts.services;
 
 import java.util.List;
 
-import org.apache.struts2.ServletActionContext;
 import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
@@ -15,13 +14,14 @@ import org.hibernate.criterion.Restrictions;
 
 import com.cbuddy.posts.model.ComputersPostDetails;
 import com.cbuddy.util.CBuddyConstants;
+import com.cbuddy.util.CbuddySessionFactory;
 import com.cbuddy.util.CriteriaUtil;
 import com.cbuddy.util.NumberFormatterUtil;
 
 public class ComputersAdService{
 
 	public int getAdListCount(ComputersPostDetails postDetails, String subCategory){
-		SessionFactory sessionFactory = (SessionFactory) ServletActionContext.getServletContext().getAttribute("sessionFactory");
+		SessionFactory sessionFactory = CbuddySessionFactory.getSessionFactory();
 		Session session = sessionFactory.openSession();
 
 		Criteria criteria = session.createCriteria(ComputersPostDetails.class);
@@ -46,7 +46,7 @@ public class ComputersAdService{
 	@SuppressWarnings("unchecked")
 	public List<ComputersPostDetails> getAdListByCategory(ComputersPostDetails postDetails, String subCategory){
 
-		SessionFactory sessionFactory = (SessionFactory) ServletActionContext.getServletContext().getAttribute("sessionFactory");
+		SessionFactory sessionFactory = CbuddySessionFactory.getSessionFactory();
 		Session session = sessionFactory.openSession();
 
 		List<ComputersPostDetails> list = null;
@@ -228,7 +228,7 @@ public class ComputersAdService{
 	}
 	
 	public ComputersPostDetails getAdDetailsForComputers(ComputersPostDetails postDetails){
-		SessionFactory sessionFactory = (SessionFactory) ServletActionContext.getServletContext().getAttribute("sessionFactory");
+		SessionFactory sessionFactory = CbuddySessionFactory.getSessionFactory();
 		Session session = sessionFactory.openSession();
 		ComputersPostDetails adDetails = (ComputersPostDetails)session.get(ComputersPostDetails.class, new Integer(postDetails.getPostIdStr()));
 		return adDetails;

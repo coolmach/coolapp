@@ -2,7 +2,6 @@ package com.cbuddy.posts.services;
 
 import java.util.List;
 
-import org.apache.struts2.ServletActionContext;
 import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
@@ -13,12 +12,13 @@ import org.hibernate.criterion.Restrictions;
 
 import com.cbuddy.posts.model.MobilePostDetails;
 import com.cbuddy.util.CBuddyConstants;
+import com.cbuddy.util.CbuddySessionFactory;
 import com.cbuddy.util.CriteriaUtil;
 
 public class MobileAdService{
 	
 	public int getAdListCount(MobilePostDetails postDetails, String subCategory){
-		SessionFactory sessionFactory = (SessionFactory) ServletActionContext.getServletContext().getAttribute("sessionFactory");
+		SessionFactory sessionFactory = CbuddySessionFactory.getSessionFactory();
 		Session session = sessionFactory.openSession();
 		
 		Criteria criteria = session.createCriteria(MobilePostDetails.class);
@@ -43,7 +43,7 @@ public class MobileAdService{
 	@SuppressWarnings("unchecked")
 	public List<MobilePostDetails> getAdListByCategory(MobilePostDetails postDetails, String subCategory){
 
-		SessionFactory sessionFactory = (SessionFactory) ServletActionContext.getServletContext().getAttribute("sessionFactory");
+		SessionFactory sessionFactory = CbuddySessionFactory.getSessionFactory();
 		Session session = sessionFactory.openSession();
 
 		List<MobilePostDetails> list = null;
@@ -145,7 +145,7 @@ public class MobileAdService{
 	}*/
 	
 	public MobilePostDetails getAdDetailsForMobile(MobilePostDetails postDetails){
-		SessionFactory sessionFactory = (SessionFactory) ServletActionContext.getServletContext().getAttribute("sessionFactory");
+		SessionFactory sessionFactory = CbuddySessionFactory.getSessionFactory();
 		Session session = sessionFactory.openSession();
 		MobilePostDetails adDetails = (MobilePostDetails)session.get(MobilePostDetails.class, new Integer(postDetails.getPostIdStr()));
 		return adDetails;

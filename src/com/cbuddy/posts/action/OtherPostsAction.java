@@ -10,7 +10,6 @@ import javax.persistence.Transient;
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.io.FileUtils;
-import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.interceptor.ServletRequestAware;
 import org.apache.struts2.interceptor.SessionAware;
 import org.hibernate.Criteria;
@@ -25,6 +24,7 @@ import com.cbuddy.beans.Poit;
 import com.cbuddy.posts.model.OtherPostDetails;
 import com.cbuddy.user.model.User;
 import com.cbuddy.util.CBuddyConstants;
+import com.cbuddy.util.CbuddySessionFactory;
 import com.cbuddy.util.CriteriaUtil;
 import com.cbuddy.util.LocationUtil;
 import com.cbuddy.util.NumberFormatterUtil;
@@ -252,7 +252,7 @@ public class OtherPostsAction extends ActionSupport implements SessionAware, Ser
 		poit.setThumbnailType(null);
 		poit.setUserFirstName(user.getFirstName());
 
-		SessionFactory sessionFactory = (SessionFactory) ServletActionContext.getServletContext().getAttribute("sessionFactory");
+		SessionFactory sessionFactory = CbuddySessionFactory.getSessionFactory();
 		Session dbSession = sessionFactory.openSession();
 
 		dbSession.beginTransaction();
@@ -303,7 +303,7 @@ public class OtherPostsAction extends ActionSupport implements SessionAware, Ser
 	}
 
 	private void populateAdditionalDetails(){
-		SessionFactory sessionFactory = (SessionFactory) ServletActionContext.getServletContext().getAttribute("sessionFactory");
+		SessionFactory sessionFactory = CbuddySessionFactory.getSessionFactory();
 		Session dbSession = sessionFactory.openSession();
 		for(OtherPostDetails postDetails:adList){
 			String cityName = LocationUtil.getCityName(dbSession, postDetails.getCity());
@@ -331,7 +331,7 @@ public class OtherPostsAction extends ActionSupport implements SessionAware, Ser
 	}
 	
 	private List<OtherPostDetails> getAdListByCategory(OtherPostDetails postDetails){
-		SessionFactory sessionFactory = (SessionFactory) ServletActionContext.getServletContext().getAttribute("sessionFactory");
+		SessionFactory sessionFactory = CbuddySessionFactory.getSessionFactory();
 		Session session = sessionFactory.openSession();
 
 		List<OtherPostDetails> list = null;
