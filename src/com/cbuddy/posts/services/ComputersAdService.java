@@ -16,7 +16,7 @@ import com.cbuddy.posts.model.ComputersPostDetails;
 import com.cbuddy.util.CBuddyConstants;
 import com.cbuddy.util.CbuddySessionFactory;
 import com.cbuddy.util.CriteriaUtil;
-import com.cbuddy.util.NumberFormatterUtil;
+import com.cbuddy.util.FormatterUtil;
 
 public class ComputersAdService{
 
@@ -123,18 +123,18 @@ public class ComputersAdService{
 
 		for(String str :obj){
 			if(str.contains("<") ){
-				str = NumberFormatterUtil.getNumericValue(str);				
+				str = FormatterUtil.getNumericValue(str);				
 				c1 =  Restrictions.le("hddSize", Integer.parseInt(str));
 			}
 			if(str.contains(">")){
-				str = NumberFormatterUtil.getNumericValue(str);				
+				str = FormatterUtil.getNumericValue(str);				
 				c2 =  Restrictions.ge("hddSize", Integer.parseInt(str));
 			}
 			if(str.contains("-")){
 				String res[] = str.split("-");
 				String newRes[] = new String[2];
 				for(int i=0;i<res.length;i++){
-					newRes[i] = NumberFormatterUtil.getNumericValue(res[i]);
+					newRes[i] = FormatterUtil.getNumericValue(res[i]);
 				}	
 				
 				c3 =  Restrictions.between("hddSize", Integer.parseInt(newRes[0]),Integer.parseInt(newRes[1]));
@@ -181,18 +181,18 @@ public class ComputersAdService{
 
 			for(String str :obj){
 				if(str.contains("<") ){
-					str = NumberFormatterUtil.getNumericValue(str);				
+					str = FormatterUtil.getNumericValue(str);				
 					c1 =  Restrictions.le("processorSize", Integer.parseInt(str));
 				}
 				if(str.contains(">")){
-					str = NumberFormatterUtil.getNumericValue(str);				
+					str = FormatterUtil.getNumericValue(str);				
 					c2 =  Restrictions.ge("processorSize", Integer.parseInt(str));
 				}
 				if(str.contains("-")){
 					String res[] = str.split("-");
 					String newRes[] = new String[2];
 					for(int i=0;i<res.length;i++){
-						newRes[i] = NumberFormatterUtil.getNumericValue(res[i]);
+						newRes[i] = FormatterUtil.getNumericValue(res[i]);
 					}	
 					
 					c3 =  Restrictions.between("processorSize", Integer.parseInt(newRes[0]),Integer.parseInt(newRes[1]));

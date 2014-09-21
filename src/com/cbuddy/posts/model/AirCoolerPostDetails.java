@@ -25,6 +25,7 @@ public class AirCoolerPostDetails extends PAirCooler implements Serializable, Co
 	private String ImageFileName;
 	private String category;
 	private String negotiable;
+	private String noOfImages;
 	
 	private String subCategory;
 	private String yearStr;
@@ -198,5 +199,14 @@ public class AirCoolerPostDetails extends PAirCooler implements Serializable, Co
 
 	public void setNegotiable(String negotiable) {
 		this.negotiable = negotiable;
+	}
+	
+	@Column(name="NO_OF_IMAGES")
+	public String getNoOfImages() {
+		return noOfImages;
+	}
+
+	public void setNoOfImages(String noOfImages) {
+		this.noOfImages = noOfImages;
 	}
 }

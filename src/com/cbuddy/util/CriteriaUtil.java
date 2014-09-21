@@ -31,18 +31,18 @@ public class CriteriaUtil {
 
 		for(String str :obj){
 			if(str.contains("<") ){
-				str = NumberFormatterUtil.getNumericValue(str);				
+				str = FormatterUtil.getNumericValue(str);				
 				c1 =  Restrictions.le(dbFieldName, Double.parseDouble(str));
 			}
 			if(str.contains(">")){
-				str = NumberFormatterUtil.getNumericValue(str);				
+				str = FormatterUtil.getNumericValue(str);				
 				c2 =  Restrictions.ge(dbFieldName, Double.parseDouble(str));
 			}
 			if(str.contains("-")){
 				String res[] = str.split("-");
 				String newRes[] = new String[2];
 				for(int i=0;i<res.length;i++){
-					newRes[i] = NumberFormatterUtil.getNumericValue(res[i]);
+					newRes[i] = FormatterUtil.getNumericValue(res[i]);
 				}	
 				c3 =  Restrictions.between(dbFieldName, Double.parseDouble(newRes[0]),Double.parseDouble(newRes[1]));
 			}
@@ -84,19 +84,19 @@ public class CriteriaUtil {
 
 		for(String str :obj){
 			if(str.contains("<") ){
-				str = NumberFormatterUtil.getNumericValue(str);
+				str = FormatterUtil.getNumericValue(str);
 				//Pattern pattern = Pattern.compile("\\w+([0-9]+)\\w+([0-9]+)");				
 				c1 =  Restrictions.le("area", Integer.parseInt(str));
 			}
 			if(str.contains(">")){
-				str = NumberFormatterUtil.getNumericValue(str);				
+				str = FormatterUtil.getNumericValue(str);				
 				c2 =  Restrictions.gt("area", Integer.parseInt(str));
 			}
 			if(str.contains("-")){
 				String res[] = str.split("-");
 				String newRes[] = new String[2];
 				for(int i=0;i<res.length;i++){
-					newRes[i] = NumberFormatterUtil.getNumericValue(res[i]);
+					newRes[i] = FormatterUtil.getNumericValue(res[i]);
 				}	
 				c3 =  Restrictions.between("area", Integer.parseInt(newRes[0]),Integer.parseInt(newRes[1]));
 			}

@@ -24,7 +24,7 @@ import com.cbuddy.user.model.User;
 import com.cbuddy.util.CBuddyConstants;
 import com.cbuddy.util.CbuddySessionFactory;
 import com.cbuddy.util.LocationUtil;
-import com.cbuddy.util.NumberFormatterUtil;
+import com.cbuddy.util.FormatterUtil;
 import com.cbuddy.util.Utils;
 import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.ActionSupport;
@@ -160,7 +160,7 @@ public class FurnitureAction extends ActionSupport implements SessionAware, Serv
 		
 		double price = 0;
 		try{
-			price = NumberFormatterUtil.convertStrToAmount(sprice);
+			price = FormatterUtil.convertStrToAmount(sprice);
 			postDetails.setPrice(price);
 		}catch(CBuddyException e){
 			addFieldError("errorMsg", "Invalid Amount");
@@ -288,7 +288,7 @@ public class FurnitureAction extends ActionSupport implements SessionAware, Serv
 			String locName = LocationUtil.getLocationName(dbSession, postDetails.getCity(), postDetails.getLocation());
 			postDetails.setCity(cityName);
 			postDetails.setLocation(locName);
-			postDetails.setPriceStr(NumberFormatterUtil.formatAmount(postDetails.getPrice()));
+			postDetails.setPriceStr(FormatterUtil.formatAmount(postDetails.getPrice()));
 			postDetails.setFurnitureTypeStr(utils.getFurnitureTypeDesc(postDetails.getType()));
 		}
 	}

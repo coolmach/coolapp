@@ -218,7 +218,7 @@ function populateApprovalAuthority(city){
 		$("#ApprovalAuthority").append("<option value='-1'>Select</option>");
 		$("#ApprovalAuthority").append("<option value='CMDA'>CMDA</option>");
 		$("#ApprovalAuthority").append("<option value='NONE'>No Approval</option>");
-		$("#ApprovalAuthority").append("<option value='OTH'>Others</option>");
+		$("#ApprovalAuthority").append("<option value='Others'>Others</option>");
 	}else if(city == 'BLR'){
 		$("#ApprovalAuthority").append("<option value='-1'>Select</option>");
 		$("#ApprovalAuthority").append("<option value='DC'>District Commissioner</option>");
@@ -226,12 +226,12 @@ function populateApprovalAuthority(city){
 		$("#ApprovalAuthority").append("<option value='BMRDA'>BMRDA</option>");
 		$("#ApprovalAuthority").append("<option value='BBMP'>BBMP</option>");
 		$("#ApprovalAuthority").append("<option value='NONE'>No Approval</option>");
-		$("#ApprovalAuthority").append("<option value='OTH'>Others</option>");		
+		$("#ApprovalAuthority").append("<option value='Others'>Others</option>");		
 	}else{
 		$("#ApprovalAuthority").append("<option value='-1'>Select</option>");
 		$("#ApprovalAuthority").append("<option value='NONE'>No Approval</option>");
 		$("#ApprovalAuthority").append("<option value='OTH'>Others</option>");
-	}
+	} 
 }
 function addOption(selectbox, text, value){
 	var optn = document.createElement("OPTION");

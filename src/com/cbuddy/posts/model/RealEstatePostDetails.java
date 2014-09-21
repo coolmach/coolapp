@@ -26,6 +26,7 @@ public class RealEstatePostDetails extends Pdre implements Serializable, CommonD
 	private String category;
 	private int corpId;
 	private String negotiable;
+	private String noOfImages;
 	
 	//private String subcategory;
 	private String priceValueStr;
@@ -42,6 +43,8 @@ public class RealEstatePostDetails extends Pdre implements Serializable, CommonD
 	private double price; //Added to make it adhere to CommonDetailsForPost (as Pdre has only 'priceValue' and not 'price');
 	
 	private String postStatus;
+	
+	private String postedDateStr;
 	
 	@Column(name="POST_STATUS")
 	public String getPostStatus() {
@@ -218,5 +221,23 @@ public class RealEstatePostDetails extends Pdre implements Serializable, CommonD
 
 	public void setNegotiable(String negotiable) {
 		this.negotiable = negotiable;
+	}
+
+	@Transient
+	public String getPostedDateStr() {
+		return postedDateStr;
+	}
+
+	public void setPostedDateStr(String postedDateStr) {
+		this.postedDateStr = postedDateStr;
+	}
+
+	@Column(name="NO_OF_IMAGES")
+	public String getNoOfImages() {
+		return noOfImages;
+	}
+
+	public void setNoOfImages(String noOfImages) {
+		this.noOfImages = noOfImages;
 	}
 }

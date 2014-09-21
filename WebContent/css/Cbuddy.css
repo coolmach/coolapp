@@ -172,14 +172,26 @@
 }
 
 .postField {
-	padding-right: 5px;
-	padding-left: 5px;
+	padding-right: 2px;
+	padding-left: 2px;
+}
+
+.postField_Color{
+	padding-right: 2px;
+	padding-left: 2px;
+	color:#777777;
+}
+
+.postField_Special{
+	padding-right: 2px;
+	padding-left: 2px;
+	color:#AAAAAC;
 }
 
 .postField_Highlight {
 	font-weight: bold;
-	padding-right: 5px;
-	padding-left: 5px;
+	padding-right: 2px;
+	padding-left: 2px;
 	float;
 	right;
 }
@@ -328,7 +340,6 @@
 
 #locationSection {
 	border: 1px solid #dddddd;
-	margin-top: 20px;
 	padding-bottom: 10px;
 	padding-left: 15px;
 	padding-top: 5px;

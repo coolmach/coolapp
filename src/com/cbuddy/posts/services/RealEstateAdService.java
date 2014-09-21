@@ -18,7 +18,7 @@ import com.cbuddy.posts.model.RealEstatePostDetails;
 import com.cbuddy.util.CBuddyConstants;
 import com.cbuddy.util.CbuddySessionFactory;
 import com.cbuddy.util.CriteriaUtil;
-import com.cbuddy.util.NumberFormatterUtil;
+import com.cbuddy.util.FormatterUtil;
 
 public class RealEstateAdService{
 
@@ -126,6 +126,9 @@ public class RealEstateAdService{
 			if(postDetails.getNewOrResale()!=null){
 				criteria = getCriteriaForgetNewOrResale(criteria, postDetails);
 			}
+			if(postDetails.getFacingDirection()!=null){
+				criteria = getCriteriaForDirection(criteria, postDetails);
+			}
 			if(postDetails.getApprovalAuthority()!=null){
 				criteria = getCriteriaForApprovalAuthority(criteria, postDetails);
 			}
@@ -197,7 +200,7 @@ public class RealEstateAdService{
 		List<Integer> loc = new ArrayList<Integer>();
 		String obj[] = pdre.getBhk().split(",");
 		for(int i=0;i<obj.length;i++){
-			loc.add(Integer.parseInt(NumberFormatterUtil.getNumericValue(obj[i])));
+			loc.add(Integer.parseInt(FormatterUtil.getNumericValue(obj[i])));
 		}	
 		criteria.add(Restrictions.in("bedrooms", loc));
 
@@ -212,18 +215,18 @@ public class RealEstateAdService{
 
 		for(String str :obj){
 			if(str.contains("<") ){
-				str = NumberFormatterUtil.getNumericValue(str);				
+				str = FormatterUtil.getNumericValue(str);				
 				c1 =  Restrictions.le("priceValue", Double.parseDouble(str));
 			}
 			if(str.contains(">")){
-				str = NumberFormatterUtil.getNumericValue(str);				
+				str = FormatterUtil.getNumericValue(str);				
 				c2 =  Restrictions.ge("priceValue", Double.parseDouble(str));
 			}
 			if(str.contains("-")){
 				String res[] = str.split("-");
 				String newRes[] = new String[2];
 				for(int i=0;i<res.length;i++){
-					newRes[i] = NumberFormatterUtil.getNumericValue(res[i]);
+					newRes[i] = FormatterUtil.getNumericValue(res[i]);
 				}	
 				c3 =  Restrictions.between("priceValue", Double.parseDouble(newRes[0]),Double.parseDouble(newRes[1]));
 			}
@@ -347,18 +350,18 @@ public class RealEstateAdService{
 
 		for(String str :obj){
 			if(str.contains("<") ){
-				str = NumberFormatterUtil.getNumericValue(str);				
+				str = FormatterUtil.getNumericValue(str);				
 				c1 =  Restrictions.le("priceValue", Double.parseDouble(str));
 			}
 			if(str.contains(">")){
-				str = NumberFormatterUtil.getNumericValue(str);				
+				str = FormatterUtil.getNumericValue(str);				
 				c2 =  Restrictions.ge("priceValue", Double.parseDouble(str));
 			}
 			if(str.contains("-")){
 				String res[] = str.split("-");
 				String newRes[] = new String[2];
 				for(int i=0;i<res.length;i++){
-					newRes[i] = NumberFormatterUtil.getNumericValue(res[i]);
+					newRes[i] = FormatterUtil.getNumericValue(res[i]);
 				}	
 				c3 =  Restrictions.between("priceValue", Double.parseDouble(newRes[0]),Double.parseDouble(newRes[1]));
 			}

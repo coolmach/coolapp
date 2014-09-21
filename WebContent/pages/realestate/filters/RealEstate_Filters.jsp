@@ -11,12 +11,11 @@
 				<div id="subCategory_hidden_area" class="subCategory_hidden_bck"
 					style="display: none;">
 					<ul class="dropdown-menu scrollable-menu" role="menu">
-						<li><input type="checkbox" class="check_area" name="areaStr" value="<1000 sq.ft" /><span class="content"><1000 sq.ft</span>
-						</li>
-						<li><input type="checkbox" class="check_area" name="areaStr" value="1000 sq.ft-1200 sq.ft" /><span class="content">1000 sq.ft-1200 sq.ft</span>
-						</li>
-						<li><input type="checkbox" class="check_area" name="areaStr" value=">1200 sq.ft" /><span class="content">>1200 sq.ft</span> 
-						</li>
+						<li><input type="checkbox" class="check_area" name="areaStr" value="<1000 sq.ft" /><span class="content">Less than 1000 sq.ft</span></li>
+						<li><input type="checkbox" class="check_area" name="areaStr" value="1000 sq.ft-1200 sq.ft" /><span class="content">1000 sq.ft-1200 sq.ft</span></li>
+						<li><input type="checkbox" class="check_area" name="areaStr" value="1200 sq.ft-1400 sq.ft" /><span class="content">1200 sq.ft-1400 sq.ft</span></li>
+						<li><input type="checkbox" class="check_area" name="areaStr" value="1400 sq.ft-1600 sq.ft" /><span class="content">1400 sq.ft-1600 sq.ft</span></li>
+						<li><input type="checkbox" class="check_area" name="areaStr" value=">1600 sq.ft" /><span class="content">Above 1600 sq.ft</span></li>
 					</ul>
 					<a href="#" class="clear blue_link">clear filters</a>
 				</div>
@@ -48,12 +47,11 @@
 				<div id="subCategory_hidden_rent" class="subCategory_hidden_bck"
 					style="display: none;">
 					<ul class="dropdown-menu scrollable-menu" role="menu">
-						<li><input type="checkbox" class="check_rent" name="rent" value="<10,000" /><span class="content"><10,000</span>
-						</li>
-						<li><input type="checkbox" class="check_rent" name="rent" value="10,000-14,000" /><span class="content">10,000-14,000</span>
-						</li>
-						<li><input type="checkbox" class="check_rent" name="rent" value=">14,000" /><span class="content">>14,000</span>
-						</li>
+						<li><input type="checkbox" class="check_rent" name="rent" value="<10,000" /><span class="content">Less than 10,000</span></li>
+						<li><input type="checkbox" class="check_rent" name="rent" value="10,000-14,000" /><span class="content">10,000-15,000</span></li>
+						<li><input type="checkbox" class="check_rent" name="rent" value="15,000-20,000" /><span class="content">15,000-20,000</span></li>
+						<li><input type="checkbox" class="check_rent" name="rent" value="20,000-25,000" /><span class="content">20,000-25,000</span></li>
+						<li><input type="checkbox" class="check_rent" name="rent" value=">25,000" /><span class="content">Above 25,000</span></li>
 					</ul>
 					<a href="#" class="clear blue_link">clear filters</a>
 				</div>
@@ -66,14 +64,14 @@
 				<div id="subCategory_hidden_dir" class="subCategory_hidden_bck"
 					style="display: none;">
 					<ul class="dropdown-menu scrollable-menu" role="menu">
-						<li><input type="checkbox" class="check_dir" name="facingDirection" value="E" /><span class="content">East</span>
-						</li>
-						<li><input type="checkbox" class="check_dir" name="facingDirection" value="W" /><span class="content">West</span>
-						</li>
-						<li><input type="checkbox" class="check_dir" name="facingDirection" value="N" /><span class="content">North</span>
-						</li>
-						<li><input type="checkbox" class="check_dir" name="facingDirection" value="S" /><span class="content">South</span>
-						</li>
+						<li><input type="checkbox" class="check_dir" name="facingDirection" value="E" /><span class="content">East</span></li>
+						<li><input type="checkbox" class="check_dir" name="facingDirection" value="W" /><span class="content">West</span></li>
+						<li><input type="checkbox" class="check_dir" name="facingDirection" value="N" /><span class="content">North</span></li>
+						<li><input type="checkbox" class="check_dir" name="facingDirection" value="S" /><span class="content">South</span></li>
+						<li><input type="checkbox" class="check_dir" name="facingDirection" value="NE" /><span class="content">North East</span></li>
+						<li><input type="checkbox" class="check_dir" name="facingDirection" value="NW" /><span class="content">North West</span></li>
+						<li><input type="checkbox" class="check_dir" name="facingDirection" value="SE" /><span class="content">South East</span></li>
+						<li><input type="checkbox" class="check_dir" name="facingDirection" value="SW" /><span class="content">South West</span></li>
 					</ul>
 					<a href="#" class="clear blue_link">clear filters</a>
 				</div>
@@ -81,8 +79,7 @@
 			</div>
 			<div class=" pull-left hidden-subcat searchFilter" id="pref-main">
 				<div id="preference" class="inputstyle pointer form-control">
-					Preference <span
-						class="glyphicon glyphicon glyphicon-chevron-down form-control-show"></span>
+					Preference <span class="glyphicon glyphicon glyphicon-chevron-down form-control-show"></span>
 				</div>
 				<div id="subCategory_hidden_pref" class="subCategory_hidden_bck"
 					style="display: none;">
@@ -97,8 +94,7 @@
 			</div>
 			<div class=" pull-left hidden-subcat searchFilter" id="park-main">
 				<div id="park" class="inputstyle pointer form-control">
-					Car Parking <span
-						class="glyphicon glyphicon glyphicon-chevron-down form-control-show"></span>
+					Car Parking <span class="glyphicon glyphicon glyphicon-chevron-down form-control-show"></span>
 				</div>
 				<div id="subCategory_hidden_park" class="subCategory_hidden_bck"
 					style="display: none;">
@@ -114,30 +110,29 @@
 			</div>
 			<div class=" pull-left hidden-subcat searchFilter" id="amt-main">
 				<div id="amt" class="inputstyle pointer form-control">
-					Price <span
-						class="glyphicon glyphicon glyphicon-chevron-down form-control-show"></span>
+					Price <span class="glyphicon glyphicon glyphicon-chevron-down form-control-show"></span>
 				</div>
 				<div id="subCategory_hidden_amt" class="subCategory_hidden_bck"
 					style="display: none;">
 					<ul class="dropdown-menu scrollable-menu" role="menu">
-					    <li><input type="checkbox" class="check_amt" name="amt" value="<10,000" /><span class="content"><10,000</span>
-						</li>
-						<li><input type="checkbox" class="check_amt" name="amt" value="10,000-15,000" /><span class="content"><10,000-15000</span>
-						</li>
-						<li><input type="checkbox" class="check_amt" name="amt" value=">15,000" /><span class="content">>15,000</span>
-						</li>
+						<li><input type="checkbox" class="check_amt" name="amt" value="<20,00,000" /><span class="content">0 - 20 Lakh</span></li>
+						<li><input type="checkbox" class="check_amt" name="amt" value="20,00,000-30,00,000" /><span class="content">20 - 30 Lakh</span></li>
+						<li><input type="checkbox" class="check_amt" name="amt" value="30,00,000-40,00,000" /><span class="content">30 - 40 Lakh</span></li>
+						<li><input type="checkbox" class="check_amt" name="amt" value="40,00,000-50,00,000" /><span class="content">40 - 50 Lakh</span></li>
+						<li><input type="checkbox" class="check_amt" name="amt" value="50,00,000-60,00,000" /><span class="content">50 - 60 Lakh</span></li>
+						<li><input type="checkbox" class="check_amt" name="amt" value="60,00,000-75,00,000" /><span class="content">60 - 75 Lakh</span></li>
+						<li><input type="checkbox" class="check_amt" name="amt" value=">75,00,000" /><span class="content">Above 75 Lakh</span></li>					
 					</ul>
 					<a href="#" class="clear blue_link">clear filters</a>
 				</div>
 			</div>
 			<div class=" pull-left hidden-subcat searchFilter" id="approval-main">
 				<div id="approval" class="inputstyle pointer form-control">
-					Approval <span
-						class="glyphicon glyphicon glyphicon-chevron-down form-control-show"></span>
+					Approval <span class="glyphicon glyphicon glyphicon-chevron-down form-control-show"></span>
 				</div>
 				<div id="subCategory_hidden_approval" class="subCategory_hidden_bck"
 					style="display: none;">
-					<ul class="dropdown-menu scrollable-menu" role="menu">
+					<ul class="dropdown-menu scrollable-menu" id="approvalAuthorityFilter" role="menu">
 						<li><input type="checkbox" class="check_approval" name="approvalAuthority" value="BDA" /><span class="content">BDA</span>
 						</li>
 						<li><input type="checkbox" class="check_approval" name="approvalAuthority" value="BMRDA" /><span class="content">BMRDA</span>
@@ -153,8 +148,7 @@
 			</div>
 			<div class=" pull-left hidden-subcat searchFilter" id="ownership-main">
 				<div id="ownership" class="inputstyle pointer form-control">
-					Ownership <span
-						class="glyphicon glyphicon glyphicon-chevron-down form-control-show"></span>
+					Ownership <span class="glyphicon glyphicon glyphicon-chevron-down form-control-show"></span>
 				</div>
 				<div id="subCategory_hidden_ownership" class="subCategory_hidden_bck"
 					style="display: none;">
@@ -169,22 +163,15 @@
 			</div>
 			<div class=" pull-left hidden-subcat searchFilter" id="amenities-main">
 				<div id="amenities" class="inputstyle pointer form-control">
-					Amenities <span
-						class="glyphicon glyphicon glyphicon-chevron-down form-control-show"></span>
+					Amenities <span class="glyphicon glyphicon glyphicon-chevron-down form-control-show"></span>
 				</div>
 				<div id="subCategory_hidden_amenities" class="subCategory_hidden_bck"
 					style="display: none;">
 					<ul class="dropdown-menu scrollable-menu" role="menu">
-						<li><input type="checkbox" class="check_amenities" name="gym" value="Y" /><span class="content">Gym</span>
-						</li>
-						<li><input type="checkbox" class="check_amenities" name="carParking" value="Y" /><span class="content">Car Parking</span>
-						</li>
-						<li><input type="checkbox" class="check_amenities" name="childrenPlayArea" value="Y" /><span class="content">Children Park</span>
-						</li>
-						<li><input type="checkbox" class="check_amenities" name="clubHouse" value="Y" /><span class="content">Club House</span>
-						</li>
-						<li><input type="checkbox" class="check_amenities" name="swimmingPool" value="Y" /><span class="content">Swimming Pool</span>
-						</li>
+						<li><input type="checkbox" class="check_amenities" name="gym" value="Y" /><span class="content">Gym</span></li>
+						<li><input type="checkbox" class="check_amenities" name="childrenPlayArea" value="Y" /><span class="content">Children Park</span></li>
+						<li><input type="checkbox" class="check_amenities" name="clubHouse" value="Y" /><span class="content">Club House</span></li>
+						<li><input type="checkbox" class="check_amenities" name="swimmingPool" value="Y" /><span class="content">Swimming Pool</span></li>
 					</ul>
 					<a href="#" class="clear blue_link">clear filters</a>
 				</div>
@@ -279,24 +266,18 @@
 			</div>
 			<div class=" pull-left hidden-subcat searchFilter" id="region-main">
 				<div id="region" class="inputstyle pointer form-control">
-					Regional Preference <span
+					Language <span
 						class="glyphicon glyphicon glyphicon-chevron-down form-control-show"></span>
 				</div>
 				<div id="subCategory_hidden_region" class="subCategory_hidden_bck"
 					style="display: none;">
 					<ul class="dropdown-menu scrollable-menu" role="menu">
-						<li><input type="checkbox" class="check_region" name="regionalPreference" value="Hindi" /><span class="content">Hindi</span>
-						</li>
-						<li><input type="checkbox" class="check_region" name="regionalPreference" value="Kannada" /><span class="content">Kannada</span>
-						</li>
-						<li><input type="checkbox" class="check_region" name="regionalPreference" value="Tamil" /><span class="content">Tamil</span>
-						</li>
-						<li><input type="checkbox" class="check_region" name="regionalPreference" value="Telugu" /><span class="content">Telugu</span>
-						</li>
-						<li><input type="checkbox" class="check_region" name="regionalPreference" value="Punjabi" /><span class="content">Punjabi</span>
-						</li>
-						<li><input type="checkbox" class="check_region" name="regionalPreference" value="Other" /><span class="content">Other</span>
-						</li>
+						<li><input type="checkbox" class="check_region" name="regionalPreference" value="Hindi" /><span class="content">Hindi</span></li>
+						<li><input type="checkbox" class="check_region" name="regionalPreference" value="Kannada" /><span class="content">Kannada</span></li>
+						<li><input type="checkbox" class="check_region" name="regionalPreference" value="Tamil" /><span class="content">Tamil</span></li>
+						<li><input type="checkbox" class="check_region" name="regionalPreference" value="Telugu" /><span class="content">Telugu</span></li>
+						<li><input type="checkbox" class="check_region" name="regionalPreference" value="Punjabi" /><span class="content">Punjabi</span></li>
+						<li><input type="checkbox" class="check_region" name="regionalPreference" value="Other" /><span class="content">Other</span></li>
 					</ul>
 					<a href="#" class="clear blue_link">clear filters</a>
 				</div>
@@ -309,5 +290,8 @@
 	</div>
 	</s:if>
 	<!-- %@include file="/Pagination.jsp" %-->
-	 
 </div>
+
+<script>
+
+</script>

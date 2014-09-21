@@ -110,7 +110,7 @@
 				<div class="col-sm-2">
 					<s:select class="dropDown" style="height:30px;width:100px;" id="FacingDirection" name="FacingDirection" theme="simple"
 						headerKey="-1" headerValue="Select"
-						list="#{'E':'East', 'W':'West', 'N':'North', 'S':'South'}"
+						list="#{'E':'East', 'W':'West', 'N':'North', 'S':'South', 'NE':'North East', 'NW':'North West', 'SE':'South East', 'SW':'South West'}"
 						value="FacingDirection" />
 				</div>
 			</div>

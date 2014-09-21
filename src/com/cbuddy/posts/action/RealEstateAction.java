@@ -27,7 +27,7 @@ import com.cbuddy.user.model.User;
 import com.cbuddy.util.CBuddyConstants;
 import com.cbuddy.util.CbuddySessionFactory;
 import com.cbuddy.util.LocationUtil;
-import com.cbuddy.util.NumberFormatterUtil;
+import com.cbuddy.util.FormatterUtil;
 import com.cbuddy.util.Utils;
 import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.ActionSupport;
@@ -276,7 +276,7 @@ public class RealEstateAction extends ActionSupport implements SessionAware, Ser
 	public String postAd(){
 
 		try{
-			double price = NumberFormatterUtil.convertStrToAmount(sprice);
+			double price = FormatterUtil.convertStrToAmount(sprice);
 			postDetails.setPrice(price);
 			postDetails.setPriceValue(price);
 		}catch(CBuddyException e){
@@ -288,7 +288,7 @@ public class RealEstateAction extends ActionSupport implements SessionAware, Ser
 		//Validating Maintenance
 		if(smaintenance!=null && !smaintenance.trim().equals("")){
 			try{
-				double maintenance = NumberFormatterUtil.convertStrToAmount(smaintenance);
+				double maintenance = FormatterUtil.convertStrToAmount(smaintenance);
 				if(maintenance < 100 || maintenance > 100000){
 					addFieldError("errorMsg", "Please enter a proper value for Maintenance");
 					return Action.INPUT;
@@ -303,7 +303,7 @@ public class RealEstateAction extends ActionSupport implements SessionAware, Ser
 		//Validating Deposit
 		if(sdeposit!=null && !sdeposit.trim().equals("")){
 			try{
-				double deposit = NumberFormatterUtil.convertStrToAmount(sdeposit);
+				double deposit = FormatterUtil.convertStrToAmount(sdeposit);
 				if(deposit < 10000 || deposit > 1000000){
 					addFieldError("errorMsg", "Please enter a proper value for Deposit");
 					return Action.INPUT;
@@ -463,9 +463,9 @@ public class RealEstateAction extends ActionSupport implements SessionAware, Ser
 		String locName = LocationUtil.getLocationName(dbSession, postDetails.getCity(), postDetails.getLocation());
 		postDetails.setCity(cityName);
 		postDetails.setLocation(locName);
-		postDetails.setPriceValueStr(NumberFormatterUtil.formatAmount(postDetails.getPriceValue()));
-		postDetails.setMaintenanceStr(NumberFormatterUtil.formatAmount(postDetails.getMaintenance()));
-		postDetails.setDepositStr(NumberFormatterUtil.formatAmount(postDetails.getDeposit()));
+		postDetails.setPriceValueStr(FormatterUtil.formatAmount(postDetails.getPriceValue()));
+		postDetails.setMaintenanceStr(FormatterUtil.formatAmount(postDetails.getMaintenance()));
+		postDetails.setDepositStr(FormatterUtil.formatAmount(postDetails.getDeposit()));
 		postDetails.setFacingDirectionStr(utils.getDirectionDesc(postDetails.getFacingDirection()));
 		postDetails.setFloorNumberStr(utils.getFloorNumberDesc(postDetails.getFloorNumber()));
 		postDetails.setFurnishedStr(utils.getFurnishedDesc(postDetails.getFurnished()));
@@ -489,7 +489,7 @@ public class RealEstateAction extends ActionSupport implements SessionAware, Ser
 			if(postDetails.getNewOrResale().equals("N")){
 				//New
 				if(postDetails.getReadyToOccupy() == null || postDetails.getReadyToOccupy().trim().equals("")){
-					temp = "New";
+					temp = "New House";
 				}else if(postDetails.getReadyToOccupy().equals("Y")){
 					temp = "New - Ready to Move";
 				}else{
@@ -504,11 +504,12 @@ public class RealEstateAction extends ActionSupport implements SessionAware, Ser
 				if(postDetails.getAgeValue()>0){
 					temp = "Resale - " + postDetails.getAgeValue() + " years old";
 				}else{
-					temp = "Resale";
+					temp = "For Resale";
 				}
 			}
 		}
 		postDetails.setNewOrResaleStr(temp);
+		postDetails.setPostedDateStr(FormatterUtil.formatDate(postDetails.getCreatedOn()));
 	}
 
 	public String getAdListForRealEstate(){

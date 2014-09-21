@@ -10,13 +10,7 @@ $(document).ready(function() {
 	if(cat == 'REAL'){
 		path="/realestateFilter";
 		$("#subCategory-right li").eq(1).addClass("highlight_subcat");
-		$("#loc-main").show();
-		$("#bhk-main").show();
-		$("#area-main").show();
-		$("#amt-main").show();
-		$("#approval-main").show();
-		$("#ownership-main").show();
-		$("#amenities-main").show();
+		showFilters(["loc", "bhk", "area", "amt", "dir", "approval", "ownership", "amenities"]);
 
 	}else if(cat == 'AUTO'){
 		path="/automobileFilter";
@@ -462,99 +456,28 @@ $(document).ready(function() {
 
 		if(cat=="REAL")
 		{
-			if($(this).text()== 'Apartment For Rent' || $(this).text() == 'Independent House For Rent'){
-				$("#loc-main").show();
-				$("#bhk-main").show();
-				$("#area-main").show();
-				$("#rent-main").show();
-				$("#dir-main").show();
-				$("#pref-main").show();
-				$("#park-main").show();
-				$("#amt-main").hide();
-				$("#approval-main").hide();
-				$("#ownership-main").hide();
-				$("#amenities-main").hide();
-				$("#share-main").hide();
-				$("#furnished-main").hide();
-				$("#gender-main").hide();
-				$("#region-main").hide();
+			hideFilters(["amt", "approval", "ownership", "amenities", "share", "furnished", "gender", "region"]);
+			hideFilters(["loc", "bhk", "area", "rent", "dir", "pref",  "park", "amenitiesPg", "food"]);
+			if($(this).text()== 'Apartment For Rent'){
+				showFilters(["loc", "bhk", "area", "rent", "dir", "pref",  "park", "amenities"]);
 			}
-
-			if($(this).text()== 'Apartment For Sale' || $(this).text()== 'Independent House For Sale'){
-				$("#rent-main").hide();
-				$("#dir-main").hide();
-				$("#pref-main").hide();
-				$("#park-main").hide();
-				$("#amenitiesPg-main").hide();
-				$("#food-main").hide();
-				$("#share-main").hide();
-				$("#furnished-main").hide();
-				$("#gender-main").hide();
-				$("#region-main").hide();
-				$("#amt-main").show();
-				$("#approval-main").show();
-				$("#ownership-main").show();
-				$("#amenities-main").show();
+			else if($(this).text() == 'Independent House For Rent'){
+				showFilters(["loc", "bhk", "area", "rent", "dir", "pref",  "park"]);
 			}
-
-			if($(this).text()== 'Plot For Sale'){
-				$('#ownership-main').hide();
-				$('#bhk-main').hide();
-				$('#park-main').hide();
-				$("#rent-main").hide();
-				$("#dir-main").hide();
-				$("#pref-main").hide();
-				$("#amenities-main").hide();
-				$("#amenitiesPg-main").hide();
-				$("#food-main").hide();
-				$("#share-main").hide();
-				$("#furnished-main").hide();
-				$("#gender-main").hide();
-				$("#region-main").hide();
-				$("#amt-main").show();
-				$("#approval-main").show();
-				$("#loc-main").show();
-				$("#area-main").show();
+			else if($(this).text() == 'Apartment For Sale'){
+				showFilters(["amt", "approval", "ownership", "amenities", "dir"]);
 			}
-
-			if($(this).text()== 'PG Accommodation'){
-				$('#ownership-main').hide();
-				$('#bhk-main').hide();
-				$('#park-main').hide();
-				$("#rent-main").hide();
-				$("#dir-main").hide();
-				$("#pref-main").hide();
-				$("#amenities-main").hide();
-				$("#approval-main").hide();
-				$("#area-main").hide();
-				$("#share-main").hide();
-				$("#furnished-main").hide();
-				$("#gender-main").hide();
-				$("#region-main").hide();
-				$("#loc-main").show();
-				$("#amt-main").show();
-				$("#amenitiesPg-main").show();
-				$("#food-main").show();
+			else if($(this).text() == 'Independent House For Sale'){
+				showFilters(["amt", "approval", "ownership", "amenities", "dir"]);
 			}
-
-			if($(this).text()== 'Roommate Required'){
-				$('#ownership-main').hide();
-				$('#bhk-main').hide();
-				$('#park-main').hide();
-				$("#rent-main").hide();
-				$("#dir-main").hide();
-				$("#pref-main").hide();
-				$("#amenities-main").hide();
-				$("#approval-main").hide();
-				$("#amt-main").hide();
-				$("#amenitiesPg-main").hide();
-				$("#food-main").hide();
-				$("#area-main").show();
-				$("#loc-main").show();
-				$("#share-main").show();
-				$("#furnished-main").show();
-				$("#gender-main").show();
-				$("#region-main").show();
+			else if($(this).text() == 'Plot For Sale'){
+				showFilters(["amt", "approval", "loc", "area"]);
+			}
+			else if($(this).text() == 'PG Accommodation'){
+				showFilters(["amt", "food", "loc", "amenitiesPg"]);
+			}
+			else if($(this).text() == 'Roommate Required'){
+				showFilters(["share", "area", "loc", "furnished", "gender", "region", "park"]);
 			}
 			$("#breadCrumb_Category").html("Real Estate");
 			$("#breadCrumb_SubCategory").html($(this).text());
@@ -736,5 +659,18 @@ $(document).ready(function() {
 			});
 		}
 	});
-
 });
+
+function showFilters(filterNames){
+	var index;
+	for(index=0; index<filterNames.length; index++){
+		$("#" + filterNames[index] + "-main").show();
+	}
+}
+
+function hideFilters(filterNames){
+	var index;
+	for(index=0; index<filterNames.length; index++){
+		$("#" + filterNames[index] + "-main").hide();
+	}
+}

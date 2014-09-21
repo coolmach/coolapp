@@ -1,7 +1,7 @@
 
 <div id="locationSection">
         <div class="heading">
-			Location
+			Search By Location
         </div>
 	<div id="cityBar">
 		<form id="cityForm">
@@ -20,7 +20,7 @@
 
 <div id="companySection">
         <div class="heading">
-			Company
+			Search By Company
         </div>
 	<div id="companySearchBar">
 		<input type="text" class="locationTextBox" placeholder="Enter Company (e.g. Infosys)" name="corpSearchString" id="corpSearchString">

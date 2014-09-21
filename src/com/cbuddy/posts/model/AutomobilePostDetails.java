@@ -25,6 +25,7 @@ public class AutomobilePostDetails extends Pdau implements Serializable, CommonD
 	private String ImageFileName;
 	private String category;
 	private String negotiable;
+	private String noOfImages;
 
 	private String priceStr;
 	private String fuelTypeStr;
@@ -37,6 +38,8 @@ public class AutomobilePostDetails extends Pdau implements Serializable, CommonD
 	private int corpId;
 
 	private String postStatus;
+	
+	private String postedDateStr;
 
 	@Column(name="POST_STATUS")
 	public String getPostStatus() {
@@ -189,5 +192,23 @@ public class AutomobilePostDetails extends Pdau implements Serializable, CommonD
 
 	public void setNegotiable(String negotiable) {
 		this.negotiable = negotiable;
+	}
+	
+	@Transient
+	public String getPostedDateStr() {
+		return postedDateStr;
+	}
+
+	public void setPostedDateStr(String postedDateStr) {
+		this.postedDateStr = postedDateStr;
+	}
+	
+	@Column(name="NO_OF_IMAGES")
+	public String getNoOfImages() {
+		return noOfImages;
+	}
+
+	public void setNoOfImages(String noOfImages) {
+		this.noOfImages = noOfImages;
 	}
 }

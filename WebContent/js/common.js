@@ -150,7 +150,40 @@ function applyFilters(){
 			$( ".pager li" ).eq(0).addClass('hidden');}
 		}
 	});
+	
+
+	
+	
+	//REAL ESTATE - Populating the items in Real Estate Filters (Approval Authority)
+	if($("#approvalAuthorityFilter").length){ //That is, the filter element exists
+		$("#approvalAuthorityFilter").html("");
+		
+		if (typeof $("input[name=city]:checked", "#cityForm").val() != "undefined") {
+			city = $("input[name=city]:checked", "#cityForm").val();
+		}
+		
+		
+		var items = [];
+		if(city == 'CHE'){
+			items.push("<li><input type='checkbox' class='check_approval' name='approvalAuthority' value='CMDA' /><span class='content'>CMDA</span>");
+			items.push("<li><input type='checkbox' class='check_approval' name='approvalAuthority' value='CCMP' /><span class='content'>CCMP</span>");
+			items.push("<li><input type='checkbox' class='check_approval' name='approvalAuthority' value='Others' /><span class='content'>Others</span>");
+		}else if(city == 'BLR'){
+			items.push("<li><input type='checkbox' class='check_approval' name='approvalAuthority' value='DC' /><span class='content'>Dist. Commissioner</span>");
+			items.push("<li><input type='checkbox' class='check_approval' name='approvalAuthority' value='BDA' /><span class='content'>BDA</span>");
+			items.push("<li><input type='checkbox' class='check_approval' name='approvalAuthority' value='BMRDA' /><span class='content'>BMRDA</span>");
+			items.push("<li><input type='checkbox' class='check_approval' name='approvalAuthority' value='BBMP' /><span class='content'>BBMP</span>");
+			items.push("<li><input type='checkbox' class='check_approval' name='approvalAuthority' value='Others' /><span class='content'>Others</span>");
+		}else{
+			items.push("<li><input type='checkbox' class='check_approval' name='approvalAuthority' value='Others' /><span class='content'>Others</span>");
+		}
+		$('#approvalAuthorityFilter').append( items.join('') );
+	}
 }
+
+
+
+
 
 
 	//if user clicks on Clear Filter in Location bar in Ad List page

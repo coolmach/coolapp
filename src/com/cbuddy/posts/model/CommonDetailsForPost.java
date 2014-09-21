@@ -10,4 +10,5 @@ public interface CommonDetailsForPost {
 	public double getPrice();
 	public String getSubCategory();
 	public String getNegotiable();
+	public String getNoOfImages();
 }

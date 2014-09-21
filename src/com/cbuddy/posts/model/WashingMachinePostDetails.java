@@ -25,6 +25,7 @@ public class WashingMachinePostDetails extends PWashingMachine implements Serial
 	private String ImageFileName;
 	private String category;
 	private String negotiable;
+	private String noOfImages;
 	
 	private String subCategory;
 	private String yearStr;
@@ -40,6 +41,8 @@ public class WashingMachinePostDetails extends PWashingMachine implements Serial
 	private int corpId;
 	
 	private String postStatus;
+	
+	private String postedDateStr;
 
 	@Column(name="POST_STATUS")
 	public String getPostStatus() {
@@ -198,5 +201,23 @@ public class WashingMachinePostDetails extends PWashingMachine implements Serial
 
 	public void setNegotiable(String negotiable) {
 		this.negotiable = negotiable;
+	}
+	
+	@Transient
+	public String getPostedDateStr() {
+		return postedDateStr;
+	}
+
+	public void setPostedDateStr(String postedDateStr) {
+		this.postedDateStr = postedDateStr;
+	}
+	
+	@Column(name="NO_OF_IMAGES")
+	public String getNoOfImages() {
+		return noOfImages;
+	}
+
+	public void setNoOfImages(String noOfImages) {
+		this.noOfImages = noOfImages;
 	}
 }
