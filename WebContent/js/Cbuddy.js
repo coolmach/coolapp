@@ -384,187 +384,13 @@ $(document).ready(function() {
 	});
 
 	//***********************************if user clicks on subcaregory****************************************
-	var lastVal="";
+	
+	
 	$("#subCategory-right li").off().on('click',function(){
-		subCat = $('#sub').text();
-		cat = $('#cat').text();
-		var defaultSubCat = $(this).parent().children().first('.content').text();
-
-		if(lastVal!=$(this).text() ){
-
-			//if(lastVal!=""){
-			$('.filters').remove();
-			//}
-			$("input[class^=check_]:checked").each(function()
-					{	
-				$(this).attr("checked",false);
-					});
-			//}
-			lastVal = $(this).text();
-		}
-
-		if($("#filterValueBar").text() == ""){
-			$("#filterValueBar").hide();
-		}
-
-		//$(this).parent().hide();
-		subCat = $(this).val();
-		var data = "";
-		if (typeof $("input[name=city]:checked", "#cityForm").val() != "undefined") {
-			data = data + "&city=" + $("input[name=city]:checked", "#cityForm").val();
-		}
-
-		if($("#corpId").val() != "" && data.indexOf("corpId", 0)<0){
-			data = data + "&corpId=" + $("#corpId").val();
-		}
-		data = data + '&subCategory='+subCat+'&category='+cat;
-
-		$.ajax({
-			type: 'POST',
-			url: ctxPath+path, 
-			data: data,
-			success: function(data, status) {
-
-				$('.data').html('');
-				$('.data').html(data);
-				$('#sub').text(subCat);
-				$('#page_info').remove();
-
-				var pC = parseInt($('#pagecount').val())/10;
-
-				if(pC % 1 != 0){
-					pC = (Math.floor(pC))+1;
-				}
-
-				if(pC==0){
-					$('.filter_cat').addClass('hidden');
-				}else{
-					$('.filter_cat').removeClass('hidden');
-				}
-				$( ".pager li" ).eq(1).html( '<input class="hidden" id="page_info" type="text" readonly="readonly" value="Showing Page '+ (pC==0?pC:1) +' of '+pC+'" >' );
-
-				if(pC<=1)
-				{
-					$( ".pager li" ).eq(2).addClass('hidden');
-					$( ".pager li" ).eq(0).addClass('hidden');
-				}else{
-					$( ".pager li" ).eq(2).removeClass('hidden');
-					$( ".pager li" ).eq(0).addClass('hidden');
-				}
-			}
-		});
-
-		if(cat=="REAL")
-		{
-			hideFilters(["amt", "approval", "ownership", "amenities", "share", "furnished", "gender", "region"]);
-			hideFilters(["loc", "bhk", "area", "rent", "dir", "pref",  "park", "amenitiesPg", "food"]);
-			if($(this).text()== 'Apartment For Rent'){
-				showFilters(["loc", "bhk", "area", "rent", "dir", "pref",  "park", "amenities"]);
-			}
-			else if($(this).text() == 'Independent House For Rent'){
-				showFilters(["loc", "bhk", "area", "rent", "dir", "pref",  "park"]);
-			}
-			else if($(this).text() == 'Apartment For Sale'){
-				showFilters(["amt", "approval", "ownership", "amenities", "dir"]);
-			}
-			else if($(this).text() == 'Independent House For Sale'){
-				showFilters(["amt", "approval", "ownership", "amenities", "dir"]);
-			}
-			else if($(this).text() == 'Plot For Sale'){
-				showFilters(["amt", "approval", "loc", "area"]);
-			}
-			else if($(this).text() == 'PG Accommodation'){
-				showFilters(["amt", "food", "loc", "amenitiesPg"]);
-			}
-			else if($(this).text() == 'Roommate Required'){
-				showFilters(["share", "area", "loc", "furnished", "gender", "region", "park"]);
-			}
-			$("#breadCrumb_Category").html("Real Estate");
-			$("#breadCrumb_SubCategory").html($(this).text());
-		}
-		else if(cat == "MOBILE")
-		{
-			if($(this).text()== 'Handsets'){
-				$("#brand-main").show();
-				$("#amt-main").show();
-				$("#os-main").show();
-				$("#sims-main").show();
-				$("#type-main").hide();
-			}
-
-			if($(this).text()== 'Accessories'){
-				$("#type-main").show();
-				$("#brand-main").show();
-				$("#amt-main").show();
-				$("#os-main").hide();
-				$("#sims-main").hide();
-
-			}
-			$("#breadCrumb_Category").html("Mobiles And Accessories");
-			$("#breadCrumb_SubCategory").html($(this).text());
-		}
-		else if (cat == "AUTO")
-		{
-			if($(this).text()!= 'Cars' /*&& subCat=="1"*/){
-				if($(this).text()== 'Bikes/Scooters' || $(this).text()== 'Scooters'){
-					$("#makeBikes-main").show();
-					$("#fuelType-main").hide();
-					$("#make-main").hide();
-				}else{
-					$("#make-main").hide();
-					$("#fuelType-main").show();
-					$("#makeBikes-main").hide();
-				}
-			}else if($(this).text()== 'Cars' /*&& subCat=="Cars"*/){
-				$("#make-main").show();
-				$("#brandBikes-main").hide();
-			}
-			$("#breadCrumb_Category").html("AutoMobiles");
-			$("#breadCrumb_SubCategory").html($(this).text());
-		}
-		else if(cat == "COMP")
-		{
-			if($(this).text()== 'Tabs'){
-				$("#model-main").show();
-			}else {
-				$("#model-main").hide();	
-			}
-			$("#breadCrumb_Category").html("Computers and Laptops");
-			$("#breadCrumb_SubCategory").html($(this).text());
-		}
-		else if(cat == 'FURN'){
-			$("#breadCrumb_Category").html("Furniture");
-			$("#breadCrumb_SubCategory").html($(this).text());
-		}
-		/*else if( cat == 'ELEC'){
-			if($(this).text()== 'Televisions'){
-				$("#make-main").show();
-				$("#year-main").show();
-				$("#amt-main").show();
-				$("#screenType-main").show();
-			}else if($(this).text()== 'Digital Cameras, Camcorders') {
-				$("#model-main").hide();	
-			}
-			else if($(this).text()== 'Refrigerators') {
-				$("#model-main").hide();	
-			}
-			else if($(this).text()== 'Air Coolers, Air Conditioners') {
-				$("#model-main").hide();	
-			}
-			else if($(this).text()== 'Washing Machines') {
-				$("#model-main").hide();	
-			}
-			else if($(this).text()== 'DVD Players, Music Players, iPods') {
-				$("#model-main").hide();	
-			}
-			$("#breadCrumb_Category").html("Electronics");
-			$("#breadCrumb_SubCategory").html($(this).text());
-		}*/
-		if($(this).parent().children().hasClass('highlight_subcat')){
-			$(this).parent().children().removeClass('highlight_subcat');
-		}
-		$(this).addClass("highlight_subcat");
+		updateDataWithSelectedSubCategory(this, path);
 	});
+	
+	
 
 	//**********if hover on any filters category shown([id*=-main] pattern where it ends with -main)************
 
@@ -673,4 +499,192 @@ function hideFilters(filterNames){
 	for(index=0; index<filterNames.length; index++){
 		$("#" + filterNames[index] + "-main").hide();
 	}
+}
+
+
+// Used in Ad List screens, to update the list when the user selects different sub category
+function updateDataWithSelectedSubCategory(element, path){
+	var lastVal="";
+	var ctxPath = $('#context_path').val().trim();
+	var cat = $('#cat').text();
+	var filterData = "";
+
+	subCat = $('#sub').text();
+	cat = $('#cat').text();
+	var defaultSubCat = $(this).parent().children().first('.content').text();
+
+	if(lastVal!=$(element).text() ){
+
+		//if(lastVal!=""){
+		$('.filters').remove();
+		//}
+		$("input[class^=check_]:checked").each(function()
+				{	
+			$(element).attr("checked",false);
+				});
+		//}
+		lastVal = $(element).text();
+	}
+
+	if($("#filterValueBar").text() == ""){
+		$("#filterValueBar").hide();
+	}
+
+	//$(this).parent().hide();
+	subCat = $(element).val();
+	var data = "";
+	if (typeof $("input[name=city]:checked", "#cityForm").val() != "undefined") {
+		data = data + "&city=" + $("input[name=city]:checked", "#cityForm").val();
+	}
+
+	if($("#corpId").val() != "" && data.indexOf("corpId", 0)<0){
+		data = data + "&corpId=" + $("#corpId").val();
+	}
+	data = data + '&subCategory='+subCat+'&category='+cat;
+
+	$.ajax({
+		type: 'POST',
+		url: ctxPath+path, 
+		data: data,
+		success: function(data, status) {
+
+			$('.data').html('');
+			$('.data').html(data);
+			$('#sub').text(subCat);
+			$('#page_info').remove();
+
+			var pC = parseInt($('#pagecount').val())/10;
+
+			if(pC % 1 != 0){
+				pC = (Math.floor(pC))+1;
+			}
+
+			if(pC==0){
+				$('.filter_cat').addClass('hidden');
+			}else{
+				$('.filter_cat').removeClass('hidden');
+			}
+			$( ".pager li" ).eq(1).html( '<input class="hidden" id="page_info" type="text" readonly="readonly" value="Showing Page '+ (pC==0?pC:1) +' of '+pC+'" >' );
+
+			if(pC<=1)
+			{
+				$( ".pager li" ).eq(2).addClass('hidden');
+				$( ".pager li" ).eq(0).addClass('hidden');
+			}else{
+				$( ".pager li" ).eq(2).removeClass('hidden');
+				$( ".pager li" ).eq(0).addClass('hidden');
+			}
+		}
+	});
+
+	if(cat=="REAL")
+	{
+		hideFilters(["amt", "approval", "ownership", "amenities", "share", "furnished", "gender", "region"]);
+		hideFilters(["loc", "bhk", "area", "rent", "dir", "pref",  "park", "amenitiesPg", "food"]);
+		if($(element).text()== 'Apartment For Rent'){
+			showFilters(["loc", "bhk", "area", "rent", "dir", "pref",  "park", "amenities"]);
+		}
+		else if($(element).text() == 'Independent House For Rent'){
+			showFilters(["loc", "bhk", "area", "rent", "dir", "pref",  "park"]);
+		}
+		else if($(element).text() == 'Apartment For Sale'){
+			showFilters(["area", "dir", "amt", "approval", "ownership", "amenities", "dir"]);
+		}
+		else if($(element).text() == 'Independent House For Sale'){
+			showFilters(["area", "amt", "approval", "ownership", "amenities", "dir"]);
+		}
+		else if($(element).text() == 'Plot For Sale'){
+			showFilters(["amt", "approval", "loc", "area"]);
+		}
+		else if($(element).text() == 'PG Accommodation'){
+			showFilters(["amt", "food", "loc", "amenitiesPg"]);
+		}
+		else if($(element).text() == 'Roommate Required'){
+			showFilters(["share", "area", "loc", "furnished", "gender", "region", "park"]);
+		}
+		$("#breadCrumb_Category").html("Real Estate");
+		$("#breadCrumb_SubCategory").html($(element).text());
+	}
+	else if(cat == "MOBILE")
+	{
+		if($(element).text()== 'Handsets'){
+			$("#brand-main").show();
+			$("#amt-main").show();
+			$("#os-main").show();
+			$("#sims-main").show();
+			$("#type-main").hide();
+		}
+
+		if($(element).text()== 'Accessories'){
+			$("#type-main").show();
+			$("#brand-main").show();
+			$("#amt-main").show();
+			$("#os-main").hide();
+			$("#sims-main").hide();
+
+		}
+		$("#breadCrumb_Category").html("Mobiles And Accessories");
+		$("#breadCrumb_SubCategory").html($(element).text());
+	}
+	else if (cat == "AUTO")
+	{
+		if($(element).text()!= 'Cars' /*&& subCat=="1"*/){
+			if($(element).text()== 'Bikes/Scooters' || $(element).text()== 'Scooters'){
+				$("#makeBikes-main").show();
+				$("#fuelType-main").hide();
+				$("#make-main").hide();
+			}else{
+				$("#make-main").hide();
+				$("#fuelType-main").show();
+				$("#makeBikes-main").hide();
+			}
+		}else if($(element).text()== 'Cars' /*&& subCat=="Cars"*/){
+			$("#make-main").show();
+			$("#brandBikes-main").hide();
+		}
+		$("#breadCrumb_Category").html("AutoMobiles");
+		$("#breadCrumb_SubCategory").html($(element).text());
+	}
+	else if(cat == "COMP")
+	{
+		if($(element).text()== 'Tabs'){
+			$("#model-main").show();
+		}else {
+			$("#model-main").hide();	
+		}
+		$("#breadCrumb_Category").html("Computers and Laptops");
+		$("#breadCrumb_SubCategory").html($(element).text());
+	}
+	else if(cat == 'FURN'){
+		$("#breadCrumb_Category").html("Furniture");
+		$("#breadCrumb_SubCategory").html($(element).text());
+	}
+	/*else if( cat == 'ELEC'){
+		if($(this).text()== 'Televisions'){
+			$("#make-main").show();
+			$("#year-main").show();
+			$("#amt-main").show();
+			$("#screenType-main").show();
+		}else if($(this).text()== 'Digital Cameras, Camcorders') {
+			$("#model-main").hide();	
+		}
+		else if($(this).text()== 'Refrigerators') {
+			$("#model-main").hide();	
+		}
+		else if($(this).text()== 'Air Coolers, Air Conditioners') {
+			$("#model-main").hide();	
+		}
+		else if($(this).text()== 'Washing Machines') {
+			$("#model-main").hide();	
+		}
+		else if($(this).text()== 'DVD Players, Music Players, iPods') {
+			$("#model-main").hide();	
+		}
+		$("#breadCrumb_Category").html("Electronics");
+		$("#breadCrumb_SubCategory").html($(this).text());
+	}*/
+	if($(element).parent().children().hasClass('highlight_subcat')){
+		$(element).parent().children().removeClass('highlight_subcat');
+	}
+	$(element).addClass("highlight_subcat");
 }

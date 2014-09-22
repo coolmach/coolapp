@@ -28,13 +28,13 @@
 				<div id="subCategory_hidden_bhk" class="subCategory_hidden_bck"
 					style="display: none;">
 					<ul class="dropdown-menu scrollable-menu" role="menu">
-						<li><input type="checkbox" class="check_bhk" name="bhk" value="1 BHK" /><span class="content">1 BHK</span>
+						<li><input type="checkbox" class="check_bhk" name="bhk" value="1" /><span class="content">1 BHK</span>
 						</li>
-						<li><input type="checkbox" class="check_bhk" name="bhk" value="2 BHK" /><span class="content">2 BHK</span>
+						<li><input type="checkbox" class="check_bhk" name="bhk" value="2" /><span class="content">2 BHK</span>
 						</li>
-						<li><input type="checkbox" class="check_bhk" name="bhk" value="3 BHK" /><span class="content">3 BHK</span>
+						<li><input type="checkbox" class="check_bhk" name="bhk" value="3" /><span class="content">3 BHK</span>
 						</li>
-						<li><input type="checkbox" class="check_bhk" name="bhk" value="4 BHK" /><span class="content">4 BHK</span>
+						<li><input type="checkbox" class="check_bhk" name="bhk" value="4" /><span class="content">4 BHK</span>
 					</ul>
 					<a href="#" class="clear blue_link">clear filters</a>
 				</div>

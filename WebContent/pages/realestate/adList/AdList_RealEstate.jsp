@@ -1,11 +1,14 @@
 <%@ taglib prefix="s" uri="/struts-tags"%>
 <style>
-	#categoryList ul li{height:30px; font-weight:normal; padding-top:10px; padding-left:10px; padding-right:10px; font-size:14px; }
-	#categoryList{display:none; position:absolute; margin-top:20px; margin-left:200px; box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2); padding:5px; border:1px solid #CCCCCC;background-color:#FFFFFF;}
+	#categoryList ul li{height:30px; font-weight:normal; font-size:14px; padding-top:3px; padding-left:5px;}
+	#categoryList ul li:hover{background-color:rgb(255,255,170);}
+	#categoryList{display:none; position:absolute; margin-top:20px; margin-left:200px; 
+					box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2); cursor:pointer; border:1px solid #CCCCCC;
+					background-color:#FFFFFF;
+					padding:0px;}
 	.postRow:hover{background-color:rgb(244,250,255); cursor:pointer;}
 	#adListHeading{font-weight:normal; font-size:12px; margin-left:10px; float:left; padding-top:3px; color:rgb(255,128,0);}
 </style>
-<div style="cursor:pointer; width:100px; height:25px; color:#EEEEEE;" id="placeholdjlker" onclick="javascript:JJJ()">Link</div>
 <div class="data">
 <input id="pagecount" type="hidden" value="<s:property value="count"/>">
 	<s:if test="adList.size() > 0">
@@ -14,29 +17,21 @@
 			<form id="dummyForm"></form>
 			<table class="table table-bordered">
 				<tr>
-					<th colspan="2" style="width:55%;">
+					<th colspan="2" style="width:50%;">
 						<div>
 							<div style="color:#FF0000; float:left; margin-right:30px; padding-left:5px; font-size:16px;font-weight:normal;">
 								<s:property value="subCategoryStr" />
 							</div>
 							<div id="adListHeading">Select Different Category&nbsp;<span class="glyphicon glyphicon-chevron-down"></span></div>
 							<div id="categoryList">
-								<ul>
-									<s:url action="realestate" var="url_REAL_1" escapeAmp="false"><s:param name="category">REAL</s:param><s:param name="subCategory">1</s:param></s:url>
-									<s:url action="realestate" var="url_REAL_2" escapeAmp="false"><s:param name="category">REAL</s:param><s:param name="subCategory">2</s:param></s:url>
-									<s:url action="realestate" var="url_REAL_3" escapeAmp="false"><s:param name="category">REAL</s:param><s:param name="subCategory">3</s:param></s:url>
-									<s:url action="realestate" var="url_REAL_4" escapeAmp="false"><s:param name="category">REAL</s:param><s:param name="subCategory">4</s:param></s:url>
-									<s:url action="realestate" var="url_REAL_5" escapeAmp="false"><s:param name="category">REAL</s:param><s:param name="subCategory">5</s:param></s:url>
-									<s:url action="realestate" var="url_REAL_6" escapeAmp="false"><s:param name="category">REAL</s:param><s:param name="subCategory">6</s:param></s:url>
-									<s:url action="realestate" var="url_REAL_7" escapeAmp="false"><s:param name="category">REAL</s:param><s:param name="subCategory">7</s:param></s:url>
-									
-									<li><a href='<s:property value="url_REAL_2"/>'>Apartment for Rent</a></li>
-								    <li><a href='<s:property value="url_REAL_1"/>'>Apartment For Sale</a></li>
-								    <li><a href='<s:property value="url_REAL_4"/>'>Independent House For Rent</a></li>
-								    <li><a href='<s:property value="url_REAL_3"/>'>Independent House For Sale</a></li>
-								    <li><a href='<s:property value="url_REAL_6"/>'>Plot For Sale</a></li>
-								    <li><a href='<s:property value="url_REAL_5"/>'>PG Accommodation</a></li>
-								    <li><a href='<s:property value="url_REAL_7"/>'>Roommate Required</a></li>
+								<ul class="list-unstyled" id="collapse_ul" style="padding:10px;">
+								    <li value="2"><span class="content">Apartment For Rent</span></li>
+									<li value="1"><span class="content">Apartment For Sale</span></li>
+									<li value="4"><span class="content">Independent House For Rent</span></li>
+									<li value="3"><span class="content">Independent House For Sale</span></li>
+									<li value="6"><span class="content">Plot For Sale</span></li>
+									<li value="5"><span class="content">PG Accommodation</span></li>
+									<li value="7"><span class="content">Roommate Required</span></li>
 								</ul>						
 							</div>
 						</div>
@@ -59,18 +54,20 @@
 								<img class="images_ad" id="pic<s:property value="%{postId}"/>"
 									src="<s:url value='ImageAction?imageId=%{imageFileName}' />"
 									style="width: 120px; height: 100px;">
-									
-								<s:bean name="org.apache.struts2.util.Counter" var="imgCounter">
-									<s:param name="last" value="%{noOfImages}" />
-								</s:bean>
-								<div id="placeholder" onClick="disableFormSubmit()">Images:
-									<s:iterator value="#imgCounter">
-										<a href="#" onclick="return changeImage('pic<s:property value="%{postId}"/>', '<s:property value="%{imageFileName}"/>',<s:property/>)"><s:property /></a>
-									</s:iterator>
-								</div>
+								
+								<s:if test="%{noOfImages > 1}">
+									<s:bean name="org.apache.struts2.util.Counter" var="imgCounter">
+										<s:param name="last" value="%{noOfImages}" />
+									</s:bean>
+									<div class="imgPlaceholder" style="cursor:default;">
+									Images:	<s:iterator value="#imgCounter">
+											<a href="#" onclick="return changeImage('pic<s:property value="%{postId}"/>', '<s:property value="%{imageFileName}"/>',<s:property/>)"><s:property /></a>
+										</s:iterator>
+									</div>
+								</s:if>
 							</s:else>
 						</td>
-						<td style="width:45%;">
+						<td style="width:40%;">
 							<p style="color: #428bca; font-size: 14px; padding-bottom:0px; padding-left:5px;">
 								<s:property value="title" />
 							</p> 
@@ -164,6 +161,7 @@
 </div>
 
 <script>
+var disableFormSubmit = false;
 $(document).ready(function(){
 	$("#adListHeading").mouseenter(function(){
 		$("#categoryList").show();
@@ -180,10 +178,8 @@ $(document).ready(function(){
 		$("#categoryList").hide();
 	});
 });
-function JJJ(){
-	alert("lop");
-}
-var disableFormSubmit = false;
+</script>
+<script>
 function showDetails(actionURL, category, subCategory, postId){
 	if(disableFormSubmit == true){
 		disableFormSubmit = false;
@@ -205,4 +201,8 @@ function changeImage(imgTag, imgSrc, counter){
 function disableFormSubmit(){
 	disableFormSubmit = true;
 }
+
+$("#categoryList ul li").bind("click", function(){
+	updateDataWithSelectedSubCategory(this, "/realestateFilter");
+});
 </script>

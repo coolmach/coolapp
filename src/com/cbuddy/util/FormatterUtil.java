@@ -86,14 +86,14 @@ public class FormatterUtil {
 		}
 		
 		long inputTime = timestamp.getTime();
-		
+		 
 		Calendar now = Calendar.getInstance();
 		Calendar timeToCheck = Calendar.getInstance();
 		timeToCheck.setTimeInMillis(inputTime);
 
 		if(now.get(Calendar.YEAR) == timeToCheck.get(Calendar.YEAR)) {
 		    if(now.get(Calendar.DAY_OF_YEAR) == timeToCheck.get(Calendar.DAY_OF_YEAR)) {
-		    	formattedDate = "Today";
+		    	formattedDate = "Today " + (timeToCheck.get(Calendar.HOUR)==0?12:timeToCheck.get(Calendar.HOUR)) + ":" + timeToCheck.get(Calendar.MINUTE) + " "+ (timeToCheck.get(Calendar.AM_PM)==0?"AM":"PM");
 		    }
 		}
 		
