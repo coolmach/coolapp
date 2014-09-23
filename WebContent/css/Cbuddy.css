@@ -126,7 +126,7 @@
 #locationListBar {
 	margin-top: 10px;
 	padding-left: 8px;
-	width: 90%;
+	width: 94%;
 	overflow: hidden;
 	background-color: rgb(255, 255, 190);
 }
@@ -138,14 +138,15 @@
 
 #locationResultSection {
 	float: left;
-	width: 70%
+	padding-top:5px;
+	width: 90%
 }
 
 #clearSection {
 	float: left;
 	text-align: right;
 	margin-top: 4px;
-	width: 40%;
+	width: 5%;
 }
 
 .smallLink {
@@ -155,7 +156,9 @@
 }
 
 .smallLink_Yellow {
-	color: rgb(0, 162, 230);
+	/*color: rgb(0, 162, 230);*/
+	color:#777777;
+	cursor:pointer;
 	background-color: rgb(255, 255, 190);
 	border: 1px solid #FFFFFF;
 }
@@ -225,12 +228,14 @@
 
 .checkboxColumn {
 	float: left;
-	width: 10%;
+	width: 5%;
+	font-size:12px;
 }
 
 .checkboxCaptionColumn {
 	float: left; /*width:90%*/;
 	padding-left: 10px;
+	font-size:12px;
 }
 
 .radioCaptionWithoutSpace {

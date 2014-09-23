@@ -210,7 +210,7 @@ public class RealEstateAction extends ActionSupport implements SessionAware, Ser
 			return false;
 		}
 		temp = postDetails.getBedrooms();
-		if(temp!=null && temp.length() > 4){
+		if(temp!=null && temp.length() > 6){
 			addFieldError("errorMsg", "Invalid number of Bedrooms");
 			return false;
 		}

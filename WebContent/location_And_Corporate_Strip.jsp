@@ -34,7 +34,7 @@
 				<div id="corpNameSection" class=""><span class="radioCaptionWithoutSpace">${selectedCorporate.value}</span></div>
 			</div>
 			<div id="clearSection">
-				<a class="smallLink_Yellow" onClick="resetCorporateFilter()">Clear Filter</a>
+				<a class="smallLink_Yellow" onClick="resetCorporateFilter()"><span class="glyphicon glyphicon-remove"></span></a>
 			</div>
 		</div>
 	</div>

@@ -28,13 +28,13 @@
 				<div id="subCategory_hidden_bhk" class="subCategory_hidden_bck"
 					style="display: none;">
 					<ul class="dropdown-menu scrollable-menu" role="menu">
-						<li><input type="checkbox" class="check_bhk" name="bhk" value="1" /><span class="content">1 BHK</span>
-						</li>
-						<li><input type="checkbox" class="check_bhk" name="bhk" value="2" /><span class="content">2 BHK</span>
-						</li>
-						<li><input type="checkbox" class="check_bhk" name="bhk" value="3" /><span class="content">3 BHK</span>
-						</li>
+						<li><input type="checkbox" class="check_bhk" name="bhk" value="1" /><span class="content">1 BHK</span></li>
+						<li><input type="checkbox" class="check_bhk" name="bhk" value="2" /><span class="content">2 BHK</span></li>
+						<li><input type="checkbox" class="check_bhk" name="bhk" value="2.5" /><span class="content">2.5 BHK</span></li>
+						<li><input type="checkbox" class="check_bhk" name="bhk" value="3" /><span class="content">3 BHK</span></li>
 						<li><input type="checkbox" class="check_bhk" name="bhk" value="4" /><span class="content">4 BHK</span>
+						<li><input type="checkbox" class="check_bhk" name="bhk" value="Single" /><span class="content">Single Room</span></li>
+						<li><input type="checkbox" class="check_bhk" name="bhk" value="Studio" /><span class="content">Studio</span></li>
 					</ul>
 					<a href="#" class="clear blue_link">clear filters</a>
 				</div>
@@ -153,9 +153,9 @@
 				<div id="subCategory_hidden_ownership" class="subCategory_hidden_bck"
 					style="display: none;">
 					<ul class="dropdown-menu scrollable-menu" role="menu">
-						<li><input type="checkbox" class="check_ownership" name="newOrResale" value="New" /><span class="content">New</span>
+						<li><input type="checkbox" class="check_ownership" name="newOrResale" value="N" /><span class="content">New</span>
 						</li>
-						<li><input type="checkbox" class="check_ownership" name="newOrResale" value="ReSale" /><span class="content">ReSale</span>
+						<li><input type="checkbox" class="check_ownership" name="newOrResale" value="R" /><span class="content">Resale</span>
 						</li>
 					</ul>
 					<a href="#" class="clear blue_link">clear filters</a>

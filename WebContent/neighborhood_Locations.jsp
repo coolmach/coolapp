@@ -8,7 +8,7 @@
 					<div class="checkboxCaptionColumn"><span class="radioCaptionWithoutSpace">${selectedLocation.value}</span></div>
 				</div>
 				<div id="clearSection">
-					<a class="smallLink_Yellow" onClick="resetLocationFilter()">Clear Filter</a>
+					<a class="smallLink_Yellow" onClick="resetLocationFilter()"><span class="glyphicon glyphicon-remove"></span></a>
 				</div>
 			</div>
 			</s:if>

@@ -11,7 +11,7 @@
 				<div class="col-sm-2">
 					<s:select class="dropDown" style="height:30px;width:80px;" id="Bedrooms" name="Bedrooms" theme="simple"
 						headerKey="-1" headerValue="Select"
-						list="#{'1':'1', '2':'2', '2.5':'2.5', '3':'3', '4':'4'}"
+						list="#{'1':'1', '2':'2', '2.5':'2.5', '3':'3', '4':'4', 'Studio':'Studio'}"
 						value="Bedrooms" />			
 				</div>
 			</div>

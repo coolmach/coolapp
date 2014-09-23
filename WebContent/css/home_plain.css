@@ -386,29 +386,9 @@ body {
 	vertical-align: top;
 }
 
-#locationListBar {
-	margin-top: 10px;
-	padding-left: 8px;
-	width: 90%;
-	overflow: hidden;
-	background-color: rgb(255, 255, 190);
-}
-
 .checkBox {
 	background-color: #FFFFFF;
 	border: 1px solid rgb(239, 228, 176)
-}
-
-#locationResultSection {
-	float: left;
-	width: 70%
-}
-
-#clearSection {
-	float: left;
-	text-align: right;
-	margin-top: 4px;
-	width: 30%;
 }
 
 .smallLink {

@@ -35,7 +35,7 @@ public class CorpAction extends ActionSupport implements ServletRequestAware{
 			for(Corp corp:corpList){
 				JSONObject obj = new JSONObject();
 				obj.put("id", corp.getCorpId());
-				obj.put("description", corp.getCorpName());
+				obj.put("description", corp.getCorpShortName());
 				jsonArray.put(obj);
 			}
 		}

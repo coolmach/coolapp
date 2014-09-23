@@ -597,7 +597,7 @@ function updateDataWithSelectedSubCategory(element, path){
 			showFilters(["amt", "approval", "loc", "area"]);
 		}
 		else if($(element).text() == 'PG Accommodation'){
-			showFilters(["amt", "food", "loc", "amenitiesPg"]);
+			showFilters(["rent", "food", "loc", "amenitiesPg", "park"]);
 		}
 		else if($(element).text() == 'Roommate Required'){
 			showFilters(["share", "area", "loc", "furnished", "gender", "region", "park"]);
