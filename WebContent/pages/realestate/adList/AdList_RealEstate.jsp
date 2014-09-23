@@ -193,7 +193,10 @@ function showDetails(actionURL, category, subCategory, postId){
 	}
 }
 function changeImage(imgTag, imgSrc, counter){
-	imgSrc = imgSrc.replace(".","_" + (counter-1) + ".");
+	if(counter > 1){
+		imgSrc = imgSrc.replace(".","_" + (counter-1) + ".");
+	}
+	
 	$("#" + imgTag).attr("src", "ImageAction?imageId=" + imgSrc);
 	disableFormSubmit = true;
 	return false;
