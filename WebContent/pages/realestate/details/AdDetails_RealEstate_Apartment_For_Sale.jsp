@@ -24,7 +24,9 @@
 				<div class="col-sm-3">
 					<label class="form-control-static"><s:property value="postDetails.area"/> sq.ft</label> 
 				</div>
-				<label for="Bedrooms" class="col-sm-2 control-label fieldCaption">Bedrooms</label>
+			</div>
+			<div class="form-group">
+				<label for="Bedrooms" class="col-sm-4 control-label fieldCaption">Bedrooms</label>
 				<div class="col-sm-3">
 					<label class="form-control-static"><s:property value="postDetails.bedrooms"/> BHK</label>
 				</div>	
@@ -142,7 +144,7 @@
 	</s:form>
 
 </div>
-<div class="col-md-4" >
+<!--div class="col-md-4" >
 <div class="col-md-12 post_title">
 			<div style="float:left;">
 				Comments
@@ -154,4 +156,4 @@
 
 <textarea id="comments" class="form-control" rows="3"></textarea>
  <button id="post_cmt" type="button" class="btn btn-default">Post</button>
-</div>
+</div-->

@@ -1,4 +1,5 @@
 <%@ taglib prefix="s" uri="/struts-tags"%>
+
 <link rel="stylesheet" type="text/css" href="css/Cbuddy.css"/>
 <div class=" header_2">
 	<div class=""></div>
@@ -45,7 +46,7 @@
 			<div class="form-group">
 				<label for="priceValue" class="col-sm-4 control-label fieldCaption">Rent</label>
 				<div class="col-sm-6">
-					<label class="form-control-static fieldValueBold"><s:property value="postDetails.priceValueStr"/></label>
+					<label class="form-control-static fieldValueBold">Rs.<s:property value="postDetails.priceValueStr"/></label>
 				</div>
 			</div>
 			<div class="form-group">
@@ -73,6 +74,7 @@
 		</div>
 		<div class="col-md-4">
 			<div class="fileinput fileinput-new" data-provides="fileinput">
+				<!--%@include file="../../../image_slider.jsp" %-->
 				<div class="fileinput-preview thumbnail" data-trigger="fileinput"
 					style="width: 140px; height: 105px;">
 					<img class="images_ad"

@@ -271,7 +271,7 @@
 <div id="headerRow" class="row">
 	<div class="col-sm-1" id="imageSection" style="margin-left:9.5%;">
 		<a href="<s:url action=""/>">
-			<img src="images/common/Logo-Blue.jpg" width="170" height="39.66">
+			<img src="images/common/Logo-Blue.jpg" width="170" height="55.66">
 		</a>
 	</div>
 	<div class="col-sm-3" style="padding-top:30px;color:#0099CC;margin-left:53%;"> 
