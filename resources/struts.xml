@@ -55,7 +55,12 @@
 		    <result name="login" type="tiles">/login.tiles</result>
 			<result name="success" type="tiles">/postAd_RealEstate.tiles</result>
 		</action>
-		
+		<action name="post_Automobile">
+			 <interceptor-ref name="secureStack"></interceptor-ref> 
+		    <result name="input" type="tiles">/home.tiles</result>
+		    <result name="login" type="tiles">/login.tiles</result>
+			<result name="success" type="tiles">/postAd_Automobile.tiles</result>
+		</action>		
 		<!-- Post Ad - END -->	
 			
 		<action name="postAdStart">

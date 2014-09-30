@@ -83,7 +83,7 @@
         <put-attribute name="title" value="Post Ad" />
         <put-attribute name="body" value="/pages/realestate/postad/PostAd_RealEstate.jsp" />
     </definition> 
-    <definition name="/postad_automobile.tiles" extends="baseLayout">
+    <definition name="/postad_automobile_old.tiles" extends="baseLayout">
         <put-attribute name="title" value="Post Ad" />
         <put-attribute name="body" value="/pages/automobile/postad/PostAd_Automobile.jsp" />
     </definition>
@@ -180,6 +180,10 @@
     <definition name="/postAd_RealEstate.tiles" extends="baseLayout">
         <put-attribute name="title" value="Post Ad" />
         <put-attribute name="body" value="/pages/realestate/postad/PostAd_RealEstate.jsp" />
+    </definition> 
+    <definition name="/postAd_Automobile.tiles" extends="baseLayout">
+        <put-attribute name="title" value="Post Ad" />
+        <put-attribute name="body" value="/pages/automobile/postad/PostAd_Automobile.jsp" />
     </definition> 
     <!-- NEW ENTRIES FOR POST AD - END -->
           

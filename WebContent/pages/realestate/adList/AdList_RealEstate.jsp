@@ -181,6 +181,7 @@ $(document).ready(function(){
 </script>
 <script>
 function showDetails(actionURL, category, subCategory, postId){
+	
 	if(disableFormSubmit == true){
 		disableFormSubmit = false;
 	}else{
@@ -208,4 +209,6 @@ function disableFormSubmit(){
 $("#categoryList ul li").bind("click", function(){
 	updateDataWithSelectedSubCategory(this, "/realestateFilter");
 });
+
 </script>
+

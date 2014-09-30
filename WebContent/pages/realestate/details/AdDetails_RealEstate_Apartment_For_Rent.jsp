@@ -1,10 +1,21 @@
 <%@ taglib prefix="s" uri="/struts-tags"%>
 
 <link rel="stylesheet" type="text/css" href="css/Cbuddy.css"/>
+
+<style>
+	#postDetails{margin-left:2%;border:1px solid #CCCCCC;padding:15px;}
+	.form_Row{height:40px;}
+</style>
+
 <div class=" header_2">
 	<div class=""></div>
 </div>
-<div class="col-md-8" id="my">
+<div class="col-md-12" id="breadCrumb">
+<a class="cbuddy_link" href="<s:url action=""  />">Home</a> >
+	<span id="breadCrumb_Category_1">Real Estate</span>
+	> <span id="breadCrumb_SubCategory">Apartment For Rent</span>
+</div>
+<div class="col-md-8" id="postDetails" style="width:700px;">
 	<s:form cssClass="form-horizontal post" action="#">
 		<div class="col-md-12 post_title">
 			<div style="float:left;">
@@ -12,96 +23,95 @@
 			</div>
 			<span class="error"><s:fielderror fieldName="errorMsg"/></span>
 		</div>
-	   <div class="col-md-8">
-			<div class="form-group">
+	   <div class="col-md-7">
+			<div class="form_Row">
 				<label for="furnished" class="col-sm-4 control-label fieldCaption">Location</label>
-				<div class="col-sm-6">
+				<div class="col-sm-8">
 					<label class="form-control-static"><s:property value="postDetails.location"/>, <s:property value="postDetails.city"/></label>
 				</div>
 			</div>				
-			<div class="form-group">
+			<div class="form_Row">
 				<label for="area" class="col-sm-4 control-label fieldCaption">Total Area</label>
-				<div class="col-sm-3">
+				<div class="col-sm-8">
 					<label class="form-control-static"><s:property value="postDetails.area"/> sq.ft</label> 
 				</div>
-				<label for="Bedrooms" class="col-sm-2 control-label fieldCaption">Bedrooms</label>
-				<div class="col-sm-3">
+			</div>
+			<div class="form_Row">
+				<label for="Bedrooms" class="col-sm-4 control-label fieldCaption">Bedrooms</label>
+				<div class="col-sm-8">
 					<label class="form-control-static"><s:property value="postDetails.bedrooms"/> BHK</label>
 				</div>	
 			</div>
 			<s:if test="postDetails.preferenceStr != null">
-			<div class="form-group">
+			<div class="form_Row">
 				<label for="carParking" class="col-sm-4 control-label fieldCaption">Preference</label>
-				<div class="col-sm-6">
+				<div class="col-sm-8">
 					<label class="form-control-static"><s:property value="postDetails.preferenceStr"/></label>
 				</div>
 			</div>
 			</s:if>
-			<div class="form-group">
+			<s:if test="postDetails.furnishedStr != null">
+			<div class="form_Row">
 				<label for="furnished" class="col-sm-4 control-label fieldCaption">Furnished</label>
 				<div class="col-sm-6">
 					<label class="form-control-static"><s:property value="postDetails.furnishedStr"/></label>
 				</div>
-			</div>			
-			<div class="form-group">
+			</div>
+			</s:if>
+			<div class="form_Row">
 				<label for="priceValue" class="col-sm-4 control-label fieldCaption">Rent</label>
 				<div class="col-sm-6">
 					<label class="form-control-static fieldValueBold">Rs.<s:property value="postDetails.priceValueStr"/></label>
 				</div>
 			</div>
-			<div class="form-group">
+			<s:if test="postDetails.maintenanceStr != 0">
+			<div class="form_Row">
 				<label for="priceValue" class="col-sm-4 control-label fieldCaption">Maintenance</label>
 				<div class="col-sm-3">
 					<label class="form-control-static"><s:property value="postDetails.maintenanceStr"/></label>
 				</div>
 			</div>
-			<div class="form-group">
+			</s:if>
+			<s:if test="postDetails.facingDirectionStr != -1">
+			<div class="form_Row">
 				<label for="facingDirection" class="col-sm-4 control-label fieldCaption">Facing Direction</label>
 				<div class="col-sm-2">
 					<label class="form-control-static"><s:property value="postDetails.facingDirectionStr"/></label>
 				</div>
-				<label for="floorNumber" class="col-sm-3 control-label fieldCaption">Floor No</label>
-				<div class="col-sm-3">
+			</div>
+			</s:if>
+			<s:if test="postDetails.floorNumberStr != '' && postDetails.floorNumber != '-1'">
+			<div class="form_Row">
+				<label for="floorNumber" class="col-sm-4 control-label fieldCaption">Floor No</label>
+				<div class="col-sm-2">
 					<label class="form-control-static"><s:property value="postDetails.floorNumberStr"/></label>
 				</div>
 			</div>
-			<div class="form-group">
+			</s:if>
+			<s:if test="postDetails.description != null && !postDetails.description.trim().equals('')">
+			<div class="form_Row">
 				<label for="description" class="col-sm-4 control-label fieldCaption">Remarks</label>
 				<div class="col-sm-8">
 					<label class="form-control-static"><s:property value="postDetails.description"/></label>
 				</div>
 			</div>
-		</div>
-		<div class="col-md-4">
-			<div class="fileinput fileinput-new" data-provides="fileinput">
-				<!--%@include file="../../../image_slider.jsp" %-->
-				<div class="fileinput-preview thumbnail" data-trigger="fileinput"
-					style="width: 140px; height: 105px;">
-					<img class="images_ad"
-						src="<s:url value='ImageAction?imageId=%{postDetails.imageFileName}' />"
-						style="width: 100px; height: 100px;">
-				</div>
-			</div>
-			<div class="form-group">
+			</s:if>
+			<div class="form_Row">
+				<label for="description" class="col-sm-4 control-label fieldCaption">Contact Person</label>
 				<div class="col-sm-8">
-					<label for="" class="col-sm-6 control-label fieldCaption" style="text-align:left;">Contact Details</label>
+					<label class="form-control-static fieldValueBold"><s:property value="postDetails.contactPersonName"/></label>
 				</div>
 			</div>
-			<div class="form-group">
+			<div class="form_Row">
+				<label for="description" class="col-sm-4 control-label fieldCaption">Contact No</label>
 				<div class="col-sm-8">
-					<label class="form-control-static fieldValueBold" style="margin-left:15px;">
-						<s:property value="postDetails.contactPersonName"/> - Ph:
-						<s:property value="postDetails.contactNo"/> 
-					</label>
+					<label class="form-control-static fieldValueBold"><s:property value="postDetails.contactNo"/></label>
 				</div>
 			</div>
-			<div class="form-group">
-				<div class="col-sm-3">
-					<label for="" class="col-sm-6 control-label fieldCaption">Amenities</label>
-				</div>
-			</div>
-			<div class="form-group">
-				<div class="col-sm-6" style="margin-left:15px;">
+			<s:if test="postDetails.powerBackup == \"Y\" || postDetails.gym == \"Y\" || postDetails.carParking == \"Y\" || postDetails.childrenPlayArea == \"Y\" || postDetails.clubHouse == \"Y\" || postDetails.swimmingPool == \"Y\"">
+			<div class="form_Row">
+				<label for="description" class="col-sm-4 control-label fieldCaption">Amenities</label>
+				<div class="col-sm-8" style="padding-top:4px; color:#777777;">
 					<ul>
 						<s:if test="postDetails.powerBackup == \"Y\""><li>Power Backup</li></s:if>
 						<s:if test="postDetails.gym == \"Y\""><li>Gym</li></s:if>
@@ -111,26 +121,38 @@
 						<s:if test="postDetails.swimmingPool == \"Y\""><li>Swimming Pool</li></s:if>
 					</ul>
 				</div>
-			</div>	
-		</div>
-		<div class="form-group">
-			<div class="col-sm-offset-2 col-sm-5">
-				<button type="submit" class="btn btn-primary pull-right" onClick="history.go(-1);">Back</button>
 			</div>
-		</div>		
+			</s:if>
+		</div>
+		<div class="col-md-5" style="margin-left:-10px;">
+			<div class="fileinput fileinput-new" data-provides="fileinput">
+				<!--%@include file="../../../image_slider.jsp" %-->
+				<s:if test="postDetails.imageFileName != null">
+				<div class="fileinput-preview thumbnail" data-trigger="fileinput"
+					style="width: 199px; height: 149px;">
+					<img class="images_ad"
+						src="<s:url value='ImageAction?imageId=%{postDetails.imageFileName}' />"
+						style="width: 199px; height: 149px;">
+				</div>
+				</s:if>
+			</div>
+		</div>
 	</s:form>
-
 </div>
-<div class="col-md-4" >
+
+
+<%@include file="/pages/realestate/filters/realestate_SubCategory_Strip.jsp" %>
+
+<!--div class="col-md-4" >
 <div class="col-md-12 post_title">
 			<div style="float:left;">
 				Comments
 			</div>
 		</div>
 <div class="col-md-12" id="comments-div">
-<%@include file="/ajax_comments.jsp" %>
+< %@include file="/ajax_comments.jsp" %>
 </div>		
 
 <textarea id="comments" class="form-control" rows="3"></textarea>
  <button id="post_cmt" type="button" class="btn btn-default">Post</button>
-</div>
+</div-->
