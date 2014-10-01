@@ -143,7 +143,7 @@ public class Utils {
 		String output = furnish;
 		if(furnish.equals("N")){
 			output = "Not Furnished";
-		}else if(furnish.equals("S")){
+		}else if(furnish.equals("P")){
 			output = "Semi Furnished";
 		}else if(furnish.equals("F")){
 			output = "Fully Furnished";

@@ -7,3 +7,12 @@
 <%@include file="/pages/realestate/adList/AdList_RealEstate.jsp"%>
 
 <%@include file="/pages/realestate/filters/realestate_SubCategory_Strip.jsp" %>
+
+
+
+<script>
+$(document).ready(function(){
+	alert("Hrll0");
+	applyFilters();
+});
+</script>

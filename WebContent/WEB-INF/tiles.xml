@@ -105,10 +105,10 @@
     </definition>
    <!-- OLD ENTRIES - END -->
     
-    <definition name="/adDetails_realestate.tiles" extends="baseLayout">
+    <!--definition name="/adDetails_realestate.tiles" extends="baseLayout">
         <put-attribute name="title" value="Details" />
         <put-attribute name="body" value="/pages/realestate/details/AdDetails_RealEstate.jsp" />
-    </definition>
+    </definition-->
     <definition name="/adDetails_automobile.tiles" extends="baseLayout">
         <put-attribute name="title" value="Details" />
         <put-attribute name="body" value="/pages/automobile/details/AdDetails_Automobile.jsp" />

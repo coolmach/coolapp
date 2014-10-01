@@ -342,9 +342,13 @@
 			<result name="success">/newHome.jsp</result>
 		</action>	
 		
-		<action name="realestateAdDetails" class="com.cbuddy.posts.action.RealEstateAction" method="getAdDetails">
+		<!--action name="realestateAdDetails" class="com.cbuddy.posts.action.RealEstateAction" method="getAdDetails">
 			<interceptor-ref name="secureStack"></interceptor-ref>
 			<result name="success" type="tiles">/adDetails_realestate.tiles</result>
+		</action-->
+		<action name="realestateAdDetails" class="com.cbuddy.posts.action.RealEstateAction" method="getAdDetails">
+			<interceptor-ref name="secureStack"></interceptor-ref>
+			<result name="success">/pages/realestate/details/AdDetails_RealEstate.jsp</result>
 		</action>
 		<action name="automobileAdDetails" class="com.cbuddy.posts.action.AutomobileAction" method="getAdDetails">
 			<interceptor-ref name="secureStack"></interceptor-ref>

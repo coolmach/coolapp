@@ -27,3 +27,13 @@
 </s:else>
 
 <script type="text/javascript" src="js/autocomplete.js"></script>
+
+<script>
+$(document).ready(function(){
+	$("#backToResultsButton").bind("click", function(){
+		alert("Hello");
+		applyFilters();
+		return false;
+	});
+});
+</script>

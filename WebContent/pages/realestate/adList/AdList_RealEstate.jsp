@@ -190,7 +190,18 @@ function showDetails(actionURL, category, subCategory, postId){
 		$("#dummyForm").append("<input name='subCategory' value='" + subCategory + "' type='hidden'>");
 		$("#dummyForm").attr("action", actionURL);
 		$("#dummyForm").attr("method", "get");
-		$("#dummyForm").submit();	
+		//$("#dummyForm").submit();
+
+		$.ajax({
+			type: 'POST',
+			url: actionURL, 
+			data: {'category':category, 'subCategory':subCategory, 'postIdStr':postId},
+			success: function(data, status) {
+				$('.data').html('');
+				$('.data').html(data);
+			}
+		});
+		
 	}
 }
 function changeImage(imgTag, imgSrc, counter){
