@@ -12,7 +12,6 @@
 
 <script>
 $(document).ready(function(){
-	alert("Hrll0");
 	applyFilters();
 });
 </script>

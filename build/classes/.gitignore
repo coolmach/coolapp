@@ -1,5 +1,2 @@
 /com
-/hibernate.cfg.xml
-/log4j.properties
-/struts.xml
 /MultipleFilesUploadAction.class

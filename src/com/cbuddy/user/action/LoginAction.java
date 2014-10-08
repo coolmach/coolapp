@@ -89,7 +89,7 @@ public class LoginAction extends ActionSupport implements SessionAware,ServletRe
 	public void setIsSignUpErrorExists(String isSignUpErrorExists) {
 		this.isSignUpErrorExists = isSignUpErrorExists;
 	}
-
+	
 	public String signInUser(){
 
 		clearErrors();

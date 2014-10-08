@@ -128,23 +128,16 @@
 			<div class="form_Row" style="margin-top:10px; margin-bottom:10px;">
 				<label class="col-sm-5 control-label fieldCaption"></label>
 				<div class="col-sm-7">
-					<span id="backButton"><button id="backToResultsButton" class="btn-primary"><span class="glyphicon glyphicon-chevron-left"></span> Back to Results</button></span>
+					<span id="backButton">
+						<button id="backToResultsButton" class="btn-primary" style="background-image:none;">
+							<span class="glyphicon glyphicon-chevron-left"></span> 
+							Back to Results
+						</button>
+					</span>
 				</div>
 			</div>			
 		</div>
-		<div class="col-md-5" style="margin-left:-10px;">
-			<div class="fileinput fileinput-new" data-provides="fileinput">
-				<!--%@include file="../../../image_slider.jsp" %-->
-				<s:if test="postDetails.imageFileName != null">
-				<div class="fileinput-preview thumbnail" data-trigger="fileinput"
-					style="width: 199px; height: 149px;">
-					<img class="images_ad"
-						src="<s:url value='ImageAction?imageId=%{postDetails.imageFileName}' />"
-						style="width: 199px; height: 149px;">
-				</div>
-				</s:if>
-			</div>
-		</div>
+		<%@include file="../../../image_for_ad_details.jsp"%>
 	</s:form>	
 </div>
 

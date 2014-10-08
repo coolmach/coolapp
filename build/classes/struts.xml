@@ -1,6 +1,6 @@
 <!DOCTYPE struts PUBLIC
     "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
-    "http://struts.apache.org/dtds/struts-2.0.dtd">
+    "http://localhost/dtds/struts-2.0.dtd">
 
 <struts>
 	<constant name="struts.enable.DynamicMethodInvocation" value="false" />
@@ -46,6 +46,18 @@
 		<action name="mylogin" class="com.cbuddy.user.action.LoginAction" method="myLogin">
 		    <result name="input" type="tiles">/login.tiles</result>
 			<result name="success" type="tiles">/login.tiles</result>
+		</action>
+		
+		<!-- To be used for pages which do not have the header (e.g. pages returned from ajax calls) -->
+		<action name="miniLogin" class="com.cbuddy.user.action.LoginAction" method="myLogin">
+		    <result name="input">/miniLogin.jsp</result>
+			<result name="success">/miniLogin.jsp</result>
+		</action>
+		<action name="miniLogin_Proceed" class="com.cbuddy.user.action.LoginAction" method="signInUser">
+			<result name="success" type="redirect">${savedUrl}</result>
+			<result name="input" type="tiles">/miniLogin.jsp</result>
+			<result name="login" type="tiles">/miniLogin.jsp</result>
+			<result name="redirect" type="redirect">${savedUrl}</result>
 		</action>
 		
 		<!-- Post Ad - START -->
@@ -349,7 +361,9 @@
 		<action name="realestateAdDetails" class="com.cbuddy.posts.action.RealEstateAction" method="getAdDetails">
 			<interceptor-ref name="secureStack"></interceptor-ref>
 			<result name="success">/pages/realestate/details/AdDetails_RealEstate.jsp</result>
+			<result name="login" type="redirect">miniLogin</result>
 		</action>
+		
 		<action name="automobileAdDetails" class="com.cbuddy.posts.action.AutomobileAction" method="getAdDetails">
 			<interceptor-ref name="secureStack"></interceptor-ref>
 			<result name="success" type="tiles">/adDetails_automobile.tiles</result>

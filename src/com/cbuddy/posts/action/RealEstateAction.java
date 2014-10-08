@@ -560,6 +560,9 @@ public class RealEstateAction extends ActionSupport implements SessionAware, Ser
 	}
 
 	public String getRelevantPage(){
+		if(postDetails == null){
+			return null;
+		}
 		String subCategory = postDetails.getSubCategory();
 		String output = "ApartmentForRent";
 		if(subCategory.equals(CBuddyConstants.SUBCATEGORY_REAL_ESTATE_APARTMENT_FOR_SALE)){

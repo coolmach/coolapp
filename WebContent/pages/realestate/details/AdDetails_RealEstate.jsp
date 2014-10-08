@@ -31,7 +31,6 @@
 <script>
 $(document).ready(function(){
 	$("#backToResultsButton").bind("click", function(){
-		alert("Hello");
 		applyFilters();
 		return false;
 	});

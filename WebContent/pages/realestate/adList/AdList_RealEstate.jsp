@@ -193,7 +193,7 @@ function showDetails(actionURL, category, subCategory, postId){
 		//$("#dummyForm").submit();
 
 		$.ajax({
-			type: 'POST',
+			type: 'GET',
 			url: actionURL, 
 			data: {'category':category, 'subCategory':subCategory, 'postIdStr':postId},
 			success: function(data, status) {
