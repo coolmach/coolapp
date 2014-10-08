@@ -1,5 +1,5 @@
 <%@ taglib prefix="s" uri="/struts-tags"%>
-<div class="col-md-12" id="breadCrumb">
+<div class="col-md-12 col-md-offset-3" id="breadCrumb">
 	   <span id="cat" style="display:none"><s:property value="category" /></span>
 	   <span id="sub" style="display:none"><s:property value="subCategory" /></span>
 	

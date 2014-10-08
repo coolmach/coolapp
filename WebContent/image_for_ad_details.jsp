@@ -3,7 +3,7 @@
 	.preview{width:40px; height:40px; border:0px solid #FFFFFF;}
 	.highlight{width:50px; height:50px; border:2px solid orange;}
 </style>
-<div class="col-md-5" style="margin-left:-10px;">
+
 	<div class="fileinput fileinput-new" data-provides="fileinput">
 		<s:if test="postDetails.imageFileName != null">
 		<div class="fileinput-preview thumbnail" data-trigger="fileinput"
@@ -34,13 +34,14 @@
 			</s:if>
 		</div>								
 	</div>
-</div>
+
 
 <script>
 function changeImage(baseFileName, index){
 	//baseFileName = 1411660804916.jpeg
 	if(index == 1){
 		//Do nothing
+		newFileName = baseFileName;
 	}else{
 		indexOfSeparator  = baseFileName.indexOf(".");
 		newFileName = baseFileName.substring(0, indexOfSeparator) + "_" + (index - 1)+ "." + baseFileName.substring(indexOfSeparator + 1);

@@ -1,123 +1,157 @@
 <%@ taglib prefix="s" uri="/struts-tags"%>
+
 <link rel="stylesheet" type="text/css" href="css/Cbuddy.css"/>
-<div class=" header_2">
-	<div class=""></div>
-</div>
-<div class="col-md-8" id="my">
+
+<style>
+	#postDetails{margin-left:2%;border:1px solid #CCCCCC;padding:15px;}
+	.form_Row{height:40px;}
+	#backButton{margin-left:50px; font-size:12px;}
+	#backButton button{padding:5px; border:0px solid #FFFFFF; background-color:#0099CC;}
+	#backButtona{color:rgb(241,84,91);}
+</style>
+
+
+<div class="col-md-8" style="border:1px solid #CCCCCC; margin-left:2%; width:63.5%;">
 	<s:form cssClass="form-horizontal post" action="#">
-		<div class="col-md-12 post_title">
+		<div class="col-md-12 post_title" style="height:40px; padding-top:10px;">
 			<div style="float:left;">
 				<s:property value="postDetails.title"/>
 			</div>
 			<span class="error"><s:fielderror fieldName="errorMsg"/></span>
 		</div>
-	   <div class="col-md-8">
-			<div class="form-group">
-				<label for="furnished" class="col-sm-4 control-label fieldCaption">Location</label>
-				<div class="col-sm-6">
-					<label class="form-control-static"><s:property value="postDetails.location"/>, <s:property value="postDetails.city"/></label>
-				</div>
-			</div>				
-			<div class="form-group">
-				<label for="area" class="col-sm-4 control-label fieldCaption">Total Area</label>
-				<div class="col-sm-3">
-					<label class="form-control-static"><s:property value="postDetails.area"/> sq.ft</label> 
-				</div>
-				<label for="Bedrooms" class="col-sm-2 control-label fieldCaption">Bedrooms</label>
-				<div class="col-sm-3">
-					<label class="form-control-static"><s:property value="postDetails.bedrooms"/> BHK</label>
-				</div>	
-			</div>
-			<div class="form-group">
-				<label for="carParking" class="col-sm-4 control-label fieldCaption">Language Preference</label>
-				<div class="col-sm-6">
-					<s:if test="postDetails.regionalPreference != null">
-						<label class="form-control-static"><s:property value="postDetails.regionalPreference"/></label>
-					</s:if>
-					<s:else>
-						<label class="form-control-static">Does not matter</label>
-					</s:else>
+	   <div class="col-md-7">
+			<div class="form_Row">
+				<label class="col-sm-5 control-label fieldCaption">Location</label>
+				<div class="col-sm-7">
+					<label class="form-control-static"><s:property value="postDetails.location"/></label>
 				</div>
 			</div>
-			<div class="form-group">
-				<label for="furnished" class="col-sm-4 control-label fieldCaption">Number of Occupants</label>
-				<div class="col-sm-6">
-					<label class="form-control-static"><s:property value="postDetails.noOfRoommates"/></label>
+			<div class="form_Row">
+				<label class="col-sm-5 control-label fieldCaption">City</label>
+				<div class="col-sm-7">
+					<label class="form-control-static"><s:property value="postDetails.city"/></label>
 				</div>
-			</div>			
-			<div class="form-group">
-				<label for="priceValue" class="col-sm-4 control-label fieldCaption">Rent</label>
-				<div class="col-sm-6">
-					<label class="form-control-static fieldValueBold"><s:property value="postDetails.priceValueStr"/></label>
-				</div>
-			</div>
-			<div class="form-group">
-				<label for="description" class="col-sm-4 control-label fieldCaption">Remarks</label>
-				<div class="col-sm-8">
-					<label class="form-control-static"><s:property value="postDetails.description"/></label>
+			</div>							
+			<div class="form_Row">
+				<label class="col-sm-5 control-label fieldCaption">Gender</label>
+				<div class="col-sm-7">
+					<label class="form-control-static"><s:property value="postDetails.gender"/></label> 
 				</div>
 			</div>
-		</div>
-		<div class="col-md-4">
-			<div class="fileinput fileinput-new" data-provides="fileinput">
-				<div class="fileinput-preview thumbnail" data-trigger="fileinput"
-					style="width: 140px; height: 105px;">
-					<img class="images_ad"
-						src="<s:url value='ImageAction?imageId=%{postDetails.imageFileName}' />"
-						style="width: 100px; height: 100px;">
-				</div>
-			</div>
-			<div class="form-group">
-				<div class="col-sm-8">
-					<label for="" class="col-sm-6 control-label fieldCaption" style="text-align:left;">Contact Details</label>
-				</div>
-			</div>
-			<div class="form-group">
-				<div class="col-sm-8">
-					<label class="form-control-static fieldValueBold" style="margin-left:15px;">
-						<s:property value="postDetails.contactPersonName"/> - Ph:
-						<s:property value="postDetails.contactNo"/> 
+			<div class="form_Row">
+				<label class="col-sm-5 control-label fieldCaption">Rent per head</label>
+				<div class="col-sm-7">
+					<label class="form-control-static fieldValueBold">
+						Rs.<s:property value="postDetails.priceValueStr"/>
+						<s:if test="postDetails.negotiable != null && postDetails.negotiable.equals(\"Y\")">
+						(Negotiable)
+						</s:if>
 					</label>
 				</div>
 			</div>
-			<div class="form-group">
-				<div class="col-sm-3">
-					<label for="" class="col-sm-6 control-label fieldCaption">Amenities</label>
+
+			<div class="form_Row">
+				<label class="col-sm-5 control-label fieldCaption">Contact Person</label>
+				<div class="col-sm-7">
+					<label class="form-control-static fieldValueBold"><s:property value="postDetails.contactPersonName"/></label>
 				</div>
 			</div>
-			<div class="form-group">
-				<div class="col-sm-6" style="margin-left:15px;">
+			<div class="form_Row">
+				<label class="col-sm-5 control-label fieldCaption">Contact No</label>
+				<div class="col-sm-7">
+					<label class="form-control-static fieldValueBold"><s:property value="postDetails.contactNo"/></label>
+				</div>
+			</div>
+			<s:if test="postDetails.description != null && !postDetails.description.trim().equals('')">
+			<div class="form_Row">
+				<div class="col-sm-12">
+					<label class="control-label fieldCaption">Remarks</label> <label class="form-control-static"><s:property value="postDetails.description"/></label>
+				</div>
+			</div>
+			<div class="form_Row">
+			 &nbsp;
+			</div>
+			</s:if>
+			<div class="form_Row" style="margin-top:10px; margin-bottom:10px;">
+				<label class="col-sm-5 control-label fieldCaption"></label>
+				<div class="col-sm-7">
+					<span id="backButton">
+						<button id="backToResultsButton" class="btn-primary" style="background-image:none;">
+							<span class="glyphicon glyphicon-chevron-left"></span> 
+							Back to Results
+						</button>
+					</span>
+				</div>
+			</div>			
+		</div>	
+		<div class="col-md-5" style="margin-left:-10px;">
+			<%@include file="../../../image_for_ad_details.jsp"%>
+			<s:if test="postDetails.area != null && !postDetails.area.trim().equals('')">
+			<div class="form_Row">
+				<label class="col-sm-5 control-label fieldCaption">Total Area</label>
+				<div class="col-sm-7">
+					<label class="form-control-static"><s:property value="postDetails.area"/> sq.ft</label> 
+				</div>
+			</div>
+			</s:if>
+			<s:if test="postDetails.deposit != 0">
+			<div class="form_Row">
+				<label class="col-sm-5 control-label fieldCaption">Deposit</label>
+				<div class="col-sm-7">
+					<label class="form-control-static">Rs.<s:property value="postDetails.depositStr"/></label>
+				</div>
+			</div>
+			</s:if>				
+			<s:if test="postDetails.noOfRoommates != '' && postDetails.noOfRoommates != '-1'">
+			<div class="form_Row">
+				<label class="col-sm-5 control-label fieldCaption">Room-mates</label>
+				<div class="col-sm-7">
+					<label class="form-control-static"><s:property value="postDetails.noOfRoommates"/> persons</label>
+				</div>
+			</div>
+			</s:if>
+			<s:if test="postDetails.regionalPreference != '' && postDetails.regionalPreference != '-1'">
+			<div class="form_Row">
+				<label class="col-sm-5 control-label fieldCaption">Language</label>
+				<div class="col-sm-7">
+					<label class="form-control-static"><s:property value="postDetails.regionalPreference"/></label>
+				</div>
+			</div>
+			</s:if>			
+			<s:if test="postDetails.bathrooms != '' && postDetails.bathrooms != '-1'">
+			<div class="form_Row">
+				<label class="col-sm-5 control-label fieldCaption">Bathrooms</label>
+				<div class="col-sm-7">
+					<label class="form-control-static"><s:property value="postDetails.bathrooms"/></label>
+				</div>
+			</div>
+			</s:if>			
+			<s:if test="postDetails.powerBackup == \"Y\" || postDetails.wifi == \"Y\" || postDetails.carParking == \"Y\"">
+			<div class="form_Row">
+				<label class="col-sm-5 control-label fieldCaption">Amenities</label>
+				<div class="col-sm-7" style="padding-top:4px; color:#777777;">
 					<ul>
 						<s:if test="postDetails.powerBackup == \"Y\""><li>Power Backup</li></s:if>
-						<s:if test="postDetails.gym == \"Y\""><li>Gym</li></s:if>
+						<s:if test="postDetails.wifi == \"Y\""><li>Wi-Fi</li></s:if>
 						<s:if test="postDetails.carParking == \"Y\""><li>Car Parking</li></s:if>
-						<s:if test="postDetails.childrenPlayArea == \"Y\""><li>Children Play Area</li></s:if>
-						<s:if test="postDetails.clubHouse == \"Y\""><li>Club House</li></s:if>
-						<s:if test="postDetails.swimmingPool == \"Y\""><li>Swimming Pool</li></s:if>
-						<s:if test="postDetails.wifi == \"Y\""><li>Wi Fi</li></s:if>
-						<s:if test="postDetails.tv == \"Y\""><li>Tv-DTH</li></s:if>
 					</ul>
 				</div>
-			</div>	
+			</div>			
+			</s:if>			
 		</div>
-		<div class="form-group">
-			<div class="col-sm-offset-2 col-sm-5">
-				<button type="submit" class="btn btn-primary pull-right" onClick="history.go(-1);">Back</button>
-			</div>
-		</div>		
-	</s:form>
-
+	</s:form>	
 </div>
-<div class="col-md-4" >
+
+<!--div class="col-md-4" >
 <div class="col-md-12 post_title">
 			<div style="float:left;">
 				Comments
 			</div>
 		</div>
 <div class="col-md-12" id="comments-div">
-<%@include file="/ajax_comments.jsp" %>
+< %@include file="/ajax_comments.jsp" %>
 </div>		
 
 <textarea id="comments" class="form-control" rows="3"></textarea>
  <button id="post_cmt" type="button" class="btn btn-default">Post</button>
-</div>>
+</div-->

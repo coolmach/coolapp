@@ -44,60 +44,19 @@
 					<label class="form-control-static"><s:property value="postDetails.bedrooms"/> BHK</label>
 				</div>	
 			</div>
-			<s:if test="postDetails.preferenceStr != null">
-			<div class="form_Row">
-				<label class="col-sm-5 control-label fieldCaption">Preference</label>
-				<div class="col-sm-7">
-					<label class="form-control-static"><s:property value="postDetails.preferenceStr"/></label>
-				</div>
-			</div>
-			</s:if>
-			<s:if test="postDetails.furnishedStr != null">
-			<div class="form_Row">
-				<label class="col-sm-5 control-label fieldCaption">Furnished</label>
-				<div class="col-sm-7">
-					<label class="form-control-static"><s:property value="postDetails.furnishedStr"/></label>
-				</div>
-			</div>
-			</s:if>
+
 			<div class="form_Row">
 				<label class="col-sm-5 control-label fieldCaption">Rent</label>
 				<div class="col-sm-7">
-					<label class="form-control-static fieldValueBold">Rs.<s:property value="postDetails.priceValueStr"/></label>
+					<label class="form-control-static fieldValueBold">
+						Rs.<s:property value="postDetails.priceValueStr"/>
+						<s:if test="postDetails.negotiable != null && postDetails.negotiable.equals(\"Y\")">
+						(Negotiable)
+						</s:if>
+					</label>
 				</div>
 			</div>
-			<s:if test="postDetails.maintenanceStr != 0">
-			<div class="form_Row">
-				<label class="col-sm-5 control-label fieldCaption">Maintenance</label>
-				<div class="col-sm-7">
-					<label class="form-control-static"><s:property value="postDetails.maintenanceStr"/></label>
-				</div>
-			</div>
-			</s:if>
-			<s:if test="postDetails.facingDirectionStr != -1">
-			<div class="form_Row">
-				<label class="col-sm-5 control-label fieldCaption">Facing Direction</label>
-				<div class="col-sm-7">
-					<label class="form-control-static"><s:property value="postDetails.facingDirectionStr"/></label>
-				</div>
-			</div>
-			</s:if>
-			<s:if test="postDetails.floorNumberStr != '' && postDetails.floorNumber != '-1'">
-			<div class="form_Row">
-				<label class="col-sm-5 control-label fieldCaption">Floor No</label>
-				<div class="col-sm-7">
-					<label class="form-control-static"><s:property value="postDetails.floorNumberStr"/></label>
-				</div>
-			</div>
-			</s:if>
-			<s:if test="postDetails.description != null && !postDetails.description.trim().equals('')">
-			<div class="form_Row">
-				<label class="col-sm-5 control-label fieldCaption">Remarks</label>
-				<div class="col-sm-7">
-					<label class="form-control-static"><s:property value="postDetails.description"/></label>
-				</div>
-			</div>
-			</s:if>
+
 			<div class="form_Row">
 				<label class="col-sm-5 control-label fieldCaption">Contact Person</label>
 				<div class="col-sm-7">
@@ -110,6 +69,86 @@
 					<label class="form-control-static fieldValueBold"><s:property value="postDetails.contactNo"/></label>
 				</div>
 			</div>
+			<s:if test="postDetails.description != null && !postDetails.description.trim().equals('')">
+			<div class="form_Row">
+				<div class="col-sm-12">
+					<label class="control-label fieldCaption">Remarks</label> <label class="form-control-static"><s:property value="postDetails.description"/></label>
+				</div>
+			</div>
+			<div class="form_Row">
+			 &nbsp;
+			</div>
+			</s:if>
+			<div class="form_Row" style="margin-top:10px; margin-bottom:10px;">
+				<label class="col-sm-5 control-label fieldCaption"></label>
+				<div class="col-sm-7">
+					<span id="backButton">
+						<button id="backToResultsButton" class="btn-primary" style="background-image:none;">
+							<span class="glyphicon glyphicon-chevron-left"></span> 
+							Back to Results
+						</button>
+					</span>
+				</div>
+			</div>			
+		</div>	
+		<div class="col-md-5" style="margin-left:-10px;">
+			<%@include file="../../../image_for_ad_details.jsp"%>
+			<s:if test="postDetails.furnishedStr != null">
+			<div class="form_Row">
+				<label class="col-sm-5 control-label fieldCaption">Furnished</label>
+				<div class="col-sm-7">
+					<label class="form-control-static"><s:property value="postDetails.furnishedStr"/></label>
+				</div>
+			</div>
+			</s:if>
+			<s:if test="postDetails.maritalPreference != null">
+			<div class="form_Row">
+				<label class="col-sm-5 control-label fieldCaption">Preference</label>
+				<div class="col-sm-7">
+					<label class="form-control-static"><s:property value="postDetails.maritalPreference"/></label>
+				</div>
+			</div>
+			</s:if>
+			<s:if test="postDetails.maintenance != 0">
+			<div class="form_Row">
+				<label class="col-sm-5 control-label fieldCaption">Maintenance</label>
+				<div class="col-sm-7">
+					<label class="form-control-static">Rs.<s:property value="postDetails.maintenanceStr"/></label>
+				</div>
+			</div>
+			</s:if>
+			<s:if test="postDetails.deposit != 0">
+			<div class="form_Row">
+				<label class="col-sm-5 control-label fieldCaption">Deposit</label>
+				<div class="col-sm-7">
+					<label class="form-control-static">Rs.<s:property value="postDetails.depositStr"/></label>
+				</div>
+			</div>
+			</s:if>			
+			<s:if test="postDetails.facingDirectionStr != '' && postDetails.facingDirectionStr != '-1'">
+			<div class="form_Row">
+				<label class="col-sm-5 control-label fieldCaption">Direction</label>
+				<div class="col-sm-7">
+					<label class="form-control-static"><s:property value="postDetails.facingDirectionStr"/> Facing</label>
+				</div>
+			</div>
+			</s:if>
+			<s:if test="postDetails.floorNumberStr != '' && postDetails.floorNumber != '-1'">
+			<div class="form_Row">
+				<label class="col-sm-5 control-label fieldCaption">Floor No</label>
+				<div class="col-sm-7">
+					<label class="form-control-static"><s:property value="postDetails.floorNumberStr"/> Floor</label>
+				</div>
+			</div>
+			</s:if>
+			<s:if test="postDetails.bathrooms != '' && postDetails.bathrooms != '-1'">
+			<div class="form_Row">
+				<label class="col-sm-5 control-label fieldCaption">Bathrooms</label>
+				<div class="col-sm-7">
+					<label class="form-control-static"><s:property value="postDetails.bathrooms"/></label>
+				</div>
+			</div>
+			</s:if>			
 			<s:if test="postDetails.powerBackup == \"Y\" || postDetails.gym == \"Y\" || postDetails.carParking == \"Y\" || postDetails.childrenPlayArea == \"Y\" || postDetails.clubHouse == \"Y\" || postDetails.swimmingPool == \"Y\"">
 			<div class="form_Row">
 				<label class="col-sm-5 control-label fieldCaption">Amenities</label>
@@ -124,20 +163,8 @@
 					</ul>
 				</div>
 			</div>			
-			</s:if>
-			<div class="form_Row" style="margin-top:10px; margin-bottom:10px;">
-				<label class="col-sm-5 control-label fieldCaption"></label>
-				<div class="col-sm-7">
-					<span id="backButton">
-						<button id="backToResultsButton" class="btn-primary" style="background-image:none;">
-							<span class="glyphicon glyphicon-chevron-left"></span> 
-							Back to Results
-						</button>
-					</span>
-				</div>
-			</div>			
+			</s:if>				
 		</div>
-		<%@include file="../../../image_for_ad_details.jsp"%>
 	</s:form>	
 </div>
 

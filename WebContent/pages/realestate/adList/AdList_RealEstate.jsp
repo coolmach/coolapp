@@ -13,7 +13,7 @@
 <input id="pagecount" type="hidden" value="<s:property value="count"/>">
 	<s:if test="adList.size() > 0">
 		
-		<div class="col-md-8 listSection" id="postListSection">
+		<div class="col-md-8 listSection" id="postListSection" style="margin-left:5px;">
 			<form id="dummyForm"></form>
 			<table class="table table-bordered">
 				<tr>

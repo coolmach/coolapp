@@ -493,7 +493,7 @@ public class RealEstateAction extends ActionSupport implements SessionAware, Ser
 				}else if(postDetails.getReadyToOccupy().equals("Y")){
 					temp = "New - Ready to Move";
 				}else{
-					if(postDetails.getExpectedCompletionDate()!=null){
+					if(postDetails.getExpectedCompletionDate()!=null && !postDetails.getExpectedCompletionDate().trim().equals("")){
 						temp = "New - Expected Completion: " + postDetails.getExpectedCompletionDate();
 					}else{
 						temp = "New - Under Construction";
