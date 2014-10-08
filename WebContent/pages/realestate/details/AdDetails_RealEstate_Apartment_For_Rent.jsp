@@ -21,32 +21,32 @@
 		</div>
 	   <div class="col-md-7">
 			<div class="form_Row">
-				<label for="furnished" class="col-sm-5 control-label fieldCaption">Location</label>
+				<label class="col-sm-5 control-label fieldCaption">Location</label>
 				<div class="col-sm-7">
 					<label class="form-control-static"><s:property value="postDetails.location"/></label>
 				</div>
 			</div>
 			<div class="form_Row">
-				<label for="furnished" class="col-sm-5 control-label fieldCaption">City</label>
+				<label class="col-sm-5 control-label fieldCaption">City</label>
 				<div class="col-sm-7">
 					<label class="form-control-static"><s:property value="postDetails.city"/></label>
 				</div>
 			</div>							
 			<div class="form_Row">
-				<label for="area" class="col-sm-5 control-label fieldCaption">Total Area</label>
+				<label class="col-sm-5 control-label fieldCaption">Total Area</label>
 				<div class="col-sm-7">
 					<label class="form-control-static"><s:property value="postDetails.area"/> sq.ft</label> 
 				</div>
 			</div>
 			<div class="form_Row">
-				<label for="Bedrooms" class="col-sm-5 control-label fieldCaption">Bedrooms</label>
+				<label class="col-sm-5 control-label fieldCaption">Bedrooms</label>
 				<div class="col-sm-7">
 					<label class="form-control-static"><s:property value="postDetails.bedrooms"/> BHK</label>
 				</div>	
 			</div>
 			<s:if test="postDetails.preferenceStr != null">
 			<div class="form_Row">
-				<label for="carParking" class="col-sm-5 control-label fieldCaption">Preference</label>
+				<label class="col-sm-5 control-label fieldCaption">Preference</label>
 				<div class="col-sm-7">
 					<label class="form-control-static"><s:property value="postDetails.preferenceStr"/></label>
 				</div>
@@ -54,21 +54,21 @@
 			</s:if>
 			<s:if test="postDetails.furnishedStr != null">
 			<div class="form_Row">
-				<label for="furnished" class="col-sm-5 control-label fieldCaption">Furnished</label>
+				<label class="col-sm-5 control-label fieldCaption">Furnished</label>
 				<div class="col-sm-7">
 					<label class="form-control-static"><s:property value="postDetails.furnishedStr"/></label>
 				</div>
 			</div>
 			</s:if>
 			<div class="form_Row">
-				<label for="priceValue" class="col-sm-5 control-label fieldCaption">Rent</label>
+				<label class="col-sm-5 control-label fieldCaption">Rent</label>
 				<div class="col-sm-7">
 					<label class="form-control-static fieldValueBold">Rs.<s:property value="postDetails.priceValueStr"/></label>
 				</div>
 			</div>
 			<s:if test="postDetails.maintenanceStr != 0">
 			<div class="form_Row">
-				<label for="priceValue" class="col-sm-5 control-label fieldCaption">Maintenance</label>
+				<label class="col-sm-5 control-label fieldCaption">Maintenance</label>
 				<div class="col-sm-7">
 					<label class="form-control-static"><s:property value="postDetails.maintenanceStr"/></label>
 				</div>
@@ -76,7 +76,7 @@
 			</s:if>
 			<s:if test="postDetails.facingDirectionStr != -1">
 			<div class="form_Row">
-				<label for="facingDirection" class="col-sm-5 control-label fieldCaption">Facing Direction</label>
+				<label class="col-sm-5 control-label fieldCaption">Facing Direction</label>
 				<div class="col-sm-7">
 					<label class="form-control-static"><s:property value="postDetails.facingDirectionStr"/></label>
 				</div>
@@ -84,7 +84,7 @@
 			</s:if>
 			<s:if test="postDetails.floorNumberStr != '' && postDetails.floorNumber != '-1'">
 			<div class="form_Row">
-				<label for="floorNumber" class="col-sm-5 control-label fieldCaption">Floor No</label>
+				<label class="col-sm-5 control-label fieldCaption">Floor No</label>
 				<div class="col-sm-7">
 					<label class="form-control-static"><s:property value="postDetails.floorNumberStr"/></label>
 				</div>
@@ -92,27 +92,27 @@
 			</s:if>
 			<s:if test="postDetails.description != null && !postDetails.description.trim().equals('')">
 			<div class="form_Row">
-				<label for="description" class="col-sm-5 control-label fieldCaption">Remarks</label>
+				<label class="col-sm-5 control-label fieldCaption">Remarks</label>
 				<div class="col-sm-7">
 					<label class="form-control-static"><s:property value="postDetails.description"/></label>
 				</div>
 			</div>
 			</s:if>
 			<div class="form_Row">
-				<label for="description" class="col-sm-5 control-label fieldCaption">Contact Person</label>
+				<label class="col-sm-5 control-label fieldCaption">Contact Person</label>
 				<div class="col-sm-7">
 					<label class="form-control-static fieldValueBold"><s:property value="postDetails.contactPersonName"/></label>
 				</div>
 			</div>
 			<div class="form_Row">
-				<label for="description" class="col-sm-5 control-label fieldCaption">Contact No</label>
+				<label class="col-sm-5 control-label fieldCaption">Contact No</label>
 				<div class="col-sm-7">
 					<label class="form-control-static fieldValueBold"><s:property value="postDetails.contactNo"/></label>
 				</div>
 			</div>
 			<s:if test="postDetails.powerBackup == \"Y\" || postDetails.gym == \"Y\" || postDetails.carParking == \"Y\" || postDetails.childrenPlayArea == \"Y\" || postDetails.clubHouse == \"Y\" || postDetails.swimmingPool == \"Y\"">
 			<div class="form_Row">
-				<label for="description" class="col-sm-5 control-label fieldCaption">Amenities</label>
+				<label class="col-sm-5 control-label fieldCaption">Amenities</label>
 				<div class="col-sm-7" style="padding-top:4px; color:#777777;">
 					<ul>
 						<s:if test="postDetails.powerBackup == \"Y\""><li>Power Backup</li></s:if>

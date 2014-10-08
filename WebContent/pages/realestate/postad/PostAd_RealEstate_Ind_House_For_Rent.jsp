@@ -114,7 +114,13 @@
 				<div class="col-sm-6">
 					<s:radio label="Choose Furnishing Type" theme="simple" name="furnished" id="furnished" list="#{'N':'No','P':'Partial','F':'Full'}" value="postDetails.furnished" />
 				</div>
-			</div>				
+			</div>
+			<div class="form-group">
+				<label for="furnished" class="col-sm-3 control-label">Car Parking</label>
+				<div class="col-sm-6">
+					<s:radio label="Car Parking" theme="simple" name="carParking" id="carParking" list="#{'N':'No','Y':'Yes'}" value="postDetails.carParking" />
+				</div>
+			</div>			
 			<div class="form-group">
 				<label class="col-sm-3 control-label">Facing Direction</label>
 				<div class="col-sm-2">

@@ -21,6 +21,14 @@
 						<div>
 							<div style="color:#FF0000; float:left; margin-right:30px; padding-left:5px; font-size:16px;font-weight:normal;">
 								<s:property value="subCategoryStr" />
+								<span style="font-size:14px; color:rgb(255,128,0);">
+									<s:if test="city == 'BLR'">
+										, Bangalore
+									</s:if>
+									<s:elseif test="city == 'CHE'">
+										, Chennai
+									</s:elseif>
+								</span>
 							</div>
 							<div id="adListHeading">Select Different Category&nbsp;<span class="glyphicon glyphicon-chevron-down"></span></div>
 							<div id="categoryList">
@@ -67,7 +75,7 @@
 								</s:if>
 							</s:else>
 						</td>
-						<td style="width:40%;">
+						<td style="width:45%;">
 							<p style="color: #428bca; font-size: 14px; padding-bottom:0px; padding-left:5px;">
 								<s:property value="title" />
 							</p> 
