@@ -56,16 +56,18 @@ public class MobileAction extends ActionSupport implements SessionAware, Servlet
 	private String subCategoryStr;
 
 	private String sprice; // Price entered by user on the screen
-	
+
 	private String responseMsg;
+
+	private String itemType;
 
 	private List<MobilePostDetails> adList = new ArrayList<MobilePostDetails>();
 	private int count;
-	
+
 	private String brandNew;
 	private String modelSearchStr;
 	private JSONArray modelDetailsJsonArray;
-	
+
 	private HttpServletRequest request = null;
 	@Override
 	public void setServletRequest(HttpServletRequest request) {
@@ -124,14 +126,14 @@ public class MobileAction extends ActionSupport implements SessionAware, Servlet
 			addFieldError("errorMsg", "Please select the Brand");
 			return false;
 		}
-		if(postDetails.getYear() == 0){
-			addFieldError("errorMsg", "Please select the year of purchase (model)");
-			return false;
-		}
-		if(postDetails.getColor().equals("")){
-			addFieldError("errorMsg", "Please enter the Color");
-			return false;
-		}
+		///if(postDetails.getYear() == 0){
+		//addFieldError("errorMsg", "Please select the year of purchase (model)");
+		//return false;
+		//}
+		//if(postDetails.getColor().equals("")){
+		//addFieldError("errorMsg", "Please enter the Color");
+		//return false;
+		//}
 		if(postDetails.getUserEnteredModelStr().equals("")){
 			addFieldError("errorMsg", "Please enter the Model");
 			return false;
@@ -199,9 +201,11 @@ public class MobileAction extends ActionSupport implements SessionAware, Servlet
 		}
 
 		int year = postDetails.getYear();
-		if(year < 2005 || year > 2014){
-			addFieldError("errorMsg", "Invalid Year");
-			return false;
+		if(year > 0){
+			if(year < 2005 || year > 2014){
+				addFieldError("errorMsg", "Invalid Year");
+				return false;
+			}
 		}
 
 		temp = postDetails.getDualSim();
@@ -209,13 +213,13 @@ public class MobileAction extends ActionSupport implements SessionAware, Servlet
 			addFieldError("errorMsg", "Invalid Sim Type");
 			return false;
 		}
-		
+
 		temp = postDetails.getTouchScreen();
 		if(temp != null && temp.length() > 1){
 			addFieldError("errorMsg", "Invalid Touch Screen");
 			return false;
 		}
-		
+
 		temp = postDetails.getOperatingSystem();
 		if(temp != null && temp.length() > 16){
 			addFieldError("errorMsg", "Invalid Operating System");
@@ -226,7 +230,7 @@ public class MobileAction extends ActionSupport implements SessionAware, Servlet
 	}
 
 	public String postAd(){
-		
+
 		double price = 0;
 		try{
 			price = FormatterUtil.convertStrToAmount(sprice);
@@ -235,7 +239,7 @@ public class MobileAction extends ActionSupport implements SessionAware, Servlet
 			addFieldError("errorMsg", "Invalid Amount");
 			return Action.INPUT;
 		}
-		
+
 		if(!validateMandatoryFields()){
 			return Action.INPUT;
 		}
@@ -246,7 +250,7 @@ public class MobileAction extends ActionSupport implements SessionAware, Servlet
 		User user = (User)session.get("userInfo");
 		Timestamp current = new Timestamp(System.currentTimeMillis());
 		String userId = String.valueOf(user.getUserId());
-		String imgFileName = String.valueOf(System.currentTimeMillis()) + "." + getExtension(uploadContentType[0]) + "";
+		//String imgFileName = String.valueOf(System.currentTimeMillis()) + "." + getExtension(uploadContentType[0]) + "";
 
 
 		//Checking if user has manually tampered location after selecting from auto suggest list
@@ -263,7 +267,7 @@ public class MobileAction extends ActionSupport implements SessionAware, Servlet
 			return Action.INPUT;
 		}
 
-		if(!postDetails.getBrand().equals("OTH")){
+		/*if(!postDetails.getBrand().equals("OTH")){
 			//Checking if the user has manually modified tampered mobile model after selecting from auto suggest list
 			if(postDetails.getUserEnteredModelStr() != null && postDetails.getSelectedModelStr() != null){
 				if(!postDetails.getUserEnteredModelStr().equals(postDetails.getSelectedModelStr())){
@@ -277,42 +281,42 @@ public class MobileAction extends ActionSupport implements SessionAware, Servlet
 				addFieldError("errorMsg", "Invalid Model");
 				return Action.INPUT;
 			}
-		}
+		}*/
 
 		//Make an entry in POIT
-//		Poit poit = new Poit();
-//		poit.setCategory(CBuddyConstants.CATEGORY_MOBILE);
-//		poit.setTitle(postDetails.getTitle());
-//		poit.setCity(postDetails.getCity());
-//		poit.setContactNo(postDetails.getContactNo());
-//		poit.setContactPersonName(postDetails.getContactPersonName());
-//		poit.setCorpId(user.getCorpId());
-//		poit.setCreatedBy(String.valueOf(userId));
-//		poit.setCreatedOn(current);
-//		poit.setDescription(postDetails.getDescription());
-//		poit.setImageFileName(imgFileName);
-//		poit.setImageType(getExtension(uploadContentType));
-//		poit.setLocation(postDetails.getSelectedLocationCode());
-//		poit.setModifiedBy(userId);
-//		poit.setModifiedOn(current);
-//		poit.setNegotiable(null);
-//		poit.setPrice(postDetails.getPrice());
-//		poit.setRating(0);
-//		poit.setSubCategory(postDetails.getSubCategory());
-//		poit.setThumbnailName(null);
-//		poit.setThumbnailType(null);
-//		poit.setUserFirstName(user.getFirstName());
+		//		Poit poit = new Poit();
+		//		poit.setCategory(CBuddyConstants.CATEGORY_MOBILE);
+		//		poit.setTitle(postDetails.getTitle());
+		//		poit.setCity(postDetails.getCity());
+		//		poit.setContactNo(postDetails.getContactNo());
+		//		poit.setContactPersonName(postDetails.getContactPersonName());
+		//		poit.setCorpId(user.getCorpId());
+		//		poit.setCreatedBy(String.valueOf(userId));
+		//		poit.setCreatedOn(current);
+		//		poit.setDescription(postDetails.getDescription());
+		//		poit.setImageFileName(imgFileName);
+		//		poit.setImageType(getExtension(uploadContentType));
+		//		poit.setLocation(postDetails.getSelectedLocationCode());
+		//		poit.setModifiedBy(userId);
+		//		poit.setModifiedOn(current);
+		//		poit.setNegotiable(null);
+		//		poit.setPrice(postDetails.getPrice());
+		//		poit.setRating(0);
+		//		poit.setSubCategory(postDetails.getSubCategory());
+		//		poit.setThumbnailName(null);
+		//		poit.setThumbnailType(null);
+		//		poit.setUserFirstName(user.getFirstName());
 
 		SessionFactory sessionFactory = CbuddySessionFactory.getSessionFactory();
 		Session dbSession = sessionFactory.openSession();
 
 		dbSession.beginTransaction();
-		
+
 		PostsUtil postsUtil = new PostsUtil();
-		
+
 		Poit poit = postsUtil.createPOIT(postDetails, user, dbSession, uploadContentType, CBuddyConstants.CATEGORY_MOBILE);
-		
-//		dbSession.save(poit);
+
+		//		dbSession.save(poit);
 
 		dbSession.flush(); //Flushing to retrieve the auto generated post id
 
@@ -348,7 +352,7 @@ public class MobileAction extends ActionSupport implements SessionAware, Servlet
 		dbSession.save(pdmo);
 
 		if(upload != null){
-			postsUtil.writeImage(upload, imgFileName);
+			postsUtil.writeImage(upload, poit.getImageFileName());
 		}
 
 		dbSession.getTransaction().commit();
@@ -402,7 +406,7 @@ public class MobileAction extends ActionSupport implements SessionAware, Servlet
 			populateAdditionalDetailsForPost(postDetails, dbSession);
 		}
 	}
-	
+
 	private void populateAdditionalDetailsForPost(MobilePostDetails postDetails, Session dbSession){
 		Utils utils = new Utils();
 		String cityName = LocationUtil.getCityName(dbSession, postDetails.getCity());
@@ -423,12 +427,12 @@ public class MobileAction extends ActionSupport implements SessionAware, Servlet
 		Utils utils = new Utils();
 		categoryStr = utils.getCategoryDesc(postDetails.getCategory());
 		subCategoryStr = utils.getSubCategoryDesc(postDetails.getCategory(), postDetails.getSubCategory());
-System.out.println(categoryStr+ " : "+subCategoryStr);
+		System.out.println(categoryStr+ " : "+subCategoryStr);
 		if(postDetails.getSubCategory()==null || postDetails.getSubCategory().equals("") || subCategoryStr.equals("")){
 			postDetails.setSubCategory(CBuddyConstants.SUBCATEGORY_MOBILE_MOBILEPHONES);
 			subCategoryStr = utils.getSubCategoryDesc(postDetails.getCategory(), postDetails.getSubCategory());
 		}
-System.out.println(postDetails.getSubCategory());
+		System.out.println(postDetails.getSubCategory());
 		MobileAdService mobileAdService =  new MobileAdService();
 		count = mobileAdService.getAdListCount(getModel(), postDetails.getSubCategory());
 		adList = mobileAdService.getAdListByCategory(getModel(), postDetails.getSubCategory());
@@ -467,21 +471,6 @@ System.out.println(postDetails.getSubCategory());
 		this.mobileModelsList = mobileModelsList;
 	}
 
-	public String getMobileModels(){
-		System.out.println(brandNew);
-		SessionFactory sessionFactory = CbuddySessionFactory.getSessionFactory();
-		Session dbSession = sessionFactory.openSession();
-		dbSession.beginTransaction();
-		Criteria criteria = dbSession.createCriteria( MobileMaster.class );
-		criteria.addOrder(Order.desc("model"));
-		criteria.add(Restrictions.eq("brand", brandNew));
-		
-		mobileModelsList =criteria.list();
-		
-		dbSession.close();
-		return "success";
-	}
-	
 	public String getAdDetails(){
 
 		MobileAdService adService = new MobileAdService();
@@ -489,16 +478,31 @@ System.out.println(postDetails.getSubCategory());
 
 		SessionFactory sessionFactory = CbuddySessionFactory.getSessionFactory();
 		Session dbSession = sessionFactory.openSession();
-		
+
 		populateAdditionalDetailsForPost(postDetails, dbSession);
-		
+
 		CommentsService service = new CommentsService();
 		cmList = service.getComments(postDetails.getPostId());
-		
+
 		return "success";
 	}
 
-	
+	public String getRelevantPage(){
+		if(postDetails == null){
+			return null;
+		}
+		String subCategory = postDetails.getSubCategory();
+		String output = "MobilePhones";
+		if(subCategory.equals(CBuddyConstants.SUBCATEGORY_MOBILE_MOBILEPHONES)){
+			output = "MobilePhones";
+		}else if(subCategory.equals(CBuddyConstants.SUBCATEGORY_MOBILE_TABLETS)){
+			output = "Tablets";
+		}else if(subCategory.equals(CBuddyConstants.SUBCATEGORY_MOBILE_ACCESORIES)){
+			output = "Accessories";
+		}
+		return output;
+	}
+
 	@Override
 	public MobilePostDetails getModel() {
 		return postDetails;
@@ -585,7 +589,7 @@ System.out.println(postDetails.getSubCategory());
 	public void setBrandNew(String brandNew) {
 		this.brandNew = brandNew;
 	}
-	
+
 	public int getCount() {
 		return count;
 	}
@@ -593,7 +597,7 @@ System.out.println(postDetails.getSubCategory());
 	public void setCount(int count) {
 		this.count = count;
 	}
-	
+
 	public List<MasterComment> getCmList() {
 		return cmList;
 	}
@@ -608,6 +612,14 @@ System.out.println(postDetails.getSubCategory());
 
 	public void setSprice(String sprice) {
 		this.sprice = sprice;
+	}
+
+	public String getItemType() {
+		return itemType;
+	}
+
+	public void setItemType(String itemType) {
+		this.itemType = itemType;
 	}
 
 }

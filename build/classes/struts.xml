@@ -67,6 +67,12 @@
 		    <result name="login" type="tiles">/login.tiles</result>
 			<result name="success" type="tiles">/postAd_RealEstate.tiles</result>
 		</action>
+		<action name="post_Mobiles">
+			<interceptor-ref name="secureStack"></interceptor-ref>
+		    <result name="input" type="tiles">/home.tiles</result>
+		    <result name="login" type="tiles">/login.tiles</result>
+			<result name="success" type="tiles">/postAd_Mobiles.tiles</result>
+		</action>		
 		<action name="post_Automobile">
 			 <interceptor-ref name="secureStack"></interceptor-ref> 
 		    <result name="input" type="tiles">/home.tiles</result>
@@ -163,27 +169,25 @@
 		<!-- COMPUTERS - END -->		
 		
 		
-		<!-- MOBILE - START -->
+		<!-- MOBILES - START -->
 		<action name="mobile" class="com.cbuddy.posts.action.MobileAction" method="getAdListForMobile">
 			<result name="success" type="tiles">/mobile.tiles</result>
 		</action>
 		<action name="mobileFilter" class="com.cbuddy.posts.action.MobileAction" method="getAdListForMobile">
 			<result name="success">/pages/mobile/adList/AdList_Mobile.jsp</result>
 		</action>
-		<action name="mobile_postAd" class="com.cbuddy.posts.action.MobileAction" method="postAd">
-			 <interceptor-ref name="secureStack"></interceptor-ref> 
+		<action name="mobiles_postAd" class="com.cbuddy.posts.action.MobileAction" method="postAd">
+			 <interceptor-ref name="secureStack"></interceptor-ref>
 			 <interceptor-ref name="fileUpload">
                      <param name="allowedTypes">image/jpeg,image/gif,image/png</param>
              </interceptor-ref>
              <interceptor-ref name="defaultStack"></interceptor-ref>
 			<result name="login" type="tiles">/home.tiles</result>
 			<result name="success" type="tiles">/home.tiles</result>
-			<result name="input" type="tiles">/postad_mobile.tiles</result>
-		</action>		
-		<action name="autoSuggestMobile" class="com.cbuddy.posts.action.MobileAction" method="autoPopulateMobileModels">
-			<result name="success">/ajax_Autosuggest_Mobile.jsp</result>
+			<!--result name="redirect" type="redirect">/</result-->
+			<result name="input" type="tiles">/postAd_Mobiles.tiles</result>
 		</action>
-		<!-- MOBILE - END -->
+		<!-- MOBILES - END -->
 		
 				
 		<!-- ELECTRONICS AND HOUSEHOLD - START -->
@@ -456,6 +460,15 @@
 			<result name="LandForSale">/pages/realestate/postad/PostAd_RealEstate_Land_For_Sale.jsp</result>
 			<result name="RoommateRequired">/pages/realestate/postad/PostAd_RealEstate_Roommate_Required.jsp</result>
 		</action>
+		<action name="getDetailsSection_Mobiles" class="com.cbuddy.posts.action.MobileAction" method="getRelevantPage">
+			<interceptor-ref name="secureStack"></interceptor-ref>
+			<result name="login">/PageNotFound.jsp</result>
+			<result name="input" type="tiles">/postAd_Mobiles.tiles</result>
+			<result name="MobilePhones">/pages/mobiles/postad/PostAd_Mobile_MobilePhones.jsp</result>
+			<result name="Tablets">/pages/mobiles/postad/PostAd_Mobile_Tablets.jsp</result>
+			<result name="Accessories">/pages/mobiles/postad/PostAd_Mobile_Accessories.jsp</result>
+		</action>
+
 		<action name="upload" class="com.cbuddy.common.action.DummyFileUploadAction"
 			method="uplaod">
 			<result name="success">/Uplaod.jsp</result>
@@ -477,8 +490,9 @@
 		<action name="socialAuthSuccessAction" class="com.cbuddy.common.action.SocialAuthSuccessAction">
 			<result name="success">/authSuccess.jsp</result>
 		</action> 
-		<action name="loadMobileModels" class="com.cbuddy.posts.action.MobileAction" method="getMobileModels">
-			<result name="success">/mobileModels.jsp</result>
+		<action name="getMobileModels" class="com.cbuddy.posts.action.MobileModelsAction" method="getModels">
+			<interceptor-ref name="secureStack"></interceptor-ref>
+			<result type="json"></result>
 		</action> 
 	</package>
 </struts>
