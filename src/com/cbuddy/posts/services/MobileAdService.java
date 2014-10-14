@@ -85,27 +85,35 @@ public class MobileAdService{
 
 	private Criteria generateFilters(MobilePostDetails postDetails, Criteria criteria, String subCategory) {
 
-		if(postDetails.getLocation()!=null){
+		if(postDetails.getLocation() != null){
 			criteria = CriteriaUtil.getCriteriaForLocation(criteria, postDetails.getLocation());	
 		}
-		if(postDetails.getBrand()!=null){
+		if(postDetails.getBrand() != null){
 			criteria = CriteriaUtil.createCriteriaForIn(criteria, postDetails.getBrand(), "brand");		
 		}
-		if(postDetails.getModel()!=null){
+		if(postDetails.getModel() != null){
 			criteria = CriteriaUtil.createCriteriaForIn(criteria, postDetails.getModel(), "model");		
 		}
-		if(postDetails.getAmt()!=null){
+		if(postDetails.getAmt() != null){
 			criteria = CriteriaUtil.getCriteriaForAmt(criteria, postDetails.getAmt(), "price");
 		}
-		if(postDetails.getYearStr()!=null){
+		if(postDetails.getYearStr() != null){
 			//criteria = getCriteriaForYear(criteria, postDetails.getYearStr());
 			criteria = CriteriaUtil.createCriteriaForIn(criteria, postDetails.getYearStr(), "year");
 		}
-		if(postDetails.getOperatingSystem()!=null){
+		if(postDetails.getOperatingSystem() != null){
 			//criteria = getCriteriaForOS(criteria, postDetails.getOperatingSystem());
-			criteria = CriteriaUtil.createCriteriaForIn(criteria, postDetails.getOperatingSystem(), "os");
+			criteria = CriteriaUtil.createCriteriaForIn(criteria, postDetails.getOperatingSystem(), "operatingSystem");
 		}
-
+		if(postDetails.getDualSim() != null){
+			criteria = CriteriaUtil.createCriteriaForIn(criteria, postDetails.getDualSim(), "dualSim");
+		}
+		if(postDetails.getTouchScreen() != null){
+			criteria = CriteriaUtil.createCriteriaForIn(criteria, postDetails.getTouchScreen(), "touchScreen");
+		}
+		if(postDetails.getAccessoryType() != null){
+			criteria = CriteriaUtil.createCriteriaForIn(criteria, postDetails.getAccessoryType(), "accessoryType");
+		}
 		return criteria;	
 	}
 

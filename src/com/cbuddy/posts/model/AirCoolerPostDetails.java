@@ -41,6 +41,8 @@ public class AirCoolerPostDetails extends PAirCooler implements Serializable, Co
 	private int corpId;
 	
 	private String postStatus;
+	
+	private String postedDateStr;
 
 	@Column(name="POST_STATUS")
 	public String getPostStatus() {
@@ -208,5 +210,14 @@ public class AirCoolerPostDetails extends PAirCooler implements Serializable, Co
 
 	public void setNoOfImages(String noOfImages) {
 		this.noOfImages = noOfImages;
+	}
+	
+	@Transient
+	public String getPostedDateStr() {
+		return postedDateStr;
+	}
+
+	public void setPostedDateStr(String postedDateStr) {
+		this.postedDateStr = postedDateStr;
 	}
 }

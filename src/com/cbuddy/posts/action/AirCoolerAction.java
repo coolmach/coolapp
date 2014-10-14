@@ -48,7 +48,7 @@ public class AirCoolerAction extends ActionSupport implements SessionAware, Serv
 	private String sprice; // Price entered by user on the screen
 
 	private String responseMsg;
-
+	
 	private List<AirCoolerPostDetails> adList = new ArrayList<AirCoolerPostDetails>();
 
 	private HttpServletRequest request = null;
@@ -308,6 +308,7 @@ public class AirCoolerAction extends ActionSupport implements SessionAware, Serv
 		postDetails.setCity(cityName);
 		postDetails.setLocation(locName);
 		postDetails.setPriceStr(FormatterUtil.formatAmount(postDetails.getPrice()));
+		postDetails.setPostedDateStr(FormatterUtil.formatDate(postDetails.getCreatedOn()));
 	}
 	
 	public String getAdDetails(){
@@ -434,4 +435,13 @@ public class AirCoolerAction extends ActionSupport implements SessionAware, Serv
 	public void setSprice(String sprice) {
 		this.sprice = sprice;
 	}
+
+	public AirCoolerPostDetails getPostDetails() {
+		return postDetails;
+	}
+
+	public void setPostDetails(AirCoolerPostDetails postDetails) {
+		this.postDetails = postDetails;
+	}
+
 }

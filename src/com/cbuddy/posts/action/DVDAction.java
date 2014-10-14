@@ -306,6 +306,7 @@ public class DVDAction extends ActionSupport implements SessionAware, ServletReq
 		postDetails.setCity(cityName);
 		postDetails.setLocation(locName);
 		postDetails.setPriceStr(FormatterUtil.formatAmount(postDetails.getPrice()));
+		postDetails.setPostedDateStr(FormatterUtil.formatDate(postDetails.getCreatedOn()));
 	}
 	
 	public String getAdDetails(){
@@ -478,5 +479,13 @@ public class DVDAction extends ActionSupport implements SessionAware, ServletReq
 
 	public void setSprice(String sprice) {
 		this.sprice = sprice;
+	}
+
+	public DVDPostDetails getPostDetails() {
+		return postDetails;
+	}
+
+	public void setPostDetails(DVDPostDetails postDetails) {
+		this.postDetails = postDetails;
 	}
 }

@@ -340,7 +340,8 @@ public class TelevisionAction extends ActionSupport implements SessionAware, Ser
 		String locName = LocationUtil.getLocationName(dbSession, postDetails.getCity(), postDetails.getLocation());
 		postDetails.setCity(cityName);
 		postDetails.setLocation(locName);
-		postDetails.setPriceStr(FormatterUtil.formatAmount(postDetails.getPrice()));		
+		postDetails.setPriceStr(FormatterUtil.formatAmount(postDetails.getPrice()));
+		postDetails.setPostedDateStr(FormatterUtil.formatDate(postDetails.getCreatedOn()));
 	}
 
 	public String getAdListForCriteria(){
@@ -467,5 +468,13 @@ public class TelevisionAction extends ActionSupport implements SessionAware, Ser
 
 	public void setSprice(String sprice) {
 		this.sprice = sprice;
+	}
+
+	public TelevisionPostDetails getPostDetails() {
+		return postDetails;
+	}
+
+	public void setPostDetails(TelevisionPostDetails postDetails) {
+		this.postDetails = postDetails;
 	}
 }

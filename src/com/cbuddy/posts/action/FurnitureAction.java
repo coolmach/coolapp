@@ -290,6 +290,7 @@ public class FurnitureAction extends ActionSupport implements SessionAware, Serv
 			postDetails.setLocation(locName);
 			postDetails.setPriceStr(FormatterUtil.formatAmount(postDetails.getPrice()));
 			postDetails.setFurnitureTypeStr(utils.getFurnitureTypeDesc(postDetails.getType()));
+			postDetails.setPostedDateStr(FormatterUtil.formatDate(postDetails.getCreatedOn()));
 		}
 	}
 
@@ -395,5 +396,13 @@ public class FurnitureAction extends ActionSupport implements SessionAware, Serv
 
 	public void setSprice(String sprice) {
 		this.sprice = sprice;
+	}
+
+	public FurniturePostDetails getPostDetails() {
+		return postDetails;
+	}
+
+	public void setPostDetails(FurniturePostDetails postDetails) {
+		this.postDetails = postDetails;
 	}
 }

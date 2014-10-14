@@ -54,7 +54,7 @@
 					<label for="title" class="col-sm-3 control-label">Title<span class="mandatory">*</span></label>
 					<div class="col-sm-7">
 						<input type="text" class="form-control" maxlength="200" id="Title" name="Title" value="<s:property value='title'/>" required
-							data-infoTip="" data-validate-type="postTitle" data-validate-errMessage="Title should be at least 10 letters long">
+							data-infoTip="" data-validate-type="postTitle" data-validate-errMessage="Title should be at least 10 letters long and should have atleast 2 words">
 						<div class="fieldTip" id="TitleTip"></div>
 						<div class="fieldTip" id="Title_Error"></div>
 					</div>
@@ -212,6 +212,14 @@
 	}
 </script>
 <script>
+
+function cityChangeNotification(city){
+	//Clearing any tooltip/error
+	showOrHideErrorTip(true, "city", "");
+	populateApprovalAuthority(city);
+}
+
+
 function populateApprovalAuthority(city){
 	$("#ApprovalAuthority").html("");
 	if(city == 'CHE'){

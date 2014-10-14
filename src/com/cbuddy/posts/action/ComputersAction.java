@@ -326,6 +326,7 @@ public class ComputersAction extends ActionSupport implements SessionAware, Serv
 		postDetails.setLocation(locName);
 		postDetails.setPriceStr(FormatterUtil.formatAmount(postDetails.getPrice()));
 		postDetails.setMakeStr(utils.getLaptopMakeDesc(postDetails.getMake()));
+		postDetails.setPostedDateStr(FormatterUtil.formatDate(postDetails.getCreatedOn()));
 	}
 	
 	private void populateAdditionalDetails(){
@@ -461,5 +462,13 @@ public class ComputersAction extends ActionSupport implements SessionAware, Serv
 
 	public void setSprice(String sprice) {
 		this.sprice = sprice;
+	}
+
+	public ComputersPostDetails getPostDetails() {
+		return postDetails;
+	}
+
+	public void setPostDetails(ComputersPostDetails postDetails) {
+		this.postDetails = postDetails;
 	}
 }

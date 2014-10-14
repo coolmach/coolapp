@@ -316,6 +316,7 @@ public class FridgeAction extends ActionSupport implements SessionAware, Servlet
 		postDetails.setCity(cityName);
 		postDetails.setLocation(locName);
 		postDetails.setPriceStr(FormatterUtil.formatAmount(postDetails.getPrice()));
+		postDetails.setPostedDateStr(FormatterUtil.formatDate(postDetails.getCreatedOn()));
 	}
 	
 	public String getAdDetails(){
@@ -443,6 +444,14 @@ public class FridgeAction extends ActionSupport implements SessionAware, Servlet
 
 	public void setSprice(String sprice) {
 		this.sprice = sprice;
+	}
+
+	public FridgePostDetails getPostDetails() {
+		return postDetails;
+	}
+
+	public void setPostDetails(FridgePostDetails postDetails) {
+		this.postDetails = postDetails;
 	}
 }
 

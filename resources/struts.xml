@@ -170,11 +170,11 @@
 		
 		
 		<!-- MOBILES - START -->
-		<action name="mobile" class="com.cbuddy.posts.action.MobileAction" method="getAdListForMobile">
-			<result name="success" type="tiles">/mobile.tiles</result>
+		<action name="mobiles" class="com.cbuddy.posts.action.MobileAction" method="getAdListForMobile">
+			<result name="success" type="tiles">/mobiles.tiles</result>
 		</action>
-		<action name="mobileFilter" class="com.cbuddy.posts.action.MobileAction" method="getAdListForMobile">
-			<result name="success">/pages/mobile/adList/AdList_Mobile.jsp</result>
+		<action name="mobilesFilter" class="com.cbuddy.posts.action.MobileAction" method="getAdListForMobile">
+			<result name="success">/pages/mobiles/adList/AdList_Mobiles.jsp</result>
 		</action>
 		<action name="mobiles_postAd" class="com.cbuddy.posts.action.MobileAction" method="postAd">
 			 <interceptor-ref name="secureStack"></interceptor-ref>
@@ -376,9 +376,10 @@
 			<interceptor-ref name="secureStack"></interceptor-ref>
 			<result name="success" type="tiles">/adDetails_computers.tiles</result>
 		</action>
-		<action name="mobileAdDetails" class="com.cbuddy.posts.action.MobileAction" method="getAdDetails">
+		<action name="mobilesAdDetails" class="com.cbuddy.posts.action.MobileAction" method="getAdDetails">
 			<interceptor-ref name="secureStack"></interceptor-ref>
-			<result name="success" type="tiles">/adDetails_mobile.tiles</result>
+			<result name="success">/pages/mobiles/details/AdDetails_Mobiles.jsp</result>
+			<result name="login" type="redirect">miniLogin</result>
 		</action>
 		<action name="televisionAdDetails" class="com.cbuddy.posts.action.TelevisionAction" method="getAdDetails">
 			<interceptor-ref name="secureStack"></interceptor-ref>
@@ -491,7 +492,6 @@
 			<result name="success">/authSuccess.jsp</result>
 		</action> 
 		<action name="getMobileModels" class="com.cbuddy.posts.action.MobileModelsAction" method="getModels">
-			<interceptor-ref name="secureStack"></interceptor-ref>
 			<result type="json"></result>
 		</action> 
 	</package>

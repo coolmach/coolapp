@@ -18,6 +18,7 @@ public class Pdmo {
 	
 	private int postId;
 	private String subCategory;
+	private String accessoryType;
 	private String city;
 	private String location;
 	private String brand;
@@ -281,5 +282,13 @@ public class Pdmo {
 	}
 	public void setPostIdStr(int postIdStr) {
 		this.postIdStr = postIdStr;
+	}
+	
+	@Column(name="ACCESSORY_TYPE")
+	public String getAccessoryType() {
+		return accessoryType;
+	}
+	public void setAccessoryType(String accessoryType) {
+		this.accessoryType = accessoryType;
 	}
 }

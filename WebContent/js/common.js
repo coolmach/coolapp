@@ -236,7 +236,7 @@ function applyFilters(){
 		} else if (category == "MOBILE") {
 			var numbers = [ 1, 2];
 			var values = [ '0', '1'];
-			var options = [ 'Select', 'Handsets'];
+			var options = [ 'Select', 'Mobile Phones'];
 		}else if (category == "ELEC") {
 			var numbers = [ 1, 2, 3, 4, 5, 6, 7, 8 ];
 			var values = [ '0', '1', '2', '3', '4', '5', '6', '7' ];

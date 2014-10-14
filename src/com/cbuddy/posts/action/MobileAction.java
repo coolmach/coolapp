@@ -12,12 +12,9 @@ import javax.servlet.http.HttpServletRequest;
 import org.apache.commons.io.FileUtils;
 import org.apache.struts2.interceptor.ServletRequestAware;
 import org.apache.struts2.interceptor.SessionAware;
-import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.criterion.Order;
-import org.hibernate.criterion.Restrictions;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -36,8 +33,8 @@ import com.cbuddy.user.model.User;
 import com.cbuddy.util.AutoSuggestMobileService;
 import com.cbuddy.util.CBuddyConstants;
 import com.cbuddy.util.CbuddySessionFactory;
-import com.cbuddy.util.LocationUtil;
 import com.cbuddy.util.FormatterUtil;
+import com.cbuddy.util.LocationUtil;
 import com.cbuddy.util.Utils;
 import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.ActionSupport;
@@ -115,40 +112,36 @@ public class MobileAction extends ActionSupport implements SessionAware, Servlet
 			return false;
 		}
 		if(postDetails.getSelectedLocationCode().equals("")){
-			addFieldError("errorMsg", "Please enter Location");
+			addFieldError("errorMsg", "Invalid Location");
 			return false;
 		}
 		if(postDetails.getPrice() <= 0){
 			addFieldError("errorMsg", "Please enter Price");
 			return false;
 		}
-		if(postDetails.getBrand().equals("")){
-			addFieldError("errorMsg", "Please select the Brand");
-			return false;
-		}
-		///if(postDetails.getYear() == 0){
-		//addFieldError("errorMsg", "Please select the year of purchase (model)");
-		//return false;
-		//}
-		//if(postDetails.getColor().equals("")){
-		//addFieldError("errorMsg", "Please enter the Color");
-		//return false;
-		//}
-		if(postDetails.getUserEnteredModelStr().equals("")){
-			addFieldError("errorMsg", "Please enter the Model");
-			return false;
-		}
-		if(postDetails.getTouchScreen() == null || postDetails.getTouchScreen().equals("")){
-			addFieldError("errorMsg", "Please specify if Touch Screen is present");
-			return false;
-		}
-		if(postDetails.getDualSim() == null || postDetails.getDualSim().equals("")){
-			addFieldError("errorMsg", "Please specify whether Dual Sim is enabled");
-			return false;
-		}
-		if(postDetails.getOperatingSystem().equals("")){
-			addFieldError("errorMsg", "Please enter Operating System");
-			return false;
+		
+		if(postDetails.getSubCategory().equals(CBuddyConstants.SUBCATEGORY_MOBILE_MOBILEPHONES)){
+			if(postDetails.getBrand().equals("")){
+				addFieldError("errorMsg", "Please select the Brand");
+				return false;
+			}
+			if(postDetails.getTouchScreen() == null || postDetails.getTouchScreen().equals("")){
+				addFieldError("errorMsg", "Please specify if Touch Screen is present");
+				return false;
+			}
+			if(postDetails.getDualSim() == null || postDetails.getDualSim().equals("")){
+				addFieldError("errorMsg", "Please specify whether Dual Sim is enabled");
+				return false;
+			}
+			if(postDetails.getOperatingSystem().equals("")){
+				addFieldError("errorMsg", "Please enter Operating System");
+				return false;
+			}
+		}else if(postDetails.getSubCategory().equals(CBuddyConstants.SUBCATEGORY_MOBILE_ACCESORIES)){
+			if(postDetails.getAccessoryType() == null || postDetails.getAccessoryType().equals("-1")){
+				addFieldError("errorMsg", "Please select the Accessory Type");
+				return false;
+			}
 		}
 		return true;
 	}
@@ -202,7 +195,7 @@ public class MobileAction extends ActionSupport implements SessionAware, Servlet
 
 		int year = postDetails.getYear();
 		if(year > 0){
-			if(year < 2005 || year > 2014){
+			if(year < 2001 || year > 2014){
 				addFieldError("errorMsg", "Invalid Year");
 				return false;
 			}
@@ -226,6 +219,11 @@ public class MobileAction extends ActionSupport implements SessionAware, Servlet
 			return false;
 		}
 
+		temp = postDetails.getAccessoryType();
+		if(temp != null && temp.length()>32){
+			addFieldError("errorMsg", "Invalid Accessory Type");
+			return false;
+		}
 		return output;
 	}
 
@@ -267,45 +265,17 @@ public class MobileAction extends ActionSupport implements SessionAware, Servlet
 			return Action.INPUT;
 		}
 
-		/*if(!postDetails.getBrand().equals("OTH")){
-			//Checking if the user has manually modified tampered mobile model after selecting from auto suggest list
-			if(postDetails.getUserEnteredModelStr() != null && postDetails.getSelectedModelStr() != null){
-				if(!postDetails.getUserEnteredModelStr().equals(postDetails.getSelectedModelStr())){
-					addFieldError("errorMsg", "Invalid Model");
-					return Action.INPUT;
-				}
+		if(postDetails.getSubCategory().equals(CBuddyConstants.SUBCATEGORY_MOBILE_MOBILEPHONES)){
+			if(postDetails.getBrand() == null || postDetails.getBrand().equals("-1")){
+				addFieldError("errorMsg", "Invalid Brand");
+				return Action.INPUT;
 			}
 
-			//Check if user has chosen a different brand after choosing a model for a different brand
-			if(!postDetails.getBrand().equals(postDetails.getSelectedBrand())){
+			if(postDetails.getModel() == null || postDetails.getModel().equals("-1")){
 				addFieldError("errorMsg", "Invalid Model");
 				return Action.INPUT;
 			}
-		}*/
-
-		//Make an entry in POIT
-		//		Poit poit = new Poit();
-		//		poit.setCategory(CBuddyConstants.CATEGORY_MOBILE);
-		//		poit.setTitle(postDetails.getTitle());
-		//		poit.setCity(postDetails.getCity());
-		//		poit.setContactNo(postDetails.getContactNo());
-		//		poit.setContactPersonName(postDetails.getContactPersonName());
-		//		poit.setCorpId(user.getCorpId());
-		//		poit.setCreatedBy(String.valueOf(userId));
-		//		poit.setCreatedOn(current);
-		//		poit.setDescription(postDetails.getDescription());
-		//		poit.setImageFileName(imgFileName);
-		//		poit.setImageType(getExtension(uploadContentType));
-		//		poit.setLocation(postDetails.getSelectedLocationCode());
-		//		poit.setModifiedBy(userId);
-		//		poit.setModifiedOn(current);
-		//		poit.setNegotiable(null);
-		//		poit.setPrice(postDetails.getPrice());
-		//		poit.setRating(0);
-		//		poit.setSubCategory(postDetails.getSubCategory());
-		//		poit.setThumbnailName(null);
-		//		poit.setThumbnailType(null);
-		//		poit.setUserFirstName(user.getFirstName());
+		}
 
 		SessionFactory sessionFactory = CbuddySessionFactory.getSessionFactory();
 		Session dbSession = sessionFactory.openSession();
@@ -322,6 +292,7 @@ public class MobileAction extends ActionSupport implements SessionAware, Servlet
 
 		//Make an entry in PDMO
 		Pdmo pdmo = new Pdmo();
+		pdmo.setAccessoryType(postDetails.getAccessoryType());
 		pdmo.setCity(postDetails.getCity());
 		pdmo.setCreatedBy(userId);
 		pdmo.setCreatedOn(current);
@@ -329,14 +300,7 @@ public class MobileAction extends ActionSupport implements SessionAware, Servlet
 		pdmo.setColor(postDetails.getColor());
 		pdmo.setLocation(postDetails.getSelectedLocationCode());
 		pdmo.setMemorySize(postDetails.getMemorySize());
-		if(postDetails.getBrand().equals("OTH")){
-			//User would not have selected from auto suggest list and the hidden field 'model' would not have been populated.
-			//In this case take whatever the user entered in the model text box.
-			pdmo.setModel(postDetails.getUserEnteredModelStr());
-		}else{
-			pdmo.setModel(postDetails.getModel());
-		}
-
+		pdmo.setModel(postDetails.getModel());
 		pdmo.setModifiedBy(userId);
 		pdmo.setModifiedOn(current);
 		pdmo.setPostId(poit.getPostId());
@@ -346,7 +310,7 @@ public class MobileAction extends ActionSupport implements SessionAware, Servlet
 		pdmo.setYear(postDetails.getYear());
 		pdmo.setDualSim(postDetails.getDualSim());
 		pdmo.setTouchScreen(postDetails.getTouchScreen());
-
+		pdmo.setOperatingSystem(postDetails.getOperatingSystem());
 		//populateModelDetails(dbSession, pdmo);
 
 		dbSession.save(pdmo);
@@ -408,6 +372,9 @@ public class MobileAction extends ActionSupport implements SessionAware, Servlet
 	}
 
 	private void populateAdditionalDetailsForPost(MobilePostDetails postDetails, Session dbSession){
+		if(postDetails == null){
+			return;
+		}
 		Utils utils = new Utils();
 		String cityName = LocationUtil.getCityName(dbSession, postDetails.getCity());
 		String locName = LocationUtil.getLocationName(dbSession, postDetails.getCity(), postDetails.getLocation());
@@ -416,9 +383,14 @@ public class MobileAction extends ActionSupport implements SessionAware, Servlet
 		postDetails.setPriceStr(FormatterUtil.formatAmount(postDetails.getPrice()));
 		postDetails.setBrandStr(utils.getMobileBrandDesc(postDetails.getBrand()));
 		postDetails.setModelStr(MobilePhoneCache.getInstance().getModelName(postDetails.getBrand(), postDetails.getModel()));
+		postDetails.setPostedDateStr(FormatterUtil.formatDate(postDetails.getCreatedOn()));
 	}
 
 	public String getAdListForMobile(){
+
+		if(postDetails == null){
+			return null;
+		}
 
 		if(postDetails.getCategory()==null || postDetails.getCategory().equals("") || !postDetails.getCategory().equals(CBuddyConstants.CATEGORY_MOBILE)){
 			postDetails.setCategory(CBuddyConstants.CATEGORY_MOBILE);
@@ -482,7 +454,10 @@ public class MobileAction extends ActionSupport implements SessionAware, Servlet
 		populateAdditionalDetailsForPost(postDetails, dbSession);
 
 		CommentsService service = new CommentsService();
-		cmList = service.getComments(postDetails.getPostId());
+
+		if(postDetails != null){
+			cmList = service.getComments(postDetails.getPostId());
+		}
 
 		return "success";
 	}
@@ -495,8 +470,6 @@ public class MobileAction extends ActionSupport implements SessionAware, Servlet
 		String output = "MobilePhones";
 		if(subCategory.equals(CBuddyConstants.SUBCATEGORY_MOBILE_MOBILEPHONES)){
 			output = "MobilePhones";
-		}else if(subCategory.equals(CBuddyConstants.SUBCATEGORY_MOBILE_TABLETS)){
-			output = "Tablets";
 		}else if(subCategory.equals(CBuddyConstants.SUBCATEGORY_MOBILE_ACCESORIES)){
 			output = "Accessories";
 		}
@@ -620,6 +593,14 @@ public class MobileAction extends ActionSupport implements SessionAware, Servlet
 
 	public void setItemType(String itemType) {
 		this.itemType = itemType;
+	}
+
+	public MobilePostDetails getPostDetails() {
+		return postDetails;
+	}
+
+	public void setPostDetails(MobilePostDetails postDetails) {
+		this.postDetails = postDetails;
 	}
 
 }

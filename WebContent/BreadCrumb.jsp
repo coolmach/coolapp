@@ -42,7 +42,7 @@
 		</s:url>
 	</s:elseif>
 	<s:elseif test="%{category=='MOBILE'}">
-		<s:url action="mobile" var="urlTag" escapeAmp="false">
+		<s:url action="mobiles" var="urlTag" escapeAmp="false">
 		<s:param name="category">
 				<s:property value="category" />
 			</s:param>

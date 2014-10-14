@@ -47,11 +47,11 @@
 				<div id="subCategory_hidden_rent" class="subCategory_hidden_bck"
 					style="display: none;">
 					<ul class="dropdown-menu scrollable-menu" role="menu">
-						<li><input type="checkbox" class="check_rent" name="rent" value="<10,000" /><span class="content">Less than 10,000</span></li>
-						<li><input type="checkbox" class="check_rent" name="rent" value="10,000-14,000" /><span class="content">10,000-15,000</span></li>
-						<li><input type="checkbox" class="check_rent" name="rent" value="15,000-20,000" /><span class="content">15,000-20,000</span></li>
-						<li><input type="checkbox" class="check_rent" name="rent" value="20,000-25,000" /><span class="content">20,000-25,000</span></li>
-						<li><input type="checkbox" class="check_rent" name="rent" value=">25,000" /><span class="content">Above 25,000</span></li>
+						<li><input type="checkbox" class="check_rent" name="rent" value="<10000" /><span class="content">Less than 10,000</span></li>
+						<li><input type="checkbox" class="check_rent" name="rent" value="10000-14000" /><span class="content">10,000-15,000</span></li>
+						<li><input type="checkbox" class="check_rent" name="rent" value="15000-20000" /><span class="content">15,000-20,000</span></li>
+						<li><input type="checkbox" class="check_rent" name="rent" value="20000-25000" /><span class="content">20,000-25,000</span></li>
+						<li><input type="checkbox" class="check_rent" name="rent" value=">25000" /><span class="content">Above 25,000</span></li>
 					</ul>
 					<a href="#" class="clear blue_link">clear filters</a>
 				</div>
@@ -115,13 +115,13 @@
 				<div id="subCategory_hidden_amt" class="subCategory_hidden_bck"
 					style="display: none;">
 					<ul class="dropdown-menu scrollable-menu" role="menu">
-						<li><input type="checkbox" class="check_amt" name="amt" value="<20,00,000" /><span class="content">0 - 20 Lakh</span></li>
-						<li><input type="checkbox" class="check_amt" name="amt" value="20,00,000-30,00,000" /><span class="content">20 - 30 Lakh</span></li>
-						<li><input type="checkbox" class="check_amt" name="amt" value="30,00,000-40,00,000" /><span class="content">30 - 40 Lakh</span></li>
-						<li><input type="checkbox" class="check_amt" name="amt" value="40,00,000-50,00,000" /><span class="content">40 - 50 Lakh</span></li>
-						<li><input type="checkbox" class="check_amt" name="amt" value="50,00,000-60,00,000" /><span class="content">50 - 60 Lakh</span></li>
-						<li><input type="checkbox" class="check_amt" name="amt" value="60,00,000-75,00,000" /><span class="content">60 - 75 Lakh</span></li>
-						<li><input type="checkbox" class="check_amt" name="amt" value=">75,00,000" /><span class="content">Above 75 Lakh</span></li>					
+						<li><input type="checkbox" class="check_amt" name="amt" value="<2000000" /><span class="content">0 - 20 Lakh</span></li>
+						<li><input type="checkbox" class="check_amt" name="amt" value="2000000-3000000" /><span class="content">20 - 30 Lakh</span></li>
+						<li><input type="checkbox" class="check_amt" name="amt" value="3000000-4000000" /><span class="content">30 - 40 Lakh</span></li>
+						<li><input type="checkbox" class="check_amt" name="amt" value="4000000-5000000" /><span class="content">40 - 50 Lakh</span></li>
+						<li><input type="checkbox" class="check_amt" name="amt" value="5000000-6000000" /><span class="content">50 - 60 Lakh</span></li>
+						<li><input type="checkbox" class="check_amt" name="amt" value="6000000-7500000" /><span class="content">60 - 75 Lakh</span></li>
+						<li><input type="checkbox" class="check_amt" name="amt" value=">7500000" /><span class="content">Above 75 Lakh</span></li>					
 					</ul>
 					<a href="#" class="clear blue_link">clear filters</a>
 				</div>

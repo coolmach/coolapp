@@ -139,7 +139,7 @@
 			<div class="form-group">
 				<label for="description" class="col-sm-3 control-label">Other Features</label>
 				<div class="col-sm-7">
-					<textarea class="form-control" rows="4" maxlength="256" name="Description" id="Description"> <s:property value="Description"/> </textarea>
+					<textarea class="form-control" rows="4" maxlength="250" name="Description" id="Description"> <s:property value="Description"/> </textarea>
 				</div>
 			</div>										
 		</div>

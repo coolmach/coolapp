@@ -33,7 +33,7 @@
 		</ul>		
 	</div>
 	<div class="col-md-8" style="margin-left:-50px;">
-		<s:form cssClass="form-horizontal post" id="postContentForm" action="mobiles_postAd.action" enctype="multipart/form-data" onsubmit="return validateForm()">
+		<s:form cssClass="form-horizontal post" id="postContentForm" action="mobiles_postAd.action" enctype="multipart/form-data" onsubmit="return localValidations()">
 			<input type="hidden" name="category" value="MOBILE"/>
 			<div class="col-md-12">
 				<div class="form-group" >
@@ -45,7 +45,7 @@
 					<div class="col-sm-7" style="padding-top:6px;">
 						<s:select class="dropDown" style="height:30px;width:190px;" id="itemType" name="itemType" theme="simple" onChange="displayPostAdSection()"
 								headerKey="-1" headerValue="Select"
-								list="#{'1':'Mobile Phone', '2':'Tablets', '3':'Accessories'}"
+								list="#{'1':'Mobile Phone', '2':'Accessories'}"
 								value="subCategory" />
 						<span id="changeItemType"><a href="#" onclick="return enableItemType()">Change</a></span>
 					</div>
@@ -54,7 +54,7 @@
 					<label for="title" class="col-sm-3 control-label">Title<span class="mandatory">*</span></label>
 					<div class="col-sm-7">
 						<input type="text" class="form-control" maxlength="200" id="Title" name="Title" value="<s:property value='title'/>" required
-							data-infoTip="" data-validate-type="postTitle" data-validate-errMessage="Title should be at least 10 letters long">
+							data-infoTip="" data-validate-type="postTitle" data-validate-errMessage="Title should be at least 10 letters long and should have atleast 2 words">
 						<div class="fieldTip" id="TitleTip"></div>
 						<div class="fieldTip" id="Title_Error"></div>
 					</div>
@@ -136,10 +136,10 @@
 					</div>	
 				</div>
 				<div id="postContent">
-					<s:if test="#action.postDetails.subCategory == 1">
+					<s:if test="subCategory == 1">
 						<%@ include file="./PostAd_Mobile_MobilePhones.jsp" %>
 					</s:if>
-					<s:elseif test="#action.postDetails.subCategory == 2">
+					<s:elseif test="subCategory == 2">
 						<%@ include file="./PostAd_Mobile_Accessories.jsp" %>
 					</s:elseif>
 				</div>
@@ -177,8 +177,7 @@
 	}
 	function updateToolTip(subCategory){
 		if(subCategory == "1"){$("#Title").attr("data-infoTip", "E.g. 'Nokia Lumia 520 available for sale. Excellent condition'");}
-		else if(subCategory == "2"){$("#Title").attr("data-infoTip", "E.g. Apple iPad available for sale. Rarely used.");}
-		else if(subCategory == "3"){$("#Title").attr("data-infoTip", "E.g. Bluetooth headset available for sale.");}
+		else if(subCategory == "2"){$("#Title").attr("data-infoTip", "E.g. Bluetooth headset available for sale.");}
 	}
 	function enableItemType(){
 		$("#itemType").prop("disabled", false);
@@ -186,6 +185,10 @@
 		$("#itemType").css("background-color", "#FFFFFF");
 		$("#changeItemType").hide();
 		return false;
+	}
+	function cityChangeNotification(city){
+		//Clearing any tooltip/error
+		showOrHideErrorTip(true, "city", "");
 	}
 
 </script>

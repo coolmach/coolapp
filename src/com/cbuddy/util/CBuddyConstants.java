@@ -35,8 +35,7 @@ public class CBuddyConstants {
 	public static final String SUBCATEGORY_COMPUTERS_ACCESSORIES = "4";
 
 	public static final String SUBCATEGORY_MOBILE_MOBILEPHONES = "1";
-	public static final String SUBCATEGORY_MOBILE_TABLETS = "2";
-	public static final String SUBCATEGORY_MOBILE_ACCESORIES = "3";
+	public static final String SUBCATEGORY_MOBILE_ACCESORIES = "2";
 	
 	public static final String SUBCATEGORY_FURNITURE_COT_WOOD = "1";
 	public static final String SUBCATEGORY_FURNITURE_COT_STEEL = "2";

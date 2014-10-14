@@ -1,22 +1,25 @@
 <%@ taglib prefix="s" uri="/struts-tags"%>
 
 	<div>
-		<input type="hidden" id="subCategory" name="subCategory" value="2">
+		<input type="hidden" id="subCategory" name="subCategory" value="1">
 		<div>
 			<div class="form-group">
 				<label class="col-sm-3 control-label">Make<span class="mandatory">*</span></label>
 				<div class="col-sm-6" style="padding-top:6px;">
-					<select class="dropDown" name="brand" id="brand" onchange="getModels()">
-						<option value="Sony">Sony</option> 
-						<option value="Nokia">Nokia</option>  
-						<option value="Samsung">Samsung</option> 
-						<option value="Micromax">Micromax</option>
-						<option value="LG">LG</option> 
-						<option value="Apple">Apple</option>
-						<option value="Blackberry">Blackberry</option>
-						<option value="HTC">HTC</option> 
-						<option value="Karbonn">Karbonn</option> 
-						<option value="Xolo">Xolo</option> 
+					<select class="dropDown" name="brand" id="brand" onchange="getModels(false)">
+						<option value="-1">Select</option>
+						<optgroup label="Popular Brands">
+							<option value="Sony">Sony</option> 
+							<option value="Nokia">Nokia</option>  
+							<option value="Samsung">Samsung</option> 
+							<option value="Micromax">Micromax</option>
+							<option value="LG">LG</option> 
+							<option value="Apple">Apple</option>
+							<option value="Blackberry">Blackberry</option>
+							<option value="HTC">HTC</option> 
+							<option value="Karbonn">Karbonn</option> 
+						<option value="Xolo">Xolo</option>
+						</optgroup> 
 						<optgroup label="Other Brands">
 							<option value="Maxx">Maxx</option> 
 	 						<option value="Motorola">Motorola</option> 
@@ -30,28 +33,35 @@
 							<option value="Lava">Lava</option> 
 							<option value="MTS">MTS</option>
 						</optgroup> 
-					</select>3
+					</select>
+					<div class="fieldTip" id="brandTip"></div>
+					<div class="fieldTip" id="brand_Error"></div>
 				</div>
 			</div>
 			<div class="form-group">
 				<label class="col-sm-3 control-label">Model<span class="mandatory">*</span></label>
 				<div class="col-sm-3">
-					<input type="text" class="locationTextBox" maxlength="16" placeholder="Enter Area (e.g. JP Nagar)" name="userEnteredModelStr" id="userEnteredModelStr" required>
-					<input type="hidden" name="model" id="model">
-					<input type="hidden" name="selectedModelStr" id="selectedModelStr">
-					<input type="hidden" name="selectedBrand" id="selectedBrand">
+					<select class="dropDown" name="model" id="model" onChange="clear_Info_Error_Messages('model')">
+						<option value='-1'>Select</option>
+					</select>
+					<div class="fieldTip" id="modelTip"></div>
+					<div class="fieldTip" id="model_Error"></div>
 				</div>
 			</div>
 			<div class="form-group">
 				<label for="furnished" class="col-sm-3 control-label">Touch Screen<span class="mandatory">*</span></label>
 				<div class="col-sm-6">
-					<s:radio label="Choose Screen" theme="simple" name="touchScreen" id="touchScreen" list="#{'Y':'Yes','N':'No'}" value="postDetails.touchScreen" />
+					<s:radio label="Choose Screen" theme="simple" name="touchScreen" id="touchScreen" list="#{'Y':'Yes','N':'No'}" value="touchScreen" />
+					<div class="fieldTip" id="touchScreenTip"></div>
+					<div class="fieldTip" id="touchScreen_Error"></div>
 				</div>
 			</div>
 			<div class="form-group">
 				<label for="furnished" class="col-sm-3 control-label">Dual Sim<span class="mandatory">*</span></label>
 				<div class="col-sm-6">
-					<s:radio label="Choose No of Sims" theme="simple" name="dualSim" id="dualSim" list="#{'Y':'Yes','N':'No'}" value="postDetails.dualSim" />
+					<s:radio label="Choose No of Sims" theme="simple" name="dualSim" id="dualSim" list="#{'Y':'Yes','N':'No'}" value="dualSim" />
+					<div class="fieldTip" id="dualSimTip"></div>
+					<div class="fieldTip" id="dualSim_Error"></div>
 				</div>
 			</div>				
 			<div class="form-group">
@@ -105,9 +115,16 @@
 			<div class="form-group">
 				<label class="col-sm-3 control-label">Year of Purchase</label>
 				<div class="col-sm-3">
-					<input type="text" class="form-control" maxlength="4" name="year" id="year" value='<s:property value="year"/>' 
-					required data-validate-type="amount" data-validate-errMessage="Please enter a valid year" data-infoTip="Please enter year of purchase"
-					data-minVal="2000" data-maxVal="2015">
+					<s:if test="year == 0">
+						<input type="text" class="form-control" maxlength="4" name="year" id="year" value='' 
+						data-validate-type="amount" data-validate-errMessage="Please enter a valid year" data-infoTip="Please enter year of purchase"
+						data-minVal="2000" data-maxVal="2015">
+					</s:if>
+					<s:else>
+						<input type="text" class="form-control" maxlength="4" name="year" id="year" value='<s:property value="year"/>' 
+						data-validate-type="amount" data-validate-errMessage="Please enter a valid year" data-infoTip="Please enter year of purchase"
+						data-minVal="2000" data-maxVal="2015">
+					</s:else>
 					<div class="fieldTip" id="yearTip"></div>
 					<div class="fieldTip" id="year_Error"></div>
 				</div>
@@ -115,13 +132,13 @@
 			<div class="form-group">
 				<label class="col-sm-3 control-label">Color</label>
 				<div class="col-sm-3">
-					<input type="text" maxlength="16" class="form-control" name="color" id="color" data-infoTip="Please enter the color of mobile">
+					<input type="text" maxlength="16" class="form-control" name="color" id="color" value='<s:property value="color"/>' data-infoTip="Please enter the color of mobile">
 				</div>
 			</div>
 			<div class="form-group">
 				<label for="description" class="col-sm-3 control-label">Other Features</label>
 				<div class="col-sm-7">
-					<textarea class="form-control" rows="4" maxlength="256" name="Description" id="Description"> <s:property value="Description"/> </textarea>
+					<textarea class="form-control" rows="4" maxlength="250" name="Description" id="Description"><s:property value="Description"/></textarea>
 				</div>
 			</div>										
 		</div>
@@ -135,7 +152,6 @@
 			</div>
 		</div>		
 	</div>
-	<!-- Apartment for Rent - END -->
 	
 	<script>
 	$(document).ready(function(){
@@ -150,7 +166,7 @@
 	
 	function isAnyAdditionalDetailPopulated(){
 		output = false;
-		if(isTextFieldPopulated("color") || isTextFieldPopulated("Description")){
+		if(isTextFieldPopulated("color") || isTextFieldPopulated("year") || isTextFieldPopulated("Description")){
 			output = true;
 		}
 	
@@ -162,22 +178,6 @@
 		return output;
 	}
 	
-	function isTextFieldPopulated(fieldName){
-		if($("#" + fieldName).val().length === 0){
-			return false;
-		}else{
-			return true;
-		}
-	}
-	
-	function isDropDownSelected(fieldName){
-		if($("#" + fieldName).val() === "-1"){
-			return false;
-		}else{
-			return true;
-		}
-	}
-	
 	$(document).ready(function(){
 		$("#sprice").on("blur", function(){
 			amtStr = $("#sprice").val();
@@ -186,18 +186,90 @@
 	});
 </script>
 <script>
-function getModels(){
-	alert("Muthu");
+
+
+
+function getModels(shouldAnyModelGetHighlighted){
+	
+	//Clearing any info/error messages for Model
+	clear_Info_Error_Messages("brand");
+	
+	//Get Models for the selected Brand
 	brand = $("#brand").val();
+	$("#model").html("");
+	$("#model").append("<option value='-1'>Select</option>");
 	$.ajax({
 		url:"getMobileModels",
 		data:{brand:brand},
 		dataType:'json',
 		type:'POST',
 		success:function(res){
-			alert(res.mobileModels.length);
+			for(var i=0; i<res.mobileModels.length; i++){
+				mobileModel = res.mobileModels[i];
+				optionStr = "<option value='" + mobileModel + "'>" + mobileModel + "</option>";
+				$("#model").append(optionStr);		
+			}
+			$("#model").append("<option value='Others'>Others</option>");
+			
+			//After populating the models, one of them should be selected (use case: Form is reloaded when user enters some incorrect data. In this case, the model chosen by the user earlier should be selected) 
+			if(shouldAnyModelGetHighlighted == true){
+				selectedModel = "${action.postDetails.model}";
+				if(selectedModel != null && selectedModel.length > 1){
+					$("#model").val(selectedModel);
+				}
+			}
 		}
 	});
+
 }
+function localValidations(){
+	//City
+	if($("#cityBLR").attr("checked") != "checked" && $("#cityCHE").attr("checked") != "checked"){
+		showOrHideErrorTip(false, "city", "Please select a City");
+		$("#cityBLR").focus();
+		return false;
+	}
+	
+	//Make
+	if($("#brand").val() == "-1"){
+		showOrHideErrorTip(false, "brand", "Please choose a Make");
+		return false;
+	}
+	
+	//Model
+	if($("#model").val() == "-1"){
+		showOrHideErrorTip(false, "model", "Please choose a Model");
+		return false;
+	}
+	
+	//Dual Sim
+	if($("#dualSimY").attr("checked") != "checked" && $("#dualSimN").attr("checked") != "checked"){
+		showOrHideErrorTip(false, "dualSim", "Please choose the Sim Type");
+		return false;
+	}
+	
+	//TouchScreen
+	if($("#touchScreenY").attr("checked") != "checked" && $("#touchScreenN").attr("checked") != "checked"){
+		showOrHideErrorTip(false, "touchScreen", "Please choose the Screen Type");
+		$("#touchScreenY").focus();
+		return false;
+	}
+	return validateForm();
+	
+	
+}
+
+
+$(document).ready(function(){
+	//Populate drop down value to that selected by user before form submission
+	selectedBrand = "${action.postDetails.brand}";
+	
+	if(selectedBrand != null && selectedBrand.length > 1){
+		$("#brand").val(selectedBrand);
+		
+		//Populate the Models Drop down
+		getModels(true);
+	}
+});
 
 </script>

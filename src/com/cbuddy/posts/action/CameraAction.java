@@ -318,7 +318,8 @@ public class CameraAction extends ActionSupport implements SessionAware, Servlet
 		String locName = LocationUtil.getLocationName(dbSession, postDetails.getCity(), postDetails.getLocation());
 		postDetails.setCity(cityName);
 		postDetails.setLocation(locName);
-		postDetails.setPriceStr(FormatterUtil.formatAmount(postDetails.getPrice()));		
+		postDetails.setPriceStr(FormatterUtil.formatAmount(postDetails.getPrice()));
+		postDetails.setPostedDateStr(FormatterUtil.formatDate(postDetails.getCreatedOn()));
 	}
 	
 	public String getAdListForCriteria(){
@@ -449,5 +450,13 @@ public class CameraAction extends ActionSupport implements SessionAware, Servlet
 
 	public void setSprice(String sprice) {
 		this.sprice = sprice;
+	}
+
+	public CameraPostDetails getPostDetails() {
+		return postDetails;
+	}
+
+	public void setPostDetails(CameraPostDetails postDetails) {
+		this.postDetails = postDetails;
 	}
 }

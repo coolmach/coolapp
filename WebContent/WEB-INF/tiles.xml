@@ -37,9 +37,9 @@
         <put-attribute name="title" value="Computers/Laptops" />
         <put-attribute name="body" value="/pages/computer/Computers.jsp" />
     </definition>
-     <definition name="/mobile.tiles" extends="baseLayout">
+     <definition name="/mobiles.tiles" extends="baseLayout">
         <put-attribute name="title" value="Mobile Phones" />
-        <put-attribute name="body" value="/pages/mobile/Mobiles.jsp" />
+        <put-attribute name="body" value="/pages/mobiles/Mobiles.jsp" />
     </definition>
      <definition name="/electronics.tiles" extends="baseLayout">
         <put-attribute name="title" value="Electronics And Household Items" />

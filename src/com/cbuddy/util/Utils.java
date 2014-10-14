@@ -39,7 +39,7 @@ public class Utils {
 		
 		//Category and Sub Categories for MOBILE
 		categoryDescMap.put(CBuddyConstants.CATEGORY_MOBILE, "Mobiles And Accessories");
-		categoryDescMap.put(CBuddyConstants.CATEGORY_MOBILE + "_" + CBuddyConstants.SUBCATEGORY_MOBILE_MOBILEPHONES, "Handsets");
+		categoryDescMap.put(CBuddyConstants.CATEGORY_MOBILE + "_" + CBuddyConstants.SUBCATEGORY_MOBILE_MOBILEPHONES, "Mobile Phones");
 		categoryDescMap.put(CBuddyConstants.CATEGORY_MOBILE + "_" + CBuddyConstants.SUBCATEGORY_MOBILE_ACCESORIES, "Accessories");
 	
 		//Category and Sub Categories for FURNITURE

@@ -342,6 +342,7 @@ public class AutomobileAction extends ActionSupport implements SessionAware, Ser
 			postDetails.setMakeStr(utils.getBikeMakeDesc(postDetails.getMake()));
 			postDetails.setModelStr(utils.getBikeModelDesc(postDetails.getMake(), postDetails.getAutomobileModel()));
 		}
+		postDetails.setPostedDateStr(FormatterUtil.formatDate(postDetails.getCreatedOn()));
 	}
 	
 	public String getAdListForAutomobile(){
@@ -472,5 +473,13 @@ public class AutomobileAction extends ActionSupport implements SessionAware, Ser
 
 	public void setSprice(String sprice) {
 		this.sprice = sprice;
+	}
+
+	public AutomobilePostDetails getPostDetails() {
+		return postDetails;
+	}
+
+	public void setPostDetails(AutomobilePostDetails postDetails) {
+		this.postDetails = postDetails;
 	}
 }

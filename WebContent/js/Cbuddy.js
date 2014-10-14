@@ -72,14 +72,15 @@ $(document).ready(function() {
 		$("#hddSize-main").show();
 
 	}else if(cat == 'MOBILE'){
-		path="/mobileFilter";
+		path="/mobilesFilter";
 		$("#subCategory-right li").eq(0).addClass("highlight_subcat");
 		$("#brand-main").show();
-		$("#year-main").show();
+		$("#model-main").show();
 		$("#amt-main").show();
-		$("#os-main").show();
+		$("#operatingSystem-main").show();
 		$("#sims-main").show();
-		$("#mobilemodel-main").hide();
+		$("#touchScreen-main").show();
+		//$("#mobilemodel-main").hide();
 
 	}else if(cat == 'FURN'){
 		path="/furnitureFilter";
@@ -197,12 +198,14 @@ $(document).ready(function() {
 		});
 	});
 
+	
+	
 	var checkedBoxCount =1;
 	//*************************if user click to cancel a selected filter****************************************
 	$('.selected_filters').off().on('click', function(event) {
 		var pageNo = $('#page_info').val();
-		var page = parseInt(pageNo.split(" ")[2]);
-		var pageCount = parseInt(pageNo.split(" ")[4]);
+		//var page = parseInt(pageNo.split(" ")[2]);
+		//var pageCount = parseInt(pageNo.split(" ")[4]);
 
 		subCat = $('#sub').text();
 		cat = $('#cat').text();
@@ -231,21 +234,8 @@ $(document).ready(function() {
 			brand=$(this).val();
 			c++;
 		});
-		if(c==1){
-			$.ajax({
-				url:ctxPath + "/loadMobileModels",
-				type: "POST",
-				data: "&brandNew="+brand,
-				success: function(data) {
-					$('#mobilemodel-main').html('');
-					$('#mobilemodel-main').html(data);
-					$('#mobilemodel-main').show();
-					//alert(data);
-				}
-			});
-		}
-		
-		
+
+		updateMobileModels();
 
 		if (typeof $("input[name=city]:checked", "#cityForm").val() != "undefined") {
 			data = data + "&city=" + $("input[name=city]:checked", "#cityForm").val();
@@ -301,29 +291,7 @@ $(document).ready(function() {
 		$("#filterValueBar").show();
 
 		if($(this).attr('name')=='brand'){
-
-			$(this).parent().children(':checked').each(function() {
-				if(checkedBoxCount>1){
-					checkedBoxCount=1;
-					$('#mobilemodel-main').html('');
-					$('#mobilemodel-main').hide();
-				}else{
-					$.ajax({
-						url:ctxPath + "/loadMobileModels",
-						type: "POST",
-						data: "&brandNew="+$(this).val(),
-						success: function(data) {
-							$('#mobilemodel-main').html('');
-							$('#mobilemodel-main').html(data);
-							$('#mobilemodel-main').show();
-							//alert(data);
-						}
-					});
-				}
-				checkedBoxCount++;
-			});
-
-
+			updateMobileModels();
 		}
 		var data="";
 		data = data + '&subCategory='+subCat+'&category='+cat;
@@ -607,21 +575,11 @@ function updateDataWithSelectedSubCategory(element, path){
 	}
 	else if(cat == "MOBILE")
 	{
-		if($(element).text()== 'Handsets'){
-			$("#brand-main").show();
-			$("#amt-main").show();
-			$("#os-main").show();
-			$("#sims-main").show();
-			$("#type-main").hide();
-		}
-
-		if($(element).text()== 'Accessories'){
-			$("#type-main").show();
-			$("#brand-main").show();
-			$("#amt-main").show();
-			$("#os-main").hide();
-			$("#sims-main").hide();
-
+		hideFilters(["amt", "brand", "operatingSystem", "sims", "accessoryType", "touchScreen", "model"]);
+		if($(element).text()== 'Mobile Phones'){
+			showFilters(["brand", "model", "amt", "operatingSystem", "sims", "touchScreen"]);
+		}else if($(element).text()== 'Accessories'){
+			showFilters(["accessoryType", "amt"]);
 		}
 		$("#breadCrumb_Category").html("Mobiles And Accessories");
 		$("#breadCrumb_SubCategory").html($(element).text());
@@ -687,4 +645,39 @@ function updateDataWithSelectedSubCategory(element, path){
 		$(element).parent().children().removeClass('highlight_subcat');
 	}
 	$(element).addClass("highlight_subcat");
+}
+
+function updateMobileModels(){
+	//Get Selected Make. Also in case more than one Make is selected, don't update anything in the Model
+	noOfBrandsSelected = 0;
+	selectedBrand = "";
+	$(".check_brand").each(function(){
+		if($(this).is(':checked')){
+			noOfBrandsSelected ++;
+			selectedBrand = $(this).val();
+		}
+	});
+	
+	//Fetch Models if only one Make is selected
+	if(noOfBrandsSelected == 1 && selectedBrand != ""){
+		$("#model_List_In_Filter_Screen").html("");
+		$.ajax({
+			url:"getMobileModels",
+			data:{brand:selectedBrand},
+			dataType:'json',
+			type:'POST',
+			success:function(res){
+				for(var i=0; i<res.mobileModels.length; i++){
+					mobileModelFromServer = res.mobileModels[i];
+					//Format: <li><input type="checkbox" class="check_year" name="yearStr" value="2005" /><span class="content">2005</span></li>
+					optionStr = "<li><input type='checkbox' class='check_model' name='model' value='" + mobileModelFromServer + "' /><span class='content'>" + mobileModelFromServer + "</span></li>";
+					$("#model_List_In_Filter_Screen").append(optionStr);		
+				}
+			}
+		});
+	}else{
+		//If more than one Make is selected then remove all items in Model
+		$("#model_List_In_Filter_Screen").html("");
+		$("#model_List_In_Filter_Screen").append("<li>Select one Make</li>");
+	}
 }

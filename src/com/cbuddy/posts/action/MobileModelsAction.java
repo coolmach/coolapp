@@ -33,7 +33,7 @@ public class MobileModelsAction extends ActionSupport{
 		Session dbSession = sessionFactory.openSession();
 		dbSession.beginTransaction();
 		Criteria criteria = dbSession.createCriteria( MobileMaster.class );
-		criteria.addOrder(Order.desc("model"));
+		criteria.addOrder(Order.asc("model"));
 		criteria.add(Restrictions.eq("brand", brand));
 
 		List<MobileMaster> mobileModelsList = criteria.list();

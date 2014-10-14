@@ -291,6 +291,7 @@ public class WashingMachineAction extends ActionSupport implements SessionAware,
 		postDetails.setCity(cityName);
 		postDetails.setLocation(locName);
 		postDetails.setPriceStr(FormatterUtil.formatAmount(postDetails.getPrice()));
+		postDetails.setPostedDateStr(FormatterUtil.formatDate(postDetails.getCreatedOn()));
 	}
 	
 	public String getAdDetails(){
@@ -419,5 +420,13 @@ public class WashingMachineAction extends ActionSupport implements SessionAware,
 
 	public void setSprice(String sprice) {
 		this.sprice = sprice;
+	}
+
+	public WashingMachinePostDetails getPostDetails() {
+		return postDetails;
+	}
+
+	public void setPostDetails(WashingMachinePostDetails postDetails) {
+		this.postDetails = postDetails;
 	}
 }

@@ -1,9 +1,18 @@
 <%@ taglib prefix="s" uri="/struts-tags"%>
 
-<input type="hidden" name="action" id="action" value="mobileFilter">
+<input type="hidden" name="action" id="action" value="mobilesFilter">
 
-<%@include file="/pages/mobile/filters/Mobile_Filters.jsp" %>
+<%@include file="/pages/mobiles/filters/Mobiles_Filters.jsp"%>
+<%@include file="/pages/mobiles/filters/mobile_SubCategory_Strip.jsp" %>
+<%@include file="/pages/mobiles/adList/AdList_Mobiles.jsp"%>
 
-<%@include file="/pages/mobile/adList/AdList_Mobile.jsp" %>
 
-<%@include file="/pages/mobile/filters/mobile_SubCategory_Strip.jsp" %>
+
+
+
+<script>
+$(document).ready(function(){
+	applyFilters();
+});
+</script>
+

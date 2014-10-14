@@ -42,8 +42,19 @@ function validateForm(){
 			return false;
 		}
 	});	
+	
+	//Check if any category-specific form validations are defined in post ad jsp
+	if(isFunctionDefined("localValidations")){
+		result = localValidations();
+	}
+	
+	
 	return result;
 }
+
+function isFunctionDefined(functionName) {
+	  return (typeof(functionName) === typeof(Function));
+	}
 
 function attachEventHandlers(){
 	//Attaching Event Handlers
@@ -140,6 +151,19 @@ function validatePersonName(fieldName, errorDetail){
 	showOrHideErrorTip(result, fieldName, errorDetail);
 	return result;
 }
+
+function clear_Info_Error_Messages(fieldName){
+	errorTipName = "#" + fieldName + "_Error";
+	infoTipName = "#" + fieldName + "Tip";
+	
+	$(errorTipName).text("");
+	$(errorTipName).hide();
+	
+	$(infoTipName).text("");
+	$(infoTipName).hide();
+}
+
+
 function showOrHideErrorTip(isFieldProper, fieldName, errorDetail){
 	errorTipName = "#" + fieldName + "_Error";
 	infoTipName = "#" + fieldName + "Tip";
@@ -321,9 +345,47 @@ function expandOrCollapseAdditionalSection(){
 	}
 }
 
+function isTextFieldPopulated(fieldName){
+	if($("#" + fieldName).val().trim().length === 0){
+		return false;
+	}else{
+		return true;
+	}
+}
 
+function isDropDownSelected(fieldName){
+	if($("#" + fieldName).val() === "-1"){
+		return false;
+	}else{
+		return true;
+	}
+}
 
+function isRadioButtonSelected(){
+	anyOptionSelected = false;
+	//arguments - inbuilt variable in javascript that refers to the list of arguments passed in the function
+	for(var index=0; index<arguments.length; index++){
+		fieldName = arguments[index];
+		if($("#" + fieldName).is(':checked')){
+			anyOptionSelected = true;
+			break;
+		}
+	}
+	return anyOptionSelected;
+}
 
+function isCheckBoxSelected(){
+	anyOptionSelected = false;
+	//arguments - inbuilt variable in javascript that refers to the list of arguments passed in the function
+	for(var index=0; index<arguments.length; index++){
+		fieldName = arguments[index];
+		if($("#" + fieldName).is(':checked')){
+			anyOptionSelected = true;
+			break;
+		}
+	}
+	return anyOptionSelected;
+}
 
 
 
