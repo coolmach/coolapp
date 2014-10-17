@@ -68,6 +68,10 @@ public class AirCoolerAction extends ActionSupport implements SessionAware, Serv
 
 	}
 
+	public String getRelevantPage(){
+		return Action.SUCCESS;
+	}
+	
 	private String getExtension(String contentType){
 		String extension = contentType;
 		if(contentType != null){
@@ -217,40 +221,16 @@ public class AirCoolerAction extends ActionSupport implements SessionAware, Serv
 		User user = (User)session.get("userInfo");
 		Timestamp current = new Timestamp(System.currentTimeMillis());
 		String userId = String.valueOf(user.getUserId());
-		String imgFileName = String.valueOf(System.currentTimeMillis()) + "." + getExtension(uploadContentType[0]) + "";
+		//String imgFileName = String.valueOf(System.currentTimeMillis()) + "." + getExtension(uploadContentType[0]) + "";
 
 		//Checking if user has manually tampered location after selecting from auto suggest list
 		if(postDetails.getUserEnteredLocationStr() != null && postDetails.getSelectedLocationStr()!=null){
 			if(!postDetails.getUserEnteredLocationStr().equals(postDetails.getSelectedLocationStr())){
+				addFieldError("errorMsg", "Invalid Location");
 				return Action.INPUT;
 			}
 		}
 
-		//Make an entry in POIT
-//		Poit poit = new Poit();
-//		
-//		poit.setCategory(CBuddyConstants.CATEGORY_ELECTRONICS_AND_HOUSEHOLD);
-//		poit.setSubCategory(CBuddyConstants.SUBCATEGORY_ELECTRONICS_AND_HOUSEHOLD_AIRCOOLER);
-//		
-//		poit.setTitle(postDetails.getTitle());
-//		poit.setCity(postDetails.getCity());
-//		poit.setContactNo(postDetails.getContactNo());
-//		poit.setContactPersonName(postDetails.getContactPersonName());
-//		poit.setCorpId(user.getCorpId());
-//		poit.setCreatedBy(String.valueOf(userId));
-//		poit.setCreatedOn(current);
-//		poit.setDescription(postDetails.getDescription());
-//		poit.setImageFileName(imgFileName);
-//		poit.setImageType(getExtension(uploadContentType));
-//		poit.setLocation(postDetails.getSelectedLocationCode());
-//		poit.setModifiedBy(userId);
-//		poit.setModifiedOn(current);
-//		poit.setNegotiable(null);
-//		poit.setPrice(postDetails.getPrice());
-//		poit.setRating(0);
-//		poit.setThumbnailName(null);
-//		poit.setThumbnailType(null);
-//		poit.setUserFirstName(user.getFirstName());
 
 		SessionFactory sessionFactory = CbuddySessionFactory.getSessionFactory();
 		Session dbSession = sessionFactory.openSession();

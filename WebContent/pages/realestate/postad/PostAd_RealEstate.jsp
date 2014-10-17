@@ -208,7 +208,7 @@
 		else if(subCategory == "4"){$("#Title").attr("data-infoTip", "E.g. Fully furnished 2 BHK for Rent (Raja Rajeshwari Nagar)");}
 		else if(subCategory == "5"){$("#Title").attr("data-infoTip", "E.g. Reliable Ladies PG in Basavangudi");}
 		else if(subCategory == "6"){$("#Title").attr("data-infoTip", "E.g. Agricultural Land for Sale in Kammmanahalli");}
-		else if(subCategory == "7"){$("#Title").attr("data-infoTip", "E.g. Looking for a Male Roommate, around Electronics City");}
+		else if(subCategory == "7"){$("#Title").attr("data-infoTip", "E.g. Looking for a Male Roommate, Electronics City");}
 	}
 </script>
 <script>

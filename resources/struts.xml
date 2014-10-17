@@ -72,12 +72,12 @@
 		    <result name="input" type="tiles">/home.tiles</result>
 		    <result name="login" type="tiles">/login.tiles</result>
 			<result name="success" type="tiles">/postAd_Mobiles.tiles</result>
-		</action>		
-		<action name="post_Automobile">
-			 <interceptor-ref name="secureStack"></interceptor-ref> 
+		</action>
+		<action name="post_Electronics">
+			<interceptor-ref name="secureStack"></interceptor-ref>
 		    <result name="input" type="tiles">/home.tiles</result>
 		    <result name="login" type="tiles">/login.tiles</result>
-			<result name="success" type="tiles">/postAd_Automobile.tiles</result>
+			<result name="success" type="tiles">/postAd_Electronics.tiles</result>
 		</action>		
 		<!-- Post Ad - END -->	
 			
@@ -194,6 +194,10 @@
 		 <action name="electronics" class="com.cbuddy.posts.action.CommonPostsAction" method="getAdListForCriteria">
 			<result type="tiles" name="success">/electronics.tiles</result>
 		</action>
+	
+		
+		
+		
 		<action name="television" class="com.cbuddy.posts.action.TelevisionAction" method="getAdListForCriteria">
 			<result type="tiles" name="success">/television.tiles</result>
 		</action>
@@ -233,8 +237,8 @@
 		<action name="othersFilter" class="com.cbuddy.posts.action.OtherPostsAction" method="getAdListForCriteria">
 			<result name="success">/AdList_Others.jsp</result>
 		</action>
-		<action name="commonFilter" class="com.cbuddy.posts.action.CommonPostsAction" method="getAdListForCriteria">
-			<result name="success">/pages/electronics/adList/AdList_Common.jsp</result>
+		<action name="commonElectronicsFilter" class="com.cbuddy.posts.action.CommonPostsAction" method="getAdListForCriteria">
+			<result name="success">/pages/electronics/adList/AdList_Electronics.jsp</result>
 		</action>
 		<action name="television_postAd" class="com.cbuddy.posts.action.TelevisionAction" method="postAd">
 			 <interceptor-ref name="secureStack"></interceptor-ref>
@@ -466,9 +470,44 @@
 			<result name="login">/PageNotFound.jsp</result>
 			<result name="input" type="tiles">/postAd_Mobiles.tiles</result>
 			<result name="MobilePhones">/pages/mobiles/postad/PostAd_Mobile_MobilePhones.jsp</result>
-			<result name="Tablets">/pages/mobiles/postad/PostAd_Mobile_Tablets.jsp</result>
 			<result name="Accessories">/pages/mobiles/postad/PostAd_Mobile_Accessories.jsp</result>
 		</action>
+		<action name="getDetailsSection_Television" class="com.cbuddy.posts.action.TelevisionAction" method="getRelevantPage">
+			<interceptor-ref name="secureStack"></interceptor-ref>
+			<result name="login">/PageNotFound.jsp</result>
+			<result name="input" type="tiles">/postAd_Electronics.tiles</result>
+			<result name="success">/pages/electronics/postad/PostAd_Electronics_Television.jsp</result>
+		</action>
+		<action name="getDetailsSection_DVD" class="com.cbuddy.posts.action.DVDAction" method="getRelevantPage">
+			<interceptor-ref name="secureStack"></interceptor-ref>
+			<result name="login">/PageNotFound.jsp</result>
+			<result name="input" type="tiles">/postAd_Electronics.tiles</result>
+			<result name="success">/pages/electronics/postad/PostAd_Electronics_DVD.jsp</result>
+		</action>
+		<action name="getDetailsSection_Camera" class="com.cbuddy.posts.action.CameraAction" method="getRelevantPage">
+			<interceptor-ref name="secureStack"></interceptor-ref>
+			<result name="login">/PageNotFound.jsp</result>
+			<result name="input" type="tiles">/postAd_Electronics.tiles</result>
+			<result name="success">/pages/electronics/postad/PostAd_Electronics_Camera.jsp</result>
+		</action>
+		<action name="getDetailsSection_Fridge" class="com.cbuddy.posts.action.FridgeAction" method="getRelevantPage">
+			<interceptor-ref name="secureStack"></interceptor-ref>
+			<result name="login">/PageNotFound.jsp</result>
+			<result name="input" type="tiles">/postAd_Electronics.tiles</result>
+			<result name="success">/pages/electronics/postad/PostAd_Electronics_Fridge.jsp</result>
+		</action>
+		<action name="getDetailsSection_AirCooler" class="com.cbuddy.posts.action.AirCoolerAction" method="getRelevantPage">
+			<interceptor-ref name="secureStack"></interceptor-ref>
+			<result name="login">/PageNotFound.jsp</result>
+			<result name="input" type="tiles">/postAd_Electronics.tiles</result>
+			<result name="success">/pages/electronics/postad/PostAd_Electronics_AirCooler.jsp</result>
+		</action>
+		<action name="getDetailsSection_WashingMachine" class="com.cbuddy.posts.action.WashingMachineAction" method="getRelevantPage">
+			<interceptor-ref name="secureStack"></interceptor-ref>
+			<result name="login">/PageNotFound.jsp</result>
+			<result name="input" type="tiles">/postAd_Electronics.tiles</result>
+			<result name="success">/pages/electronics/postad/PostAd_Electronics_WashingMachine.jsp</result>
+		</action>										
 
 		<action name="upload" class="com.cbuddy.common.action.DummyFileUploadAction"
 			method="uplaod">

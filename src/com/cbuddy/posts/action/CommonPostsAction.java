@@ -50,7 +50,7 @@ public class CommonPostsAction extends ActionSupport implements SessionAware, Se
 	public void setSession(Map<String, Object> session) {
 		this.session=session;
 	}
-
+	
 	public void validate(){
 
 	}

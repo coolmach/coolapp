@@ -2,7 +2,7 @@
  
 <!DOCTYPE tiles-definitions PUBLIC
        "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
-       "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+       "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
 <tiles-definitions>
     <definition name="baseLayout" template="/BaseLayout.jsp">
         <put-attribute name="title" value="" />
@@ -185,10 +185,10 @@
         <put-attribute name="title" value="Post Ad" />
         <put-attribute name="body" value="/pages/mobiles/postad/PostAd_Mobiles.jsp" />
     </definition>     
-    <definition name="/postAd_Automobile.tiles" extends="baseLayout">
+	<definition name="/postAd_Electronics.tiles" extends="baseLayout">
         <put-attribute name="title" value="Post Ad" />
-        <put-attribute name="body" value="/pages/automobile/postad/PostAd_Automobile.jsp" />
-    </definition> 
+        <put-attribute name="body" value="/pages/electronics/postad/PostAd_Electronics.jsp" />
+    </definition>
     <!-- NEW ENTRIES FOR POST AD - END -->
           
 </tiles-definitions>

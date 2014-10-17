@@ -96,7 +96,8 @@ public class RealEstateAdService{
 				criteria = CriteriaUtil.getCriteriaForArea(criteria, postDetails.getAreaStr());
 			}
 			if(postDetails.getBhk()!=null){
-				criteria = getCriteriaForBhk(criteria, postDetails);		
+				//criteria = getCriteriaForBhk(criteria, postDetails);
+				criteria = CriteriaUtil.createCriteriaForIn(criteria, postDetails.getBhk(), "bedrooms");
 			}
 			if(postDetails.getRent()!=null){
 				criteria = getCriteriaForRent(criteria, postDetails);
@@ -118,7 +119,8 @@ public class RealEstateAdService{
 				criteria = CriteriaUtil.getCriteriaForArea(criteria, postDetails.getAreaStr());
 			}
 			if(postDetails.getBhk()!=null){
-				criteria = getCriteriaForBhk(criteria, postDetails);		
+				//criteria = getCriteriaForBhk(criteria, postDetails);
+				criteria = CriteriaUtil.createCriteriaForIn(criteria, postDetails.getBhk(), "bedrooms");
 			}
 			if(postDetails.getAmt()!=null){
 				criteria = CriteriaUtil.getCriteriaForAmt(criteria, postDetails.getAmt(), "priceValue");
@@ -196,16 +198,16 @@ public class RealEstateAdService{
 
 
 
-	public Criteria getCriteriaForBhk(Criteria criteria,Pdre pdre){
-		List<Integer> loc = new ArrayList<Integer>();
-		String obj[] = pdre.getBhk().split(",");
-		for(int i=0;i<obj.length;i++){
-			loc.add(Integer.parseInt(FormatterUtil.getNumericValue(obj[i])));
-		}	
-		criteria.add(Restrictions.in("bedrooms", loc));
-
-		return criteria;
-	}
+//	public Criteria getCriteriaForBhk(Criteria criteria,Pdre pdre){
+//		List<Integer> loc = new ArrayList<Integer>();
+//		String obj[] = pdre.getBhk().split(",");
+//		for(int i=0;i<obj.length;i++){
+//			loc.add(Integer.parseInt(FormatterUtil.getNumericValue(obj[i])));
+//		}	
+//		criteria.add(Restrictions.in("bedrooms", loc));
+//
+//		return criteria;
+//	}
 
 	public Criteria getCriteriaForRent(Criteria criteria ,Pdre pdre){
 		String obj[] = pdre.getRent().split(",");

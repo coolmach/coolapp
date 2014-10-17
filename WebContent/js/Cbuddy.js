@@ -22,10 +22,7 @@ $(document).ready(function() {
 		$("#fuelType-main").show();
 
 	}else if(cat == 'ELEC'){
-		$("#brand-main").show();
-		$("#make-main").show();
-		$("#year-main").show();
-		$("#amt-main").show();
+		showFilters(['brand', 'amt']);
 
 		var sub = $('#sub').text();
 
@@ -617,12 +614,10 @@ function updateDataWithSelectedSubCategory(element, path){
 		$("#breadCrumb_Category").html("Furniture");
 		$("#breadCrumb_SubCategory").html($(element).text());
 	}
-	/*else if( cat == 'ELEC'){
+	else if( cat == 'ELEC'){
+		hideFilters(['brand','amt','screenType']);
 		if($(this).text()== 'Televisions'){
-			$("#make-main").show();
-			$("#year-main").show();
-			$("#amt-main").show();
-			$("#screenType-main").show();
+			showFilters(['brand','amt','screenType']);
 		}else if($(this).text()== 'Digital Cameras, Camcorders') {
 			$("#model-main").hide();	
 		}
@@ -640,7 +635,7 @@ function updateDataWithSelectedSubCategory(element, path){
 		}
 		$("#breadCrumb_Category").html("Electronics");
 		$("#breadCrumb_SubCategory").html($(this).text());
-	}*/
+	}
 	if($(element).parent().children().hasClass('highlight_subcat')){
 		$(element).parent().children().removeClass('highlight_subcat');
 	}

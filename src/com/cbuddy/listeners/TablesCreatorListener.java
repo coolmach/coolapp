@@ -34,11 +34,11 @@ public class TablesCreatorListener implements ServletContextListener{
 		System.out.println(">>> Corporate Indexes created successfully");
 		LogUtil.getInstance().info(">>> Corporate Indexes created successfully");
 		
-		MobileIndexCreator.getInstance().indexMobileModels(dbSession);
-		System.out.println(">>> Mobile Model Indexes created successfully");
-		LogUtil.getInstance().info(">>> Mobile Model Indexes created successfully");
-		
-		MobilePhoneCache.getInstance().initialize(dbSession);
-		System.out.println(">>> Mobile Model cache created successfully");
+//		MobileIndexCreator.getInstance().indexMobileModels(dbSession);
+//		System.out.println(">>> Mobile Model Indexes created successfully");
+//		LogUtil.getInstance().info(">>> Mobile Model Indexes created successfully");
+//		
+//		MobilePhoneCache.getInstance().initialize(dbSession);
+//		System.out.println(">>> Mobile Model cache created successfully");
 	}
 }

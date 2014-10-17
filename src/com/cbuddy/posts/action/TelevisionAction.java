@@ -69,6 +69,10 @@ public class TelevisionAction extends ActionSupport implements SessionAware, Ser
 
 	}
 
+	public String getRelevantPage(){
+		return Action.SUCCESS;
+	}
+	
 	private String getExtension(String contentType){
 		String extension = contentType;
 		if(contentType != null){
@@ -111,11 +115,10 @@ public class TelevisionAction extends ActionSupport implements SessionAware, Ser
 			addFieldError("errorMsg", "Please enter the Brand");
 			return false;
 		}
-		if(postDetails.getYear() == 0){
-			addFieldError("errorMsg", "Please select the year of purchase");
+		if(postDetails.getScreenType().equals("-1")){
+			addFieldError("errorMsg", "Please enter the Screen Type");
 			return false;
 		}
-
 		return true;
 	}
 
@@ -167,43 +170,43 @@ public class TelevisionAction extends ActionSupport implements SessionAware, Ser
 		}
 
 		int year = postDetails.getYear();
-		if(year < 1950 || year > 2014){
+		if(year != 0 && (year < 1950 || year > 2014)){
 			addFieldError("errorMsg", "Invalid Year");
 			return false;
 		}
 
 		temp = postDetails.getBillAvailable();
-		if(temp == null || (!temp.equals("Y") && !temp.equals("N"))){
+		if(temp != null && (!temp.equals("Y") && !temp.equals("N"))){
 			addFieldError("errorMsg", "Please choose if Bill is available");
 			return false;
 		}
 
 		temp = postDetails.getScreenType();
-		if(temp == null || (!temp.equals("CRT") && !temp.equals("LCD") && !temp.equals("LED"))){
+		if(temp != null && temp.length()>8){
 			addFieldError("errorMsg", "Invalid Screen Type");
 			return false;
 		}
 
 		temp = postDetails.getStabilizer();
-		if(temp == null || (!temp.equals("Y") && !temp.equals("N"))){
+		if(temp != null && temp.length()>1){
 			addFieldError("errorMsg", "Invalid Stabilizer Availability");
 			return false;
 		}
 
 		temp = postDetails.getUsb();
-		if(temp == null || (!temp.equals("Y") && !temp.equals("N"))){
+		if(temp != null && temp.length()>1){
 			addFieldError("errorMsg", "Invalid USB Port Availability");
 			return false;
 		}
 
 		temp = postDetails.getHdmi();
-		if(temp == null || (!temp.equals("Y") && !temp.equals("N"))){
+		if(temp != null && temp.length()>1){
 			addFieldError("errorMsg", "Invalid HDMI Availability");
 			return false;
 		}
 
 		temp = postDetails.getScreenSize();
-		if(temp != null && temp.length() > 3){
+		if(temp != null && temp.length() > 4){
 			addFieldError("errorMsg", "Invalid Screen Size");
 			return false;
 		}
@@ -232,40 +235,15 @@ public class TelevisionAction extends ActionSupport implements SessionAware, Ser
 		User user = (User)session.get("userInfo");
 		Timestamp current = new Timestamp(System.currentTimeMillis());
 		String userId = String.valueOf(user.getUserId());
-		String imgFileName = String.valueOf(System.currentTimeMillis()) + "." + getExtension(uploadContentType[0]) + "";
+		//String imgFileName = String.valueOf(System.currentTimeMillis()) + "." + getExtension(uploadContentType[0]) + "";
 
 		//Checking if user has manually tampered location after selecting from auto suggest list
 		if(postDetails.getUserEnteredLocationStr() != null && postDetails.getSelectedLocationStr()!=null){
 			if(!postDetails.getUserEnteredLocationStr().equals(postDetails.getSelectedLocationStr())){
+				addFieldError("errorMsg", "Invalid Location");
 				return Action.INPUT;
 			}
 		}
-
-		//Make an entry in POIT
-//		Poit poit = new Poit();
-//
-//		poit.setCategory(CBuddyConstants.CATEGORY_ELECTRONICS_AND_HOUSEHOLD);
-//		poit.setSubCategory(CBuddyConstants.SUBCATEGORY_ELECTRONICS_AND_HOUSEHOLD_TELEVISION);
-//
-//		poit.setTitle(postDetails.getTitle());
-//		poit.setCity(postDetails.getCity());
-//		poit.setContactNo(postDetails.getContactNo());
-//		poit.setContactPersonName(postDetails.getContactPersonName());
-//		poit.setCorpId(user.getCorpId());
-//		poit.setCreatedBy(String.valueOf(userId));
-//		poit.setCreatedOn(current);
-//		poit.setDescription(postDetails.getDescription());
-//		poit.setImageFileName(imgFileName);
-//		poit.setImageType(getExtension(uploadContentType));
-//		poit.setLocation(postDetails.getSelectedLocationCode());
-//		poit.setModifiedBy(userId);
-//		poit.setModifiedOn(current);
-//		poit.setNegotiable(null);
-//		poit.setPrice(postDetails.getPrice());
-//		poit.setRating(0);
-//		poit.setThumbnailName(null);
-//		poit.setThumbnailType(null);
-//		poit.setUserFirstName(user.getFirstName());
 
 		SessionFactory sessionFactory = CbuddySessionFactory.getSessionFactory();
 		Session dbSession = sessionFactory.openSession();
@@ -304,7 +282,7 @@ public class TelevisionAction extends ActionSupport implements SessionAware, Ser
 		dbSession.save(entity);
 
 		if(upload != null){
-			postsUtil.writeImage(upload, imgFileName);
+			postsUtil.writeImage(upload, poit.getImageFileName());
 		}
 
 		dbSession.getTransaction().commit();

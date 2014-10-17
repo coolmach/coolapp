@@ -35,6 +35,7 @@ import org.apache.struts2.RequestUtils;
 import org.apache.struts2.interceptor.ServletRequestAware;
 import org.apache.struts2.interceptor.ServletResponseAware;
 import org.apache.struts2.interceptor.SessionAware;
+import org.apache.struts2.views.util.DefaultUrlHelper;
 import org.apache.struts2.views.util.UrlHelper;
 import org.brickred.socialauth.SocialAuthConfig;
 import org.brickred.socialauth.SocialAuthManager;
@@ -94,8 +95,9 @@ ServletRequestAware, ServletResponseAware {
 		System.out.println(returnToUrl);
 		// returnToUrl =
 		// "http://opensource.brickred.com/socialauth-struts-demo/socialAuthSuccessAction.do";
-		returnToUrl = UrlHelper.buildUrl("socialAuthSuccessAction", request,
-				response, null, null, true, true, true);
+		//returnToUrl = UrlHelper.buildUrl("socialAuthSuccessAction", request, response, null, null, true, true, true);
+		//Above line is commented due to compilation error after moving to latest version of struts2.
+		returnToUrl = new DefaultUrlHelper().buildUrl("socialAuthSuccessAction", request, response, null, null, true, true, true);
 		System.out.println(returnToUrl);
 		url = manager.getAuthenticationUrl(id, returnToUrl);
 		System.out.println("Redirecting to: " + url);

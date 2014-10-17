@@ -1,32 +1,25 @@
- <div id="right_LocationFilterSection" class="col-md-3">
-		<div class="form-group" id="electronics_right">
+
+<div id="right_LocationFilterSection" class="col-md-3">
+	<%@include file="/location_And_Corporate_Strip.jsp"%>
+	<div style="margin-top:5px;">&nbsp;</div>
+	<div class="form-group" id="subCategory-right">
 		<div id="" class="" style="position: relative;">
-			<div class="heading">
-			<h4><a class="heading_link" data-toggle="collapse" data-parent="#accordion" href="#collapse_ul">
-          Categories
+		<div class="heading" style="padding-top:10px;">
+			<a class="heading_link" data-toggle="collapse" data-parent="#accordion" href="#collapse_ul">
+          			Categories
                  <span class="glyphicon glyphicon-chevron-down"></span>
-               </a>
-             </h4>
+            </a>
         </div>
-			<ul class="list-unstyled collapse in"" id="collapse_ul" style="margin-left:10px;">
-			    <s:url action="electronics" var="urlTag0" escapeAmp="false"><s:param name="category">ALL</s:param></s:url>
-				<s:url action="television" var="urlTag1" escapeAmp="false"><s:param name="category">TV</s:param></s:url>
-				<s:url action="camera" var="urlTag2" escapeAmp="false"><s:param name="category">CAMERA</s:param></s:url>
-				<s:url action="fridge" var="urlTag3" escapeAmp="false"><s:param name="category">FRIDGE</s:param></s:url>
-				<s:url action="airCooler" var="urlTag4" escapeAmp="false"><s:param name="category">AC</s:param></s:url>
-				<s:url action="washingMachine" var="urlTag5" escapeAmp="false"><s:param name="category">WASHING_MACHINE</s:param></s:url>
-				<s:url action="dvd" var="urlTag6" escapeAmp="false"><s:param name="category">DVD</s:param></s:url>
-				
-				<li><a href="<s:property value="#urlTag0" />">All</a></li>
-				<li><a href="<s:property value="#urlTag1" />">Televisions</a></li>
-				<li><a href="<s:property value="#urlTag2" />">Digital Cameras, Camcorders</a></li>
-				<li><a href="<s:property value="#urlTag3" />">Refrigerators</a></li>
-				<li><a href="<s:property value="#urlTag4" />">Air Coolers, Air Conditioners</a></li>
-				<li><a href="<s:property value="#urlTag5" />">Washing Machines</a></li>
-				<li><a href="<s:property value="#urlTag6" />">DVD Players, Music Players, iPods</a></li>
-			</ul>
-		</div>	
-        </div>
-	<%@include file="/location_And_Corporate_Strip.jsp" %>
-</div> 
+		<ul class="list-unstyled collapse in" id="collapse_ul" style="padding:10px;">
+		    <li value="1"><span class="content">Television</span></li>
+			<li value="2"><span class="content">DVD/Music Players</span></li>
+			<li value="3"><span class="content">Camers, Camcorders</span></li>
+			<li value="4"><span class="content">Fridge</span></li>
+			<li value="5"><span class="content">Air Coolers, Air Conditioners</span></li>
+			<li value="6"><span class="content">Washing Machines</span></li>
+		</ul>
+		</div>
+	</div>
+</div>
+
 

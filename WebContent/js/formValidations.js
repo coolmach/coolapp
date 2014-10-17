@@ -57,6 +57,7 @@ function isFunctionDefined(functionName) {
 	}
 
 function attachEventHandlers(){
+
 	//Attaching Event Handlers
 	$('input[data-validate-type="numeric"]').each(function(){
 		$(this).on("blur", function(){
