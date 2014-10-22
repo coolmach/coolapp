@@ -208,7 +208,7 @@
 		<s:url action="realestate" var="url_REAL" escapeAmp="false"><s:param name="category">REAL</s:param><s:param name="subCategory">1</s:param></s:url>
 		<s:url action="automobile" var="url_AUTO" escapeAmp="false"><s:param name="category">AUTO</s:param><s:param name="subCategory">1</s:param></s:url>
 		<s:url action="computers" var="url_COMP" escapeAmp="false"><s:param name="category">COMP</s:param><s:param name="subCategory">1</s:param></s:url>
-		<s:url action="electronics" var="url_ELEC" escapeAmp="false"><s:param name="category">ELEC</s:param><s:param name="subCategory">1</s:param></s:url>
+		<s:url action="electronics" var="url_ELEC" escapeAmp="false"><s:param name="category">ELEC</s:param></s:url>
 		<s:url action="mobiles" var="url_MOBILE" escapeAmp="false"><s:param name="category">MOBILE</s:param><s:param name="subCategory">1</s:param></s:url>
 		<s:url action="furniture" var="url_FURN" escapeAmp="false"><s:param name="category">FURN</s:param><s:param name="subCategory">1</s:param></s:url>	
 		<div class="col-sm-2 tile" id="tile1">

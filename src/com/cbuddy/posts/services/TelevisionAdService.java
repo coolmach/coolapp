@@ -100,10 +100,12 @@ public class TelevisionAdService{
 		if(postDetails.getScreenType() != null){
 			criteria = CriteriaUtil.createCriteriaForIn(criteria, postDetails.getScreenType(), "screenType");
 		}
-		if(postDetails.getYearStr()!=null){
-			criteria = CriteriaUtil.createCriteriaForYear(criteria, postDetails.getYearStr());
+//		if(postDetails.getYearStr()!=null){
+//			criteria = CriteriaUtil.createCriteriaForYear(criteria, postDetails.getYearStr());
+//		}
+		if(postDetails.getYear() != null){
+			criteria = CriteriaUtil.createCriteriaForIn(criteria, postDetails.getYear(), "year");
 		}
-
 		return criteria;	
 	}
 

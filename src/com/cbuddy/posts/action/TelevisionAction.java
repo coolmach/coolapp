@@ -169,9 +169,10 @@ public class TelevisionAction extends ActionSupport implements SessionAware, Ser
 			return false;
 		}
 
-		int year = postDetails.getYear();
-		if(year != 0 && (year < 1950 || year > 2014)){
-			addFieldError("errorMsg", "Invalid Year");
+		//It does not denote the actual year, but the age of the item, in no. of years.
+		temp = postDetails.getYear();
+		if(temp.length() > 4){
+			addFieldError("errorMsg", "Invalid Age in Years");
 			return false;
 		}
 

@@ -533,8 +533,17 @@ html,body {
 	text-align: right;
 }
 
+#subCategory-right-electronics{
+	border: 1px solid #dddddd;
+}
+
 #subCategory-right {
 	border: 1px solid #dddddd;
+}
+
+#subCategory-right-electronics li{
+	padding: 3px !important;
+	cursor: pointer;
 }
 
 #subCategory-right li {

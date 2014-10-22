@@ -5,7 +5,7 @@
 			<div class="form-group">
 				<label class="col-sm-3 control-label">Make<span class="mandatory">*</span></label>
 				<div class="col-sm-3" style="padding-top:6px;">
-					<s:select class="dropDown" style="height:30px;width:80px;" id="brand" name="brand" theme="simple"
+					<s:select class="dropDown" style="height:30px;width:120px;" id="brand" name="brand" theme="simple"
 						headerKey="-1" headerValue="Select"
 						list="#{'Akai':'Akai','LG':'LG','Onida':'Onida','Panasonic':'Panasonic','Philips':'Philips','Samsung':'Samsung','Sansui':'Sansui','Sharp':'Sharp','Sony':'Sony','Toshiba':'Toshiba','Videocon':'Videocon','Others':'Others'}"
 						value="brand" />				
@@ -35,6 +35,17 @@
 					<div class="fieldTip" id="sprice_Error"></div>
 				</div>
 			</div>
+			<div class="form-group">
+				<label class="col-sm-3 control-label">Age in Years<span class="mandatory">*</span></label>
+				<div class="col-sm-3" style="padding-top:6px;">
+					<s:select class="dropDown" style="height:30px;width:120px;" id="year" name="year" theme="simple"
+						headerKey="-1" headerValue="Select"
+						list="#{'0.5':'< 1 year old','1.5':'1-2 years old','2.5':'2-3 years old','3.5':'3-4 years old','4.5':'4-5 years old','5.5':'> 5 years old'}"
+						value="year" />				
+					<div class="fieldTip" id="yearTip"></div>
+					<div class="fieldTip" id="year_Error"></div>
+				</div>
+			</div>			
 			<div class="form-group">
 				<label class="col-sm-3 control-label">Contact Person Name<span class="mandatory">*</span></label>
 				<div class="col-sm-4">
@@ -176,6 +187,25 @@ function localValidations(){
 	
 }
 
+function attachClearEventsToDropDown(){
+	$("select").each(function(){
+		//HTML to JQuery Element
+		var jqueryElement = $(this);
+		var elementId = $(jqueryElement).attr("id");
+		var infoTipDivTagName = "#" + elementId + "Tip";
+		var errorDivTagName = "#" + elementId + "_Error";
+		var third = "Hello";
+		
+		$(jqueryElement).change({elementId:elementId}, function (event){
+			info = "#" + event.data.elementId + "Tip";
+			err = "#" + event.data.elementId + "_Error";
+
+			$(info).html("");
+			$(err).html("");
+		});
+	});
+}
+
 
 $(document).ready(function(){
 	//Populate drop down value to that selected by user before form submission
@@ -185,6 +215,9 @@ $(document).ready(function(){
 		$("#brand").val(selectedBrand);
 		
 	}
+	
+	//To reset error/info messages of SELECT elements, on change event.
+	attachClearEventsToDropDown();
 });
 
 </script>

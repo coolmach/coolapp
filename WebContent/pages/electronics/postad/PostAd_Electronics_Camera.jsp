@@ -1,112 +1,211 @@
 <%@ taglib prefix="s" uri="/struts-tags"%>
-<link rel="stylesheet" type="text/css" href="css/Cbuddy.css"/>
-<div class=" header_2">
-	<div class=""></div>
-</div>
-<div class="col-md-8" id="my">
-	<s:form cssClass="form-horizontal post" action="camera_postAd" enctype="multipart/form-data">
-		<input type="hidden" name="category" value="ELEC"/>
-		<input type="hidden" name="subCategory" value="3"/>
-		<div class="col-md-12 post_title">
-			<div style="float:left;">
-				Digital Camera / Camcorder For Sale
+	<div>
+		<input type="hidden" id="subCategory" name="subCategory" value="3">
+		<div>
+			<div class="form-group">
+				<label for="furnished" class="col-sm-3 control-label">Camera Type<span class="mandatory">*</span></label>
+				<div class="col-sm-6">
+					<s:select class="dropDown" style="height:30px;width:120px;" id="cameraType" name="cameraType" theme="simple"
+						headerKey="-1" headerValue="Select"
+						list="#{'Digital Camera':'Digital Camera', 'SLR Camera':'SLR Camera', 'Camcorder':'Camcorder', 'Others':'Others'}"
+						value="cameraType" />
+					<div class="fieldTip" id="cameraTypeTip"></div>
+					<div class="fieldTip" id="cameraType_Error"></div>
+				</div>
 			</div>
-			<span class="error"><s:fielderror fieldName="errorMsg"/></span>
+			<div class="form-group">
+				<label class="col-sm-3 control-label">Make<span class="mandatory">*</span></label>
+				<div class="col-sm-3" style="padding-top:6px;">
+					<s:select class="dropDown" style="height:30px;width:120px;" id="brand" name="brand" theme="simple"
+						headerKey="-1" headerValue="Select"
+						list="#{'Sony':'Sony','Nikon':'Nikon','Samsung':'Samsung','Panasonic':'Panasonic','Kodak':'Kodak','Fujifilm':'Fujifilm','Others':'Others'}"
+						value="brand" />				
+					<div class="fieldTip" id="brandTip"></div>
+					<div class="fieldTip" id="brand_Error"></div>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-3 control-label">Age in Years<span class="mandatory">*</span></label>
+				<div class="col-sm-3" style="padding-top:6px;">
+					<s:select class="dropDown" style="height:30px;width:120px;" id="year" name="year" theme="simple"
+						headerKey="-1" headerValue="Select"
+						list="#{'0.5':'< 1 year old','1.5':'1-2 years old','2.5':'2-3 years old','3.5':'3-4 years old','4.5':'4-5 years old','5.5':'> 5 years old'}"
+						value="year" />				
+					<div class="fieldTip" id="yearTip"></div>
+					<div class="fieldTip" id="year_Error"></div>
+				</div>
+			</div>			
+			<div class="form-group">
+				<label class="col-sm-3 control-label">Price<span class="mandatory">*</span></label>
+				<div class="col-sm-3">
+					<input type="text" class="form-control" maxlength="12" name="sprice" id="sprice" value='<s:property value="sprice"/>' 
+					required data-validate-type="amount" data-validate-errMessage="Please enter valid Price" data-infoTip="Please enter Price"
+					data-minVal="500" data-maxVal="100000">
+					<s:checkbox id="negotiable" name="negotiable" fieldValue="true" value="negotiable" label="Negotiable" theme="simple"/><span class="checkBoxText">Negotiable</span><BR>
+					<div class="fieldTip" id="spriceTip"></div>
+					<div class="fieldTip" id="sprice_Error"></div>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-3 control-label">Contact Person Name<span class="mandatory">*</span></label>
+				<div class="col-sm-4">
+					<input type="text" class="form-control" maxlength="30" name="ContactPersonName" id="ContactPersonName" value='<s:property value="ContactPersonName"/>' required data-validate-type="personName" data-validate-errMessage="Please enter valid Name" data-infoTip="Please enter Contact Person Name">
+					<div class="fieldTip" id="ContactPersonNameTip"></div>
+					<div class="fieldTip" id="ContactPersonName_Error"></div>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-3 control-label">Contact Number<span class="mandatory">*</span></label>
+				<div class="col-sm-4">
+					<input type="text" class="form-control" maxlength="15" name="ContactNo" id="ContactNo" value='<s:property value="ContactNo"/>' required data-validate-type="phoneNumber" data-validate-errMessage="Please enter valid Phone Number" data-infoTip="Please enter Phone number">
+					<div class="fieldTip" id="ContactNoTip"></div>
+					<div class="fieldTip" id="ContactNo_Error"></div>
+				</div>
+			</div>										
 		</div>
-	   <div class="col-md-8">
-			<div class="form-group">
-				<label for="title" class="col-sm-4 control-label">Title<span class="mandatory">*</span></label>
-				<div class="col-sm-8">
-					<input type="text" class="form-control" maxlength="200" id="Title" name="Title" value="Sony Digital Camera available for sale" required>
-				</div>
-			</div>
-			
-			<%@include file="/locationStrip.jsp" %>
-					
-			<div class="form-group">
-				<label for="brand" class="col-sm-4 control-label">Brand <span class="mandatory">*</span></label>
-				<div class="col-sm-6" style="padding-top:6px;">
-					<input type="text" maxlength="15" class="form-control" name="brand" id="brand" value="Sony" required>
-				</div>
-			</div>
-			<div class="form-group">
-				<label for="model" class="col-sm-4 control-label">Model</label>
-				<div class="col-sm-6">
-					<input type="text" maxlength="15" class="form-control" name="model" id="model" value="25 TW">
-				</div>
-			</div>
-			<div class="form-group">
-				<label for="year" class="col-sm-4 control-label">Year of purchase<span class="mandatory">*</span></label>
-				<div class="col-sm-3">
-					<input type="text" maxlength="4" class="form-control" name="year" id="year" value="2007" required>
-				</div>
-			</div>
-			<div class="form-group">
-				<label for="price" class="col-sm-4 control-label">Price<span class="mandatory">*</span></label>
-				<div class="col-sm-3">
-					<input type="text" maxlength="6" class="form-control" name="price" id="price" value="30000" required>
-				</div>
-			</div>
-			<div class="form-group">
-				<label for="billAvailable" class="col-sm-4 control-label">Original Bill<span class="mandatory">*</span></label>
-				<div class="col-sm-6">
-					<input type="radio" class="form-control-radio" name="billAvailable" id="billAvailable" value="Y"> <span class="form-control-radio-label">Available</span>
-					<input type="radio" class="form-control-radio" name="billAvailable" id="billAvailable" value="N"> <span class="form-control-radio-label">Not Available</span>
-				</div>
-			</div>
-			<div class="form-group">
-				<label for="resolution" class="col-sm-4 control-label">Resolution (in MP)</label>
-				<div class="col-sm-3">
-					<input type="text" maxlength="6" class="form-control" name="resolution" id="resolution" value="3.2">
-				</div>
-			</div>
-			<div class="form-group">
-				<label for="zoom" class="col-sm-4 control-label">Zoom (in X)</label>
-				<div class="col-sm-3">
-					<input type="text" maxlength="6" class="form-control" name="zoom" id="zoom" value="3.2">
-				</div>
-			</div>														
-			<div class="form-group">
-				<label for="description" class="col-sm-4 control-label">Description</label>
-				<div class="col-sm-8">
-					<textarea class="form-control" maxlength="256" rows="3" name="Description" id="Description" placeholder="Please enter description"></textarea>
-				</div>
-			</div>
-			<div class="form-group">
-				<div class="col-sm-offset-2 col-sm-5">
-					<button type="submit" class="btn btn-primary pull-right" onClick="history.go(-1);">Back</button>
-				</div>
-				<div class="col-sm-offset-0 col-sm-3">
-					<button type="submit" class="btn btn-primary pull-right">Post Ad</button>
-				</div>
-			</div>
+		
+		<div class="row col-md-12" style="margin-left:0px; margin-bottom:10px; padding:10px;">
+			<h5 style="color:rgb(127,127,127); font-size:14px;">
+				<!-- a href="javascript:animatedcollapse.toggle('accordion_1')"></a-->
+				<a class="heading_link" data-toggle="collapse" data-parent="#accordion" href="#collapse_section_1">
+          			<span class="glyphicon glyphicon-info-sign" style="color:rgb(255,201,14); font-size:16px; margin-right:10px;"></span>Click here to fill Additional Details
+          			<span class="glyphicon glyphicon-chevron-down"></span>
+            	</a>
+			</h5>
 		</div>
-		<div class="col-md-4">
-			<div class="fileinput fileinput-new" data-provides="fileinput">
-			  <div class="fileinput-preview thumbnail" data-trigger="fileinput" style="width: 200px; height: 150px;"></div>
-			  <div>
-			    <span class="btn btn-default btn-file"><span class="fileinput-new">Select image</span><span class="fileinput-exists">Change</span>
-			    <input type="file" name="upload" id="upload"></span>
-			    <a href="#" class="btn btn-default fileinput-exists" data-dismiss="fileinput">Remove</a>
-			  </div>
-			</div>
+		<div id="collapse_section_1" class="collapse">
 			<div class="form-group">
-				<div class="col-sm-8">
-					<label for="" class="col-sm-6 control-label" style="text-align:left;">Contact Details<span class="mandatory">*</span></label>
+				<label class="col-sm-3 control-label">Model</label>
+				<div class="col-sm-3">
+					<input type="text" class="form-control" maxlength="20" name="model" id="model" value='<s:property value="model"/>' 
+					 data-infoTip="Please enter the Model"> 
+					<div class="fieldTip" id="modelTip"></div>
+					<div class="fieldTip" id="model_Error"></div>
 				</div>
 			</div>
 			<div class="form-group">
-				<div class="col-sm-6">
-					<input type="text" class="form-control" maxlength="30" name="ContactPersonName" placeholder="Contact Person Name" value="Arunachalam" required>
+				<label class="col-sm-3 control-label">Resolution</label>
+				<div class="col-sm-3">
+					<input type="text" class="form-control" maxlength="4" name="resolution" id="resolution" value='<s:property value="resolution"/>' 
+					 data-validate-type="floatingPoint" data-validate-errMessage="Please specify the Resolution" data-infoTip="Please enter resolution"> 
+					<div class="fieldTip" id="resolutionTip"></div>
+					<div class="fieldTip" id="resolution_Error"></div>
 				</div>
 			</div>
 			<div class="form-group">
-				<div class="col-sm-6">
-					<input type="text" class="form-control" maxlength="11" name="ContactNo" placeholder="Contact Number" value="98431203943" required>
+				<label class="col-sm-3 control-label">Zoom (in X)</label>
+				<div class="col-sm-3">
+					<input type="text" class="form-control" maxlength="4" name="zoom" id="zoom" value='<s:property value="zoom"/>' 
+					 data-validate-type="floatingPoint" data-validate-errMessage="Please specify a proper Zoom" data-infoTip="Please enter the Zoom"> 
+					<div class="fieldTip" id="zoomTip"></div>
+					<div class="fieldTip" id="zoom_Error"></div>
 				</div>
 			</div>
+			<div class="form-group">
+				<label for="description" class="col-sm-3 control-label">Other Features</label>
+				<div class="col-sm-7">
+					<textarea class="form-control" rows="4" maxlength="250" name="Description" id="Description"><s:property value="Description"/></textarea>
+				</div>
+			</div>										
 		</div>
-	</s:form>
+		<div style="margin-top:15px;"></div>
+		<div class="form-group" style="margin-top:25px;">
+			<div class="col-sm-5">
+				<button type="submit" class="btn btn-primary pull-right" onClick="history.go(-1);">Back</button>
+			</div>
+			<div class="col-sm-3">
+				<button type="submit" class="btn btn-primary pull-right">Post Ad</button>
+			</div>
+		</div>		
+	</div>
+	
+<script>
+	$(document).ready(function(){
+		if(isAnyAdditionalDetailPopulated()){
+			//Some details are present in additional details section. Hence EXPAND this section
+			$("#collapse_section_1").addClass("in");
+		}else{
+			//No details are present in additional details section. Hence COLLAPSE this section
+			$("#collapse_section_1").removeClass("in");
+		}
+	});
+	
+	function isAnyAdditionalDetailPopulated(){
+		output = false;
+		if(isTextFieldPopulated("model", "zoom", "resolution", "Description")){
+			output = true;
+		}
 
-</div>
-<div class="col-md-5"></div>
+		return output;
+	}
+	
+	$(document).ready(function(){
+		$("#sprice").on("blur", function(){
+			amtStr = $("#sprice").val();
+			$("#sprice").val(convertToAmountFormat(amtStr));
+		});
+	});
+</script>
+<script>
+
+function localValidations(){
+	//City
+	if($("#cityBLR").attr("checked") != "checked" && $("#cityCHE").attr("checked") != "checked"){
+		showOrHideErrorTip(false, "city", "Please select a City");
+		$("#cityBLR").focus();
+		return false;
+	}
+	
+	if($("#cameraType").val() == "-1"){
+		showOrHideErrorTip(false, "cameraType", "Please choose the Camera Type");
+		return false;
+	}
+	
+	if($("#brand").val() == "-1"){
+		showOrHideErrorTip(false, "brand", "Please choose the Make");
+		return false;
+	}
+	
+	if($("#year").val() == "-1"){
+		showOrHideErrorTip(false, "year", "Please choose the Age");
+		return false;
+	}
+
+	return validateForm();
+	
+	
+}
+
+function attachClearEventsToDropDown(){
+	$("select").each(function(){
+		//HTML to JQuery Element
+		var jqueryElement = $(this);
+		var elementId = $(jqueryElement).attr("id");
+		var infoTipDivTagName = "#" + elementId + "Tip";
+		var errorDivTagName = "#" + elementId + "_Error";
+		var third = "Hello";
+		
+		$(jqueryElement).change({elementId:elementId}, function (event){
+			info = "#" + event.data.elementId + "Tip";
+			err = "#" + event.data.elementId + "_Error";
+
+			$(info).html("");
+			$(err).html("");
+		});
+	});
+}
+
+$(document).ready(function(){
+	//Populate drop down value to that selected by user before form submission
+	selectedBrand = "${action.postDetails.brand}";
+	
+	if(selectedBrand != null && selectedBrand.length > 1){
+		$("#brand").val(selectedBrand);
+		
+	}
+	
+	//To reset error/info messages of SELECT elements, on change event.
+	attachClearEventsToDropDown();
+});
+
+</script>

@@ -86,13 +86,11 @@
 							<span class="postField_Color"><s:property value="city" /></span><span class="separator">|</span> 
 							<span class="postField_Color"><s:property value="location" /></span>
 							<br>
-							<span class="postField"><s:property value="brand" /></span> <span class="separator">|</span>
-							<br>
 							<div style="margin-top:2px;"></div>
-							<span class="postField_Special"><s:property value="subCategoryStr" /></span>
+							<span class="postField_Special"><s:property value="subCategory" /></span>
 						</td>
 						<td style="text-align:right;">
-							<span class="postField_Highlight">Rs. <s:property value="priceStr" /></span>
+							<span class="postField_Highlight">Rs. <s:property value="price" /></span>
 						</td>
 						<td style="text-align:right; padding-right:5px; ">
 							<s:property value="postedDateStr"/>

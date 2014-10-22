@@ -124,8 +124,8 @@ public class DVDAction extends ActionSupport implements SessionAware, ServletReq
 			addFieldError("errorMsg", "Please select Player Type");
 			return false;
 		}
-		if(postDetails.getYear() == 0){
-			addFieldError("errorMsg", "Please select the year of purchase");
+		if(postDetails.getYear()==null || postDetails.getYear().equals("")){
+			addFieldError("errorMsg", "Please specify how old is the item");
 			return false;
 		}
 
@@ -179,14 +179,14 @@ public class DVDAction extends ActionSupport implements SessionAware, ServletReq
 			return false;
 		}
 
-		int year = postDetails.getYear();
-		if(year < 1950 || year > 2014){
-			addFieldError("errorMsg", "Invalid Year");
+		temp = postDetails.getYear();
+		if(temp.length() > 4){
+			addFieldError("errorMsg", "Invalid Age");
 			return false;
 		}
 
 		temp = postDetails.getBillAvailable();
-		if(temp == null || (!temp.equals("Y") && !temp.equals("N"))){
+		if(temp != null && (!temp.equals("Y") && !temp.equals("N"))){
 			addFieldError("errorMsg", "Please choose if Bill is available");
 			return false;
 		}

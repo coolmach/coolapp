@@ -22,7 +22,7 @@ $(document).ready(function() {
 		$("#fuelType-main").show();
 
 	}else if(cat == 'ELEC'){
-		showFilters(['brand', 'amt']);
+		showFilters(['brand', 'amt','year', 'cameraType', 'playerType', 'loadingType', 'automaticType', 'screenType', 'doubleDoor']);
 
 		var sub = $('#sub').text();
 
@@ -473,9 +473,10 @@ function updateDataWithSelectedSubCategory(element, path){
 	var ctxPath = $('#context_path').val().trim();
 	var cat = $('#cat').text();
 	var filterData = "";
-
+	
 	subCat = $('#sub').text();
 	cat = $('#cat').text();
+	
 	var defaultSubCat = $(this).parent().children().first('.content').text();
 
 	if(lastVal!=$(element).text() ){
@@ -615,9 +616,9 @@ function updateDataWithSelectedSubCategory(element, path){
 		$("#breadCrumb_SubCategory").html($(element).text());
 	}
 	else if( cat == 'ELEC'){
-		hideFilters(['brand','amt','screenType']);
+		hideFilters(['brand','amt','screenType', 'year']);
 		if($(this).text()== 'Televisions'){
-			showFilters(['brand','amt','screenType']);
+			showFilters(['brand','amt','screenType','year']);
 		}else if($(this).text()== 'Digital Cameras, Camcorders') {
 			$("#model-main").hide();	
 		}
@@ -676,3 +677,5 @@ function updateMobileModels(){
 		$("#model_List_In_Filter_Screen").append("<li>Select one Make</li>");
 	}
 }
+
+

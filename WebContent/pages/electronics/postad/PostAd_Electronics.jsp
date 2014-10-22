@@ -6,15 +6,18 @@ $(document).ready(function(){
 });
 
 function updateFormAction(){
+	postAd_formAction = "";
 	var itemType = $("#itemType").val();
 	if(itemType == "1"){postAd_formAction = "television_postAd";}
 	else if(itemType == "2"){postAd_formAction = "dvd_postAd";}
 	else if(itemType == "3"){postAd_formAction = "camera_postAd";}
 	else if(itemType == "4"){postAd_formAction = "fridge_postAd";}
-	else if(itemType == "5"){postAd_formAction = "airCooler_postAd";}
-	else if(itemType == "6"){postAd_formAction = "washingMachine_postAd";}
+	else if(itemType == "5"){postAd_formAction = "washingMachine_postAd";}
+	else if(itemType == "6"){postAd_formAction = "airCooler_postAd";}
 	
-	$('form').get(0).setAttribute('action', postAd_formAction);
+	if($('form').get(0) != null){
+		$('form').get(0).setAttribute('action', postAd_formAction);
+	}
 }
 </script>
 
@@ -186,8 +189,6 @@ function updateFormAction(){
 	</div>
 </div>
 
-
-
 <script>
 	function displayPostAdSection(){
 		var itemType = $("#itemType").val();
@@ -203,9 +204,9 @@ function updateFormAction(){
 		if(itemType == "1"){details_formAction = "getDetailsSection_Television";}
 		else if(itemType == "2"){details_formAction = "getDetailsSection_DVD";}
 		else if(itemType == "3"){details_formAction = "getDetailsSection_Camera";}
-		else if(itemType == "4"){details_formAction = "getDetails_Fridge";}
-		else if(itemType == "5"){details_formAction = "getDetails_AirCooler";}
-		else if(itemType == "6"){details_formAction = "getDetails_WashingMachine";}
+		else if(itemType == "4"){details_formAction = "getDetailsSection_Fridge";}
+		else if(itemType == "5"){details_formAction = "getDetailsSection_WashingMachine";}
+		else if(itemType == "6"){details_formAction = "getDetailsSection_AirCooler";}
 		
 		updateFormAction();
 		

@@ -21,7 +21,7 @@ public class PCamera {
 	private String location;
 	private String brand;
 	private String model;
-	private int year;
+	private String year;
 	private double price;
 	private String billAvailable;
 	private Timestamp createdOn;
@@ -33,6 +33,7 @@ public class PCamera {
 	
 	private String resolution;
 	private String zoom;
+	private String cameraType;
 	
 	private int postIdStr;
 	
@@ -66,10 +67,10 @@ public class PCamera {
 	}
 	
 	@Column(name="YEAR")
-	public int getYear() {
+	public String getYear() {
 		return year;
 	}
-	public void setYear(int year) {
+	public void setYear(String year) {
 		this.year = year;
 	}
 	
@@ -192,6 +193,14 @@ public class PCamera {
 	}
 	public void setPage(String page) {
 		this.page = page;
+	}
+	
+	@Column(name="CAMERA_TYPE")
+	public String getCameraType() {
+		return cameraType;
+	}
+	public void setCameraType(String cameraType) {
+		this.cameraType = cameraType;
 	}
 
 }

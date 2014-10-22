@@ -217,6 +217,7 @@ $(document).ready(function(){
 
 <script>
 $(document).ready(function(){
+	alert("JSP");
 	$("#backToResultsButton").bind("click", function(){
 		applyFilters();
 		return false;

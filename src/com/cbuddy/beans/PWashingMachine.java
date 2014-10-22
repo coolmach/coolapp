@@ -21,8 +21,11 @@ public class PWashingMachine {
 	private String location;
 	private String brand;
 	private String model;
-	private int year;
+	private String year;
 	private double price;
+	private String loadingType;
+	private String automaticType;
+	private String capacity;
 	private String billAvailable;
 	private Timestamp createdOn;
 	private String createdBy;
@@ -58,10 +61,10 @@ public class PWashingMachine {
 	}
 	
 	@Column(name="YEAR")
-	public int getYear() {
+	public String getYear() {
 		return year;
 	}
-	public void setYear(int year) {
+	public void setYear(String year) {
 		this.year = year;
 	}
 	
@@ -144,6 +147,30 @@ public class PWashingMachine {
 	}
 	public void setPostIdStr(int postIdStr) {
 		this.postIdStr = postIdStr;
+	}
+	
+	@Column(name="LOADING_TYPE")
+	public String getLoadingType() {
+		return loadingType;
+	}
+	public void setLoadingType(String loadingType) {
+		this.loadingType = loadingType;
+	}
+	
+	@Column(name="AUTOMATIC_TYPE")
+	public String getAutomaticType() {
+		return automaticType;
+	}
+	public void setAutomaticType(String automaticType) {
+		this.automaticType = automaticType;
+	}
+	
+	@Column(name="CAPACITY")
+	public String getCapacity() {
+		return capacity;
+	}
+	public void setCapacity(String capacity) {
+		this.capacity = capacity;
 	}
 
 }

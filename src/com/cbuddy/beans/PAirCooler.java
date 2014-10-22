@@ -21,7 +21,7 @@ public class PAirCooler {
 	private String location;
 	private String brand;
 	private String model;
-	private int year;
+	private String year;
 	private double price;
 	private String billAvailable;
 	private Timestamp createdOn;
@@ -65,10 +65,10 @@ public class PAirCooler {
 	}
 	
 	@Column(name="YEAR")
-	public int getYear() {
+	public String getYear() {
 		return year;
 	}
-	public void setYear(int year) {
+	public void setYear(String year) {
 		this.year = year;
 	}
 	

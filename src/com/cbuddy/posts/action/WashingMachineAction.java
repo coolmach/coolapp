@@ -114,8 +114,16 @@ public class WashingMachineAction extends ActionSupport implements SessionAware,
 			addFieldError("errorMsg", "Please enter the Brand");
 			return false;
 		}
-		if(postDetails.getYear() == 0){
-			addFieldError("errorMsg", "Please select the year of purchase");
+		if(postDetails.getLoadingType() == null || postDetails.getLoadingType().trim().equals("") || postDetails.getLoadingType().equals("-1")){
+			addFieldError("errorMsg", "Please choose the Loading Type");
+		}
+		if(postDetails.getAutomaticType() == null || postDetails.getAutomaticType().trim().equals("") || postDetails.getAutomaticType().equals("-1")){
+			addFieldError("errorMsg", "Please choose the Automatic Level");
+		}
+		
+		
+		if(postDetails.getYear()==null || postDetails.getYear().equals("")){
+			addFieldError("errorMsg", "Please specify how old is the item");
 			return false;
 		}
 
@@ -169,18 +177,29 @@ public class WashingMachineAction extends ActionSupport implements SessionAware,
 			return false;
 		}
 
-		int year = postDetails.getYear();
-		if(year < 1950 || year > 2014){
-			addFieldError("errorMsg", "Invalid Year");
+		temp = postDetails.getYear();
+		if(temp.length() > 4){
+			addFieldError("errorMsg", "Invalid age");
 			return false;
 		}
 
 		temp = postDetails.getBillAvailable();
-		if(temp == null || (!temp.equals("Y") && !temp.equals("N"))){
+		if(temp != null && (!temp.equals("Y") && !temp.equals("N"))){
 			addFieldError("errorMsg", "Please choose if Bill is available");
 			return false;
 		}
 		
+		temp = postDetails.getLoadingType();
+		if(temp != null && temp.length()>16){
+			addFieldError("errorMsg", "Please choose the Loading Type");
+			return false;
+		}
+		
+		temp = postDetails.getAutomaticType();
+		if(temp != null && temp.length() > 16){
+			addFieldError("errorMsg", "Please choose the Automatic Level");
+			return false;
+		}
 		return output;
 	}
 
@@ -242,6 +261,9 @@ public class WashingMachineAction extends ActionSupport implements SessionAware,
 		entity.setModifiedBy(userId);
 		entity.setModifiedOn(current);
 		entity.setPrice(postDetails.getPrice());
+		entity.setLoadingType(postDetails.getLoadingType());
+		entity.setAutomaticType(postDetails.getAutomaticType());
+		entity.setCapacity(postDetails.getCapacity());
 		
 		dbSession.save(entity);
 

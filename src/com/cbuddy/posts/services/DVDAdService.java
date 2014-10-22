@@ -95,10 +95,15 @@ public class DVDAdService{
 		if(postDetails.getAmt()!=null){
 			criteria = CriteriaUtil.getCriteriaForAmt(criteria, postDetails.getAmt(), "price");
 		}
-		if(postDetails.getYearStr()!=null){
-			criteria = CriteriaUtil.createCriteriaForYear(criteria, postDetails.getYearStr());
+//		if(postDetails.getYearStr()!=null){
+//			criteria = CriteriaUtil.createCriteriaForYear(criteria, postDetails.getYearStr());
+//		}
+		if(postDetails.getYear() != null){
+			criteria = CriteriaUtil.createCriteriaForIn(criteria, postDetails.getYear(), "year");
 		}
-
+		if(postDetails.getPlayerType() != null){
+			criteria = CriteriaUtil.createCriteriaForIn(criteria, postDetails.getPlayerType(), "playerType");
+		}
 		return criteria;	
 	}
 }

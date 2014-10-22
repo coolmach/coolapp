@@ -14,6 +14,13 @@ function validateForm(){
 			return false;
 		}
 	});
+	$('input[data-validate-type="floatingPoint"]').each(function(){
+		fieldName = $(this).attr("id");
+		errorDetail = $(this).attr("data-validate-errMessage");
+		if(validateFloatingPointField(fieldName, errorDetail) == false){
+			return false;
+		}
+	});
 	$('input[data-validate-type="amount"]').each(function(){
 		fieldName = $(this).attr("id");
 		errorDetail = $(this).attr("data-validate-errMessage");
@@ -64,6 +71,14 @@ function attachEventHandlers(){
 			fieldName = $(this).attr("id");
 			toolTipValue = $(this).attr("data-validate-errMessage");
 			validateNumericField(fieldName, toolTipValue);
+		});
+	});
+	
+	$('input[data-validate-type="floatingPoint"]').each(function(){
+		$(this).on("blur", function(){
+			fieldName = $(this).attr("id");
+			toolTipValue = $(this).attr("data-validate-errMessage");
+			validateFloatingPointField(fieldName, toolTipValue);
 		});
 	});
 	
@@ -118,6 +133,12 @@ function attachEventHandlers(){
 function validateNumericField(fieldName, errorDetail){
 	fieldValue = $("#" + fieldName).val();
 	result = isValidNumber(fieldValue); 
+	showOrHideErrorTip(result, fieldName, errorDetail);
+	return result;
+}
+function validateFloatingPointField(fieldName, errorDetail){
+	fieldValue = $("#" + fieldName).val();
+	result = isValidDecimalNumber(fieldValue); 
 	showOrHideErrorTip(result, fieldName, errorDetail);
 	return result;
 }
@@ -181,6 +202,30 @@ function showOrHideErrorTip(isFieldProper, fieldName, errorDetail){
 	}
 }
 function isValidNumber(numericInput){
+	pattern = new RegExp("[^0123456789]");
+	isNotANumber = pattern.test(numericInput); //Check if input contains any other characters other than 0-9
+	if(isNotANumber == true){
+		return false; //Not a valid number
+	}else{
+		return true; //Valid number
+	}
+}
+function isValidDecimalNumber(numericInput){
+	//Only one decimal point should be there
+	index = numericInput.indexOf(".");
+	if(index >= 0){
+		temp = numericInput.substring(index + 1, numericInput.length - 1);
+		if(temp.indexOf(".") >= 0){
+			return false;
+		}
+		//Only two digits should be there after decimal point;
+		if(temp.length > 2){
+			return false;
+		}
+		//Remove decimal point from the input and validate all the digits.
+		numericInput = numericInput.replace(/./g, "");
+	}
+	
 	pattern = new RegExp("[^0123456789]");
 	isNotANumber = pattern.test(numericInput); //Check if input contains any other characters other than 0-9
 	if(isNotANumber == true){
@@ -346,22 +391,40 @@ function expandOrCollapseAdditionalSection(){
 	}
 }
 
+//Usage: isTextFieldPopulated("fieldName1", "fieldName2", "fieldName3", ...);
 function isTextFieldPopulated(fieldName){
-	if($("#" + fieldName).val().trim().length === 0){
-		return false;
-	}else{
-		return true;
+	anyOptionSelected = false;
+	//arguments - inbuilt variable in javascript that refers to the list of arguments passed in the function
+	for(var index=0; index<arguments.length; index++){
+
+		fieldName = arguments[index];
+				
+		fieldName = "#" + fieldName;
+		
+		if($(fieldName).html() != "" && typeof($(fieldName)) != undefined && $(fieldName).val().trim().length > 0){
+			anyOptionSelected = true;
+			break;
+		}
 	}
+	return anyOptionSelected;
 }
 
+//Usage: isDropDownSelected("fieldName1", "fieldName2", "fieldName3", ...);
 function isDropDownSelected(fieldName){
-	if($("#" + fieldName).val() === "-1"){
-		return false;
-	}else{
-		return true;
+	anyOptionSelected = false;
+	//arguments - inbuilt variable in javascript that refers to the list of arguments passed in the function
+	for(var index=0; index<arguments.length; index++){
+		fieldName = arguments[index];
+		fieldName = "#" + fieldName;
+		if($(fieldName) != null && $(fieldName).val() != '' && $(fieldName).val() === "-1"){
+			anyOptionSelected = true;
+			break;
+		}
 	}
+	return anyOptionSelected;
 }
 
+///Usage: isRadioButtonSelected("fieldName1", "fieldName2", "fieldName3", ...);
 function isRadioButtonSelected(){
 	anyOptionSelected = false;
 	//arguments - inbuilt variable in javascript that refers to the list of arguments passed in the function
@@ -375,6 +438,7 @@ function isRadioButtonSelected(){
 	return anyOptionSelected;
 }
 
+//Usage: isCheckBoxSelected("fieldName1", "fieldName2", "fieldName3", ...);
 function isCheckBoxSelected(){
 	anyOptionSelected = false;
 	//arguments - inbuilt variable in javascript that refers to the list of arguments passed in the function

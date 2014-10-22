@@ -90,7 +90,7 @@ $(document).ready(function(){
 });
 
 function applyFilters(){
-	
+
 	var ctxPath = $('#context_path').val().trim();
 	var path = $("#action").val();
 

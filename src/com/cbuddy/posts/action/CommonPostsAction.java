@@ -67,6 +67,7 @@ public class CommonPostsAction extends ActionSupport implements SessionAware, Se
 			if(postDetails.getDescription().length() > 80){
 				postDetails.setDescription(postDetails.getDescription().substring(0,80) + "...");
 			}
+			postDetails.setSubCategory(new Utils().getSubCategoryDesc(postDetails.getCategory(), postDetails.getSubCategory()));
 		}
 	}
 
@@ -81,8 +82,8 @@ public class CommonPostsAction extends ActionSupport implements SessionAware, Se
 		subCategoryStr = utils.getSubCategoryDesc(postDetails.getCategory(), postDetails.getSubCategory());
 
 		if(postDetails.getSubCategory()==null || postDetails.getSubCategory().equals("") || subCategoryStr.equals("")){
-			postDetails.setSubCategory(CBuddyConstants.SUBCATEGORY_ELECTRONICS_AND_HOUSEHOLD_ALL);
-			subCategoryStr = utils.getSubCategoryDesc(postDetails.getCategory(), postDetails.getSubCategory());
+			//postDetails.setSubCategory(CBuddyConstants.SUBCATEGORY_ELECTRONICS_AND_HOUSEHOLD_ALL);
+			//subCategoryStr = utils.getSubCategoryDesc(postDetails.getCategory(), postDetails.getSubCategory());
 		}
 
 		CommonAdService adService = new CommonAdService();

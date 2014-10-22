@@ -387,27 +387,33 @@
 		</action>
 		<action name="televisionAdDetails" class="com.cbuddy.posts.action.TelevisionAction" method="getAdDetails">
 			<interceptor-ref name="secureStack"></interceptor-ref>
-			<result name="success" type="tiles">/adDetails_television.tiles</result>
-		</action>
+			<result name="success">/pages/electronics/details/AdDetails_Television.jsp</result>
+			<result name="login" type="redirect">miniLogin</result>
+		</action>		
 		<action name="cameraAdDetails" class="com.cbuddy.posts.action.CameraAction" method="getAdDetails">
 			<interceptor-ref name="secureStack"></interceptor-ref>
-			<result name="success" type="tiles">/adDetails_camera.tiles</result>
+			<result name="success">/pages/electronics/details/AdDetails_Camera.jsp</result>
+			<result name="login" type="redirect">miniLogin</result>
 		</action>
 		<action name="dvdAdDetails" class="com.cbuddy.posts.action.DVDAction" method="getAdDetails">
 			<interceptor-ref name="secureStack"></interceptor-ref>
-			<result name="success" type="tiles">/adDetails_dvd.tiles</result>
-		</action>
+			<result name="success">/pages/electronics/details/AdDetails_DVD.jsp</result>
+			<result name="login" type="redirect">miniLogin</result>
+		</action>		
 		<action name="airCoolerAdDetails" class="com.cbuddy.posts.action.AirCoolerAction" method="getAdDetails">
 			<interceptor-ref name="secureStack"></interceptor-ref>
-			<result name="success" type="tiles">/adDetails_airCooler.tiles</result>
+			<result name="success">/pages/electronics/details/AdDetails_AirCooler.jsp</result>
+			<result name="login" type="redirect">miniLogin</result>
 		</action>
 		<action name="fridgeAdDetails" class="com.cbuddy.posts.action.FridgeAction" method="getAdDetails">
 			<interceptor-ref name="secureStack"></interceptor-ref>
-			<result name="success" type="tiles">/adDetails_fridge.tiles</result>
-		</action>
+			<result name="success">/pages/electronics/details/AdDetails_Fridge.jsp</result>
+			<result name="login" type="redirect">miniLogin</result>
+		</action>	
 		<action name="washingMachineAdDetails" class="com.cbuddy.posts.action.WashingMachineAction" method="getAdDetails">
 			<interceptor-ref name="secureStack"></interceptor-ref>
-			<result name="success" type="tiles">/adDetails_washingMachine.tiles</result>
+			<result name="success">/pages/electronics/details/AdDetails_WashingMachine.jsp</result>
+			<result name="login" type="redirect">miniLogin</result>
 		</action>
 		<action name="othersAdDetails" class="com.cbuddy.posts.action.OtherPostsAction" method="getAdDetails">
 			<interceptor-ref name="secureStack"></interceptor-ref>

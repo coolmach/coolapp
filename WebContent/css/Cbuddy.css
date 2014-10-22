@@ -57,6 +57,10 @@
 	text-decoration: underline;
 }
 
+#subCategory-right-electronics .content:hover {
+	text-decoration: underline;
+}
+
 #breadCrumb {
 	margin-top: 10px;
 	margin-bottom: 25px;
