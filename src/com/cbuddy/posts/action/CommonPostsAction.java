@@ -67,7 +67,7 @@ public class CommonPostsAction extends ActionSupport implements SessionAware, Se
 			if(postDetails.getDescription().length() > 80){
 				postDetails.setDescription(postDetails.getDescription().substring(0,80) + "...");
 			}
-			postDetails.setSubCategory(new Utils().getSubCategoryDesc(postDetails.getCategory(), postDetails.getSubCategory()));
+			postDetails.setSubCategoryStr(new Utils().getSubCategoryDesc(postDetails.getCategory(), postDetails.getSubCategory()));
 		}
 	}
 

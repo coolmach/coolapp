@@ -101,8 +101,8 @@ public class ComputersAdService{
 		if(postDetails.getAmt()!=null){
 			criteria = CriteriaUtil.getCriteriaForAmt(criteria, postDetails.getAmt(), "price");
 		}
-		if(postDetails.getYearStr()!=null){
-			criteria = CriteriaUtil.createCriteriaForYear(criteria, postDetails.getYearStr());
+		if(postDetails.getYear() != null){
+			criteria = CriteriaUtil.createCriteriaForIn(criteria, postDetails.getYear(), "year");
 		}
 		if(postDetails.getProcessorSizeStr()!=null){
 			criteria = getCriteriaForProcessorSize(criteria, postDetails.getProcessorSizeStr());
@@ -110,7 +110,9 @@ public class ComputersAdService{
 		if(postDetails.getHddSizeStr()!=null){
 			criteria = getCriteriaForHddSize(criteria, postDetails.getHddSizeStr());
 		}
-		
+		if(postDetails.getAccessoryType() != null){
+			criteria = CriteriaUtil.createCriteriaForIn(criteria, postDetails.getAccessoryType(), "accessoryType");
+		}
 		return criteria;	
 	}
 	

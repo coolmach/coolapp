@@ -85,15 +85,15 @@
 							<s:if test="%{subCategory == 1}">
 								<!-- Mobile Phones -->
 								<br>
-								<span class="postField"><s:property value="brandStr" /></span> <span class="separator">|</span>
-								<span class="postField"><B><s:property value="modelStr" /></B></span> <span class="separator">|</span>
+								<span class="postField"><B><s:property value="brand" /></B></span><span class="separator">|</span>
+								<span class="postField"><B><s:property value="model" /></B></span> <span class="separator">|</span>
 								<br>
-								<span class="postField">Dual&nbsp;Sim:
+								<span class="postField">
 									<s:if test="dualSim == Y">
-										Yes
+										Dual&nbsp;Sim
 									</s:if>
 									<s:else>
-										No
+										Single&nbsp;Sim
 									</s:else>
 								</span>
 								<span class="separator">|

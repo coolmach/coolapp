@@ -14,7 +14,9 @@
 	<s:if test="adList.size() > 0">
 		
 		<div class="col-md-8 listSection" id="postListSection" style="margin-left:5px;">
-			<form id="dummyForm"></form>
+			<form id="dummyForm">
+				<input type="hidden" name="plt" id="plt" value="L">
+			</form>
 			<table class="table table-bordered">
 				<tr>
 					<th colspan="2" style="width:50%;">

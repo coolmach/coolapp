@@ -6,5 +6,7 @@
 <s:elseif test="subCategory == 2">
 	<%@include file="AdDetails_Automobile_Bikes.jsp" %>
 </s:elseif>
-
+<s:elseif test="subCategory == 3">
+	<%@include file="AdDetails_Automobile_Cycles.jsp" %>
+</s:elseif>
 <script type="text/javascript" src="js/autocomplete.js"></script>

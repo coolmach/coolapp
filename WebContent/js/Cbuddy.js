@@ -15,14 +15,10 @@ $(document).ready(function() {
 	}else if(cat == 'AUTO'){
 		path="/automobileFilter";
 		$("#subCategory-right li").eq(0).addClass("highlight_subcat");
-		$("#make-main").show();
-		$("#year-main").show();
-		$("#amt-main").show();
-		$("#model-main").show();
-		$("#fuelType-main").show();
-
+		
+		showFilters(['make','amt','year','model','fuelType','regState']);
 	}else if(cat == 'ELEC'){
-		showFilters(['brand', 'amt','year', 'cameraType', 'playerType', 'loadingType', 'automaticType', 'screenType', 'doubleDoor']);
+		showFilters(['brand', 'amt','year', 'cameraType', 'playerType', 'loadingType', 'automaticType', 'screenType', 'doubleDoor', 'subCategoryFilterStr']);
 
 		var sub = $('#sub').text();
 
@@ -61,10 +57,18 @@ $(document).ready(function() {
 
 	}else if(cat == 'COMP'){
 		path = "/computersFilter";
+		var sub = $('#sub').text();
 		$("#subCategory-right li").eq(0).addClass("highlight_subcat");
-		$("#make-main").show();
-		$("#year-main").show();
-		$("#amt-main").show();
+		hideFilters(['make','tab_make','model','amt','accessoryType','accessory_amt','year']);
+		if(sub == "1"){
+			showFilters(['make','amt','year']);
+		}else if(sub == "2"){
+			showFilters(['make','amt','year']);
+		}else if(sub == "3"){
+			showFilters(['tab_make','model','amt','year']);
+		}else if(sub == "4"){
+			showFilters(['accessory_amt','accessoryType']);
+		}
 		$("#processorSize-main").show();
 		$("#hddSize-main").show();
 
@@ -206,6 +210,8 @@ $(document).ready(function() {
 
 		subCat = $('#sub').text();
 		cat = $('#cat').text();
+		
+		
 		var data="";
 		var child = event.target;
 		var id = child.id;
@@ -233,6 +239,9 @@ $(document).ready(function() {
 		});
 
 		updateMobileModels();
+		updateTabModels();
+		updateAutomobileModels();
+
 
 		if (typeof $("input[name=city]:checked", "#cityForm").val() != "undefined") {
 			data = data + "&city=" + $("input[name=city]:checked", "#cityForm").val();
@@ -289,6 +298,12 @@ $(document).ready(function() {
 
 		if($(this).attr('name')=='brand'){
 			updateMobileModels();
+		}else if($(this).attr('name')=='make'){
+			if(cat == "AUTO"){
+				updateAutomobileModels();
+			}else if(cat == "COMP"){
+				updateTabModels();
+			}
 		}
 		var data="";
 		data = data + '&subCategory='+subCat+'&category='+cat;
@@ -584,30 +599,33 @@ function updateDataWithSelectedSubCategory(element, path){
 	}
 	else if (cat == "AUTO")
 	{
-		if($(element).text()!= 'Cars' /*&& subCat=="1"*/){
-			if($(element).text()== 'Bikes/Scooters' || $(element).text()== 'Scooters'){
-				$("#makeBikes-main").show();
-				$("#fuelType-main").hide();
-				$("#make-main").hide();
-			}else{
-				$("#make-main").hide();
-				$("#fuelType-main").show();
-				$("#makeBikes-main").hide();
-			}
-		}else if($(element).text()== 'Cars' /*&& subCat=="Cars"*/){
-			$("#make-main").show();
-			$("#brandBikes-main").hide();
-		}
+		hideFilters(['make','amt_car','amt_bike','amt_cycle','year','age','model','fuelType','regState','bike_make']);
+		if($(element).text()== 'Cars'){
+			showFilters(['make','amt_car','year','model','fuelType','regState']);
+		}else if($(element).text()== 'Bikes'){
+			showFilters(['bike_make','amt_bike','age','model','regState']);
+		}else if($(element).text()== 'Cycles'){
+			showFilters(['amt_cycle','age']);
+		}	
+
 		$("#breadCrumb_Category").html("AutoMobiles");
 		$("#breadCrumb_SubCategory").html($(element).text());
 	}
 	else if(cat == "COMP")
 	{
-		if($(element).text()== 'Tabs'){
-			$("#model-main").show();
-		}else {
-			$("#model-main").hide();	
+		var subCategoryDesc = $(element).text();
+		
+		hideFilters(['make','tab_make','model','amt','accessory_amt','accessoryType','year']);
+		if(subCategoryDesc == "Desktops"){
+			showFilters(['make','amt','year']);
+		}else if(subCategoryDesc == "Laptops"){
+			showFilters(['make','amt','year']);
+		}else if(subCategoryDesc == "Tablets"){
+			showFilters(['tab_make','model','amt','year']);
+		}else if(subCategoryDesc == "Accessories"){
+			showFilters(['accessoryType','accessory_amt']);
 		}
+
 		$("#breadCrumb_Category").html("Computers and Laptops");
 		$("#breadCrumb_SubCategory").html($(element).text());
 	}
@@ -679,3 +697,71 @@ function updateMobileModels(){
 }
 
 
+function updateAutomobileModels(){
+	//Get Selected Make. Also in case more than one Make is selected, don't update anything in the Model
+	noOfBrandsSelected = 0;
+	selectedBrand = "";
+	$(".check_make").each(function(){
+		if($(this).is(':checked')){
+			noOfBrandsSelected ++;
+			selectedBrand = $(this).val();
+		}
+	});
+	//Fetch Models if only one Make is selected
+	if(noOfBrandsSelected == 1 && selectedBrand != ""){
+		$("#model_List_In_Filter_Screen").html("");
+		$.ajax({
+			url:"getAutomobileModels",
+			data:{make:selectedBrand, vehicleType:$("#subCategory").val()},
+			dataType:'json',
+			type:'POST',
+			success:function(res){
+				for(var i=0; i<res.automobileModels.length; i++){
+					automobileModelFromServer = res.automobileModels[i];
+					//Format: <li><input type="checkbox" class="check_year" name="yearStr" value="2005" /><span class="content">2005</span></li>
+					optionStr = "<li><input type='checkbox' class='check_model' name='model' value='" + automobileModelFromServer + "' /><span class='content'>" + automobileModelFromServer + "</span></li>";
+					$("#model_List_In_Filter_Screen").append(optionStr);		
+				}
+			}
+		});
+	}else{
+		//If more than one Make is selected then remove all items in Model
+		$("#model_List_In_Filter_Screen").html("");
+		$("#model_List_In_Filter_Screen").append("<li>Select one Make</li>");
+	}
+}
+
+function updateTabModels(){
+	//Get Selected Make. Also in case more than one Make is selected, don't update anything in the Model
+	noOfBrandsSelected = 0;
+	selectedBrand = "";
+	$(".check_make").each(function(){
+		if($(this).is(':checked')){
+			noOfBrandsSelected ++;
+			selectedBrand = $(this).val();
+		}
+	});
+	
+	//Fetch Models if only one Make is selected
+	if(noOfBrandsSelected == 1 && selectedBrand != ""){
+		$("#model_List_In_Filter_Screen").html("");
+		$.ajax({
+			url:"getTabModels",
+			data:{make:selectedBrand},
+			dataType:'json',
+			type:'POST',
+			success:function(res){
+				for(var i=0; i<res.tabModels.length; i++){
+					modelFromServer = res.tabModels[i];
+					//Format: <li><input type="checkbox" class="check_year" name="yearStr" value="2005" /><span class="content">2005</span></li>
+					optionStr = "<li><input type='checkbox' class='check_model' name='model' value='" + modelFromServer + "' /><span class='content'>" + modelFromServer + "</span></li>";
+					$("#model_List_In_Filter_Screen").append(optionStr);		
+				}
+			}
+		});
+	}else{
+		//If more than one Make is selected then remove all items in Model
+		$("#model_List_In_Filter_Screen").html("");
+		$("#model_List_In_Filter_Screen").append("<li>Select one Make</li>");
+	}
+}

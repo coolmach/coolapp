@@ -30,17 +30,6 @@
 									</s:elseif>
 								</span>
 							</div>
-							<div id="adListHeading">Select Category&nbsp;<span class="glyphicon glyphicon-chevron-down"></span></div>
-							<div id="categoryList">
-								<ul class="list-unstyled" id="collapse_ul" style="padding:10px;">
-								    <li value="1"><span class="content">Televisions</span></li>
-									<li value="2"><span class="content">DVD, Music Players</span></li>
-									<li value="3"><span class="content">Cameras,Camcorders</span></li>
-									<li value="4"><span class="content">Fridge</span></li>
-									<li value="5"><span class="content">Air Coolers</span></li>
-									<li value="6"><span class="content">Washing Machines</span></li>
-								</ul>						
-							</div>
 						</div>
 					</th>
 					<td colspan="2" style="text-align: right; font-size:12px; ">
@@ -52,7 +41,15 @@
 				</tr>
 				<s:iterator value="adList" status="userStatus">
 					<s:set var="counter" value="0"/>
-					<tr class="postRow" style="font-size: 12px;" onclick="showDetails('electronicsAdDetails', 'ELEC', '<s:property value="%{subCategory}"/>', '<s:property value="%{postId}"/>')">
+					<s:set var="adDetailsAction" value="televsionAdDetails"/>
+					<s:if test="subCategory == 1"><s:set var="adDetailsAction">televisionAdDetails</s:set></s:if>
+					<s:elseif test="subCategory == 2"><s:set var="adDetailsAction">dvdAdDetails</s:set></s:elseif>
+					<s:elseif test="subCategory == 3"><s:set var="adDetailsAction">cameraAdDetails</s:set></s:elseif>
+					<s:elseif test="subCategory == 4"><s:set var="adDetailsAction">fridgeAdDetails</s:set></s:elseif>
+					<s:elseif test="subCategory == 5"><s:set var="adDetailsAction">washingMachineAdDetails</s:set></s:elseif>
+					<s:elseif test="subCategory == 6"><s:set var="adDetailsAction">airCoolerAdDetails</s:set></s:elseif>
+					
+					<tr class="postRow" style="font-size: 12px;" onclick="showDetails('<s:property value="#adDetailsAction" />', 'ELEC', '<s:property value="%{subCategory}"/>', '<s:property value="%{postId}"/>')">
 						<td style="width: 25%;">
 							<s:if test="%{imageFileName == null}">
 								<div style="padding-left:25%; padding-top:25%; color:#777777;">No Image</div>
@@ -87,7 +84,7 @@
 							<span class="postField_Color"><s:property value="location" /></span>
 							<br>
 							<div style="margin-top:2px;"></div>
-							<span class="postField_Special"><s:property value="subCategory" /></span>
+							<span class="postField_Special"><s:property value="subCategoryStr" /></span>
 						</td>
 						<td style="text-align:right;">
 							<span class="postField_Highlight">Rs. <s:property value="price" /></span>

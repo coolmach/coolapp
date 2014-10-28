@@ -46,8 +46,10 @@ public class AutomobileAction extends ActionSupport implements SessionAware, Ser
 	private String subCategoryStr;
 
 	private String sprice; // Price entered by user on the screen
-	
+
 	private String responseMsg;
+
+	private String itemType;
 
 	private List<AutomobilePostDetails> adList = new ArrayList<AutomobilePostDetails>();
 	private int count;
@@ -108,22 +110,27 @@ public class AutomobileAction extends ActionSupport implements SessionAware, Ser
 			addFieldError("errorMsg", "Please enter Location");
 			return false;
 		}
-		if(postDetails.getMake().equals("")){
-			addFieldError("errorMsg", "Please select the Make of the vehicle");
-			return false;
+		
+		if(!postDetails.getSubCategory().equals(CBuddyConstants.SUBCATEGORY_AUTOMOBILES_CYCLES)){
+			if(postDetails.getMake().equals("")){
+				addFieldError("errorMsg", "Please select the Make of the vehicle");
+				return false;
+			}
+			if(postDetails.getModel().equals("")){
+				addFieldError("errorMsg", "Please select the Model of the vehicle");
+				return false;
+			}
+			if(postDetails.getRegState() == null || postDetails.getRegState().trim().equals("")){
+				addFieldError("errorMsg", "Please specify the Registration State");
+				return false;
+			}
 		}
-		if(postDetails.getAutomobileModel().equals("")){
-			addFieldError("errorMsg", "Please select the Model of the vehicle");
-			return false;
-		}
-		if(postDetails.getYear() == 0){
+		
+		if(postDetails.getYear() == null || postDetails.getYear().trim().equals("-1")){
 			addFieldError("errorMsg", "Please select the year of purchase (model)");
 			return false;
 		}
-		if(postDetails.getNoOfOwners() == 0){
-			addFieldError("errorMsg", "Please enter the number of owners");
-			return false;
-		}
+		
 
 		//Subcategory specific validations
 		if(subCategory.equals(CBuddyConstants.SUBCATEGORY_AUTOMOBILES_CARS)){
@@ -176,28 +183,31 @@ public class AutomobileAction extends ActionSupport implements SessionAware, Ser
 			return false;
 		}
 
-		temp = postDetails.getAutomobileModel();
+		temp = postDetails.getModel();
 		if(temp!=null && temp.length()>16){
 			addFieldError("errorMsg", "Invalid Model");
 			return false;
 		}
 
-		int year = postDetails.getYear();
-		if(year<1950 || year>2014){
-			addFieldError("errorMsg", "Invalid Year");
+		temp = postDetails.getRegState();
+		if(temp!=null && temp.length()>32){
+			addFieldError("errorMsg", "Invalid Registration State specified");
 			return false;
 		}
 
-		int noOfOwners = postDetails.getNoOfOwners();
-		if(noOfOwners<=0 || noOfOwners>10){
-			addFieldError("errorMsg", "Invalid No. Of Owners");
-			return false;
+		if(postDetails.getSubCategory().equals(CBuddyConstants.SUBCATEGORY_AUTOMOBILES_CARS)){
+			temp = postDetails.getYear();
+			if(temp.length() > 4){
+				addFieldError("errorMsg", "Invalid Year");
+				return false;
+			}
 		}
+
 		return output;
 	}
 
 	public String postAd(){
-		
+
 		double price = 0;
 		try{
 			price = FormatterUtil.convertStrToAmount(sprice);
@@ -206,7 +216,7 @@ public class AutomobileAction extends ActionSupport implements SessionAware, Ser
 			addFieldError("errorMsg", "Invalid Amount");
 			return Action.INPUT;
 		}
-		
+
 		if(!validateMandatoryFields()){
 			return Action.INPUT;
 		}
@@ -217,7 +227,7 @@ public class AutomobileAction extends ActionSupport implements SessionAware, Ser
 		User user = (User)session.get("userInfo");
 		Timestamp current = new Timestamp(System.currentTimeMillis());
 		String userId = String.valueOf(user.getUserId());
-		String imgFileName = String.valueOf(System.currentTimeMillis()) + "." + getExtension(uploadContentType[0]) + "";
+		//String imgFileName = String.valueOf(System.currentTimeMillis()) + "." + getExtension(uploadContentType[0]) + "";
 
 		//Checking if user has manually tampered location after selecting from auto suggest list
 		if(postDetails.getUserEnteredLocationStr() != null && postDetails.getSelectedLocationStr()!=null){
@@ -225,42 +235,14 @@ public class AutomobileAction extends ActionSupport implements SessionAware, Ser
 				return Action.INPUT;
 			}
 		}
-
-		//Make an entry in POIT
-//		Poit poit = new Poit();
-//		poit.setCategory(CBuddyConstants.CATEGORY_AUTOMOBILES);
-//		poit.setTitle(postDetails.getTitle());
-//		poit.setCity(postDetails.getCity());
-//		poit.setContactNo(postDetails.getContactNo());
-//		poit.setContactPersonName(postDetails.getContactPersonName());
-//		//	poit.setCorpId(user.getCorpId());
-//		poit.setCreatedBy(String.valueOf(userId));
-//		poit.setCreatedOn(current);
-//		poit.setDescription(postDetails.getDescription());
-//		poit.setImageFileName(imgFileName);
-//		poit.setImageType(getExtension(uploadContentType));
-//		poit.setLocation(postDetails.getSelectedLocationCode());
-//		poit.setModifiedBy(userId);
-//		poit.setModifiedOn(current);
-//		poit.setNegotiable(null);
-//		poit.setPrice(postDetails.getPrice());
-//		poit.setRating(0);
-//		poit.setSubCategory(postDetails.getSubCategory());
-//		poit.setThumbnailName(null);
-//		poit.setThumbnailType(null);
-//		poit.setUserFirstName(user.getFirstName());
-//
 		SessionFactory sessionFactory = CbuddySessionFactory.getSessionFactory();
 		Session dbSession = sessionFactory.openSession();
 
 		dbSession.beginTransaction();
-		
-		PostsUtil postsUtil = new PostsUtil();
-		
-		Poit poit = postsUtil.createPOIT(postDetails, user, dbSession, uploadContentType, CBuddyConstants.CATEGORY_AUTOMOBILES);
-		
-//		dbSession.save(poit);
 
+		PostsUtil postsUtil = new PostsUtil();
+
+		Poit poit = postsUtil.createPOIT(postDetails, user, dbSession, uploadContentType, CBuddyConstants.CATEGORY_AUTOMOBILES);
 
 		dbSession.flush(); //Flushing to retrieve the auto generated post id
 
@@ -275,7 +257,7 @@ public class AutomobileAction extends ActionSupport implements SessionAware, Ser
 		pdau.setKms(postDetails.getKms());
 		pdau.setLocation(postDetails.getSelectedLocationCode());
 		pdau.setMake(postDetails.getMake());
-		pdau.setAutomobileModel(postDetails.getAutomobileModel());
+		pdau.setModel(postDetails.getModel());
 		pdau.setModifiedBy(userId);
 		pdau.setModifiedOn(current);
 		pdau.setNoOfOwners(postDetails.getNoOfOwners());
@@ -291,7 +273,7 @@ public class AutomobileAction extends ActionSupport implements SessionAware, Ser
 		dbSession.save(pdau);
 
 		if(upload != null){
-			postsUtil.writeImage(upload, imgFileName);
+			postsUtil.writeImage(upload, poit.getImageFileName());
 		}
 
 		dbSession.getTransaction().commit();
@@ -312,6 +294,22 @@ public class AutomobileAction extends ActionSupport implements SessionAware, Ser
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+
+	public String getRelevantPage(){
+		if(postDetails == null){
+			return null;
+		}
+		String subCategory = postDetails.getSubCategory();
+		String output = "";
+		if(subCategory.equals(CBuddyConstants.SUBCATEGORY_AUTOMOBILES_CARS)){
+			output = "Cars";
+		}else if(subCategory.equals(CBuddyConstants.SUBCATEGORY_AUTOMOBILES_MOTORCYCLES)){
+			output = "Bikes";
+		}else if(subCategory.equals(CBuddyConstants.SUBCATEGORY_AUTOMOBILES_CYCLES)){
+			output = "Cycles";
+		}
+		return output;
 	}
 
 	private void populateAdditionalDetails(){
@@ -337,14 +335,14 @@ public class AutomobileAction extends ActionSupport implements SessionAware, Ser
 		}
 		if(postDetails.getSubCategory().equals(CBuddyConstants.SUBCATEGORY_AUTOMOBILES_CARS)){
 			postDetails.setMakeStr(utils.getCarMakeDesc(postDetails.getMake()));
-			postDetails.setModelStr(utils.getCarModelDesc(postDetails.getMake(), postDetails.getAutomobileModel()));
+			postDetails.setModelStr(utils.getCarModelDesc(postDetails.getMake(), postDetails.getModel()));
 		}else if(postDetails.getSubCategory().equals(CBuddyConstants.SUBCATEGORY_AUTOMOBILES_MOTORCYCLES)){
 			postDetails.setMakeStr(utils.getBikeMakeDesc(postDetails.getMake()));
-			postDetails.setModelStr(utils.getBikeModelDesc(postDetails.getMake(), postDetails.getAutomobileModel()));
+			postDetails.setModelStr(utils.getBikeModelDesc(postDetails.getMake(), postDetails.getModel()));
 		}
 		postDetails.setPostedDateStr(FormatterUtil.formatDate(postDetails.getCreatedOn()));
 	}
-	
+
 	public String getAdListForAutomobile(){
 
 		if(postDetails.getCategory()==null || postDetails.getCategory().equals("") || !postDetails.getCategory().equals(CBuddyConstants.CATEGORY_AUTOMOBILES)){
@@ -352,11 +350,11 @@ public class AutomobileAction extends ActionSupport implements SessionAware, Ser
 		}	
 
 		Utils utils = new Utils();
-		
+
 		categoryStr = utils.getCategoryDesc(postDetails.getCategory());
 		subCategoryStr = utils.getSubCategoryDesc(postDetails.getCategory(), postDetails.getSubCategory());
 
-		if(postDetails.getSubCategory()==null || postDetails.getSubCategory().equals("") || subCategoryStr.equals("")){
+		if((postDetails.getSubCategory()==null || postDetails.getSubCategory().equals("")) && subCategoryStr.equals("")){
 			postDetails.setSubCategory(CBuddyConstants.SUBCATEGORY_AUTOMOBILES_CARS);
 			subCategoryStr = utils.getSubCategoryDesc(postDetails.getCategory(), postDetails.getSubCategory());
 		}
@@ -364,12 +362,12 @@ public class AutomobileAction extends ActionSupport implements SessionAware, Ser
 		AutomobileAdService automobileAdService =  new AutomobileAdService();
 		count = automobileAdService.getAdListCount(getModel(), postDetails.getSubCategory());
 		adList = automobileAdService.getAdListByCategory(getModel(), postDetails.getSubCategory());
-		
+
 		populateAdditionalDetails();
 
 		return "success";
 	}
-	
+
 	public String getAdDetails(){
 
 		AutomobileAdService adService = new AutomobileAdService();
@@ -377,12 +375,12 @@ public class AutomobileAction extends ActionSupport implements SessionAware, Ser
 
 		SessionFactory sessionFactory = CbuddySessionFactory.getSessionFactory();
 		Session dbSession = sessionFactory.openSession();
-		
+
 		populateAdditionalDetailsForPost(postDetails, dbSession);
-		
+
 		CommentsService service = new CommentsService();
 		cmList = service.getComments(postDetails.getPostId());
-		
+
 		return "success";
 	}
 
@@ -458,7 +456,7 @@ public class AutomobileAction extends ActionSupport implements SessionAware, Ser
 	public void setCount(int count) {
 		this.count = count;
 	}
-	
+
 	public List<MasterComment> getCmList() {
 		return cmList;
 	}
@@ -481,5 +479,14 @@ public class AutomobileAction extends ActionSupport implements SessionAware, Ser
 
 	public void setPostDetails(AutomobilePostDetails postDetails) {
 		this.postDetails = postDetails;
+	}
+
+	@Transient
+	public String getItemType() {
+		return itemType;
+	}
+
+	public void setItemType(String itemType) {
+		this.itemType = itemType;
 	}
 }

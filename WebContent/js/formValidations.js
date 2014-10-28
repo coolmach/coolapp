@@ -400,8 +400,7 @@ function isTextFieldPopulated(fieldName){
 		fieldName = arguments[index];
 				
 		fieldName = "#" + fieldName;
-		
-		if($(fieldName).html() != "" && typeof($(fieldName)) != undefined && $(fieldName).val().trim().length > 0){
+		if($(fieldName).val() != "" && typeof($(fieldName)) != undefined && $(fieldName).val().trim().length > 0){
 			anyOptionSelected = true;
 			break;
 		}
@@ -416,7 +415,7 @@ function isDropDownSelected(fieldName){
 	for(var index=0; index<arguments.length; index++){
 		fieldName = arguments[index];
 		fieldName = "#" + fieldName;
-		if($(fieldName) != null && $(fieldName).val() != '' && $(fieldName).val() === "-1"){
+		if($(fieldName) != null && $(fieldName).val() != '' && $(fieldName).val() != "-1"){
 			anyOptionSelected = true;
 			break;
 		}

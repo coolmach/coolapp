@@ -107,28 +107,22 @@ public class ComputersAction extends ActionSupport implements SessionAware, Serv
 			addFieldError("errorMsg", "Please enter Price");
 			return false;
 		}
-		if(postDetails.getMake().equals("")){
-			addFieldError("errorMsg", "Please select the Make");
-			return false;
-		}
-		if(postDetails.getYear() == 0){
-			addFieldError("errorMsg", "Please select the year of purchase (model)");
-			return false;
-		}
-		if(postDetails.getMake().equals("")){
-			addFieldError("errorMsg", "Please select the Make");
-			return false;
-		}
-		if(postDetails.getModel().equals("")){
-			addFieldError("errorMsg", "Please enter the Model");
-			return false;
-		}
-		if(subCategory.equals(CBuddyConstants.SUBCATEGORY_COMPUTERS_DESKTOPS) ||
-				subCategory.equals(CBuddyConstants.SUBCATEGORY_COMPUTERS_LAPTOPS)){
-			if(postDetails.getHddSize() == 0){
-				addFieldError("errorMsg", "Please enter HDD size");
+		
+		if(postDetails.getSubCategory().equals(CBuddyConstants.SUBCATEGORY_COMPUTERS_DESKTOPS) || 
+				postDetails.getSubCategory().equals(CBuddyConstants.SUBCATEGORY_COMPUTERS_LAPTOPS) ||
+				postDetails.getSubCategory().equals(CBuddyConstants.SUBCATEGORY_COMPUTERS_TABS)){
+			if(postDetails.getMake().equals("")){
+				addFieldError("errorMsg", "Please select the Make");
 				return false;
 			}
+			if(postDetails.getYear().equals("-1")){
+				addFieldError("errorMsg", "Please specify how old is your Computer");
+				return false;
+			}
+		}
+		
+		if(subCategory.equals(CBuddyConstants.SUBCATEGORY_COMPUTERS_DESKTOPS) ||
+				subCategory.equals(CBuddyConstants.SUBCATEGORY_COMPUTERS_LAPTOPS)){
 			if(postDetails.getProcessorSize() == 0){
 				addFieldError("errorMsg", "Please enter Processor size");
 				return false;
@@ -184,20 +178,8 @@ public class ComputersAction extends ActionSupport implements SessionAware, Serv
 			return false;
 		}
 
-		int year = postDetails.getYear();
-		if(year < 1950 || year > 2014){
-			addFieldError("errorMsg", "Invalid Year");
-			return false;
-		}
-
 		if(subCategory.equals(CBuddyConstants.SUBCATEGORY_COMPUTERS_DESKTOPS) ||
 				subCategory.equals(CBuddyConstants.SUBCATEGORY_COMPUTERS_LAPTOPS)){
-			int hddSize = postDetails.getHddSize();
-			if(hddSize <= 0){
-				addFieldError("errorMsg", "Invalid HDD Size");
-				return false;
-			}
-
 			int processorSize = postDetails.getProcessorSize();
 			if(processorSize <= 0){
 				addFieldError("errorMsg", "Invalid Processor Size");
@@ -229,7 +211,7 @@ public class ComputersAction extends ActionSupport implements SessionAware, Serv
 		User user = (User)session.get("userInfo");
 		Timestamp current = new Timestamp(System.currentTimeMillis());
 		String userId = String.valueOf(user.getUserId());
-		String imgFileName = String.valueOf(System.currentTimeMillis()) + "." + getExtension(uploadContentType[0]) + "";
+		//String imgFileName = String.valueOf(System.currentTimeMillis()) + "." + getExtension(uploadContentType[0]) + "";
 
 		//Checking if user has manually tampered location after selecting from auto suggest list
 		if(postDetails.getUserEnteredLocationStr() != null && postDetails.getSelectedLocationStr()!=null){
@@ -237,30 +219,6 @@ public class ComputersAction extends ActionSupport implements SessionAware, Serv
 				return Action.INPUT;
 			}
 		}
-
-		//Make an entry in POIT
-//		Poit poit = new Poit();
-//		poit.setCategory(CBuddyConstants.CATEGORY_COMPUTERS);
-//		poit.setTitle(postDetails.getTitle());
-//		poit.setCity(postDetails.getCity());
-//		poit.setContactNo(postDetails.getContactNo());
-//		poit.setContactPersonName(postDetails.getContactPersonName());
-//		poit.setCorpId(user.getCorpId());
-//		poit.setCreatedBy(String.valueOf(userId));
-//		poit.setCreatedOn(current);
-//		poit.setDescription(postDetails.getDescription());
-//		poit.setImageFileName(imgFileName);
-//		poit.setImageType(getExtension(uploadContentType));
-//		poit.setLocation(postDetails.getSelectedLocationCode());
-//		poit.setModifiedBy(userId);
-//		poit.setModifiedOn(current);
-//		poit.setNegotiable(null);
-//		poit.setPrice(postDetails.getPrice());
-//		poit.setRating(0);
-//		poit.setSubCategory(postDetails.getSubCategory());
-//		poit.setThumbnailName(null);
-//		poit.setThumbnailType(null);
-//		poit.setUserFirstName(user.getFirstName());
 
 		SessionFactory sessionFactory = CbuddySessionFactory.getSessionFactory();
 		Session dbSession = sessionFactory.openSession();
@@ -291,11 +249,11 @@ public class ComputersAction extends ActionSupport implements SessionAware, Serv
 		pcomp.setProcessorSize(postDetails.getProcessorSize());
 		pcomp.setSubCategory(postDetails.getSubCategory());
 		pcomp.setYear(postDetails.getYear());
-
+		pcomp.setAccessoryType(postDetails.getAccessoryType());
 		dbSession.save(pcomp);
 
 		if(upload != null){
-			postsUtil.writeImage(upload, imgFileName);
+			postsUtil.writeImage(upload, poit.getImageFileName());
 		}
 
 		dbSession.getTransaction().commit();
@@ -303,6 +261,24 @@ public class ComputersAction extends ActionSupport implements SessionAware, Serv
 		responseMsg = "Your post has been placed successfully! Post Id is " + poit.getPostId();
 
 		return "success";
+	}
+	
+	public String getRelevantPage(){
+		if(postDetails == null){
+			return null;
+		}
+		String subCategory = postDetails.getSubCategory();
+		String output = "";
+		if(subCategory.equals(CBuddyConstants.SUBCATEGORY_COMPUTERS_DESKTOPS)){
+			output = "Desktops";
+		}else if(subCategory.equals(CBuddyConstants.SUBCATEGORY_COMPUTERS_LAPTOPS)){
+			output = "Laptops";
+		}else if(subCategory.equals(CBuddyConstants.SUBCATEGORY_COMPUTERS_TABS)){
+			output = "Tablets";
+		}else if(subCategory.equals(CBuddyConstants.SUBCATEGORY_COMPUTERS_ACCESSORIES)){
+			output = "Accessories";
+		}
+		return output;
 	}
 
 	private void writeImage(File inputFile, String outputFileName){

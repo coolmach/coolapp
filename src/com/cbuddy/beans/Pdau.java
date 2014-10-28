@@ -21,9 +21,9 @@ public class Pdau {
 	private String city;
 	private String location;
 	private String make;
-	private String automobileModel;
+	private String model;
 	private String color;
-	private int year;
+	private String year;
 	private int noOfOwners;
 	private String fuelType;
 	private int kms;
@@ -124,11 +124,11 @@ public class Pdau {
 	}
 	
 	@Column(name="MODEL")
-	public String getAutomobileModel() {
-		return automobileModel;
+	public String getModel() {
+		return model;
 	}
-	public void setAutomobileModel(String model) {
-		this.automobileModel = model;
+	public void setModel(String model) {
+		this.model = model;
 	}
 	
 	@Column(name="COLOR")
@@ -140,10 +140,10 @@ public class Pdau {
 	}
 	
 	@Column(name="YEAR")
-	public int getYear() {
+	public String getYear() {
 		return year;
 	}
-	public void setYear(int year) {
+	public void setYear(String year) {
 		this.year = year;
 	}
 	

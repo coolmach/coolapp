@@ -23,8 +23,8 @@ import com.cbuddy.posts.util.PostsUtil;
 import com.cbuddy.user.model.User;
 import com.cbuddy.util.CBuddyConstants;
 import com.cbuddy.util.CbuddySessionFactory;
-import com.cbuddy.util.LocationUtil;
 import com.cbuddy.util.FormatterUtil;
+import com.cbuddy.util.LocationUtil;
 import com.cbuddy.util.Utils;
 import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.ActionSupport;
@@ -64,6 +64,10 @@ public class FurnitureAction extends ActionSupport implements SessionAware, Serv
 
 	public void validate(){
 
+	}
+	
+	public String getRelevantPage(){
+		return Action.SUCCESS;
 	}
 
 	private String getExtension(String contentType){
@@ -177,7 +181,7 @@ public class FurnitureAction extends ActionSupport implements SessionAware, Serv
 		User user = (User)session.get("userInfo");
 		Timestamp current = new Timestamp(System.currentTimeMillis());
 		String userId = String.valueOf(user.getUserId());
-		String imgFileName = String.valueOf(System.currentTimeMillis()) + "." + getExtension(uploadContentType[0]) + "";
+		//String imgFileName = String.valueOf(System.currentTimeMillis()) + "." + getExtension(uploadContentType[0]) + "";
 
 		//Checking if user has manually tampered location after selecting from auto suggest list
 		if(postDetails.getUserEnteredLocationStr() != null && postDetails.getSelectedLocationStr()!=null){
@@ -242,7 +246,7 @@ public class FurnitureAction extends ActionSupport implements SessionAware, Serv
 		dbSession.save(entity);
 
 		if(upload != null){
-			postsUtil.writeImage(upload, imgFileName);
+			postsUtil.writeImage(upload, poit.getImageFileName());
 		}
 
 		dbSession.getTransaction().commit();

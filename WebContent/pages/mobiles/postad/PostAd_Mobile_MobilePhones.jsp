@@ -128,7 +128,7 @@
 					<div class="fieldTip" id="yearTip"></div>
 					<div class="fieldTip" id="year_Error"></div>
 				</div>
-			</div>			
+			</div>
 			<div class="form-group">
 				<label class="col-sm-3 control-label">Color</label>
 				<div class="col-sm-3">

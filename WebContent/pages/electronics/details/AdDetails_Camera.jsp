@@ -13,6 +13,7 @@
 
 <div class="col-md-8" style="border:1px solid #CCCCCC; margin-left:2%; width:63.5%;">
 	<s:form cssClass="form-horizontal post" action="#">
+		<input type="hidden" name="plt" id="plt" value="D">
 		<div class="col-md-12 post_title" style="height:40px; padding-top:10px;">
 			<div style="float:left;">
 				<s:property value="postDetails.title"/>
@@ -146,3 +147,13 @@
 <textarea id="comments" class="form-control" rows="3"></textarea>
  <button id="post_cmt" type="button" class="btn btn-default">Post</button>
 </div-->
+
+
+<script>
+$(document).ready(function(){
+	$("#backToResultsButton").bind("click", function(){
+		applyFilters();
+		return false;
+	});
+});
+</script>

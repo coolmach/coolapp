@@ -23,6 +23,8 @@ public class CommonPostDetails extends Poit implements Serializable{
 	private String model;
 	private String amt;
 	private String yearStr;
+	
+	private String subCategoryFilterStr;
 
 	@Transient
 	public String getMake() {
@@ -67,5 +69,14 @@ public class CommonPostDetails extends Poit implements Serializable{
 
 	public void setCorpId(int corpId) {
 		this.corpId = corpId;
+	}
+
+	@Transient
+	public String getSubCategoryFilterStr() {
+		return subCategoryFilterStr;
+	}
+
+	public void setSubCategoryFilterStr(String subCategoryFilterStr) {
+		this.subCategoryFilterStr = subCategoryFilterStr;
 	}
 }

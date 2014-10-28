@@ -94,7 +94,9 @@ public class CommonAdService {
 		if(postDetails.getYearStr()!=null){
 			criteria = CriteriaUtil.createCriteriaForYear(criteria, postDetails.getYearStr());
 		}
-		
+		if(postDetails.getSubCategoryFilterStr() != null){
+			criteria = CriteriaUtil.createCriteriaForIn(criteria, postDetails.getSubCategoryFilterStr(), "subCategory");
+		}
 		return criteria;	
 	}
 

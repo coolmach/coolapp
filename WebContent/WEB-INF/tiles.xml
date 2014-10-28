@@ -35,7 +35,7 @@
     </definition>
      <definition name="/computers.tiles" extends="baseLayout">
         <put-attribute name="title" value="Computers/Laptops" />
-        <put-attribute name="body" value="/pages/computer/Computers.jsp" />
+        <put-attribute name="body" value="/pages/computers/Computers.jsp" />
     </definition>
      <definition name="/mobiles.tiles" extends="baseLayout">
         <put-attribute name="title" value="Mobile Phones" />
@@ -83,14 +83,6 @@
         <put-attribute name="title" value="Post Ad" />
         <put-attribute name="body" value="/pages/realestate/postad/PostAd_RealEstate.jsp" />
     </definition> 
-    <definition name="/postad_automobile_old.tiles" extends="baseLayout">
-        <put-attribute name="title" value="Post Ad" />
-        <put-attribute name="body" value="/pages/automobile/postad/PostAd_Automobile.jsp" />
-    </definition>
-    <definition name="/postad_computers.tiles" extends="baseLayout">
-        <put-attribute name="title" value="Post Ad" />
-        <put-attribute name="body" value="/pages/computer/postad/PostAd_Computers.jsp" />
-    </definition>    
     <definition name="/postad_mobile.tiles" extends="baseLayout">
         <put-attribute name="title" value="Post Ad" />
         <put-attribute name="body" value="/pages/mobile/postad/PostAd_Mobile.jsp" />
@@ -99,10 +91,6 @@
         <put-attribute name="title" value="Post Ad" />
         <put-attribute name="body" value="/pages/electronics/postad/PostAd_Electronics.jsp" />
     </definition> 
-    <definition name="/postad_furniture.tiles" extends="baseLayout">
-        <put-attribute name="title" value="Post Ad" />
-        <put-attribute name="body" value="/pages/furniture/postad/PostAd_Furniture.jsp" />
-    </definition>
    <!-- OLD ENTRIES - END -->
     
     <!--definition name="/adDetails_realestate.tiles" extends="baseLayout">
@@ -115,7 +103,7 @@
     </definition>
     <definition name="/adDetails_computers.tiles" extends="baseLayout">
         <put-attribute name="title" value="Details" />
-        <put-attribute name="body" value="/pages/computer/details/AdDetails_Computers.jsp" />
+        <put-attribute name="body" value="/pages/computers/details/AdDetails_Computers.jsp" />
     </definition>
     <definition name="/adDetails_furniture.tiles" extends="baseLayout">
         <put-attribute name="title" value="Details" />
@@ -185,9 +173,21 @@
         <put-attribute name="title" value="Post Ad" />
         <put-attribute name="body" value="/pages/mobiles/postad/PostAd_Mobiles.jsp" />
     </definition>     
+	<definition name="/postAd_Automobile.tiles" extends="baseLayout">
+        <put-attribute name="title" value="Post Ad" />
+        <put-attribute name="body" value="/pages/automobile/postad/PostAd_Automobile.jsp" />
+    </definition>     
 	<definition name="/postAd_Electronics.tiles" extends="baseLayout">
         <put-attribute name="title" value="Post Ad" />
         <put-attribute name="body" value="/pages/electronics/postad/PostAd_Electronics.jsp" />
+    </definition>
+	<definition name="/postAd_Computers.tiles" extends="baseLayout">
+        <put-attribute name="title" value="Post Ad" />
+        <put-attribute name="body" value="/pages/computers/postad/PostAd_Computers.jsp" />
+    </definition>
+        	<definition name="/postAd_Furniture.tiles" extends="baseLayout">
+        <put-attribute name="title" value="Post Ad" />
+        <put-attribute name="body" value="/pages/furnituer/postad/PostAd_Furniture.jsp" />
     </definition>
     <!-- NEW ENTRIES FOR POST AD - END -->
           

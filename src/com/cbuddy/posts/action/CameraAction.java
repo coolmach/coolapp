@@ -50,6 +50,8 @@ public class CameraAction extends ActionSupport implements SessionAware, Servlet
 	
 	private String responseMsg;
 
+	private String plt; //PLT: Page Load Type - Used while loading the List Screen, in order to decide whether to show the list screen or details.
+	
 	private List<CameraPostDetails> adList = new ArrayList<CameraPostDetails>();
 
 	private HttpServletRequest request = null;
@@ -438,5 +440,14 @@ public class CameraAction extends ActionSupport implements SessionAware, Servlet
 
 	public void setPostDetails(CameraPostDetails postDetails) {
 		this.postDetails = postDetails;
+	}
+
+	@Transient
+	public String getPlt() {
+		return plt;
+	}
+
+	public void setPlt(String plt) {
+		this.plt = plt;
 	}
 }

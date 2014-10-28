@@ -145,3 +145,12 @@
 <textarea id="comments" class="form-control" rows="3"></textarea>
  <button id="post_cmt" type="button" class="btn btn-default">Post</button>
 </div-->
+
+<script>
+$(document).ready(function(){
+	$("#backToResultsButton").bind("click", function(){
+		applyFilters();
+		return false;
+	});
+});
+</script>

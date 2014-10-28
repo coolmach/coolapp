@@ -78,7 +78,25 @@
 		    <result name="input" type="tiles">/home.tiles</result>
 		    <result name="login" type="tiles">/login.tiles</result>
 			<result name="success" type="tiles">/postAd_Electronics.tiles</result>
-		</action>		
+		</action>
+		<action name="post_Automobile">
+			<interceptor-ref name="secureStack"></interceptor-ref>
+		    <result name="input" type="tiles">/home.tiles</result>
+		    <result name="login" type="tiles">/login.tiles</result>
+			<result name="success" type="tiles">/postAd_Automobile.tiles</result>
+		</action>
+		<action name="post_Computers">
+			<interceptor-ref name="secureStack"></interceptor-ref>
+		    <result name="input" type="tiles">/home.tiles</result>
+		    <result name="login" type="tiles">/login.tiles</result>
+			<result name="success" type="tiles">/postAd_Computers.tiles</result>
+		</action>
+		<action name="post_Furniture">
+			<interceptor-ref name="secureStack"></interceptor-ref>
+		    <result name="input" type="tiles">/home.tiles</result>
+		    <result name="login" type="tiles">/login.tiles</result>
+			<result name="success" type="tiles">/postAd_Furniture.tiles</result>
+		</action>
 		<!-- Post Ad - END -->	
 			
 		<action name="postAdStart">
@@ -140,12 +158,12 @@
 		</action>
 		<action name="automobileFilter" class="com.cbuddy.posts.action.AutomobileAction" method="getAdListForAutomobile">
 			<result name="success">/pages/automobile/adList/AdList_Automobile.jsp</result>
-		</action>
+		</action>		
 		<action name="automobile_postAd" class="com.cbuddy.posts.action.AutomobileAction" method="postAd">
 			 <interceptor-ref name="secureStack"></interceptor-ref> 
 			<result name="login" type="tiles">/home.tiles</result>
 			<result name="success" type="tiles">/home.tiles</result>
-			<result name="input" type="tiles">/postad_automobile.tiles</result>
+			<result name="input" type="tiles">/postAd_Automobile.tiles</result>
 		</action>
 		<!-- AUTOMOBILES - END -->		
 		
@@ -154,17 +172,13 @@
 			<result name="success" type="tiles">/computers.tiles</result>
 		</action>
 		<action name="computersFilter" class="com.cbuddy.posts.action.ComputersAction" method="getAdListForComputers">
-			<result name="success">/pages/computer/adList/AdList_Computers.jsp</result>
+			<result name="success">/pages/computers/adList/AdList_Computers.jsp</result>
 		</action>
 		<action name="computers_postAd" class="com.cbuddy.posts.action.ComputersAction" method="postAd">
-			 <interceptor-ref name="secureStack"></interceptor-ref>
-			 <interceptor-ref name="fileUpload">
-                     <param name="allowedTypes">image/jpeg,image/gif,image/png</param>
-             </interceptor-ref>
-             <interceptor-ref name="defaultStack"></interceptor-ref>
+			 <interceptor-ref name="secureStack"></interceptor-ref> 
 			<result name="login" type="tiles">/home.tiles</result>
 			<result name="success" type="tiles">/home.tiles</result>
-			<result name="input" type="tiles">/postad_computers.tiles</result>
+			<result name="input" type="tiles">/postAd_Computers.tiles</result>
 		</action>
 		<!-- COMPUTERS - END -->		
 		
@@ -321,13 +335,9 @@
 		</action>		
 		<action name="furniture_postAd" class="com.cbuddy.posts.action.FurnitureAction" method="postAd">
 			 <interceptor-ref name="secureStack"></interceptor-ref> 
-			 <interceptor-ref name="fileUpload">
-                     <param name="allowedTypes">image/jpeg,image/gif,image/png</param>
-             </interceptor-ref>
-             <interceptor-ref name="defaultStack"></interceptor-ref>
 			<result name="login" type="tiles">/home.tiles</result>
 			<result name="success" type="tiles">/home.tiles</result>
-			<result name="input" type="tiles">/postad_furniture.tiles</result>
+			<result name="input" type="tiles">/postAd_Furniture.tiles</result>
 		</action>
 		<!-- FURNITURE - END -->
 		
@@ -336,7 +346,7 @@
 			<result name="login" type="tiles">/home.tiles</result>
 			<result name="success" type="tiles">/home.tiles</result>
 			<result name="realEstate" type="tiles">/postad_real_estate.tiles</result>
-			<result name="automobile" type="tiles">/postad_automobile.tiles</result>
+			<result name="automobile" type="tiles">/postad_Automobile.tiles</result>
 			<result name="computers" type="tiles">/postad_computers.tiles</result>
 			<result name="mobile" type="tiles">/postad_mobile.tiles</result>
 			<result name="electronics" type="tiles">/postad_electronics.tiles</result>
@@ -371,14 +381,15 @@
 			<result name="success">/pages/realestate/details/AdDetails_RealEstate.jsp</result>
 			<result name="login" type="redirect">miniLogin</result>
 		</action>
-		
 		<action name="automobileAdDetails" class="com.cbuddy.posts.action.AutomobileAction" method="getAdDetails">
 			<interceptor-ref name="secureStack"></interceptor-ref>
-			<result name="success" type="tiles">/adDetails_automobile.tiles</result>
-		</action>						
+			<result name="success">/pages/automobile/details/AdDetails_Automobile.jsp</result>
+			<result name="login" type="redirect">miniLogin</result>
+		</action>							
 		<action name="computersAdDetails" class="com.cbuddy.posts.action.ComputersAction" method="getAdDetails">
 			<interceptor-ref name="secureStack"></interceptor-ref>
-			<result name="success" type="tiles">/adDetails_computers.tiles</result>
+			<result name="success">/pages/computers/details/AdDetails_Computers.jsp</result>
+			<result name="login" type="redirect">miniLogin</result>
 		</action>
 		<action name="mobilesAdDetails" class="com.cbuddy.posts.action.MobileAction" method="getAdDetails">
 			<interceptor-ref name="secureStack"></interceptor-ref>
@@ -514,7 +525,29 @@
 			<result name="input" type="tiles">/postAd_Electronics.tiles</result>
 			<result name="success">/pages/electronics/postad/PostAd_Electronics_WashingMachine.jsp</result>
 		</action>										
-
+		<action name="getDetailsSection_Automobile" class="com.cbuddy.posts.action.AutomobileAction" method="getRelevantPage">
+			<interceptor-ref name="secureStack"></interceptor-ref>
+			<result name="login">/PageNotFound.jsp</result>
+			<result name="input" type="tiles">/postAd_Automobile.tiles</result>
+			<result name="Cars">/pages/automobile/postad/PostAd_Automobile_Cars.jsp</result>
+			<result name="Bikes">/pages/automobile/postad/PostAd_Automobile_Bikes.jsp</result>
+			<result name="Cycles">/pages/automobile/postad/PostAd_Automobile_Cycles.jsp</result>
+		</action>
+		<action name="getDetailsSection_Computers" class="com.cbuddy.posts.action.ComputersAction" method="getRelevantPage">
+			<interceptor-ref name="secureStack"></interceptor-ref>
+			<result name="login">/PageNotFound.jsp</result>
+			<result name="input" type="tiles">/postAd_Computers.tiles</result>
+			<result name="Desktops">/pages/computers/postad/PostAd_Computers_Desktops.jsp</result>
+			<result name="Laptops">/pages/computers/postad/PostAd_Computers_Laptops.jsp</result>
+			<result name="Tablets">/pages/computers/postad/PostAd_Computers_Tablets.jsp</result>
+			<result name="Accessories">/pages/computers/postad/PostAd_Computers_Accessories.jsp</result>
+		</action>
+		<action name="getDetailsSection_Furniture" class="com.cbuddy.posts.action.FurnitureAction" method="getRelevantPage">
+			<interceptor-ref name="secureStack"></interceptor-ref>
+			<result name="login">/PageNotFound.jsp</result>
+			<result name="input" type="tiles">/postAd_Furniture.tiles</result>
+			<result name="success">/pages/furniture/postad/PostAd_Furniture.jsp</result>
+		</action>		
 		<action name="upload" class="com.cbuddy.common.action.DummyFileUploadAction"
 			method="uplaod">
 			<result name="success">/Uplaod.jsp</result>
@@ -538,6 +571,12 @@
 		</action> 
 		<action name="getMobileModels" class="com.cbuddy.posts.action.MobileModelsAction" method="getModels">
 			<result type="json"></result>
-		</action> 
+		</action>
+		<action name="getAutomobileModels" class="com.cbuddy.posts.action.AutomobileModelsAction" method="getModels">
+			<result type="json"></result>
+		</action>
+		<action name="getTabModels" class="com.cbuddy.posts.action.ComputersModelsAction" method="getModelsForTab">
+			<result type="json"></result>
+		</action>				 
 	</package>
 </struts>

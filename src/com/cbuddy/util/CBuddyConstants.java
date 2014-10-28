@@ -28,6 +28,7 @@ public class CBuddyConstants {
 	
 	public static final String SUBCATEGORY_AUTOMOBILES_CARS ="1";
 	public static final String SUBCATEGORY_AUTOMOBILES_MOTORCYCLES ="2";
+	public static final String SUBCATEGORY_AUTOMOBILES_CYCLES ="3";
 
 	public static final String SUBCATEGORY_COMPUTERS_DESKTOPS = "1";
 	public static final String SUBCATEGORY_COMPUTERS_LAPTOPS = "2";

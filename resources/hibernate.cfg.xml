@@ -77,7 +77,9 @@
 		<mapping class="com.cbuddy.posts.model.WashingMachinePostDetails" />
 		<mapping class="com.cbuddy.posts.model.FurniturePostDetails" />
 		<mapping class="com.cbuddy.posts.model.OtherPostDetails" />
-
+		<mapping class="com.cbuddy.beans.CarMaster" />
+		<mapping class="com.cbuddy.beans.BikeMaster" />
+		<mapping class="com.cbuddy.beans.TabMaster" />
 	</session-factory>
 
 </hibernate-configuration>

@@ -91,8 +91,8 @@ public class TelevisionAdService{
 		if(postDetails.getLocation()!=null){
 			criteria = CriteriaUtil.getCriteriaForLocation(criteria, postDetails.getLocation());	
 		}
-		if(postDetails.getMake()!=null){
-			criteria = CriteriaUtil.createCriteriaForIn(criteria, postDetails.getMake(), "brand");		
+		if(postDetails.getBrand()!=null){
+			criteria = CriteriaUtil.createCriteriaForIn(criteria, postDetails.getBrand(), "brand");		
 		}
 		if(postDetails.getAmt()!=null){
 			criteria = CriteriaUtil.getCriteriaForAmt(criteria, postDetails.getAmt(), "price");

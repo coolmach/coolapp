@@ -10,7 +10,6 @@
 						<option value="Bluetooth Headset">Bluetooth Headset</option> 
 						<option value="Case/Cover">Case/Cover</option>  
 						<option value="Earphones">Earphones</option> 
-						<option value="Headphones">Headphones</option>
 						<option value="Charger">Charger</option> 
 						<option value="Memory Card">Memory Card</option>
 					</select>

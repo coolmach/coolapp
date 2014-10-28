@@ -22,11 +22,13 @@ public class Pcomp {
 	private String location;
 	private String make;
 	private String model;
-	private int year;
+	private String year;
 	private int processorSize;
 	private int hddSize;
 	private double price;
 
+	private String accessoryType;
+	
 	private Timestamp createdOn;
 	private String createdBy;
 	private Timestamp modifiedOn;
@@ -122,10 +124,10 @@ public class Pcomp {
 	}
 	
 	@Column(name="YEAR")
-	public int getYear() {
+	public String getYear() {
 		return year;
 	}
-	public void setYear(int year) {
+	public void setYear(String year) {
 		this.year = year;
 	}
 	
@@ -191,5 +193,13 @@ public class Pcomp {
 	}
 	public void setPostIdStr(int postIdStr) {
 		this.postIdStr = postIdStr;
+	}
+	
+	@Column(name="ACCESSORY_TYPE")
+	public String getAccessoryType() {
+		return accessoryType;
+	}
+	public void setAccessoryType(String accessoryType) {
+		this.accessoryType = accessoryType;
 	}
 }

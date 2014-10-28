@@ -44,6 +44,9 @@ public class Poit {
 	private String page="1";
 	private int noOfImages;
 	
+	private String subCategoryStr; //Transient value used in a common list screen to display the subcategory description
+	
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)	
 	@Column(name="POST_ID")
@@ -261,5 +264,13 @@ public class Poit {
 	
 	public void setNoOfImages(int n){
 		this.noOfImages = n;
+	}
+	
+	@Transient
+	public String getSubCategoryStr() {
+		return subCategoryStr;
+	}
+	public void setSubCategoryStr(String subCategoryStr) {
+		this.subCategoryStr = subCategoryStr;
 	}
 }
