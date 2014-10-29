@@ -187,7 +187,7 @@
     </definition>
         	<definition name="/postAd_Furniture.tiles" extends="baseLayout">
         <put-attribute name="title" value="Post Ad" />
-        <put-attribute name="body" value="/pages/furnituer/postad/PostAd_Furniture.jsp" />
+        <put-attribute name="body" value="/pages/furniture/postad/PostAd_Furniture.jsp" />
     </definition>
     <!-- NEW ENTRIES FOR POST AD - END -->
           

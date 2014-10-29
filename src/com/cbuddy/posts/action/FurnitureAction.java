@@ -14,10 +14,12 @@ import org.apache.struts2.interceptor.SessionAware;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
+import com.cbuddy.beans.MasterComment;
 import com.cbuddy.beans.PFurniture;
 import com.cbuddy.beans.Poit;
 import com.cbuddy.exception.CBuddyException;
 import com.cbuddy.posts.model.FurniturePostDetails;
+import com.cbuddy.posts.services.CommentsService;
 import com.cbuddy.posts.services.FurnitureAdService;
 import com.cbuddy.posts.util.PostsUtil;
 import com.cbuddy.user.model.User;
@@ -48,7 +50,8 @@ public class FurnitureAction extends ActionSupport implements SessionAware, Serv
 
 	private List<FurniturePostDetails> adList = new ArrayList<FurniturePostDetails>();
 	private int count;
-
+	private List<MasterComment> cmList = new ArrayList<MasterComment>();
+	
 	private HttpServletRequest request = null;
 	@Override
 	public void setServletRequest(HttpServletRequest request) {
@@ -116,6 +119,31 @@ public class FurnitureAction extends ActionSupport implements SessionAware, Serv
 		return true;
 	}
 
+	public String getAdDetails(){
+
+		FurnitureAdService adService = new FurnitureAdService();
+		postDetails = adService.getAdDetailsForFurniture(getModel());
+
+		SessionFactory sessionFactory = CbuddySessionFactory.getSessionFactory();
+		Session dbSession = sessionFactory.openSession();
+		
+		populateAdditionalDetailsForPost(postDetails, dbSession);
+		
+		CommentsService service = new CommentsService();
+		cmList = service.getComments(postDetails.getPostId());
+		
+		return "success";
+	}
+
+	private void populateAdditionalDetailsForPost(FurniturePostDetails postDetails, Session dbSession){
+		String cityName = LocationUtil.getCityName(dbSession, postDetails.getCity());
+		String locName = LocationUtil.getLocationName(dbSession, postDetails.getCity(), postDetails.getLocation());
+		postDetails.setCity(cityName);
+		postDetails.setLocation(locName);
+		postDetails.setPriceStr(FormatterUtil.formatAmount(postDetails.getPrice()));
+		postDetails.setPostedDateStr(FormatterUtil.formatDate(postDetails.getCreatedOn()));
+	}
+	
 	private boolean validateFieldLength(){
 		boolean output = true;
 
@@ -190,31 +218,28 @@ public class FurnitureAction extends ActionSupport implements SessionAware, Serv
 			}
 		}
 
-		//Make an entry in POIT
-		//		Poit poit = new Poit();
-		//
-		//		poit.setCategory(CBuddyConstants.CATEGORY_FURNITURE);
-		//		poit.setSubCategory(findSubCategory(postDetails.getType())); //For future use only.
-		//
-		//		poit.setTitle(postDetails.getTitle());
-		//		poit.setCity(postDetails.getCity());
-		//		poit.setContactNo(postDetails.getContactNo());
-		//		poit.setContactPersonName(postDetails.getContactPersonName());
-		//		poit.setCorpId(user.getCorpId());
-		//		poit.setCreatedBy(String.valueOf(userId));
-		//		poit.setCreatedOn(current);
-		//		poit.setDescription(postDetails.getDescription());
-		//		poit.setImageFileName(imgFileName);
-		//		poit.setImageType(getExtension(uploadContentType));
-		//		poit.setLocation(postDetails.getSelectedLocationCode());
-		//		poit.setModifiedBy(userId);
-		//		poit.setModifiedOn(current);
-		//		poit.setNegotiable(null);
-		//		poit.setPrice(postDetails.getPrice());
-		//		poit.setRating(0);
-		//		poit.setThumbnailName(null);
-		//		poit.setThumbnailType(null);
-		//		poit.setUserFirstName(user.getFirstName());
+	
+		//Setting sub category to Furniture Type
+		if(postDetails.getType().equals(CBuddyConstants.SUBCATEGORY_FURNITURE_BERO_STR)){
+			postDetails.setSubCategory(CBuddyConstants.SUBCATEGORY_FURNITURE_BERO);
+		}else if(postDetails.getType().equals(CBuddyConstants.SUBCATEGORY_FURNITURE_CHAIR_STR)){
+			postDetails.setSubCategory(CBuddyConstants.SUBCATEGORY_FURNITURE_CHAIR);
+		}else if(postDetails.getType().equals(CBuddyConstants.SUBCATEGORY_FURNITURE_COT_STR)){
+			postDetails.setSubCategory(CBuddyConstants.SUBCATEGORY_FURNITURE_COT);
+		}else if(postDetails.getType().equals(CBuddyConstants.SUBCATEGORY_FURNITURE_DINING_TABLE_STR)){
+			postDetails.setSubCategory(CBuddyConstants.SUBCATEGORY_FURNITURE_DINING_TABLE);
+		}else if(postDetails.getType().equals(CBuddyConstants.SUBCATEGORY_FURNITURE_MATTRESS_STR)){
+			postDetails.setSubCategory(CBuddyConstants.SUBCATEGORY_FURNITURE_MATTRESS);
+		}else if(postDetails.getType().equals(CBuddyConstants.SUBCATEGORY_FURNITURE_OTHERS_STR)){
+			postDetails.setSubCategory(CBuddyConstants.SUBCATEGORY_FURNITURE_OTHERS);
+		}else if(postDetails.getType().equals(CBuddyConstants.SUBCATEGORY_FURNITURE_SHOE_RACK_STR)){
+			postDetails.setSubCategory(CBuddyConstants.SUBCATEGORY_FURNITURE_SHOE_RACK);
+		}else if(postDetails.getType().equals(CBuddyConstants.SUBCATEGORY_FURNITURE_SOFA_STR)){
+			postDetails.setSubCategory(CBuddyConstants.SUBCATEGORY_FURNITURE_SOFA);
+		}else if(postDetails.getType().equals(CBuddyConstants.SUBCATEGORY_FURNITURE_TV_STAND_STR)){
+			postDetails.setSubCategory(CBuddyConstants.SUBCATEGORY_FURNITURE_TV_STAND);
+		}
+		
 
 		SessionFactory sessionFactory = CbuddySessionFactory.getSessionFactory();
 		Session dbSession = sessionFactory.openSession();
@@ -256,33 +281,6 @@ public class FurnitureAction extends ActionSupport implements SessionAware, Serv
 		return "success";
 	}
 
-	private String findSubCategory(String type) {
-
-		if(type=="COT_WOOD")
-			return CBuddyConstants.SUBCATEGORY_FURNITURE_COT_WOOD;
-		else if(type=="COT_STEEL")
-			return CBuddyConstants.SUBCATEGORY_FURNITURE_COT_STEEL;
-		else if(type=="MATTRESS")
-			return CBuddyConstants.SUBCATEGORY_FURNITURE_MATTRESS;
-		else if(type=="DINING")
-			return CBuddyConstants.SUBCATEGORY_FURNITURE_DINING;
-		else if(type=="SHOE")
-			return CBuddyConstants.SUBCATEGORY_FURNITURE_SHOE;
-		else if(type=="TV")
-			return CBuddyConstants.SUBCATEGORY_FURNITURE_TV;
-		else if(type=="TABLE")
-			return CBuddyConstants.SUBCATEGORY_FURNITURE_TABLE;
-		else if(type=="CHAIR_WOOD")
-			return CBuddyConstants.SUBCATEGORY_FURNITURE_CHAIR_WOOD;
-		else if(type=="CHAIR_PLASTIC")
-			return CBuddyConstants.SUBCATEGORY_FURNITURE_CHAIR_PLASTIC;
-		else if(type=="OTHERS")
-			return CBuddyConstants.SUBCATEGORY_FURNITURE_OTHERS;
-
-
-		return null;
-	}
-
 	private void populateAdditionalDetails(){
 		SessionFactory sessionFactory = CbuddySessionFactory.getSessionFactory();
 		Session dbSession = sessionFactory.openSession();
@@ -307,10 +305,8 @@ public class FurnitureAction extends ActionSupport implements SessionAware, Serv
 		Utils utils = new Utils();
 		categoryStr = utils.getCategoryDesc(postDetails.getCategory());
 		subCategoryStr = utils.getSubCategoryDesc(postDetails.getCategory(), postDetails.getSubCategory());
-
-		if(postDetails.getSubCategory()==null || postDetails.getSubCategory().equals("") || subCategoryStr.equals("")){
-			postDetails.setSubCategory(CBuddyConstants.SUBCATEGORY_FURNITURE_COT_WOOD);
-			subCategoryStr = utils.getSubCategoryDesc(postDetails.getCategory(), postDetails.getSubCategory());
+		if(subCategoryStr == null || subCategoryStr.trim().equals("")){
+			subCategoryStr = "Furniture";
 		}
 
 		FurnitureAdService furnitureAdService =  new FurnitureAdService();
@@ -408,5 +404,13 @@ public class FurnitureAction extends ActionSupport implements SessionAware, Serv
 
 	public void setPostDetails(FurniturePostDetails postDetails) {
 		this.postDetails = postDetails;
+	}
+
+	public List<MasterComment> getCmList() {
+		return cmList;
+	}
+
+	public void setCmList(List<MasterComment> cmList) {
+		this.cmList = cmList;
 	}
 }

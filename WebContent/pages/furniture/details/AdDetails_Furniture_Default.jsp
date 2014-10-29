@@ -35,7 +35,7 @@
 			<div class="form_Row">
 				<label class="col-sm-5 control-label fieldCaption">Furniture Type</label>
 				<div class="col-sm-7">
-					<label class="form-control-static"><s:property value="postDetails.furnitureType"/></label>
+					<label class="form-control-static"><s:property value="postDetails.type"/></label>
 				</div>	
 			</div>										
 			<div class="form_Row">
@@ -49,7 +49,19 @@
 					</label>
 				</div>
 			</div>
-
+			<div class="form_Row">
+				<label class="col-sm-5 control-label fieldCaption">Age</label>
+				<div class="col-sm-7">
+					<label class="form-control-static">
+						<s:if test="postDetails.year == \"1\"">&lt; 1 year</s:if>
+						<s:elseif test="postDetails.year == \"2\"">1 -2 years</s:elseif>
+						<s:elseif test="postDetails.year == \"3\"">2 - 3 years</s:elseif>
+						<s:elseif test="postDetails.year == \"4\"">3 - 4 years</s:elseif>
+						<s:elseif test="postDetails.year == \"5\"">4 - 5 years</s:elseif>
+						<s:elseif test="postDetails.year == \"6\"">&gt; 5 years</s:elseif>
+					</label>
+				</div>	
+			</div>
 			<div class="form_Row">
 				<label class="col-sm-5 control-label fieldCaption">Contact Person</label>
 				<div class="col-sm-7">

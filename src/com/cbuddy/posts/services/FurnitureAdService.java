@@ -11,6 +11,7 @@ import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 
 import com.cbuddy.posts.model.FurniturePostDetails;
+import com.cbuddy.posts.model.MobilePostDetails;
 import com.cbuddy.util.CBuddyConstants;
 import com.cbuddy.util.CbuddySessionFactory;
 import com.cbuddy.util.CriteriaUtil;
@@ -39,6 +40,13 @@ public class FurnitureAdService {
 		return count;
 	}
 	
+	public FurniturePostDetails getAdDetailsForFurniture(FurniturePostDetails postDetails){
+		SessionFactory sessionFactory = CbuddySessionFactory.getSessionFactory();
+		Session session = sessionFactory.openSession();
+		FurniturePostDetails adDetails = (FurniturePostDetails)session.get(FurniturePostDetails.class, new Integer(postDetails.getPostIdStr()));
+		return adDetails;
+	}
+	
 	public List<FurniturePostDetails> getAdListByCategory(FurniturePostDetails postDetails, String subCategory){
 		SessionFactory sessionFactory = CbuddySessionFactory.getSessionFactory();
 		Session session = sessionFactory.openSession();
@@ -58,7 +66,10 @@ public class FurnitureAdService {
 			criteria.addOrder(Order.desc("postId"));
 			criteria.setFirstResult(Integer.parseInt(postDetails.getOffset()));
 			criteria.setMaxResults(Integer.parseInt(postDetails.getLimit()));
-			criteria.add(Restrictions.eq("subCategory", subCategory));
+			
+			if(subCategory != null && !subCategory.equals("")){
+				criteria.add(Restrictions.eq("subCategory", subCategory));
+			}
 			
 			if(postDetails.getCity() != null){
 				criteria.add(Restrictions.eq("city", postDetails.getCity()));
@@ -90,8 +101,8 @@ public class FurnitureAdService {
 		/*if(postDetails.getType() != null){
 			criteria = CriteriaUtil.createCriteriaForIn(criteria, postDetails.getType(), "type");
 		}*/
-		if(postDetails.getYearStr() != null){
-			criteria = CriteriaUtil.createCriteriaForYear(criteria, postDetails.getYearStr());
+		if(postDetails.getYear() != null){
+			criteria = CriteriaUtil.createCriteriaForIn(criteria, postDetails.getYear(), "year");
 		}
 		
 		return criteria;

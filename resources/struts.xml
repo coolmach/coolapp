@@ -430,6 +430,11 @@
 			<interceptor-ref name="secureStack"></interceptor-ref>
 			<result name="success" type="tiles">/adDetails_others.tiles</result>
 		</action>
+		<action name="furnitureAdDetails" class="com.cbuddy.posts.action.FurnitureAction" method="getAdDetails">
+			<interceptor-ref name="secureStack"></interceptor-ref>
+			<result name="success">/pages/furniture/details/AdDetails_Furniture.jsp</result>
+			<result name="login" type="redirect">miniLogin</result>
+		</action>		
 		<!--action name="activate">
 			<result name="login" type="tiles">/login.tiles</result>
 			<result name="success" type="tiles">/activation_code.tiles</result>
@@ -577,6 +582,9 @@
 		</action>
 		<action name="getTabModels" class="com.cbuddy.posts.action.ComputersModelsAction" method="getModelsForTab">
 			<result type="json"></result>
-		</action>				 
+		</action>
+		<action name="getLocations" class="com.cbuddy.posts.action.LocationAction" method="getLocationsForCity">
+			<result type="json"></result>
+		</action>						 
 	</package>
 </struts>

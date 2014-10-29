@@ -22,7 +22,7 @@ public class PFurniture {
 	private String location;
 	private String type;
 	private double price;
-	private int year;
+	private String year;
 	
 	private Timestamp createdOn;
 	private String createdBy;
@@ -33,6 +33,8 @@ public class PFurniture {
 	private String limit;
 	private String offset;
 	private String page="1";
+	
+	private int postIdStr;
 
 	@Id
 	@Column(name="POST_ID")
@@ -60,10 +62,10 @@ public class PFurniture {
 	}
 	
 	@Column(name="YEAR")
-	public int getYear() {
+	public String getYear() {
 		return year;
 	}
-	public void setYear(int year) {
+	public void setYear(String year) {
 		this.year = year;
 	}
 	
@@ -153,5 +155,13 @@ public class PFurniture {
 	}
 	public void setPage(String page) {
 		this.page = page;
+	}
+	
+	@Transient
+	public int getPostIdStr() {
+		return postIdStr;
+	}
+	public void setPostIdStr(int postIdStr) {
+		this.postIdStr = postIdStr;
 	}
 }

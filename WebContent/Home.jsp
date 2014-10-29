@@ -210,7 +210,7 @@
 		<s:url action="computers" var="url_COMP" escapeAmp="false"><s:param name="category">COMP</s:param><s:param name="subCategory">1</s:param></s:url>
 		<s:url action="electronics" var="url_ELEC" escapeAmp="false"><s:param name="category">ELEC</s:param></s:url>
 		<s:url action="mobiles" var="url_MOBILE" escapeAmp="false"><s:param name="category">MOBILE</s:param><s:param name="subCategory">1</s:param></s:url>
-		<s:url action="furniture" var="url_FURN" escapeAmp="false"><s:param name="category">FURN</s:param><s:param name="subCategory">1</s:param></s:url>	
+		<s:url action="furniture" var="url_FURN" escapeAmp="false"><s:param name="category">FURN</s:param></s:url>	
 		<div class="col-sm-2 tile" id="tile1">
 			<a href="<s:property value="url_REAL" />">
 			<div class="tile_image" id="image1_black"></div>
@@ -247,7 +247,7 @@
 			</a>
 		</div>
 		<div class="col-sm-2 tile" id="tile6">
-			<a href="<s:property value="url_FURNITURE" />">
+			<a href="<s:property value="url_FURN" />">
 			<div class="tile_image" id="image6_black"></div>
 			<div class="tile_image" id="image6_color" style="display:none"></div>
 			<div class="tile_caption" id="tile_caption6">Furniture</div>

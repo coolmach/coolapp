@@ -86,8 +86,7 @@ $(document).ready(function() {
 	}else if(cat == 'FURN'){
 		path="/furnitureFilter";
 		$("#subCategory-right li").eq(0).addClass("highlight_subcat");
-		$("#year-main").show();
-		$("#amt-main").show();
+		showFilters(['amt','year']);
 	}
 
 	//********************************if user clicks on CLEAR ALL*****************************************************
@@ -630,6 +629,7 @@ function updateDataWithSelectedSubCategory(element, path){
 		$("#breadCrumb_SubCategory").html($(element).text());
 	}
 	else if(cat == 'FURN'){
+		showFilters(['amt','year']);
 		$("#breadCrumb_Category").html("Furniture");
 		$("#breadCrumb_SubCategory").html($(element).text());
 	}

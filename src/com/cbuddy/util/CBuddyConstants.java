@@ -38,16 +38,25 @@ public class CBuddyConstants {
 	public static final String SUBCATEGORY_MOBILE_MOBILEPHONES = "1";
 	public static final String SUBCATEGORY_MOBILE_ACCESORIES = "2";
 	
-	public static final String SUBCATEGORY_FURNITURE_COT_WOOD = "1";
-	public static final String SUBCATEGORY_FURNITURE_COT_STEEL = "2";
-	public static final String SUBCATEGORY_FURNITURE_MATTRESS = "3";
-	public static final String SUBCATEGORY_FURNITURE_DINING = "4";
-	public static final String SUBCATEGORY_FURNITURE_SHOE = "5";
-	public static final String SUBCATEGORY_FURNITURE_TV = "6";
-	public static final String SUBCATEGORY_FURNITURE_TABLE = "7";
-	public static final String SUBCATEGORY_FURNITURE_CHAIR_WOOD = "8";
-	public static final String SUBCATEGORY_FURNITURE_CHAIR_PLASTIC = "9";
-	public static final String SUBCATEGORY_FURNITURE_OTHERS = "10";
+	public static final String SUBCATEGORY_FURNITURE_DINING_TABLE = "1";
+	public static final String SUBCATEGORY_FURNITURE_MATTRESS = "2";
+	public static final String SUBCATEGORY_FURNITURE_COT = "3";
+	public static final String SUBCATEGORY_FURNITURE_SOFA = "4";
+	public static final String SUBCATEGORY_FURNITURE_CHAIR = "5";
+	public static final String SUBCATEGORY_FURNITURE_TV_STAND = "6";
+	public static final String SUBCATEGORY_FURNITURE_SHOE_RACK = "7";
+	public static final String SUBCATEGORY_FURNITURE_BERO = "8";
+	public static final String SUBCATEGORY_FURNITURE_OTHERS = "9";
+	
+	public static final String SUBCATEGORY_FURNITURE_DINING_TABLE_STR = "Dining Table";
+	public static final String SUBCATEGORY_FURNITURE_MATTRESS_STR = "Mattress";
+	public static final String SUBCATEGORY_FURNITURE_COT_STR = "Cot";
+	public static final String SUBCATEGORY_FURNITURE_SOFA_STR = "Sofa";
+	public static final String SUBCATEGORY_FURNITURE_CHAIR_STR = "Chair";
+	public static final String SUBCATEGORY_FURNITURE_TV_STAND_STR = "TV Stand";
+	public static final String SUBCATEGORY_FURNITURE_SHOE_RACK_STR = "Shoe Rack";
+	public static final String SUBCATEGORY_FURNITURE_BERO_STR = "Bero";
+	public static final String SUBCATEGORY_FURNITURE_OTHERS_STR = "Others";
 	
 	public static final String SUBCATEGORY_ELECTRONICS_AND_HOUSEHOLD_ALL = "0";
 	public static final String SUBCATEGORY_ELECTRONICS_AND_HOUSEHOLD_TELEVISION = "1";

@@ -33,28 +33,19 @@
 		</ul>		
 	</div>
 	<div class="col-md-8" style="margin-left:-50px;">
-		<s:form cssClass="form-horizontal post" id="postContentForm" action="computers_postAd.action" enctype="multipart/form-data" onsubmit="return localValidations()">
+		<s:form cssClass="form-horizontal post" id="postContentForm" action="furniture_postAd.action" enctype="multipart/form-data" onsubmit="return localValidations()">
 			<input type="hidden" name="category" value="AUTO"/>
 			<div class="col-md-12">
 				<div class="form-group" >
 					<label class="col-sm-10 col-sm-offset-3 postAdHeading">
-					<span>Post Ad - Desktops, Laptops, Computer Accessories, etc.</span> <span style="font-size:12px;"><s:fielderror fieldName="errorMsg"/></span></label>
-				</div>
-				<div class="form-group">
-					<label class="col-sm-3 control-label">Item Type</label>
-					<div class="col-sm-7" style="padding-top:6px;">
-						<s:select class="dropDown" style="height:30px;width:150px;" id="itemType" name="itemType" theme="simple" onChange="displayPostAdSection()"
-								headerKey="-1" headerValue="Select"
-								list="#{'1':'Desktops', '2':'Laptops', '3':'Tablets, iPad, etc.', '4':'Computer Accessories'}"
-								value="subCategory" />
-						<span id="changeItemType"><a href="#" onclick="return enableItemType()">Change</a></span>
-					</div>
-				</div>				
+					<span>Post Ad - Furniture</span> <span style="font-size:12px;"><s:fielderror fieldName="errorMsg"/></span></label>
+				</div>			
 				<div class="form-group">
 					<label for="title" class="col-sm-3 control-label">Title<span class="mandatory">*</span></label>
 					<div class="col-sm-7">
 						<input type="text" class="form-control" maxlength="200" id="Title" name="Title" value="<s:property value='title'/>" required
-							data-infoTip="" data-validate-type="postTitle" data-validate-errMessage="Title should be at least 10 letters long and should have atleast 2 words">
+							data-infoTip="E.g. '3 x 6 ft wooden cot available for sale'" data-validate-type="postTitle" 
+							data-validate-errMessage="Title should be at least 10 letters long and should have atleast 2 words">
 						<div class="fieldTip" id="TitleTip"></div>
 						<div class="fieldTip" id="Title_Error"></div>
 					</div>
@@ -136,9 +127,7 @@
 					</div>	
 				</div>
 				<div id="postContent">
-					<s:if test="subCategory == 1">
-						<%@ include file="./PostAd_Furniture_Default.jsp" %>
-					</s:if>
+					<%@ include file="./PostAd_Furniture_Default.jsp" %>
 				</div>
 			</div>
 		</s:form>
@@ -147,44 +136,6 @@
 </div>
 
 <script>
-	function displayPostAdSection(){
-		var selectedOption = $("#itemType").val();
-		
-		updateToolTip(selectedOption);
-		
-		$("#subCategory").val(selectedOption);
-		
-		$.ajax({
-			url: "Virat" + "/getDetailsSection_Computers?",
-			//url:$('#contextPath').text() + "getLocation",
-			type: "POST",
-			data: {subCategory:$("#itemType").val()},
-			success: function(data) {
-				$("#postContent").html(data);
-				attachEventHandlers();
-				expandOrCollapseAdditionalSection();
-			},
-			error: function (error) {
-				alert('error: ' + error.responseText);
-			}
-		});
-		$("#itemType").prop("disabled", true);
-		$("#itemType").css("background-color", "#FAFAFA");
-		$("#changeItemType").show();
-	}
-	function updateToolTip(subCategory){
-		if(subCategory == "1"){$("#Title").attr("data-infoTip", "E.g. 'HP Desktop available for sale'");}
-		else if(subCategory == "2"){$("#Title").attr("data-infoTip", "E.g. Sony Vaio for sale in good condition.");}
-		else if(subCategory == "3"){$("#Title").attr("data-infoTip", "E.g. Samsung Galaxy Tab available for sale.");}
-		else if(subCategory == "4"){$("#Title").attr("data-infoTip", "E.g. 'San Disk Memory Card 8GB for sale'");}
-	}
-	function enableItemType(){
-		$("#itemType").prop("disabled", false);
-		$("#itemType option[value='-1']").remove();
-		$("#itemType").css("background-color", "#FFFFFF");
-		$("#changeItemType").hide();
-		return false;
-	}
 	function cityChangeNotification(city){
 		//Clearing any tooltip/error
 		showOrHideErrorTip(true, "city", "");

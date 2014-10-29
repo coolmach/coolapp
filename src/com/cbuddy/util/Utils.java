@@ -45,16 +45,15 @@ public class Utils {
 	
 		//Category and Sub Categories for FURNITURE
 		categoryDescMap.put(CBuddyConstants.CATEGORY_FURNITURE, "Furniture");
-		categoryDescMap.put(CBuddyConstants.CATEGORY_FURNITURE + "_" + CBuddyConstants.SUBCATEGORY_FURNITURE_COT_WOOD, "Cot - Wooden");
-		categoryDescMap.put(CBuddyConstants.CATEGORY_FURNITURE + "_" + CBuddyConstants.SUBCATEGORY_FURNITURE_COT_STEEL, "Cot - Steel");		
-		categoryDescMap.put(CBuddyConstants.CATEGORY_FURNITURE + "_" + CBuddyConstants.SUBCATEGORY_FURNITURE_MATTRESS, "Mattress");
-		categoryDescMap.put(CBuddyConstants.CATEGORY_FURNITURE + "_" + CBuddyConstants.SUBCATEGORY_FURNITURE_DINING, "Dining Table");
-		categoryDescMap.put(CBuddyConstants.CATEGORY_FURNITURE + "_" + CBuddyConstants.SUBCATEGORY_FURNITURE_SHOE, "Shoe Rack");
-     	categoryDescMap.put(CBuddyConstants.CATEGORY_FURNITURE + "_" + CBuddyConstants.SUBCATEGORY_FURNITURE_TV, "TV Stand");
-		categoryDescMap.put(CBuddyConstants.CATEGORY_FURNITURE + "_" + CBuddyConstants.SUBCATEGORY_FURNITURE_TABLE, "Table");
-		categoryDescMap.put(CBuddyConstants.CATEGORY_FURNITURE + "_" + CBuddyConstants.SUBCATEGORY_FURNITURE_CHAIR_WOOD, "Chair - Wood");
-		categoryDescMap.put(CBuddyConstants.CATEGORY_FURNITURE + "_" + CBuddyConstants.SUBCATEGORY_FURNITURE_CHAIR_PLASTIC, "hair - Plastic");
-		categoryDescMap.put(CBuddyConstants.CATEGORY_FURNITURE + "_" + CBuddyConstants.SUBCATEGORY_FURNITURE_OTHERS, "Others");
+		categoryDescMap.put(CBuddyConstants.CATEGORY_FURNITURE + "_" + CBuddyConstants.SUBCATEGORY_FURNITURE_BERO, CBuddyConstants.SUBCATEGORY_FURNITURE_BERO_STR);
+		categoryDescMap.put(CBuddyConstants.CATEGORY_FURNITURE + "_" + CBuddyConstants.SUBCATEGORY_FURNITURE_COT, CBuddyConstants.SUBCATEGORY_FURNITURE_COT_STR);		
+		categoryDescMap.put(CBuddyConstants.CATEGORY_FURNITURE + "_" + CBuddyConstants.SUBCATEGORY_FURNITURE_MATTRESS, CBuddyConstants.SUBCATEGORY_FURNITURE_MATTRESS_STR);
+		categoryDescMap.put(CBuddyConstants.CATEGORY_FURNITURE + "_" + CBuddyConstants.SUBCATEGORY_FURNITURE_DINING_TABLE, CBuddyConstants.SUBCATEGORY_FURNITURE_DINING_TABLE_STR);
+		categoryDescMap.put(CBuddyConstants.CATEGORY_FURNITURE + "_" + CBuddyConstants.SUBCATEGORY_FURNITURE_TV_STAND, CBuddyConstants.SUBCATEGORY_FURNITURE_TV_STAND_STR);
+     	categoryDescMap.put(CBuddyConstants.CATEGORY_FURNITURE + "_" + CBuddyConstants.SUBCATEGORY_FURNITURE_CHAIR, CBuddyConstants.SUBCATEGORY_FURNITURE_CHAIR_STR);
+		categoryDescMap.put(CBuddyConstants.CATEGORY_FURNITURE + "_" + CBuddyConstants.SUBCATEGORY_FURNITURE_SOFA, CBuddyConstants.SUBCATEGORY_FURNITURE_SOFA_STR);
+		categoryDescMap.put(CBuddyConstants.CATEGORY_FURNITURE + "_" + CBuddyConstants.SUBCATEGORY_FURNITURE_SHOE_RACK, CBuddyConstants.SUBCATEGORY_FURNITURE_SHOE_RACK_STR);
+		categoryDescMap.put(CBuddyConstants.CATEGORY_FURNITURE + "_" + CBuddyConstants.SUBCATEGORY_FURNITURE_OTHERS, CBuddyConstants.SUBCATEGORY_FURNITURE_OTHERS_STR);
 	
 		////Category and Sub Categories for ELECTRONICS AND HOUSEHOLD
 		categoryDescMap.put(CBuddyConstants.CATEGORY_ELECTRONICS_AND_HOUSEHOLD, "Electronics & Household");

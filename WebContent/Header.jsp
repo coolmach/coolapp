@@ -269,12 +269,12 @@
 </style>
 <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300" />
 <div id="headerRow" class="row">
-	<div class="col-sm-1" id="imageSection" style="margin-left:9.5%;">
+	<div class="col-sm-1" id="imageSection" style="margin-left:14%;">
 		<a href="<s:url action=""/>">
 			<img src="images/common/Logo-Blue.jpg" width="170" height="55.66">
 		</a>
 	</div>
-	<div class="col-sm-3" style="padding-top:30px;color:#0099CC;margin-left:53%;"> 
+	<div class="col-sm-3" style="padding-top:30px;color:#0099CC;margin-left:45%;"> 
 		<span style="font-size:12px;">
 			<s:if test="%{#session.userLoggedIn == null}">
                	<span style="margin-left:5px; margin-right:5px;"><a href="<s:url action="mylogin"/>">Sign In</a></span> |

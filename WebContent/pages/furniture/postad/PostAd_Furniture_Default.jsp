@@ -1,22 +1,29 @@
 <%@ taglib prefix="s" uri="/struts-tags"%>
 	<div>
-		<input type="hidden" id="subCategory" name="subCategory" value="2">
+		<input type="hidden" id="subCategory" name="subCategory" value="1">
 		<div>
 			<div class="form-group">
 				<label class="col-sm-3 control-label">Furniture Type<span class="mandatory">*</span></label>
 				<div class="col-sm-6" style="padding-top:6px;">
-					<select class="dropDown" name="accessoryType" id="accessoryType">
-						<option value="-1">Select</option>
-						<option value="Bluetooth Headset">Bluetooth Headset</option> 
-						<option value="Case/Cover">Case/Cover</option>  
-						<option value="Earphones">Earphones</option> 
-						<option value="Charger">Charger</option> 
-						<option value="Memory Card">Memory Card</option>
-					</select>
-					<div class="fieldTip" id="accessoryTypeTip"></div>
-					<div class="fieldTip" id="accessoryType_Error"></div>
+					<s:select class="dropDown" style="height:30px;width:120px;" id="type" name="type" theme="simple"
+						headerKey="-1" headerValue="Select"
+						list="#{'Bero':'Bero','Chair':'Chair','Cot':'Cot','Dining Table':'Dining Table','Mattress':'Mattress','Shoe Rack':'Shoe Rack','Sofa':'Sofa','TV Stand':'TV Stand','Others':'Others'}"
+						value="year" />
+					<div class="fieldTip" id="typeTip"></div>
+					<div class="fieldTip" id="type_Error"></div>
 				</div>
 			</div>
+			<div class="form-group">
+				<label class="col-sm-3 control-label">Age in Years<span class="mandatory">*</span></label>
+				<div class="col-sm-3" style="padding-top:6px;">
+					<s:select class="dropDown" style="height:30px;width:120px;" id="year" name="year" theme="simple"
+						headerKey="-1" headerValue="Select"
+						list="#{'1':'< 1 year old','2':'1-2 years old','3':'2-3 years old','4':'3-4 years old','5':'4-5 years old','6':'> 5 years old'}"
+						value="year" />				
+					<div class="fieldTip" id="yearTip"></div>
+					<div class="fieldTip" id="year_Error"></div>
+				</div>
+			</div>			
 			<div class="form-group">
 				<label class="col-sm-3 control-label">Price<span class="mandatory">*</span></label>
 				<div class="col-sm-3">
@@ -72,8 +79,12 @@
 </script>
 <script>
 function localValidations(){
-	if($("#accessoryType").val() == "-1"){
-		showOrHideErrorTip(false, "accessoryType", "Please choose the Accessory Type");
+	if($("#type").val() == "-1"){
+		showOrHideErrorTip(false, "type", "Please choose the Furniture Type");
+		return false;
+	}
+	if($("#year").val() == "-1"){
+		showOrHideErrorTip(false, "type", "Please choose how old is your Furniture");
 		return false;
 	}
 	return validateForm();
