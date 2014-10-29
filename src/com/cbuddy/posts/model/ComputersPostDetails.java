@@ -26,12 +26,11 @@ public class ComputersPostDetails extends Pcomp implements Serializable, CommonD
 	private String category;
 	private String negotiable;
 	private String noOfImages;
-	
 	private String priceStr;
 	private String makeStr;
-	private String selectedLocationStr;
-	private String userEnteredLocationStr;
-	private String selectedLocationCode;
+//	private String selectedLocationStr;
+//	private String userEnteredLocationStr;
+//	private String selectedLocationCode;
 	private String processorSizeStr;
 	private String yearStr;
 	private String hddSizeStr;
@@ -123,32 +122,32 @@ public class ComputersPostDetails extends Pcomp implements Serializable, CommonD
 		this.priceStr = priceStr;
 	}
 
-	@Transient
-	public String getSelectedLocationStr() {
-		return selectedLocationStr;
-	}
-
-	public void setSelectedLocationStr(String selectedLocationStr) {
-		this.selectedLocationStr = selectedLocationStr;
-	}
-
-	@Transient
-	public String getUserEnteredLocationStr() {
-		return userEnteredLocationStr;
-	}
-
-	public void setUserEnteredLocationStr(String userEnteredLocationStr) {
-		this.userEnteredLocationStr = userEnteredLocationStr;
-	}
-
-	@Transient
-	public String getSelectedLocationCode() {
-		return selectedLocationCode;
-	}
-
-	public void setSelectedLocationCode(String selectedLocationCode) {
-		this.selectedLocationCode = selectedLocationCode;
-	}
+//	@Transient
+//	public String getSelectedLocationStr() {
+//		return selectedLocationStr;
+//	}
+//
+//	public void setSelectedLocationStr(String selectedLocationStr) {
+//		this.selectedLocationStr = selectedLocationStr;
+//	}
+//
+//	@Transient
+//	public String getUserEnteredLocationStr() {
+//		return userEnteredLocationStr;
+//	}
+//
+//	public void setUserEnteredLocationStr(String userEnteredLocationStr) {
+//		this.userEnteredLocationStr = userEnteredLocationStr;
+//	}
+//
+//	@Transient
+//	public String getSelectedLocationCode() {
+//		return selectedLocationCode;
+//	}
+//
+//	public void setSelectedLocationCode(String selectedLocationCode) {
+//		this.selectedLocationCode = selectedLocationCode;
+//	}
 
 	@Transient
 	public String getMakeStr() {

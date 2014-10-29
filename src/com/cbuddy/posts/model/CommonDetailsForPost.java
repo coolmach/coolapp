@@ -6,7 +6,7 @@ public interface CommonDetailsForPost {
 	public String getContactNo();
 	public String getContactPersonName();
 	public String getDescription();
-	public String getSelectedLocationCode();
+	public String getLocation();
 	public double getPrice();
 	public String getSubCategory();
 	public String getNegotiable();

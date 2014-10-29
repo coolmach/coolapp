@@ -31,9 +31,9 @@ public class AutomobilePostDetails extends Pdau implements Serializable, CommonD
 	private String fuelTypeStr;
 	private String makeStr;
 	private String modelStr;
-	private String selectedLocationStr;
-	private String userEnteredLocationStr;
-	private String selectedLocationCode;
+//	private String selectedLocationStr;
+//	private String userEnteredLocationStr;
+//	private String selectedLocationCode;
 
 	private int corpId;
 
@@ -131,32 +131,32 @@ public class AutomobilePostDetails extends Pdau implements Serializable, CommonD
 		this.fuelTypeStr = fuelTypeStr;
 	}
 
-	@Transient
-	public String getSelectedLocationStr() {
-		return selectedLocationStr;
-	}
-
-	public void setSelectedLocationStr(String selectedLocationStr) {
-		this.selectedLocationStr = selectedLocationStr;
-	}
-
-	@Transient
-	public String getUserEnteredLocationStr() {
-		return userEnteredLocationStr;
-	}
-
-	public void setUserEnteredLocationStr(String userEnteredLocationStr) {
-		this.userEnteredLocationStr = userEnteredLocationStr;
-	}
-
-	@Transient
-	public String getSelectedLocationCode() {
-		return selectedLocationCode;
-	}
-
-	public void setSelectedLocationCode(String selectedLocationCode) {
-		this.selectedLocationCode = selectedLocationCode;
-	}
+//	@Transient
+//	public String getSelectedLocationStr() {
+//		return selectedLocationStr;
+//	}
+//
+//	public void setSelectedLocationStr(String selectedLocationStr) {
+//		this.selectedLocationStr = selectedLocationStr;
+//	}
+//
+//	@Transient
+//	public String getUserEnteredLocationStr() {
+//		return userEnteredLocationStr;
+//	}
+//
+//	public void setUserEnteredLocationStr(String userEnteredLocationStr) {
+//		this.userEnteredLocationStr = userEnteredLocationStr;
+//	}
+//
+//	@Transient
+//	public String getSelectedLocationCode() {
+//		return selectedLocationCode;
+//	}
+//
+//	public void setSelectedLocationCode(String selectedLocationCode) {
+//		this.selectedLocationCode = selectedLocationCode;
+//	}
 
 	@Transient
 	public String getMakeStr() {

@@ -45,7 +45,7 @@ public class PostsUtil {
 		poit.setDescription(postDetails.getDescription());
 		poit.setImageFileName(imgFileName);
 		poit.setImageType(imgType);
-		poit.setLocation(postDetails.getSelectedLocationCode());
+		poit.setLocation(postDetails.getLocation());
 		poit.setModifiedBy(userId);
 		poit.setModifiedOn(current);
 		poit.setNegotiable(null);

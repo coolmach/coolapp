@@ -30,9 +30,9 @@ public class WashingMachinePostDetails extends PWashingMachine implements Serial
 	private String subCategory;
 	private String yearStr;
 	private String priceStr;
-	private String selectedLocationStr;
-	private String userEnteredLocationStr;
-	private String selectedLocationCode;
+//	private String selectedLocationStr;
+//	private String userEnteredLocationStr;
+//	private String selectedLocationCode;
 
 	private String limit;
 	private String offset;
@@ -125,32 +125,32 @@ public class WashingMachinePostDetails extends PWashingMachine implements Serial
 		this.priceStr = priceStr;
 	}
 
-	@Transient
-	public String getSelectedLocationStr() {
-		return selectedLocationStr;
-	}
-
-	public void setSelectedLocationStr(String selectedLocationStr) {
-		this.selectedLocationStr = selectedLocationStr;
-	}
-
-	@Transient
-	public String getUserEnteredLocationStr() {
-		return userEnteredLocationStr;
-	}
-
-	public void setUserEnteredLocationStr(String userEnteredLocationStr) {
-		this.userEnteredLocationStr = userEnteredLocationStr;
-	}
-
-	@Transient
-	public String getSelectedLocationCode() {
-		return selectedLocationCode;
-	}
-
-	public void setSelectedLocationCode(String selectedLocationCode) {
-		this.selectedLocationCode = selectedLocationCode;
-	}
+//	@Transient
+//	public String getSelectedLocationStr() {
+//		return selectedLocationStr;
+//	}
+//
+//	public void setSelectedLocationStr(String selectedLocationStr) {
+//		this.selectedLocationStr = selectedLocationStr;
+//	}
+//
+//	@Transient
+//	public String getUserEnteredLocationStr() {
+//		return userEnteredLocationStr;
+//	}
+//
+//	public void setUserEnteredLocationStr(String userEnteredLocationStr) {
+//		this.userEnteredLocationStr = userEnteredLocationStr;
+//	}
+//
+//	@Transient
+//	public String getSelectedLocationCode() {
+//		return selectedLocationCode;
+//	}
+//
+//	public void setSelectedLocationCode(String selectedLocationCode) {
+//		this.selectedLocationCode = selectedLocationCode;
+//	}
 
 	@Column(name="CORP_ID")
 	public int getCorpId() {

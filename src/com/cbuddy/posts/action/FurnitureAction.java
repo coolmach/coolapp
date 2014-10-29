@@ -103,10 +103,10 @@ public class FurnitureAction extends ActionSupport implements SessionAware, Serv
 			addFieldError("errorMsg", "Please enter City");
 			return false;
 		}
-		if(postDetails.getSelectedLocationCode().equals("")){
-			addFieldError("errorMsg", "Please enter Location");
-			return false;
-		}
+//		if(postDetails.getSelectedLocationCode().equals("")){
+//			addFieldError("errorMsg", "Please enter Location");
+//			return false;
+//		}
 		if(postDetails.getPrice() <= 0){
 			addFieldError("errorMsg", "Please enter Price");
 			return false;
@@ -157,21 +157,21 @@ public class FurnitureAction extends ActionSupport implements SessionAware, Serv
 			addFieldError("errorMsg", "Invalid City");
 			return false;
 		}
-		temp = postDetails.getUserEnteredLocationStr();
-		if(temp != null && temp.length() > 30){
+//		temp = postDetails.getUserEnteredLocationStr();
+//		if(temp != null && temp.length() > 30){
+//			addFieldError("errorMsg", "Invalid Location");
+//			return false;
+//		}
+		temp = postDetails.getLocation();
+		if(temp == null || temp.length() > 8){
 			addFieldError("errorMsg", "Invalid Location");
 			return false;
 		}
-		temp = postDetails.getSelectedLocationCode();
-		if(temp != null && temp.length() > 8){
-			addFieldError("errorMsg", "Invalid Location");
-			return false;
-		}
-		temp = postDetails.getSelectedLocationStr();
-		if(temp != null && temp.length() > 30){
-			addFieldError("errorMsg", "Invalid Location");
-			return false;
-		}
+//		temp = postDetails.getSelectedLocationStr();
+//		if(temp != null && temp.length() > 30){
+//			addFieldError("errorMsg", "Invalid Location");
+//			return false;
+//		}
 
 		temp = postDetails.getDescription();
 		if(temp != null && temp.length() > 256){
@@ -211,12 +211,12 @@ public class FurnitureAction extends ActionSupport implements SessionAware, Serv
 		String userId = String.valueOf(user.getUserId());
 		//String imgFileName = String.valueOf(System.currentTimeMillis()) + "." + getExtension(uploadContentType[0]) + "";
 
-		//Checking if user has manually tampered location after selecting from auto suggest list
-		if(postDetails.getUserEnteredLocationStr() != null && postDetails.getSelectedLocationStr()!=null){
-			if(!postDetails.getUserEnteredLocationStr().equals(postDetails.getSelectedLocationStr())){
-				return Action.INPUT;
-			}
-		}
+//		//Checking if user has manually tampered location after selecting from auto suggest list
+//		if(postDetails.getUserEnteredLocationStr() != null && postDetails.getSelectedLocationStr()!=null){
+//			if(!postDetails.getUserEnteredLocationStr().equals(postDetails.getSelectedLocationStr())){
+//				return Action.INPUT;
+//			}
+//		}
 
 	
 		//Setting sub category to Furniture Type
@@ -260,7 +260,7 @@ public class FurnitureAction extends ActionSupport implements SessionAware, Serv
 		entity.setSubCategory(postDetails.getSubCategory());
 		entity.setCity(postDetails.getCity());
 		entity.setYear(postDetails.getYear());
-		entity.setLocation(postDetails.getSelectedLocationCode());
+		entity.setLocation(postDetails.getLocation());
 		entity.setType(postDetails.getType());
 		entity.setCreatedBy(userId);
 		entity.setCreatedOn(current);

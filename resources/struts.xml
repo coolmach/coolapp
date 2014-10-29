@@ -97,6 +97,12 @@
 		    <result name="login" type="tiles">/login.tiles</result>
 			<result name="success" type="tiles">/postAd_Furniture.tiles</result>
 		</action>
+		<action name="post_Others">
+			<interceptor-ref name="secureStack"></interceptor-ref>
+		    <result name="input" type="tiles">/home.tiles</result>
+		    <result name="login" type="tiles">/login.tiles</result>
+			<result name="success" type="tiles">/postAd_Others.tiles</result>
+		</action>		
 		<!-- Post Ad - END -->	
 			
 		<action name="postAdStart">
@@ -583,8 +589,11 @@
 		<action name="getTabModels" class="com.cbuddy.posts.action.ComputersModelsAction" method="getModelsForTab">
 			<result type="json"></result>
 		</action>
-		<action name="getLocations" class="com.cbuddy.posts.action.LocationAction" method="getLocationsForCity">
+		<action name="getLocations" class="com.cbuddy.common.action.LocationsForCityAction" method="getLocationsForCity">
 			<result type="json"></result>
-		</action>						 
+		</action>
+		<action name="getCompanies" class="com.cbuddy.common.action.CompaniesListAction" method="getCompanies">
+			<result type="json"></result>
+		</action>								 
 	</package>
 </struts>

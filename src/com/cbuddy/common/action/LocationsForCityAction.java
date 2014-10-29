@@ -1,4 +1,4 @@
-package com.cbuddy.posts.action;
+package com.cbuddy.common.action;
 
 import java.util.HashMap;
 import java.util.List;
@@ -14,9 +14,10 @@ import com.cbuddy.util.CbuddySessionFactory;
 import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.ActionSupport;
 
-public class LocationAction extends ActionSupport{
+public class LocationsForCityAction extends ActionSupport{
+
 	private static final long serialVersionUID = 1L;
-	private String city;
+	private String city = "" ;
 	private HashMap<String, String> locationMap = new HashMap<String, String>();
 	
 	public String getLocationsForCity() {
@@ -27,8 +28,8 @@ public class LocationAction extends ActionSupport{
 		Criteria criteria = null;
 
 		criteria = dbSession.createCriteria(Location.class);
-		criteria.addOrder(Order.asc("loc_name"));
-		criteria.add(Restrictions.eq("city_code", city));
+		criteria.addOrder(Order.asc("locName"));
+		criteria.add(Restrictions.eq("cityCode", city));
 		List<Location> locationsList = criteria.list();
 		for(Location location:locationsList){
 			locationMap.put(location.getLocCode(), location.getLocName());
@@ -39,6 +40,8 @@ public class LocationAction extends ActionSupport{
 		return Action.SUCCESS;
 	}
 
+	
+	
 	public String getCity() {
 		return city;
 	}
@@ -50,7 +53,6 @@ public class LocationAction extends ActionSupport{
 	public HashMap<String, String> getLocationMap() {
 		return locationMap;
 	}
-
 
 	public void setLocationMap(HashMap<String, String> locationMap) {
 		this.locationMap = locationMap;

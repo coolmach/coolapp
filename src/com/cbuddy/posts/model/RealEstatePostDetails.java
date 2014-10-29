@@ -34,9 +34,9 @@ public class RealEstatePostDetails extends Pdre implements Serializable, CommonD
 	private String facingDirectionStr;
 	private String floorNumberStr;
 	private String furnishedStr;
-	private String selectedLocationStr;
-	private String userEnteredLocationStr;
-	private String selectedLocationCode;
+//	private String selectedLocationStr;
+//	private String userEnteredLocationStr;
+//	private String selectedLocationCode;
 	private String selectedCityCode;
 	private String areaSq;
 	
@@ -161,32 +161,32 @@ public class RealEstatePostDetails extends Pdre implements Serializable, CommonD
 		this.furnishedStr = furnishedStr;
 	}
 
-	@Transient
-	public String getSelectedLocationStr() {
-		return selectedLocationStr;
-	}
-
-	public void setSelectedLocationStr(String selectedLocationStr) {
-		this.selectedLocationStr = selectedLocationStr;
-	}
-
-	@Transient
-	public String getUserEnteredLocationStr() {
-		return userEnteredLocationStr;
-	}
-
-	public void setUserEnteredLocationStr(String userEnteredLocationStr) {
-		this.userEnteredLocationStr = userEnteredLocationStr;
-	}
-
-	@Transient
-	public String getSelectedLocationCode() {
-		return selectedLocationCode;
-	}
-
-	public void setSelectedLocationCode(String selectedLocationCode) {
-		this.selectedLocationCode = selectedLocationCode;
-	}
+//	@Transient
+//	public String getSelectedLocationStr() {
+//		return selectedLocationStr;
+//	}
+//
+//	public void setSelectedLocationStr(String selectedLocationStr) {
+//		this.selectedLocationStr = selectedLocationStr;
+//	}
+//
+//	@Transient
+//	public String getUserEnteredLocationStr() {
+//		return userEnteredLocationStr;
+//	}
+//
+//	public void setUserEnteredLocationStr(String userEnteredLocationStr) {
+//		this.userEnteredLocationStr = userEnteredLocationStr;
+//	}
+//
+//	@Transient
+//	public String getSelectedLocationCode() {
+//		return selectedLocationCode;
+//	}
+//
+//	public void setSelectedLocationCode(String selectedLocationCode) {
+//		this.selectedLocationCode = selectedLocationCode;
+//	}
 
 	@Transient
 	public String getSelectedCityCode() {

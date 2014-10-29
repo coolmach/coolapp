@@ -103,10 +103,10 @@ public class TelevisionAction extends ActionSupport implements SessionAware, Ser
 			addFieldError("errorMsg", "Please enter City");
 			return false;
 		}
-		if(postDetails.getSelectedLocationCode().equals("")){
-			addFieldError("errorMsg", "Please enter Location");
-			return false;
-		}
+//		if(postDetails.getSelectedLocationCode().equals("")){
+//			addFieldError("errorMsg", "Please enter Location");
+//			return false;
+//		}
 		if(postDetails.getPrice() <= 0){
 			addFieldError("errorMsg", "Please enter Price");
 			return false;
@@ -135,21 +135,21 @@ public class TelevisionAction extends ActionSupport implements SessionAware, Ser
 			addFieldError("errorMsg", "Invalid City");
 			return false;
 		}
-		temp = postDetails.getUserEnteredLocationStr();
-		if(temp != null && temp.length() > 30){
+//		temp = postDetails.getUserEnteredLocationStr();
+//		if(temp != null && temp.length() > 30){
+//			addFieldError("errorMsg", "Invalid Location");
+//			return false;
+//		}
+		temp = postDetails.getLocation();
+		if(temp == null || temp.length() > 8){
 			addFieldError("errorMsg", "Invalid Location");
 			return false;
 		}
-		temp = postDetails.getSelectedLocationCode();
-		if(temp != null && temp.length() > 8){
-			addFieldError("errorMsg", "Invalid Location");
-			return false;
-		}
-		temp = postDetails.getSelectedLocationStr();
-		if(temp != null && temp.length() > 30){
-			addFieldError("errorMsg", "Invalid Location");
-			return false;
-		}
+//		temp = postDetails.getSelectedLocationStr();
+//		if(temp != null && temp.length() > 30){
+//			addFieldError("errorMsg", "Invalid Location");
+//			return false;
+//		}
 
 		temp = postDetails.getDescription();
 		if(temp != null && temp.length() > 256){
@@ -238,13 +238,13 @@ public class TelevisionAction extends ActionSupport implements SessionAware, Ser
 		String userId = String.valueOf(user.getUserId());
 		//String imgFileName = String.valueOf(System.currentTimeMillis()) + "." + getExtension(uploadContentType[0]) + "";
 
-		//Checking if user has manually tampered location after selecting from auto suggest list
-		if(postDetails.getUserEnteredLocationStr() != null && postDetails.getSelectedLocationStr()!=null){
-			if(!postDetails.getUserEnteredLocationStr().equals(postDetails.getSelectedLocationStr())){
-				addFieldError("errorMsg", "Invalid Location");
-				return Action.INPUT;
-			}
-		}
+//		//Checking if user has manually tampered location after selecting from auto suggest list
+//		if(postDetails.getUserEnteredLocationStr() != null && postDetails.getSelectedLocationStr()!=null){
+//			if(!postDetails.getUserEnteredLocationStr().equals(postDetails.getSelectedLocationStr())){
+//				addFieldError("errorMsg", "Invalid Location");
+//				return Action.INPUT;
+//			}
+//		}
 
 		SessionFactory sessionFactory = CbuddySessionFactory.getSessionFactory();
 		Session dbSession = sessionFactory.openSession();
@@ -269,7 +269,7 @@ public class TelevisionAction extends ActionSupport implements SessionAware, Ser
 		entity.setCreatedBy(userId);
 		entity.setCreatedOn(current);
 		entity.setHdmi(postDetails.getHdmi());
-		entity.setLocation(postDetails.getSelectedLocationCode());
+		entity.setLocation(postDetails.getLocation());
 		entity.setModel(postDetails.getModel());
 		entity.setModifiedBy(userId);
 		entity.setModifiedOn(current);

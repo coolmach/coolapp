@@ -200,6 +200,8 @@ function applyFilters(){
 		$("#locationListBar").html("");
 		$("#horizontalSeparator").html("");
 		$("#neighborhoodLocationBar").html("");
+		
+		$("#locSearch").val("-1");
 	}
 
 	function resetCorporateFilter() {

@@ -115,10 +115,10 @@ public class RealEstateAction extends ActionSupport implements SessionAware, Ser
 			addFieldError("errorMsg", "Please enter City");
 			return false;
 		}
-		if(postDetails.getSelectedLocationCode()==null || postDetails.getSelectedLocationCode().equals("")){
-			addFieldError("errorMsg", "Please enter Location");
-			return false;
-		}
+//		if(postDetails.getSelectedLocationCode()==null || postDetails.getSelectedLocationCode().equals("")){
+//			addFieldError("errorMsg", "Please enter Location");
+//			return false;
+//		}
 
 		//Subcategory specific validations
 		if(subCategory.equals(CBuddyConstants.SUBCATEGORY_REAL_ESTATE_APARTMENT_FOR_RENT) ||
@@ -189,21 +189,21 @@ public class RealEstateAction extends ActionSupport implements SessionAware, Ser
 			addFieldError("errorMsg", "Invalid City");
 			return false;
 		}
-		temp = postDetails.getUserEnteredLocationStr();
-		if(temp!=null && temp.length()>30){
+//		temp = postDetails.getUserEnteredLocationStr();
+//		if(temp!=null && temp.length()>30){
+//			addFieldError("errorMsg", "Invalid Location");
+//			return false;
+//		}
+		temp = postDetails.getLocation();
+		if(temp==null || temp.length()>8){
 			addFieldError("errorMsg", "Invalid Location");
 			return false;
 		}
-		temp = postDetails.getSelectedLocationCode();
-		if(temp!=null && temp.length()>8){
-			addFieldError("errorMsg", "Invalid Location");
-			return false;
-		}
-		temp = postDetails.getSelectedLocationStr();
-		if(temp!=null && temp.length()>30){
-			addFieldError("errorMsg", "Invalid Location");
-			return false;
-		}
+//		temp = postDetails.getSelectedLocationStr();
+//		if(temp!=null && temp.length()>30){
+//			addFieldError("errorMsg", "Invalid Location");
+//			return false;
+//		}
 		int tempInt = postDetails.getArea();
 		if(tempInt > 100000){
 			addFieldError("errorMsg", "Invalid Area");
@@ -329,27 +329,27 @@ public class RealEstateAction extends ActionSupport implements SessionAware, Ser
 		SessionFactory sessionFactory = CbuddySessionFactory.getSessionFactory();
 		Session dbSession = sessionFactory.openSession();
 
-		//Checking if user has manually tampered location after selecting from auto suggest list
-
-		if(!postDetails.getUserEnteredLocationStr().equals(postDetails.getSelectedLocationStr())){
-			//Check if the user entered value is valid
-			String locCode = LocationUtil.getLocationCode(dbSession, postDetails.getSelectedLocationCode(), postDetails.getUserEnteredLocationStr());
-			if(locCode == null){
-				addFieldError("errorMsg", "Invalid Location");
-				return Action.INPUT;
-			}else{
-				//Updating new location
-				postDetails.setSelectedLocationStr(postDetails.getUserEnteredLocationStr());
-				postDetails.setSelectedLocationCode(locCode);
-			}
-		}else if(!postDetails.getCity().equals(postDetails.getSelectedCityCode())){
-			//User selects a different City after choosing a location for a different city
-			String locName = LocationUtil.getLocationName(dbSession, postDetails.getCity(), postDetails.getSelectedLocationCode());
-			if(locName.equals(postDetails.getSelectedLocationCode())){
-				addFieldError("errorMsg", "Invalid Location");
-				return Action.INPUT;
-			}
-		}
+//		//Checking if user has manually tampered location after selecting from auto suggest list
+//
+//		if(!postDetails.getUserEnteredLocationStr().equals(postDetails.getSelectedLocationStr())){
+//			//Check if the user entered value is valid
+//			String locCode = LocationUtil.getLocationCode(dbSession, postDetails.getSelectedLocationCode(), postDetails.getUserEnteredLocationStr());
+//			if(locCode == null){
+//				addFieldError("errorMsg", "Invalid Location");
+//				return Action.INPUT;
+//			}else{
+//				//Updating new location
+//				postDetails.setSelectedLocationStr(postDetails.getUserEnteredLocationStr());
+//				postDetails.setSelectedLocationCode(locCode);
+//			}
+//		}else if(!postDetails.getCity().equals(postDetails.getSelectedCityCode())){
+//			//User selects a different City after choosing a location for a different city
+//			String locName = LocationUtil.getLocationName(dbSession, postDetails.getCity(), postDetails.getSelectedLocationCode());
+//			if(locName.equals(postDetails.getSelectedLocationCode())){
+//				addFieldError("errorMsg", "Invalid Location");
+//				return Action.INPUT;
+//			}
+//		}
 
 		//Make an entry in POIT
 		//		Poit poit = new Poit();
@@ -410,7 +410,7 @@ public class RealEstateAction extends ActionSupport implements SessionAware, Ser
 		pdre.setGender(postDetails.getGender());
 		pdre.setGym(postDetails.getGym()!=null && postDetails.getGym().equals("true")?"Y":null);
 		//pdre.setImageFileName(this.uploadFileName);
-		pdre.setLocation(postDetails.getSelectedLocationCode());
+		pdre.setLocation(postDetails.getLocation());
 		pdre.setMaintenance(postDetails.getMaintenance());
 		pdre.setDeposit(postDetails.getDeposit());
 		pdre.setMaritalPreference(postDetails.getMaritalPreference());

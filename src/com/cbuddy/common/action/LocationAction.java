@@ -3,6 +3,7 @@ package com.cbuddy.common.action;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -10,9 +11,12 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.apache.struts2.interceptor.ServletRequestAware;
 import org.apache.struts2.interceptor.SessionAware;
+import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Order;
+import org.hibernate.criterion.Restrictions;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -35,10 +39,10 @@ public class LocationAction extends ActionSupport implements SessionAware, Servl
 	private JSONArray jsonArray;
 	private NameValuePair selectedLocation;
 	private List<NameValuePair> neighborhoodLocations;
-	
+
 	private HttpServletRequest request = null;
 	private Map<String,Object> session;
-
+	
 	public String getLocations() throws JSONException{
 		System.out.println("LocationAction.getLocations() - ENTER");
 		LogUtil.getInstance().info(">>> LocationAction.getLocations() - ENTER");

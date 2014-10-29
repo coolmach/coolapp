@@ -23,7 +23,7 @@
 						<s:iterator value="neighborhoodLocations" status="userStatus">
 						<tr>
 							<td>
-								<input type="checkbox" class="check_location checkBox" name="location" id="location" value="${name}">
+								<input type="checkbox" class="check_location checkBox" id="loc_${value}" name="location" value="${name}">
 								<span class="radioCaptionWithoutSpace">
 									${value}
 								</span>

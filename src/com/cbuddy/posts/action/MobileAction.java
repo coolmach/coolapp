@@ -111,10 +111,10 @@ public class MobileAction extends ActionSupport implements SessionAware, Servlet
 			addFieldError("errorMsg", "Please enter City");
 			return false;
 		}
-		if(postDetails.getSelectedLocationCode().equals("")){
-			addFieldError("errorMsg", "Invalid Location");
-			return false;
-		}
+//		if(postDetails.getSelectedLocationCode().equals("")){
+//			addFieldError("errorMsg", "Invalid Location");
+//			return false;
+//		}
 		if(postDetails.getPrice() <= 0){
 			addFieldError("errorMsg", "Please enter Price");
 			return false;
@@ -159,21 +159,21 @@ public class MobileAction extends ActionSupport implements SessionAware, Servlet
 			addFieldError("errorMsg", "Invalid City");
 			return false;
 		}
-		temp = postDetails.getUserEnteredLocationStr();
-		if(temp != null && temp.length() > 30){
+//		temp = postDetails.getUserEnteredLocationStr();
+//		if(temp != null && temp.length() > 30){
+//			addFieldError("errorMsg", "Invalid Location");
+//			return false;
+//		}
+		temp = postDetails.getLocation();
+		if(temp == null || temp.length() > 8){
 			addFieldError("errorMsg", "Invalid Location");
 			return false;
 		}
-		temp = postDetails.getSelectedLocationCode();
-		if(temp != null && temp.length() > 8){
-			addFieldError("errorMsg", "Invalid Location");
-			return false;
-		}
-		temp = postDetails.getSelectedLocationStr();
-		if(temp != null && temp.length() > 30){
-			addFieldError("errorMsg", "Invalid Location");
-			return false;
-		}
+//		temp = postDetails.getSelectedLocationStr();
+//		if(temp != null && temp.length() > 30){
+//			addFieldError("errorMsg", "Invalid Location");
+//			return false;
+//		}
 
 		temp = postDetails.getDescription();
 		if(temp != null && temp.length() > 256){
@@ -251,19 +251,19 @@ public class MobileAction extends ActionSupport implements SessionAware, Servlet
 		//String imgFileName = String.valueOf(System.currentTimeMillis()) + "." + getExtension(uploadContentType[0]) + "";
 
 
-		//Checking if user has manually tampered location after selecting from auto suggest list
-		if(postDetails.getUserEnteredLocationStr() != null && postDetails.getSelectedLocationStr() != null){
-			if(!postDetails.getUserEnteredLocationStr().equals(postDetails.getSelectedLocationStr())){
-				addFieldError("errorMsg", "Invalid Location");
-				return Action.INPUT;
-			}
-		}
-
-		//Check if user has selected a different city AFTER choosing a location for a different city
-		if(!postDetails.getCity().equals(postDetails.getSelectedCityCode())){
-			addFieldError("errorMsg", "Invalid Location");
-			return Action.INPUT;
-		}
+//		//Checking if user has manually tampered location after selecting from auto suggest list
+//		if(postDetails.getUserEnteredLocationStr() != null && postDetails.getSelectedLocationStr() != null){
+//			if(!postDetails.getUserEnteredLocationStr().equals(postDetails.getSelectedLocationStr())){
+//				addFieldError("errorMsg", "Invalid Location");
+//				return Action.INPUT;
+//			}
+//		}
+//
+//		//Check if user has selected a different city AFTER choosing a location for a different city
+//		if(!postDetails.getCity().equals(postDetails.getSelectedCityCode())){
+//			addFieldError("errorMsg", "Invalid Location");
+//			return Action.INPUT;
+//		}
 
 		if(postDetails.getSubCategory().equals(CBuddyConstants.SUBCATEGORY_MOBILE_MOBILEPHONES)){
 			if(postDetails.getBrand() == null || postDetails.getBrand().equals("-1")){
@@ -298,7 +298,7 @@ public class MobileAction extends ActionSupport implements SessionAware, Servlet
 		pdmo.setCreatedOn(current);
 		pdmo.setBrand(postDetails.getBrand());
 		pdmo.setColor(postDetails.getColor());
-		pdmo.setLocation(postDetails.getSelectedLocationCode());
+		pdmo.setLocation(postDetails.getLocation());
 		pdmo.setMemorySize(postDetails.getMemorySize());
 		pdmo.setModel(postDetails.getModel());
 		pdmo.setModifiedBy(userId);

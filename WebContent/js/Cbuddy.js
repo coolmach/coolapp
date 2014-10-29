@@ -21,12 +21,12 @@ $(document).ready(function() {
 		showFilters(['brand', 'amt','year', 'cameraType', 'playerType', 'loadingType', 'automaticType', 'screenType', 'doubleDoor', 'subCategoryFilterStr']);
 
 		var sub = $('#sub').text();
-
+		path="/commonElectronicsFilter";
 		if($("#electronics_right li").hasClass('highlight_subcat')){
 			$("#electronics_right li").remove();
 		}
 		if(sub=="0"){
-			path="/commonFilter";
+			path="/commonElectronicsFilter";
 			$("#screenType-main").show();
 			$("#electronics_right li").eq(0).addClass("highlight_subcat");
 		}
@@ -288,8 +288,7 @@ $(document).ready(function() {
 
 	
 	//*****************************if user clicks on checkboxes******************************************
-	$(document).on('click', 'input[class^=check_]',function(event) {
-
+	$(document).off().on('click', 'input[class^=check_]',function(event) {
 		subCat = $('#sub').text();
 		cat = $('#cat').text();
 		$('#clear_all_f').show();

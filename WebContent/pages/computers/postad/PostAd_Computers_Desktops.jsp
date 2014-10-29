@@ -168,7 +168,10 @@ function localValidations(){
 		showOrHideErrorTip(false, "year", "How old is your Computer?");
 		return false;
 	}
-
+	if($("#location").val() == "-1"){
+		showOrHideErrorTip(false, "location", "Please select Location");
+		return false;
+	}
 	return validateForm();
 }
 

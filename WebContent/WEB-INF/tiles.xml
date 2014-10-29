@@ -185,10 +185,14 @@
         <put-attribute name="title" value="Post Ad" />
         <put-attribute name="body" value="/pages/computers/postad/PostAd_Computers.jsp" />
     </definition>
-        	<definition name="/postAd_Furniture.tiles" extends="baseLayout">
+   	<definition name="/postAd_Furniture.tiles" extends="baseLayout">
         <put-attribute name="title" value="Post Ad" />
         <put-attribute name="body" value="/pages/furniture/postad/PostAd_Furniture.jsp" />
     </definition>
+   	<definition name="/postAd_Others.tiles" extends="baseLayout">
+        <put-attribute name="title" value="Post Ad" />
+        <put-attribute name="body" value="/pages/others/postad/PostAd_Others.jsp" />
+    </definition>    
     <!-- NEW ENTRIES FOR POST AD - END -->
           
 </tiles-definitions>

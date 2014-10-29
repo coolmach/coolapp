@@ -187,7 +187,9 @@
 				<s:url action="post_Computers" var="url_COMP_POST" escapeAmp="false"></s:url>
 				<s:url action="post_Electronics" var="url_ELEC_POST" escapeAmp="false"></s:url>
 				<s:url action="post_Mobiles" var="url_MOBILE_POST" escapeAmp="false"></s:url>
-				<s:url action="post_Furniture" var="url_FURNITURE_POST" escapeAmp="false"></s:url>			
+				<s:url action="post_Furniture" var="url_FURNITURE_POST" escapeAmp="false"></s:url>
+				<s:url action="post_Others" var="url_OTHERS_POST" escapeAmp="false"></s:url>
+						
 				<ul id="postAdCategoriesList" style="margin-left:0px;">
 				    <li><span style="margin-right:10px;"><img src="./images/common/icons/home_1.png" width="16" height="16"></span><a href='<s:property value="#url_REAL_POST"/>'>Real Estate</a></li>
 				    <li><span style="margin-right:10px;"><img src="./images/common/icons/car_2.png" width="16" height="16"></span><a href='<s:property value="#url_AUTO_POST"/>'>Automobiles</a></li>
@@ -195,6 +197,7 @@
 				    <li><span style="margin-right:10px;"><img src="./images/common/icons/tv_3.png" width="16" height="16"></span><a href='<s:property value="#url_ELEC_POST"/>'>Home Appliances</a></li>
 				    <li><span style="margin-right:10px;"><img src="./images/common/icons/mobile_4.png" width="16" height="16"></span><a href='<s:property value="#url_MOBILE_POST"/>'>Mobiles</a></li>
 				    <li><span style="margin-right:10px;"><img src="./images/common/icons/sofa_1.png" width="16" height="16"></span><a href='<s:property value="#url_FURNITURE_POST"/>'>Furniture</a></li>
+				    <li><span style="margin-right:10px;"><img src="./images/common/icons/star.png" width="16" height="16"></span><a href='<s:property value="#url_FURNITURE_POST"/>'>Others</a></li>
 				</ul>
 			</div>
 		</div>		
