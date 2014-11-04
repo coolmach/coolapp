@@ -41,10 +41,13 @@ public class Testing {
 			String description_specific = postDetails.generateIndexableString(session);
 			System.out.println(description_specific);
 			Document doc = new Document();
+			doc.add(new StringField("postId", String.valueOf(poit.getPostId()), Field.Store.YES));
 			doc.add(new TextField("category", poit.getCategory(), Field.Store.YES));
-			doc.add(new StringField("subcategory", poit.getCategory(), Field.Store.YES));
-			doc.add(new StringField("city", poit.getCity(), Field.Store.YES));
-			doc.add(new StringField("location", LocationUtil.getCityName(session, poit.getCity()), Field.Store.YES));
+			doc.add(new StringField("subcategory", poit.getSubCategory(), Field.Store.YES));
+			doc.add(new StringField("city", LocationUtil.getCityName(session, poit.getCity()), Field.Store.YES));
+			if(poit.getLocation() != null){
+				doc.add(new StringField("location", LocationUtil.getLocationName(session, poit.getCity(), poit.getLocation()), Field.Store.YES));
+			}
 			doc.add(new StringField("title", poit.getTitle(), Field.Store.YES));
 			if(poit.getDescription() != null){
 				doc.add(new TextField("description_general", poit.getDescription(), Field.Store.YES));	
@@ -52,6 +55,10 @@ public class Testing {
 			doc.add(new TextField("description_specific", description_specific, Field.Store.YES));
 			doc.add(new TextField("description_full", poit.getTitle() + " " + poit.getDescription() + " " + description_specific, Field.Store.YES));
 			doc.add(new TextField("price", String.valueOf(poit.getPrice()), Field.Store.YES));
+			doc.add(new StringField("no_of_images", String.valueOf(poit.getNoOfImages()), Field.Store.YES));
+			if(poit.getImageFileName() != null){
+				doc.add(new StringField("image_file_name", poit.getImageFileName(), Field.Store.YES));
+			}
 			
 			System.out.println(" Create Index: " + description_specific + " :: " + poit.getDescription() );
 			
@@ -179,8 +186,8 @@ public class Testing {
 	public static void main(String[] args){
 		SessionFactory sessionFactory = CbuddySessionFactory.getSessionFactory();
 		Session dbSession = sessionFactory.openSession();
-		String searchString = "5 BHK";
-		//initIndex(dbSession);
+		String searchString = "Samsung";
+		initIndex(dbSession);
 		System.out.println("**********************************************");
 		List<MiniPostDetails> postsList = getPosts(dbSession, searchString);
 		for(MiniPostDetails postDetail:postsList){

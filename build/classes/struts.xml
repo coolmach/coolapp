@@ -347,6 +347,8 @@
 		</action>
 		<!-- FURNITURE - END -->
 		
+
+		
 		<action name="postAdContinue" class="com.cbuddy.posts.action.PostAdAction">
 			<interceptor-ref name="secureStack"></interceptor-ref>
 			<result name="login" type="tiles">/home.tiles</result>
@@ -441,6 +443,14 @@
 			<result name="success">/pages/furniture/details/AdDetails_Furniture.jsp</result>
 			<result name="login" type="redirect">miniLogin</result>
 		</action>		
+		
+		<action name="searchPosts" class="com.cbuddy.posts.action.SearchPostAction" method="getAdListForSearch">
+			<result name="success" type="tiles">/searchResults.tiles</result>
+		</action>
+		<action name="searchPostsFilter" class="com.cbuddy.posts.action.SearchPostAction" method="getAdListForSearch">
+			<result name="success">/pages/search_posts/AdList_SearchResults.jsp</result>
+		</action>
+				
 		<!--action name="activate">
 			<result name="login" type="tiles">/login.tiles</result>
 			<result name="success" type="tiles">/activation_code.tiles</result>

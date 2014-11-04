@@ -297,4 +297,26 @@ public class Utils {
 		return actCode;
 	}
 	
+	public static String getAdDetailsUrl(String categoryCode, String subCategoryCode){
+		String adDetailsUrl = "";
+		if(categoryCode.equals(CBuddyConstants.CATEGORY_REAL_ESTATE)){
+			adDetailsUrl = "realestateAdDetails";
+		}else if(categoryCode.equals(CBuddyConstants.CATEGORY_AUTOMOBILES)){
+			adDetailsUrl = "automobileAdDetails";
+		}else if(categoryCode.equals(CBuddyConstants.CATEGORY_ELECTRONICS_AND_HOUSEHOLD)){
+			if(subCategoryCode.equals(CBuddyConstants.SUBCATEGORY_ELECTRONICS_AND_HOUSEHOLD_AIRCOOLER)){adDetailsUrl = "televisionAdDetails";}
+			else if(subCategoryCode.equals(CBuddyConstants.SUBCATEGORY_ELECTRONICS_AND_HOUSEHOLD_DVD_MUSIC_PLAYER)){adDetailsUrl = "dvdAdDetails";}
+			else if(subCategoryCode.equals(CBuddyConstants.SUBCATEGORY_ELECTRONICS_AND_HOUSEHOLD_CAMERA)){adDetailsUrl = "cameraAdDetails";}
+			else if(subCategoryCode.equals(CBuddyConstants.SUBCATEGORY_ELECTRONICS_AND_HOUSEHOLD_FRIDGE)){adDetailsUrl = "fridgeAdDetails";}
+			else if(subCategoryCode.equals(CBuddyConstants.SUBCATEGORY_ELECTRONICS_AND_HOUSEHOLD_TELEVISION)){adDetailsUrl = "televisionAdDetails";}
+			else if(subCategoryCode.equals(CBuddyConstants.SUBCATEGORY_ELECTRONICS_AND_HOUSEHOLD_WASHINGMACHINE)){adDetailsUrl = "washingMachineAdDetails";}
+		}else if(categoryCode.equals(CBuddyConstants.CATEGORY_COMPUTERS)){
+			adDetailsUrl = "computersAdDetails";
+		}else if(categoryCode.equals(CBuddyConstants.CATEGORY_MOBILE)){
+			adDetailsUrl = "mobilesAdDetails";
+		}else if(categoryCode.equals(CBuddyConstants.CATEGORY_FURNITURE)){
+			adDetailsUrl = "furnitureAdDetails";
+		}
+		return adDetailsUrl;
+	}
 }

@@ -46,7 +46,8 @@
 	
 <script>
 function getCompanies(){
-	applyFilters();	
+	//alert("location - 1");
+	//applyFilters();	
 	$.ajax({
 		url:"getCompanies",
 		data:{},
@@ -72,11 +73,13 @@ function updateCompanySection(companyName, companyId){
 	$("#corpNameSection").html(content);
 	$("#selectedCorporateDetails").show();
 	$("#corpId").val(companyId);
+	//alert("location - 2");
 	applyFilters();
 }
 
 function getLocations(city){
-	applyFilters();	
+	//alert("location - 3");
+	//applyFilters();	
 	
 	$("#locationDetails").html(""); 
 	
@@ -111,6 +114,7 @@ function updateNeighborhood(city, location){
 			$("#locationDetails").html(data);
 			$("#locationDetails").show();
 			$("#location").attr("checked", "true");
+			//alert("location - 4");
 			applyFilters();
 		},
 		error: function(data){

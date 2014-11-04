@@ -36,6 +36,7 @@ $(document).ready(function(){
 					$("#locationDetails").html(data);
 					$("#locationDetails").show();
 					$("#location").attr("checked", "true");
+					//alert("common.js - 1");
 					applyFilters();
 				},
 				error:function(data){
@@ -81,6 +82,7 @@ $(document).ready(function(){
 			$("#corpNameSection").html(content);
 			$("#selectedCorporateDetails").show();
 			$("#corpId").val(ui.item.value);
+			//alert("common.js - 2");
 			applyFilters();
 		},
 		minLength: 2
@@ -90,7 +92,7 @@ $(document).ready(function(){
 });
 
 function applyFilters(){
-
+	//alert("applyFilters()");
 	var ctxPath = $('#context_path').val().trim();
 	var path = $("#action").val();
 
@@ -195,8 +197,10 @@ function applyFilters(){
 		subCat = $('#sub').text();
 		cat = $('#cat').text();
 	
+		//alert("common.js - 3");
+		
 		applyFilters();	
-	
+		
 		$("#locationListBar").html("");
 		$("#horizontalSeparator").html("");
 		$("#neighborhoodLocationBar").html("");
@@ -213,6 +217,8 @@ function applyFilters(){
 		subCat = $('#sub').text();
 		cat = $('#cat').text();
 	
+		//alert("common.js - 4");
+		
 		applyFilters();	
 	
 		$("#corpSearchString").val("");

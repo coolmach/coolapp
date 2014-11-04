@@ -80,7 +80,10 @@
         <put-attribute name="title" value="Automobiles" />
         <put-attribute name="body" value="/pages/automobile/Automobile.jsp" />
     </definition> 
-    
+    <definition name="/searchResults.tiles" extends="baseLayout">
+        <put-attribute name="title" value="Search Posts" />
+        <put-attribute name="body" value="/pages/search_posts/SearchResults.jsp" />
+    </definition>    
     <!-- OLD ENTRIES - START -->
     <definition name="/postad_real_estate.tiles" extends="baseLayout">
         <put-attribute name="title" value="Post Ad" />

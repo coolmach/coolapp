@@ -1,6 +1,7 @@
 package com.cbuddy.posts.model;
 
 public class MiniPostDetails {
+	private int postId;
 	private String title;
 	private String category;
 	private String subcategory;
@@ -10,7 +11,12 @@ public class MiniPostDetails {
 	private String description_specific;
 	private String description_full;
 	private double price;
+	private String imageFileName;
 	private int noOfImages;
+		
+	//Attributes used in List Screen
+	private String urlForAdDetails;
+	private String subcategoryStr;
 	
 	public String getTitle() {
 		return title;
@@ -71,6 +77,30 @@ public class MiniPostDetails {
 	}
 	public void setDescription_full(String description_full) {
 		this.description_full = description_full;
+	}
+	public String getUrlForAdDetails() {
+		return urlForAdDetails;
+	}
+	public void setUrlForAdDetails(String urlForAdDetails) {
+		this.urlForAdDetails = urlForAdDetails;
+	}
+	public String getImageFileName() {
+		return imageFileName;
+	}
+	public void setImageFileName(String imageFileName) {
+		this.imageFileName = imageFileName;
+	}
+	public String getSubcategoryStr() {
+		return subcategoryStr;
+	}
+	public void setSubcategoryStr(String subcategoryStr) {
+		this.subcategoryStr = subcategoryStr;
+	}
+	public int getPostId() {
+		return postId;
+	}
+	public void setPostId(int postId) {
+		this.postId = postId;
 	}
 	
 }
