@@ -10,6 +10,11 @@ import javax.persistence.InheritanceType;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
+import org.hibernate.Session;
+
+import com.cbuddy.util.CBuddyConstants;
+import com.cbuddy.util.LocationUtil;
+
 
 @Entity
 @Table(name = "Pcomp")
@@ -41,6 +46,24 @@ public class Pcomp {
 	private String page="1";
 	
 	private int postIdStr;
+	
+	public String generateIndexableString(Session session){
+		StringBuffer index = new StringBuffer("");
+		
+		index.append(" ").append(LocationUtil.getCityName(session, city)); //City
+		index.append(" ").append(LocationUtil.getLocationName(session, city, location));
+		
+		if(subCategory == CBuddyConstants.SUBCATEGORY_COMPUTERS_DESKTOPS){
+			index.append(" ").append("Desktop");
+		}else if(subCategory == CBuddyConstants.SUBCATEGORY_COMPUTERS_LAPTOPS){
+			index.append(" ").append("Laptop");
+		}else if(subCategory == CBuddyConstants.SUBCATEGORY_COMPUTERS_TABS){
+			index.append(" ").append("Tablet");
+			index.append(" ").append("Tab");
+		}
+		
+		return index.toString();
+	}
 	
 	@Id
 	@Column(name="POST_ID")

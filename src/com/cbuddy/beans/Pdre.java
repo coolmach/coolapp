@@ -11,6 +11,11 @@ import javax.persistence.InheritanceType;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
+import org.hibernate.Session;
+
+import com.cbuddy.util.CBuddyConstants;
+import com.cbuddy.util.LocationUtil;
+
 @Entity
 @Table(name = "Pdre")
 @Inheritance(strategy = InheritanceType.JOINED)
@@ -77,6 +82,91 @@ public class Pdre {
 //	public void setImageFileName(String imageFileName) {
 //		this.imageFileName = imageFileName;
 //	}
+	private void generateStringForFacilities(StringBuffer buffer){
+		if(gym != null && gym.equals("Y")){
+			buffer.append(" ").append("Gym");
+		}
+		if(clubHouse != null && clubHouse.equals("Y")){
+			buffer.append(" ").append("Club House");
+		}
+		if(swimmingPool != null && swimmingPool.equals("Y")){
+			buffer.append(" ").append("Swimming Pool");
+		}
+		if(carParking != null && carParking.equals("Y")){
+			buffer.append(" ").append("Car Parking");
+		}
+		if(wifi != null && wifi.equals("Y")){
+			buffer.append(" ").append("Wifi");
+			buffer.append(" ").append("Wi-fi");
+			buffer.append(" ").append("Wi fi");
+		}
+		if(childrenPlayArea != null && childrenPlayArea.equals("Y")){
+			buffer.append(" ").append("Children Play Area");
+			buffer.append(" ").append("Children Playarea");
+		}
+		if(powerBackup != null && powerBackup.equals("Y")){
+			buffer.append(" ").append("Power Backup");
+			buffer.append(" ").append("UPS");
+			buffer.append(" ").append("24 hour power supply");
+		}
+		if(tv != null && tv.equals("Y")){
+			buffer.append(" ").append("Television");
+			buffer.append(" ").append("TV");
+			buffer.append(" ").append("DTH");
+		}
+		if(food != null && food.equals("Y")){
+			buffer.append(" ").append("Food");
+		}
+	}
+	public String generateIndexableString(Session session){
+		StringBuffer index = new StringBuffer("");
+		
+		if(subCategory == CBuddyConstants.SUBCATEGORY_REAL_ESTATE_APARTMENT_FOR_SALE){
+			index.append(" ").append("Apartment for sale");
+			index.append(" ").append("Apartments for sale");
+			index.append(" ").append(bedrooms + " BHK");
+			index.append(" ").append(approvalAuthority + " Approval");
+			index.append(" ").append(facingDirection + " Facing");
+		}else if(subCategory == CBuddyConstants.SUBCATEGORY_REAL_ESTATE_APARTMENT_FOR_RENT){
+			index.append(" ").append("Apartment for rent");
+			index.append(" ").append("Apartments for sale");
+			index.append(" ").append(bedrooms + " BHK");
+			index.append(" ").append(approvalAuthority + " Approval");
+			index.append(" ").append(facingDirection + " Facing");
+		}else if(subCategory == CBuddyConstants.SUBCATEGORY_REAL_ESTATE_IND_HOUSE_FOR_SALE){
+			index.append(" ").append("Independent house for sale");
+			index.append(" ").append(bedrooms + " BHK");
+			index.append(" ").append(approvalAuthority + " Approval");
+			index.append(" ").append(facingDirection + " Facing");
+		}else if(subCategory == CBuddyConstants.SUBCATEGORY_REAL_ESTATE_IND_HOUSE_FOR_RENT){
+			index.append(" ").append("Independent house for rent");
+			index.append(" ").append(bedrooms + " BHK");
+			index.append(" ").append(approvalAuthority + " Approval");
+			index.append(" ").append(facingDirection + " Facing");
+		}else if(subCategory == CBuddyConstants.SUBCATEGORY_REAL_ESTATE_ROOMMATE_REQUIRED){
+			index.append(" ").append("Roommate");
+			index.append(" ").append("Room mate");
+			index.append(" ").append("Room-mate");
+			index.append(" ").append(regionalPreference);
+		}else if(subCategory == CBuddyConstants.SUBCATEGORY_REAL_ESTATE_PG_ACCOMODATION){
+			index.append(" ").append("PG Accomodation");
+			index.append(" ").append("Paying Guest");
+			if(gender != null){
+				if(gender.equals("M")){
+					index.append(" ").append("Gents");
+				}else{
+					index.append(" ").append("Ladies");
+					index.append(" ").append("Girls");
+				}
+			}
+		}
+		index.append(" ").append(LocationUtil.getCityName(session, city)); //City
+		index.append(" ").append(LocationUtil.getLocationName(session, city, location));
+		generateStringForFacilities(index);
+		
+		
+		return index.toString();
+	}
 	
 	@Transient
 	public int getPostIdStr() {

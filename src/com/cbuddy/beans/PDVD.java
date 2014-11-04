@@ -10,6 +10,10 @@ import javax.persistence.InheritanceType;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
+import org.hibernate.Session;
+
+import com.cbuddy.util.LocationUtil;
+
 
 @Entity
 @Table(name = "PDVD")
@@ -37,6 +41,20 @@ public class PDVD {
 	private String offset;
 	private String page="1";
 
+	public String generateIndexableString(Session session){
+		StringBuffer index = new StringBuffer("");
+		
+		index.append(" ").append(LocationUtil.getCityName(session, city)); //City
+		index.append(" ").append(LocationUtil.getLocationName(session, city, location));
+		index.append(" ").append(brand);
+		index.append(" ").append(model);
+		if(playerType != null){
+			index.append(" ").append(playerType);
+		}
+		
+		return index.toString();
+	}
+	
 	@Id
 	@Column(name="POST_ID")
 	public int getPostId() {

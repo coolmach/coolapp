@@ -1,0 +1,77 @@
+body{margin:0px; padding:0px;min-width:500px;width:82%;margin-left:9%;}
+
+#header{height:10%;min-height:100px;border-bottom:1px solid #BBBBBB;}
+#mainContent{height:80%;min-height:500px;}
+#footer{height:5%;}
+#socialMediaSection{float:right;}
+
+/*
+#header{background-color:#AAAAAA;}
+#mainContent{background-color:#FFFFFF;}
+#footer{background-color:#CCAAAA;}
+#main_top{background-color:#FFFF00;}
+#main_bottom{background-color:#CCCCCC;}
+#main_top_left{background-color:#FFAAAA;}*/
+
+#menuSection{padding-top:4%;float:right;margin-left:5%;}
+.menuItem{text-align:center;width:95px;color:#777776;text-transform:uppercase;padding-top:10px;font-size:12px;font-family:'Arial';padding:10px;}
+.small_icon{float:left;}
+.small_icon img{width:20px; height:20px; margin-left:15px;}
+#logoSection img{margin-top:20px;}
+
+.icon{float:left;width:100px;height:100px;margin-right:50px;margin-bottom:50px;}
+.icon_image{margin-left:17px;}
+.icon_text{margin-top:10px;}
+.icon_text{text-align:center;width:95px;color:#777776;text-transform:uppercase;padding-top:10px;font-size:12px;font-family:'Arial';}
+
+#main_left{float:left;height:auto;padding-top:50px;}
+#main_right{padding-top:50px;float:left;}
+#logoSection{float:left;}
+#menuSection{float:left;}
+#search_tag_label{font-family:'tryFont', 'Open Sans Condensed', 'Arial Narrow', Arial, sans-serif;color:#777776;font-size:25px;margin-top:60px;}
+#icons_row{margin-top:50px;}
+#postAdCategoriesList li{height:30px; color:#FF6666; padding:5px; list-style-type:none;font-size:15px;}
+#postAdCategoriesList a{text-decoration:none;font-family:'tryFont', 'Open Sans Condensed', 'Arial Narrow', Arial, sans-serif;font-size:17px;}
+.postAdButton{width:150px; height:40px; background-color:#0099CC; border:0px solid #FFFFFF; color:#FFFFFF; font-size:16px;margin-left:8%;}
+#footer{border-top:1px solid #BBBBBB; padding-top:10px;}
+
+#main_bottom{margin-top:40px;}
+
+@font-face{
+	font-family:tryFont;
+	src:url(../fonts/alegreya-sans/AlegreyaSans-Light.otf)
+}
+
+#mainHeading{
+	font-family:'tryFont', 'Open Sans Condensed', 'Arial Narrow', Arial, sans-serif;
+	color: #999999;font-size: 40px;line-height: 1.2em;margin: 0 0 50px 0;padding: 0;position: relative;
+}
+
+#subHeading{
+	font-family:tryFont,'Open Sans Condensed', 'Arial Narrow', Arial, sans-serif;
+	color: #aaaaaa;font-size: 30px; line-height: 1.2em; margin: 0 0 50px 0; padding: 0; position: relative;
+}
+
+
+.searchText{font-family:'tryFont', 'Open Sans Condensed', 'Arial Narrow', Arial, sans-serif;height:50px; border:1px solid #0099CC; padding-left:15px;font-size:18px; width:500px;} 
+.searchText:focus{
+  box-shadow: 0 0 5px rgba(81, 203, 238, 1);
+  border: 1px solid rgba(81, 203, 238, 1);
+}
+
+.icon a{text-decoration:none;}
+.icon_image{width:64px; height:64px;}
+#img_1_color{background-image:url("../images/common/icons/home_1.png");position:relative;}
+#img_2_color{background-image:url("../images/common/icons/car_2.png");}
+#img_3_color{background-image:url("../images/common/icons/tv_3.png");}
+#img_4_color{background-image:url("../images/common/icons/mobile_4.png");}
+#img_5_color{background-image:url("../images/common/icons/computer_5.png");}
+#img_6_color{background-image:url("../images/common/icons/sofa_1.png");}
+
+#img_1_gray{background-image:url("../images/common/icons/home_g.png");position:relative;}
+#img_2_gray{background-image:url("../images/common/icons/car_g.png");}
+#img_3_gray{background-image:url("../images/common/icons/tv_g.png");}
+#img_4_gray{background-image:url("../images/common/icons/mobile_g.png");}
+#img_5_gray{background-image:url("../images/common/icons/computer_g.png");}
+#img_6_gray{background-image:url("../images/common/icons/sofa_g.png");}
+

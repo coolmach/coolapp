@@ -19,10 +19,13 @@
         <put-attribute name="title" value="Login" />
         <put-attribute name="body" value="/Login.jsp" />
     </definition>
-    <definition name="/home.tiles" extends="baseLayout">
+    <!--definition name="/home.tiles" extends="baseLayout">
         <put-attribute name="title" value="Home" />
         <put-attribute name="body" value="/Home.jsp" />
-    </definition>
+    </definition-->
+    <definition name="/home.tiles">
+        <put-attribute name="body" value="/Home.jsp" />
+    </definition>    
     <definition name="/pageNotFound.tiles" extends="baseLayout">
         <put-attribute name="title" value="Page Not Found" />
         <put-attribute name="body" value="/PageNotFound.jsp" />

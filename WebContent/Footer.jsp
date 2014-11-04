@@ -1,18 +1,8 @@
-	<div class="row" id="footer">
-		<div class="col-sm-offset-6 col-sm-5" id="connectArea" style="margin-left:64.25%;">
-			<span class="smallIcon">
-				<img src="images/common/twitter.png"> Twitter
-			</span>
-			<span class="smallIcon">
-				<img src="images/common/facebook.png"> Facebook
-			</span>
-			<span class="smallIcon">
-				<img src="images/common/google+.png"> Google+
-			</span>				
-		</div>		
+	<p style="clear:both">
+	<div id="footer">
+		<div id="socialMediaSection" >
+			<div class="small_icon"><img width="20" height="20" src="images/common/google+.png"/></div>
+			<div class="small_icon"><img width="20" height="20" src="images/common/facebook.png"/></div>
+			<div class="small_icon"><img width="20" height="20" src="images/common/twitter.png"/></div>
+		</div>
 	</div>
-	
-	<!-- <div class="col-md-12 footer" style="float:left;min-width:100%;">
-	<p class="pull-right" id="footer_text">Copyright reserved IdeaMint
-		Software Labs, 2014</p>
-</div> -->

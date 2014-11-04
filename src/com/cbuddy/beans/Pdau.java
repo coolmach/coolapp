@@ -10,11 +10,16 @@ import javax.persistence.InheritanceType;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
+import org.hibernate.Session;
+
+import com.cbuddy.util.CBuddyConstants;
+import com.cbuddy.util.LocationUtil;
+
 
 @Entity
 @Table(name = "Pdau")
 @Inheritance(strategy = InheritanceType.JOINED)
-public class Pdau {
+public class Pdau implements IIndexable{
 	
 	private int postId;
 	private String subCategory;
@@ -49,6 +54,29 @@ public class Pdau {
 	private String page="1";
 
 	private int postIdStr;
+	
+	public String generateIndexableString(Session session){
+		StringBuffer index = new StringBuffer("");
+		
+		index.append(" ").append(LocationUtil.getCityName(session, city)); //City
+		index.append(" ").append(LocationUtil.getLocationName(session, city, location));
+		index.append(" ").append(make);
+		index.append(" ").append(model);
+		index.append(" ").append(color);
+		index.append(" ").append(fuelType);
+		index.append(" ").append(regState);
+		
+		if(subCategory == CBuddyConstants.SUBCATEGORY_AUTOMOBILES_CARS){
+			index.append(" ").append("Car");
+		}else if(subCategory == CBuddyConstants.SUBCATEGORY_AUTOMOBILES_MOTORCYCLES){
+			index.append(" ").append("Motor");
+			index.append(" ").append("Bike");
+		}else{
+			index.append(" ").append("cycle");
+		}
+		
+		return index.toString();
+	}
 	
 	@Id
 	@Column(name="POST_ID")

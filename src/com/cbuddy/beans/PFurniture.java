@@ -10,6 +10,10 @@ import javax.persistence.InheritanceType;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
+import org.hibernate.Session;
+
+import com.cbuddy.util.LocationUtil;
+
 
 @Entity
 @Table(name = "PFurniture")
@@ -36,6 +40,17 @@ public class PFurniture {
 	
 	private int postIdStr;
 
+	public String generateIndexableString(Session session){
+		StringBuffer index = new StringBuffer("");
+		
+		index.append(" ").append(LocationUtil.getCityName(session, city)); //City
+		index.append(" ").append(LocationUtil.getLocationName(session, city, location));
+		
+		index.append(" ").append(type);
+		
+		return index.toString();
+	}
+	
 	@Id
 	@Column(name="POST_ID")
 	public int getPostId() {

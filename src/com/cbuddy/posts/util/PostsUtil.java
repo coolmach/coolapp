@@ -66,6 +66,9 @@ public class PostsUtil {
 			updatePostsToBeActivated(user, poit.getPostId(), dbSession);
 		}
 
+		//Add to post index
+		IndexUtil.addIndex(dbSession, poit, postDetails);
+		
 		return poit;
 	}
 

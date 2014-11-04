@@ -594,6 +594,9 @@
 		</action>
 		<action name="getCompanies" class="com.cbuddy.common.action.CompaniesListAction" method="getCompanies">
 			<result type="json"></result>
-		</action>								 
+		</action>
+		<action name="getKeywords" class="com.cbuddy.common.action.GlobalSearchAction" method="getKeywords">
+			<result type="json"></result>
+		</action>										 
 	</package>
 </struts>

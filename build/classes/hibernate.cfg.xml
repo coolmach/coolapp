@@ -80,6 +80,7 @@
 		<mapping class="com.cbuddy.beans.CarMaster" />
 		<mapping class="com.cbuddy.beans.BikeMaster" />
 		<mapping class="com.cbuddy.beans.TabMaster" />
+		<mapping class="com.cbuddy.beans.SearchKeywords" />
 	</session-factory>
 
 </hibernate-configuration>

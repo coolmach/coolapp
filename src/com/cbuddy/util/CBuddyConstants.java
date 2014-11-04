@@ -11,7 +11,6 @@ public class CBuddyConstants {
 
 	public static final String CATEGORY_REAL_ESTATE = "REAL";
 	public static final String CATEGORY_AUTOMOBILES = "AUTO";
-	public static final String CATEGORY_LAPTOP_AND_ACCESSORIES = "LAPTOP";
 	public static final String CATEGORY_ELECTRONICS_AND_HOUSEHOLD = "ELEC";
 	public static final String CATEGORY_BOOK_DVD = "BOOK";
 	public static final String CATEGORY_COMPUTERS = "COMP";

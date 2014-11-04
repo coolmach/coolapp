@@ -10,11 +10,15 @@ import javax.persistence.InheritanceType;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
+import org.hibernate.Session;
+
+import com.cbuddy.util.LocationUtil;
+
 
 @Entity
 @Table(name = "Pdmo")
 @Inheritance(strategy = InheritanceType.JOINED)
-public class Pdmo {
+public class Pdmo{
 	
 	private int postId;
 	private String subCategory;
@@ -51,6 +55,30 @@ public class Pdmo {
 	
 	private int postIdStr;
 
+	public String generateIndexableString(Session session){
+		StringBuffer index = new StringBuffer("");
+		
+		index.append(" ").append(LocationUtil.getCityName(session, city)); //City
+		index.append(" ").append(LocationUtil.getLocationName(session, city, location));
+		index.append(" ").append(brand);
+		index.append(" ").append(model);
+
+		if(smartPhone != null && smartPhone.equals("Y")){
+			index.append(" ").append("Smart phone");
+			index.append(" ").append("Smartphone");
+		}
+		if(touchScreen != null && touchScreen.equals("Y")){
+			index.append(" ").append("touch screen");
+			index.append(" ").append("touchscreen");
+		}
+		if(accessoryType != null && !accessoryType.equals("")){
+			index.append(" ").append(accessoryType);
+		}
+		
+		return index.toString();
+	}
+	
+	
 	@Id
 	@Column(name="POST_ID")
 	public int getPostId() {

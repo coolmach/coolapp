@@ -1,305 +1,155 @@
 
-
-
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-
-<link rel="stylesheet" href="/Virat/struts/xhtml/styles.css" type="text/css"/>
-<script src="/Virat/struts/utils.js" type="text/javascript"></script>
-
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Home</title>
-
-<script type="text/javascript" src="js/jquery.min.js"></script>
-<script type="text/javascript" src="thirdparty/jquery-ui/jquery-ui-1.10.3.custom.min.js"></script>
-<script type="text/javascript" src="js/autocomplete.js"></script>
-<script type="text/javascript" src="js/jasny-bootstrap.min.js"></script>
-<script type="text/javascript" src="js/bootstrap.min.js"></script>
-<script type="text/javascript" src="js/home_plain.js"></script>
-<script type="text/javascript" src="js/common.js"></script>
-<script type="text/javascript" src="thirdparty/jquery-validate/jquery.validate.js"></script>
-<script type="text/javascript" src="thirdparty/jquery-validate/additional-methods.js"></script>
-<script type="text/javascript" src="js/ToWords.js"></script>
-<script type="text/javascript" src="js/Cbuddy.js"></script>
-
-<link rel="stylesheet" href="css/Cbuddy.css" type="text/css">
-<link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
-<link rel="stylesheet" href="css/bootstrap-theme.min.css" type="text/css">
-<link rel="stylesheet" href="css/jasny-bootstrap.min.css" type="text/css">
-<link rel="stylesheet" href="css/home.css" type="text/css">
-<link rel="stylesheet" href="css/home_plain.css" type="text/css">
-<link rel="stylesheet" href="css/MyHome.css" type="text/css">
+<html>
+<link rel="stylesheet" type="text/css" href="./css/new_home.css"/>
 <link rel="stylesheet" type="text/css" href="thirdparty/jquery-ui/jquery-ui-1.10.3.custom.min.css" />
-<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300" />
-
-<link rel="shortcut icon" href="images/common/favicon.png" type="image/png">
-
-</head>
-<body>
-	<input type="hidden" id="context_path" value='/Virat  ' />
-    <div id="wrap">
-		
-
-
-
-
-
-
-
-
-<!DOCTYPE html>
-<link rel="stylesheet" href="css/bootstrap.min.css">
-<style>
-	body{margin:0px;padding:0px;}
-
-	* {
-	  -webkit-border-radius: 0 !important;
-		 -moz-border-radius: 0 !important;
-			  border-radius: 0 !important;
-	}
-
-	#mainHeading{
-		font-family:'Open Sans Condensed', 'Arial Narrow', Arial, sans-serif;
-		color: #999999;
-		font-size: 46px;
-		line-height: 1.1em;
-		margin: 0 0 50px 0;
-		padding: 0;
-		position: relative;
-	}
-
-	#subHeading{
-		font-family:'Open Sans Condensed', 'Arial Narrow', Arial, sans-serif;
-		color: #aaaaaa;
-		font-size: 35px;
-		line-height: 1.1em;
-		margin: 0 0 50px 0;
-		padding: 0;
-		position: relative;
-	}
-
-	.smallIcon img{width:15px;height:15px;}
-	.smallIcon{font-size:12px;margin-right:5px;}
-	.smallIcon{
-		display: block;
-		height: 14px;
-		float: left;
-		font: normal 10px 'Oswald',Arial,sans-serif;
-		text-transform: uppercase;
-		color: #BBBBBB;
-		text-decoration: none;
-		margin-right: 12px;
-		padding: 0 0 0 17px;
-	}
-
-	#headerRow{border-bottom:1px solid #CCCCCC; padding-bottom:16px;padding-top:20px;}
-	#headerRow{height:10%; overflow:hidden; width:100%;}
-	#footerRow{padding-top:15px; border-top:1px solid #0099CC;padding-bottom:10px;}
-	#footer{height:15%;overflow:hidden; width:100%; padding-top:15px; padding-bottom:10px; border-top:1px solid #CCCCCC; }
-
-</style>
-<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300" />
-<div id="headerRow" class="row">
-	<div class="col-sm-1" id="imageSection" style="margin-left:9.5%;">
-		<a href="/Virat/.action">
-			<img src="images/common/Logo-Blue.jpg" width="179.5" height="59">
-		</a>
+	<div id="header">
+		<div id="logoSection"><a href="/Virat">
+			<img width="174" height="58" src="./images/common/Logo-Blue.jpg"></a>
+		</div>
+		<div id="menuSection">
+			<span class="menuItem">What's CBuddy?</span>
+			<span class="menuItem">Sign In</span>
+		</div>
 	</div>
-	<div class="col-sm-3" style="padding-top:45px;color:#0099CC;margin-left:53%;"> 
-		<span style="font-size:12px;">
-			
-			
-				<span style="margin-right:10px;font-size:12px;">
-					<a href="
-						
-							
-						/Virat/mydashboard.action?userId=111">Dashboard</a></span> | 
-				<span style="margin-left:5px; margin-right:5px;"><a href="/Virat/logout.action">Sign Out</a></span> |
-				<span style="margin-left:5px;"><a href="/Virat/changePwd.action">Change Password</a></span> 
-			
-		</span>
+	<div id="mainContent">
+		<div id="main_left">
+			<div id="mainHeading">An <span style="color:black">Exclusive</span> Buy And Sell Portal For <span style="color:black">Professionals!</span></div>
+			<div id="subHeading">Say No To Brokers, Yes to Fellow IT Professionals!</div>
+			<div id="searchTextSection">
+				<input type="text" id="item_search" class="searchText" placeholder="Search for items">
+			</div>
+			<div id="search_tag_label">
+				Search Posts by Categories
+			</div>
+			<div id="icons_row">
+				<div class="icon" id="tile1">
+					<a href="/Virat/realestate?category=REAL&amp;subCategory=1">
+						<div id="img_1_color" class="icon_image"></div>
+						<div id="img_1_gray" class="icon_image" style="display:none"></div>
+						<div id="icon_caption_1" class="icon_text">Real Estate</div>
+					</a>
+				</div>
+				<div class="icon" id="tile2">
+					<a href="/Virat/automobile?category=AUTO&amp;subCategory=1">
+						<div id="img_2_color" class="icon_image"></div>
+						<div id="img_2_gray" class="icon_image" style="display:none"></div>
+						<div id="icon_caption_2" class="icon_text">Automobiles</div>
+					</a>
+				</div>
+				<div class="icon" id="tile3">
+					<a href="/Virat/electronics?category=ELEC&amp;subCategory=0">
+						<div id="img_3_color" class="icon_image"></div>
+						<div id="img_3_gray" class="icon_image" style="display:none"></div>
+						<div id="icon_caption_3" class="icon_text">Electronics</div>
+					</a>
+				</div>
+				<div class="icon" id="tile4">
+					<a href="/Virat/mobiles?category=MOBILE&amp;subCategory=1">
+						<div id="img_4_color" class="icon_image"></div>
+						<div id="img_4_gray" class="icon_image" style="display:none"></div>
+						<div id="icon_caption_4" class="icon_text">Mobiles</div>
+					</a>
+				</div>
+				<div class="icon" id="tile5">
+					<a href="/Virat/computers?category=COMP&amp;subCategory=1">
+						<div id="img_5_color" class="icon_image"></div>
+						<div id="img_5_gray" class="icon_image" style="display:none"></div>
+						<div id="icon_caption_5" class="icon_text">Computers</div>
+					</a>
+				</div>
+				<div class="icon" id="tile6">
+					<a href="/Virat/furniture?category=FURN">
+						<div id="img_6_color" class="icon_image"></div>
+						<div id="img_6_gray" class="icon_image" style="display:none"></div>
+						<div id="icon_caption_6" class="icon_text">Furniture</div>
+					</a>
+				</div>
+			</div>
+		</div>
+		<div id="main_right">
+			<input type="button" id="postAdBtn" class="postAdButton" value="Post Ad">
+			<div id="postAdCategories" style="display:none; position:absolute; padding-top:5px;">
+				<ul id="postAdCategoriesList" style="margin-left:0px;">
+				    <li><span style="margin-right:10px;"><img src="./images/common/icons/home_1_small.png" width="16" height="16"></span><a href='/Virat/post_RealEstate.action'>Real Estate</a></li>
+				    <li><span style="margin-right:10px;"><img src="./images/common/icons/car_2_small.png" width="16" height="16"></span><a href='/Virat/post_Automobile.action'>Automobiles</a></li>
+				    <li><span style="margin-right:10px;"><img src="./images/common/icons/computer_5_small.png" width="16" height="16"></span><a href='/Virat/post_Computers.action'>Computers</a></li>
+				    <li><span style="margin-right:10px;"><img src="./images/common/icons/tv_3_small.png" width="16" height="16"></span><a href='/Virat/post_Electronics.action'>Home Appliances</a></li>
+				    <li><span style="margin-right:10px;"><img src="./images/common/icons/mobile_4_small.png" width="16" height="16"></span><a href='/Virat/post_Mobiles.action'>Mobiles</a></li>
+				    <li><span style="margin-right:10px;"><img src="./images/common/icons/sofa_1_small.png" width="16" height="16"></span><a href='/Virat/post_Furniture.action'>Furniture</a></li>
+				</ul>
+			</div>			
+		</div>
 	</div>
-</div>
-		<div id="content">
-			<div class="container_of_imgs">
-				
+	<p style="clear:both">
+	<div id="footer">
+		<div id="socialMediaSection" >
+			<div class="small_icon"><img width="20" height="20" src="images/common/google+.png"/></div>
+			<div class="small_icon"><img width="20" height="20" src="images/common/facebook.png"/></div>
+			<div class="small_icon"><img width="20" height="20" src="images/common/twitter.png"/></div>
+		</div>
+	</div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!DOCTYPE html>
-<link rel="stylesheet" href="css/bootstrap.min.css">
-<style>
-	body{margin:0px;padding:0px;}
-
-	* {
-	  -webkit-border-radius: 0 !important;
-		 -moz-border-radius: 0 !important;
-			  border-radius: 0 !important;
-	}
-
-	#mainHeading{
-		font-family:'Open Sans Condensed', 'Arial Narrow', Arial, sans-serif;
-		color: #999999;
-		font-size: 46px;
-		line-height: 1.1em;
-		margin: 0 0 50px 0;
-		padding: 0;
-		position: relative;
-	}
-
-	#subHeading{
-		font-family:'Open Sans Condensed', 'Arial Narrow', Arial, sans-serif;
-		color: #aaaaaa;
-		font-size: 35px;
-		line-height: 1.1em;
-		margin: 0 0 50px 0;
-		padding: 0;
-		position: relative;
-	}
-
-	.smallIcon img{width:15px;height:15px;}
-	.smallIcon{font-size:12px;margin-right:5px;}
-	.smallIcon{
-		display: block;
-		height: 14px;
-		float: left;
-		font: normal 10px 'Oswald',Arial,sans-serif;
-		text-transform: uppercase;
-		color: #BBBBBB;
-		text-decoration: none;
-		margin-right: 12px;
-		padding: 0 0 0 17px;
-	}
-
-		#headerRow{background-color:#FFFFFF;}
-		#headerRow img{padding-left:24px;}
-	#messageRow{padding-top:25px;width:96.5%;}
-
-	#searchBoxRow{padding-top:5px; height:12%;padding-bottom:48px;margin-left:1%;}
-		#searchBox{height:45px; border:1px solid #0099CC; padding-left:15px;font-size:18px; width:315px;} 
-		
-		#searchBox:focus{
-		  box-shadow: 0 0 5px rgba(81, 203, 238, 1);
-		  border: 1px solid rgba(81, 203, 238, 1);
-		}	
-		
-	#iconsRow{padding-left:1%;margin-left:2.2%;width:88%;border-top:1px solid #CCCCCC;padding-bottom:15px;overflow:hidden; padding-top:15px;}
-
-	#tilesStrip{margin-top:15px; border-top:1px solid rgb(238,226,176); padding:25px;}
-		.tile{padding:10px;}
-		.tile_image{max-width:64px; max-height:64px;width:64px;height:64px;background-size:64px 64px;}
-		.tile_caption{text-align:center;width:95px;color:#777776;text-transform:uppercase;padding-top:10px;font-size:12px;font-family:'Arial';}
-		.tile a{text-decoration:none;}
-
-		.mainButton{width:150px; height:40px; background-color:#0099CC; color:#FFFFFF;border:0px solid;font-size:16px;}
-		.searchPosts{border:1px solid #0099CC;height:30px;width:240px;}
-		
-	#image1_black{background-image:url("./images/common/icons/home_1.png");position:relative;}
-	#image2_black{background-image:url("./images/common/icons/car_2.png");}
-	#image3_black{background-image:url("./images/common/icons/tv_3.png");}
-	#image4_black{background-image:url("./images/common/icons/mobile_4.png");}
-	#image5_black{background-image:url("./images/common/icons/computer_5.png");}
-	#image6_black{background-image:url("./images/common/icons/sofa_1.png");}
-
-	#image1_color{background-image:url("./images/common/icons/home_g.png");position:relative;}
-	#image2_color{background-image:url("./images/common/icons/car_g.png");}
-	#image3_color{background-image:url("./images/common/icons/tv_g.png");}
-	#image4_color{background-image:url("./images/common/icons/mobile_g.png");}
-	#image5_color{background-image:url("./images/common/icons/computer_g.png");}
-	#image6_color{background-image:url("./images/common/icons/sofa_g.png");}
-
-	
-	
-	#postAdCategoriesList li{height:30px; color:#FF6666; padding:5px; list-style-type:none;font-size:15px;}
-	
-	#contentRow{max-height:20%; overflow:hidden; margin-top:-8px;}
-	
-</style>
-<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300" />
 <script src="js/jquery.min.js"></script>
-<script>
-	$(document).ready(function(){
-		$("#searchBox").focus();
+<script type="text/javascript" src="thirdparty/jquery-ui/jquery-ui-1.10.3.custom.min.js"></script>
+
+<script>	
+$(document).ready(function(){
+
+
+		$("#item_search").focus();
 		$( "#tile1" ).hover(function() {
-			$("#image1_black").hide();
-			$("#image1_color").show();
-			$("#tile_caption1").css("color", "#0099cc");
+			$("#img_1_gray").show();
+			$("#img_1_color").hide();
+			$("#icon_caption_1").css("color", "#0099cc");
 		},function() {
-			$("#image1_black").show();
-			$("#image1_color").hide();
-			$("#tile_caption1").css("color", "#777776");
+			$("#img_1_gray").hide();
+			$("#img_1_color").show();
+			$("#icon_caption_1").css("color", "#777776");
 		});
 		$( "#tile2" ).hover(function() {
-			$("#image2_black").hide();
-			$("#image2_color").show();
-			$("#tile_caption2").css("color", "#0099cc");
+			$("#img_2_gray").show();
+			$("#img_2_color").hide();
+			$("#icon_caption_2").css("color", "#0099cc");
 		},function() {
-			$("#image2_black").show();
-			$("#image2_color").hide();
-			$("#tile_caption2").css("color", "#777776");
+			$("#img_2_gray").hide();
+			$("#img_2_color").show();
+			$("#icon_caption_2").css("color", "#777776");
 		});
 		$( "#tile3" ).hover(function() {
-			$("#image3_black").hide();
-			$("#image3_color").show();
-			$("#tile_caption3").css("color", "#0099cc");
+			$("#img_3_gray").show();
+			$("#img_3_color").hide();
+			$("#icon_caption_3").css("color", "#0099cc");
 		},function() {
-			$("#image3_black").show();
-			$("#image3_color").hide();
-			$("#tile_caption3").css("color", "#777776");
+			$("#img_3_gray").hide();
+			$("#img_3_color").show();
+			$("#icon_caption_3").css("color", "#777776");
 		});
 		$( "#tile4" ).hover(function() {
-			$("#image4_black").hide();
-			$("#image4_color").show();
-			$("#tile_caption4").css("color", "#0099cc");
+			$("#img_4_gray").show();
+			$("#img_4_color").hide();
+			$("#icon_caption_4").css("color", "#0099cc");
 		},function() {
-			$("#image4_black").show();
-			$("#image4_color").hide();
-			$("#tile_caption4").css("color", "#777776");
+			$("#img_4_gray").hide();
+			$("#img_4_color").show();
+			$("#icon_caption_4").css("color", "#777776");
 		});
 		$( "#tile5" ).hover(function() {
-			$("#image5_black").hide();
-			$("#image5_color").show();
-			$("#tile_caption5").css("color", "#0099cc");
+			$("#img_5_gray").show();
+			$("#img_5_color").hide();
+			$("#icon_caption_5").css("color", "#0099cc");
 		},function() {
-			$("#image5_black").show();
-			$("#image5_color").hide();
-			$("#tile_caption5").css("color", "#777776");
+			$("#img_5_gray").hide();
+			$("#img_5_color").show();
+			$("#icon_caption_5").css("color", "#777776");
 		});
 		$( "#tile6" ).hover(function() {
-			$("#image6_black").hide();
-			$("#image6_color").show();
-			$("#tile_caption6").css("color", "#0099cc");
+			$("#img_6_color").hide();
+			$("#img_6_gray").show();
+			$("#icon_caption_6").css("color", "#0099cc");
 		},function() {
-			$("#image6_black").show();
-			$("#image6_color").hide();
-			$("#tile_caption6").css("color", "#777776");
+			$("#img_6_gray").hide();
+			$("#img_6_color").show();
+			$("#icon_caption_6").css("color", "#777776");
 		});
 		
 		$("#postAdBtn").mouseenter(function(){
@@ -316,121 +166,41 @@
 		$("#postAdCategories").mouseleave(function(){
 			$("#postAdCategories").hide();
 		});
-	});
-	
+		
+		});
+		
+		
 </script>
-<body>
-<div id="contentRow">
-	<div class="header_responseMessage">
-		
-	</div>
-	<div id="messageRow" class="row" style="margin-top:20px;">
-		<div class="col-sm-9">
-			<div id="mainHeading" class="col-sm-12">
-				An <span style="color:#222;">Exclusive</span> Buy Sell Portal For <span style="color:#222;">Professionals</span>!
-			</div>
-			<div id="subHeading" class="col-sm-12">
-				"Say No To Brokers, Yes To Fellow IT Community"
-			</div>
-		</div>
-		<div class="col-sm-3" style="padding-left:40px;">
-			<div id="postAdBtn"><button class="mainButton">Post Free Ad</button></div>
-			<div id="postAdCategories" style="display:none; position:absolute; padding-top:5px;">
-				
-				
-				
-				
-				
-							
-				<ul id="postAdCategoriesList" style="margin-left:0px;">
-				    <li><span style="margin-right:10px;"><img src="./images/common/icons/home_1.png" width="16" height="16"></span><a href='/Virat/post_RealEstate.action'>Real Estate</a></li>
-				    <li><span style="margin-right:10px;"><img src="./images/common/icons/car_2.png" width="16" height="16"></span><a href='/Virat/post_Automobile.action'>Automobiles</a></li>
-				    <li><span style="margin-right:10px;"><img src="./images/common/icons/computer_5.png" width="16" height="16"></span><a href='/Virat/post_Computers.action'>Computers</a></li>
-				    <li><span style="margin-right:10px;"><img src="./images/common/icons/tv_3.png" width="16" height="16"></span><a href='/Virat/post_Electronics.action'>Home Appliances</a></li>
-				    <li><span style="margin-right:10px;"><img src="./images/common/icons/mobile_4.png" width="16" height="16"></span><a href='/Virat/post_Mobiles.action'>Mobiles</a></li>
-				    <li><span style="margin-right:10px;"><img src="./images/common/icons/sofa_1.png" width="16" height="16"></span><a href='/Virat/post_Furniture.action'>Furniture</a></li>
-				</ul>
-			</div>
-		</div>		
-	</div>
-	<div id="searchBoxRow" class="row">
-		<div id="searchBoxArea" style="margin-left:0px;">
-			<input id="searchBox" type="text" class="" placeholder="Search For Items" style="margin-left:20px;width:500px;">
-		</div>
-	</div>
-	<div id="iconsRow">
-		
-		
-		
-		
-		
-			
-		<div class="col-sm-2 tile" id="tile1">
-			<a href="/Virat/realestate?category=REAL&amp;subCategory=1">
-			<div class="tile_image" id="image1_black"></div>
-			<div class="tile_image" id="image1_color" style="display:none"></div>
-			<div class="tile_caption" id="tile_caption1">Real Estate</div>
-			</a>
-		</div>
-		<div class="col-sm-2 tile" id="tile2">
-			<a href="/Virat/automobile?category=AUTO&amp;subCategory=1">
-			<div class="tile_image" id="image2_black"></div>
-			<div class="tile_image" id="image2_color" style="display:none"></div>
-			<div class="tile_caption" id="tile_caption2">Automobiles</div>
-			</a>
-		</div>
-		<div class="col-sm-2 tile" id="tile3">
-			<a href="/Virat/electronics?category=ELEC&amp;subCategory=0">
-			<div class="tile_image" id="image3_black"></div>
-			<div class="tile_image" id="image3_color" style="display:none"></div>
-			<div class="tile_caption" id="tile_caption3">Home Appliances</div>
-			</a>
-		</div>
-		<div class="col-sm-2 tile" id="tile4">
-			<a href="/Virat/mobiles?category=MOBILE&amp;subCategory=1">
-			<div class="tile_image" id="image4_black"></div>
-			<div class="tile_image" id="image4_color" style="display:none"></div>
-			<div class="tile_caption" id="tile_caption4">Mobiles</div>
-			</a>
-		</div>
-		<div class="col-sm-2 tile" id="tile5">
-			<a href="/Virat/computers?category=COMP&amp;subCategory=1">
-			<div class="tile_image" id="image5_black"></div>
-			<div class="tile_image" id="image5_color" style="display:none"></div>
-			<div class="tile_caption" id="tile_caption5">Computers</div>
-			</a>
-		</div>
-		<div class="col-sm-2 tile" id="tile6">
-			<a href="/Virat/furniture?category=FURN">
-			<div class="tile_image" id="image6_black"></div>
-			<div class="tile_image" id="image6_color" style="display:none"></div>
-			<div class="tile_caption" id="tile_caption6">Furniture</div>
-			</a>
-		</div>
-	</div>
-</div>
-</body>
-
-			</div>
-		</div>
-			<div class="row" id="footer">
-		<div class="col-sm-offset-6 col-sm-5" id="connectArea" style="margin-left:64.25%;">
-			<span class="smallIcon">
-				<img src="images/common/twitter.png"> Twitter
-			</span>
-			<span class="smallIcon">
-				<img src="images/common/facebook.png"> Facebook
-			</span>
-			<span class="smallIcon">
-				<img src="images/common/google+.png"> Google+
-			</span>				
-		</div>		
-	</div>
-	
-	<!-- <div class="col-md-12 footer" style="float:left;min-width:100%;">
-	<p class="pull-right" id="footer_text">Copyright reserved IdeaMint
-		Software Labs, 2014</p>
-</div> -->
-	</div>
-</body>
+<script>
+$(document).ready(function(){
+	$("#item_search").autocomplete({
+		source: function(request, response) {
+			$.ajax({
+				url: "Virat" + "/getKeywords?",
+				//url:$('#contextPath').text() + "getLocation",
+				type: "POST",
+				dataType: "json",
+				data: {keywordToSearch:$("#item_search").val()},
+				success: function(data) {
+					response( $.map(data.searchResults, function(item) {
+						return {
+							label: item.keyword,
+							value: item.category,
+						};
+					}));
+				},
+				error: function (error) {
+					alert('error: ' + error.responseText);
+				}
+			});
+		},
+		select:function(event, ui){
+			event.preventDefault();
+			console.log(ui);
+			alert("Selected");
+		},
+		minLength: 1
+	});	
+});
+</script>
 </html>
