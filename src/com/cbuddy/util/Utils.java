@@ -1,10 +1,19 @@
 package com.cbuddy.util;
 
 import java.util.HashMap;
+import java.util.List;
+
+import org.hibernate.Criteria;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Order;
+
+import com.cbuddy.beans.Corp;
 
 
 public class Utils {
-	private static HashMap<String, String> categoryDescMap = new HashMap<String, String>(); 
+	private static HashMap<String, String> categoryDescMap = new HashMap<String, String>();
+	private static HashMap<Integer, String> companyNamesMap = new HashMap<Integer, String>();
 	static{
 		//Category and Sub Categories for REAL_ESTATE
 		categoryDescMap.put(CBuddyConstants.CATEGORY_REAL_ESTATE, "Real Estate");
@@ -65,12 +74,29 @@ public class Utils {
 		categoryDescMap.put(CBuddyConstants.CATEGORY_ELECTRONICS_AND_HOUSEHOLD + "_" + CBuddyConstants.SUBCATEGORY_ELECTRONICS_AND_HOUSEHOLD_WASHINGMACHINE, "Washing Machines");
 		categoryDescMap.put(CBuddyConstants.CATEGORY_ELECTRONICS_AND_HOUSEHOLD + "_" + CBuddyConstants.SUBCATEGORY_ELECTRONICS_AND_HOUSEHOLD_DVD_MUSIC_PLAYER, "DVD Players, Music Players, iPods");
 	
-		
+		//Populating Company Names
+		SessionFactory sessionFactory = CbuddySessionFactory.getSessionFactory();
+		Session dbSession = sessionFactory.openSession();
+		dbSession.beginTransaction();
+		Criteria criteria = null;
+
+		criteria = dbSession.createCriteria(Corp.class);
+		criteria.addOrder(Order.asc("corpName"));
+		List<Corp> corpList = criteria.list();
+		for(Corp corp:corpList){
+			companyNamesMap.put(corp.getCorpId(), corp.getCorpShortName());
+		}
+
+		dbSession.close();
 	}
 	
 	public Utils(){
 	}
 
+	public static String getCompanyName(int companyId){
+		return companyNamesMap.get(companyId);
+	}
+	
 	public String getCategoryDesc(String categoryCode){
 		String output = "";
 		if(categoryDescMap.get(categoryCode) != null){

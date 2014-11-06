@@ -13,7 +13,7 @@
 <input id="pagecount" type="hidden" value="<s:property value="count"/>">
 	<s:if test="postsList.size() > 0">
 		
-		<div class="col-md-8 listSection" id="postListSection" style="margin-left:5px;">
+		<div class="col-md-8 listSection" id="postListSection" style="">
 			<form id="dummyForm"></form>
 			<table class="table table-bordered">
 				<tr>
@@ -64,8 +64,8 @@
 							<img class="rating_stars" src="images/star.jpg">
 							</s:iterator>  <br /> --%> 
 							
-							<span class="postField_Color"><s:property value="city" /></span><span class="separator">|</span> 
-							<span class="postField_Color"><s:property value="location" /></span>
+							<span class="postField_Color"><s:property value="cityName" /></span><span class="separator">|</span> 
+							<span class="postField_Color"><s:property value="locationName" /></span>
 							<br>
 							<div style="margin-top:2px;"></div>
 							<span class="postField_Special"><s:property value="subcategoryStr" /></span>
@@ -145,7 +145,7 @@ function assignBackButtonAction(){
 		$.ajax({
 			type: 'POST',
 			url: "Virat" + "/" + "searchPostsFilter", 
-			data: {'searchKeyword':'<s:property value="searchKeyword"/>'},
+			data: {'searchKeyword':'<s:property value="searchKeyword"/>','city':$("input[name=city]:checked").val(),'location':$("#locSearch").val(), 'corpId':$("#corpSearchString").val()},
 			success: function(data, status) {
 				$('.data').html('');
 				$('.data').html(data);

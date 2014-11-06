@@ -32,6 +32,7 @@ import com.cbuddy.util.CBuddyConstants;
 import com.cbuddy.util.CbuddySessionFactory;
 import com.cbuddy.util.LocationUtil;
 import com.cbuddy.util.LogUtil;
+import com.cbuddy.util.Utils;
 
 public class Testing {
 	private static String POST_INDEX_BASE_FOLDER_PATH = "C:\\Shiva\\indexes\\posts\\";
@@ -39,21 +40,29 @@ public class Testing {
 	public static void addIndex(Session session, Poit poit, CommonDetailsForPost postDetails, IndexWriter w){
 		try{
 			String description_specific = postDetails.generateIndexableString(session);
+			String companyName = Utils.getCompanyName(poit.getCorpId());
 			System.out.println(description_specific);
 			Document doc = new Document();
 			doc.add(new StringField("postId", String.valueOf(poit.getPostId()), Field.Store.YES));
 			doc.add(new TextField("category", poit.getCategory(), Field.Store.YES));
 			doc.add(new StringField("subcategory", poit.getSubCategory(), Field.Store.YES));
-			doc.add(new StringField("city", LocationUtil.getCityName(session, poit.getCity()), Field.Store.YES));
+			doc.add(new StringField("city", poit.getCity(), Field.Store.YES));
+			doc.add(new StringField("cityName", LocationUtil.getCityName(session, poit.getCity()), Field.Store.YES));
 			if(poit.getLocation() != null){
-				doc.add(new StringField("location", LocationUtil.getLocationName(session, poit.getCity(), poit.getLocation()), Field.Store.YES));
+				doc.add(new StringField("location", poit.getLocation(), Field.Store.YES));
+				doc.add(new StringField("locationName", LocationUtil.getLocationName(session, poit.getCity(), poit.getLocation()), Field.Store.YES));
 			}
-			doc.add(new StringField("title", poit.getTitle(), Field.Store.YES));
+			doc.add(new StringField("company", poit.getCorpId() + "", Field.Store.YES));
+			if(companyName != null){
+				doc.add(new StringField("companyName", companyName, Field.Store.YES));
+			}
+			
+			doc.add(new TextField("title", poit.getTitle(), Field.Store.YES));
 			if(poit.getDescription() != null){
 				doc.add(new TextField("description_general", poit.getDescription(), Field.Store.YES));	
 			}
 			doc.add(new TextField("description_specific", description_specific, Field.Store.YES));
-			doc.add(new TextField("description_full", poit.getTitle() + " " + poit.getDescription() + " " + description_specific, Field.Store.YES));
+			doc.add(new TextField("description_full", poit.getTitle() + " " + poit.getDescription() + " " + companyName + " " + description_specific, Field.Store.YES));
 			doc.add(new TextField("price", String.valueOf(poit.getPrice()), Field.Store.YES));
 			doc.add(new StringField("no_of_images", String.valueOf(poit.getNoOfImages()), Field.Store.YES));
 			if(poit.getImageFileName() != null){
@@ -61,12 +70,36 @@ public class Testing {
 			}
 			
 			System.out.println(" Create Index: " + description_specific + " :: " + poit.getDescription() );
-			
+			printDoc(doc);
 			w.addDocument(doc);
 
 		}catch(IOException e){
 			e.printStackTrace();
 		}
+	}
+	
+	private static void printDoc(Document doc){
+		MiniPostDetails miniPostDetails = new MiniPostDetails();
+
+		miniPostDetails.setPostId(Integer.parseInt(doc.get("postId")));
+		miniPostDetails.setCategory(doc.get("category"));
+		miniPostDetails.setSubcategory(doc.get("subcategory"));
+		miniPostDetails.setSubcategoryStr(new Utils().getSubCategoryDesc(miniPostDetails.getCategory(), miniPostDetails.getSubcategory()));
+		miniPostDetails.setCity(doc.get("city"));
+		miniPostDetails.setLocation(doc.get("location"));
+		miniPostDetails.setCityName(doc.get("cityName"));
+		miniPostDetails.setLocationName(doc.get("locationName"));
+		miniPostDetails.setTitle(doc.get("title"));
+		miniPostDetails.setPrice(Double.parseDouble(doc.get("price")));
+		miniPostDetails.setDescription_generic(doc.get("description_generic"));
+		miniPostDetails.setDescription_specific(doc.get("description_specific"));
+		miniPostDetails.setDescription_full(doc.get("description_full"));
+		miniPostDetails.setNoOfImages(Integer.parseInt(doc.get("no_of_images")));
+		miniPostDetails.setImageFileName(doc.get("image_file_name"));
+
+		miniPostDetails.setUrlForAdDetails(Utils.getAdDetailsUrl(miniPostDetails.getCategory(), miniPostDetails.getSubcategory()));
+		
+		System.out.println(miniPostDetails);
 	}
 	
 	private static Query createQuery(Session dbSession, int postId, String category, String subcategory){

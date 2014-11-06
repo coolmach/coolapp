@@ -6,7 +6,11 @@ public class MiniPostDetails {
 	private String category;
 	private String subcategory;
 	private String city;
+	private String cityName;	
 	private String location;
+	private String locationName;
+	private String corpId;
+	private String companyName;
 	private String description_generic;
 	private String description_specific;
 	private String description_full;
@@ -102,5 +106,31 @@ public class MiniPostDetails {
 	public void setPostId(int postId) {
 		this.postId = postId;
 	}
-	
+	public String getCityName() {
+		return cityName;
+	}
+	public void setCityName(String cityName) {
+		this.cityName = cityName;
+	}
+	public String getLocationName() {
+		return locationName;
+	}
+	public void setLocationName(String locationName) {
+		this.locationName = locationName;
+	}
+	public String toString(){
+		return "MiniPost: Post Id: " + postId + ", City: " + city + ", Location: " + location + ", Company: " + companyName + "[" + corpId + "]" + ", Desc: " + description_full;
+	}
+	public String getCorpId() {
+		return corpId;
+	}
+	public void setCorpId(String corpId) {
+		this.corpId = corpId;
+	}
+	public String getCompanyName() {
+		return companyName;
+	}
+	public void setCompanyName(String companyName) {
+		this.companyName = companyName;
+	}
 }

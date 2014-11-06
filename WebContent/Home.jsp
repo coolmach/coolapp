@@ -1,1 +1,243 @@
-<%@include file="index.html" %>
+<%@ taglib prefix="s" uri="/struts-tags"%>
+<html>
+<link rel="stylesheet" type="text/css" href="./css/new_home.css"/>
+<link rel="stylesheet" type="text/css" href="thirdparty/jquery-ui/jquery-ui-1.10.3.custom.min.css" />
+	<div id="header">
+		<div id="logoSection"><a href="/Virat">
+			<img width="174" height="58" src="./images/common/Logo-Blue.jpg"></a>
+		</div>
+		<div id="menuSection">
+			<span class="menuItem">What's CBuddy?</span>
+			<span class="menuItem">Sign In</span>
+		</div>
+	</div>
+	<div id="mainContent">
+		<div id="main_left">
+			<div class="header_responseMessage">
+				<s:property value="responseMsg" />
+			</div>		
+			<div id="mainHeading">An <span style="color:black">Exclusive</span> Buy And Sell Portal For <span style="color:black">Professionals!</span></div>
+			<div id="subHeading">Say No To Brokers, Yes to Fellow IT Professionals!</div>
+			<div id="searchTextSection">
+				<div style="float:left;"><input type="text" id="item_search" class="searchText" placeholder="Search for items"></div>
+				<div style="margin-left:15px;">
+					<img src="images/common/search_50.png" width="51" height="51" style="cursor:pointer;" onClick="searchPosts();">
+				</div>
+				<p style="clear:both;">
+			</div>
+			<div id="search_tag_label">
+				Search Posts by Categories
+			</div>
+			<div id="icons_row">
+				<div class="icon" id="tile1">
+					<a href="/Virat/realestate?category=REAL&amp;subCategory=1">
+						<div id="img_1_color" class="icon_image"></div>
+						<div id="img_1_gray" class="icon_image" style="display:none"></div>
+						<div id="icon_caption_1" class="icon_text">Real Estate</div>
+					</a>
+				</div>
+				<div class="icon" id="tile2">
+					<a href="/Virat/automobile?category=AUTO&amp;subCategory=1">
+						<div id="img_2_color" class="icon_image"></div>
+						<div id="img_2_gray" class="icon_image" style="display:none"></div>
+						<div id="icon_caption_2" class="icon_text">Automobiles</div>
+					</a>
+				</div>
+				<div class="icon" id="tile3">
+					<a href="/Virat/electronics?category=ELEC&amp;subCategory=0">
+						<div id="img_3_color" class="icon_image"></div>
+						<div id="img_3_gray" class="icon_image" style="display:none"></div>
+						<div id="icon_caption_3" class="icon_text">Electronics</div>
+					</a>
+				</div>
+				<div class="icon" id="tile4">
+					<a href="/Virat/mobiles?category=MOBILE&amp;subCategory=1">
+						<div id="img_4_color" class="icon_image"></div>
+						<div id="img_4_gray" class="icon_image" style="display:none"></div>
+						<div id="icon_caption_4" class="icon_text">Mobiles</div>
+					</a>
+				</div>
+				<div class="icon" id="tile5">
+					<a href="/Virat/computers?category=COMP&amp;subCategory=1">
+						<div id="img_5_color" class="icon_image"></div>
+						<div id="img_5_gray" class="icon_image" style="display:none"></div>
+						<div id="icon_caption_5" class="icon_text">Computers</div>
+					</a>
+				</div>
+				<div class="icon" id="tile6">
+					<a href="/Virat/furniture?category=FURN">
+						<div id="img_6_color" class="icon_image"></div>
+						<div id="img_6_gray" class="icon_image" style="display:none"></div>
+						<div id="icon_caption_6" class="icon_text">Furniture</div>
+					</a>
+				</div>
+			</div>
+		</div>
+		<div id="main_right">
+			<input type="button" id="postAdBtn" class="postAdButton" value="Post Ad">
+			<div id="postAdCategories" style="display:none; position:absolute; padding-top:5px;">
+				<ul id="postAdCategoriesList" style="margin-left:0px;">
+				    <li><span style="margin-right:10px;"><img src="./images/common/icons/home_1_small.png" width="16" height="16"></span><a href='/Virat/post_RealEstate.action'>Real Estate</a></li>
+				    <li><span style="margin-right:10px;"><img src="./images/common/icons/car_2_small.png" width="16" height="16"></span><a href='/Virat/post_Automobile.action'>Automobiles</a></li>
+				    <li><span style="margin-right:10px;"><img src="./images/common/icons/computer_5_small.png" width="16" height="16"></span><a href='/Virat/post_Computers.action'>Computers</a></li>
+				    <li><span style="margin-right:10px;"><img src="./images/common/icons/tv_3_small.png" width="16" height="16"></span><a href='/Virat/post_Electronics.action'>Home Appliances</a></li>
+				    <li><span style="margin-right:10px;"><img src="./images/common/icons/mobile_4_small.png" width="16" height="16"></span><a href='/Virat/post_Mobiles.action'>Mobiles</a></li>
+				    <li><span style="margin-right:10px;"><img src="./images/common/icons/sofa_1_small.png" width="16" height="16"></span><a href='/Virat/post_Furniture.action'>Furniture</a></li>
+				</ul>
+			</div>			
+		</div>
+	</div>
+	<p style="clear:both">
+	<div id="footer">
+		<div id="socialMediaSection" >
+			<div class="small_icon"><img width="20" height="20" src="images/common/google+.png"/></div>
+			<div class="small_icon"><img width="20" height="20" src="images/common/facebook.png"/></div>
+			<div class="small_icon"><img width="20" height="20" src="images/common/twitter.png"/></div>
+		</div>
+	</div>
+
+<script src="js/jquery.min.js"></script>
+<script type="text/javascript" src="thirdparty/jquery-ui/jquery-ui-1.10.3.custom.min.js"></script>
+
+<script>	
+$(document).ready(function(){
+
+
+		$("#item_search").focus();
+		$( "#tile1" ).hover(function() {
+			$("#img_1_gray").show();
+			$("#img_1_color").hide();
+			$("#icon_caption_1").css("color", "#0099cc");
+		},function() {
+			$("#img_1_gray").hide();
+			$("#img_1_color").show();
+			$("#icon_caption_1").css("color", "#777776");
+		});
+		$( "#tile2" ).hover(function() {
+			$("#img_2_gray").show();
+			$("#img_2_color").hide();
+			$("#icon_caption_2").css("color", "#0099cc");
+		},function() {
+			$("#img_2_gray").hide();
+			$("#img_2_color").show();
+			$("#icon_caption_2").css("color", "#777776");
+		});
+		$( "#tile3" ).hover(function() {
+			$("#img_3_gray").show();
+			$("#img_3_color").hide();
+			$("#icon_caption_3").css("color", "#0099cc");
+		},function() {
+			$("#img_3_gray").hide();
+			$("#img_3_color").show();
+			$("#icon_caption_3").css("color", "#777776");
+		});
+		$( "#tile4" ).hover(function() {
+			$("#img_4_gray").show();
+			$("#img_4_color").hide();
+			$("#icon_caption_4").css("color", "#0099cc");
+		},function() {
+			$("#img_4_gray").hide();
+			$("#img_4_color").show();
+			$("#icon_caption_4").css("color", "#777776");
+		});
+		$( "#tile5" ).hover(function() {
+			$("#img_5_gray").show();
+			$("#img_5_color").hide();
+			$("#icon_caption_5").css("color", "#0099cc");
+		},function() {
+			$("#img_5_gray").hide();
+			$("#img_5_color").show();
+			$("#icon_caption_5").css("color", "#777776");
+		});
+		$( "#tile6" ).hover(function() {
+			$("#img_6_color").hide();
+			$("#img_6_gray").show();
+			$("#icon_caption_6").css("color", "#0099cc");
+		},function() {
+			$("#img_6_gray").hide();
+			$("#img_6_color").show();
+			$("#icon_caption_6").css("color", "#777776");
+		});
+		
+		$("#postAdBtn").mouseenter(function(){
+			$("#postAdCategories").show();
+		});
+		$("#postAdBtn").mouseleave(function(){
+			if( $("#postAdCategories").is(":visible") ){
+				$("#postAdCategories").hide();
+			}
+		});
+		$("#postAdCategories").mouseenter(function(){
+			$("#postAdCategories").show();
+		});
+		$("#postAdCategories").mouseleave(function(){
+			$("#postAdCategories").hide();
+		});
+		
+		});
+		
+		
+</script>
+<script>
+function searchPosts(){
+	var keyword = $("#item_search").val();
+	if(keyword != ""){
+		window.location.href = "http://localhost:8080/Virat/searchPosts?" + "searchKeyword=" + keyword + "&city=BLR";	
+	}else{
+		$("#item_search").focus();
+	}
+}
+$(document).ready(function(){
+	$("#item_search").keydown(function(){
+		if(event.keyCode == 13){
+			searchPosts();
+		}
+	});
+});
+$(document).ready(function(){
+	$("#item_search").autocomplete({
+		source: function(request, response) {
+			$.ajax({
+				url: "Virat" + "/getKeywords?",
+				//url:$('#contextPath').text() + "getLocation",
+				type: "POST",
+				dataType: "json",
+				data: {keywordToSearch:$("#item_search").val()},
+				success: function(data) {
+					response( $.map(data.searchResults, function(item) {
+						return {
+							label: item.keyword,
+							value: item.category,
+						};
+					}));
+				},
+				error: function (error) {
+					alert('error: ' + error.responseText);
+				}
+			});
+		},
+		select:function(event, ui){
+			event.preventDefault();
+			$("#item_search").val(ui.item.label);
+			console.log(ui);
+			window.location.href = "http://localhost:8080/Virat/searchPosts?" + "searchKeyword=" + ui.item.label + "&city=BLR";
+	//		$.ajax({
+	//			url: "Virat" + "/searchPosts?",
+	//			//url:$('#contextPath').text() + "getLocation",
+	//			type: "POST",
+	//			dataType: "json",
+	//			data: {searchKeyword:ui.item.label},
+	//			success: function(data) {
+	//				console.log(data);
+	//			},
+	//			error: function (error) {
+	//				console.log(error);
+	//				alert('error: ' + error.responseText);
+	//			}
+	//		});
+		},
+		minLength: 1
+	});	
+});
+</script>
+</html>

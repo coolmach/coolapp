@@ -1,4 +1,4 @@
-body{margin:0px; padding:0px;min-width:500px;width:82%;margin-left:9%;}
+body{margin:0px; padding:0px;min-width:700px;width:82%;margin-left:9%;}
 
 #header{height:10%;min-height:100px;border-bottom:1px solid #BBBBBB;}
 #mainContent{height:80%;min-height:500px;}
@@ -75,3 +75,12 @@ body{margin:0px; padding:0px;min-width:500px;width:82%;margin-left:9%;}
 #img_5_gray{background-image:url("../images/common/icons/computer_g.png");}
 #img_6_gray{background-image:url("../images/common/icons/sofa_g.png");}
 
+.header_responseMessage {
+	color: #FF0000;
+	/* margin-top: 70px; */
+	padding: 10px;
+	text-align: center;
+	font-size: 18px;
+	height:20px;
+	font-family: Calibri;
+}

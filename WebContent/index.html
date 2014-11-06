@@ -16,7 +16,11 @@
 			<div id="mainHeading">An <span style="color:black">Exclusive</span> Buy And Sell Portal For <span style="color:black">Professionals!</span></div>
 			<div id="subHeading">Say No To Brokers, Yes to Fellow IT Professionals!</div>
 			<div id="searchTextSection">
-				<input type="text" id="item_search" class="searchText" placeholder="Search for items">
+				<div style="float:left;"><input type="text" id="item_search" class="searchText" placeholder="Search for items"></div>
+				<div style="margin-left:15px;">
+					<img src="images/common/search_50.png" width="51" height="51" style="cursor:pointer;" onClick="searchPosts();">
+				</div>
+				<p style="clear:both;">
 			</div>
 			<div id="search_tag_label">
 				Search Posts by Categories
@@ -172,6 +176,21 @@ $(document).ready(function(){
 		
 </script>
 <script>
+function searchPosts(){
+	var keyword = $("#item_search").val();
+	if(keyword != ""){
+		window.location.href = "http://localhost:8080/Virat/searchPosts?" + "searchKeyword=" + keyword + "&city=BLR";	
+	}else{
+		$("#item_search").focus();
+	}
+}
+$(document).ready(function(){
+	$("#item_search").keydown(function(){
+		if(event.keyCode == 13){
+			searchPosts();
+		}
+	});
+});
 $(document).ready(function(){
 	$("#item_search").autocomplete({
 		source: function(request, response) {
@@ -196,8 +215,9 @@ $(document).ready(function(){
 		},
 		select:function(event, ui){
 			event.preventDefault();
+			$("#item_search").val(ui.item.label);
 			console.log(ui);
-			window.location.href = "http://localhost:8080/Virat/searchPosts?" + "searchKeyword=" + ui.item.label;
+			window.location.href = "http://localhost:8080/Virat/searchPosts?" + "searchKeyword=" + ui.item.label + "&city=BLR";
 	//		$.ajax({
 	//			url: "Virat" + "/searchPosts?",
 	//			//url:$('#contextPath').text() + "getLocation",

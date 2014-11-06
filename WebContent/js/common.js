@@ -95,7 +95,7 @@ function applyFilters(){
 	//alert("applyFilters()");
 	var ctxPath = $('#context_path').val().trim();
 	var path = $("#action").val();
-
+	
 	subCat = $('#sub').text();
 	cat = $('#cat').text();
 	var data="";
@@ -120,6 +120,9 @@ function applyFilters(){
 		data = data + "&corpId=" + $("#corpId").val();
 	}
 
+	if($("#item_search").val() != "" && data.indexOf("searchKeyword", 0)<0){
+		data = data + "&searchKeyword=" + $("#item_search").val();
+	}
 
 	if($("#filterValueBar").text() == ""){
 		$("#filterValueBar").hide();

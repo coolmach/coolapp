@@ -5,12 +5,12 @@
         </div>
 	<div id="cityBar">
 		<form id="cityForm">
-			<input type="radio" class="radioButton" checked="checked" name="city" id="city" value="BLR" onClick="getLocations('BLR')"><span class="radioCaption">Bangalore</span>
-			<input type="radio" class="radioButton" name="city" id="city" value="CHE" onClick="getLocations('CHE')"><span class="radioCaption_RightAlign">Chennai</span>
+			<input type="radio" class="radioButton" checked="checked" name="city" id="city" value="BLR" onClick="applyFiltersForLocation('BLR')"><span class="radioCaption">Bangalore</span>
+			<input type="radio" class="radioButton" name="city" id="city" value="CHE" onClick="applyFiltersForLocation('CHE')"><span class="radioCaption_RightAlign">Chennai</span>
 		</form>
 	</div>
 	<div id="locationSearchBar">
-		<select class="dropDown" name="locSearch" id="locSearch" style="width:175px;">
+		<select class="dropDown" name="locSearch" id="locSearch" style="width:200px;">
 			<option value='-1'>Choose Location</option>
 		</select>
 		<!--img class="searchIcon" src="images/search_green_resized.png"-->	
@@ -45,6 +45,34 @@
 	
 	
 <script>
+function applyFilters_Loc(city){
+	$.ajax({
+		url: "Virat" + "/searchPostsFilter?",
+		//url:$('#contextPath').text() + "getLocation",
+		type: "POST",
+		//dataType: "json",
+		data: {searchKeyword:$("#item_search").val(), city:city, location:$("#locSearch").val(), corpId:$("#corpSearchString").val()},
+		success: function(data) {
+			console.log(data);
+			$('.data').html('');
+			$('.data').html(data);
+		},
+		error: function (error) {
+			console.log(error);
+			alert('error: ' + error.responseText);
+		}
+	});
+}
+
+function reapplyFilters(city){
+	if($("#item_search").val() != ""){
+		//If the list screen is a common list screen (AdList_SearchResults) for a keyword search, then applyFilters_Loc() should be called.
+		applyFilters_Loc(city);
+	}else{
+		//If the list screen is specific to a Cateogry (e.g. AdList_Automobiles), then applyFilters() should be called.
+		applyFilters();
+	}
+}
 function getCompanies(){
 	//alert("location - 1");
 	//applyFilters();	
@@ -74,9 +102,12 @@ function updateCompanySection(companyName, companyId){
 	$("#selectedCorporateDetails").show();
 	$("#corpId").val(companyId);
 	//alert("location - 2");
-	applyFilters();
+	reapplyFilters();
 }
-
+function applyFiltersForLocation(city){
+	reapplyFilters(city);
+	getLocations(city);
+}
 function getLocations(city){
 	//alert("location - 3");
 	//applyFilters();	
@@ -115,7 +146,7 @@ function updateNeighborhood(city, location){
 			$("#locationDetails").show();
 			$("#location").attr("checked", "true");
 			//alert("location - 4");
-			applyFilters();
+			reapplyFilters();
 		},
 		error: function(data){
 			alert(data.responseText);
