@@ -24,7 +24,7 @@
 			Search By Company
         </div>
 	<div id="companySearchBar">
-		<select class="dropDown" name="corpSearchString" id="corpSearchString" style="width:175px;">
+		<select class="dropDown" name="corpSearchString" id="corpSearchString" style="width:200px;">
 			<option value='-1'>Choose Company</option>
 		</select>
 		<!--img class="searchIcon" src="images/search_orange_resized.png"-->

@@ -13,13 +13,13 @@
 <input id="pagecount" type="hidden" value="<s:property value="count"/>">
 	<s:if test="postsList.size() > 0">
 		
-		<div class="col-md-8 listSection" id="postListSection" style="">
+		<div class="col-md-8 listSection" id="postListSection" style="margin-top:-5.5%;">
 			<form id="dummyForm"></form>
 			<table class="table table-bordered">
 				<tr>
 					<th colspan="2" style="width:50%;">
 						<div>
-							<div style="color:#FF0000; float:left; margin-right:30px; padding-left:5px; font-size:16px;font-weight:normal;">
+							<div style="color:#0099CC; float:left; margin-right:30px; padding-left:5px; font-size:16px;font-weight:normal;">
 								Showing Results for '<s:property value="searchKeyword"/>'
 							</div>
 						</div>

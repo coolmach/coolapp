@@ -19,16 +19,16 @@
 				<tr>
 					<th colspan="2" style="width:50%;">
 						<div>
-							<div style="color:#FF0000; float:left; margin-right:30px; padding-left:5px; font-size:16px;font-weight:normal;">
+							<div style="color:#0099CC; float:left; margin-right:30px; padding-left:5px; font-size:16px;font-weight:normal;">
 								<s:property value="subCategoryStr" />
-								<span style="font-size:14px; color:rgb(255,128,0);">
+								<!--span style="font-size:14px; color:rgb(255,128,0);">
 									<s:if test="city == 'BLR'">
 										, Bangalore
 									</s:if>
 									<s:elseif test="city == 'CHE'">
 										, Chennai
 									</s:elseif>
-								</span>
+								</span-->
 							</div>
 						</div>
 					</th>

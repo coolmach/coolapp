@@ -1,8 +1,8 @@
 <%@ taglib prefix="s" uri="/struts-tags"%>
 <style>
-	.searchText{height:35px; font-size:14px; border:1px solid #0099CC;}
+	.searchText{height:35px; font-size:14px; border:1px solid #C9E835); width:200px;}
 </style>
-<div class="col-md-12 col-md-offset-3" id="breadCrumb">
+<div class="col-md-12 col-md-offset-3" id="breadCrumb" style="margin-left:0%;margin-top:15px;">
 	<input type="text" id="item_search" class="searchText" placeholder="Search for items" value="<s:property value='searchKeyword'/>">
 	<span style="margin-left:2px;"><img src="images/common/search_32.png" width="35" height="35" style="cursor:pointer;" onClick="searchPosts();"></span>
 </div>

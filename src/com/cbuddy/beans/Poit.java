@@ -1,6 +1,7 @@
 package com.cbuddy.beans; 
 
 
+import java.io.Serializable;
 import java.sql.Timestamp;
 
 import javax.persistence.Column;
@@ -14,8 +15,8 @@ import javax.persistence.Transient;
 @Entity
 @Table(name = "Poit")
 
-public class Poit {
-
+public class Poit implements Serializable {
+	private static final long serialVersionUID = 1L;
 	private int postId;
 	private String category;
 	private String subCategory;

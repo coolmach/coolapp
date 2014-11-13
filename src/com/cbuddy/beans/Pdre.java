@@ -1,6 +1,7 @@
 package com.cbuddy.beans; 
 
 
+import java.io.Serializable;
 import java.sql.Timestamp;
 
 import javax.persistence.Column;
@@ -19,8 +20,8 @@ import com.cbuddy.util.LocationUtil;
 @Entity
 @Table(name = "Pdre")
 @Inheritance(strategy = InheritanceType.JOINED)
-public class Pdre {
-	
+public class Pdre implements Serializable{
+	private static final long serialVersionUID = 1L;
 	private int postIdStr;
 	private int postId;
 	private String subCategory;

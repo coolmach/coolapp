@@ -19,24 +19,24 @@
 				<tr>
 					<th colspan="2" style="width:50%;">
 						<div>
-							<div style="color:#FF0000; float:left; margin-right:30px; padding-left:5px; font-size:16px;font-weight:normal;">
+							<div style="color:#0099CC; float:left; margin-right:30px; padding-left:5px; font-size:16px;font-weight:normal;">
 								<s:property value="subCategoryStr" />
-								<span style="font-size:14px; color:rgb(255,128,0);">
+								<!--span style="font-size:14px; color:rgb(255,128,0);">
 									<s:if test="city == 'BLR'">
 										, Bangalore
 									</s:if>
 									<s:elseif test="city == 'CHE'">
 										, Chennai
 									</s:elseif>
-								</span>
+								</span-->
 							</div>
-							<div id="adListHeading">Select Different Category&nbsp;<span class="glyphicon glyphicon-chevron-down"></span></div>
+							<!--div id="adListHeading">Select Different Category&nbsp;<span class="glyphicon glyphicon-chevron-down"></span></div>
 							<div id="categoryList">
 								<ul class="list-unstyled" id="collapse_ul" style="padding:10px;">
 								    <li value="1"><span class="content">Mobile Phones</span></li>
 									<li value="2"><span class="content">Accessories</span></li>
 								</ul>						
-							</div>
+							</div-->
 						</div>
 					</th>
 					<td colspan="2" style="text-align: right; font-size:12px; ">
