@@ -32,7 +32,7 @@ function updateFormAction(){
 <style>
 	#postAdCategoriesList li{height:40px;}
 	.container_of_imgs{width:100%;}
-	#content{width:100%; margin-top:20px; margin-left:-60px;}
+	#content{width:100%; margin-top:20px; margin-left:10px;}
 	.iconButton{width:20px; height:20px; font-size:10px;}
 	.addFileIcon{color:rgb(34,177,76); font-size:16px; margin-right:10px;border:0px; cursor:pointer;}
 	.deleteFile{color:rgb(255,14,14); font-size:16px; margin-right:10px;border:0px; cursor:pointer;}
@@ -40,7 +40,7 @@ function updateFormAction(){
 	.postAdHeading{font-size:20px; color:#0099CC; font-weight:normal;}
 	.fieldTip{margin-top:5px; color:rgb(255,127,0);display:none;}
 </style>
-<span class="error" style="margin-left:15%;margin-top:1%;"></span>
+<span class="error" style="margin-left:15%;margin-top:1%;float:none;"></span>
 <div class="row">
 	<div class="col-md-2" style="margin-left:0px;">
 		<s:url action="post_RealEstate" var="url_REAL_POST" escapeAmp="false"></s:url>

@@ -9,11 +9,11 @@
 	.postRow:hover{background-color:rgb(244,250,255); cursor:pointer;}
 	#adListHeading{font-weight:normal; font-size:12px; margin-left:10px; float:left; padding-top:3px; color:rgb(255,128,0);}
 </style>
-<div class="data">
+<div class="data" style="overflow:hidden;">
 <input id="pagecount" type="hidden" value="<s:property value="count"/>">
 	<s:if test="adList.size() > 0">
 		
-		<div class="col-md-8 listSection" id="postListSection" style="margin-left:5px;">
+		<div class="col-md-12 listSection" id="postListSection" style="margin-left:5px;">
 			<form id="dummyForm">
 				<input type="hidden" name="subCategory" id="subCategory" value='<s:property value="%{subCategory}"/>'>
 			</form>
@@ -81,7 +81,10 @@
 								<span class="postField"><B><s:property value="modelStr" /></B></span>
 								<br>
 								<span class="postField"><s:property value="fuelType" /></span> <span class="separator">|</span>
-								<span class="postField"><s:property value="year" /></span>						
+								<span class="postField"><s:property value="year" /></span>
+								<br>
+								<span class="postField">Registration:&nbsp;<s:property value="regState" /></span>
+								<br>					
 							</s:if>
 							<s:elseif test="%{subCategory == 2}">
 								<!-- Bikes -->
@@ -116,7 +119,7 @@
 		</div>
 	</s:if>
 	<s:else>
-		<div class="col-md-8 listSection">
+		<div class="col-md-12 listSection">
 			<table class="table table-bordered">
 				<tr>
 					<th colspan="3" style="padding-left: 15px; font-size: 13px;">No

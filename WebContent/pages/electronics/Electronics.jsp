@@ -2,7 +2,7 @@
 
 <input type="hidden" name="action" id="action" value="commonElectronicsFilter">
 
-<%@include file="/BreadCrumb.jsp" %>
+
 <%@include file="/pages/electronics/filters/electronics_SubCategory_Strip.jsp" %>
 <%@include file="/pages/electronics/adList/AdList_Common.jsp"%>
 

@@ -5,7 +5,7 @@
 	#backButton button{padding:5px; border:0px solid #FFFFFF; background-color:#0099CC;}
 </style>
 
-<div class="col-md-8" style="border:1px solid #CCCCCC; margin-left:2%; width:63.5%;">
+<div class="col-md-10" style="border:1px solid #CCCCCC; margin-top:0.5%;">
 	<div class="row">
 		<div class="header_responseMessage" style="margin-left:5%;margin-bottom:10px;overflow:hidden;">
 			<s:property value="responseMsg" />

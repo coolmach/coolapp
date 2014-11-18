@@ -133,7 +133,7 @@
 			<table class="table table-bordered">
 				<tr>
 					<th colspan="3" style="padding-left: 15px; font-size: 13px;">No
-						posts found! Try refining search criteria</th>
+						posts found! Try refining search - AdList_Others criteria</th>
 				</tr>
 			</table>
 		</div>

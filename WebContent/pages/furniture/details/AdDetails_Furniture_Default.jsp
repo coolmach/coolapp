@@ -11,7 +11,7 @@
 </style>
 
 
-<div class="col-md-8" style="border:1px solid #CCCCCC; margin-left:2%; width:63.5%;">
+<div class="col-md-11" style="border:1px solid #CCCCCC; margin-left:2.5%;">
 	<s:form cssClass="form-horizontal post" action="#">
 		<div class="col-md-12 post_title" style="height:40px; padding-top:10px;">
 			<div style="float:left;">

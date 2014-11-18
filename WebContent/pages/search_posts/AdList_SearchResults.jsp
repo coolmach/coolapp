@@ -9,11 +9,12 @@
 	.postRow:hover{background-color:rgb(244,250,255); cursor:pointer;}
 	#adListHeading{font-weight:normal; font-size:12px; margin-left:10px; float:left; padding-top:3px; color:rgb(255,128,0);}
 </style>
-<div class="data">
+<div class="data" style="overflow:hidden;">
+	   <div style="margin-left:10px; margin-top:10px"><a class="cbuddy_link" href="<s:url action=""  />">Home</a> > Search Results for '<s:property value="searchKeyword"/>'</div>
 <input id="pagecount" type="hidden" value="<s:property value="count"/>">
 	<s:if test="postsList.size() > 0">
 		
-		<div class="col-md-8 listSection" id="postListSection" style="margin-top:-5.5%;">
+		<div class="col-md-12 listSection" id="postListSection" style="margin-top:3%;">
 			<form id="dummyForm"></form>
 			<table class="table table-bordered">
 				<tr>
@@ -82,7 +83,7 @@
 		</div>
 	</s:if>
 	<s:else>
-		<div class="col-md-8 listSection">
+		<div class="col-md-10 listSection" id="postListSection" style="margin-top:3%;">
 			<table class="table table-bordered">
 				<tr>
 					<th colspan="3" style="padding-left: 15px; font-size: 13px;">No
@@ -131,8 +132,8 @@ function showDetails(actionURL, category, subCategory, postId){
 			async:false,
 			data: {'category':category, 'subCategory':subCategory, 'postIdStr':postId},
 			success: function(data, status) {
-				$('.data').html('');
-				$('.data').html(data);
+				$('#postListSection').html('');
+				$('#postListSection').html(data);
 			}
 		});
 		

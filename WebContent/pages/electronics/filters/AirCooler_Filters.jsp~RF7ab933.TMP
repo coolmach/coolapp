@@ -6,23 +6,19 @@
 			<form class="form-inline" id="mobile">
 				<div class=" pull-left hidden-subcat searchFilter" id="brand-main">
 					<div id="brand" class="inputstyle pointer form-control">
-						Make <span
-							class="glyphicon glyphicon glyphicon-chevron-down form-control-show"></span>
+						Make <span class="glyphicon glyphicon glyphicon-chevron-down form-control-show"></span>
 					</div>
 					<div id="subCategory_hidden_brand" class="subCategory_hidden_bck" style="display: none;">
 						<ul class="dropdown-menu scrollable-menu" role="menu">
-							<li><input type="checkbox" class="check_brand" name="brand" value="Apple" /><span class="content">Apple</span></li>
-							<li><input type="checkbox" class="check_brand" name="brand" value="Akai" /><span class="content">Akai</span></li>
+							<li><input type="checkbox" class="check_brand" name="brand" value="Bluestar" /><span class="content">Bluestar</span></li>
+							<li><input type="checkbox" class="check_brand" name="brand" value="Godrej" /><span class="content">Godrej</span></li>
 							<li><input type="checkbox" class="check_brand" name="brand" value="LG" /><span class="content">LG</span></li>
 							<li><input type="checkbox" class="check_brand" name="brand"value="Onida" /><span class="content">Onida</span></li>
 							<li><input type="checkbox" class="check_brand" name="brand" value="Panasonic" /><span class="content">Panasonic</span></li>
-							<li><input type="checkbox" class="check_brand" name="brand" value="Philips" /><span class="content">Philips</span></li>
 							<li><input type="checkbox" class="check_brand" name="brand" value="Samsung" /><span class="content">Samsung</span></li>
-							<li><input type="checkbox" class="check_brand" name="brand" value="Sansui" /><span class="content">Sansui</span></li>
-							<li><input type="checkbox" class="check_brand" name="brand" value="Sharp" /><span class="content">Sharp</span></li>
-							<li><input type="checkbox" class="check_brand" name="brand" value="Sony" /><span class="content">Sony</span></li>
-							<li><input type="checkbox" class="check_brand" name="brand" value="Toshiba" /><span class="content">Toshiba</span></li>
 							<li><input type="checkbox" class="check_brand" name="brand" value="Videocon" /><span class="content">Videocon</span></li>
+							<li><input type="checkbox" class="check_brand" name="brand" value="Voltas" /><span class="content">Voltas</span></li>
+							<li><input type="checkbox" class="check_brand" name="brand" value="Whirlpool" /><span class="content">Whirlpool</span></li>
 							<li><input type="checkbox" class="check_brand" name="brand" value="Others" /><span class="content">Others</span></li>
 						</ul>
 						<a href="#" class="clear blue_link">clear filters</a>
@@ -61,14 +57,13 @@
 						<a href="#" class="clear blue_link">clear filters</a>
 					</div>
 				</div>
-				<div class=" pull-left hidden-subcat searchFilter" id="playerType-main">
-					<div id="os" class="inputstyle pointer form-control">Player Type <span class="glyphicon glyphicon glyphicon-chevron-down form-control-show"></span></div>
-					<div id="subCategory_hidden_playerType" class="subCategory_hidden_bck" style="display: none;">
+				<div class=" pull-left hidden-subcat searchFilter" id="acType-main">
+					<div id="os" class="inputstyle pointer form-control">AC Type <span class="glyphicon glyphicon glyphicon-chevron-down form-control-show"></span></div>
+					<div id="subCategory_hidden_acType" class="subCategory_hidden_bck" style="display: none;">
 						<ul class="dropdown-menu scrollable-menu" role="menu">
-						    <li><input type="checkbox" class="check_playerType" name="playerType" value="DVD" /><span class="content">DVD</span></li>
-						    <li><input type="checkbox" class="check_playerType" name="playerType" value="MP3" /><span class="content">MP3</span></li>
-							<li><input type="checkbox" class="check_playerType" name="playerType" value="iPod" /><span class="content">iPod</span></li>
-							<li><input type="checkbox" class="check_playerType" name="playerType" value="Others" /><span class="content">Others</span></li>
+						    <li><input type="checkbox" class="check_acType" name="acType" value="Window AC" /><span class="content">Window AC</span></li>
+						    <li><input type="checkbox" class="check_acType" name="acType" value="Split AC" /><span class="content">Split AC</span></li>
+							<li><input type="checkbox" class="check_acType" name="acType" value="Air Cooler" /><span class="content">Air Cooler</span></li>
 						</ul>
 						<a href="#" class="clear blue_link">clear filters</a>
 					</div>
@@ -85,4 +80,3 @@
 <script>
 
 </script>
-

@@ -1,8 +1,8 @@
 
-<div class=" header_2">
+<div class=" header_2" style="overflow:hidden;">
 	<%@include file="/BreadCrumb.jsp" %>
 	<s:if test="adList.size() > 0">
-		<div class="col-md-12 col-md-offset-3 filter_cat">
+		<div class="col-md-12 filter_cat">
 			<form class="form-inline" id="mobile">
 				<div class=" pull-left hidden-subcat searchFilter" id="brand-main">
 					<div id="brand" class="inputstyle pointer form-control">

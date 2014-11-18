@@ -1,7 +1,7 @@
-<div class=" header_2">
+<div class=" header_2" style="overflow:hidden;">
 	<%@include file="/BreadCrumb.jsp" %>
 	<s:if test="adList.size() > 0">
-		<div class="col-md-12 col-md-offset-3 filter_cat">
+		<div class="col-md-12 filter_cat">
 			<form class="form-inline" id="comp">	
 				<div class=" pull-left hidden-subcat searchFilter" id="year-main">
 					<div id="year" class="inputstyle pointer form-control">
@@ -37,7 +37,7 @@
 				</div>
 			</form>
 		</div>
-		<div class="col-md-11 col-md-offset-3 selected_filters" style="display:none;" id="filterValueBar">
+		<div class="col-md-11 selected_filters" style="display:none;" id="filterValueBar">
 		<div id="clear_all_f" class="pull-left pointer" style="text-decoration: underline;color:#4f00fc">clear all</div>
 	</div>
 	</s:if>

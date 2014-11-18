@@ -9,11 +9,11 @@
 	.postRow:hover{background-color:rgb(244,250,255); cursor:pointer;}
 	#adListHeading{font-weight:normal; font-size:12px; margin-left:10px; float:left; padding-top:3px; color:rgb(255,128,0);}
 </style>
-<div class="data">
+<div class="data" style="overflow:hidden;">
 <input id="pagecount" type="hidden" value="<s:property value="count"/>">
 	<s:if test="adList.size() > 0">
 		
-		<div class="col-md-8 listSection" id="postListSection" style="margin-left:5px;">
+		<div class="col-md-12 listSection" id="postListSection" style="margin-left:5px;">
 			<form id="dummyForm"></form>
 			<table class="table table-bordered">
 				<tr>
@@ -129,7 +129,7 @@
 		</div>
 	</s:if>
 	<s:else>
-		<div class="col-md-8 listSection">
+		<div class="col-md-12 listSection">
 			<table class="table table-bordered">
 				<tr>
 					<th colspan="3" style="padding-left: 15px; font-size: 13px;">No
