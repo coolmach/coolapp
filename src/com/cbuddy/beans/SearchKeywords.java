@@ -2,6 +2,8 @@ package com.cbuddy.beans;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -14,10 +16,24 @@ public class SearchKeywords {
 	private String keyword;
 	private String category;
 	private String subcategory;
+	private String city;
+	private String location;
 	
+	public SearchKeywords(){
+		
+	}
+	
+	public SearchKeywords(String keyword, String category, String sub_category, String city, String location){
+		this.keyword = keyword.replace("'", "");
+		this.category = category.replace("'", "");
+		this.subcategory = sub_category.replace("'", "");
+		this.city = city.replace("'", "");
+		this.location = location.replace("'", "");
+	}
 	
 	@Id
 	@Column(name="RECORD_ID")
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	public int getRecordId() {
 		return recordId;
 	}
@@ -55,5 +71,27 @@ public class SearchKeywords {
 
 	public String toString(){
 		return "Keyword: " + keyword + ", Category: " + category + ", SubCategory: " + subcategory;
+	}
+
+	@Column(name="CITY")
+	public String getCity() {
+		return city;
+	}
+
+	public void setCity(String city) {
+		this.city = city;
+	}
+
+	@Column(name="LOCATION")
+	public String getLocation() {
+		return location;
+	}
+
+	public void setLocation(String location) {
+		this.location = location;
+	}
+	
+	public String convertToInsertStatement(){
+		return "INSERT INTO SEARCH_KEYWORDS VALUES(null, '" + keyword + " in " + location + "','" + category + "', '" + subcategory + "', '" + city + "', '" + location + "');\n";
 	}
 }

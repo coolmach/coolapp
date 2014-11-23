@@ -60,6 +60,8 @@ public class AutoSuggestKeywordsService{
 				keyword.setKeyword(d.get("keyword"));
 				keyword.setCategory(d.get("category"));
 				keyword.setSubcategory(d.get("subcategory"));
+				keyword.setCity(d.get("city"));
+				keyword.setLocation(d.get("location"));
 				
 				System.out.println((i + 1) + ". " + keyword);
 				LogUtil.getInstance().info(">>> " + (i + 1) + ". " + keyword);

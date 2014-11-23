@@ -1,4 +1,4 @@
-package com.cbuddy.posts.util;
+package com.cbuddy.index_generators;
 
 import java.io.File;
 import java.io.IOException;
@@ -34,7 +34,7 @@ import com.cbuddy.util.LocationUtil;
 import com.cbuddy.util.LogUtil;
 import com.cbuddy.util.Utils;
 
-public class Testing {
+public class PostIndexCreator {
 	private static String POST_INDEX_BASE_FOLDER_PATH = "C:\\Shiva\\indexes\\posts\\";
 	private static String POSTS_INDEX = POST_INDEX_BASE_FOLDER_PATH + "post-indexes";
 	public static void addIndex(Session session, Poit poit, CommonDetailsForPost postDetails, IndexWriter w){
