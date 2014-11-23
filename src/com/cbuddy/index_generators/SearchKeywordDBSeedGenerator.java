@@ -16,40 +16,51 @@ import org.hibernate.SessionFactory;
 
 import com.cbuddy.beans.SearchKeywords;
 import com.cbuddy.util.CbuddySessionFactory;
+import com.cbuddy.util.LocationUtil;
 
 public class SearchKeywordDBSeedGenerator {
 	private static final String BASE_PATH = "C:\\Shiva\\generated_indexes\\";
-	public static void main(String[] args)throws IOException, ParseException{
-		ArrayList<String> locationList = getLocationList("BLR");
+	
+	private static void createDBSeedForCity(Session dbSession, String city) throws IOException{
+		ArrayList<String> locationList = getLocationList(city);
 		ArrayList<SearchKeyword_Input> inputs = formInputForRealEstate();
 		ArrayList<SearchKeywords> output = new ArrayList<SearchKeywords>();
 		
 		for(SearchKeyword_Input input:inputs){
 			for(String area:locationList){
-				SearchKeywords keyword = new SearchKeywords(input.keyword + " in " + area, input.category, input.sub_category, "BLR", area);
+				SearchKeywords keyword = new SearchKeywords(input.keyword + " in " + area, input.category, input.sub_category, city, area);
 				output.add(keyword);
 			}
 		}
 	
+		updateDB(output, dbSession);
+		
+		generateOutput(output);
+		System.out.println(">>> Written for " + LocationUtil.getCityName(dbSession, city) + "...");
+	}
+	
+	public static void main(String[] args)throws IOException, ParseException{
 		SessionFactory sessionFactory = CbuddySessionFactory.getSessionFactory();
 		Session dbSession = sessionFactory.openSession();
 		dbSession.beginTransaction();
 		
-		updateDB(output, dbSession);
+		clearDB(dbSession);
+		
+		createDBSeedForCity(dbSession, "BLR");
+		createDBSeedForCity(dbSession, "CHE");
 		
 		dbSession.getTransaction().commit();
 		dbSession.close();
-		
-		generateOutput(output);
-		System.out.println(">>> Written!");
 	}
-
-	private static void updateDB(List<SearchKeywords> keywords, Session dbSession){
+	
+	private static void clearDB(Session dbSession){
 		//Delete existing entries in DB
 		String str = String.format("Delete from %s", "SearchKeywords");
 		Query q = dbSession.createQuery(str);
 		q.executeUpdate();
-		
+	}
+
+	private static void updateDB(List<SearchKeywords> keywords, Session dbSession){
 		for(SearchKeywords keyword:keywords){
 			dbSession.save(keyword);
 		}
@@ -85,23 +96,30 @@ public class SearchKeywordDBSeedGenerator {
 		SearchKeyword_Inputs.add(new SearchKeyword_Input("2 BHK for Rent", "REAL", "2"));
 		SearchKeyword_Inputs.add(new SearchKeyword_Input("3 BHK for Rent", "REAL", "2"));
 		SearchKeyword_Inputs.add(new SearchKeyword_Input("4 BHK for Rent", "REAL", "2"));
+
+		SearchKeyword_Inputs.add(new SearchKeyword_Input("1BHK for Rent", "REAL", "2"));
+		SearchKeyword_Inputs.add(new SearchKeyword_Input("2BHK for Rent", "REAL", "2"));
+		SearchKeyword_Inputs.add(new SearchKeyword_Input("3BHK for Rent", "REAL", "2"));
+		SearchKeyword_Inputs.add(new SearchKeyword_Input("4BHK for Rent", "REAL", "2"));
+		
 		SearchKeyword_Inputs.add(new SearchKeyword_Input("1 BHK for Sale", "REAL", "1"));
 		SearchKeyword_Inputs.add(new SearchKeyword_Input("2 BHK for Sale", "REAL", "1"));
 		SearchKeyword_Inputs.add(new SearchKeyword_Input("3 BHK for Sale", "REAL", "1"));
 		SearchKeyword_Inputs.add(new SearchKeyword_Input("4 BHK for Sale", "REAL", "1"));
-		SearchKeyword_Inputs.add(new SearchKeyword_Input("1 BHK Apartment for Rent", "REAL", "2"));
-		SearchKeyword_Inputs.add(new SearchKeyword_Input("2 BHK Apartment for Rent", "REAL", "2"));
-		SearchKeyword_Inputs.add(new SearchKeyword_Input("3 BHK Apartment for Rent", "REAL", "2"));
-		SearchKeyword_Inputs.add(new SearchKeyword_Input("4 BHK Apartment for Rent", "REAL", "2"));
-		SearchKeyword_Inputs.add(new SearchKeyword_Input("2 BHK Apartment for Rent", "REAL", "2"));
-		SearchKeyword_Inputs.add(new SearchKeyword_Input("2 BHK Apartment for Rent", "REAL", "2"));
+		
+		SearchKeyword_Inputs.add(new SearchKeyword_Input("1BHK for Sale", "REAL", "1"));
+		SearchKeyword_Inputs.add(new SearchKeyword_Input("2BHK for Sale", "REAL", "1"));
+		SearchKeyword_Inputs.add(new SearchKeyword_Input("3BHK for Sale", "REAL", "1"));
+		SearchKeyword_Inputs.add(new SearchKeyword_Input("4BHK for Sale", "REAL", "1"));
+		
+		SearchKeyword_Inputs.add(new SearchKeyword_Input("Apartment for Sale", "REAL", "1"));
+		SearchKeyword_Inputs.add(new SearchKeyword_Input("Apartment for Rent", "REAL", "1"));
+		
+		SearchKeyword_Inputs.add(new SearchKeyword_Input("PG Accommodation", "REAL", "5"));
+
 		SearchKeyword_Inputs.add(new SearchKeyword_Input("Land For Sale", "REAL", "6"));
-		SearchKeyword_Inputs.add(new SearchKeyword_Input("North Indian Roommate required", "REAL", "7"));
-		SearchKeyword_Inputs.add(new SearchKeyword_Input("Tamil Roommate required", "REAL", "7"));
-		SearchKeyword_Inputs.add(new SearchKeyword_Input("Kannada Roommate required", "REAL", "7"));
-		SearchKeyword_Inputs.add(new SearchKeyword_Input("Telugu Roommate required", "REAL", "7"));
-		SearchKeyword_Inputs.add(new SearchKeyword_Input("Bengali Roommate required", "REAL", "7"));
-		SearchKeyword_Inputs.add(new SearchKeyword_Input("Hindi Roommate required", "REAL", "7"));
+		
+		SearchKeyword_Inputs.add(new SearchKeyword_Input("Looking for a Roommate", "REAL", "7"));
 		
 		return SearchKeyword_Inputs;
 	}

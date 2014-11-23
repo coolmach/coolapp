@@ -52,7 +52,8 @@ public class RealEstateAction extends ActionSupport implements SessionAware, Ser
 	private String smaintenance ;//Maintenance entered by user on the screen
 	private String sdeposit; // Deposit entere by user on the screen
 
-
+	private String user_entered_location;
+	
 	private String responseMsg;
 
 	private List<RealEstatePostDetails> adList = new ArrayList<RealEstatePostDetails>();
@@ -512,6 +513,10 @@ public class RealEstateAction extends ActionSupport implements SessionAware, Ser
 		postDetails.setPostedDateStr(FormatterUtil.formatDate(postDetails.getCreatedOn()));
 	}
 
+	public String dummy(){
+		return Action.SUCCESS;
+	}
+	
 	public String getAdListForRealEstate(){
 
 		Utils utils = new Utils();
@@ -714,6 +719,14 @@ public class RealEstateAction extends ActionSupport implements SessionAware, Ser
 
 	public void setSdeposit(String sdeposit) {
 		this.sdeposit = sdeposit;
+	}
+
+	public String getUser_entered_location() {
+		return user_entered_location;
+	}
+
+	public void setUser_entered_location(String user_entered_location) {
+		this.user_entered_location = user_entered_location;
 	}
 
 }

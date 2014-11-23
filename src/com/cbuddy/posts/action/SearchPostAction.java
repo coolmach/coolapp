@@ -22,8 +22,14 @@ import org.apache.lucene.search.TopScoreDocCollector;
 import org.apache.lucene.store.Directory;
 import org.apache.lucene.store.FSDirectory;
 import org.apache.lucene.util.Version;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 
+import com.cbuddy.beans.SearchKeywords;
 import com.cbuddy.posts.model.MiniPostDetails;
+import com.cbuddy.util.AutoSuggestKeywordsService;
+import com.cbuddy.util.CBuddyConstants;
+import com.cbuddy.util.CbuddySessionFactory;
 import com.cbuddy.util.LogUtil;
 import com.cbuddy.util.Utils;
 import com.opensymphony.xwork2.Action;
@@ -35,14 +41,54 @@ public class SearchPostAction extends ActionSupport implements ModelDriven<MiniP
 	MiniPostDetails postDetails = new MiniPostDetails();
 	List<MiniPostDetails> postsList = new ArrayList<MiniPostDetails>();
 	private String searchKeyword;
+	private String actionName;
 	private static String POST_INDEX_BASE_FOLDER_PATH = "C:\\Shiva\\indexes\\posts\\";
 	private static String POSTS_INDEX = POST_INDEX_BASE_FOLDER_PATH + "post-indexes";
 	public String getAdListForSearch(){
+		
+		matchKeywordIfManuallyEntered();
+
+		//If it belongs to a specific category, take them to that specific category list screen, rather than a generic screen
+		String category = postDetails.getCategory();
+		String subcategory = postDetails.getSubcategory();
+
+		if(category != null && !category.equals("-1")){
+			if(category.equals(CBuddyConstants.CATEGORY_REAL_ESTATE)){
+				actionName = "realestate";
+			}else if(category.equals(CBuddyConstants.CATEGORY_AUTOMOBILES)){
+				actionName = "automobile";
+			}else if(category.equals(CBuddyConstants.CATEGORY_COMPUTERS)){
+				actionName = "computers";
+			}else if(category.equals(CBuddyConstants.CATEGORY_ELECTRONICS_AND_HOUSEHOLD)){
+				if(subcategory != null){
+					if(subcategory.equals(CBuddyConstants.SUBCATEGORY_ELECTRONICS_AND_HOUSEHOLD_AIRCOOLER)){
+						actionName = "airCooler";
+					}else if(subcategory.equals(CBuddyConstants.SUBCATEGORY_ELECTRONICS_AND_HOUSEHOLD_CAMERA)){
+						actionName = "camera";
+					}else if(subcategory.equals(CBuddyConstants.SUBCATEGORY_ELECTRONICS_AND_HOUSEHOLD_DVD_MUSIC_PLAYER)){
+						actionName = "dvd";
+					}else if(subcategory.equals(CBuddyConstants.SUBCATEGORY_ELECTRONICS_AND_HOUSEHOLD_FRIDGE)){
+						actionName = "fridge";
+					}else if(subcategory.equals(CBuddyConstants.SUBCATEGORY_ELECTRONICS_AND_HOUSEHOLD_TELEVISION)){
+						actionName = "television";
+					}else if(subcategory.equals(CBuddyConstants.SUBCATEGORY_ELECTRONICS_AND_HOUSEHOLD_WASHINGMACHINE)){
+						actionName = "washingMachine";
+					}
+				}
+			}else if(category.equals(CBuddyConstants.CATEGORY_FURNITURE)){
+				actionName = "furniture";
+			}else if(category.equals(CBuddyConstants.CATEGORY_MOBILE)){
+				actionName = "mobiles";
+			}
+			if(actionName != null){
+				return "redirect_to_a_category_action";
+			}
+		}
+		
 		StandardAnalyzer analyzer = new StandardAnalyzer(Version.LUCENE_44);
 		Directory index = null;
 		int hitsPerPage = 10;
-
-
+		
 		try {
 			Query q = formQuery(analyzer);
 			index = FSDirectory.open(new File(POSTS_INDEX));
@@ -65,6 +111,29 @@ public class SearchPostAction extends ActionSupport implements ModelDriven<MiniP
 		return Action.SUCCESS;
 	}	
 
+	private void matchKeywordIfManuallyEntered(){
+		/* Even if the user has manually entered the keyword (not selected from the autocomplete list), we have
+		 * to check if it matches with a pre-defined keyword.
+		 * If so, get the pre-defined keyword and it's attributes and then continue the search.
+		 */
+		SessionFactory sessionFactory = CbuddySessionFactory.getSessionFactory();
+		Session dbSession = sessionFactory.openSession();
+		try {
+			List<SearchKeywords> keywordsList = new AutoSuggestKeywordsService().getList(dbSession, searchKeyword);
+			if(keywordsList != null){
+				for(SearchKeywords keyword:keywordsList){
+					if(keyword.getKeyword().equalsIgnoreCase(searchKeyword)){
+						postDetails.setCategory(keyword.getCategory());
+						postDetails.setSubcategory(keyword.getSubcategory());
+						postDetails.setCity(keyword.getCity());
+						postDetails.setLocation(keyword.getLocation());
+					}
+				}
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 	
 	public static void main(String[] args){
 		SearchPostAction postAction = new SearchPostAction();
@@ -90,6 +159,16 @@ public class SearchPostAction extends ActionSupport implements ModelDriven<MiniP
 		String location = postDetails.getLocation();
 		if(location != null && !location.trim().equals("-1")){
 			TermQuery termQuery = new TermQuery(new Term("location", location));
+			booleanQuery.add(termQuery, Occur.MUST);
+		}
+		String category = postDetails.getCategory();
+		if(category != null && !category.trim().equals("-1")){
+			TermQuery termQuery = new TermQuery(new Term("category", category));
+			booleanQuery.add(termQuery, Occur.MUST);
+		}
+		String subcategory = postDetails.getSubcategory();
+		if(subcategory != null && !subcategory.trim().equals("-1")){
+			TermQuery termQuery = new TermQuery(new Term("subcategory", subcategory));
 			booleanQuery.add(termQuery, Occur.MUST);
 		}
 		String company = postDetails.getCorpId();
@@ -152,5 +231,13 @@ public class SearchPostAction extends ActionSupport implements ModelDriven<MiniP
 
 	public void setPostsList(List<MiniPostDetails> postsList) {
 		this.postsList = postsList;
+	}
+
+	public String getActionName() {
+		return actionName;
+	}
+
+	public void setActionName(String actionName) {
+		this.actionName = actionName;
 	}
 }

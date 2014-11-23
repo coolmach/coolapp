@@ -87,11 +87,10 @@ public class RealEstateAdService{
 
 
 	private Criteria generateFilters(RealEstatePostDetails postDetails, Criteria criteria, String subCategory) {
-
+		if(postDetails.getLocation()!=null){
+			criteria = CriteriaUtil.getCriteriaForLocation(criteria, postDetails.getLocation());	
+		}
 		if(subCategory.equals(CBuddyConstants.SUBCATEGORY_REAL_ESTATE_APARTMENT_FOR_RENT)){
-			if(postDetails.getLocation()!=null){
-				criteria = CriteriaUtil.getCriteriaForLocation(criteria, postDetails.getLocation());	
-			}
 			if(postDetails.getAreaStr()!=null && !postDetails.getAreaStr().equals("")){
 				criteria = CriteriaUtil.getCriteriaForArea(criteria, postDetails.getAreaStr());
 			}
@@ -112,9 +111,6 @@ public class RealEstateAdService{
 				criteria = getCriteriaForCarParking(criteria, postDetails);
 			}
 		}else if(subCategory.equals(CBuddyConstants.SUBCATEGORY_REAL_ESTATE_APARTMENT_FOR_SALE)){	
-			if(postDetails.getLocation()!=null){
-				criteria = CriteriaUtil.getCriteriaForLocation(criteria, postDetails.getLocation());	
-			}
 			if(postDetails.getAreaStr()!=null && !postDetails.getAreaStr().equals("")){
 				criteria = CriteriaUtil.getCriteriaForArea(criteria, postDetails.getAreaStr());
 			}
@@ -150,9 +146,6 @@ public class RealEstateAdService{
 				criteria = getCriteriaForCarParking(criteria, postDetails);
 			}	
 		}else if(subCategory.equals(CBuddyConstants.SUBCATEGORY_REAL_ESTATE_LAND_SALE)){
-			if(postDetails.getLocation()!=null){
-				criteria = CriteriaUtil.getCriteriaForLocation(criteria, postDetails.getLocation());	
-			}
 			if(postDetails.getAreaStr()!=null && !postDetails.getAreaStr().equals("")){
 				criteria = CriteriaUtil.getCriteriaForArea(criteria, postDetails.getAreaStr());
 			}
@@ -163,9 +156,6 @@ public class RealEstateAdService{
 				criteria = getCriteriaForApprovalAuthority(criteria, postDetails);
 			}	
 		}else if(subCategory.equals(CBuddyConstants.SUBCATEGORY_REAL_ESTATE_PG_ACCOMODATION)){
-			if(postDetails.getLocation()!=null){
-				criteria = CriteriaUtil.getCriteriaForLocation(criteria, postDetails.getLocation());	
-			}
 			if(postDetails.getAmt()!=null){
 				criteria = CriteriaUtil.getCriteriaForAmt(criteria, postDetails.getAmt(), "priceValue");
 			}

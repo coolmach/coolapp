@@ -24,7 +24,6 @@ import com.cbuddy.beans.SearchKeywords;
 public class AutoSuggestKeywordsService{
 
 	public List<SearchKeywords> getList(Session session, String searchString) throws IOException{
-		KeywordIndexCreator.getInstance().indexKeywords(session);
 		StandardAnalyzer analyzer = new StandardAnalyzer(Version.LUCENE_44);
 		
 		LogUtil.getInstance().info(">>> AutoSuggestKeywordsService.getList() - ENTER");
@@ -35,7 +34,7 @@ public class AutoSuggestKeywordsService{
 		Directory index = FSDirectory.open(new File(CBuddyConstants.BASE_FOLDER_NAME_INDEX, fileName));
 		String querystr = searchString;
 		querystr = querystr + "*"; //Keyword can be in any part of the document
-		int hitsPerPage = 10;
+		int hitsPerPage = 6;
 		org.apache.lucene.search.Query q = null;
 		
 		List<SearchKeywords> keywordsList = new ArrayList<SearchKeywords>();
@@ -61,6 +60,7 @@ public class AutoSuggestKeywordsService{
 				keyword.setCategory(d.get("category"));
 				keyword.setSubcategory(d.get("subcategory"));
 				keyword.setCity(d.get("city"));
+				keyword.setCityName(d.get("cityName"));
 				keyword.setLocation(d.get("location"));
 				
 				System.out.println((i + 1) + ". " + keyword);

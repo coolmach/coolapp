@@ -22,6 +22,7 @@ import org.hibernate.SessionFactory;
 import com.cbuddy.beans.SearchKeywords;
 import com.cbuddy.util.CBuddyConstants;
 import com.cbuddy.util.CbuddySessionFactory;
+import com.cbuddy.util.LocationUtil;
 
 public class SearchKeywordIndexCreator{
 	private SearchKeywordIndexCreator(){}
@@ -49,13 +50,21 @@ public class SearchKeywordIndexCreator{
 		return keywordsList;
 	}
 
-	private static void indexKeyword(IndexWriter w, SearchKeywords keyword) throws IOException{
+	private static void indexKeyword(IndexWriter w, SearchKeywords keyword, Session dbSession) throws IOException{
 		Document doc = new Document();
 		doc.add(new TextField("keyword", keyword.getKeyword(), Field.Store.YES));
 		doc.add(new StringField("category", keyword.getCategory(), Field.Store.YES));
 		doc.add(new StringField("subcategory", keyword.getSubcategory(), Field.Store.YES));
 		doc.add(new StringField("city", keyword.getCity(), Field.Store.YES));
-		doc.add(new StringField("location", keyword.getLocation(), Field.Store.YES));
+		doc.add(new StringField("cityName", LocationUtil.getCityName(dbSession, keyword.getCity()), Field.Store.YES));
+		String locName = keyword.getLocation();
+		String locCode = LocationUtil.getLocationCode(dbSession, keyword.getCity(), locName);
+		if(locCode != null){
+			doc.add(new StringField("location", locCode, Field.Store.YES));
+		}else{
+			doc.add(new StringField("location", locName, Field.Store.YES));
+		}
+		System.out.println(">>> Index: Category: " + doc.get("category") + ", Sub Category: " + doc.get("subcategory") + ", City: " + doc.get("city") + ", Location: " + doc.get("location") + "(" + locName + ")");
 		w.addDocument(doc);
 	}
 
@@ -72,7 +81,7 @@ public class SearchKeywordIndexCreator{
 		w.deleteAll();
 		List<SearchKeywords> keywordsList = getKeywordsList(session);
 		for(SearchKeywords keyword:keywordsList){
-			indexKeyword(w, keyword);
+			indexKeyword(w, keyword, session);
 		}
 		w.close();
 		

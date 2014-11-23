@@ -6,6 +6,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 
 @Entity
@@ -17,6 +18,7 @@ public class SearchKeywords {
 	private String category;
 	private String subcategory;
 	private String city;
+	private String cityName;
 	private String location;
 	
 	public SearchKeywords(){
@@ -93,5 +95,14 @@ public class SearchKeywords {
 	
 	public String convertToInsertStatement(){
 		return "INSERT INTO SEARCH_KEYWORDS VALUES(null, '" + keyword + " in " + location + "','" + category + "', '" + subcategory + "', '" + city + "', '" + location + "');\n";
+	}
+
+	@Transient
+	public String getCityName() {
+		return cityName;
+	}
+
+	public void setCityName(String cityName) {
+		this.cityName = cityName;
 	}
 }

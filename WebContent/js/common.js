@@ -100,6 +100,11 @@ function applyFilters(){
 	cat = $('#cat').text();
 	var data="";
 	data = data + '&subCategory='+subCat+'&category='+cat;
+	
+	if($("#user_entered_location").val() != ""){
+		data = data + "&location=" + $("#user_entered_location").val();
+	}
+	
 	var str="";
 	$("input[class^=check_]:checked").each(function()
 			{		 

@@ -446,6 +446,12 @@
 		
 		<action name="searchPosts" class="com.cbuddy.posts.action.SearchPostAction" method="getAdListForSearch">
 			<result name="success" type="tiles">/searchResults.tiles</result>
+			<result name="redirect_to_a_category_action" type="redirectAction">
+				<param name="actionName">${actionName}</param>
+				<param name="subCategory">${subcategory}</param>
+				<param name="city">${city}</param>
+				<param name="user_entered_location">${location}</param>
+			</result>
 		</action>
 		<action name="searchPostsFilter" class="com.cbuddy.posts.action.SearchPostAction" method="getAdListForSearch">
 			<result name="success">/pages/search_posts/AdList_SearchResults.jsp</result>

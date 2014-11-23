@@ -44,7 +44,7 @@ public class PostIndexCreator {
 			System.out.println(description_specific);
 			Document doc = new Document();
 			doc.add(new StringField("postId", String.valueOf(poit.getPostId()), Field.Store.YES));
-			doc.add(new TextField("category", poit.getCategory(), Field.Store.YES));
+			doc.add(new StringField("category", poit.getCategory(), Field.Store.YES));
 			doc.add(new StringField("subcategory", poit.getSubCategory(), Field.Store.YES));
 			doc.add(new StringField("city", poit.getCity(), Field.Store.YES));
 			doc.add(new StringField("cityName", LocationUtil.getCityName(session, poit.getCity()), Field.Store.YES));
