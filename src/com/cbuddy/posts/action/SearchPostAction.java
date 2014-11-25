@@ -30,6 +30,7 @@ import com.cbuddy.posts.model.MiniPostDetails;
 import com.cbuddy.util.AutoSuggestKeywordsService;
 import com.cbuddy.util.CBuddyConstants;
 import com.cbuddy.util.CbuddySessionFactory;
+import com.cbuddy.util.LocationUtil;
 import com.cbuddy.util.LogUtil;
 import com.cbuddy.util.Utils;
 import com.opensymphony.xwork2.Action;
@@ -121,14 +122,48 @@ public class SearchPostAction extends ActionSupport implements ModelDriven<MiniP
 		try {
 			List<SearchKeywords> keywordsList = new AutoSuggestKeywordsService().getList(dbSession, searchKeyword);
 			if(keywordsList != null){
+				SearchKeywords topKeyword = null;
+				float topScore = 0;
 				for(SearchKeywords keyword:keywordsList){
-					if(keyword.getKeyword().equalsIgnoreCase(searchKeyword)){
-						postDetails.setCategory(keyword.getCategory());
-						postDetails.setSubcategory(keyword.getSubcategory());
-						postDetails.setCity(keyword.getCity());
-						postDetails.setLocation(keyword.getLocation());
+					if(keyword.getMatchscore() > topScore){
+						topScore = keyword.getMatchscore();
+						topKeyword = keyword;
 					}
 				}
+				
+				/* Some Dirty Logic - START
+				 * If input search sentence contains the letter "in" before the last word, then the last word most probably denotes the location.
+				 * That is, the user is specifically searching for the location.
+				 * That means that though matching score is good, the locations should match.
+				 * E.g. If user enters manually "1 BHK for sale in Agara", then even though the matching score is > 1 for the DB keyword "1 BHK for Sale in Marathalli",
+				 * we should not consider this result, as the location is not the same. 
+				 */
+				String location = null;
+				String[] tokens = searchKeyword.split(" ");
+				int noOfWords = tokens.length;
+				if(noOfWords > 2){
+					if(tokens[noOfWords - 2].equalsIgnoreCase("in")){
+						location = tokens[noOfWords - 1]; //The last word in the search keyword sentence.
+						//Get Location Code
+						location = LocationUtil.getLocationCode(dbSession, location);
+					}
+				}
+				if(topScore > 1.0){
+					if(location != null){
+						postDetails.setLocation(location);
+						if(location.equals(topKeyword.getLocation())){
+							postDetails.setCategory(topKeyword.getCategory());
+							postDetails.setSubcategory(topKeyword.getSubcategory());
+							postDetails.setCity(topKeyword.getCity());
+						}
+					}else{
+						postDetails.setCategory(topKeyword.getCategory());
+						postDetails.setSubcategory(topKeyword.getSubcategory());
+						postDetails.setCity(topKeyword.getCity());
+						postDetails.setLocation(topKeyword.getLocation());
+					}
+				}
+				/* Some Dirty Logic - END */
 			}
 		} catch (IOException e) {
 			e.printStackTrace();

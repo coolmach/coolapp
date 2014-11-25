@@ -529,6 +529,11 @@ public class RealEstateAction extends ActionSupport implements SessionAware, Ser
 			postDetails.setCategory(CBuddyConstants.CATEGORY_REAL_ESTATE);
 		}	
 
+		if(user_entered_location != null && postDetails.getLocation() == null){
+			// Home search through Autocomplete
+			postDetails.setLocation(user_entered_location);
+		}
+		
 		categoryStr = utils.getCategoryDesc(postDetails.getCategory());
 		subCategoryStr = utils.getSubCategoryDesc(postDetails.getCategory(), postDetails.getSubCategory());
 

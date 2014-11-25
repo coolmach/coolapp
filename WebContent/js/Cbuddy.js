@@ -9,12 +9,18 @@ $(document).ready(function() {
 
 	if(cat == 'REAL'){
 		path="/realestateFilter";
-		$("#subCategory-right li").eq(1).addClass("highlight_subcat");
+		var user_entered_location = "<s:property value='%{user_entered_location}'>";
+		if(user_entered_location == null || user_entered_location == ""){
+			$("#subCategory-right li").eq(1).addClass("highlight_subcat");
+		}
 		showFilters(["loc", "bhk", "area", "amt", "dir", "approval", "ownership", "amenities"]);
 
 	}else if(cat == 'AUTO'){
 		path="/automobileFilter";
-		$("#subCategory-right li").eq(0).addClass("highlight_subcat");
+		var user_entered_location = "<s:property value='%{user_entered_location}'>";
+		if(user_entered_location == null || user_entered_location == ""){
+			$("#subCategory-right li").eq(0).addClass("highlight_subcat");
+		}
 		
 		showFilters(['make','amt','year','model','fuelType','regState']);
 	}else if(cat == 'ELEC'){
@@ -58,7 +64,10 @@ $(document).ready(function() {
 	}else if(cat == 'COMP'){
 		path = "/computersFilter";
 		var sub = $('#sub').text();
-		$("#subCategory-right li").eq(0).addClass("highlight_subcat");
+		var user_entered_location = "<s:property value='%{user_entered_location}'>";
+		if(user_entered_location == null || user_entered_location == ""){
+			$("#subCategory-right li").eq(0).addClass("highlight_subcat");
+		}
 		hideFilters(['make','tab_make','model','amt','accessoryType','accessory_amt','year']);
 		if(sub == "1"){
 			showFilters(['make','amt','year']);
@@ -74,7 +83,10 @@ $(document).ready(function() {
 
 	}else if(cat == 'MOBILE'){
 		path="/mobilesFilter";
-		$("#subCategory-right li").eq(0).addClass("highlight_subcat");
+		var user_entered_location = "<s:property value='%{user_entered_location}'>";
+		if(user_entered_location == null || user_entered_location == ""){
+			$("#subCategory-right li").eq(0).addClass("highlight_subcat");
+		}
 		$("#brand-main").show();
 		$("#model-main").show();
 		$("#amt-main").show();
@@ -131,7 +143,7 @@ $(document).ready(function() {
 			success: function(data, status) {
 
 				$('.data').html('');
-				$('.data').html(data);
+				$('.data').replaceWith(data);
 				$('#page_info').remove();
 				$( ".pager li" ).eq(1).html( '<input class="hidden" id="page_info" type="text" readonly="readonly" value="Showing Page '+(page-1) +' of '+pageCount+'" >' );
 
@@ -178,7 +190,7 @@ $(document).ready(function() {
 			success: function(data, status) {
 
 				$('.data').html('');
-				$('.data').html(data);
+				$('.data').replaceWith(data);
 				$('#page_info').remove();
 				$( ".pager li" ).eq(1).html( '<input class="hidden" id="page_info" type="text" readonly="readonly" value="Showing Page '+(page+1) +' of '+pageCount+'" >' );
 				var pC = parseInt($('#pagecount').val())/10;
@@ -257,7 +269,7 @@ $(document).ready(function() {
 			data: data,
 			success: function(data, status) {
 				$('.data').html('');
-				$('.data').html(data);
+				$('.data').replaceWith(data);
 				$('#page_info').remove();
 
 				var pC = parseInt($('#pagecount').val())/10;
@@ -339,7 +351,7 @@ $(document).ready(function() {
 			data: data,
 			success: function(data, status) {
 				$('.data').html('');
-				$('.data').html(data);
+				$('.data').replaceWith(data); 
 
 				var pC = parseInt($('#pagecount').val())/10;
 
@@ -521,6 +533,8 @@ function updateDataWithSelectedSubCategory(element, path){
 	}
 	data = data + '&subCategory='+subCat+'&category='+cat;
 
+	clearLocations();
+	
 	$.ajax({
 		type: 'POST',
 		url: ctxPath+path, 
@@ -528,7 +542,7 @@ function updateDataWithSelectedSubCategory(element, path){
 		success: function(data, status) {
 
 			$('.data').html('');
-			$('.data').html(data);
+			$('.data').replaceWith(data);
 			$('#sub').text(subCat);
 			$('#page_info').remove();
 

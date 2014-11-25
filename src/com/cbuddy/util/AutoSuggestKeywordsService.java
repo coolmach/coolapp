@@ -62,6 +62,7 @@ public class AutoSuggestKeywordsService{
 				keyword.setCity(d.get("city"));
 				keyword.setCityName(d.get("cityName"));
 				keyword.setLocation(d.get("location"));
+				keyword.setMatchscore(hits[i].score);
 				
 				System.out.println((i + 1) + ". " + keyword);
 				LogUtil.getInstance().info(">>> " + (i + 1) + ". " + keyword);

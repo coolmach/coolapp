@@ -22,3 +22,12 @@
 	</div>
 </div>
 
+<script>
+$(document).ready(function(){
+	var userEnteredSubCategory = "<s:property value='%{subCategory}'/>";
+	if(userEnteredSubCategory != ""){
+		$("li").removeClass('highlight_subcat');
+		$("li[value=" + userEnteredSubCategory + "]").addClass("highlight_subcat");
+	}
+});
+</script>

@@ -1,5 +1,5 @@
 <style>
-	.searchText{height:35px; font-size:14px; border:1px solid #C9E835); width:190px;}
+	.searchText{height:35px; font-size:14px; border:1px solid #C9E835); width:197px;}
 </style>
 
 <div class="col-md-12 col-md-offset-3" id="breadCrumb" style="margin-left:0%;margin-top:22%;padding-left:0px;padding-right:0px;margin-bottom:0px;">
@@ -141,7 +141,7 @@ function getLocations(city){
 	});
 }
 
-function updateNeighborhood(city, location){
+function updateNeighborhood(city, location, shouldFilterBeApplied){
 	var ctxPath = $('#context_path').val().trim();
 	$.ajax({
 		//url:"http://localhost:8080/Virat/getNeighbor?city=BLR&location=" + ui.item.value,
@@ -154,7 +154,9 @@ function updateNeighborhood(city, location){
 			$("#locationDetails").show();
 			$("#location").attr("checked", "true");
 			//alert("location - 4");
-			reapplyFilters();
+			if(shouldFilterBeApplied == true){
+				reapplyFilters();
+			}
 		},
 		error: function(data){
 			alert(data.responseText);
@@ -163,13 +165,27 @@ function updateNeighborhood(city, location){
 }
 
 $(document).ready(function(){
-	getLocations('BLR'); //Populate with Bangalore locations when the page is loaded
+	var userEnteredCity = "<s:property value='%{city}'/>";
+	var city = userEnteredCity;
+	var userEnteredLocation = "<s:property value='%{user_entered_location}'/>";
+	
+	if(city == null || city == ""){
+		city = "BLR";
+	}
+	
+	getLocations(city); //Populate with Bangalore locations when the page is loaded
 	$("#locSearch").off().on("change",function(){
-		updateNeighborhood($("input[name=city]:checked").val(), $("#locSearch").val());
+		updateNeighborhood($("input[name=city]:checked").val(), $("#locSearch").val(), true);
 	});
 	$("#corpSearchString").off().on("change",function(){
-		updateCompanySection($("#corpSearchString option:selected").text(), $("#corpSearchString").val());
+		updateCompanySection($("#corpSearchString option:selected").text(), $("#corpSearchString").val(), true);
 	});
+	
+	//User has chosen a city (e.g. Home search autosuggest > select) already
+	if(userEnteredLocation != "" && userEnteredCity != ""){
+		updateNeighborhood(userEnteredCity, userEnteredLocation, false);
+	}
+	
 	getCompanies();
 });
 </script>

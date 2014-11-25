@@ -1,5 +1,5 @@
 
-<div class=" header_2" style="overflow:hidden;">
+<div class=" header_2 clearfix col-md-9">
 	<%@include file="/BreadCrumb.jsp" %>
 	<s:if test="adList.size() > 0">
 	<div class="col-md-12 filter_cat">

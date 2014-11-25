@@ -101,9 +101,7 @@ function applyFilters(){
 	var data="";
 	data = data + '&subCategory='+subCat+'&category='+cat;
 	
-	if($("#user_entered_location").val() != ""){
-		data = data + "&location=" + $("#user_entered_location").val();
-	}
+	
 	
 	var str="";
 	$("input[class^=check_]:checked").each(function()
@@ -140,7 +138,7 @@ function applyFilters(){
 		success: function(data, status) {
 			
 			$('.data').html('');
-			$('.data').html(data);
+			$('.data').replaceWith(data);
 
 			var pC = parseInt($('#pagecount').val())/10;
 
@@ -209,13 +207,17 @@ function applyFilters(){
 		
 		applyFilters();	
 		
+		clearLocations();
+	}
+
+	function clearLocations(){
 		$("#locationListBar").html("");
 		$("#horizontalSeparator").html("");
 		$("#neighborhoodLocationBar").html("");
 		
 		$("#locSearch").val("-1");
 	}
-
+	
 	function resetCorporateFilter() {
 	
 		//$("#filterValueBar").show();

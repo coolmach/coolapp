@@ -26,6 +26,21 @@ public class LocationUtil {
 		return locationCode;
 	}
 	
+	//Get a Location Code for Location Name - Doesn't matter in which city the location is present
+	public static String getLocationCode(Session session, String locationName){
+		String locationCode = null;
+		String queryString = "from Location where loc_name = :locName";
+
+		Query query = session.createQuery(queryString);
+		query.setParameter("locName", locationName);
+		List<Location> locationList = query.list();
+		if(locationList.size() > 0){
+			Location location = locationList.get(0);
+			locationCode = location.getLocCode();
+		}
+		return locationCode;
+	}
+	
 	public static String getCityName(Session session, String cityCode){
 		String cityName = cityCode;
 		if(cityMap.get(cityCode) != null){

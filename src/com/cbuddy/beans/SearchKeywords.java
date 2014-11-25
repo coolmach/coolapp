@@ -20,6 +20,7 @@ public class SearchKeywords {
 	private String city;
 	private String cityName;
 	private String location;
+	private float matchscore;
 	
 	public SearchKeywords(){
 		
@@ -104,5 +105,13 @@ public class SearchKeywords {
 
 	public void setCityName(String cityName) {
 		this.cityName = cityName;
+	}
+
+	public float getMatchscore() {
+		return matchscore;
+	}
+
+	public void setMatchscore(float matchscore) {
+		this.matchscore = matchscore;
 	}
 }

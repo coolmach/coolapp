@@ -9,10 +9,10 @@
 	.postRow:hover{background-color:rgb(244,250,255); cursor:pointer;}
 	#adListHeading{font-weight:normal; font-size:12px; margin-left:10px; float:left; padding-top:3px; color:rgb(255,128,0);}
 </style>
-<div class="data" style="overflow:hidden;">
+<div class="data clearfix col-md-9">
 <input id="pagecount" type="hidden" value="<s:property value="count"/>">
 	<s:if test="adList.size() > 0">
-		
+
 		<div class="col-md-12 listSection" id="postListSection" style="margin-left:5px;">
 			<form id="dummyForm"></form>
 			<table class="table table-bordered">

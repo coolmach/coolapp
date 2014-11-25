@@ -12,6 +12,6 @@
 
 <script>
 $(document).ready(function(){
-	applyFilters();
+
 });
 </script>

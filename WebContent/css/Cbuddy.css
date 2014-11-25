@@ -363,8 +363,8 @@
 }
 
 #filterValueBar {
-	margin-left: 26.7%;
-	width:64%;
+	margin-left:19px;
+	width:96%;
 	font-size:12px;
 	margin-bottom:5px;
 }
@@ -1997,3 +1997,13 @@ blockquote small {
 }
 
 .content{padding-left:5px;}
+
+.clearfix:before,
+.clearfix:after {
+    content: ".";    
+    display: block;    
+    height: 0;    
+    overflow: hidden; 
+}
+.clearfix:after { clear: both; }
+.clearfix { zoom: 1; }
