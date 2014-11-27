@@ -281,3 +281,14 @@ function applyFilters(){
 		return  double_input.toString();
 	}
 	
+	function getBaseUrl(){
+		var url = document.URL;
+		//url --> http://localhost:8080/Virat/realestate?category=REAL&subCategory=1
+		var baseUrl = url.substring(0, url.lastIndexOf('/'));
+	    var dot = baseUrl.lastIndexOf('.');
+	    if(dot != -1){
+			baseUrl = baseUrl.substring(0, dot);
+	    }
+	    baseUrl = baseUrl + "/";
+	    return baseUrl;
+	}

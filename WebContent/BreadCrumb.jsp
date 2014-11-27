@@ -62,7 +62,7 @@
 		</s:url>
 	</s:elseif>
 	
-	<a class="cbuddy_link" href="<s:url action=""  />">Home</a> >
+	<a class="cbuddy_link" href="<s:url action="/"  />">Home</a> >
 	<a class="cbuddy_link" href="<s:property value="#urlTag" />"> <span
 		id="breadCrumb_Category_1"><s:property value="categoryStr" />
 	</span>

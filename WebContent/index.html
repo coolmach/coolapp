@@ -95,7 +95,19 @@
 
 <script src="js/jquery.min.js"></script>
 <script type="text/javascript" src="thirdparty/jquery-ui/jquery-ui-1.10.3.custom.min.js"></script>
-
+<script>
+function getBaseUrl(){
+	var url = document.URL;
+	//url --> http://localhost:8080/Virat/realestate?category=REAL&subCategory=1
+	var baseUrl = url.substring(0, url.lastIndexOf('/'));
+    var dot = baseUrl.lastIndexOf('.');
+    if(dot != -1){
+		baseUrl = baseUrl.substring(0, dot);
+    }
+    baseUrl = baseUrl + "/";
+    return baseUrl;
+}
+</script>
 <script>	
 $(document).ready(function(){
 
@@ -175,11 +187,13 @@ $(document).ready(function(){
 		
 		
 </script>
+
 <script>
 function searchPosts(){
 	var keyword = $("#item_search").val();
 	if(keyword != ""){
-		window.location.href = "http://localhost:8080/Virat/searchPosts?" + "searchKeyword=" + keyword + "&city=BLR";	
+		var baseUrl = getBaseUrl();
+		window.location.href = baseUrl + "/searchPosts?" + "searchKeyword=" + keyword + "&city=BLR";	
 	}else{
 		$("#item_search").focus();
 	}
@@ -225,7 +239,8 @@ $(document).ready(function(){
 			city = tokens[2];
 			loc = tokens[3];
 			
-			window.location.href = "http://localhost:8080/Virat/searchPosts?" + "searchKeyword=" + ui.item.label + "&city=" + city + "&location=" + loc + "&category=" + category + "&subcategory=" + subcategory;
+			var baseUrl = getBaseUrl();
+			window.location.href = baseUrl + "/searchPosts?" + "searchKeyword=" + ui.item.label + "&city=" + city + "&location=" + loc + "&category=" + category + "&subcategory=" + subcategory;
 		},
 		minLength: 1
 	});	

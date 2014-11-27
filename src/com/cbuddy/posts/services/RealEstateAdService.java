@@ -87,10 +87,11 @@ public class RealEstateAdService{
 
 
 	private Criteria generateFilters(RealEstatePostDetails postDetails, Criteria criteria, String subCategory) {
-		if(postDetails.getLocation()!=null){
+		if(postDetails.getLocation()!=null && !postDetails.getLocation().equals("")){
 			criteria = CriteriaUtil.getCriteriaForLocation(criteria, postDetails.getLocation());	
 		}
-		if(subCategory.equals(CBuddyConstants.SUBCATEGORY_REAL_ESTATE_APARTMENT_FOR_RENT)){
+		if(subCategory.equals(CBuddyConstants.SUBCATEGORY_REAL_ESTATE_APARTMENT_FOR_RENT) ||
+				subCategory.equals(CBuddyConstants.SUBCATEGORY_REAL_ESTATE_IND_HOUSE_FOR_RENT)){
 			if(postDetails.getAreaStr()!=null && !postDetails.getAreaStr().equals("")){
 				criteria = CriteriaUtil.getCriteriaForArea(criteria, postDetails.getAreaStr());
 			}
@@ -110,7 +111,8 @@ public class RealEstateAdService{
 			if(postDetails.getCarParking()!=null){
 				criteria = getCriteriaForCarParking(criteria, postDetails);
 			}
-		}else if(subCategory.equals(CBuddyConstants.SUBCATEGORY_REAL_ESTATE_APARTMENT_FOR_SALE)){	
+		}else if(subCategory.equals(CBuddyConstants.SUBCATEGORY_REAL_ESTATE_APARTMENT_FOR_SALE) ||
+				subCategory.equals(CBuddyConstants.SUBCATEGORY_REAL_ESTATE_IND_HOUSE_FOR_SALE)){	
 			if(postDetails.getAreaStr()!=null && !postDetails.getAreaStr().equals("")){
 				criteria = CriteriaUtil.getCriteriaForArea(criteria, postDetails.getAreaStr());
 			}

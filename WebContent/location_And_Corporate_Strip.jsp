@@ -63,11 +63,11 @@ function applyFilters_Loc(city){
 		success: function(data) {
 			console.log(data);
 			$('.data').html('');
-			$('.data').html(data);
+			$('.data').replaceWith(data);
 		},
 		error: function (error) {
 			console.log(error);
-			alert('error: ' + error.responseText);
+			//alert('error: ' + error.responseText);
 		}
 	});
 }
@@ -113,6 +113,8 @@ function updateCompanySection(companyName, companyId){
 	reapplyFilters();
 }
 function applyFiltersForLocation(city){
+	//Reset selected locations for previously selected city
+	$("#location").val("");
 	reapplyFilters(city);
 	getLocations(city);
 }
@@ -159,7 +161,8 @@ function updateNeighborhood(city, location, shouldFilterBeApplied){
 			}
 		},
 		error: function(data){
-			alert(data.responseText);
+			console.log(data);
+			//alert(data.responseText);
 		}
 	});
 }
@@ -171,6 +174,8 @@ $(document).ready(function(){
 	
 	if(city == null || city == ""){
 		city = "BLR";
+	}else{
+		$("input[name='city'][value='" + city + "']").prop("checked", true);
 	}
 	
 	getLocations(city); //Populate with Bangalore locations when the page is loaded
@@ -196,7 +201,8 @@ $(document).ready(function(){
 function searchPosts(){
 	var keyword = $("#item_search").val();
 	if(keyword != ""){
-		window.location.href = "http://localhost:8080/Virat/searchPosts?" + "searchKeyword=" + keyword;	
+		var baseUrl = getBaseUrl();
+		window.location.href = baseUrl + "searchPosts?" + "searchKeyword=" + keyword;	
 	}else{
 		$("#item_search").focus();
 	}
@@ -227,7 +233,8 @@ $(document).ready(function(){
 					}));
 				},
 				error: function (error) {
-					alert('error: ' + error.responseText);
+					//alert('error: ' + error.responseText);
+					console.log(error);
 				}
 			});
 		},
@@ -235,22 +242,16 @@ $(document).ready(function(){
 			event.preventDefault();
 			$("#item_search").val(ui.item.label);
 			console.log(ui);
-			$.ajax({
-				url: "Virat" + "/searchPostsFilter?",
-				//url:$('#contextPath').text() + "getLocation",
-				type: "POST",
-				//dataType: "json",
-				data: {searchKeyword:ui.item.label},
-				success: function(data) {
-					console.log(data);
-					$('.data').html('');
-					$('.data').html(data);
-				},
-				error: function (error) {
-					console.log(error);
-					alert('error: ' + error.responseText);
-				}
-			});
+			var selectedItemValue = ui.item.value;
+			tokens = selectedItemValue.split('*');
+			category = tokens[0];
+			subcategory = tokens[1];
+			city = tokens[2];
+			loc = tokens[3];
+			
+			var baseUrl = getBaseUrl();
+			
+			window.location.href = baseUrl + "/searchPosts?" + "searchKeyword=" + ui.item.label + "&city=" + city + "&location=" + loc + "&category=" + category + "&subcategory=" + subcategory;
 		},
 		minLength: 1
 	});	

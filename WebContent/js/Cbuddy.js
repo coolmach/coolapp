@@ -5,101 +5,43 @@ $(document).ready(function() {
 	var subCat = "";
 	var path="";
 	var cat = $('#cat').text();
+	
+	var subCategory = $("#subCategory").val();
+	if(subCategory == ""){
+		subCategory = "1";
+	}
+	
+	var subCategory_str = $("#subCategory").val();
+	if(subCategory_str == ""){
+		subCategory_str = "1";
+	}
+	var subCat_Index_In_Li_Tag = parseInt(subCategory);
+	
 	var filterData = "";
 
-	if(cat == 'REAL'){
-		path="/realestateFilter";
-		var user_entered_location = "<s:property value='%{user_entered_location}'>";
-		if(user_entered_location == null || user_entered_location == ""){
-			$("#subCategory-right li").eq(1).addClass("highlight_subcat");
-		}
-		showFilters(["loc", "bhk", "area", "amt", "dir", "approval", "ownership", "amenities"]);
-
-	}else if(cat == 'AUTO'){
-		path="/automobileFilter";
-		var user_entered_location = "<s:property value='%{user_entered_location}'>";
-		if(user_entered_location == null || user_entered_location == ""){
-			$("#subCategory-right li").eq(0).addClass("highlight_subcat");
-		}
-		
-		showFilters(['make','amt','year','model','fuelType','regState']);
-	}else if(cat == 'ELEC'){
-		showFilters(['brand', 'amt','year', 'cameraType', 'playerType', 'loadingType', 'automaticType', 'screenType', 'doubleDoor', 'subCategoryFilterStr']);
-
+	if(cat == 'REAL'){path="/realestateFilter";}
+	else if(cat == 'AUTO'){path="/automobileFilter";}
+	else if(cat == 'ELEC'){
 		var sub = $('#sub').text();
 		path="/commonElectronicsFilter";
 		if($("#electronics_right li").hasClass('highlight_subcat')){
 			$("#electronics_right li").remove();
 		}
-		if(sub=="0"){
-			path="/commonElectronicsFilter";
-			$("#screenType-main").show();
-			$("#electronics_right li").eq(0).addClass("highlight_subcat");
-		}
-		else if(sub=="1"){
-			path="/televisionFilter";
-			$("#screenType-main").show();
-			$("#electronics_right li").eq(1).addClass("highlight_subcat");
-		}else if(sub=="2"){
-			path="/dvdFilter";
-			$("#electronics_right li").eq(6).addClass("highlight_subcat");
-		}else if(sub=="3"){
-			path="/cameraFilter";
-			$("#electronics_right li").eq(2).addClass("highlight_subcat");
-		}
-		else if(sub=="4"){
-			path="/fridgeFilter";
-			$("#electronics_right li").eq(3).addClass("highlight_subcat");
-		}
-		else if(sub=="5"){
-			path="/washingMachineFilter";
-			$("#electronics_right li").eq(5).addClass("highlight_subcat");
-		}
-		else if(sub=="6"){
-			path="/airCoolerFilter";
-			$("#acType-main").show();
-			$("#electronics_right li").eq(4).addClass("highlight_subcat");
-		}
-
-	}else if(cat == 'COMP'){
-		path = "/computersFilter";
-		var sub = $('#sub').text();
-		var user_entered_location = "<s:property value='%{user_entered_location}'>";
-		if(user_entered_location == null || user_entered_location == ""){
-			$("#subCategory-right li").eq(0).addClass("highlight_subcat");
-		}
-		hideFilters(['make','tab_make','model','amt','accessoryType','accessory_amt','year']);
-		if(sub == "1"){
-			showFilters(['make','amt','year']);
-		}else if(sub == "2"){
-			showFilters(['make','amt','year']);
-		}else if(sub == "3"){
-			showFilters(['tab_make','model','amt','year']);
-		}else if(sub == "4"){
-			showFilters(['accessory_amt','accessoryType']);
-		}
-		$("#processorSize-main").show();
-		$("#hddSize-main").show();
-
-	}else if(cat == 'MOBILE'){
-		path="/mobilesFilter";
-		var user_entered_location = "<s:property value='%{user_entered_location}'>";
-		if(user_entered_location == null || user_entered_location == ""){
-			$("#subCategory-right li").eq(0).addClass("highlight_subcat");
-		}
-		$("#brand-main").show();
-		$("#model-main").show();
-		$("#amt-main").show();
-		$("#operatingSystem-main").show();
-		$("#sims-main").show();
-		$("#touchScreen-main").show();
-		//$("#mobilemodel-main").hide();
-
-	}else if(cat == 'FURN'){
-		path="/furnitureFilter";
-		$("#subCategory-right li").eq(0).addClass("highlight_subcat");
-		showFilters(['amt','year']);
+		if(sub=="0"){path="/commonElectronicsFilter";}
+		else if(sub=="1"){path="/televisionFilter";}
+		else if(sub=="2"){path="/dvdFilter";}
+		else if(sub=="3"){path="/cameraFilter";}
+		else if(sub=="4"){path="/fridgeFilter";}
+		else if(sub=="5"){path="/washingMachineFilter";}
+		else if(sub=="6"){path="/airCoolerFilter";}
 	}
+	else if(cat == 'COMP'){path = "/computersFilter";}
+	else if(cat == 'MOBILE'){path="/mobilesFilter";}
+	else if(cat == 'FURN'){path="/furnitureFilter";}
+	
+	$("#subCategory-right li").removeClass("highlight_subcat");
+	$("#subCategory-right li[value='" + subCat_Index_In_Li_Tag + "']").addClass("highlight_subcat");
+	showHideFilters(cat, subCategory);
 
 	//********************************if user clicks on CLEAR ALL*****************************************************
 	$('#clear_all_f').off().on('click', function(event) {
@@ -373,7 +315,7 @@ $(document).ready(function() {
 		});
 	});
 
-	//***********************************if user clicks on subcaregory****************************************
+	//***********************************if user clicks on subcategory****************************************
 	
 	
 	$("#subCategory-right li").off().on('click',function(){
@@ -499,6 +441,10 @@ function updateDataWithSelectedSubCategory(element, path){
 	var cat = $('#cat').text();
 	var filterData = "";
 	
+	
+	//Clear all filters currently selected
+	$("input[class^=check_]").prop("checked", false);
+	
 	subCat = $('#sub').text();
 	cat = $('#cat').text();
 	
@@ -570,108 +516,181 @@ function updateDataWithSelectedSubCategory(element, path){
 		}
 	});
 
+	
+	var breadCrumbCategory = "";
+	var subCat = "";
 	if(cat=="REAL")
 	{
-		hideFilters(["amt", "approval", "ownership", "amenities", "share", "furnished", "gender", "region"]);
-		hideFilters(["loc", "bhk", "area", "rent", "dir", "pref",  "park", "amenitiesPg", "food"]);
-		if($(element).text()== 'Apartment For Rent'){
-			showFilters(["loc", "bhk", "area", "rent", "dir", "pref",  "park", "amenities"]);
-		}
-		else if($(element).text() == 'Independent House For Rent'){
-			showFilters(["loc", "bhk", "area", "rent", "dir", "pref",  "park"]);
-		}
-		else if($(element).text() == 'Apartment For Sale'){
-			showFilters(["area", "dir", "amt", "approval", "ownership", "amenities", "dir"]);
-		}
-		else if($(element).text() == 'Independent House For Sale'){
-			showFilters(["area", "amt", "approval", "ownership", "amenities", "dir"]);
-		}
-		else if($(element).text() == 'Plot For Sale'){
-			showFilters(["amt", "approval", "loc", "area"]);
-		}
-		else if($(element).text() == 'PG Accommodation'){
-			showFilters(["rent", "food", "loc", "amenitiesPg", "park"]);
-		}
-		else if($(element).text() == 'Roommate Required'){
-			showFilters(["share", "area", "loc", "furnished", "gender", "region", "park"]);
-		}
-		$("#breadCrumb_Category").html("Real Estate");
-		$("#breadCrumb_SubCategory").html($(element).text());
+		if($(element).text() == 'Apartment For Sale'){subCat = "1";}
+		else if($(element).text()== 'Apartment For Rent'){subCat = "2";}
+		else if($(element).text() == 'Independent House For Sale'){subCat = "3";}
+		else if($(element).text() == 'Independent House For Rent'){subCat = "4";}
+		else if($(element).text() == 'PG Accommodation'){subCat = "5";}
+		else if($(element).text() == 'Plot For Sale'){subCat = "6";}
+		else if($(element).text() == 'Roommate Required'){subCat = "7";}
+		
+		breadCrumbCategory = "Real Estate";
 	}
 	else if(cat == "MOBILE")
 	{
-		hideFilters(["amt", "brand", "operatingSystem", "sims", "accessoryType", "touchScreen", "model"]);
-		if($(element).text()== 'Mobile Phones'){
-			showFilters(["brand", "model", "amt", "operatingSystem", "sims", "touchScreen"]);
-		}else if($(element).text()== 'Accessories'){
-			showFilters(["accessoryType", "amt"]);
-		}
-		$("#breadCrumb_Category").html("Mobiles And Accessories");
-		$("#breadCrumb_SubCategory").html($(element).text());
+		if($(element).text()== 'Mobile Phones'){subCat = "1";}
+		else if($(element).text()== 'Accessories'){subCat = "2";}
+
+		breadCrumbCategory = "Mobile Phones & Accessories";
 	}
 	else if (cat == "AUTO")
 	{
-		hideFilters(['make','amt_car','amt_bike','amt_cycle','year','age','model','fuelType','regState','bike_make']);
-		if($(element).text()== 'Cars'){
-			showFilters(['make','amt_car','year','model','fuelType','regState']);
-		}else if($(element).text()== 'Bikes'){
-			showFilters(['bike_make','amt_bike','age','model','regState']);
-		}else if($(element).text()== 'Cycles'){
-			showFilters(['amt_cycle','age']);
-		}	
+		if($(element).text()== 'Cars'){subCat = "1";}
+		else if($(element).text()== 'Bikes'){subCat = "2";}
+		else if($(element).text()== 'Cycles'){subCat = "3";}	
 
-		$("#breadCrumb_Category").html("AutoMobiles");
-		$("#breadCrumb_SubCategory").html($(element).text());
+		breadCrumbCategory = "Cars & Bikes";
 	}
 	else if(cat == "COMP")
 	{
 		var subCategoryDesc = $(element).text();
 		
-		hideFilters(['make','tab_make','model','amt','accessory_amt','accessoryType','year']);
-		if(subCategoryDesc == "Desktops"){
-			showFilters(['make','amt','year']);
-		}else if(subCategoryDesc == "Laptops"){
-			showFilters(['make','amt','year']);
-		}else if(subCategoryDesc == "Tablets"){
-			showFilters(['tab_make','model','amt','year']);
-		}else if(subCategoryDesc == "Accessories"){
-			showFilters(['accessoryType','accessory_amt']);
-		}
+		if(subCategoryDesc == "Desktops"){subcat = "1";}
+		else if(subCategoryDesc == "Laptops"){subCat = "2";}
+		else if(subCategoryDesc == "Tablets"){subCat = "3";}
+		else if(subCategoryDesc == "Accessories"){subCat = "4";}
 
-		$("#breadCrumb_Category").html("Computers and Laptops");
-		$("#breadCrumb_SubCategory").html($(element).text());
+		breadCrumbCategory = "Computers & Accessories";
 	}
 	else if(cat == 'FURN'){
-		showFilters(['amt','year']);
-		$("#breadCrumb_Category").html("Furniture");
-		$("#breadCrumb_SubCategory").html($(element).text());
+		breadCrumbCategory = "Furniture";
 	}
 	else if( cat == 'ELEC'){
-		hideFilters(['brand','amt','screenType', 'year']);
-		if($(this).text()== 'Televisions'){
-			showFilters(['brand','amt','screenType','year']);
-		}else if($(this).text()== 'Digital Cameras, Camcorders') {
-			$("#model-main").hide();	
-		}
-		else if($(this).text()== 'Refrigerators') {
-			$("#model-main").hide();	
-		}
-		else if($(this).text()== 'Air Coolers, Air Conditioners') {
-			$("#model-main").hide();	
-		}
-		else if($(this).text()== 'Washing Machines') {
-			$("#model-main").hide();	
-		}
-		else if($(this).text()== 'DVD Players, Music Players, iPods') {
-			$("#model-main").hide();	
-		}
-		$("#breadCrumb_Category").html("Electronics");
-		$("#breadCrumb_SubCategory").html($(this).text());
+		if($(this).text()== 'Televisions'){subCat = "1";}
+		else if($(this).text()== 'DVD Players, Music Players, iPods') {subCat = "2";}
+		else if($(this).text()== 'Digital Cameras, Camcorders') {subCat = "3";}
+		else if($(this).text()== 'Refrigerators') {subCat = "4";}
+		else if($(this).text()== 'Air Coolers, Air Conditioners') {subCat = "5";}
+		else if($(this).text()== 'Washing Machines') {subCat = "6";}
+		
+		breadCrumbCategory = "Electronics & Home Appliances";
 	}
+	
+	showHideFilters(cat, subCat);
+	
+	$("#breadCrumb_Category").html(breadCrumbCategory);
+	$("#breadCrumb_SubCategory").html($(element).text());
+	
 	if($(element).parent().children().hasClass('highlight_subcat')){
 		$(element).parent().children().removeClass('highlight_subcat');
 	}
 	$(element).addClass("highlight_subcat");
+}
+
+function showHideFilters(category, subCategory){
+	if(category == "REAL"){
+		hideFilters(["amt", "approval", "ownership", "amenities", "share", "furnished", "gender", "region"]);
+		hideFilters(["loc", "bhk", "area", "rent", "dir", "pref",  "park", "amenitiesPg", "food"]);
+		if(subCategory == "1"){
+			//Apartment for Sale
+			showFilters(["area", "dir", "amt", "approval", "ownership", "amenities", "dir"]);
+		}
+		else if(subCategory == "2"){
+			//Apartment for Rent
+			showFilters(["loc", "bhk", "area", "rent", "dir", "pref",  "park", "amenities"]);
+		}
+		else if(subCategory == "3"){
+			//Independent House for Sale
+			showFilters(["area", "amt", "approval", "ownership", "amenities", "dir"]);
+		}
+		else if(subCategory == "4"){
+			//Independent House for Rent
+			showFilters(["loc", "bhk", "area", "rent", "dir", "pref",  "park"]);
+		}
+		else if(subCategory == "5"){
+			//PG Accommodation
+			showFilters(["rent", "food", "loc", "amenitiesPg", "park"]);
+		}
+		else if(subCategory == "6"){
+			//Land for Sale
+			showFilters(["amt", "approval", "loc", "area"]);
+		}
+		else if(subCategory == "7"){
+			//Room mate required
+			showFilters(["share", "loc", "furnished", "gender", "region"]);
+		}
+	}
+	else if(cat == "MOBILE")
+	{
+		hideFilters(["amt", "brand", "operatingSystem", "sims", "accessoryType", "touchScreen", "model"]);
+		if(subCategory == "1"){
+			//Mobile Phones
+			showFilters(["brand", "model", "amt", "operatingSystem", "sims", "touchScreen"]);
+		}
+		else if(subCategory == "2"){
+			//Accessories
+			showFilters(["accessoryType", "amt"]);
+		}
+	}
+	else if (cat == "AUTO")
+	{
+		hideFilters(['make','amt_car','amt_bike','amt_cycle','year','age','model','fuelType','regState','bike_make']);
+		if(subCategory == "1"){
+			//Cars
+			showFilters(['make','amt_car','year','model','fuelType','regState']);
+		}
+		else if(subCategory == "2"){
+			//Bikes
+			showFilters(['bike_make','amt_bike','age','model','regState']);
+		}
+		else if(subCategory == "3"){
+			//Cycleess
+			showFilters(['amt_cycle','age']);
+		}
+	}
+	else if(cat == "COMP")
+	{
+		hideFilters(['make','tab_make','model','amt','accessory_amt','accessoryType','year','processorSize','hddSize']);
+		if(subCategory == "1"){
+			//Desktops
+			showFilters(['make','amt','year','processorSize','hddSize']);
+		}else if(subCategory == "2"){
+			//Laptops
+			showFilters(['make','amt','year','processorSize','hddSize']);
+		}else if(subCategory == "3"){
+			//Tablets
+			showFilters(['tab_make','model','amt','year']);
+		}else if(subCategory == "4"){
+			//Accessories
+			showFilters(['accessoryType','accessory_amt']);
+		}
+	}
+	else if(cat == 'FURN'){
+		showFilters(['amt','year']);
+	}
+	else if( cat == 'ELEC'){
+		hideFilters(['brand','amt','screenType', 'year']);
+		if(subCategory == "1"){
+			//Television
+			showFilters(['brand','amt','screenType','year']);
+		}
+		else if(subCategory == "2") {
+			//DVD
+			$("#model-main").hide();	
+		}
+		else if(subCategory == "3") {
+			//Camera
+			$("#model-main").hide();	
+		}
+		else if(subCategory == "4") {
+			//Fridge
+			$("#model-main").hide();	
+		}
+		else if(subCategory == "5") {
+			//Air Cooler
+			$("#model-main").hide();	
+		}
+		else if(subCategory == "6") {
+			//Washing Machine
+			$("#model-main").hide();	
+		}
+		
+	}
 }
 
 function updateMobileModels(){
@@ -778,3 +797,4 @@ function updateTabModels(){
 		$("#model_List_In_Filter_Screen").append("<li>Select one Make</li>");
 	}
 }
+

@@ -1,7 +1,7 @@
 
 <div class=" header_2 clearfix col-md-9">
 	<%@include file="/BreadCrumb.jsp" %>
-	<s:if test="adList.size() > 0">
+	<!--s:if test="adList.size() > 0"-->
 	<div class="col-md-12 filter_cat">
 	 	<form class="form-inline" id="apartment-rent"> 
 			<div class=" pull-left hidden-subcat searchFilter" id="area-main">
@@ -213,7 +213,7 @@
 			</div>
 			<div class=" pull-left hidden-subcat searchFilter" id="share-main">
 				<div id="share" class="inputstyle pointer form-control">
-					Share Amount <span
+					Shared Rent <span
 						class="glyphicon glyphicon glyphicon-chevron-down form-control-show"></span>
 				</div>
 				<div id="subCategory_hidden_share" class="subCategory_hidden_bck"
@@ -288,7 +288,7 @@
 	<div class="col-md-11 selected_filters" style="display:none;" id="filterValueBar">
 		<div id="clear_all_f" class="pull-left pointer" style="text-decoration: underline;color:#4f00fc">clear all</div>
 	</div>
-	</s:if>
+	<!--/s:if-->
 	<!-- %@include file="/Pagination.jsp" %-->
 </div>
 
