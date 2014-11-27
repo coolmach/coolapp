@@ -57,7 +57,12 @@ public class RealEstateAction extends ActionSupport implements SessionAware, Ser
 	private String responseMsg;
 
 	private List<RealEstatePostDetails> adList = new ArrayList<RealEstatePostDetails>();
+	
 	private int count;
+	private int totalPages;
+	private int requestedPage;
+	private int currentPage;
+	
 	//private String basePath = "";
 
 	/* TODO: The two attributes selectedLocation and neighborhoodLocations are added only to retain the values populated by LocationAction (that is,
@@ -543,8 +548,18 @@ public class RealEstateAction extends ActionSupport implements SessionAware, Ser
 		}
 
 		RealEstateAdService realEstateAdService =  new RealEstateAdService();
+		
 		count = realEstateAdService.getAdListCount(getModel(), postDetails.getSubCategory());
-		adList = realEstateAdService.getAdListByCategory(getModel(), postDetails.getSubCategory());
+		
+		totalPages = (count%10==0)?count/10:(count/10) + 1;
+		
+		if(currentPage == 0){
+			currentPage = 1;
+		}else{
+			currentPage = requestedPage;
+		}
+		
+		adList = realEstateAdService.getAdListByCategory(getModel(), postDetails.getSubCategory(), count, requestedPage);
 
 		populateAdditionalDetails();
 
@@ -732,6 +747,30 @@ public class RealEstateAction extends ActionSupport implements SessionAware, Ser
 
 	public void setUser_entered_location(String user_entered_location) {
 		this.user_entered_location = user_entered_location;
+	}
+
+	public int getTotalPages() {
+		return totalPages;
+	}
+
+	public void setTotalPages(int totalPages) {
+		this.totalPages = totalPages;
+	}
+
+	public int getCurrentPage() {
+		return currentPage;
+	}
+
+	public void setCurrentPage(int currentPage) {
+		this.currentPage = currentPage;
+	}
+
+	public int getRequestedPage() {
+		return requestedPage;
+	}
+
+	public void setRequestedPage(int requestedPage) {
+		this.requestedPage = requestedPage;
 	}
 
 }

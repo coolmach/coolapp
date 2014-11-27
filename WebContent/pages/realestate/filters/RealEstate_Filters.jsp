@@ -12,8 +12,8 @@
 					style="display: none;">
 					<ul class="dropdown-menu scrollable-menu" role="menu">
 						<li><input type="checkbox" class="check_area" name="areaStr" value="<1000 sq.ft" /><span class="content">Less than 1000 sq.ft</span></li>
-						<li><input type="checkbox" class="check_area" name="areaStr" value="1000 sq.ft-1200 sq.ft" /><span class="content">1000 sq.ft-1200 sq.ft</span></li>
-						<li><input type="checkbox" class="check_area" name="areaStr" value="1200 sq.ft-1400 sq.ft" /><span class="content">1200 sq.ft-1400 sq.ft</span></li>
+						<li><input type="checkbox" class="check_area" name="areaStr" value="1000 sq.ft-1199 sq.ft" /><span class="content">1000 sq.ft-1199 sq.ft</span></li>
+						<li><input type="checkbox" class="check_area" name="areaStr" value="1200 sq.ft-1399 sq.ft" /><span class="content">1200 sq.ft-1399 sq.ft</span></li>
 						<li><input type="checkbox" class="check_area" name="areaStr" value="1400 sq.ft-1600 sq.ft" /><span class="content">1400 sq.ft-1600 sq.ft</span></li>
 						<li><input type="checkbox" class="check_area" name="areaStr" value=">1600 sq.ft" /><span class="content">Above 1600 sq.ft</span></li>
 					</ul>
@@ -48,8 +48,8 @@
 					style="display: none;">
 					<ul class="dropdown-menu scrollable-menu" role="menu">
 						<li><input type="checkbox" class="check_rent" name="rent" value="<10000" /><span class="content">Less than 10,000</span></li>
-						<li><input type="checkbox" class="check_rent" name="rent" value="10000-14000" /><span class="content">10,000-15,000</span></li>
-						<li><input type="checkbox" class="check_rent" name="rent" value="15000-20000" /><span class="content">15,000-20,000</span></li>
+						<li><input type="checkbox" class="check_rent" name="rent" value="10000-14999" /><span class="content">10,000-14,999</span></li>
+						<li><input type="checkbox" class="check_rent" name="rent" value="15000-19999" /><span class="content">15,000-19,999</span></li>
 						<li><input type="checkbox" class="check_rent" name="rent" value="20000-25000" /><span class="content">20,000-25,000</span></li>
 						<li><input type="checkbox" class="check_rent" name="rent" value=">25000" /><span class="content">Above 25,000</span></li>
 					</ul>
@@ -116,11 +116,11 @@
 					style="display: none;">
 					<ul class="dropdown-menu scrollable-menu" role="menu">
 						<li><input type="checkbox" class="check_amt" name="amt" value="<2000000" /><span class="content">0 - 20 Lakh</span></li>
-						<li><input type="checkbox" class="check_amt" name="amt" value="2000000-3000000" /><span class="content">20 - 30 Lakh</span></li>
-						<li><input type="checkbox" class="check_amt" name="amt" value="3000000-4000000" /><span class="content">30 - 40 Lakh</span></li>
-						<li><input type="checkbox" class="check_amt" name="amt" value="4000000-5000000" /><span class="content">40 - 50 Lakh</span></li>
-						<li><input type="checkbox" class="check_amt" name="amt" value="5000000-6000000" /><span class="content">50 - 60 Lakh</span></li>
-						<li><input type="checkbox" class="check_amt" name="amt" value="6000000-7500000" /><span class="content">60 - 75 Lakh</span></li>
+						<li><input type="checkbox" class="check_amt" name="amt" value="2000000-2999999" /><span class="content">20 - 29 Lakh</span></li>
+						<li><input type="checkbox" class="check_amt" name="amt" value="3000000-3999999" /><span class="content">30 - 39 Lakh</span></li>
+						<li><input type="checkbox" class="check_amt" name="amt" value="4000000-4999999" /><span class="content">40 - 49 Lakh</span></li>
+						<li><input type="checkbox" class="check_amt" name="amt" value="5000000-5999999" /><span class="content">50 - 59 Lakh</span></li>
+						<li><input type="checkbox" class="check_amt" name="amt" value="6000000-6999999" /><span class="content">60 - 75 Lakh</span></li>
 						<li><input type="checkbox" class="check_amt" name="amt" value=">7500000" /><span class="content">Above 75 Lakh</span></li>					
 					</ul>
 					<a href="#" class="clear blue_link">clear filters</a>
@@ -221,7 +221,7 @@
 					<ul class="dropdown-menu scrollable-menu" role="menu">
 						<li><input type="checkbox" class="check_share" name="share" value="<3000" /><span class="content"><3000</span>
 						</li>
-						<li><input type="checkbox" class="check_share" name="share"" value="3000-6000" /><span class="content">3000-6000</span>
+						<li><input type="checkbox" class="check_share" name="share"" value="3000-5999" /><span class="content">3000 - 5999</span>
 						</li>
 						<li><input type="checkbox" class="check_share" name="share" value=">6000" /><span class="content">>6000</span>
 						</li>

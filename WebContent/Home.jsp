@@ -182,7 +182,8 @@ $(document).ready(function(){
 function searchPosts(){
 	var keyword = $("#item_search").val();
 	if(keyword != ""){
-		window.location.href = "http://localhost:8080/Virat/searchPosts?" + "searchKeyword=" + keyword + "&city=BLR";	
+		var baseUrl = getBaseUrl();
+		window.location.href = baseUrl + "/searchPosts?" + "searchKeyword=" + keyword + "&city=BLR";	
 	}else{
 		$("#item_search").focus();
 	}
@@ -228,7 +229,8 @@ $(document).ready(function(){
 			city = tokens[2];
 			loc = tokens[3];
 			
-			window.location.href = "http://localhost:8080/Virat/searchPosts?" + "searchKeyword=" + ui.item.label + "&city=" + city + "&location=" + loc + "&category=" + category + "&subcategory=" + subcategory;
+			var baseUrl = getBaseUrl();
+			window.location.href = baseUrl + "/searchPosts?" + "searchKeyword=" + ui.item.label + "&city=" + city + "&location=" + loc + "&category=" + category + "&subcategory=" + subcategory;
 		},
 		minLength: 1
 	});	

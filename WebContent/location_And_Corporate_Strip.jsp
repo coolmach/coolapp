@@ -113,8 +113,15 @@ function updateCompanySection(companyName, companyId){
 	reapplyFilters();
 }
 function applyFiltersForLocation(city){
+	
 	//Reset selected locations for previously selected city
 	$("#location").val("");
+	
+	//Reset page indexes
+	$("#currentPage").val("");
+	$("#requestedPage").val("");
+	$("#totalPages").val("");
+	
 	reapplyFilters(city);
 	getLocations(city);
 }

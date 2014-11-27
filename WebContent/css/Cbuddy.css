@@ -2,7 +2,7 @@
 	background-color: #FFFDFD;
 	position: absolute;
 	z-index: 100;
-	border: 1px solid;
+	border: 1px solid rgb(255,127,39);
 }
 
 .form-control-feedback {
@@ -54,6 +54,10 @@
 }
 
 #subCategory-right .content:hover {
+	text-decoration: underline;
+}
+
+#subCategory-right-searchResults .content:hover {
 	text-decoration: underline;
 }
 
@@ -1998,6 +2002,8 @@ blockquote small {
 
 .content{padding-left:5px;}
 
+.subCategory_hidden_bck{margin-top:-3px;}
+
 .clearfix:before,
 .clearfix:after {
     content: ".";    
@@ -2007,3 +2013,4 @@ blockquote small {
 }
 .clearfix:after { clear: both; }
 .clearfix { zoom: 1; }
+

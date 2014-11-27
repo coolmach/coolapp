@@ -143,6 +143,7 @@
 			<result name="success" type="tiles">/realestate.tiles</result>
 		</action>
 		<action name="realestateFilter" class="com.cbuddy.posts.action.RealEstateAction" method="getAdListForRealEstate">
+			<result name="input">/pages/realestate/adList/AdList_RealEstate.jsp</result>
 			<result name="success">/pages/realestate/adList/AdList_RealEstate.jsp</result>
 		</action>
 		<action name="real_estate_postAd" class="com.cbuddy.posts.action.RealEstateAction" method="postAd">

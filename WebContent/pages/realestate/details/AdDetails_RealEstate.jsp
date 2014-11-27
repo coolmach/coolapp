@@ -26,6 +26,10 @@
 	<%@include file="AdDetails_RealEstate_Apartment_For_Rent.jsp" %>
 </s:else>
 
+<input type="hidden" name="currentPage" id="currentPage" value="<s:property value='%{currentPage}'/>">
+<input type="hidden" name="totalPages" id="totalPages" value="<s:property value='%{totalPages}'/>">
+<input type="hidden" name="requestedPage" id="requestedPage" value="">
+
 <script type="text/javascript" src="js/autocomplete.js"></script>
 
 <script>

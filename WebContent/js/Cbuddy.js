@@ -55,6 +55,8 @@ $(document).ready(function() {
 
 	});
 
+	
+	
 	// *******************************if user clicks on PREVIOUS*******************************************************
 	$('#page_prev').off().on('click', function(event) {
 		subCat = $('#sub').text();
@@ -153,8 +155,8 @@ $(document).ready(function() {
 	});
 
 	
-	
 	var checkedBoxCount =1;
+
 	//*************************if user click to cancel a selected filter****************************************
 	$('.selected_filters').off().on('click', function(event) {
 		var pageNo = $('#page_info').val();
@@ -240,9 +242,8 @@ $(document).ready(function() {
 		}
 	});
 
-	
 	//*****************************if user clicks on checkboxes******************************************
-	$(document).off().on('click', 'input[class^=check_]',function(event) {
+	$('input[class^=check_]').off().on('click',function(event) {
 		subCat = $('#sub').text();
 		cat = $('#cat').text();
 		$('#clear_all_f').show();
@@ -322,7 +323,6 @@ $(document).ready(function() {
 		updateDataWithSelectedSubCategory(this, path);
 	});
 	
-	
 
 	//**********if hover on any filters category shown([id*=-main] pattern where it ends with -main)************
 
@@ -344,8 +344,12 @@ $(document).ready(function() {
 		$(this).removeClass("highlight_subcat");
 	});
 
+	
+	
+	
 	$("#Pwd1").keyup(checkPasswordMatch);
 
+	
 	function checkPasswordMatch() {
 
 		var password = $("#Pwd").val();
@@ -362,6 +366,8 @@ $(document).ready(function() {
 		$("#btnSignUp").css("opacity", "unset");
 	}
 
+
+	
 	$("#post_cmt").off().on('click',function(){
 		var postId = $("#postId").text();
 		if($("#comments").val()!=""){
@@ -615,7 +621,7 @@ function showHideFilters(category, subCategory){
 			showFilters(["share", "loc", "furnished", "gender", "region"]);
 		}
 	}
-	else if(cat == "MOBILE")
+	else if(category == "MOBILE")
 	{
 		hideFilters(["amt", "brand", "operatingSystem", "sims", "accessoryType", "touchScreen", "model"]);
 		if(subCategory == "1"){
@@ -627,7 +633,7 @@ function showHideFilters(category, subCategory){
 			showFilters(["accessoryType", "amt"]);
 		}
 	}
-	else if (cat == "AUTO")
+	else if (category == "AUTO")
 	{
 		hideFilters(['make','amt_car','amt_bike','amt_cycle','year','age','model','fuelType','regState','bike_make']);
 		if(subCategory == "1"){
@@ -643,7 +649,7 @@ function showHideFilters(category, subCategory){
 			showFilters(['amt_cycle','age']);
 		}
 	}
-	else if(cat == "COMP")
+	else if(category == "COMP")
 	{
 		hideFilters(['make','tab_make','model','amt','accessory_amt','accessoryType','year','processorSize','hddSize']);
 		if(subCategory == "1"){
@@ -660,10 +666,10 @@ function showHideFilters(category, subCategory){
 			showFilters(['accessoryType','accessory_amt']);
 		}
 	}
-	else if(cat == 'FURN'){
+	else if(category == 'FURN'){
 		showFilters(['amt','year']);
 	}
-	else if( cat == 'ELEC'){
+	else if( category == 'ELEC'){
 		hideFilters(['brand','amt','screenType', 'year']);
 		if(subCategory == "1"){
 			//Television

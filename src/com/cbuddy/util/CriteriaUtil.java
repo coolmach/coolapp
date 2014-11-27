@@ -23,7 +23,9 @@ public class CriteriaUtil {
 	}
 
 	public static Criteria getCriteriaForAmt(Criteria criteria, String amount, String dbFieldName){
-
+		if(amount == null || amount.trim().equals("")){
+			return criteria;
+		}
 		String obj[] = amount.split(",");
 		Criterion  c1 = null;
 		Criterion  c2 = null;
@@ -77,6 +79,9 @@ public class CriteriaUtil {
 	}
 
 	public static Criteria getCriteriaForArea(Criteria criteria, String areaStr){
+		if(areaStr == null || areaStr.trim().equals("")){
+			return criteria;
+		}
 		String obj[] = areaStr.split(",");
 		Criterion  c1 = null;
 		Criterion  c2 = null;
@@ -132,6 +137,9 @@ public class CriteriaUtil {
 	
 
 	public static Criteria createCriteriaForIn(Criteria criteria, String inputStr, String fieldName){
+		if(inputStr == null || inputStr.trim().equals("")){
+			return criteria;
+		}
 		List<String> list = new ArrayList<String>();
 		String tokens[] = inputStr.split(",");
 		for(String token:tokens){

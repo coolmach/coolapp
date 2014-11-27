@@ -47,9 +47,11 @@
 					</th>
 					<td colspan="2" style="text-align: right; font-size:12px; ">
 						<!--span style="margin-right:5px; padding-top:3px;">Page</span-->
-						<input style="border:none;" id="page_info" type="text" readonly="readonly"
-					value="<s:property value="%{(count>0)?page:0}"/> of <s:property 
-					value="%{(count<=10 && count>0)?1:(((count%10)==0)?count/10:((count/10))+1)}"/>" />
+						<input type="hidden" style="border:none;" id="page_info" type="text" readonly="readonly"
+						value="<s:property value="%{(count>0)?page:0}"/> of <s:property 
+						value="%{(count<=10 && count>0)?1:(((count%10)==0)?count/10:((count/10))+1)}"/>" 
+						/>
+						<%@include file="/Pagination.jsp" %>
 					</td>
 				</tr>
 				<s:iterator value="adList" status="userStatus">

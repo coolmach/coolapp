@@ -105,7 +105,7 @@ function applyFilters(){
 	
 	var str="";
 	$("input[class^=check_]:checked").each(function()
-			{		 
+	{		 
 		var sub = $(this).attr('name');
 		data = data + '&'+sub+'='+$(this).val();
 		var check = $(this).parent().children('span.content').text();
@@ -127,6 +127,15 @@ function applyFilters(){
 		data = data + "&searchKeyword=" + $("#item_search").val();
 	}
 
+	//Pagination
+	if(typeof $("#currentPage") != undefined && $("#currentPage").val() != "" && $("#currentPage").val() != undefined){
+		data = data + "&currentPage=" + $("#currentPage").val();
+	}
+	if(typeof $("#requestedPage") != undefined && $("#requestedPage").val() != "" && $("#requestedPage").val() != undefined){
+		data = data + "&requestedPage=" + $("#requestedPage").val();
+	}
+	
+	
 	if($("#filterValueBar").text() == ""){
 		$("#filterValueBar").hide();
 	}
