@@ -10,3 +10,12 @@
 	<%@include file="AdDetails_Automobile_Cycles.jsp" %>
 </s:elseif>
 <script type="text/javascript" src="js/autocomplete.js"></script>
+
+<script>
+$(document).ready(function(){
+	$("#backToResultsButton").bind("click", function(){
+		applyFilters();
+		return false;
+	});
+});
+</script>

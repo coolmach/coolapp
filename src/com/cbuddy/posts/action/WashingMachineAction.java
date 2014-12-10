@@ -45,6 +45,34 @@ public class WashingMachineAction extends ActionSupport implements SessionAware,
 	private String subCategoryStr;
 	private int count;
 	
+	private int totalPages;
+	private int requestedPage;
+	private int currentPage;
+
+	public int getTotalPages() {
+		return totalPages;
+	}
+
+	public void setTotalPages(int totalPages) {
+		this.totalPages = totalPages;
+	}
+
+	public int getRequestedPage() {
+		return requestedPage;
+	}
+
+	public void setRequestedPage(int requestedPage) {
+		this.requestedPage = requestedPage;
+	}
+
+	public int getCurrentPage() {
+		return currentPage;
+	}
+
+	public void setCurrentPage(int currentPage) {
+		this.currentPage = currentPage;
+	}
+	
 	private String sprice; // Price entered by user on the screen
 
 	private String responseMsg;
@@ -329,7 +357,16 @@ public class WashingMachineAction extends ActionSupport implements SessionAware,
 
 		WashingMachineAdService adService = new WashingMachineAdService();
 		count = adService.getAdListCount(getModel());
-		adList = adService.getAdListByCategory(getModel());
+		
+		totalPages = (count%10==0)?count/10:(count/10) + 1;
+
+		if(currentPage == 0){
+			currentPage = 1;
+		}else{
+			currentPage = requestedPage;
+		}
+		
+		adList = adService.getAdListByCategory(getModel(), count, requestedPage);
 		System.out.println("list"+adList.size());
 		
 		populateAdditionalDetails();

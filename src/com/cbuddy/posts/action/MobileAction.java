@@ -61,6 +61,34 @@ public class MobileAction extends ActionSupport implements SessionAware, Servlet
 	private List<MobilePostDetails> adList = new ArrayList<MobilePostDetails>();
 	private int count;
 
+	private int totalPages;
+	private int requestedPage;
+	private int currentPage;
+
+	public int getTotalPages() {
+		return totalPages;
+	}
+
+	public void setTotalPages(int totalPages) {
+		this.totalPages = totalPages;
+	}
+
+	public int getRequestedPage() {
+		return requestedPage;
+	}
+
+	public void setRequestedPage(int requestedPage) {
+		this.requestedPage = requestedPage;
+	}
+
+	public int getCurrentPage() {
+		return currentPage;
+	}
+
+	public void setCurrentPage(int currentPage) {
+		this.currentPage = currentPage;
+	}
+
 	private String brandNew;
 	private String modelSearchStr;
 	private JSONArray modelDetailsJsonArray;
@@ -111,15 +139,15 @@ public class MobileAction extends ActionSupport implements SessionAware, Servlet
 			addFieldError("errorMsg", "Please enter City");
 			return false;
 		}
-//		if(postDetails.getSelectedLocationCode().equals("")){
-//			addFieldError("errorMsg", "Invalid Location");
-//			return false;
-//		}
+		//		if(postDetails.getSelectedLocationCode().equals("")){
+		//			addFieldError("errorMsg", "Invalid Location");
+		//			return false;
+		//		}
 		if(postDetails.getPrice() <= 0){
 			addFieldError("errorMsg", "Please enter Price");
 			return false;
 		}
-		
+
 		if(postDetails.getSubCategory().equals(CBuddyConstants.SUBCATEGORY_MOBILE_MOBILEPHONES)){
 			if(postDetails.getBrand().equals("")){
 				addFieldError("errorMsg", "Please select the Brand");
@@ -159,21 +187,21 @@ public class MobileAction extends ActionSupport implements SessionAware, Servlet
 			addFieldError("errorMsg", "Invalid City");
 			return false;
 		}
-//		temp = postDetails.getUserEnteredLocationStr();
-//		if(temp != null && temp.length() > 30){
-//			addFieldError("errorMsg", "Invalid Location");
-//			return false;
-//		}
+		//		temp = postDetails.getUserEnteredLocationStr();
+		//		if(temp != null && temp.length() > 30){
+		//			addFieldError("errorMsg", "Invalid Location");
+		//			return false;
+		//		}
 		temp = postDetails.getLocation();
 		if(temp == null || temp.length() > 8){
 			addFieldError("errorMsg", "Invalid Location");
 			return false;
 		}
-//		temp = postDetails.getSelectedLocationStr();
-//		if(temp != null && temp.length() > 30){
-//			addFieldError("errorMsg", "Invalid Location");
-//			return false;
-//		}
+		//		temp = postDetails.getSelectedLocationStr();
+		//		if(temp != null && temp.length() > 30){
+		//			addFieldError("errorMsg", "Invalid Location");
+		//			return false;
+		//		}
 
 		temp = postDetails.getDescription();
 		if(temp != null && temp.length() > 256){
@@ -251,19 +279,19 @@ public class MobileAction extends ActionSupport implements SessionAware, Servlet
 		//String imgFileName = String.valueOf(System.currentTimeMillis()) + "." + getExtension(uploadContentType[0]) + "";
 
 
-//		//Checking if user has manually tampered location after selecting from auto suggest list
-//		if(postDetails.getUserEnteredLocationStr() != null && postDetails.getSelectedLocationStr() != null){
-//			if(!postDetails.getUserEnteredLocationStr().equals(postDetails.getSelectedLocationStr())){
-//				addFieldError("errorMsg", "Invalid Location");
-//				return Action.INPUT;
-//			}
-//		}
-//
-//		//Check if user has selected a different city AFTER choosing a location for a different city
-//		if(!postDetails.getCity().equals(postDetails.getSelectedCityCode())){
-//			addFieldError("errorMsg", "Invalid Location");
-//			return Action.INPUT;
-//		}
+		//		//Checking if user has manually tampered location after selecting from auto suggest list
+		//		if(postDetails.getUserEnteredLocationStr() != null && postDetails.getSelectedLocationStr() != null){
+		//			if(!postDetails.getUserEnteredLocationStr().equals(postDetails.getSelectedLocationStr())){
+		//				addFieldError("errorMsg", "Invalid Location");
+		//				return Action.INPUT;
+		//			}
+		//		}
+		//
+		//		//Check if user has selected a different city AFTER choosing a location for a different city
+		//		if(!postDetails.getCity().equals(postDetails.getSelectedCityCode())){
+		//			addFieldError("errorMsg", "Invalid Location");
+		//			return Action.INPUT;
+		//		}
 
 		if(postDetails.getSubCategory().equals(CBuddyConstants.SUBCATEGORY_MOBILE_MOBILEPHONES)){
 			if(postDetails.getBrand() == null || postDetails.getBrand().equals("-1")){
@@ -407,7 +435,16 @@ public class MobileAction extends ActionSupport implements SessionAware, Servlet
 		System.out.println(postDetails.getSubCategory());
 		MobileAdService mobileAdService =  new MobileAdService();
 		count = mobileAdService.getAdListCount(getModel(), postDetails.getSubCategory());
-		adList = mobileAdService.getAdListByCategory(getModel(), postDetails.getSubCategory());
+
+		totalPages = (count%10==0)?count/10:(count/10) + 1;
+
+		if(currentPage == 0){
+			currentPage = 1;
+		}else{
+			currentPage = requestedPage;
+		}
+
+		adList = mobileAdService.getAdListByCategory(getModel(), postDetails.getSubCategory(), count, requestedPage);
 		System.out.println("MobileAction.getAdListForMobile()"+adList.size());
 		populateAdditionalDetails();
 

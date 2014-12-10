@@ -1,7 +1,7 @@
 
-<div class=" header_2" style="overflow:hidden;">
+<div class=" header_2 clearfix col-md-9">
 	<%@include file="/BreadCrumb.jsp" %>
-	<s:if test="adList.size() > 0">
+	<!--s:if test="adList.size() > 0"-->
 		<div class="col-md-12 filter_cat">
 			<form class="form-inline" id="mobile">
 				<div class=" pull-left hidden-subcat searchFilter" id="brand-main">
@@ -69,10 +69,10 @@
 				</div>
 			</form>
 		</div>
-		<div class="col-md-11 col-md-offset-3 selected_filters" style="display:none;" id="filterValueBar">
+		<div class="col-md-11 selected_filters" style="display:none;" id="filterValueBar">
 		<div id="clear_all_f" class="pull-left pointer" style="text-decoration: underline;color:#4f00fc">clear all</div>
 	</div>
-	</s:if>
+	<!--/s:if-->
 	<!-- %@include file="/Pagination.jsp" %-->
 </div>
 

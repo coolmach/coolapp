@@ -70,7 +70,7 @@ public class RealEstateAdService{
 			int pageIndex = requestedPageNo - 1;
 			if(pageIndex >= 0 && (10 * pageIndex) < totalNoOfRecords){
 				//Calculate Offset
-				int offset = (10 * pageIndex) + 1;
+				int offset = (10 * pageIndex);
 				postDetails.setOffset(String.valueOf(offset));
 			}else{
 				postDetails.setOffset("0");

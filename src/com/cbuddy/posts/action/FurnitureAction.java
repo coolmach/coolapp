@@ -50,6 +50,35 @@ public class FurnitureAction extends ActionSupport implements SessionAware, Serv
 
 	private List<FurniturePostDetails> adList = new ArrayList<FurniturePostDetails>();
 	private int count;
+	
+	private int totalPages;
+	private int requestedPage;
+	private int currentPage;
+
+	public int getTotalPages() {
+		return totalPages;
+	}
+
+	public void setTotalPages(int totalPages) {
+		this.totalPages = totalPages;
+	}
+
+	public int getRequestedPage() {
+		return requestedPage;
+	}
+
+	public void setRequestedPage(int requestedPage) {
+		this.requestedPage = requestedPage;
+	}
+
+	public int getCurrentPage() {
+		return currentPage;
+	}
+
+	public void setCurrentPage(int currentPage) {
+		this.currentPage = currentPage;
+	}
+	
 	private List<MasterComment> cmList = new ArrayList<MasterComment>();
 	
 	private HttpServletRequest request = null;
@@ -311,7 +340,16 @@ public class FurnitureAction extends ActionSupport implements SessionAware, Serv
 
 		FurnitureAdService furnitureAdService =  new FurnitureAdService();
 		count = furnitureAdService.getAdListCount(getModel(), postDetails.getSubCategory());
-		adList = furnitureAdService.getAdListByCategory(getModel(), postDetails.getSubCategory());
+		
+		totalPages = (count%10==0)?count/10:(count/10) + 1;
+
+		if(currentPage == 0){
+			currentPage = 1;
+		}else{
+			currentPage = requestedPage;
+		}
+		
+		adList = furnitureAdService.getAdListByCategory(getModel(), postDetails.getSubCategory(), count, requestedPage);
 
 		populateAdditionalDetails();
 

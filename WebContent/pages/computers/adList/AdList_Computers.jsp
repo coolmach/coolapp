@@ -9,7 +9,7 @@
 	.postRow:hover{background-color:rgb(244,250,255); cursor:pointer;}
 	#adListHeading{font-weight:normal; font-size:12px; margin-left:10px; float:left; padding-top:3px; color:rgb(255,128,0);}
 </style>
-<div class="data" style="overflow:hidden;">
+<div class="data clearfix col-md-9">
 <input id="pagecount" type="hidden" value="<s:property value="count"/>">
 	<s:if test="adList.size() > 0">
 		
@@ -36,9 +36,10 @@
 					</th>
 					<td colspan="2" style="text-align: right; font-size:12px; ">
 						<!--span style="margin-right:5px; padding-top:3px;">Page</span-->
-						<input style="border:none;" id="page_info" type="text" readonly="readonly"
+						<input type="hidden" style="border:none;" id="page_info" type="text" readonly="readonly"
 					value="<s:property value="%{(count>0)?page:0}"/> of <s:property 
 					value="%{(count<=10 && count>0)?1:(((count%10)==0)?count/10:((count/10))+1)}"/>" />
+					<%@include file="/Pagination.jsp" %>
 					</td>
 				</tr>
 				
@@ -125,7 +126,7 @@
 		</div>
 	</s:if>
 	<s:else>
-		<div class="col-md-8 listSection">
+		<div class="col-md-12 listSection" style="margin-left:5px;">
 			<table class="table table-bordered">
 				<tr>
 					<th colspan="3" style="padding-left: 15px; font-size: 13px;">No

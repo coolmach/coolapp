@@ -16,16 +16,16 @@ import com.cbuddy.util.CbuddySessionFactory;
 import com.cbuddy.util.CriteriaUtil;
 
 public class MobileAdService{
-	
+
 	public int getAdListCount(MobilePostDetails postDetails, String subCategory){
 		SessionFactory sessionFactory = CbuddySessionFactory.getSessionFactory();
 		Session session = sessionFactory.openSession();
-		
+
 		Criteria criteria = session.createCriteria(MobilePostDetails.class);
 		criteria.addOrder(Order.desc("postId"));
 		criteria.add(Restrictions.eq("postStatus", CBuddyConstants.USER_STATUS_ACTIVE));
 		criteria.add(Restrictions.eq("subCategory", subCategory));
-		
+
 		if(postDetails.getCity() != null){
 			criteria.add(Restrictions.eq("city", postDetails.getCity()));
 		}
@@ -34,14 +34,14 @@ public class MobileAdService{
 		}
 		criteria = generateFilters(postDetails, criteria, subCategory);
 		criteria.setCacheable(true);
-		
+
 		int count = (Integer) criteria.setProjection(Projections.rowCount()).uniqueResult();
-	
+
 		return count;
 	}
 
 	@SuppressWarnings("unchecked")
-	public List<MobilePostDetails> getAdListByCategory(MobilePostDetails postDetails, String subCategory){
+	public List<MobilePostDetails> getAdListByCategory(MobilePostDetails postDetails, String subCategory, int totalNoOfRecords, int requestedPageNo){
 
 		SessionFactory sessionFactory = CbuddySessionFactory.getSessionFactory();
 		Session session = sessionFactory.openSession();
@@ -49,13 +49,22 @@ public class MobileAdService{
 		List<MobilePostDetails> list = null;
 		try {
 			System.out.println(postDetails.getLimit()+" : "+postDetails.getOffset()+" : "+postDetails.getPage());
-			if(postDetails.getLimit() == null){
-				postDetails.setLimit("10");
+			/*if(postDetails.getLimit() == null){
+			postDetails.setLimit("10");
 			}
 			if(postDetails.getOffset() == null){
 				postDetails.setOffset("0");
+			}*/
+			postDetails.setLimit("10");
+			int pageIndex = requestedPageNo - 1;
+			if(pageIndex >= 0 && (10 * pageIndex) < totalNoOfRecords){
+				//Calculate Offset
+				int offset = (10 * pageIndex);
+				postDetails.setOffset(String.valueOf(offset));
+			}else{
+				postDetails.setOffset("0");
 			}
-			
+
 			Criteria criteria = session.createCriteria(MobilePostDetails.class);
 			criteria.add(Restrictions.eq("postStatus", CBuddyConstants.USER_STATUS_ACTIVE));
 			criteria.addOrder(Order.desc("postId"));
@@ -128,7 +137,7 @@ public class MobileAdService{
 		return criteria;
 	}
 
-*/
+	 */
 	/*private Criteria getCriteriaForOS(Criteria criteria, String osSTR) {
 		List osList = new ArrayList();
 		String obj[] = osSTR.split(",");
@@ -151,7 +160,7 @@ public class MobileAdService{
 
 		return criteria;
 	}*/
-	
+
 	public MobilePostDetails getAdDetailsForMobile(MobilePostDetails postDetails){
 		SessionFactory sessionFactory = CbuddySessionFactory.getSessionFactory();
 		Session session = sessionFactory.openSession();

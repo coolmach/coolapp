@@ -49,8 +49,12 @@ public class AutomobileAdService{
 	}
 
 
-	@SuppressWarnings("unchecked")
 	public List<AutomobilePostDetails> getAdListByCategory(AutomobilePostDetails postDetails, String subCategory){
+		return getAdListByCategory(postDetails, subCategory, 0, 0);
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<AutomobilePostDetails> getAdListByCategory(AutomobilePostDetails postDetails, String subCategory, int totalNoOfRecords, int requestedPageNo){
 
 		SessionFactory sessionFactory = CbuddySessionFactory.getSessionFactory();
 		Session session = sessionFactory.openSession();
@@ -58,12 +62,22 @@ public class AutomobileAdService{
 		List<AutomobilePostDetails> list = null;
 		try {
 			System.out.println(postDetails.getLimit()+" : "+postDetails.getOffset()+" : "+postDetails.getPage());
-			if(postDetails.getLimit() == null){
+			/*if(postDetails.getLimit() == null){
 				postDetails.setLimit("10");
 			}
 			if(postDetails.getOffset() == null){
 				postDetails.setOffset("0");
+			}*/
+			postDetails.setLimit("10");
+			int pageIndex = requestedPageNo - 1;
+			if(pageIndex >= 0 && (10 * pageIndex) < totalNoOfRecords){
+				//Calculate Offset
+				int offset = (10 * pageIndex);
+				postDetails.setOffset(String.valueOf(offset));
+			}else{
+				postDetails.setOffset("0");
 			}
+			
 			Criteria criteria = session.createCriteria(AutomobilePostDetails.class);
 			criteria.add(Restrictions.eq("postStatus", CBuddyConstants.USER_STATUS_ACTIVE));
 			criteria.addOrder(Order.desc("postId"));

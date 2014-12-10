@@ -47,17 +47,26 @@ public class FurnitureAdService {
 		return adDetails;
 	}
 	
-	public List<FurniturePostDetails> getAdListByCategory(FurniturePostDetails postDetails, String subCategory){
+	public List<FurniturePostDetails> getAdListByCategory(FurniturePostDetails postDetails, String subCategory, int totalNoOfRecords, int requestedPageNo){
 		SessionFactory sessionFactory = CbuddySessionFactory.getSessionFactory();
 		Session session = sessionFactory.openSession();
 
 		List<FurniturePostDetails> list = null;
 		try {
 			System.out.println(postDetails.getLimit()+" : "+postDetails.getOffset()+" : "+postDetails.getPage());
-			if(postDetails.getLimit() == null){
-				postDetails.setLimit("10");
+			/*if(postDetails.getLimit() == null){
+			postDetails.setLimit("10");
 			}
 			if(postDetails.getOffset() == null){
+				postDetails.setOffset("0");
+			}*/
+			postDetails.setLimit("10");
+			int pageIndex = requestedPageNo - 1;
+			if(pageIndex >= 0 && (10 * pageIndex) < totalNoOfRecords){
+				//Calculate Offset
+				int offset = (10 * pageIndex);
+				postDetails.setOffset(String.valueOf(offset));
+			}else{
 				postDetails.setOffset("0");
 			}
 			
