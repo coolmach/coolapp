@@ -23,6 +23,7 @@ public class TelevisionAdService{
 		SessionFactory sessionFactory = CbuddySessionFactory.getSessionFactory();
 		Session session = sessionFactory.openSession();
 		TelevisionPostDetails adDetails = (TelevisionPostDetails)session.get(TelevisionPostDetails.class, new Integer(postDetails.getPostIdStr()));
+		session.close();
 		return adDetails;
 	}
 
@@ -45,6 +46,8 @@ public class TelevisionAdService{
 
 		int count = (Integer) criteria.setProjection(Projections.rowCount()).uniqueResult();
 
+		session.close();
+		
 		return count;
 	}
 

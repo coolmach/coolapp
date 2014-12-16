@@ -21,6 +21,7 @@ public class DVDAdService{
 		SessionFactory sessionFactory = CbuddySessionFactory.getSessionFactory();
 		Session session = sessionFactory.openSession();
 		DVDPostDetails adDetails = (DVDPostDetails)session.get(DVDPostDetails.class, new Integer(postDetails.getPostIdStr()));
+		session.close();
 		return adDetails;
 	}
 	
@@ -42,6 +43,8 @@ public class DVDAdService{
 		criteria.setCacheable(true);
 
 		int count = (Integer) criteria.setProjection(Projections.rowCount()).uniqueResult();
+		
+		session.close();
 
 		return count;
 	}

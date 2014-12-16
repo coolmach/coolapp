@@ -38,6 +38,8 @@ public class AutomobileAdService{
 
 		int count = (Integer) criteria.setProjection(Projections.rowCount()).uniqueResult();
 
+		session.close();
+		
 		return count;
 	}
 
@@ -45,6 +47,7 @@ public class AutomobileAdService{
 		SessionFactory sessionFactory = CbuddySessionFactory.getSessionFactory();
 		Session session = sessionFactory.openSession();
 		AutomobilePostDetails adDetails = (AutomobilePostDetails)session.get(AutomobilePostDetails.class, new Integer(postDetails.getPostIdStr()));
+		session.close();
 		return adDetails;
 	}
 

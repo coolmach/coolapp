@@ -21,6 +21,7 @@ public class WashingMachineAdService{
 		SessionFactory sessionFactory = CbuddySessionFactory.getSessionFactory();
 		Session session = sessionFactory.openSession();
 		WashingMachinePostDetails adDetails = (WashingMachinePostDetails)session.get(WashingMachinePostDetails.class, new Integer(postDetails.getPostIdStr()));
+		session.close();
 		return adDetails;
 	}
 	
@@ -42,6 +43,8 @@ public class WashingMachineAdService{
 		criteria.setCacheable(true);
 
 		int count = (Integer) criteria.setProjection(Projections.rowCount()).uniqueResult();
+		
+		session.close();
 
 		return count;
 	}

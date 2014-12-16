@@ -27,6 +27,8 @@ public class RealEstateAdService{
 		
 		int count = (Integer) criteria.setProjection(Projections.rowCount()).uniqueResult();
 	
+		session.close();
+		
 		return count;
 	}
 	
@@ -140,6 +142,7 @@ public class RealEstateAdService{
 		SessionFactory sessionFactory = CbuddySessionFactory.getSessionFactory();
 		Session session = sessionFactory.openSession();
 		RealEstatePostDetails adDetails = (RealEstatePostDetails)session.get(RealEstatePostDetails.class, new Integer(postDetails.getPostIdStr()));
+		session.close();
 		return adDetails;
 	}
 }

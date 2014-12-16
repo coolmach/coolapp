@@ -36,6 +36,8 @@ public class FurnitureAdService {
 		criteria.setCacheable(true);
 		
 		int count = (Integer) criteria.setProjection(Projections.rowCount()).uniqueResult();
+		
+		session.close();
 	
 		return count;
 	}
@@ -44,6 +46,7 @@ public class FurnitureAdService {
 		SessionFactory sessionFactory = CbuddySessionFactory.getSessionFactory();
 		Session session = sessionFactory.openSession();
 		FurniturePostDetails adDetails = (FurniturePostDetails)session.get(FurniturePostDetails.class, new Integer(postDetails.getPostIdStr()));
+		session.close();
 		return adDetails;
 	}
 	

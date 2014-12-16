@@ -40,6 +40,8 @@ public class ComputersAdService{
 		
 		int count = (Integer) criteria.setProjection(Projections.rowCount()).uniqueResult();
 	
+		session.close();
+		
 		return count;
 	}
 	
@@ -242,6 +244,7 @@ public class ComputersAdService{
 		SessionFactory sessionFactory = CbuddySessionFactory.getSessionFactory();
 		Session session = sessionFactory.openSession();
 		ComputersPostDetails adDetails = (ComputersPostDetails)session.get(ComputersPostDetails.class, new Integer(postDetails.getPostIdStr()));
+		session.close();
 		return adDetails;
 	}
 }

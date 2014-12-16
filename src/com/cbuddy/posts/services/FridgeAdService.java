@@ -21,6 +21,7 @@ public class FridgeAdService{
 		SessionFactory sessionFactory = CbuddySessionFactory.getSessionFactory();
 		Session session = sessionFactory.openSession();
 		FridgePostDetails adDetails = (FridgePostDetails)session.get(FridgePostDetails.class, new Integer(postDetails.getPostIdStr()));
+		session.close();
 		return adDetails;
 	}
 	
@@ -42,6 +43,8 @@ public class FridgeAdService{
 		criteria.setCacheable(true);
 
 		int count = (Integer) criteria.setProjection(Projections.rowCount()).uniqueResult();
+		
+		session.close();
 
 		return count;
 	}

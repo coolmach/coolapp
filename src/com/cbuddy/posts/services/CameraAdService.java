@@ -21,6 +21,7 @@ public class CameraAdService{
 		SessionFactory sessionFactory = CbuddySessionFactory.getSessionFactory();
 		Session session = sessionFactory.openSession();
 		CameraPostDetails adDetails = (CameraPostDetails)session.get(CameraPostDetails.class, new Integer(postDetails.getPostIdStr()));
+		session.close();
 		return adDetails;
 	}
 	
@@ -43,6 +44,8 @@ public class CameraAdService{
 
 		int count = (Integer) criteria.setProjection(Projections.rowCount()).uniqueResult();
 
+		session.close();
+		
 		return count;
 	}
 

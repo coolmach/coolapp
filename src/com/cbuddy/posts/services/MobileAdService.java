@@ -37,6 +37,8 @@ public class MobileAdService{
 
 		int count = (Integer) criteria.setProjection(Projections.rowCount()).uniqueResult();
 
+		session.close();
+		
 		return count;
 	}
 
@@ -165,6 +167,7 @@ public class MobileAdService{
 		SessionFactory sessionFactory = CbuddySessionFactory.getSessionFactory();
 		Session session = sessionFactory.openSession();
 		MobilePostDetails adDetails = (MobilePostDetails)session.get(MobilePostDetails.class, new Integer(postDetails.getPostIdStr()));
+		session.close();
 		return adDetails;
 	}
 

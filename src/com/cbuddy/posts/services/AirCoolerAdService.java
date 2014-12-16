@@ -22,6 +22,7 @@ public class AirCoolerAdService{
 		SessionFactory sessionFactory = CbuddySessionFactory.getSessionFactory();
 		Session session = sessionFactory.openSession();
 		AirCoolerPostDetails adDetails = (AirCoolerPostDetails)session.get(AirCoolerPostDetails.class, new Integer(postDetails.getPostIdStr()));
+		session.close();
 		return adDetails;
 	}
 	
@@ -43,6 +44,8 @@ public class AirCoolerAdService{
 		criteria.setCacheable(true);
 
 		int count = (Integer) criteria.setProjection(Projections.rowCount()).uniqueResult();
+		
+		session.close();
 
 		return count;
 	}
